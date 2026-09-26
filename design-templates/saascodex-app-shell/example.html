@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invoices - Beacon Billing</title>
+  <style>
+    :root {
+      --bg: #f6f7f9; --surface: #ffffff; --sidebar: #101722;
+      --fg: #17202b; --muted: #66717f; --border: #e2e6ec;
+      --accent: #3563e9; --accent-on: #ffffff; --accent-soft: #e9effd;
+      --success: #12805c; --success-soft: #e3f4ee;
+      --warn: #9a6700; --warn-soft: #fdf1d7;
+      --danger: #c9372c;
+      --sidebar-fg: #9aa7b8;
+      --font-display: "Space Grotesk", system-ui, sans-serif;
+      --font-body: system-ui, -apple-system, sans-serif;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+      --sidebar-w: 240px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font-body); }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    .shell { display: grid; grid-template-columns: var(--sidebar-w) 1fr; min-height: 100vh; }
+    aside { background: var(--sidebar); color: var(--sidebar-fg); display: flex; flex-direction: column; padding: 18px 14px; position: sticky; top: 0; height: 100vh; }
+    .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 17px; padding: 6px 10px 18px; }
+    .brand i { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), #7aa0ff); }
+    .workspace { display: flex; justify-content: space-between; align-items: center; margin: 0 6px 16px; padding: 9px 10px; border: 1px solid #253044; border-radius: var(--radius-sm); font-size: 13px; color: #dbe3ee; background: #17202e; }
+    .workspace span { color: var(--sidebar-fg); }
+    .nav-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: #6d7a8d; padding: 14px 10px 6px; }
+    nav a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: var(--radius-sm); font-size: 14px; margin-bottom: 2px; }
+    nav a:hover { background: #1a2434; color: #e8edf5; }
+    nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+    nav a[aria-current="page"]::before { content: ""; width: 3px; height: 16px; border-radius: 2px; background: var(--accent); margin-left: -10px; margin-right: 7px; }
+    .nav-dot { margin-left: auto; width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+    .side-foot { margin-top: auto; display: grid; gap: 10px; }
+    .plan { background: #17202e; border: 1px solid #253044; border-radius: var(--radius-md); padding: 12px; font-size: 13px; }
+    .plan b { color: #fff; display: block; margin-bottom: 4px; }
+    .plan .meter { height: 5px; border-radius: 3px; background: #253044; margin-top: 8px; overflow: hidden; }
+    .plan .meter i { display: block; width: 58%; height: 100%; background: var(--accent); }
+    .user { display: flex; align-items: center; gap: 10px; padding: 8px 10px; font-size: 13px; color: #dbe3ee; }
+    .avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #7aa0ff, #b18cff); display: grid; place-items: center; color: #101722; font-weight: 700; font-size: 12px; }
+    main { min-width: 0; }
+    .topbar { display: flex; align-items: center; gap: 16px; height: 60px; padding: 0 28px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 5; }
+    .crumb { font-size: 13px; color: var(--muted); }
+    .crumb b { color: var(--fg); font-weight: 600; }
+    .search { margin-left: auto; display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--bg); border-radius: var(--radius-sm); padding: 8px 12px; width: 240px; color: var(--muted); font-size: 13px; }
+    .bell { position: relative; color: var(--muted); }
+    .bell i { position: absolute; top: -2px; right: -3px; width: 8px; height: 8px; background: var(--danger); border-radius: 50%; border: 2px solid var(--surface); }
+    .content { padding: 30px 28px 56px; max-width: 1180px; }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+    .page-head h1 { font-size: 26px; letter-spacing: -0.01em; }
+    .page-head p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 16px; border-radius: var(--radius-sm); font: 600 14px/1 var(--font-body); border: 1px solid transparent; cursor: pointer; }
+    .btn:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 2px; }
+    .btn-primary { background: var(--accent); color: var(--accent-on); }
+    .btn-primary:hover { background: color-mix(in srgb, var(--accent), #000 12%); }
+    .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--fg); }
+    .actions { display: flex; gap: 10px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+    .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px; }
+    .kpi span { font-size: 13px; color: var(--muted); }
+    .kpi b { display: block; font-family: var(--font-display); font-size: 26px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+    .delta { font-size: 12px; font-weight: 700; margin-top: 6px; display: inline-block; }
+    .delta.up { color: var(--success); } .delta.down { color: var(--danger); }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--border); }
+    .panel-head h2 { font-size: 16px; }
+    .filters { display: flex; gap: 8px; font-size: 13px; }
+    .chip { border: 1px solid var(--border); background: var(--surface); border-radius: 999px; padding: 6px 12px; color: var(--muted); }
+    .chip.on { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 40%, transparent); color: var(--accent); font-weight: 600; }
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 14px; }
+    th, td { padding: 13px 18px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    thead th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--bg); }
+    tbody tr:hover { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); }
+    td.num { font-variant-numeric: tabular-nums; text-align: right; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.paid { color: var(--success); background: var(--success-soft); }
+    .badge.open { color: var(--warn); background: var(--warn-soft); }
+    .badge.void { color: var(--muted); background: var(--bg); border: 1px solid var(--border); }
+    .row-link { color: var(--accent); font-weight: 600; }
+    .empty { display: flex; gap: 14px; align-items: center; padding: 20px 18px; background: var(--bg); border-top: 1px dashed var(--border); color: var(--muted); font-size: 13px; }
+    @media (max-width: 1024px) {
+      .shell { grid-template-columns: 72px 1fr; }
+      aside { padding: 18px 10px; }
+      .brand span, .workspace, .nav-label, .plan, .user span { display: none; }
+      nav a span { display: none; }
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+      .search { width: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand"><i></i><span>Beacon</span></div>
+      <div class="workspace">Acme Studio <span>Free trial</span></div>
+      <div class="nav-label">Billing</div>
+      <nav aria-label="Primary">
+        <a href="#overview"><span>Overview</span></a>
+        <a href="#invoices" aria-current="page"><span>Invoices</span><span class="nav-dot" title="2 overdue"></span></a>
+        <a href="#customers"><span>Customers</span></a>
+        <a href="#plans"><span>Plans</span></a>
+        <a href="#settings"><span>Settings</span></a>
+      </nav>
+      <div class="side-foot">
+        <div class="plan"><b>Free trial - 4 days left</b>Upgrade to keep watermark-free invoices.<div class="meter"><i></i></div></div>
+        <div class="user"><div class="avatar">MR</div><span>mira@acme.studio</span></div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="topbar">
+        <div class="crumb">Billing / <b>Invoices</b></div>
+        <div class="search">Search invoices, customers...</div>
+        <div class="bell" aria-label="2 notifications">?<i></i></div>
+        <div class="avatar" aria-hidden="true">MR</div>
+      </div>
+
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <h1>Invoices</h1>
+            <p>Track what is paid, open, and overdue across Acme Studio.</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-ghost" type="button">Export CSV</button>
+            <button class="btn btn-primary" type="button">New invoice</button>
+          </div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><span>Collected this month</span><b>€18,240</b><span class="delta up">&#9650; 12.4%</span></div>
+          <div class="kpi"><span>Open invoices</span><b>€6,110</b><span class="delta down">&#9660; 3.1%</span></div>
+          <div class="kpi"><span>Overdue</span><b>€1,490</b><span class="delta down">&#9660; 0.8%</span></div>
+          <div class="kpi"><span>Avg. days to pay</span><b>9.2</b><span class="delta up">&#9650; 1.1d faster</span></div>
+        </div>
+
+        <section class="panel" aria-label="Invoice list">
+          <div class="panel-head">
+            <h2>All invoices</h2>
+            <div class="filters">
+              <span class="chip on">All</span><span class="chip">Paid</span><span class="chip">Open</span><span class="chip">Overdue</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th scope="col">Invoice</th><th scope="col">Customer</th><th scope="col">Issued</th><th scope="col" style="text-align:right">Amount</th><th scope="col">Status</th><th scope="col">Action</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>#INV-1041</td><td>Northwind Labs</td><td>Sep 22, 2026</td><td class="num">€2,400.00</td><td><span class="badge paid">Paid</span></td><td><a class="row-link" href="#">View</a></td></tr>
+                <tr><td>#INV-1040</td><td>Kestrel Bank</td><td>Sep 20, 2026</td><td class="num">€1,150.00</td><td><span class="badge open">Open</span></td><td><a class="row-link" href="#">View</a></td></tr>
+                <tr><td>#INV-1039</td><td>Fathom Logistics</td><td>Sep 15, 2026</td><td class="num">€890.00</td><td><span class="badge open">Open</span></td><td><a class="row-link" href="#">View</a></td></tr>
+                <tr><td>#INV-1038</td><td>Orbit Media</td><td>Sep 8, 2026</td><td class="num">€600.00</td><td><span class="badge paid">Paid</span></td><td><a class="row-link" href="#">View</a></td></tr>
+                <tr><td>#INV-1037</td><td>Lumen Retail</td><td>Sep 1, 2026</td><td class="num">€1,490.00</td><td><span class="badge open">Overdue</span></td><td><a class="row-link" href="#">Remind</a></td></tr>
+                <tr><td>#INV-1036</td><td>Arbor Health</td><td>Aug 28, 2026</td><td class="num">€3,200.00</td><td><span class="badge paid">Paid</span></td><td><a class="row-link" href="#">View</a></td></tr>
+                <tr><td>#INV-1035</td><td>Copperfield Co</td><td>Aug 21, 2026</td><td class="num">€740.00</td><td><span class="badge void">Void</span></td><td><a class="row-link" href="#">View</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty">No invoices match the selected date range beyond these seven - adjust filters or create a new invoice.</div>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
