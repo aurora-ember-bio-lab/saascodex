@@ -1,0 +1,109 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * design-systems/saascodex/tokens.css
+ *
+ * Structured token bindings for "SaaSCodex Aurora" — the house brand.
+ * Machine-readable form of DESIGN.md. Agents paste the `:root { … }`
+ * block verbatim into the first <style> of every artifact generated
+ * against this system, then reference tokens via var(--name).
+ *
+ * Brand: deep aurora-ink surfaces, aurora-mint accent, ember warmth
+ * reserved for state color. Dark-first.
+ *
+ * Contract sources:
+ *   - Standard token names: craft/color.md
+ *       (--bg / --surface / --fg / --muted / --border / --accent
+ *        / --success / --warn / --danger)
+ *   - Display-face contract: craft/anti-ai-slop.md
+ *       (--font-display, referenced via var())
+ *   - Lint enforcement: apps/daemon/src/lint-artifact.ts
+ *
+ * Keep this file additive: overwrite values, never rename keys.
+ * ─────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Surface (3 levels) ────────────────────────────────────────── */
+  --bg: #0b0f0e;              /* deep aurora ink */
+  --surface: #131a18;         /* cards, modals, inputs */
+  --surface-warm: #1a1512;    /* ember-tinted third tier (rare warm callouts) */
+
+  /* ─── Foreground ramp (4 levels) ───────────────────────────────── */
+  --fg: #ecf4f1;              /* primary text */
+  --fg-2: #c9d8d2;            /* secondary headings */
+  --muted: #93a7a0;           /* secondary text, captions */
+  --meta: #6e827b;            /* timestamps, labels */
+
+  /* ─── Border (2 levels) ────────────────────────────────────────── */
+  --border: #24322d;          /* card edges */
+  --border-soft: #1b2622;     /* dividers, separators */
+
+  /* ─── Accent (aurora mint) ─────────────────────────────────────── */
+  --accent: #3be8b0;
+  --accent-on: #06110d;       /* label color when accent is the bg */
+
+  /* ─── Accent states ────────────────────────────────────────────── */
+  --accent-hover: color-mix(in oklab, var(--accent), black 10%);
+  --accent-active: color-mix(in oklab, var(--accent), black 18%);
+
+  /* ─── Semantic (ember warmth lives here — state only) ──────────── */
+  --success: #3ddc97;
+  --warn: #f5a524;            /* ember amber */
+  --danger: #ff5c5c;          /* ember red */
+
+  /* ─── Typography ───────────────────────────────────────────────── */
+  --font-display: "Space Grotesk", "Inter", -apple-system, system-ui, sans-serif;
+  --font-body: "Inter", -apple-system, system-ui, sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", monospace;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+  --text-4xl: 64px;
+
+  --leading-body: 1.5;
+  --leading-tight: 1.2;
+  --tracking-display: -0.01em;
+
+  /* ─── Spacing (4px base unit) ──────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-20: 80px;
+
+  --section-y-desktop: 80px;
+  --section-y-tablet: 48px;
+  --section-y-phone: 32px;
+
+  /* ─── Radius (crisper, instrument-like) ────────────────────────── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 9999px;
+
+  /* ─── Elevation (3 levels) ─────────────────────────────────────── */
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 2px 8px color-mix(in oklab, var(--fg), transparent 92%);
+
+  /* ─── Focus ring ───────────────────────────────────────────────── */
+  --focus-ring: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 70%);
+
+  /* ─── Motion ───────────────────────────────────────────────────── */
+  --motion-fast: 150ms;
+  --motion-base: 200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ─── Layout ───────────────────────────────────────────────────── */
+  --container-max: 1200px;
+  --container-gutter-desktop: 24px;
+  --container-gutter-tablet: 16px;
+  --container-gutter-phone: 12px;
+}
