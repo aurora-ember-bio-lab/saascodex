@@ -102,6 +102,8 @@ import { connectorService } from '../../connectors/service.js';
 import type { RouteDeps } from '../../server-context.js';
 import { listSkills } from '../../skills.js';
 import { isSafeId } from '../../projects.js';
+import { assertCanCreateProject, effectivePlanOn } from '../../billing/plans.js';
+import { createBillingStore } from '../../billing/store.js';
 import {
   ensureTeamProjectCommentConversations,
   getFirstProjectConversation,
@@ -3871,6 +3873,27 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
       }
       if (typeof name !== 'string' || !name.trim()) {
         return sendApiError(res, 400, 'BAD_REQUEST', 'name required');
+      }
+      // SaaSCodex plan gating: once the free plan's 7-day trial has
+      // lapsed it allows 3 active projects; during the trial and on paid
+      // plans creation is unlimited. The billing state file starts every
+      // fresh installation inside its trial window.
+      {
+        const billingState = await createBillingStore(ctx.paths.RUNTIME_DATA_DIR).read();
+        const effectivePlan = effectivePlanOn(
+          billingState.plan,
+          billingState.trialEndsAt,
+          Date.now(),
+        );
+        const gate = assertCanCreateProject(listProjects(db).length, effectivePlan);
+        if (!gate.ok) {
+          return sendApiError(
+            res,
+            403,
+            'PROJECT_LIMIT',
+            `The Free plan allows ${gate.limit} active projects. Upgrade to Pro or Studios for unlimited projects.`,
+          );
+        }
       }
       // baseDir is privileged: it lets a project root directly inside the
       // user's filesystem. The /api/import/folder endpoint is the only

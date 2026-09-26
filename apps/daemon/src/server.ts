@@ -900,6 +900,7 @@ import { registerConnectorRoutes } from './connectors/routes.js';
 import { registerActiveContextRoutes } from './routes/active-context.js';
 import { registerAutomationRoutes } from './routes/automation.js';
 import { registerAttributionRoutes } from './routes/attribution.js';
+import { registerBillingRoutes } from './routes/billing.js';
 import { registerDaemonRoutes } from './routes/daemon.js';
 import { registerGenuiRoutes } from './routes/genui.js';
 import { registerDesignSystemRoutes } from './routes/design-systems.js';
@@ -3218,6 +3219,12 @@ export async function startServer({
   // exactly the incidents it was built for, and silently: the uploader reports
   // `res.ok` and the export continues without the evidence.
   app.use(CHAT_SCROLL_FORENSICS_PATH, chatScrollForensicsBodyParser);
+  // Stripe signs the exact bytes of the webhook payload, so that route has
+  // to claim its body as raw Buffer before the global JSON parser runs
+  // (express.json is a no-op once a body has been read). Registered here
+  // with the other pre-global parsers; the route itself is declared far
+  // below in registerBillingRoutes.
+  app.use('/api/billing/webhook', express.raw({ type: 'application/json', limit: '1mb' }));
   app.use(express.json({ limit: '4mb' }));
   const projectPreviewScopes = createProjectPreviewScopeRegistry();
 
@@ -3242,6 +3249,9 @@ export async function startServer({
       '/api/ready',
       '/version',
       '/api/version',
+      // Stripe webhooks authenticate with a signed payload instead of the
+      // daemon bearer token; the route verifies Stripe-Signature itself.
+      '/billing/webhook',
     ]);
     app.use('/api', (req, res, next) => {
       if (openProbePaths.has(req.path)) return next();
@@ -8175,6 +8185,10 @@ export async function startServer({
     analytics: analyticsService,
     appConfig: { readAppConfig },
     http: httpDeps,
+    paths: { RUNTIME_DATA_DIR },
+    env: process.env,
+  });
+  registerBillingRoutes(app, {
     paths: { RUNTIME_DATA_DIR },
     env: process.env,
   });
