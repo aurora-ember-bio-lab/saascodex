@@ -135,19 +135,19 @@ describe('active skill clarification policy', () => {
 describe('product clarification copy', () => {
   it.each([
     {
-      path: 'design-templates/open-design-landing/inputs.example.json',
+      path: 'design-templates/saascodex-landing/inputs.example.json',
       required: 'When unresolved choices would materially change the result',
     },
     {
-      path: 'design-templates/open-design-landing/example.html',
+      path: 'design-templates/saascodex-landing/example.html',
       required: 'When unresolved choices would materially change the result',
     },
     {
-      path: 'plugins/_official/examples/open-design-landing/example.html',
+      path: 'plugins/_official/examples/saascodex-landing/example.html',
       required: 'When unresolved choices would materially change the result',
     },
     {
-      path: 'design-templates/open-design-landing-deck/inputs.example.json',
+      path: 'design-templates/saascodex-landing-deck/inputs.example.json',
       required: 'only when they materially affect the result',
     },
     {

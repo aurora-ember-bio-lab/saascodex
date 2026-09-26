@@ -1,6 +1,6 @@
 import { expect, it, vi } from 'vitest';
 import { acceptClientExperienceDiagnostic } from '../src/routes/telemetry.js';
-import { parseClientExperienceDiagnostic } from '@open-design/contracts/analytics';
+import { parseClientExperienceDiagnostic } from '@saascodex/contracts/analytics';
 const evidence = { occurrenceId: 'run:r:failed', category: 'visible_error', surface: 'chat', errorCode: 'FAILED', observedAt: 1, runId: 'r' };
 function deps(metrics = true, content = true) {
   return { dataDir: '/isolated', readAppConfig: vi.fn(async () => ({ telemetry: { metrics, content } })) as never,

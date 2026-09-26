@@ -4,13 +4,13 @@ import path from 'node:path';
 
 import {
   normalizeAgentObservationV1,
-  OpenDesignPlanContractV2Schema,
+  SaaSCodexPlanContractV2Schema,
   type AppliedPluginSnapshot,
   type NormalizedAgentObservationV1,
   type OdNextRuntimeCapabilitySnapshotV1,
-  type OpenDesignPlanContractV2,
-} from '@open-design/contracts';
-import { strategyPackageHashFromDigests } from '@open-design/plugin-runtime';
+  type SaaSCodexPlanContractV2,
+} from '@saascodex/contracts';
+import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
 import type Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
@@ -65,7 +65,7 @@ function strategyBinding() {
     { path: './assets/task-profiles/prototype.md', sha256: 'b'.repeat(64) },
   ];
   return {
-    schema: 'open-design.applied-strategy/v2' as const,
+    schema: 'saascodex.applied-strategy/v2' as const,
     id: 'od-next-strategy' as const,
     version: '2.0.0',
     packageHash: strategyPackageHashFromDigests(assetDigests),
@@ -106,7 +106,7 @@ function capabilitySnapshot(
   overrides: Partial<Omit<OdNextRuntimeCapabilitySnapshotV1, 'snapshotHash'>> = {},
 ): OdNextRuntimeCapabilitySnapshotV1 {
   const withoutHash: Omit<OdNextRuntimeCapabilitySnapshotV1, 'snapshotHash'> = {
-    schema: 'open-design.od-next-runtime-capability-snapshot/v1',
+    schema: 'saascodex.od-next-runtime-capability-snapshot/v1',
     runtimePath: 'codex',
     agentId: AGENT_ID,
     agentCliVersion: 'synthetic-cli-simulating-fixture/1',
@@ -137,10 +137,10 @@ function planContract(
   snapshot: AppliedPluginSnapshot,
   capability = capabilitySnapshot(),
   dependent = true,
-): OpenDesignPlanContractV2 {
+): SaaSCodexPlanContractV2 {
   const strategy = snapshot.strategy!;
   return {
-    schema: 'open-design.plan-contract/v2',
+    schema: 'saascodex.plan-contract/v2',
     strategy: {
       id: 'od-next-strategy',
       version: strategy.version,
@@ -266,13 +266,13 @@ function block(tag: string, value: unknown): string {
   return `<${tag}>\n${JSON.stringify(value)}\n</${tag}>`;
 }
 
-function parsedPlanning(plan: OpenDesignPlanContractV2) {
-  OpenDesignPlanContractV2Schema.parse(plan);
+function parsedPlanning(plan: SaaSCodexPlanContractV2) {
+  SaaSCodexPlanContractV2Schema.parse(plan);
   const protocol = new OdNextMachineProtocolStream();
   protocol.push([
-    block('open-design-plan-contract', plan),
-    block('open-design-runtime-state', {
-      schema: 'open-design.strategy-state/v2',
+    block('saascodex-plan-contract', plan),
+    block('saascodex-runtime-state', {
+      schema: 'saascodex.strategy-state/v2',
       executionIntent: 'produce',
       route: 'full_plan',
       inputStage: 'request',
@@ -286,8 +286,8 @@ function parsedPlanning(plan: OpenDesignPlanContractV2) {
 
 function parsedCompletion() {
   const protocol = new OdNextMachineProtocolStream();
-  protocol.push(block('open-design-runtime-state', {
-    schema: 'open-design.strategy-state/v2',
+  protocol.push(block('saascodex-runtime-state', {
+    schema: 'saascodex.strategy-state/v2',
     executionIntent: 'produce',
     route: 'full_plan',
     inputStage: 'production',
@@ -487,7 +487,7 @@ describe('OD Next complex production enforcement', () => {
       agentCliVersion: '2.1.233 (Claude Code)',
       capturedAt: 1,
     }).snapshot!;
-    const plan = OpenDesignPlanContractV2Schema.parse({
+    const plan = SaaSCodexPlanContractV2Schema.parse({
       ...planContract(snapshot, capability),
       runManifest: {
         ...planContract(snapshot, capability).runManifest,

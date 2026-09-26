@@ -76,12 +76,12 @@ describe.each(["test", "production"] as const)(
 				.spyOn(host, "verifyWebTouchpoint")
 				.mockResolvedValue(resources);
 			const dispose = vi
-				.spyOn(host.OpenDesignTouchpointElement.prototype, "dispose")
+				.spyOn(host.SaaSCodexTouchpointElement.prototype, "dispose")
 				.mockResolvedValue();
 			const mount = vi
-				.spyOn(host.OpenDesignTouchpointElement.prototype, "mount")
+				.spyOn(host.SaaSCodexTouchpointElement.prototype, "mount")
 				.mockImplementation(async function (
-					this: host.OpenDesignTouchpointElement,
+					this: host.SaaSCodexTouchpointElement,
 				) {
 					this.shadowRoot?.replaceChildren(document.createTextNode("campaign"));
 				});

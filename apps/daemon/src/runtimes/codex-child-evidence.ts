@@ -21,7 +21,7 @@ import {
   type NormalizedTimingEvidenceV1,
   type NormalizedUsageEvidenceV1,
   type StrategyInputStageV2,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   buildSafeChildPromptTelemetry,
   type SafeChildPromptInput,

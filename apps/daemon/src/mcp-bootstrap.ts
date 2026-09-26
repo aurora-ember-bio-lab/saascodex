@@ -1,12 +1,12 @@
 import { spawn } from "node:child_process";
 import { isAbsolute } from "node:path";
 
-import { SidecarFactory } from "@open-design/sidecar";
+import { SidecarFactory } from "@saascodex/sidecar";
 import {
   APP_KEYS,
   MCP_BOOTSTRAP_CONTRACT,
   type DaemonStatusSnapshot,
-} from "@open-design/sidecar-proto";
+} from "@saascodex/sidecar-proto";
 
 import { resolveDaemonUrl as resolveDaemonUrlDefault } from "./daemon-url.js";
 
@@ -174,7 +174,7 @@ export async function ensureMcpDaemonUrl(
   if (plan.action === "none") {
     if (daemonUrl != null && (daemonReachable || explicitDaemonUrl)) return daemonUrl;
     throw new Error(
-      `The registered OpenDesign runtime is unavailable and cannot be launched (${plan.reason}).`,
+      `The registered SaaSCodex runtime is unavailable and cannot be launched (${plan.reason}).`,
     );
   }
 
@@ -193,7 +193,7 @@ export async function ensureMcpDaemonUrl(
     if (daemonUrl != null && await probeDaemon(daemonUrl)) return daemonUrl;
   }
   throw new Error(
-    `OpenDesign was launched headlessly but its daemon did not become ready within ${timeoutMs}ms.`,
+    `SaaSCodex was launched headlessly but its daemon did not become ready within ${timeoutMs}ms.`,
   );
 }
 
@@ -234,7 +234,7 @@ async function ensureManagedMcpDaemonUrl(
     const plan = planMcpDaemonBootstrap({ daemonReachable: false, env, explicitDaemonUrl: false });
     if (plan.action !== "spawn") {
       throw new Error(
-        `The registered OpenDesign runtime is unavailable and cannot be launched (${plan.reason}).`,
+        `The registered SaaSCodex runtime is unavailable and cannot be launched (${plan.reason}).`,
       );
     }
     await deps.spawnBootstrap(plan);
@@ -248,7 +248,7 @@ async function ensureManagedMcpDaemonUrl(
     if (url != null) return url;
   }
   throw new Error(
-    `OpenDesign did not make its local service available within ${deps.timeoutMs}ms.`,
+    `SaaSCodex did not make its local service available within ${deps.timeoutMs}ms.`,
   );
 }
 

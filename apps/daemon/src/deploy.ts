@@ -5,7 +5,7 @@ import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { hash as blake3Hash } from 'blake3-wasm';
 import { listFiles, readProjectFile, validateProjectPath } from './projects.js';
-import { findRealTagOffset, HTML_TAG_PATTERNS } from '@open-design/contracts/runtime/html-injection-points';
+import { findRealTagOffset, HTML_TAG_PATTERNS } from '@saascodex/contracts/runtime/html-injection-points';
 
 export const VERCEL_PROVIDER_ID = 'vercel-self';
 export const CLOUDFLARE_PAGES_PROVIDER_ID = 'cloudflare-pages';
@@ -75,7 +75,7 @@ export class DeployError extends Error {
 }
 
 export function deployConfigPath(providerId: DeployProviderId = VERCEL_PROVIDER_ID) {
-  const base = process.env.OD_USER_STATE_DIR || path.join(os.homedir(), '.open-design');
+  const base = process.env.OD_USER_STATE_DIR || path.join(os.homedir(), '.saascodex');
   return path.join(base, providerId === CLOUDFLARE_PAGES_PROVIDER_ID ? 'cloudflare-pages.json' : 'vercel.json');
 }
 
@@ -1497,7 +1497,7 @@ export function injectDeployHookScript(html: string, scriptUrl: unknown) {
 
   const tag =
     `<script src="${escapeHtmlAttribute(normalized)}" defer ` +
-    'data-open-design-deploy-hook="true" data-closeable="true"></script>';
+    'data-saascodex-deploy-hook="true" data-closeable="true"></script>';
   // The document's own `</body>`, not one an author wrote into a script string:
   // splicing there would end their script with this tag's `</script>` and leak
   // the rest of it onto the deployed page (nexu-io/open-design#7410).

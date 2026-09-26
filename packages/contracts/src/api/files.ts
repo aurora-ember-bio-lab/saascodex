@@ -171,7 +171,7 @@ export interface ProjectExportManifestArtifact {
   updatedAt: string | null;
 }
 
-export const PROJECT_EXPORT_MANIFEST_SCHEMA = 'open-design.project-export-manifest.v1' as const;
+export const PROJECT_EXPORT_MANIFEST_SCHEMA = 'saascodex.project-export-manifest.v1' as const;
 
 export interface ProjectExportManifestResponse {
   schema: typeof PROJECT_EXPORT_MANIFEST_SCHEMA;

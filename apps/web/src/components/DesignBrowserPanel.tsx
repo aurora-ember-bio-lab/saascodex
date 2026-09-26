@@ -12,9 +12,9 @@ import {
 import { createPortal, flushSync } from 'react-dom';
 import {
   clearHostBrowserData,
-  isOpenDesignHostAvailable,
-} from '@open-design/host';
-import type { TrackingReferenceBoardCategory } from '@open-design/contracts/analytics';
+  isSaaSCodexHostAvailable,
+} from '@saascodex/host';
+import type { TrackingReferenceBoardCategory } from '@saascodex/contracts/analytics';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackReferenceBoardClick,
@@ -275,7 +275,7 @@ interface DesignBrowserPanelProps {
   projectId: string;
   resolvedDir?: string | null;
   onOpenFile: (name: string) => void;
-  onOpenDesignFiles?: () => void;
+  onSaaSCodexFiles?: () => void;
   onRefreshFiles: () => Promise<void> | void;
   onPageInfoChange?: (info: BrowserPageInfo) => void;
   previewComments?: PreviewComment[];
@@ -299,7 +299,7 @@ export interface BrowserPageInfo {
 }
 
 const EMPTY_URL = 'about:blank';
-const DESIGN_BROWSER_PARTITION = 'persist:open-design-design-browser';
+const DESIGN_BROWSER_PARTITION = 'persist:saascodex-design-browser';
 const HISTORY_LIMIT = DESIGN_BROWSER_HISTORY_LIMIT;
 const HISTORY_SUGGESTION_LIMIT = 20;
 const EMPTY_PREVIEW_COMMENTS: PreviewComment[] = [];
@@ -727,7 +727,7 @@ export function browserUsePrompt(action: BrowserUseAction, context: BrowserUsePr
   return [
     '@agent-browser',
     '',
-    'Use the selected OpenDesign Browser tab as the bound target.',
+    'Use the selected SaaSCodex Browser tab as the bound target.',
     'Browser tab context:',
     `- tab: ${tabLabel}`,
     `- title: ${title}`,
@@ -918,7 +918,7 @@ export function DesignBrowserPanel({
   projectId,
   resolvedDir,
   onOpenFile,
-  onOpenDesignFiles,
+  onSaaSCodexFiles,
   onPageInfoChange,
   onRefreshFiles,
   previewComments = EMPTY_PREVIEW_COMMENTS,
@@ -933,7 +933,7 @@ export function DesignBrowserPanel({
 }: DesignBrowserPanelProps) {
   const t = useT();
   const { workspaceContext } = useProjectCollabContext();
-  const desktopHostAvailable = isOpenDesignHostAvailable();
+  const desktopHostAvailable = isSaaSCodexHostAvailable();
   const initialState = initialBrowserState(initialUrl, initialTitle);
   // `loadUrl` is the navigation target bound to the <webview>/<iframe> `src`.
   // It changes ONLY on user-initiated navigation. `currentUrl` is the committed
@@ -1947,13 +1947,13 @@ export function DesignBrowserPanel({
       if (options.openAfterSave !== false) onOpenFile(manifestFile);
       const message = t('designBrowser.status.pageSnapshotSaved');
       const elapsedSeconds = pageSnapshotRunElapsedSeconds(run);
-      const canOpenDesignFiles = Boolean(onOpenDesignFiles);
+      const canSaaSCodexFiles = Boolean(onSaaSCodexFiles);
       setStatusMessage({
         actionFileName: manifestFile,
-        actionLabel: canOpenDesignFiles
+        actionLabel: canSaaSCodexFiles
           ? t('designBrowser.status.viewDesignFiles')
           : t('workspace.designFiles'),
-        actionTarget: canOpenDesignFiles ? 'design-files' : 'file',
+        actionTarget: canSaaSCodexFiles ? 'design-files' : 'file',
         message,
         source: 'page-snapshot',
       });
@@ -2658,8 +2658,8 @@ export function DesignBrowserPanel({
               type="button"
               className="db-status-action"
               onClick={() => {
-                if (statusAction.actionTarget === 'design-files' && onOpenDesignFiles) {
-                  onOpenDesignFiles();
+                if (statusAction.actionTarget === 'design-files' && onSaaSCodexFiles) {
+                  onSaaSCodexFiles();
                 } else {
                   onOpenFile(statusAction.actionFileName ?? '');
                 }

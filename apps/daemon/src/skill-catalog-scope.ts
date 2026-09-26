@@ -1,4 +1,4 @@
-import type { ProjectMetadata } from '@open-design/contracts';
+import type { ProjectMetadata } from '@saascodex/contracts';
 
 /**
  * The catalogue partition a run may resolve Skill-like entries from.

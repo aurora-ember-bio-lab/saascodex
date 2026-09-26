@@ -24,9 +24,9 @@ import {
   updateCurrentApiProtocolConfig,
 } from '../../src/components/SettingsDialog';
 import { deriveUpdaterModel } from '../../src/lib/updater';
-import type { OpenDesignHostUpdaterStatusSnapshot } from '@open-design/host';
+import type { SaaSCodexHostUpdaterStatusSnapshot } from '@saascodex/host';
 import type { AppConfig, AppVersionInfo, ConnectionTestResponse } from '../../src/types';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 
 const originalFetch = globalThis.fetch;
 
@@ -51,8 +51,8 @@ const packagedVersion: AppVersionInfo = {
 };
 
 function updateStatus(
-  overrides: Partial<OpenDesignHostUpdaterStatusSnapshot> = {},
-): OpenDesignHostUpdaterStatusSnapshot {
+  overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {},
+): SaaSCodexHostUpdaterStatusSnapshot {
   return {
     arch: 'arm64',
     capabilities: {
@@ -221,10 +221,10 @@ describe('SettingsDialog about update control', () => {
       deriveUpdaterModel(
         updateStatus({
           artifact: {
-            name: 'open-design-1.2.3-beta.4-mac-arm64-payload.zip',
+            name: 'saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
             platformKey: 'mac',
             type: 'payload',
-            url: 'https://fixture.test/open-design-1.2.3-beta.4-mac-arm64-payload.zip',
+            url: 'https://fixture.test/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
           },
           availableVersion: '1.2.3-beta.4',
           capabilities: {
@@ -233,7 +233,7 @@ describe('SettingsDialog about update control', () => {
             canOpenInstaller: false,
             requiresManualInstall: false,
           },
-          downloadPath: '/tmp/open-design-updater/open-design-1.2.3-beta.4-mac-arm64-payload.zip',
+          downloadPath: '/tmp/saascodex-updater/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
           state: 'downloaded',
         }),
         { hostAvailable: true },

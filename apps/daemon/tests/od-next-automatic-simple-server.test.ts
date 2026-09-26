@@ -12,15 +12,15 @@ import { Agent, fetch as undiciFetch } from 'undici';
 import type {
   AppliedStrategyBindingV2,
   OdNextRuntimeCapabilitySnapshotV1,
-  OpenDesignPlanContractV2,
+  SaaSCodexPlanContractV2,
   ProjectScenarioTaskProfile,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   normalizeAgentObservationV1,
   OD_NEXT_PROMPT_STAGE_CONTRACT_V2,
   parseOdNextPromptBundleV2,
   parseOdNextIntentResolutionTurnV1,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 const codexArchiveBoundary = vi.hoisted(() => ({
   home: '', activeParentPath: '', cleanupStarted: false,
@@ -197,7 +197,7 @@ const INTAKE_PASSED = {
 
 function complexCapabilitySnapshot(): OdNextRuntimeCapabilitySnapshotV1 {
   const withoutHash: Omit<OdNextRuntimeCapabilitySnapshotV1, 'snapshotHash'> = {
-    schema: 'open-design.od-next-runtime-capability-snapshot/v1',
+    schema: 'saascodex.od-next-runtime-capability-snapshot/v1',
     runtimePath: 'codex',
     agentId: 'codex',
     agentCliVersion: 'synthetic-cli-simulating-fixture/1',
@@ -448,7 +448,7 @@ process.exit(127);
         expect(historyResponse.status).toBe(200);
         const history = JSON.stringify(await historyResponse.json());
         expect(history).toContain('INTENT_SOURCE_ANSWER_2623');
-        expect(history).not.toContain('open-design-runtime-state');
+        expect(history).not.toContain('saascodex-runtime-state');
       }
     },
   );
@@ -487,7 +487,7 @@ process.exit(127);
     const invocations = await readProjectInvocations(fixture.logPath, fixture.projectId);
     expect(invocations).toHaveLength(1);
     expect(invocations[0]?.stdin).not.toContain('OD Next Strategy V2');
-    expect(invocations[0]?.stdin).not.toContain('open-design.strategy-state/v2');
+    expect(invocations[0]?.stdin).not.toContain('saascodex.strategy-state/v2');
     const researchStart = invocations[0]!.stdin.indexOf('## Research command contract');
     const researchEnd = invocations[0]!.stdin.indexOf('# User request', researchStart);
     expect(researchStart).toBeGreaterThanOrEqual(0);
@@ -683,7 +683,7 @@ process.exit(127);
     const exampleDir = path.join(binDir, 'stale-selected-example');
     await cp(CREATIVE_VOLTAGE_EXAMPLE_DIR, exampleDir, { recursive: true });
     const staleExamplePluginId = 'example-stale-creative-voltage';
-    const manifestPath = path.join(exampleDir, 'open-design.json');
+    const manifestPath = path.join(exampleDir, 'saascodex.json');
     const manifest = JSON.parse(await readFile(manifestPath, 'utf8')) as Record<string, unknown>;
     await writeFile(manifestPath, JSON.stringify({
       ...manifest,
@@ -851,7 +851,7 @@ process.exit(127);
       .slice(invocationsBefore);
     expect(ordinaryInvocations).toHaveLength(1);
     expect(ordinaryInvocations[0]?.stdin).not.toContain('OD Next Strategy V2');
-    expect(ordinaryInvocations[0]?.stdin).not.toContain('open-design.strategy-state/v2');
+    expect(ordinaryInvocations[0]?.stdin).not.toContain('saascodex.strategy-state/v2');
 
     // The operator-facing surface names the authority that decided, so the
     // person who just configured the mode can confirm theirs is the one in
@@ -1480,7 +1480,7 @@ process.exit(127);
     expect(active.strategyTask).toMatchObject({ inputStage: 'request', terminal: false });
     const activeTask = getStrategyTaskExecution(database(), active.taskExecutionId as string);
     expect(activeTask?.frozenSkillPackage).toMatchObject({
-        schema: 'open-design.od-next-frozen-skill-package/v1',
+        schema: 'saascodex.od-next-frozen-skill-package/v1',
         selections: [],
       });
     expect(activeTask?.runs[0]?.finalText).toEqual(activeTask?.promptBundle);
@@ -2132,8 +2132,8 @@ process.exit(127);
       .map((line) => JSON.parse(line) as { event: string; data: RunStatus })
       .filter((event) => event.event === 'end');
     expect(watched.stdout).toContain('Prepared a simple plan.');
-    expect(watched.stdout).not.toContain('<open-design-plan-contract>');
-    expect(watched.stdout).not.toContain('<open-design-runtime-state>');
+    expect(watched.stdout).not.toContain('<saascodex-plan-contract>');
+    expect(watched.stdout).not.toContain('<saascodex-runtime-state>');
     expect(watchedEnds.map((event) => event.data.strategyTask?.inputStage)).toEqual([
       'contract_repair',
       'production',
@@ -2209,8 +2209,8 @@ process.exit(127);
     );
     expect(systemPromptSlice.length).toBeGreaterThan(0);
     for (const perTaskValue of [
-      'open-design.od-next-task-configuration/v1',
-      'open-design.od-next-request-input-facts/v1',
+      'saascodex.od-next-task-configuration/v1',
+      'saascodex.od-next-request-input-facts/v1',
       'task-input:attachments/attachment-001.pdf',
       'workspace:project',
       // The runtime tool contract embeds the daemon URL, which is per-run.
@@ -2220,8 +2220,8 @@ process.exit(127);
       expect(systemPromptSlice).not.toContain(perTaskValue);
       expect(firstStdin).toContain(perTaskValue);
     }
-    expect(invocations[0]?.stdin).toContain('open-design.od-next-task-configuration/v1');
-    expect(invocations[0]?.stdin).toContain('open-design.od-next-request-input-facts/v1');
+    expect(invocations[0]?.stdin).toContain('saascodex.od-next-task-configuration/v1');
+    expect(invocations[0]?.stdin).toContain('saascodex.od-next-request-input-facts/v1');
     expect(invocations[0]?.stdin).toContain('"taskType":"prototype"');
     expect(invocations[0]?.stdin).toContain('task-input:attachments/attachment-001.pdf');
     expect(invocations[0]?.stdin).toContain('task-input:attachments/attachment-002.txt');
@@ -2241,9 +2241,9 @@ process.exit(127);
     expect(invocations[2]?.stdin).toContain('stage="production" task_run_index="2"');
     expect(invocations[1]?.stdin).not.toContain('# User request');
     expect(invocations[2]?.stdin).not.toContain('# User request');
-    expect(invocations[1]?.stdin).not.toContain('open-design.strategy-state/v2');
+    expect(invocations[1]?.stdin).not.toContain('saascodex.strategy-state/v2');
     expect(invocations[2]?.stdin).toContain('## Closing Runtime State');
-    expect(invocations[2]?.stdin).toContain('schema open-design.strategy-state/v2');
+    expect(invocations[2]?.stdin).toContain('schema saascodex.strategy-state/v2');
     expect(invocations[2]?.stdin).toContain('inputStage production');
     expect(invocations[2]?.stdin).toContain('no Plan Contract block');
     expect(statuses[0]!.updatedAt).toBeLessThanOrEqual(invocations[1]!.startedAt);
@@ -2316,7 +2316,7 @@ process.exit(127);
         boundary: 'hostComposed',
         kind: mapping.finalText.kind,
         promptSchema: mapping.finalText.schema,
-        schema: 'open-design.od-next-exact-send-prompt/v1',
+        schema: 'saascodex.od-next-exact-send-prompt/v1',
         stage: mapping.inputStage,
         sha256: mapping.finalText.sha256,
         utf8Bytes: mapping.finalText.utf8Bytes,
@@ -3577,9 +3577,9 @@ function planContract(
   strategy: AppliedStrategyBindingV2,
   mode: 'repair' | 'direct' | 'complex' = 'repair',
   capability = complexCapabilitySnapshot(),
-): OpenDesignPlanContractV2 {
+): SaaSCodexPlanContractV2 {
   return {
-    schema: 'open-design.plan-contract/v2',
+    schema: 'saascodex.plan-contract/v2',
     strategy: {
       id: 'od-next-strategy',
       version: strategy.version,
@@ -3657,7 +3657,7 @@ function runtimeState(input: {
   executionMode?: 'simple' | 'complex';
 }) {
   return {
-    schema: 'open-design.strategy-state/v2',
+    schema: 'saascodex.strategy-state/v2',
     route: input.route ?? 'full_plan',
     inputStage: input.inputStage ?? 'request',
     outcome: input.outcome,
@@ -3677,48 +3677,48 @@ type IntentServerMode = 'intent-question' | 'intent-request' | 'intent-first-wri
 async function writeStrategyCodex(
   dir: string,
   mode: 'repair' | 'direct' | 'complex' | IntentServerMode,
-  plan: OpenDesignPlanContractV2,
+  plan: SaaSCodexPlanContractV2,
   probeLogPath?: string,
 ): Promise<{ bin: string; logPath: string }> {
   const bin = path.join(dir, `codex-${mode}`);
   const logPath = path.join(dir, `codex-${mode}.jsonl`);
   const initialRepair = [
     'Prepared a simple plan.',
-    machineBlock('open-design-plan-contract', plan, true),
-    machineBlock('open-design-runtime-state', runtimeState({ outcome: 'plan_ready' })),
+    machineBlock('saascodex-plan-contract', plan, true),
+    machineBlock('saascodex-runtime-state', runtimeState({ outcome: 'plan_ready' })),
   ].join('\n');
   const repaired = [
-    machineBlock('open-design-plan-contract', plan),
-    machineBlock('open-design-runtime-state', runtimeState({
+    machineBlock('saascodex-plan-contract', plan),
+    machineBlock('saascodex-runtime-state', runtimeState({
       inputStage: 'contract_repair',
       outcome: 'plan_ready',
     })),
   ].join('\n');
-  const production = machineBlock('open-design-runtime-state', runtimeState({
+  const production = machineBlock('saascodex-runtime-state', runtimeState({
     inputStage: 'production',
     outcome: 'completed',
   }));
-  const direct = machineBlock('open-design-runtime-state', runtimeState({
+  const direct = machineBlock('saascodex-runtime-state', runtimeState({
     route: 'direct_edit',
     outcome: 'completed',
   }));
   const complexPlan = [
     'Prepared a complex plan.',
-    machineBlock('open-design-plan-contract', plan),
-    machineBlock('open-design-runtime-state', runtimeState({
+    machineBlock('saascodex-plan-contract', plan),
+    machineBlock('saascodex-runtime-state', runtimeState({
       outcome: 'plan_ready', executionMode: 'complex',
     })),
   ].join('\n');
-  const complexProduction = machineBlock('open-design-runtime-state', runtimeState({
+  const complexProduction = machineBlock('saascodex-runtime-state', runtimeState({
     inputStage: 'production', outcome: 'completed', executionMode: 'complex',
   }));
 
   const questionText = '<question-form id="intent-2623">{"questions":[{"id":"audience","type":"text","label":"Audience?","required":true}]}</question-form>';
   const missingIntentPlan = (stage: 'request' | 'clarification') => [
     'INTENT_SOURCE_ANSWER_2623: The requested plan is available in this response.',
-    machineBlock('open-design-plan-contract', plan),
-    machineBlock('open-design-runtime-state', {
-      schema: 'open-design.strategy-state/v2', route: 'full_plan', inputStage: stage,
+    machineBlock('saascodex-plan-contract', plan),
+    machineBlock('saascodex-runtime-state', {
+      schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: stage,
       outcome: 'plan_ready', executionMode: 'simple', reasonCodes: [],
     }),
   ].join('\n');
@@ -3763,10 +3763,10 @@ function finish() {
       if (mode === 'intent-fail') { process.stderr.write('fixture intent supplement exited\\n'); process.exit(2); }
       const stage = / stage="(request|clarification)"/.exec(stdin)?.[1];
       if (!argv.includes('resume') || !stage) process.exit(9);
-      text = '<open-design-runtime-state>\\n' + JSON.stringify({
-        schema: 'open-design.strategy-state/v2', route: 'full_plan', inputStage: stage,
+      text = '<saascodex-runtime-state>\\n' + JSON.stringify({
+        schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: stage,
         outcome: 'completed', executionMode: 'simple', executionIntent: 'plan_only', reasonCodes: [],
-      }) + '\\n</open-design-runtime-state>';
+      }) + '\\n</saascodex-runtime-state>';
     } else if (stdin.includes('native continuation — clarification')) {
       text = ${JSON.stringify(missingIntentPlan('clarification'))};
     } else if (!argv.includes('resume') && stdin.includes('INTENT_SERVER_2623')) {
@@ -3857,19 +3857,19 @@ setTimeout(finish, 1500);
 
 async function writeStrategyClaude(
   dir: string,
-  plan: OpenDesignPlanContractV2,
+  plan: SaaSCodexPlanContractV2,
 ): Promise<{ bin: string; logPath: string }> {
   const bin = path.join(dir, 'claude-complex');
   const logPath = path.join(dir, 'claude-complex.jsonl');
   const complexPlan = [
     'Prepared a complex plan.',
-    machineBlock('open-design-plan-contract', plan),
-    machineBlock('open-design-runtime-state', runtimeState({
+    machineBlock('saascodex-plan-contract', plan),
+    machineBlock('saascodex-runtime-state', runtimeState({
       outcome: 'plan_ready',
       executionMode: 'complex',
     })),
   ].join('\n');
-  const complexProduction = machineBlock('open-design-runtime-state', runtimeState({
+  const complexProduction = machineBlock('saascodex-runtime-state', runtimeState({
     inputStage: 'production',
     outcome: 'completed',
     executionMode: 'complex',

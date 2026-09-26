@@ -1,14 +1,14 @@
 import type {
   ConnectionTestKind,
   ConnectionTestProtocol,
-} from '@open-design/contracts/api/connectionTest';
+} from '@saascodex/contracts/api/connectionTest';
 import type {
   ProviderModelOption,
   ProviderModelsRequest,
   ProviderModelsResponse,
-} from '@open-design/contracts/api/providerModels';
-import type { ModelCapability, ModelCost, ModelMetadata } from '@open-design/contracts';
-import { isLoopbackApiHost } from '@open-design/contracts/api/connectionTest';
+} from '@saascodex/contracts/api/providerModels';
+import type { ModelCapability, ModelCost, ModelMetadata } from '@saascodex/contracts';
+import { isLoopbackApiHost } from '@saascodex/contracts/api/connectionTest';
 import { redactSecrets, validateUserProviderBaseUrl } from '../connectionTest.js';
 import { googleProviderModelsUrl, normalizeGoogleModelId } from './google-models.js';
 import { aihubmixHeaders, aihubmixCatalogUrl, parseAIHubMixCatalog } from './aihubmix.js';

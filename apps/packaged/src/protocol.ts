@@ -379,7 +379,7 @@ async function fetchOdTargetWithTransientRetry(
       const waitMs = backoffMs * attempt;
       // Main-process console output lands in the packaged desktop logs, so
       // real-world transient frequency stays diagnosable.
-      console.warn("[open-design packaged] od:// proxy fetch failed; retrying", {
+      console.warn("[saascodex packaged] od:// proxy fetch failed; retrying", {
         attempt,
         attempts,
         message: error instanceof Error ? error.message : String(error),
@@ -503,7 +503,7 @@ function resolveOdProxyFetch(isQuiesced: () => boolean = () => false): OdProtoco
       // machine, so replaying there only doubles the failing load. Rethrow and
       // let the handler answer 502 at once. See isLocalResourceExhaustionError.
       if (isLocalResourceExhaustionError(error)) throw error;
-      console.warn("[open-design packaged] net.fetch failed; falling back to undici", {
+      console.warn("[saascodex packaged] net.fetch failed; falling back to undici", {
         message: error instanceof Error ? error.message : String(error),
         method: request.method,
         target: request.url,

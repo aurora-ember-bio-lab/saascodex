@@ -6,7 +6,7 @@
 // keeping historical rows visible during refresh belongs to a separate fix.
 
 import { act, cleanup, fireEvent, render, waitFor, within } from '@testing-library/react';
-import { buildWorkspacePermissions, type WorkspaceCollabContext } from '@open-design/contracts';
+import { buildWorkspacePermissions, type WorkspaceCollabContext } from '@saascodex/contracts';
 import { forwardRef, useImperativeHandle, useState, type ComponentProps, type ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 

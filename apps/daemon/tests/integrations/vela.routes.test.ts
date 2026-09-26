@@ -226,7 +226,7 @@ beforeEach(() => {
   originalHome = process.env.HOME;
   tmpHome = mkdtempSync(path.join(tmpdir(), 'od-vela-routes-'));
   process.env.HOME = tmpHome;
-  process.env.OPEN_DESIGN_AMR_PROFILE = 'local';
+  process.env.SAASCODEX_AMR_PROFILE = 'local';
   process.env.VELA_PROFILE = 'prod';
 });
 
@@ -245,7 +245,7 @@ afterEach(async () => {
   } finally {
     if (originalHome === undefined) delete process.env.HOME;
     else process.env.HOME = originalHome;
-    delete process.env.OPEN_DESIGN_AMR_PROFILE;
+    delete process.env.SAASCODEX_AMR_PROFILE;
     delete process.env.VELA_PROFILE;
     delete process.env.FAKE_VELA_LOGIN_DELAY_MS;
     delete process.env.FAKE_VELA_LOGIN_FAIL;
@@ -271,8 +271,8 @@ afterEach(async () => {
     delete process.env.OD_PUBLIC_BASE_URL;
     delete process.env.VELA_RUNTIME_KEY;
     delete process.env.VELA_LINK_URL;
-    delete process.env.OPEN_DESIGN_AMR_ANALYTICS_URL;
-    delete process.env.OPEN_DESIGN_AMR_ANALYTICS_ENV;
+    delete process.env.SAASCODEX_AMR_ANALYTICS_URL;
+    delete process.env.SAASCODEX_AMR_ANALYTICS_ENV;
     delete process.env.OD_AMR_WALLET_FETCH_TIMEOUT_MS;
     rmSync(tmpHome, {
       recursive: true,
@@ -661,7 +661,7 @@ describe('GET /api/integrations/vela/status', () => {
       http: {},
       env: {
         HOME: tmpHome,
-        OPEN_DESIGN_AMR_PROFILE: 'local',
+        SAASCODEX_AMR_PROFILE: 'local',
         PATH: '',
       },
     });
@@ -791,7 +791,7 @@ describe('GET /api/integrations/vela/status', () => {
     const cfg = JSON.parse(readFileSync(configPath(), 'utf8'));
     cfg.profiles.prod = {};
     writeFileSync(configPath(), JSON.stringify(cfg, null, 2), 'utf8');
-    process.env.OPEN_DESIGN_AMR_PROFILE = 'prod';
+    process.env.SAASCODEX_AMR_PROFILE = 'prod';
     await writeAppConfig(dataDir, {
       ...previous,
       agentCliEnv: {
@@ -799,7 +799,7 @@ describe('GET /api/integrations/vela/status', () => {
         amr: {
           ...((previous.agentCliEnv?.amr as Record<string, string>) ?? {}),
           VELA_BIN: FAKE_VELA,
-          OPEN_DESIGN_AMR_PROFILE: 'local',
+          SAASCODEX_AMR_PROFILE: 'local',
         },
       },
     });
@@ -821,7 +821,7 @@ describe('GET /api/integrations/vela/status', () => {
   it('keeps Settings-configured AMR env, profile, status, and model catalog in sync', async () => {
     const dataDir = process.env.OD_DATA_DIR as string;
     const previous = await readAppConfig(dataDir);
-    process.env.OPEN_DESIGN_AMR_PROFILE = 'prod';
+    process.env.SAASCODEX_AMR_PROFILE = 'prod';
     await writeAppConfig(dataDir, {
       ...previous,
       agentCliEnv: {
@@ -829,7 +829,7 @@ describe('GET /api/integrations/vela/status', () => {
         amr: {
           ...((previous.agentCliEnv?.amr as Record<string, string>) ?? {}),
           VELA_BIN: FAKE_VELA,
-          OPEN_DESIGN_AMR_PROFILE: 'local',
+          SAASCODEX_AMR_PROFILE: 'local',
           VELA_RUNTIME_KEY: 'rt-settings-risk-smoke',
           VELA_LINK_URL: 'http://localhost:18081',
         },
@@ -1508,7 +1508,7 @@ describe('POST /api/integrations/vela/login', () => {
     await waitForVelaLoginIdle();
   });
 
-  it('passes OpenDesign attribution device id to vela login', async () => {
+  it('passes SaaSCodex attribution device id to vela login', async () => {
     const dataDir = process.env.OD_DATA_DIR as string;
     const previous = await readAppConfig(dataDir);
     const dumpPath = path.join(tmpHome, 'vela-env-attribution.json');
@@ -1532,13 +1532,13 @@ describe('POST /api/integrations/vela/login', () => {
 
       await waitForFile(dumpPath);
       const env = JSON.parse(readFileSync(dumpPath, 'utf8'));
-      expect(env.OPEN_DESIGN_AMR_ORIGIN).toBe('open_design');
-      expect(env.OPEN_DESIGN_AMR_ENTRY_ID).toBe('od-amr-entry-onboarding');
-      expect(env.OPEN_DESIGN_AMR_ENTRY_SOURCE).toBe(
+      expect(env.SAASCODEX_AMR_ORIGIN).toBe('open_design');
+      expect(env.SAASCODEX_AMR_ENTRY_ID).toBe('od-amr-entry-onboarding');
+      expect(env.SAASCODEX_AMR_ENTRY_SOURCE).toBe(
         'onboarding_amr_sign_in_continue',
       );
-      expect(env.OPEN_DESIGN_AMR_ENTRY_AT).toBe('2026-06-16T08:00:00.000Z');
-      expect(env.OPEN_DESIGN_AMR_DEVICE_ID).toBe('od-install-abc');
+      expect(env.SAASCODEX_AMR_ENTRY_AT).toBe('2026-06-16T08:00:00.000Z');
+      expect(env.SAASCODEX_AMR_DEVICE_ID).toBe('od-install-abc');
     } finally {
       await writeAppConfig(dataDir, previous as unknown as Record<string, unknown>);
     }
@@ -1558,8 +1558,8 @@ describe('POST /api/integrations/vela/login', () => {
     await waitForFile(dumpPath);
 
     const env = JSON.parse(readFileSync(dumpPath, 'utf8'));
-    expect(env.OPEN_DESIGN_AMR_AUTH_ATTEMPT_ID).toBe(authAttemptId);
-    expect(env.OPEN_DESIGN_AMR_AUTH_STAGE_FORMAT).toBeUndefined();
+    expect(env.SAASCODEX_AMR_AUTH_ATTEMPT_ID).toBe(authAttemptId);
+    expect(env.SAASCODEX_AMR_AUTH_STAGE_FORMAT).toBeUndefined();
     const status = await getJson<{
       authAttemptId?: string;
       authRoute?: string;
@@ -1601,7 +1601,7 @@ describe('POST /api/integrations/vela/login', () => {
           'x-od-analytics-device-id': 'od-install-plugin',
           'x-od-analytics-client-type': 'external_mcp',
           'x-od-analytics-entry-surface': 'external_mcp',
-          'x-od-analytics-external-plugin-id': 'open-design',
+          'x-od-analytics-external-plugin-id': 'saascodex',
           'x-od-analytics-external-plugin-version': '0.4.0',
           'x-od-analytics-distribution-mechanism': 'git_marketplace',
           'x-od-analytics-publisher-class': 'open_design_first_party',
@@ -1612,13 +1612,13 @@ describe('POST /api/integrations/vela/login', () => {
       await waitForFile(dumpPath);
       const env = JSON.parse(readFileSync(dumpPath, 'utf8'));
       expect(env.OD_INSTALLATION_ID).toBe('od-install-plugin');
-      expect(env.OPEN_DESIGN_PLUGIN_WORKFLOW_ID).toBe(
+      expect(env.SAASCODEX_PLUGIN_WORKFLOW_ID).toBe(
         '019f9414-85e8-7f20-8d8f-7f868b2d4b5f',
       );
-      expect(env.OPEN_DESIGN_EXTERNAL_PLUGIN_ID).toBe('open-design');
-      expect(env.OPEN_DESIGN_EXTERNAL_PLUGIN_VERSION).toBe('0.4.0');
-      expect(env.OPEN_DESIGN_DISTRIBUTION_MECHANISM).toBe('git_marketplace');
-      expect(env.OPEN_DESIGN_PUBLISHER_CLASS).toBe('open_design_first_party');
+      expect(env.SAASCODEX_EXTERNAL_PLUGIN_ID).toBe('saascodex');
+      expect(env.SAASCODEX_EXTERNAL_PLUGIN_VERSION).toBe('0.4.0');
+      expect(env.SAASCODEX_DISTRIBUTION_MECHANISM).toBe('git_marketplace');
+      expect(env.SAASCODEX_PUBLISHER_CLASS).toBe('open_design_first_party');
     } finally {
       await writeAppConfig(dataDir, previous as unknown as Record<string, unknown>);
     }
@@ -1644,7 +1644,7 @@ describe('POST /api/integrations/vela/login', () => {
           'x-od-analytics-device-id': 'od-install-plugin',
           'x-od-analytics-client-type': 'external_mcp',
           'x-od-analytics-entry-surface': 'external_mcp',
-          'x-od-analytics-external-plugin-id': 'open-design',
+          'x-od-analytics-external-plugin-id': 'saascodex',
           'x-od-analytics-external-plugin-version': '0.4.0',
           'x-od-analytics-distribution-mechanism': 'git_marketplace',
           'x-od-analytics-publisher-class': 'open_design_first_party',
@@ -1654,15 +1654,15 @@ describe('POST /api/integrations/vela/login', () => {
 
       await waitForFile(dumpPath);
       const env = JSON.parse(readFileSync(dumpPath, 'utf8'));
-      expect(env.OPEN_DESIGN_PLUGIN_WORKFLOW_ID).toBeUndefined();
-      expect(env.OPEN_DESIGN_EXTERNAL_PLUGIN_ID).toBeUndefined();
-      expect(env.OPEN_DESIGN_EXTERNAL_PLUGIN_VERSION).toBeUndefined();
+      expect(env.SAASCODEX_PLUGIN_WORKFLOW_ID).toBeUndefined();
+      expect(env.SAASCODEX_EXTERNAL_PLUGIN_ID).toBeUndefined();
+      expect(env.SAASCODEX_EXTERNAL_PLUGIN_VERSION).toBeUndefined();
     } finally {
       await writeAppConfig(dataDir, previous as unknown as Record<string, unknown>);
     }
   });
 
-  it('omits OpenDesign attribution device id without analytics consent headers', async () => {
+  it('omits SaaSCodex attribution device id without analytics consent headers', async () => {
     const dataDir = process.env.OD_DATA_DIR as string;
     const previous = await readAppConfig(dataDir);
     const dumpPath = path.join(tmpHome, 'vela-env-attribution-no-headers.json');
@@ -1686,14 +1686,14 @@ describe('POST /api/integrations/vela/login', () => {
 
       await waitForFile(dumpPath);
       const env = JSON.parse(readFileSync(dumpPath, 'utf8'));
-      expect(env.OPEN_DESIGN_AMR_ENTRY_ID).toBe('od-amr-entry-onboarding');
-      expect(env.OPEN_DESIGN_AMR_DEVICE_ID).toBeUndefined();
+      expect(env.SAASCODEX_AMR_ENTRY_ID).toBe('od-amr-entry-onboarding');
+      expect(env.SAASCODEX_AMR_DEVICE_ID).toBeUndefined();
     } finally {
       await writeAppConfig(dataDir, previous as unknown as Record<string, unknown>);
     }
   });
 
-  it('omits OpenDesign attribution device id when telemetry metrics are disabled', async () => {
+  it('omits SaaSCodex attribution device id when telemetry metrics are disabled', async () => {
     const dataDir = process.env.OD_DATA_DIR as string;
     const previous = await readAppConfig(dataDir);
     const dumpPath = path.join(tmpHome, 'vela-env-attribution-metrics-off.json');
@@ -1717,8 +1717,8 @@ describe('POST /api/integrations/vela/login', () => {
 
       await waitForFile(dumpPath);
       const env = JSON.parse(readFileSync(dumpPath, 'utf8'));
-      expect(env.OPEN_DESIGN_AMR_ENTRY_ID).toBe('od-amr-entry-onboarding');
-      expect(env.OPEN_DESIGN_AMR_DEVICE_ID).toBeUndefined();
+      expect(env.SAASCODEX_AMR_ENTRY_ID).toBe('od-amr-entry-onboarding');
+      expect(env.SAASCODEX_AMR_DEVICE_ID).toBeUndefined();
     } finally {
       await writeAppConfig(dataDir, previous as unknown as Record<string, unknown>);
     }
@@ -1727,7 +1727,7 @@ describe('POST /api/integrations/vela/login', () => {
   it('derives the fallback login API proxy from OD_PUBLIC_BASE_URL when the direct attempt fails', async () => {
     const dumpPath = path.join(tmpHome, 'vela-env-public-base-url.json');
     process.env.FAKE_VELA_ENV_DUMP_PATH = dumpPath;
-    process.env.OD_PUBLIC_BASE_URL = 'https://open-design.example.com/';
+    process.env.OD_PUBLIC_BASE_URL = 'https://saascodex.example.com/';
     process.env.FAKE_VELA_LOGIN_FAIL_WITHOUT_API_URL =
       'start device authorization: API request failed with status 502: broken edge';
 
@@ -1737,7 +1737,7 @@ describe('POST /api/integrations/vela/login', () => {
     await waitForFile(dumpPath);
     const env = JSON.parse(readFileSync(dumpPath, 'utf8'));
     expect(env.VELA_API_URL).toBe(
-      'https://open-design.example.com/api/integrations/vela/api-proxy',
+      'https://saascodex.example.com/api/integrations/vela/api-proxy',
     );
   });
 
@@ -1797,7 +1797,7 @@ describe('POST /api/integrations/vela/login', () => {
   });
 
   it('passes the resolved AMR profile to vela login even when VELA_PROFILE is set differently', async () => {
-    process.env.OPEN_DESIGN_AMR_PROFILE = 'test';
+    process.env.SAASCODEX_AMR_PROFILE = 'test';
     process.env.VELA_PROFILE = 'local';
     process.env.FAKE_VELA_LOGIN_USER_EMAIL = 'login-test@example.com';
 
@@ -1821,7 +1821,7 @@ describe('POST /api/integrations/vela/login', () => {
   it('passes the Settings-configured AMR profile to vela login', async () => {
     const dataDir = process.env.OD_DATA_DIR as string;
     const previous = await readAppConfig(dataDir);
-    process.env.OPEN_DESIGN_AMR_PROFILE = 'prod';
+    process.env.SAASCODEX_AMR_PROFILE = 'prod';
     process.env.VELA_PROFILE = 'prod';
     process.env.FAKE_VELA_LOGIN_USER_EMAIL = 'settings-login@example.com';
     await writeAppConfig(dataDir, {
@@ -1831,7 +1831,7 @@ describe('POST /api/integrations/vela/login', () => {
         amr: {
           ...((previous.agentCliEnv?.amr as Record<string, string>) ?? {}),
           VELA_BIN: FAKE_VELA,
-          OPEN_DESIGN_AMR_PROFILE: 'local',
+          SAASCODEX_AMR_PROFILE: 'local',
         },
       },
     });
@@ -1860,7 +1860,7 @@ describe('POST /api/integrations/vela/login', () => {
   it('uses the same Settings-configured AMR env for login and subsequent status reads', async () => {
     const dataDir = process.env.OD_DATA_DIR as string;
     const previous = await readAppConfig(dataDir);
-    process.env.OPEN_DESIGN_AMR_PROFILE = 'prod';
+    process.env.SAASCODEX_AMR_PROFILE = 'prod';
     process.env.VELA_PROFILE = 'prod';
     process.env.FAKE_VELA_LOGIN_USER_EMAIL = 'settings-roundtrip@example.com';
     await writeAppConfig(dataDir, {
@@ -1870,7 +1870,7 @@ describe('POST /api/integrations/vela/login', () => {
         amr: {
           ...((previous.agentCliEnv?.amr as Record<string, string>) ?? {}),
           VELA_BIN: FAKE_VELA,
-          OPEN_DESIGN_AMR_PROFILE: 'local',
+          SAASCODEX_AMR_PROFILE: 'local',
         },
       },
     });
@@ -2400,7 +2400,7 @@ describe('ALL /api/integrations/vela/message-center/*', () => {
       runtimeKey: undefined,
       user: undefined,
     });
-    await setSettingsAmrEnv({ OPEN_DESIGN_AMR_PROFILE: 'test' });
+    await setSettingsAmrEnv({ SAASCODEX_AMR_PROFILE: 'test' });
     try {
       const response = await fetch(
         `${baseUrl}/api/integrations/vela/message-center-public/messages?locale=en-US&limit=30`,
@@ -2414,7 +2414,7 @@ describe('ALL /api/integrations/vela/message-center/*', () => {
         },
       ]);
     } finally {
-      await setSettingsAmrEnv({ OPEN_DESIGN_AMR_PROFILE: undefined });
+      await setSettingsAmrEnv({ SAASCODEX_AMR_PROFILE: undefined });
       await new Promise<void>((resolve) => upstream.close(() => resolve()));
     }
   });
@@ -2515,7 +2515,7 @@ describe('ALL /api/integrations/vela/message-center/*', () => {
 });
 
 describe('POST /api/integrations/vela/analytics-entry', () => {
-  it('mirrors OpenDesign AMR entry clicks to the AMR analytics ingest shape', async () => {
+  it('mirrors SaaSCodex AMR entry clicks to the AMR analytics ingest shape', async () => {
     const requests: unknown[] = [];
     const captureServer = createServer((req, res) => {
       let raw = '';
@@ -2533,9 +2533,9 @@ describe('POST /api/integrations/vela/analytics-entry', () => {
       captureServer.listen(0, '127.0.0.1', () => resolve());
     });
     const address = captureServer.address() as AddressInfo;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_URL =
+    process.env.SAASCODEX_AMR_ANALYTICS_URL =
       `http://127.0.0.1:${address.port}/api/v1/analytics/events`;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_ENV = 'test';
+    process.env.SAASCODEX_AMR_ANALYTICS_ENV = 'test';
 
     const payload = {
       pageName: 'open_design',
@@ -2610,9 +2610,9 @@ describe('POST /api/integrations/vela/analytics-entry', () => {
       captureServer.listen(0, '127.0.0.1', () => resolve());
     });
     const address = captureServer.address() as AddressInfo;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_URL =
+    process.env.SAASCODEX_AMR_ANALYTICS_URL =
       `http://127.0.0.1:${address.port}/api/v1/analytics/events`;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_ENV = 'test';
+    process.env.SAASCODEX_AMR_ANALYTICS_ENV = 'test';
 
     const payload = {
       pageName: 'open_design',
@@ -2670,9 +2670,9 @@ describe('POST /api/integrations/vela/analytics-entry', () => {
       captureServer.listen(0, '127.0.0.1', () => resolve());
     });
     const address = captureServer.address() as AddressInfo;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_URL =
+    process.env.SAASCODEX_AMR_ANALYTICS_URL =
       `http://127.0.0.1:${address.port}/api/v1/analytics/events`;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_ENV = 'test';
+    process.env.SAASCODEX_AMR_ANALYTICS_ENV = 'test';
 
     const payload = {
       pageName: 'open_design',
@@ -2712,7 +2712,7 @@ describe('POST /api/integrations/vela/analytics-entry', () => {
     }
   });
 
-  it('mirrors OpenDesign onboarding profile snapshots with the header-derived device id', async () => {
+  it('mirrors SaaSCodex onboarding profile snapshots with the header-derived device id', async () => {
     const requests: unknown[] = [];
     const captureServer = createServer((req, res) => {
       let raw = '';
@@ -2730,9 +2730,9 @@ describe('POST /api/integrations/vela/analytics-entry', () => {
       captureServer.listen(0, '127.0.0.1', () => resolve());
     });
     const address = captureServer.address() as AddressInfo;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_URL =
+    process.env.SAASCODEX_AMR_ANALYTICS_URL =
       `http://127.0.0.1:${address.port}/api/v1/analytics/events`;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_ENV = 'test';
+    process.env.SAASCODEX_AMR_ANALYTICS_ENV = 'test';
 
     const payload = {
       pageName: 'open_design',
@@ -2921,9 +2921,9 @@ describe('POST /api/integrations/vela/analytics-entry', () => {
       captureServer.listen(0, '127.0.0.1', () => resolve());
     });
     const address = captureServer.address() as AddressInfo;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_URL =
+    process.env.SAASCODEX_AMR_ANALYTICS_URL =
       `http://127.0.0.1:${address.port}/api/v1/analytics/events`;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_ENV = 'test';
+    process.env.SAASCODEX_AMR_ANALYTICS_ENV = 'test';
 
     const payload = {
       pageName: 'open_design',
@@ -2980,9 +2980,9 @@ describe('POST /api/integrations/vela/analytics-entry', () => {
       captureServer.listen(0, '127.0.0.1', () => resolve());
     });
     const address = captureServer.address() as AddressInfo;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_URL =
+    process.env.SAASCODEX_AMR_ANALYTICS_URL =
       `http://127.0.0.1:${address.port}/api/v1/analytics/events`;
-    process.env.OPEN_DESIGN_AMR_ANALYTICS_ENV = 'test';
+    process.env.SAASCODEX_AMR_ANALYTICS_ENV = 'test';
 
     const payload = {
       pageName: 'open_design',
@@ -3191,20 +3191,20 @@ describe('Production touchpoint runtime proxy', () => {
     const address = upstream.address() as AddressInfo;
     seedLogin('local', { apiUrl: 'http://127.0.0.1:1' });
     try {
-      process.env.OPEN_DESIGN_CMS_PRODUCTION_API_URL = `http://127.0.0.1:${address.port}`;
+      process.env.SAASCODEX_CMS_PRODUCTION_API_URL = `http://127.0.0.1:${address.port}`;
       const response = await getJson(
         `${baseUrl}/api/touchpoints/production-runtime?placementKey=opend.home.account-badge&locale=zh-CN`,
       );
       expect(response.status).toBe(200);
       expect(requests).toHaveLength(1);
-      process.env.OPEN_DESIGN_CMS_PRODUCTION_API_URL = 'https://example.com';
+      process.env.SAASCODEX_CMS_PRODUCTION_API_URL = 'https://example.com';
       const rejected = await getJson(
         `${baseUrl}/api/touchpoints/production-runtime?placementKey=opend.home.account-badge&locale=zh-CN`,
       );
       expect(rejected.status).toBe(400);
       expect(requests).toHaveLength(1);
     } finally {
-      delete process.env.OPEN_DESIGN_CMS_PRODUCTION_API_URL;
+      delete process.env.SAASCODEX_CMS_PRODUCTION_API_URL;
       await new Promise<void>((resolve) => upstream.close(() => resolve()));
     }
   });
@@ -3396,7 +3396,7 @@ describe('POST /api/integrations/vela/logout', () => {
           ...((previous.agentCliEnv?.amr as Record<string, string>) ?? {}),
           VELA_BIN: FAKE_VELA,
           VELA_OPENCODE_BIN: '/tmp/opencode',
-          OPEN_DESIGN_AMR_PROFILE: 'local',
+          SAASCODEX_AMR_PROFILE: 'local',
           VELA_RUNTIME_KEY: 'rt-env-secret',
           VELA_LINK_URL: 'https://openrouter.example/v1',
         },
@@ -3443,7 +3443,7 @@ describe('POST /api/integrations/vela/logout', () => {
       user: { id: 'prod-user', email: 'prod@example.com' },
     };
     writeFileSync(configPath(), JSON.stringify(cfg, null, 2), 'utf8');
-    process.env.OPEN_DESIGN_AMR_PROFILE = 'prod';
+    process.env.SAASCODEX_AMR_PROFILE = 'prod';
     await writeAppConfig(dataDir, {
       ...previous,
       agentCliEnv: {
@@ -3451,7 +3451,7 @@ describe('POST /api/integrations/vela/logout', () => {
         amr: {
           ...((previous.agentCliEnv?.amr as Record<string, string>) ?? {}),
           VELA_BIN: FAKE_VELA,
-          OPEN_DESIGN_AMR_PROFILE: 'local',
+          SAASCODEX_AMR_PROFILE: 'local',
         },
       },
     });

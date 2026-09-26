@@ -18,7 +18,7 @@ import {
   buildWorkspaceSeatSummary,
   type AmrWalletSnapshot,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -214,7 +214,7 @@ describe('OPEND-2614 · Home send hands off before the AMR gate', () => {
       if (url.endsWith('/api/plugins')) return jsonResponse({ plugins: [] });
       if (url.endsWith('/api/mcp/servers')) return jsonResponse({ servers: [] });
       if (url.endsWith('/api/community/discord')) return jsonResponse({ stale: true });
-      if (url.endsWith('/api/github/open-design')) return jsonResponse({ stale: true });
+      if (url.endsWith('/api/github/saascodex')) return jsonResponse({ stale: true });
       return jsonResponse({});
     }) as typeof fetch;
   });
@@ -272,7 +272,7 @@ describe('OPEND-2614 · Home send hands off before the AMR gate', () => {
       await vi.advanceTimersByTimeAsync(2_000);
       await waitFor(() => expect(h.rollback).toHaveBeenCalledTimes(1));
       expect(h.rollback.mock.calls[0]?.[0]?.notice).toBe(
-        "Couldn't confirm your OpenDesign Cloud balance. Try sending again.",
+        "Couldn't confirm your SaaSCodex Cloud balance. Try sending again.",
       );
       expect(h.onCreateProject).not.toHaveBeenCalled();
       expect(mockedCheckAmrBalanceGate).toHaveBeenCalledTimes(3);
@@ -331,7 +331,7 @@ describe('zero wallet never bypasses the ordinary scoped preflight hand-off', ()
       if (url.endsWith('/api/plugins')) return jsonResponse({ plugins: [] });
       if (url.endsWith('/api/mcp/servers')) return jsonResponse({ servers: [] });
       if (url.endsWith('/api/community/discord')) return jsonResponse({ stale: true });
-      if (url.endsWith('/api/github/open-design')) return jsonResponse({ stale: true });
+      if (url.endsWith('/api/github/saascodex')) return jsonResponse({ stale: true });
       return jsonResponse({});
     }) as typeof fetch;
   });
@@ -459,7 +459,7 @@ describe('OPEND-3300 · local Team authority on a $0 Home send', () => {
         if (url.endsWith('/api/plugins')) return jsonResponse({ plugins: [] });
         if (url.endsWith('/api/mcp/servers')) return jsonResponse({ servers: [] });
         if (url.endsWith('/api/community/discord')) return jsonResponse({ stale: true });
-        if (url.endsWith('/api/github/open-design')) return jsonResponse({ stale: true });
+        if (url.endsWith('/api/github/saascodex')) return jsonResponse({ stale: true });
         return jsonResponse({});
       }) as typeof fetch;
 

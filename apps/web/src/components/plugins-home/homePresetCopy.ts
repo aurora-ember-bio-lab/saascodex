@@ -1491,7 +1491,7 @@ const HOME_PRESET_COPY: Record<string, Record<Locale, HomePresetCopy>> = {
       prompt: 'Progetta un’app mobile che trasformi le abitudini quotidiane in missioni, monitorando i progressi con punti esperienza, livelli e serie di giorni consecutivi.',
     },
   },
-  'example-open-design-landing': {
+  'example-saascodex-landing': {
     'zh-CN': {
       title: '拼贴风品牌官网',
       prompt: '为我的品牌设计一个杂志拼贴风官网，用醒目的标题、图片拼贴和滚动动效介绍产品。',

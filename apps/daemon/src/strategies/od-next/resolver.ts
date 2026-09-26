@@ -1,4 +1,4 @@
-import type { StrategyExecutionModeV2, StrategyRouteV2 } from '@open-design/contracts';
+import type { StrategyExecutionModeV2, StrategyRouteV2 } from '@saascodex/contracts';
 
 export const OD_NEXT_RESOLVER_SOURCE_AUTHORITY = {
   user_explicit: 600,
@@ -306,7 +306,7 @@ export function daemonOwnedOdNextPlanningCatalog(
  * continue through ordinary Open Design unless explicitly added here.
  */
 export function resolveDaemonOwnedOdNextExecutionPreflight(
-  plan: import('@open-design/contracts').OpenDesignPlanContractV2,
+  plan: import('@saascodex/contracts').SaaSCodexPlanContractV2,
 ): OdNextExecutionPreflightInput {
   const taskType = plan.taskProfile.taskType as keyof typeof DAEMON_OWNED_PRODUCTION_ROUTES;
   const routes = DAEMON_OWNED_PRODUCTION_ROUTES[taskType];

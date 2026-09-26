@@ -250,7 +250,7 @@ describe('AssistantMessage unfinished todo state', () => {
               kind: 'tool_use',
               id: 'write-manifest',
               name: 'Write',
-              input: { path: 'open-design.json' },
+              input: { path: 'saascodex.json' },
             },
             {
               kind: 'tool_result',
@@ -264,7 +264,7 @@ describe('AssistantMessage unfinished todo state', () => {
         streaming={false}
         projectId="project-1"
         projectFiles={[
-          workspaceFile('generated-plugin/open-design.json'),
+          workspaceFile('generated-plugin/saascodex.json'),
           workspaceFile('generated-plugin/SKILL.md'),
           workspaceFile('generated-plugin/examples/demo.md'),
         ]}

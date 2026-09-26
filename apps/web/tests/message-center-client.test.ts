@@ -54,13 +54,13 @@ describe('message center client', () => {
       setItem: (key: string, value: string) => void storage.set(key, value),
       removeItem: (key: string) => void storage.delete(key),
     } as Storage;
-    storage.set('open-design.message-center.anonymous-started-at.v1', '2026-07-16T00:00:00.000Z');
-    storage.set('open-design.message-center.anonymous-messages.v1', '[]');
-    storage.set('open-design.message-center.anonymous-read-ids.v1', '[]');
+    storage.set('saascodex.message-center.anonymous-started-at.v1', '2026-07-16T00:00:00.000Z');
+    storage.set('saascodex.message-center.anonymous-messages.v1', '[]');
+    storage.set('saascodex.message-center.anonymous-read-ids.v1', '[]');
     clearAnonymousState(adapter);
-    expect(storage.has('open-design.message-center.anonymous-started-at.v1')).toBe(false);
-    expect(storage.has('open-design.message-center.anonymous-messages.v1')).toBe(false);
-    expect(storage.has('open-design.message-center.anonymous-read-ids.v1')).toBe(false);
+    expect(storage.has('saascodex.message-center.anonymous-started-at.v1')).toBe(false);
+    expect(storage.has('saascodex.message-center.anonymous-messages.v1')).toBe(false);
+    expect(storage.has('saascodex.message-center.anonymous-read-ids.v1')).toBe(false);
   });
 
   // Archiving is a LOCAL third state (the vela model carries only `readAt`),
@@ -75,12 +75,12 @@ describe('message center client', () => {
       removeItem: (key: string) => void storage.delete(key),
     } as Storage;
     writeArchivedIds(adapter, new Set(['msg-1', 'msg-2']));
-    storage.set('open-design.message-center.anonymous-messages.v1', '[]');
-    storage.set('open-design.message-center.anonymous-read-ids.v1', '["msg-1"]');
+    storage.set('saascodex.message-center.anonymous-messages.v1', '[]');
+    storage.set('saascodex.message-center.anonymous-read-ids.v1', '["msg-1"]');
 
     clearAnonymousState(adapter);
 
-    expect(storage.has('open-design.message-center.anonymous-read-ids.v1')).toBe(false);
+    expect(storage.has('saascodex.message-center.anonymous-read-ids.v1')).toBe(false);
     expect([...readArchivedIds(adapter)].sort()).toEqual(['msg-1', 'msg-2']);
   });
 

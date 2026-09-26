@@ -5,11 +5,11 @@ import { join } from 'node:path';
 import { useLayoutEffect, useRef, useState, type ReactElement } from 'react';
 import { act, cleanup, createEvent, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { installMockOpenDesignHost } from '@open-design/host/testing';
+import { installMockSaaSCodexHost } from '@saascodex/host/testing';
 import type {
-  OpenDesignHostPreviewNavigationFailure,
-  OpenDesignHostPreviewNavigationFailureListener,
-} from '@open-design/host';
+  SaaSCodexHostPreviewNavigationFailure,
+  SaaSCodexHostPreviewNavigationFailureListener,
+} from '@saascodex/host';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ANNOTATION_EVENT } from '../../src/components/PreviewDrawOverlay';
 
@@ -108,7 +108,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 /** A team workspace context — the only state that can address the resource hub,
  *  and therefore the only one where the public "Publish file" entry is offered. */
@@ -1914,7 +1914,7 @@ describe('FileViewer SVG artifacts', () => {
       value: vi.fn(),
     });
     const userAgent = vi.spyOn(window.navigator, 'userAgent', 'get')
-      .mockReturnValue('OpenDesign/0.20 Electron/41.3.0');
+      .mockReturnValue('SaaSCodex/0.20 Electron/41.3.0');
     try {
       const renderViewer = (liveHtml: string, workspaceActive = true) => (
         <FileViewer
@@ -2064,7 +2064,7 @@ describe('FileViewer SVG artifacts', () => {
       value: vi.fn(),
     });
     const userAgent = vi.spyOn(window.navigator, 'userAgent', 'get')
-      .mockReturnValue('OpenDesign/0.20 Electron/41.3.0');
+      .mockReturnValue('SaaSCodex/0.20 Electron/41.3.0');
     const contentWindow = { postMessage } as unknown as Window;
     const contentWindowGetter = vi.spyOn(
       HTMLIFrameElement.prototype,
@@ -6794,7 +6794,7 @@ describe('FileViewer SVG artifacts', () => {
     expect(menuItems).not.toContain('Screenshot');
   });
 
-  it('keeps an artifact-card Share request limited to OpenDesign Quick Share', async () => {
+  it('keeps an artifact-card Share request limited to SaaSCodex Quick Share', async () => {
     const file = baseFile({
       name: 'index.html',
       path: 'index.html',
@@ -7294,7 +7294,7 @@ describe('FileViewer SVG artifacts', () => {
         exports: ['html'],
       },
     });
-    const restoreHost = installMockOpenDesignHost();
+    const restoreHost = installMockSaaSCodexHost();
     const fetchMock = vi.fn(async (input: unknown) => {
       const url = typeof input === 'string'
         ? input
@@ -7352,7 +7352,7 @@ describe('FileViewer SVG artifacts', () => {
       mime: 'text/html',
       kind: 'html',
     });
-    const restoreHost = installMockOpenDesignHost();
+    const restoreHost = installMockSaaSCodexHost();
     const fetchMock = vi.fn(async (input: unknown) => {
       const url = typeof input === 'string'
         ? input
@@ -9367,13 +9367,13 @@ describe('FileViewer tweaks toolbar', () => {
 
   it('keeps a verified srcDoc frame visible when Electron reports a late ERR_ABORTED', () => {
     vi.useFakeTimers();
-    let latestNavigationFailure: OpenDesignHostPreviewNavigationFailure | null = null;
-    let navigationFailureListener: OpenDesignHostPreviewNavigationFailureListener | null = null;
-    const emitNavigationFailure = (failure: OpenDesignHostPreviewNavigationFailure) => {
+    let latestNavigationFailure: SaaSCodexHostPreviewNavigationFailure | null = null;
+    let navigationFailureListener: SaaSCodexHostPreviewNavigationFailureListener | null = null;
+    const emitNavigationFailure = (failure: SaaSCodexHostPreviewNavigationFailure) => {
       latestNavigationFailure = failure;
       navigationFailureListener?.(failure);
     };
-    const restoreHost = installMockOpenDesignHost({
+    const restoreHost = installMockSaaSCodexHost({
       host: {
         preview: {
           getLatestNavigationFailure: () => latestNavigationFailure,
@@ -9449,8 +9449,8 @@ describe('FileViewer tweaks toolbar', () => {
 
   it('uses an exact active ERR_ABORTED to probe an unverified generation once', () => {
     vi.useFakeTimers();
-    let navigationFailureListener: OpenDesignHostPreviewNavigationFailureListener | null = null;
-    const restoreHost = installMockOpenDesignHost({
+    let navigationFailureListener: SaaSCodexHostPreviewNavigationFailureListener | null = null;
+    const restoreHost = installMockSaaSCodexHost({
       host: {
         preview: {
           subscribeNavigationFailure: (listener) => {
@@ -9498,8 +9498,8 @@ describe('FileViewer tweaks toolbar', () => {
 
   it('immediately recovers an exact active Open Design blob navigation abort', () => {
     vi.useFakeTimers();
-    let navigationFailureListener: OpenDesignHostPreviewNavigationFailureListener | null = null;
-    const restoreHost = installMockOpenDesignHost({
+    let navigationFailureListener: SaaSCodexHostPreviewNavigationFailureListener | null = null;
+    const restoreHost = installMockSaaSCodexHost({
       host: {
         preview: {
           subscribeNavigationFailure: (listener) => {
@@ -9545,8 +9545,8 @@ describe('FileViewer tweaks toolbar', () => {
 
   it('probes the active unverified frame when Electron loses the aborted frame name', () => {
     vi.useFakeTimers();
-    let navigationFailureListener: OpenDesignHostPreviewNavigationFailureListener | null = null;
-    const restoreHost = installMockOpenDesignHost({
+    let navigationFailureListener: SaaSCodexHostPreviewNavigationFailureListener | null = null;
+    const restoreHost = installMockSaaSCodexHost({
       host: {
         preview: {
           subscribeNavigationFailure: (listener) => {
@@ -9595,8 +9595,8 @@ describe('FileViewer tweaks toolbar', () => {
 
   it('keeps live edit styles on the replacement frame and replays them when its bridge becomes ready', async () => {
     vi.useFakeTimers();
-    let navigationFailureListener: OpenDesignHostPreviewNavigationFailureListener | null = null;
-    const restoreHost = installMockOpenDesignHost({
+    let navigationFailureListener: SaaSCodexHostPreviewNavigationFailureListener | null = null;
+    const restoreHost = installMockSaaSCodexHost({
       host: {
         preview: {
           subscribeNavigationFailure: (listener) => {

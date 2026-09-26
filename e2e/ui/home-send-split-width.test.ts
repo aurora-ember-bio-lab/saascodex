@@ -29,7 +29,7 @@ declare global {
   }
 }
 
-const CHAT_PANEL_WIDTH_STORAGE_KEY = 'open-design.project.chatPanelWidth';
+const CHAT_PANEL_WIDTH_STORAGE_KEY = 'saascodex.project.chatPanelWidth';
 
 async function installSplitWidthProbe(page: Page): Promise<void> {
   await page.addInitScript(() => {

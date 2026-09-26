@@ -8,7 +8,7 @@ import {
 import { StrategyInputStageV2Schema } from '../plugins/strategy-v2.js';
 
 export const NORMALIZED_AGENT_OBSERVATION_V1_SCHEMA =
-  'open-design.normalized-agent-observation/v1' as const;
+  'saascodex.normalized-agent-observation/v1' as const;
 
 const nonEmptyStringSchema = z.string().trim().min(1);
 const nonNegativeNumberSchema = z.number().finite().nonnegative();
@@ -543,7 +543,7 @@ export type ObservationTurnAccountingV1 = z.infer<
   typeof ObservationTurnAccountingV1Schema
 >;
 
-export const SAFE_RUN_QUALITY_V1_SCHEMA = 'open-design.safe-run-quality/v1' as const;
+export const SAFE_RUN_QUALITY_V1_SCHEMA = 'saascodex.safe-run-quality/v1' as const;
 
 export const SafeObservationTextV1Schema = z.object({
   text: z.string(),

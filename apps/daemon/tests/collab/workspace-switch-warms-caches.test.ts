@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import express from 'express';
 import http from 'node:http';
-import { buildWorkspacePermissions, buildWorkspaceSeatSummary } from '@open-design/contracts';
+import { buildWorkspacePermissions, buildWorkspaceSeatSummary } from '@saascodex/contracts';
 import type {
   WorkspaceCollabContext,
   WorkspaceDirectoryItem,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   registerCollabContextRoutes,
   type RegisterCollabContextRoutesDeps,
@@ -193,7 +193,7 @@ describe('PUT /api/workspace/active announces a confirmed switch for cache warmi
   });
 
   it('uses the selected AMR profile origin when the response is synthesized from the directory', async () => {
-    vi.stubEnv('OPEN_DESIGN_AMR_PROFILE', 'prod');
+    vi.stubEnv('SAASCODEX_AMR_PROFILE', 'prod');
     vi.stubEnv('OD_VELA_WEB_URL', 'https://prod.example');
     vi.stubEnv('OD_VELA_WEB_URLS', JSON.stringify({
       prod: 'https://prod.example',
@@ -201,7 +201,7 @@ describe('PUT /api/workspace/active announces a confirmed switch for cache warmi
     }));
     const api = await startSwitchServer({
       currentContext: () => null,
-      configuredEnv: () => ({ OPEN_DESIGN_AMR_PROFILE: 'feature-test' }),
+      configuredEnv: () => ({ SAASCODEX_AMR_PROFILE: 'feature-test' }),
     });
 
     const result = await api.switchTo(TEAM);

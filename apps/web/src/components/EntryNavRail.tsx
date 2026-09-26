@@ -55,7 +55,7 @@ import {
   type WorkspaceDirectoryResponse,
   type WorkspaceProjectSummary,
   workspaceContextHasTeamIdentity,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   fetchVelaLoginStatus,
   formatVelaBalanceUsd,
@@ -115,7 +115,7 @@ import type {
   AccountMenuClickProps,
   TrackingProjectCollectionPage,
   TrackingWorkspacePage,
-} from '@open-design/contracts/analytics';
+} from '@saascodex/contracts/analytics';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackAccountMenuClick,
@@ -144,7 +144,7 @@ const REPO_URL = 'https://github.com/nexu-io/open-design';
 const GITHUB_HELP_URL = `${REPO_URL}/issues/new`;
 const GITHUB_FEATURE_URL = `${REPO_URL}/pulls`;
 const DISCORD_URL = 'https://discord.gg/mHAjSMV6gz';
-const X_URL = 'https://x.com/OpenDesignHQ';
+const X_URL = 'https://x.com/SaaSCodexHQ';
 const CONTACT_EMAIL_URL = 'mailto:support@open-design.ai';
 const externalLinkProps = { target: '_blank', rel: 'noreferrer noopener' } as const;
 

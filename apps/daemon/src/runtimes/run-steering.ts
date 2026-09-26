@@ -40,7 +40,7 @@
  * re-deriving the rule.
  */
 
-import { agentSupportsMidTurnSteering } from '@open-design/contracts';
+import { agentSupportsMidTurnSteering } from '@saascodex/contracts';
 
 export type RunSteeringRefusal =
   | 'runtime_unsupported'

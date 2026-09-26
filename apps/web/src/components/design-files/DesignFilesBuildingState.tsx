@@ -5,12 +5,12 @@ import {
   parsePreviewBuildFocusSections,
   previewBuildFocusRequest,
   type PreviewSection,
-} from '@open-design/contracts/runtime/preview-build-focus';
+} from '@saascodex/contracts/runtime/preview-build-focus';
 
 import { useT } from '../../i18n';
 import { appendResourceQuery } from '../../collab/workspace-identity';
 import { projectRawUrl } from '../../providers/registry';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 import type { ProjectFile } from '../../types';
 import type { RunProgressStep } from '../../runtime/run-progress';
 import { RunStepFeed } from './RunStepFeed';

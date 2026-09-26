@@ -20,7 +20,7 @@ import {
 describe('local MCP plugin observability contract', () => {
   const originalFetch = globalThis.fetch;
   const pluginContext = {
-    id: 'open-design',
+    id: 'saascodex',
     version: '0.5.0',
     distributionMechanism: 'git_marketplace',
     publisherClass: 'open_design_first_party',
@@ -31,12 +31,12 @@ describe('local MCP plugin observability contract', () => {
     globalThis.fetch = originalFetch;
   });
 
-  it('accepts the bounded OpenDesign context and rejects extra or secret fields', () => {
+  it('accepts the bounded SaaSCodex context and rejects extra or secret fields', () => {
     expect(validateExternalPluginContext(pluginContext)).toEqual(pluginContext);
 
     expect(() => validateExternalPluginContext({
       ...pluginContext,
-      id: 'open-design-cloud',
+      id: 'saascodex-cloud',
     })).toThrow(/PLUGIN_CONTRACT_REJECTED/u);
 
     expect(() =>
@@ -115,7 +115,7 @@ describe('local MCP plugin observability contract', () => {
     const input = {
       entrySurface: 'external_mcp',
       hostProduct: 'codex_unknown',
-      externalPluginId: 'open-design',
+      externalPluginId: 'saascodex',
       externalPluginVersion: '0.5.0',
       distributionMechanism: 'git_marketplace',
       publisherClass: 'open_design_first_party',
@@ -136,7 +136,7 @@ describe('local MCP plugin observability contract', () => {
         requestId,
         entrySurface: 'external_mcp',
         hostProduct: 'codex_unknown',
-        externalPluginId: 'open-design',
+        externalPluginId: 'saascodex',
         externalPluginVersion: '0.5.0',
         distributionMechanism: 'git_marketplace',
         publisherClass: 'open_design_first_party',
@@ -374,7 +374,7 @@ describe('local MCP plugin observability contract', () => {
   it('keeps MCP transport failures and delivery completeness as separate facts', () => {
     expect(mcpFailureFacts('start_run', {
       isError: true,
-      content: [{ type: 'text', text: 'cannot reach the OpenDesign daemon' }],
+      content: [{ type: 'text', text: 'cannot reach the SaaSCodex daemon' }],
     })).toEqual({
       error_code: 'DAEMON_UNREACHABLE',
       failure_stage: 'run_accept',
@@ -579,7 +579,7 @@ describe('local MCP plugin observability contract', () => {
     expect(body.analyticsHints).toMatchObject({
       entrySurface: 'external_mcp',
       hostProduct: 'codex_cli',
-      externalPluginId: 'open-design',
+      externalPluginId: 'saascodex',
       externalPluginVersion: '0.5.0',
       pluginWorkflowId: '018f6f2e-4444-7444-8444-444444444444',
       logicalRequestDigestVersion: 1,

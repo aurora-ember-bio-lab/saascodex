@@ -30,7 +30,7 @@ export async function pickHomeTemplate(page: Page, chipId: string): Promise<void
   if (chipId === 'wireframe' || chipId === 'mobile') {
     await expect(homeTemplateTrigger(page)).toBeEnabled();
     await page.evaluate((id) => {
-      window.dispatchEvent(new CustomEvent('open-design:home-apply-template', { detail: { chipId: id } }));
+      window.dispatchEvent(new CustomEvent('saascodex:home-apply-template', { detail: { chipId: id } }));
     }, chipId);
   } else {
     const menu = await openHomeTemplates(page);

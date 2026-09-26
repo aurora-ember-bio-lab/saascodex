@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { captureProcessSnapshot, collectProcessTreePids, isProcessAlive, selectOwnedProcessTree,
-  signalProcesses, stopProcesses, type ProcessSnapshot } from '@open-design/platform';
+  signalProcesses, stopProcesses, type ProcessSnapshot } from '@saascodex/platform';
 import type { CodexClosedThreadCleanup } from './session.js';
 
 /** Same measured compatibility floor used by the live session's archive path. */
@@ -242,7 +242,7 @@ export async function cleanupClosedCodexThread(opts: CodexThreadCleanupOptions):
       }
     });
     write({ jsonrpc: '2.0', id: 1, method: 'initialize', params: {
-      clientInfo: { name: 'open-design', title: 'Open Design', version: '0.0.0' },
+      clientInfo: { name: 'saascodex', title: 'Open Design', version: '0.0.0' },
       capabilities: { experimentalApi: true, requestAttestation: false },
     } });
   });

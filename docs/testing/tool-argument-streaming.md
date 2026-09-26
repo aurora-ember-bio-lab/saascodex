@@ -67,7 +67,7 @@ promise an early filename or partial command: those still require upstream
 argument deltas.
 
 ```sh
-OD_E2E_VELA_BIN="$(command -v vela)" OD_E2E_OPENCODE_BIN="$(command -v opencode)" corepack pnpm --filter @open-design/e2e test tests/amr/tool-preview.test.ts
+OD_E2E_VELA_BIN="$(command -v vela)" OD_E2E_OPENCODE_BIN="$(command -v opencode)" corepack pnpm --filter @saascodex/e2e test tests/amr/tool-preview.test.ts
 ```
 
 Both executable variables are required; the test skips without them. Provider
@@ -92,7 +92,7 @@ a preview after 350 ms and 153 ms respectively, then released them. This is a co
 daemon/SSE acceptance run, not a new GUI or live-provider latency measurement.
 
 Run with `OD_E2E_OPENCODE_BIN=/absolute/path/to/opencode pnpm --filter
-@open-design/e2e test tests/dialog/opencode-preview-recovery.test.ts`.
+@saascodex/e2e test tests/dialog/opencode-preview-recovery.test.ts`.
 
 ### Plugin boundary
 
@@ -274,8 +274,8 @@ From the repository root, point each variable at the actual ordinary CLI binary
 (avoid wrappers that replace the isolated configuration):
 
 ```sh
-OD_E2E_CLAUDE_BIN="$(command -v claude)" corepack pnpm --filter @open-design/e2e test tests/dialog/tool-argument-stream.test.ts -t claude
-OD_E2E_OPENCODE_BIN="$(command -v opencode)" corepack pnpm --filter @open-design/e2e test tests/dialog/tool-argument-stream.test.ts -t opencode
+OD_E2E_CLAUDE_BIN="$(command -v claude)" corepack pnpm --filter @saascodex/e2e test tests/dialog/tool-argument-stream.test.ts -t claude
+OD_E2E_OPENCODE_BIN="$(command -v opencode)" corepack pnpm --filter @saascodex/e2e test tests/dialog/tool-argument-stream.test.ts -t opencode
 ```
 
 Use the package `test` script so the lifecycle harness receives `npm_execpath`

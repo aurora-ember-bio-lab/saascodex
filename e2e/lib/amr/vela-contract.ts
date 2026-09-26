@@ -85,7 +85,7 @@ export async function runVelaContract(options: { binary: string; directory: stri
       throw new Error(`Vela contract response timed out: ${JSON.stringify(received)}\n${stderr}`);
     }
     try {
-      send({ id: 1, method: 'initialize', params: { protocolVersion: 1, clientCapabilities: {}, clientInfo: { name: 'open-design-contract', version: '1' } } });
+      send({ id: 1, method: 'initialize', params: { protocolVersion: 1, clientCapabilities: {}, clientInfo: { name: 'saascodex-contract', version: '1' } } });
       const initialize = await waitFor(frame => frame.id === 1);
       if (initialize.error) throw new Error(initialize.error.message);
       send({ id: 2, method: options.loadSessionId ? 'session/load' : 'session/new', params: { cwd: directory, mcpServers: [], ...(options.loadSessionId ? { sessionId: options.loadSessionId } : {}) } });

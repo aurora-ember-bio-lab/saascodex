@@ -8,7 +8,7 @@ import {
 	verifyWebTouchpoint,
 	webTouchpointContext,
 	type WebTouchpointContent,
-	type OpenDesignTouchpointElement,
+	type SaaSCodexTouchpointElement,
 } from "./touchpoint-component";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -903,7 +903,7 @@ export function mountTouchpoint(
 	ensureWebTouchpointElement();
 	const element = document.createElement(
 		"opend-touchpoint",
-	) as OpenDesignTouchpointElement;
+	) as SaaSCodexTouchpointElement;
 	let cancelled = false,
 		elementDisposed = false,
 		verifiedDisposed = false;

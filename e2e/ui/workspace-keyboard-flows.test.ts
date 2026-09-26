@@ -4,7 +4,7 @@ import { expectAllProjectFilesActive, expectAllProjectFilesInactive, openAllProj
 import type { Locator, Page, Response } from '@playwright/test';
 import { applyStandardMocks, routeSuccessfulRuns, successfulRunEventBody } from '@/playwright/mock-factory';
 
-const CHAT_PANEL_WIDTH_STORAGE_KEY = 'open-design.project.chatPanelWidth';
+const CHAT_PANEL_WIDTH_STORAGE_KEY = 'saascodex.project.chatPanelWidth';
 
 test.beforeEach(async ({ page }) => {
   await applyStandardMocks(page);
@@ -406,8 +406,8 @@ async function createProject(
 
 async function gotoEntryHome(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await page.getByText('Loading OpenDesign…').waitFor({ state: 'detached', timeout: 10_000 }).catch(() => {});
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve OpenDesign' });
+  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'detached', timeout: 10_000 }).catch(() => {});
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
     await expect(privacyDialog).toHaveCount(0);
@@ -441,7 +441,7 @@ async function expectProjectsView(page: Page) {
 
 async function expectWorkspaceReady(page: Page) {
   await expect(page).toHaveURL(/\/projects\//);
-  await expect(page.getByText('Loading OpenDesign…')).toHaveCount(0);
+  await expect(page.getByText('Loading SaaSCodex…')).toHaveCount(0);
   await expect(page.getByTestId('chat-composer')).toBeVisible();
   await expect(page.getByTestId('chat-composer-input')).toBeVisible();
   await expect(page.getByTestId('file-workspace')).toBeVisible();

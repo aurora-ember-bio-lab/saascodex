@@ -123,7 +123,7 @@ describe('the modal never re-opens for a seen campaign (no URL override left)', 
     // back open. That backdoor is gone: frequency control is the only input.
     window.history.replaceState({}, '', '/?campaign=deepseek-v4-flash');
     window.localStorage.setItem(
-      'open-design:campaign-seen:deepseek-v4-dual-unlimited-2026',
+      'saascodex:campaign-seen:deepseek-v4-dual-unlimited-2026',
       '1',
     );
 
@@ -139,7 +139,7 @@ describe('the modal never re-opens for a seen campaign (no URL override left)', 
   // (PRD F-14: 旧 Flash 记录不影响本活动).
   it('still shows once to a user who dismissed the previous campaign', () => {
     window.localStorage.setItem(
-      'open-design:campaign-seen:deepseek-v4-flash-unlimited-2026',
+      'saascodex:campaign-seen:deepseek-v4-flash-unlimited-2026',
       '1',
     );
 
@@ -228,10 +228,10 @@ describe('unpaid DeepSeek path opens public Pricing', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Upgrade and use' }));
 
     expect(window.localStorage.getItem(
-      'open-design:campaign-seen:deepseek-v4-dual-unlimited-2026',
+      'saascodex:campaign-seen:deepseek-v4-dual-unlimited-2026',
     )).toBe('1');
     expect(window.localStorage.getItem(
-      'open-design:campaign-seen:go-plan-launch-2026',
+      'saascodex:campaign-seen:go-plan-launch-2026',
     )).toBeNull();
   });
 });
@@ -244,7 +244,7 @@ describe('campaign modal only interrupts the active home view', () => {
 
     expect(screen.queryByTestId(DIALOG)).toBeNull();
     expect(window.localStorage.getItem(
-      'open-design:campaign-seen:deepseek-v4-dual-unlimited-2026',
+      'saascodex:campaign-seen:deepseek-v4-dual-unlimited-2026',
     )).toBe('1');
   });
 
@@ -309,7 +309,7 @@ describe('campaign modal only interrupts the active home view', () => {
     rerender(<DeepSeekV4FlashCampaign audience="unknown" active />);
     expect(screen.queryByTestId(DIALOG)).toBeNull();
     expect(window.localStorage.getItem(
-      'open-design:campaign-seen:deepseek-v4-dual-unlimited-2026',
+      'saascodex:campaign-seen:deepseek-v4-dual-unlimited-2026',
     )).toBeNull();
 
     rerender(<DeepSeekV4FlashCampaign audience="paid" active />);

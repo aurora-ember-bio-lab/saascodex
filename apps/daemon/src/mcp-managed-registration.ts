@@ -6,8 +6,8 @@ import {
   readCurrentSidecarStamp,
   resolveSidecarClientEndpoint,
   type SidecarStamp,
-} from '@open-design/sidecar';
-import { APP_KEYS, MCP_BOOTSTRAP_CONTRACT } from '@open-design/sidecar-proto';
+} from '@saascodex/sidecar';
+import { APP_KEYS, MCP_BOOTSTRAP_CONTRACT } from '@saascodex/sidecar-proto';
 
 import { isManagedMcpBootstrapEnv, type ManagedMcpDiscovery } from './mcp-bootstrap.js';
 

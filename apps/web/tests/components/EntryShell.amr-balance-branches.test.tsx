@@ -29,7 +29,7 @@ import {
   buildWorkspaceSeatSummary,
   type AmrWalletSnapshot,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryShellWithGateHost } from '../helpers/entry-shell-gate-host';
@@ -112,7 +112,7 @@ function accountBilling(membershipTier: string) {
 function amrAgent(): AgentInfo {
   return {
     id: 'amr',
-    name: 'OpenDesign AMR',
+    name: 'SaaSCodex AMR',
     bin: 'amr',
     available: true,
     models: [{ id: 'glm-5', label: 'GLM 5' }],
@@ -176,7 +176,7 @@ function stubFetch(
     if (url.endsWith('/api/plugins')) return jsonResponse({ plugins: [] });
     if (url.endsWith('/api/mcp/servers')) return jsonResponse({ servers: [] });
     if (url.endsWith('/api/community/discord')) return jsonResponse({ stale: true });
-    if (url.endsWith('/api/github/open-design')) return jsonResponse({ stale: true });
+    if (url.endsWith('/api/github/saascodex')) return jsonResponse({ stale: true });
     return jsonResponse({});
   }) as typeof fetch;
 }

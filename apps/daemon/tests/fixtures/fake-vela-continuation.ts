@@ -34,7 +34,7 @@ createInterface({ input: process.stdin }).on('line', (line) => {
   switch (request.method) {
     case 'initialize':
       result({ protocolVersion: 1, agentCapabilities: { loadSession: true,
-        ...(scenario === 'legacy' ? {} : { _meta: { 'com.open-design.nativeSessionContinue': { version: 1 } } }) } });
+        ...(scenario === 'legacy' ? {} : { _meta: { 'com.saascodex.nativeSessionContinue': { version: 1 } } }) } });
       break;
     case 'session/new':
       result({ sessionId: 'acp-1', openCodeSessionId: session });

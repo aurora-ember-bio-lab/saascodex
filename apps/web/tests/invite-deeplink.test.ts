@@ -4,7 +4,7 @@ import {
   parseInviteDeeplink,
   resolveWorkspaceInviteError,
   type InviteDeeplinkPayload,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 const PAYLOAD: InviteDeeplinkPayload = {
   workspaceId: 'ws-1',

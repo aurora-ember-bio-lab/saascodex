@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 import { projectFileUrl } from '../providers/registry';
 import type { ProjectFile } from '../types';
 import {

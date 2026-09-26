@@ -2,7 +2,7 @@
 
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import type { ProjectDisplayStatus } from '@open-design/contracts';
+import type { ProjectDisplayStatus } from '@saascodex/contracts';
 
 import {
   hasCompletionNotice,

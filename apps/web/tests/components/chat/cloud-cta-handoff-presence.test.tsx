@@ -150,7 +150,7 @@ describe('裸组件缺 Cloud 接线时不伪造恢复入口', () => {
 
     expect(screen.queryByTestId('chat-error-switch-to-cloud')).toBeNull();
     expect(Array.from(container.querySelectorAll('button')).filter((button) =>
-      (button.textContent ?? '').includes('切换到 OpenDesign Cloud'),
+      (button.textContent ?? '').includes('切换到 SaaSCodex Cloud'),
     )).toHaveLength(0);
   });
 

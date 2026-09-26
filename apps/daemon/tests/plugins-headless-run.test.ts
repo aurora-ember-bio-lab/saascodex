@@ -256,8 +256,8 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
       }>;
     };
     const plugin = (listBody.plugins ?? []).find((record) =>
-      record.id === 'example-open-design-landing-deck' ||
-      record.manifest?.name === 'example-open-design-landing-deck',
+      record.id === 'example-saascodex-landing-deck' ||
+      record.manifest?.name === 'example-saascodex-landing-deck',
     );
     expect(plugin).toBeTruthy();
 
@@ -277,14 +277,14 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
     expect(body.error).toMatchObject({
       code: 'UNSUPPORTED_DUPLICATE_DEPENDENCIES',
     });
-    expect(body.error?.message).toContain('../open-design-landing/assets/hero.png');
+    expect(body.error?.message).toContain('../saascodex-landing/assets/hero.png');
   });
 
   it('surfaces duplicate daemon errors through CLI structured stderr', async () => {
     const result = await runCliResult([
       'plugin',
       'duplicate',
-      'example-open-design-landing-deck',
+      'example-saascodex-landing-deck',
       '--json',
     ]);
 
@@ -294,7 +294,7 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
       error?: { code?: string; message?: string };
     };
     expect(body.error?.code).toBe('UNSUPPORTED_DUPLICATE_DEPENDENCIES');
-    expect(body.error?.message).toContain('../open-design-landing/assets/hero.png');
+    expect(body.error?.message).toContain('../saascodex-landing/assets/hero.png');
   });
 
   it('walks install → project create → run start → status with snapshot pinned', async () => {
@@ -417,7 +417,7 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
     expect(shareBody.sourcePluginId).toBe('sample-plugin');
     expect(shareBody.appliedPluginSnapshotId).toBeTruthy();
     expect(shareBody.stagedPath).toBe('plugin-source/sample-plugin');
-    expect(shareBody.prompt).toContain('Publish the local OpenDesign plugin');
+    expect(shareBody.prompt).toContain('Publish the local SaaSCodex plugin');
     expect(shareBody.prompt).toContain('/api/projects/$OD_PROJECT_ID/plugins/publish-github');
     expect(shareBody.prompt).toContain('plugin-source/sample-plugin');
     expect(shareBody.project.pendingPrompt).toBe(shareBody.prompt);
@@ -428,7 +428,7 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
     expect(filesResp.status).toBe(200);
     const filesBody = (await filesResp.json()) as { files: Array<{ name: string }> };
     const fileNames = filesBody.files.map((file) => file.name).sort();
-    expect(fileNames).toContain('plugin-source/sample-plugin/open-design.json');
+    expect(fileNames).toContain('plugin-source/sample-plugin/saascodex.json');
     expect(fileNames).toContain('plugin-source/sample-plugin/SKILL.md');
 
     const snapshotResp = await fetch(
@@ -448,7 +448,7 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
     const contributeResp = await fetch(`${baseUrl}/api/plugins/sample-plugin/share-project`, {
       method:  'POST',
       headers: { 'content-type': 'application/json' },
-      body:    JSON.stringify({ action: 'contribute-open-design', locale: 'en' }),
+      body:    JSON.stringify({ action: 'contribute-saascodex', locale: 'en' }),
     });
     expect(contributeResp.status).toBe(200);
     const contributeBody = (await contributeResp.json()) as {
@@ -461,11 +461,11 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
       prompt: string;
     };
     expect(contributeBody.ok).toBe(true);
-    expect(contributeBody.actionPluginId).toBe('od-plugin-contribute-open-design');
+    expect(contributeBody.actionPluginId).toBe('od-plugin-contribute-saascodex');
     expect(contributeBody.sourcePluginId).toBe('sample-plugin');
     expect(contributeBody.appliedPluginSnapshotId).toBeTruthy();
     expect(contributeBody.stagedPath).toBe('plugin-source/sample-plugin');
-    expect(contributeBody.prompt).toContain('/api/projects/$OD_PROJECT_ID/plugins/contribute-open-design');
+    expect(contributeBody.prompt).toContain('/api/projects/$OD_PROJECT_ID/plugins/contribute-saascodex');
 
     const locator = process.platform === 'win32' ? 'where' : 'which';
     const realGit = ((await execFileP(locator, ['git'])).stdout as string)
@@ -479,10 +479,10 @@ describe('Plan §8 e2e-3 (entry slice) — headless install → project → run'
     const previousGitCommitterName = process.env.GIT_COMMITTER_NAME;
     const previousGitCommitterEmail = process.env.GIT_COMMITTER_EMAIL;
     process.env.OD_REAL_GIT = realGit;
-    process.env.GIT_AUTHOR_NAME = 'OpenDesign Test';
-    process.env.GIT_AUTHOR_EMAIL = 'open-design-test@example.com';
-    process.env.GIT_COMMITTER_NAME = 'OpenDesign Test';
-    process.env.GIT_COMMITTER_EMAIL = 'open-design-test@example.com';
+    process.env.GIT_AUTHOR_NAME = 'SaaSCodex Test';
+    process.env.GIT_AUTHOR_EMAIL = 'saascodex-test@example.com';
+    process.env.GIT_COMMITTER_NAME = 'SaaSCodex Test';
+    process.env.GIT_COMMITTER_EMAIL = 'saascodex-test@example.com';
     try {
       await withFakeAgent(
         'gh',
@@ -563,7 +563,7 @@ if (args[0] === 'clone') {
     if (branch.stderr) process.stderr.write(branch.stderr);
     process.exit(branch.status ?? 1);
   }
-  const remote = args.find((arg) => String(arg).startsWith('https://')) || 'https://github.com/test-user/open-design.git';
+  const remote = args.find((arg) => String(arg).startsWith('https://')) || 'https://github.com/test-user/saascodex.git';
   const remoteAdd = spawnSync(process.env.OD_REAL_GIT, ['remote', 'add', 'origin', remote], { cwd: dest, encoding: 'utf8' });
   if (remoteAdd.status !== 0) {
     if (remoteAdd.stderr) process.stderr.write(remoteAdd.stderr);
@@ -598,7 +598,7 @@ process.exit(result.status ?? 0);
               expect(publishEndpointBody.url).toBe('https://github.com/test-user/sample-plugin');
 
               const contributeEndpointResp = await fetch(
-                `${baseUrl}/api/projects/${encodeURIComponent(contributeBody.project.id)}/plugins/contribute-open-design`,
+                `${baseUrl}/api/projects/${encodeURIComponent(contributeBody.project.id)}/plugins/contribute-saascodex`,
                 {
                   method: 'POST',
                   headers: { 'content-type': 'application/json' },
@@ -656,7 +656,7 @@ process.exit(result.status ?? 0);
     const fixture = path.join(pluginRoot, pluginId);
     await mkdir(fixture, { recursive: true });
     await writeFile(
-      path.join(fixture, 'open-design.json'),
+      path.join(fixture, 'saascodex.json'),
       JSON.stringify({
         $schema: 'https://open-design.ai/schemas/plugin.v1.json',
         name: pluginId,
@@ -793,7 +793,7 @@ process.stdin.on('end', () => {
     const fixture = path.join(tmpRoot, 'pipeline-plugin');
     await fs.mkdir(fixture, { recursive: true });
     await fs.writeFile(
-      path.join(fixture, 'open-design.json'),
+      path.join(fixture, 'saascodex.json'),
       JSON.stringify({
         $schema: 'https://open-design.ai/schemas/plugin.v1.json',
         name: 'pipeline-plugin',

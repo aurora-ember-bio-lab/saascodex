@@ -22,7 +22,7 @@
 //    file is an authoritative "no cover" (cacheable); a network failure is
 //    transient (`undefined`) and must not be cached.
 
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 
 import { isDesignSystemProject } from '../components/design-system-project';
 import {

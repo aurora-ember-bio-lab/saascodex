@@ -6,7 +6,7 @@
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { forwardRef, type ComponentProps, type ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 import { ProjectView } from '../../src/components/ProjectView';
 import type { ChatComposer } from '../../src/components/ChatComposer';
 import { I18nProvider } from '../../src/i18n';

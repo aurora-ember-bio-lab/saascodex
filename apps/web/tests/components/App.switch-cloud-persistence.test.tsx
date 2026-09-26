@@ -11,7 +11,7 @@ import type { AppConfig, Project } from '../../src/types';
 import type {
   WorkspaceCollabContext,
   WorkspaceDirectoryItem,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   fetchComposioConfigFromDaemon,
   fetchDaemonConfig,

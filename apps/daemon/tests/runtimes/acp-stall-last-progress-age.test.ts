@@ -112,7 +112,7 @@ describe('ACP stall progress age', () => {
     delete process.env.LANGFUSE_PUBLIC_KEY;
     delete process.env.LANGFUSE_SECRET_KEY;
     delete process.env.LANGFUSE_BASE_URL;
-    delete process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL;
+    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
     process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
     process.env.OD_ACP_STAGE_TIMEOUT_MS = String(ACP_STAGE_TIMEOUT_MS);
@@ -174,7 +174,7 @@ describe('ACP stall progress age', () => {
     delete process.env.LANGFUSE_PUBLIC_KEY;
     delete process.env.LANGFUSE_SECRET_KEY;
     delete process.env.LANGFUSE_BASE_URL;
-    delete process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL;
+    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
     process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
     process.env.OD_ACP_STAGE_TIMEOUT_MS = String(ACP_STAGE_TIMEOUT_MS);
@@ -245,7 +245,7 @@ describe('ACP stall progress age', () => {
     delete process.env.LANGFUSE_PUBLIC_KEY;
     delete process.env.LANGFUSE_SECRET_KEY;
     delete process.env.LANGFUSE_BASE_URL;
-    delete process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL;
+    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
     process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
     process.env.OD_ACP_STAGE_TIMEOUT_MS = String(ACP_STAGE_TIMEOUT_MS);
@@ -306,7 +306,7 @@ describe('ACP stall progress age', () => {
     delete process.env.LANGFUSE_PUBLIC_KEY;
     delete process.env.LANGFUSE_SECRET_KEY;
     delete process.env.LANGFUSE_BASE_URL;
-    delete process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL;
+    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
     process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
     process.env.OD_ACP_STAGE_TIMEOUT_MS = String(ACP_STAGE_TIMEOUT_MS);
@@ -359,7 +359,7 @@ describe('ACP stall progress age', () => {
     delete process.env.LANGFUSE_PUBLIC_KEY;
     delete process.env.LANGFUSE_SECRET_KEY;
     delete process.env.LANGFUSE_BASE_URL;
-    delete process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL;
+    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
     process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
     process.env.OD_ACP_STAGE_TIMEOUT_MS = String(ACP_STAGE_TIMEOUT_MS);
@@ -416,7 +416,7 @@ describe('ACP stall progress age', () => {
     delete process.env.LANGFUSE_PUBLIC_KEY;
     delete process.env.LANGFUSE_SECRET_KEY;
     delete process.env.LANGFUSE_BASE_URL;
-    delete process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL;
+    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
     process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
     process.env.OD_ACP_STAGE_TIMEOUT_MS = String(ACP_STAGE_TIMEOUT_MS);
@@ -647,7 +647,7 @@ function snapshotEnv(): Record<string, string | undefined> {
     LANGFUSE_PUBLIC_KEY: process.env.LANGFUSE_PUBLIC_KEY,
     LANGFUSE_SECRET_KEY: process.env.LANGFUSE_SECRET_KEY,
     LANGFUSE_BASE_URL: process.env.LANGFUSE_BASE_URL,
-    OPEN_DESIGN_TELEMETRY_RELAY_URL: process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL,
+    SAASCODEX_TELEMETRY_RELAY_URL: process.env.SAASCODEX_TELEMETRY_RELAY_URL,
     OD_ACP_STAGE_TIMEOUT_MS: process.env.OD_ACP_STAGE_TIMEOUT_MS,
     OD_CHAT_RUN_INACTIVITY_TIMEOUT_MS: process.env.OD_CHAT_RUN_INACTIVITY_TIMEOUT_MS,
     OD_CHAT_RUN_FIRST_OUTPUT_TIMEOUT_MS: process.env.OD_CHAT_RUN_FIRST_OUTPUT_TIMEOUT_MS,

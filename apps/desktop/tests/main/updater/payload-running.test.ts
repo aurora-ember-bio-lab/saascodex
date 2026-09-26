@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { resolveLauncherPaths, resolveLauncherVersionPaths, type LauncherCleanupDescriptor } from "@open-design/launcher-proto";
+import { resolveLauncherPaths, resolveLauncherVersionPaths, type LauncherCleanupDescriptor } from "@saascodex/launcher-proto";
 
 import { resolveDesktopUpdaterConfig } from "../../../src/main/updater/config.js";
 import {
@@ -107,9 +107,9 @@ describe("running launcher payload retention", () => {
   it("rejects same-version repair while that payload runs, but permits repair from the outer", async () => {
     const { config, executable } = await fixture();
     const extractLauncherPayloadArchive = vi.fn(async ({ destinationRoot }: { destinationRoot: string }) => {
-      await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+      await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
       await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "replacement binary");
-      await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}");
+      await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}");
       await writeFile(join(destinationRoot, "manifest.json"), JSON.stringify({
         schemaVersion: 1, channel: "stable", namespace: "crash-test", version: "0.22.0",
         platform: "win32", payloadRoot: "payload", entry: { cwd: "payload", executable: "payload/Open Design.exe" },

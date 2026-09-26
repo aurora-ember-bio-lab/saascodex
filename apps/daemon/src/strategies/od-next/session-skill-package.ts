@@ -1,4 +1,4 @@
-import type { ProjectMetadata } from '@open-design/contracts';
+import type { ProjectMetadata } from '@saascodex/contracts';
 
 import { findSkillById, type SkillInfo } from '../../skills.js';
 import {

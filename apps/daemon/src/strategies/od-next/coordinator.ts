@@ -1,14 +1,14 @@
 import type {
-  OpenDesignPlanContractV2,
+  SaaSCodexPlanContractV2,
   StrategyRuntimeStateV2,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   AppliedStrategyBindingV2Schema,
   OD_NEXT_AGENT_DECLARED_BLOCK_REASON,
   OD_NEXT_RUNTIME_STATE_SCHEMA,
   StrategyRuntimeStateV2Schema,
   composeOdNextStrategyContinuationV2,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import type Database from 'better-sqlite3';
 
 import { getSnapshot } from '../../plugins/snapshots.js';
@@ -85,7 +85,7 @@ export interface OdNextCoordinatorResult {
   task: StrategyTaskExecutionRecord;
   visibleText: string;
   reasonCodes: string[];
-  decisionSummary?: OpenDesignPlanContractV2['decisionSummary'];
+  decisionSummary?: SaaSCodexPlanContractV2['decisionSummary'];
   instruction?:
     | {
         stage: 'clarification';
@@ -944,7 +944,7 @@ function validateAcceptedTurn(
   db: SqliteDb,
   task: StrategyTaskExecutionRecord,
   state: StrategyRuntimeStateV2,
-  plan: OpenDesignPlanContractV2 | undefined,
+  plan: SaaSCodexPlanContractV2 | undefined,
   visibleText: string,
   input: {
     toolUseCount: number;
@@ -1190,7 +1190,7 @@ function tryBeginSerializationRepair(
 function validateRepairAnchorState(
   task: StrategyTaskExecutionRecord,
   state: StrategyRuntimeStateV2,
-  plan: OpenDesignPlanContractV2,
+  plan: SaaSCodexPlanContractV2,
 ): string[] {
   const reasonCodes: string[] = [];
   // The repair anchor may arrive on a still-unrouted first turn; the repair
@@ -1209,7 +1209,7 @@ function validateRepairAnchorState(
 function validateTaskProfileBinding(
   db: SqliteDb,
   task: StrategyTaskExecutionRecord,
-  plan: OpenDesignPlanContractV2,
+  plan: SaaSCodexPlanContractV2,
 ): string[] {
   const snapshot = getSnapshot(db, task.snapshotId);
   const binding = AppliedStrategyBindingV2Schema.safeParse(snapshot?.strategy);
@@ -1226,7 +1226,7 @@ function validateTaskProfileBinding(
 function validatePlanBinding(
   db: SqliteDb,
   task: StrategyTaskExecutionRecord,
-  plan: OpenDesignPlanContractV2,
+  plan: SaaSCodexPlanContractV2,
 ): string[] {
   const reasonCodes: string[] = [];
   if (plan.strategy.snapshotId !== task.snapshotId) {

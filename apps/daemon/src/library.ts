@@ -20,7 +20,7 @@ import type {
   LibraryAssetKind,
   LibraryStorage,
   LibrarySourceKind,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   addLibraryAssetSource,
   findLibraryAssetByHash,

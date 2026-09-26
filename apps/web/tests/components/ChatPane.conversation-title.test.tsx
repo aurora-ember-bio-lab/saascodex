@@ -6,7 +6,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { ChatPane } from '../../src/components/ChatPane';
 import { trackRunFailedToastSurfaceView } from '../../src/analytics/events';
-import type { RunFailureDetail } from '@open-design/contracts';
+import type { RunFailureDetail } from '@saascodex/contracts';
 import type { AppConfig, ChatMessage, Conversation } from '../../src/types';
 
 const translate = (key: string, vars?: Record<string, string | number>) => {
@@ -247,7 +247,7 @@ describe('ChatPane session switcher', () => {
         activeConversationId="conv-1"
         onSelectConversation={vi.fn()}
         onDeleteConversation={vi.fn()}
-        config={{ agentCliEnv: { amr: { OPEN_DESIGN_AMR_PROFILE: 'test' } } } as unknown as AppConfig}
+        config={{ agentCliEnv: { amr: { SAASCODEX_AMR_PROFILE: 'test' } } } as unknown as AppConfig}
       />,
     );
 
@@ -279,7 +279,7 @@ describe('ChatPane session switcher', () => {
         activeConversationId="conv-1"
         onSelectConversation={vi.fn()}
         onDeleteConversation={vi.fn()}
-        config={{ agentCliEnv: { amr: { OPEN_DESIGN_AMR_PROFILE: 'test' } } } as unknown as AppConfig}
+        config={{ agentCliEnv: { amr: { SAASCODEX_AMR_PROFILE: 'test' } } } as unknown as AppConfig}
       />,
     );
 
@@ -294,7 +294,7 @@ describe('ChatPane session switcher', () => {
     // non-prod build sent people to production checkout.
     const parsedPlansUrl = new URL(String(plansUrl));
     expect(`${parsedPlansUrl.origin}${parsedPlansUrl.pathname}`).toBe(
-      'https://open-design.powerformer.net/cloud/dashboard',
+      'https://saascodex.powerformer.net/cloud/dashboard',
     );
     expect(parsedPlansUrl.searchParams.get('billing')).toBe('plan');
     expect(parsedPlansUrl.searchParams.get('od_entry_source')).toBe('chat_upgrade_card');

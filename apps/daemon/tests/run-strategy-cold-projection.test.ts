@@ -5,8 +5,8 @@ import path from 'node:path';
 import { finished } from 'node:stream/promises';
 
 import express from 'express';
-import { strategyPackageHashFromDigests } from '@open-design/plugin-runtime';
-import type { ChatRunStatusResponse } from '@open-design/contracts';
+import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
+import type { ChatRunStatusResponse } from '@saascodex/contracts';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { closeDatabase, openDatabase } from '../src/db.js';
@@ -118,7 +118,7 @@ async function seed(strategy = true) {
     projectId: PROJECT, conversationId: CONVERSATION, runId: null,
     pluginId: 'od-next-strategy', pluginVersion: '2.0.0', manifestSourceDigest: 'cold-strategy',
     strategy: {
-      schema: 'open-design.applied-strategy/v2', id: 'od-next-strategy', version: '2.0.0',
+      schema: 'saascodex.applied-strategy/v2', id: 'od-next-strategy', version: '2.0.0',
       packageHash: strategyPackageHashFromDigests(assetDigests), assetDigests,
       selectedTaskProfile: {
         taskType: 'prototype', version: '2.0.0', path: './assets/task-profiles/prototype.md',

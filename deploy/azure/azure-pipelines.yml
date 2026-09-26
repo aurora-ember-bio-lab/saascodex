@@ -7,12 +7,12 @@ parameters:
 
 variables:
   vmImageName: ubuntu-latest
-  resourceGroupName: open-design-aci
-  deploymentName: open-design-aci
+  resourceGroupName: saascodex-aci
+  deploymentName: saascodex-aci
   location: eastus
   templateFile: deploy/azure/container-instance.bicep
   openDesignImage: ghcr.io/nexu-io/od:latest
-  dnsNameLabel: open-design-$(Build.BuildId)
+  dnsNameLabel: saascodex-$(Build.BuildId)
   browserOrigin: https://od.example.com
 
 pool:
@@ -22,7 +22,7 @@ steps:
   - checkout: self
 
   - task: AzureCLI@2
-    displayName: Deploy OpenDesign to Azure Container Instances
+    displayName: Deploy SaaSCodex to Azure Container Instances
     inputs:
       azureSubscription: ${{ parameters.azureServiceConnection }}
       scriptType: bash

@@ -41,7 +41,7 @@ const SELECTORS = {
 
 const AMR_AGENT = {
   id: 'amr',
-  name: 'OpenDesign AMR',
+  name: 'SaaSCodex AMR',
   bin: 'vela',
   available: true,
   version: 'test',

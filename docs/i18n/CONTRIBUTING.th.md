@@ -1,4 +1,4 @@
-# การ contribute ให้ OpenDesign
+# การ contribute ให้ SaaSCodex
 
 ขอบคุณที่คิดจะ contribute. OD ตั้งใจให้เล็ก — คุณค่าส่วนใหญ่อยู่ใน **ไฟล์** (skills, design systems, prompt fragments) มากกว่า framework code. นั่นแปลว่า contribution ที่คุ้มที่สุดมักเป็น folder เดียว, Markdown file เดียว หรือ adapter ขนาดพอดี PR เดียว.
 
@@ -29,19 +29,19 @@ Setup แบบหน้าเดียวเต็มอยู่ใน [`QUICK
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd open-design
+cd saascodex
 corepack enable           # selects the pinned pnpm from packageManager
 pnpm install
 pnpm tools-dev run web    # daemon + web foreground loop
 pnpm typecheck            # tsc -b --noEmit
-pnpm --filter @open-design/web build  # web package build when needed
+pnpm --filter @saascodex/web build  # web package build when needed
 ```
 
 ต้องใช้ Node `~24` และ pnpm `10.33.x`. `nvm` / `fnm` เป็น optional; ใช้ `nvm install 24 && nvm use 24` หรือ `fnm install 24 && fnm use 24` ถ้าคุณชอบจัดการ Node ด้วยวิธีนั้น. macOS, Linux และ WSL2 เป็น path หลัก. Windows native รองรับด้วย; ดู gotchas การ setup ที่พบบ่อยใน [`docs/windows-troubleshooting.md`](../../docs/windows-troubleshooting.md).
 
 ## Docker Setup
 
-รัน OpenDesign โดยไม่ต้องติดตั้ง Node.js หรือ pnpm.
+รัน SaaSCodex โดยไม่ต้องติดตั้ง Node.js หรือ pnpm.
 
 ### Prerequisites
 
@@ -51,7 +51,7 @@ pnpm --filter @open-design/web build  # web package build when needed
 docker compose version
 ```
 
-### Start OpenDesign
+### Start SaaSCodex
 
 ```bash
 cd deploy
@@ -86,10 +86,10 @@ docker compose up -d
 สร้างไฟล์ `deploy/.env`:
 
 ```env
-OPEN_DESIGN_PORT=7456
-OPEN_DESIGN_MEM_LIMIT=384m
-OPEN_DESIGN_ALLOWED_ORIGINS=https://yourdomain.com
-OPEN_DESIGN_IMAGE=docker.io/vanjayak/open-design:latest
+SAASCODEX_PORT=7456
+SAASCODEX_MEM_LIMIT=384m
+SAASCODEX_ALLOWED_ORIGINS=https://yourdomain.com
+SAASCODEX_IMAGE=docker.io/vanjayak/saascodex:latest
 ```
 
 > Projects และ database data จะ persist อัตโนมัติด้วย Docker volumes.
@@ -228,7 +228,7 @@ Table OVERRIDES ใน `maxTokens.ts` มีไว้สำหรับกรณ
 
 ## Localization maintenance
 
-ภาษา German ใช้ formal `Sie` เพราะ OD พูดกับ audience ผสมทั้ง solo creators, agencies และ engineering teams; จนกว่า feedback ของ project จะบอกว่า informal `du` fit กว่า formal German เป็น default ที่ surprise น้อยที่สุด. Locale PRs ควรแปล UI chrome, core docs และ display-only gallery metadata ใน `apps/web/src/i18n/content.ts`, แต่ไม่ควรแปล `skills/`, `design-systems/` หรือ prompt bodies ที่ agents execute. Source prompts เหล่านั้นถูก maintain ในฐานะ workflow inputs และการคง source language เดียวช่วยเลี่ยงการคูณ prompt QA ไปตาม locales. เมื่อเพิ่มหรือ rename skill, design system หรือ prompt template ให้ update German display metadata และรัน `pnpm --filter @open-design/web test`; `content.test.ts` จะ fail ถ้า German display coverage drift. Daemon errors, export filenames และ agent-generated artifact text เป็น known limitations เว้นแต่ PR จะ scope เรื่องนั้นโดยตรง.
+ภาษา German ใช้ formal `Sie` เพราะ OD พูดกับ audience ผสมทั้ง solo creators, agencies และ engineering teams; จนกว่า feedback ของ project จะบอกว่า informal `du` fit กว่า formal German เป็น default ที่ surprise น้อยที่สุด. Locale PRs ควรแปล UI chrome, core docs และ display-only gallery metadata ใน `apps/web/src/i18n/content.ts`, แต่ไม่ควรแปล `skills/`, `design-systems/` หรือ prompt bodies ที่ agents execute. Source prompts เหล่านั้นถูก maintain ในฐานะ workflow inputs และการคง source language เดียวช่วยเลี่ยงการคูณ prompt QA ไปตาม locales. เมื่อเพิ่มหรือ rename skill, design system หรือ prompt template ให้ update German display metadata และรัน `pnpm --filter @saascodex/web test`; `content.test.ts` จะ fail ถ้า German display coverage drift. Daemon errors, export filenames และ agent-generated artifact text เป็น known limitations เว้นแต่ PR จะ scope เรื่องนั้นโดยตรง.
 
 สำหรับขั้นตอนทีละขั้นในการเพิ่ม locale ใหม่ (UI dictionary, README, language switcher, regional terminology), ดู [`TRANSLATIONS.md`](../../TRANSLATIONS.md).
 

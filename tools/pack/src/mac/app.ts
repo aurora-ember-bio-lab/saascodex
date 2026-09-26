@@ -354,7 +354,7 @@ export async function writeAssembledApp(
         dependencies,
         description: "Open Design packaged runtime",
         main: "./main.cjs",
-        name: "open-design-packaged-app",
+        name: "saascodex-packaged-app",
         ...(optionalDependencies == null ? {} : { optionalDependencies }),
         private: true,
         productName: identity.productName,

@@ -3,11 +3,11 @@ import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 
-import { strategyPackageHashFromDigests } from '@open-design/plugin-runtime';
+import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
 import {
   OD_NEXT_REQUEST_TURN_SCHEMA_V1,
-  type OpenDesignPlanContractV2,
-} from '@open-design/contracts';
+  type SaaSCodexPlanContractV2,
+} from '@saascodex/contracts';
 import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -48,7 +48,7 @@ import {
 } from '../strategies/strategy-task-test-fixtures.js';
 
 const BASE_ENV = {
-  OPEN_DESIGN_VELA_TELEMETRY: 'off',
+  SAASCODEX_VELA_TELEMETRY: 'off',
   OD_TELEMETRY_ENV: 'synthetic-test',
   LANGFUSE_PUBLIC_KEY: 'pk_fixture',
   LANGFUSE_SECRET_KEY: 'sk_fixture',
@@ -61,7 +61,7 @@ function strategyBinding() {
     { path: './assets/task-profiles/prototype.md', sha256: 'b'.repeat(64) },
   ];
   return {
-    schema: 'open-design.applied-strategy/v2' as const,
+    schema: 'saascodex.applied-strategy/v2' as const,
     id: 'od-next-strategy' as const,
     version: '2.0.0',
     packageHash: strategyPackageHashFromDigests(assetDigests),
@@ -77,10 +77,10 @@ function strategyBinding() {
   };
 }
 
-function planContractFixture(snapshotId: string): OpenDesignPlanContractV2 {
+function planContractFixture(snapshotId: string): SaaSCodexPlanContractV2 {
   const strategy = strategyBinding();
   return {
-    schema: 'open-design.plan-contract/v2',
+    schema: 'saascodex.plan-contract/v2',
     strategy: {
       id: strategy.id,
       version: strategy.version,
@@ -178,7 +178,7 @@ function seedCompletedTask(db: Database.Database): void {
 function syntheticRun() {
   const promptBundleIdentity = {
     kind: 'bundle' as const,
-    schema: 'open-design.od-next-prompt-bundle/v2' as const,
+    schema: 'saascodex.od-next-prompt-bundle/v2' as const,
     text: TEST_PROMPT_BUNDLE,
     utf8Bytes: Buffer.byteLength(TEST_PROMPT_BUNDLE, 'utf8'),
     sha256: createHash('sha256').update(TEST_PROMPT_BUNDLE, 'utf8').digest('hex'),
@@ -436,7 +436,7 @@ describe('task observation rollout', () => {
         LANGFUSE_PUBLIC_KEY: '',
         LANGFUSE_SECRET_KEY: '',
         LANGFUSE_BASE_URL: '',
-        OPEN_DESIGN_TELEMETRY_RELAY_URL: '',
+        SAASCODEX_TELEMETRY_RELAY_URL: '',
       },
     }).diagnostic()).toMatchObject({
       requestedMode: 'auto',
@@ -465,7 +465,7 @@ describe('task observation rollout', () => {
               LANGFUSE_PUBLIC_KEY: '',
               LANGFUSE_SECRET_KEY: '',
               LANGFUSE_BASE_URL: '',
-              OPEN_DESIGN_TELEMETRY_RELAY_URL: '',
+              SAASCODEX_TELEMETRY_RELAY_URL: '',
             },
           }
         : {}),
@@ -597,7 +597,7 @@ describe('task observation rollout', () => {
 
   it('rebuilds safe Run quality from durable facts before exporting the Task payload', async () => {
     vi.stubEnv(
-      'OPEN_DESIGN_TELEMETRY_RELAY_URL',
+      'SAASCODEX_TELEMETRY_RELAY_URL',
       'https://telemetry.open-design.ai/api/langfuse',
     );
     upsertMessage(db, 'conversation-1', {
@@ -701,7 +701,7 @@ describe('task observation rollout', () => {
       filesWritten: diff.filesWritten, filesWrittenUnknown: diff.filesWrittenUnknown === true,
       filesWrittenSource: 'filesystem' as const };
     const sourceProtocol = new OdNextMachineProtocolStream();
-    sourceProtocol.push(`The requested planning answer is complete.\n<open-design-plan-contract>\n${JSON.stringify(planContractFixture(snapshotId))}\n</open-design-plan-contract>\n<open-design-runtime-state>\n${JSON.stringify({ schema: 'open-design.strategy-state/v2', route: 'full_plan', inputStage: 'request', outcome: 'plan_ready', executionMode: 'simple', reasonCodes: [] })}\n</open-design-runtime-state>`);
+    sourceProtocol.push(`The requested planning answer is complete.\n<saascodex-plan-contract>\n${JSON.stringify(planContractFixture(snapshotId))}\n</saascodex-plan-contract>\n<saascodex-runtime-state>\n${JSON.stringify({ schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'request', outcome: 'plan_ready', executionMode: 'simple', reasonCodes: [] })}\n</saascodex-runtime-state>`);
     const source = { runId: task.latestRunId, parsed: sourceProtocol.finish(), toolUseCount: 0, completionEvidence: evidence };
     expect(source.parsed.issues).toEqual([]);
     const { instruction, sourceResultJson } = composeStrategyIntentResolution(task, source);
@@ -712,7 +712,7 @@ describe('task observation rollout', () => {
     });
     startIntentResolution(db, task.taskExecutionId, 'intent-reply');
     const reply = new OdNextMachineProtocolStream();
-    reply.push(`<open-design-runtime-state>\n${JSON.stringify({ schema: 'open-design.strategy-state/v2', route: 'full_plan', inputStage: 'request', outcome: 'completed', executionMode: 'simple', executionIntent: 'plan_only', reasonCodes: [] })}\n</open-design-runtime-state>`);
+    reply.push(`<saascodex-runtime-state>\n${JSON.stringify({ schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'request', outcome: 'completed', executionMode: 'simple', executionIntent: 'plan_only', reasonCodes: [] })}\n</saascodex-runtime-state>`);
     const completed = prepareAutomaticStrategyContinuation({
       db, task: claimed, parsed: reply.finish(), toolUseCount: 0, completionEvidence: evidence,
       service: { prepare: () => { throw new Error('No production on plan-only'); }, start: run => run },
@@ -776,16 +776,16 @@ describe('task observation rollout', () => {
     }>;
     const runSpan = batch.find((event) => event.body.name === 'strategy-stage:request');
     expect(runSpan?.body.input).toMatchObject({
-      type: 'open-design.od-next-host-composed-prompt',
-      schema: 'open-design.od-next-exact-send-prompt/v1',
+      type: 'saascodex.od-next-host-composed-prompt',
+      schema: 'saascodex.od-next-exact-send-prompt/v1',
       boundary: 'hostComposed',
       kind: 'bundle',
-      promptSchema: 'open-design.od-next-prompt-bundle/v2',
+      promptSchema: 'saascodex.od-next-prompt-bundle/v2',
       stage: 'request',
       sha256: mapping.finalText.sha256,
       utf8Bytes: mapping.finalText.utf8Bytes,
       promptStack: {
-        type: 'open-design.prompt-stack',
+        type: 'saascodex.prompt-stack',
         sections: [{ kind: 'odNextExactFinalText' }],
       },
     });
@@ -840,8 +840,8 @@ describe('task observation rollout', () => {
     expect(fetchImpl).toHaveBeenCalledOnce();
     const body = String(fetchImpl.mock.calls[0]![1]!.body);
     expect(body).toContain('"availability":"unavailable"');
-    expect(body).not.toContain('open-design.od-next-host-composed-prompt');
-    expect(body).not.toContain('open-design.prompt-stack');
+    expect(body).not.toContain('saascodex.od-next-host-composed-prompt');
+    expect(body).not.toContain('saascodex.prompt-stack');
   });
 
   it('exports redacted childInjected Prompt and exact runtime versions from persisted runtime facts', async () => {
@@ -889,7 +889,7 @@ describe('task observation rollout', () => {
     }).finalizeForRun('run-1')).resolves.toMatchObject({ action: 'sent' });
 
     const serialized = requests.join('\n');
-    expect(serialized).toContain('open-design.child-injected-prompt');
+    expect(serialized).toContain('saascodex.child-injected-prompt');
     expect(serialized).toContain('1.18.18');
     expect(serialized).toContain('od-opencode-json-events/v1');
     expect(serialized).toContain('Inspect');
@@ -1343,7 +1343,7 @@ describe('task observation rollout', () => {
         LANGFUSE_PUBLIC_KEY: '',
         LANGFUSE_SECRET_KEY: '',
         LANGFUSE_BASE_URL: '',
-        OPEN_DESIGN_TELEMETRY_RELAY_URL: '',
+        SAASCODEX_TELEMETRY_RELAY_URL: '',
       },
     });
 
@@ -1368,7 +1368,7 @@ describe('task observation rollout', () => {
           LANGFUSE_PUBLIC_KEY: '',
           LANGFUSE_SECRET_KEY: '',
           LANGFUSE_BASE_URL: '',
-          OPEN_DESIGN_TELEMETRY_RELAY_URL: '',
+          SAASCODEX_TELEMETRY_RELAY_URL: '',
         },
       });
 
@@ -1666,7 +1666,7 @@ describe('task observation rollout', () => {
         LANGFUSE_PUBLIC_KEY: '',
         LANGFUSE_SECRET_KEY: '',
         LANGFUSE_BASE_URL: '',
-        OPEN_DESIGN_TELEMETRY_RELAY_URL: '',
+        SAASCODEX_TELEMETRY_RELAY_URL: '',
       },
     });
     await expect(restarted.reconcileCrashWindows()).resolves.toBe(1);
@@ -2142,8 +2142,8 @@ describe('task observation rollout', () => {
     const env = {
       ...BASE_ENV,
       OD_NEXT_TASK_OBSERVABILITY_MODE: 'send',
-      OPEN_DESIGN_VELA_TELEMETRY: 'on',
-      OPEN_DESIGN_TELEMETRY_RELAY_URL: 'https://relay.example.test/private?key=secret',
+      SAASCODEX_VELA_TELEMETRY: 'on',
+      SAASCODEX_TELEMETRY_RELAY_URL: 'https://relay.example.test/private?key=secret',
     };
     const configuredEnv = {
       VELA_CONTROL_KEY: 'control-secret',
@@ -2189,9 +2189,9 @@ describe('task observation rollout', () => {
       mode: 'send',
       fetchImpl,
       env: {
-        OPEN_DESIGN_VELA_TELEMETRY: 'on',
-        OPEN_DESIGN_TELEMETRY_RELAY_URL: 'https://relay.example.test/ingest',
-        OPEN_DESIGN_TELEMETRY_RETRIES: '9',
+        SAASCODEX_VELA_TELEMETRY: 'on',
+        SAASCODEX_TELEMETRY_RELAY_URL: 'https://relay.example.test/ingest',
+        SAASCODEX_TELEMETRY_RETRIES: '9',
       },
     });
 
@@ -2213,8 +2213,8 @@ describe('task observation rollout', () => {
       mode: 'send',
       fetchImpl,
       env: {
-        OPEN_DESIGN_VELA_TELEMETRY: 'on',
-        OPEN_DESIGN_TELEMETRY_RELAY_URL: 'https://relay.example.test/ingest',
+        SAASCODEX_VELA_TELEMETRY: 'on',
+        SAASCODEX_TELEMETRY_RELAY_URL: 'https://relay.example.test/ingest',
       },
     });
     await expect(restarted.reconcileCrashWindows()).resolves.toBe(1);
@@ -2227,7 +2227,7 @@ describe('task observation rollout', () => {
       mode: 'send',
       fetchImpl,
       env: {
-        OPEN_DESIGN_TELEMETRY_RELAY_URL: 'https://relay.example.test/ingest',
+        SAASCODEX_TELEMETRY_RELAY_URL: 'https://relay.example.test/ingest',
       },
     });
 

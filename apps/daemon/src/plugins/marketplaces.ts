@@ -8,7 +8,7 @@
 // register and inspect catalogs.
 //
 // We intentionally treat the catalog body as opaque JSON in v1 — Zod
-// validation lives in `@open-design/plugin-runtime`'s parser and we only
+// validation lives in `@saascodex/plugin-runtime`'s parser and we only
 // store what the parser returns. Trust default mirrors §9: a freshly
 // added user-supplied marketplace is `restricted` (discovery only)
 // unless `--trust` is passed.
@@ -19,11 +19,11 @@ import type Database from 'better-sqlite3';
 import {
   parseMarketplace,
   type MarketplaceParseResult,
-} from '@open-design/plugin-runtime';
+} from '@saascodex/plugin-runtime';
 import {
-  OPEN_DESIGN_PLUGIN_SPEC_VERSION,
+  SAASCODEX_PLUGIN_SPEC_VERSION,
   type MarketplaceManifest,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   parsePluginSpecifier,
   resolveMarketplaceEntryVersion,
@@ -99,17 +99,17 @@ export function marketplaceRegistryBaseUrl(): string {
 
 export function marketplaceManifestUrlForRegistry(id: string): string {
   const registryId = id.trim().replace(/^\/+|\/+$/g, '');
-  return `${marketplaceRegistryBaseUrl()}/${registryId}/open-design-marketplace.json`;
+  return `${marketplaceRegistryBaseUrl()}/${registryId}/saascodex-marketplace.json`;
 }
 
 function registryIdFromBaseUrl(url: string, baseUrl: string): string | null {
   const base = baseUrl.replace(/\/+$/, '');
-  if (!url.startsWith(`${base}/`) || !url.endsWith('/open-design-marketplace.json')) {
+  if (!url.startsWith(`${base}/`) || !url.endsWith('/saascodex-marketplace.json')) {
     return null;
   }
   const id = url
     .slice(base.length + 1)
-    .replace(/\/open-design-marketplace\.json$/, '');
+    .replace(/\/saascodex-marketplace\.json$/, '');
   return id && !id.includes('/') ? id : null;
 }
 
@@ -122,11 +122,11 @@ export function marketplaceRegistryIdFromUrl(url: string): string | null {
 
   const publicBases = [PUBLIC_MARKETPLACE_BASE_URL, PUBLIC_PLUGINS_BASE_URL];
   for (const base of publicBases) {
-    if (trimmed === `${base}/open-design-marketplace.json`) return 'official';
-    if (trimmed.startsWith(`${base}/`) && trimmed.endsWith('/open-design-marketplace.json')) {
+    if (trimmed === `${base}/saascodex-marketplace.json`) return 'official';
+    if (trimmed.startsWith(`${base}/`) && trimmed.endsWith('/saascodex-marketplace.json')) {
       const id = trimmed
         .slice(base.length + 1)
-        .replace(/\/open-design-marketplace\.json$/, '');
+        .replace(/\/saascodex-marketplace\.json$/, '');
       if (id && !id.includes('/')) return id;
     }
   }
@@ -146,7 +146,7 @@ export function marketplaceRegistryIdFromUrl(url: string): string | null {
     );
     const id = marker >= 0 ? parts[marker + 2] : undefined;
     const filename = marker >= 0 ? parts[marker + 3] : undefined;
-    return id && filename === 'open-design-marketplace.json' ? id : null;
+    return id && filename === 'saascodex-marketplace.json' ? id : null;
   } catch {
     return null;
   }
@@ -439,7 +439,7 @@ function safeParseManifest(raw: string): MarketplaceManifest {
       ...legacy,
       specVersion: typeof legacy['specVersion'] === 'string'
         ? legacy['specVersion'] as string
-        : OPEN_DESIGN_PLUGIN_SPEC_VERSION,
+        : SAASCODEX_PLUGIN_SPEC_VERSION,
       name: typeof legacy['name'] === 'string' ? legacy['name'] as string : 'unknown',
       version: typeof legacy['version'] === 'string' && (legacy['version'] as string).length > 0
         ? legacy['version'] as string
@@ -454,7 +454,7 @@ function safeParseManifest(raw: string): MarketplaceManifest {
   // Last-resort fallback: return a minimal shape so the caller doesn't
   // explode if a database row was stored before a schema patch.
   return {
-    specVersion: OPEN_DESIGN_PLUGIN_SPEC_VERSION,
+    specVersion: SAASCODEX_PLUGIN_SPEC_VERSION,
     name: 'unknown',
     version: '0.0.0',
     plugins: [],

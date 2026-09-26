@@ -73,7 +73,7 @@ describe('consumeInviteContinuation', () => {
       const out = await consumeInviteContinuation('nonce-1', {
         fetch: fetchImpl,
         readSession: () => SESSION,
-        configuredEnv: { OPEN_DESIGN_AMR_PROFILE: 'feature-test' },
+        configuredEnv: { SAASCODEX_AMR_PROFILE: 'feature-test' },
       });
 
       expect(out.ok && out.context?.workspaceSettingsUrl).toBe(

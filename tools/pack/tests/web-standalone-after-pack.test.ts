@@ -132,9 +132,9 @@ async function writePnpmLinkedPackage(standaloneRoot: string, packageName: strin
 }
 
 async function writeRootWebPackage(resourcesRoot: string): Promise<void> {
-  const webPackageRoot = join(resourcesRoot, "app", "node_modules", "@open-design", "web");
+  const webPackageRoot = join(resourcesRoot, "app", "node_modules", "@saascodex", "web");
   await mkdir(join(webPackageRoot, "dist", "sidecar"), { recursive: true });
-  await writeFile(join(webPackageRoot, "package.json"), "{\"name\":\"@open-design/web\"}\n", "utf8");
+  await writeFile(join(webPackageRoot, "package.json"), "{\"name\":\"@saascodex/web\"}\n", "utf8");
   await writeFile(join(webPackageRoot, "dist", "sidecar", "index.js"), "module.exports = {};\n", "utf8");
 }
 
@@ -194,7 +194,7 @@ async function runFixture(options: {
   destinationRoot: string;
   root: string;
 }> {
-  const root = await mkdtemp(join(tmpdir(), "open-design-web-standalone-hook-"));
+  const root = await mkdtemp(join(tmpdir(), "saascodex-web-standalone-hook-"));
   const workspaceRoot = join(root, "workspace");
   const standaloneSourceRoot = await writeStandaloneFixture(workspaceRoot, {
     includeHoistedNext: options.includeHoistedNext ?? true,
@@ -249,7 +249,7 @@ async function runFixture(options: {
         ...(options.requireRootWebPackageAudit == null
           ? {}
           : { requireRootWebPackageAudit: options.requireRootWebPackageAudit }),
-        resourceName: "open-design-web-standalone",
+        resourceName: "saascodex-web-standalone",
         standaloneSourceRoot,
         version: 1,
         webPublicSourceRoot: join(workspaceRoot, "apps", "web", "public"),
@@ -283,7 +283,7 @@ async function runFixture(options: {
   return {
     appOutDir,
     auditReportPath,
-    destinationRoot: join(resourcesRoot, "open-design-web-standalone"),
+    destinationRoot: join(resourcesRoot, "saascodex-web-standalone"),
     root,
   };
 }
@@ -324,7 +324,7 @@ describe("web standalone afterPack hook", () => {
 
   it("rejects unsupported packaging platforms", async () => {
     await expect(runWebStandaloneAfterPack({
-      appOutDir: "/tmp/open-design-linux",
+      appOutDir: "/tmp/saascodex-linux",
       electronPlatformName: "linux",
       packager: { appInfo: { productFilename: "Open Design" } },
     })).rejects.toThrow(/unsupported platform: linux/);
@@ -354,11 +354,11 @@ describe("web standalone afterPack hook", () => {
       );
       expect(report.copiedNextDedupeAudit.remainingPaths).toEqual([]);
       expect(resolvedNextPath).toMatch(
-        /open-design-web-standalone\/apps\/web\/node_modules\/next\/package\.json$/,
+        /saascodex-web-standalone\/apps\/web\/node_modules\/next\/package\.json$/,
       );
       expect(report.copiedAudit.brokenSymlinks).toEqual([]);
       expect(report.copiedAudit.resolvedModules["next/package.json"].split(path.sep).join("/")).toMatch(
-        /open-design-web-standalone\/apps\/web\/node_modules\/next\/package\.json$/,
+        /saascodex-web-standalone\/apps\/web\/node_modules\/next\/package\.json$/,
       );
     } finally {
       await rm(fixture.root, { force: true, recursive: true });
@@ -422,7 +422,7 @@ describe("web standalone afterPack hook", () => {
       expect(path.isAbsolute(nextTarget)).toBe(false);
       expect(report.copiedAudit.externalSymlinks).toEqual([]);
       expect(report.copiedAudit.resolvedModules["next/package.json"].split(path.sep).join("/")).toMatch(
-        /open-design-web-standalone\/node_modules\/\.pnpm\/next@0\.0\.0\/node_modules\/next\/package\.json$/,
+        /saascodex-web-standalone\/node_modules\/\.pnpm\/next@0\.0\.0\/node_modules\/next\/package\.json$/,
       );
     } finally {
       await rm(fixture.root, { force: true, recursive: true });
@@ -430,7 +430,7 @@ describe("web standalone afterPack hook", () => {
   });
 
   darwinSymlinkIt("signs versioned mac frameworks at their Current version path", async () => {
-    const codesignRoot = await mkdtemp(join(tmpdir(), "open-design-fake-codesign-"));
+    const codesignRoot = await mkdtemp(join(tmpdir(), "saascodex-fake-codesign-"));
     const codesignBin = join(codesignRoot, "bin");
     const codesignLog = join(codesignRoot, "codesign.log");
     const oldPath = process.env.PATH;

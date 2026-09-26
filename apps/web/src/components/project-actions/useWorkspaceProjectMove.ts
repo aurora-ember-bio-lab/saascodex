@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
-import type { WorkspaceCollabContext, WorkspaceProjectSummary } from '@open-design/contracts';
-import type { TrackingProjectCollectionPage } from '@open-design/contracts/analytics';
+import type { WorkspaceCollabContext, WorkspaceProjectSummary } from '@saascodex/contracts';
+import type { TrackingProjectCollectionPage } from '@saascodex/contracts/analytics';
 
 import { useAnalytics } from '../../analytics/provider';
 import { trackWorkspaceProjectActionResult } from '../../analytics/events';

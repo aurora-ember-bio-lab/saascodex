@@ -1,6 +1,6 @@
 import { EventEmitter } from "node:events";
 
-import { SIDECAR_MESSAGES, type DesktopStatusSnapshot } from "@open-design/sidecar-proto";
+import { SIDECAR_MESSAGES, type DesktopStatusSnapshot } from "@saascodex/sidecar-proto";
 import { describe, expect, it, vi } from "vitest";
 
 import {

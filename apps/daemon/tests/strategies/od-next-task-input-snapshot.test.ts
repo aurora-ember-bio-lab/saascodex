@@ -651,7 +651,7 @@ it('telemetry freezes validated task-input bytes after the original attachment c
   const options = { installationId: null, projectId: 'project', runId: 'run-a', projectsRoot: f.root,
     prompt: '', prefs: { metrics: true, content: true, artifactManifest: true },
     attachmentPaths: loaded.attachmentReferences, taskInputSnapshot: { descriptor, snapshotsRoot: f.snapshotsRoot },
-    runScopedIds: true, env: { OPEN_DESIGN_TELEMETRY_RELAY_URL: 'https://telemetry.open-design.ai/api/langfuse' } };
+    runScopedIds: true, env: { SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.open-design.ai/api/langfuse' } };
   const sources = await freezeTraceObjectSources(options);
   expect(sources[0]?.body?.toString()).toBe('frozen original');
   const other = await freezeTraceObjectSources({ ...options, runId: 'run-b' });

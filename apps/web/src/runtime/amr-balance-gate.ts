@@ -3,7 +3,7 @@ import type {
   WorkspaceCollabContext,
   WorkspaceBillingResponse,
   WorkspaceBillingPreflight,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { fetchAmrWalletSnapshot } from '../providers/daemon';
 
 // Wallet balance is display data, not proof that a run cannot be funded.

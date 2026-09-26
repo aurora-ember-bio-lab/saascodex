@@ -4,7 +4,7 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { waitForProcessExit } from '@open-design/platform';
+import { waitForProcessExit } from '@saascodex/platform';
 import { attachCodexAppServerSession } from '../src/agent-protocol/codex-app-server/session.js';
 import { cleanupClosedCodexThread } from '../src/agent-protocol/codex-app-server/thread-cleanup.js';
 

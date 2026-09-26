@@ -279,7 +279,7 @@ function clearTelemetryEnv(): void {
   delete process.env.LANGFUSE_PUBLIC_KEY;
   delete process.env.LANGFUSE_SECRET_KEY;
   delete process.env.LANGFUSE_BASE_URL;
-  delete process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL;
+  delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
 }
 
 function snapshotEnv(): Record<string, string | undefined> {
@@ -287,7 +287,7 @@ function snapshotEnv(): Record<string, string | undefined> {
     LANGFUSE_PUBLIC_KEY: process.env.LANGFUSE_PUBLIC_KEY,
     LANGFUSE_SECRET_KEY: process.env.LANGFUSE_SECRET_KEY,
     LANGFUSE_BASE_URL: process.env.LANGFUSE_BASE_URL,
-    OPEN_DESIGN_TELEMETRY_RELAY_URL: process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL,
+    SAASCODEX_TELEMETRY_RELAY_URL: process.env.SAASCODEX_TELEMETRY_RELAY_URL,
     POSTHOG_KEY: process.env.POSTHOG_KEY,
     POSTHOG_HOST: process.env.POSTHOG_HOST,
   };

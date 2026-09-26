@@ -1,8 +1,8 @@
 # Community Import Smoke Test
 
-A small community plugin for exercising the OpenDesign import UI. It is meant
+A small community plugin for exercising the SaaSCodex import UI. It is meant
 to be boring in exactly the useful way: the folder has the portable `SKILL.md`
-floor, the enriched `open-design.json` sidecar, and a minimal Claude-compatible
+floor, the enriched `saascodex.json` sidecar, and a minimal Claude-compatible
 plugin manifest.
 
 ## Test Paths
@@ -14,6 +14,6 @@ plugin manifest.
 
 ## Expected Result
 
-OpenDesign should install the plugin as a user/community plugin, preserve the
+SaaSCodex should install the plugin as a user/community plugin, preserve the
 source provenance, and show the plugin with the title `Community Import Smoke
 Test`.

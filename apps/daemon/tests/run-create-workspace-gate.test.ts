@@ -34,7 +34,7 @@ import { workspaceContextFromDirectoryItem } from '../src/collab/vela-workspace-
 import { registerRunRoutes } from '../src/routes/runs.js';
 import { connectorService } from '../src/connectors/service.js';
 import { upsertInstalledPlugin } from '../src/plugins/registry.js';
-import { strategyPackageHashFromDigests } from '@open-design/plugin-runtime';
+import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
 import {
   finalizeStrategyPlanningTurn,
   prepareStrategyRequest,
@@ -140,7 +140,7 @@ function seedAwaitingClarificationTask(executionIntent?: 'produce' | 'plan_only'
     pluginVersion: '2.0.0',
     manifestSourceDigest: 'strategy-manifest',
     strategy: {
-      schema: 'open-design.applied-strategy/v2',
+      schema: 'saascodex.applied-strategy/v2',
       id: 'od-next-strategy',
       version: '2.0.0',
       packageHash: strategyPackageHashFromDigests(assetDigests),
@@ -210,9 +210,9 @@ function seedAwaitingClarificationTask(executionIntent?: 'produce' | 'plan_only'
   const protocol = new OdNextMachineProtocolStream();
   protocol.push([
     '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>',
-    '<open-design-runtime-state>',
+    '<saascodex-runtime-state>',
     JSON.stringify({
-      schema: 'open-design.strategy-state/v2',
+      schema: 'saascodex.strategy-state/v2',
       route: 'full_plan',
       inputStage: 'request',
       outcome: 'clarification_required',
@@ -220,7 +220,7 @@ function seedAwaitingClarificationTask(executionIntent?: 'produce' | 'plan_only'
       ...(executionIntent ? { executionIntent } : {}),
       reasonCodes: [],
     }),
-    '</open-design-runtime-state>',
+    '</saascodex-runtime-state>',
   ].join('\n'));
   const requestArtifacts = diffRunArtifacts(beforeRequest, snapshotProjectArtifacts(requestProjectDir));
   expect(requestArtifacts.filesWritten).toBe(0);
@@ -609,10 +609,10 @@ describe('POST /api/runs — workspace mutation gate', () => {
     }
     expect(lastCreatedRun.message).toContain('task is locked to executionIntent plan_only');
     const protocol = new OdNextMachineProtocolStream();
-    protocol.push(`The planning answer is complete.\n<open-design-runtime-state>\n${JSON.stringify({
-      schema: 'open-design.strategy-state/v2', route: 'full_plan', inputStage: 'clarification',
+    protocol.push(`The planning answer is complete.\n<saascodex-runtime-state>\n${JSON.stringify({
+      schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'clarification',
       outcome: 'completed', executionMode: null, executionIntent: 'plan_only', reasonCodes: [],
-    })}\n</open-design-runtime-state>`);
+    })}\n</saascodex-runtime-state>`);
     const finished = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: original.taskExecutionId, runId: continued.latestRunId, protocol,
       completionEvidence: { physicalStatus: 'succeeded', deliverableValid: false, filesWritten: 0 },

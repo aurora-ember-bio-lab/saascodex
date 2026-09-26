@@ -1,5 +1,5 @@
-import { compareLauncherVersions } from "@open-design/launcher-proto";
-import type { ReleaseChannel } from "@open-design/release";
+import { compareLauncherVersions } from "@saascodex/launcher-proto";
+import type { ReleaseChannel } from "@saascodex/release";
 
 /**
  * Channel policy for the installer-reinstall floor published as

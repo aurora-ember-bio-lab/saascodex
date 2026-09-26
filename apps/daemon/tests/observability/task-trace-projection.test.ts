@@ -51,14 +51,14 @@ describe('complete Task trace evidence', () => {
   it('freezes the entire >64 KiB redacted Prompt, with immutable Run identity and explicit oversize failure', async () => {
     const text = redactPromptText('界'.repeat(40000) + ' /Users/private/secrets/file');
     const options = { installationId: 'synthetic', projectId: 'p', runId: 'r', projectsRoot: '/unused', prompt: '', runEvidence: text,
-      prefs: { metrics: true, content: true }, env: { OPEN_DESIGN_TELEMETRY_RELAY_URL: 'https://telemetry.open-design.ai/api/langfuse' } };
+      prefs: { metrics: true, content: true }, env: { SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.open-design.ai/api/langfuse' } };
     const sources = await freezeTraceObjectSources(options);
     expect(sources).toHaveLength(1);
     expect(sources[0]?.body?.toString()).toBe(text);
     expect(text.includes('/Users/private')).toBe(false);
     const manifests = await buildTraceObjectManifests({ ...options, frozenSources: sources, uploadMode: 'manifest-only' });
     expect(manifests?.inputTextSnapshotManifest?.[0]).toMatchObject({ redacted: true, truncated: false, size_bytes: Buffer.byteLength(text), run_id: 'r' });
-    expect((await freezeTraceObjectSources({ ...options, env: { ...options.env, OPEN_DESIGN_OBJECT_MAX_BYTES: '100' } }))[0]).toMatchObject({ reason: 'object_too_large' });
+    expect((await freezeTraceObjectSources({ ...options, env: { ...options.env, SAASCODEX_OBJECT_MAX_BYTES: '100' } }))[0]).toMatchObject({ reason: 'object_too_large' });
     expect(await freezeTraceObjectSources({ ...options, prefs: { metrics: true, content: false } })).toEqual([]);
   });
 });

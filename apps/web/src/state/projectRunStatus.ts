@@ -11,7 +11,7 @@
  * Keep the two in step. Where they intentionally differ, it is called out
  * below.
  */
-import type { ChatRunStatusResponse, ProjectDisplayStatus } from '@open-design/contracts';
+import type { ChatRunStatusResponse, ProjectDisplayStatus } from '@saascodex/contracts';
 import type { Dict } from '../i18n/types';
 
 /**

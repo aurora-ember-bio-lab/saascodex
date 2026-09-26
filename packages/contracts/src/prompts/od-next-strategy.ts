@@ -5,7 +5,7 @@ import {
   OD_NEXT_RUNTIME_STATE_BLOCK,
   OD_NEXT_RUNTIME_STATE_SCHEMA,
   OD_NEXT_STRATEGY_ID,
-  type OpenDesignPlanContractV2,
+  type SaaSCodexPlanContractV2,
   type StrategyRuntimeStateV2,
   type StrategyExecutionIntentV2,
   type StrategyInputStageV2,
@@ -231,7 +231,7 @@ export function resolveOdNextDeckFrameworkMode(input: {
 /**
  * OD-NEXT SIDE of the prompt fork. This list is declared TWICE: here, and as
  * `od.pipeline.stages` in
- * `plugins/_official/scenarios/od-next-strategy/open-design.json`. Keep them in
+ * `plugins/_official/scenarios/od-next-strategy/saascodex.json`. Keep them in
  * step.
  *
  * This file — not the plugin's markdown task profiles — is where OD Next
@@ -741,7 +741,7 @@ export function renderOdNextOutputContractV2(
       risks: [],
       openDecisions: [],
     },
-  } satisfies OpenDesignPlanContractV2;
+  } satisfies SaaSCodexPlanContractV2;
   const runtimeStateExample = {
     schema: OD_NEXT_RUNTIME_STATE_SCHEMA,
     route: 'full_plan',

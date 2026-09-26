@@ -1,6 +1,6 @@
 import { observeUpdateLifecycleStages } from '../migration/update-apply-observations.js';
 import express, { type Express } from 'express';
-import { SIDECAR_DEFAULTS } from '@open-design/sidecar-proto';
+import { SIDECAR_DEFAULTS } from '@saascodex/sidecar-proto';
 import { randomUUID } from 'node:crypto';
 import {
   type McpAnalyticsEventRequest,
@@ -9,7 +9,7 @@ import {
   CLIENT_EXPERIENCE_DIAGNOSTIC_EVENT,
   parseClientExperienceDiagnostic,
   type ClientExperienceDiagnostic,
-} from '@open-design/contracts/analytics';
+} from '@saascodex/contracts/analytics';
 import {
   createAnalyticsService,
   readAnalyticsContext,
@@ -21,7 +21,7 @@ import { readCurrentAppVersionInfo, UNKNOWN_APP_VERSION } from '../app-version.j
 import { reportRunFeedbackFromDaemon } from '../langfuse-bridge.js';
 import { observePendingInstallerApplyAttempts } from '../migration/index.js';
 import {
-  OPEN_DESIGN_PLUGIN_ID,
+  SAASCODEX_PLUGIN_ID,
 } from '../mcp-observability.js';
 
 export interface DaemonTelemetry {
@@ -529,7 +529,7 @@ export function validateMcpAnalyticsEventProperties(
     MCP_PUBLISHER_CLASSES,
   );
   if (properties.external_plugin_id !== undefined) {
-    if (properties.external_plugin_id !== OPEN_DESIGN_PLUGIN_ID) {
+    if (properties.external_plugin_id !== SAASCODEX_PLUGIN_ID) {
       invalidMcpAnalytics('external_plugin_id is invalid');
     }
     if (properties.external_plugin_version !== undefined) {

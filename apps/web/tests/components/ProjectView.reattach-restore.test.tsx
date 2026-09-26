@@ -284,14 +284,14 @@ describe('computeProducedFiles', () => {
     const before = new Set(['input.png']);
     const next = [
       { name: 'input.png', path: 'input.png', kind: 'image', size: 10 },
-      { name: 'generated-plugin/open-design.json', path: 'generated-plugin/open-design.json', kind: 'code', size: 20 },
+      { name: 'generated-plugin/saascodex.json', path: 'generated-plugin/saascodex.json', kind: 'code', size: 20 },
       { name: 'generated-plugin/SKILL.md', path: 'generated-plugin/SKILL.md', kind: 'code', size: 30 },
     ];
 
     expect(
       computeProducedFiles(before, next as never, [], 'project-1')?.map((file) => file.name),
     ).toEqual([
-      'generated-plugin/open-design.json',
+      'generated-plugin/saascodex.json',
       'generated-plugin/SKILL.md',
     ]);
   });

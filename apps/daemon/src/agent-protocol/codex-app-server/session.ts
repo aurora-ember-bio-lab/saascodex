@@ -457,7 +457,7 @@ export function attachCodexAppServerSession(
     'initialize',
     {
       clientInfo: {
-        name: 'open-design',
+        name: 'saascodex',
         title: 'Open Design',
         version: opts.clientVersion ?? '0.0.0',
       },

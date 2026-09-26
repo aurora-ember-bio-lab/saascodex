@@ -4,7 +4,7 @@ import { existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
 
-import { createCommandInvocation } from '@open-design/platform';
+import { createCommandInvocation } from '@saascodex/platform';
 import type {
   AmrAuthErrorKind,
   AmrAuthNetworkPath,
@@ -15,8 +15,8 @@ import type {
   TrackingCampaignConversionSource,
   TrackingCampaignId,
   TrackingPageName,
-} from '@open-design/contracts/analytics';
-import type { AmrSessionState } from '@open-design/contracts';
+} from '@saascodex/contracts/analytics';
+import type { AmrSessionState } from '@saascodex/contracts';
 
 import { resolveAgentLaunch } from '../runtimes/launch.js';
 import { spawnEnvForAgent } from '../runtimes/env.js';
@@ -1303,11 +1303,11 @@ async function spawnVelaLoginAttempt(
     ...(deps.correlationEnv ?? {}),
     // The UUID is daemon-owned and written after configured/base env so a
     // child cannot replace the correlation key selected for this attempt.
-    OPEN_DESIGN_AMR_AUTH_ATTEMPT_ID: deps.attempt.authAttemptId,
+    SAASCODEX_AMR_AUTH_ATTEMPT_ID: deps.attempt.authAttemptId,
   };
   // This fallback-only change does not opt the child into a structured stage
   // protocol that the packaged Vela CLI cannot emit.
-  delete env.OPEN_DESIGN_AMR_AUTH_STAGE_FORMAT;
+  delete env.SAASCODEX_AMR_AUTH_STAGE_FORMAT;
   // Route through createCommandInvocation so an npm/Node-style `vela.cmd` or
   // `vela.bat` shim on Windows gets wrapped under `cmd.exe /d /s /c …` with
   // verbatim args, matching what `execAgentFile` / chat-run spawning do. A
@@ -1564,7 +1564,7 @@ export function parseVelaLoginAttribution(input: unknown): AmrEntryAttribution |
   ) {
     return null;
   }
-  const odDeviceId = sanitizeOpenDesignDeviceId(value.odDeviceId);
+  const odDeviceId = sanitizeSaaSCodexDeviceId(value.odDeviceId);
   return {
     entryId: value.entryId,
     sourceProduct: value.sourceProduct,
@@ -1665,7 +1665,7 @@ export function parseAmrOnboardingProfileAnalyticsPayload(
   const sourceDetail = raw.sourceDetail;
   const entryOccurredAt = raw.entryOccurredAt;
   const profileOccurredAt = raw.profileOccurredAt;
-  const odDeviceId = sanitizeOpenDesignDeviceId(raw.odDeviceId);
+  const odDeviceId = sanitizeSaaSCodexDeviceId(raw.odDeviceId);
   const odRole = sanitizeOptionalProfileValue(raw.odRole);
   const odOrgSize = sanitizeOptionalProfileValue(raw.odOrgSize);
   const odSource = sanitizeOptionalProfileValue(raw.odSource);
@@ -1747,7 +1747,7 @@ function sanitizeOptionalProfileList(
   return cleaned.length > 0 ? cleaned : undefined;
 }
 
-function sanitizeOpenDesignDeviceId(value: unknown): string | null {
+function sanitizeSaaSCodexDeviceId(value: unknown): string | null {
   if (typeof value !== 'string') return null;
   const trimmed = value.trim();
   if (!trimmed || trimmed.length > OD_DEVICE_ID_MAX_LENGTH) return null;
@@ -1816,12 +1816,12 @@ function velaLoginAttributionEnv(
 ): Record<string, string> {
   if (!attribution) return {};
   return {
-    OPEN_DESIGN_AMR_ENTRY_ID: attribution.entryId,
-    OPEN_DESIGN_AMR_ENTRY_SOURCE: attribution.sourceDetail,
-    OPEN_DESIGN_AMR_ENTRY_AT: attribution.occurredAt,
-    OPEN_DESIGN_AMR_ORIGIN: attribution.sourceProduct,
+    SAASCODEX_AMR_ENTRY_ID: attribution.entryId,
+    SAASCODEX_AMR_ENTRY_SOURCE: attribution.sourceDetail,
+    SAASCODEX_AMR_ENTRY_AT: attribution.occurredAt,
+    SAASCODEX_AMR_ORIGIN: attribution.sourceProduct,
     ...(attribution.odDeviceId
-      ? { OPEN_DESIGN_AMR_DEVICE_ID: attribution.odDeviceId }
+      ? { SAASCODEX_AMR_DEVICE_ID: attribution.odDeviceId }
       : {}),
   };
 }
@@ -1890,11 +1890,11 @@ function buildAmrOnboardingProfileAnalyticsCommon(
 }
 
 function resolveAmrAnalyticsEventsUrl(env: NodeJS.ProcessEnv): string {
-  return env.OPEN_DESIGN_AMR_ANALYTICS_URL?.trim() || AMR_ANALYTICS_EVENTS_URL;
+  return env.SAASCODEX_AMR_ANALYTICS_URL?.trim() || AMR_ANALYTICS_EVENTS_URL;
 }
 
 function resolveAmrAnalyticsEnv(env: NodeJS.ProcessEnv): AmrAnalyticsEnv {
-  const raw = env.OPEN_DESIGN_AMR_ANALYTICS_ENV?.trim();
+  const raw = env.SAASCODEX_AMR_ANALYTICS_ENV?.trim();
   if (raw && AMR_ANALYTICS_ENVS.has(raw as AmrAnalyticsEnv)) {
     return raw as AmrAnalyticsEnv;
   }

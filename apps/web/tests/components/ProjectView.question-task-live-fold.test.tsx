@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ProjectView } from '../../src/components/ProjectView';
 import type { ProjectWorkspaceScopeState } from '../../src/collab/useProjectWorkspaceScope';
-import type { ChatRunStatusResponse, WorkspaceCollabContext, StrategyTaskProjectionV2 } from '@open-design/contracts';
+import type { ChatRunStatusResponse, WorkspaceCollabContext, StrategyTaskProjectionV2 } from '@saascodex/contracts';
 import type {
   AgentInfo,
   AppConfig,
@@ -250,7 +250,7 @@ const cliConfig: AppConfig = {
 
 const agents = [
   { id: 'claude', name: 'Claude', bin: 'claude', available: true, models: [] },
-  { id: 'amr', name: 'OpenDesign Cloud', available: true, models: [] },
+  { id: 'amr', name: 'SaaSCodex Cloud', available: true, models: [] },
 ] as unknown as AgentInfo[];
 
 function renderProjectView(config: AppConfig = cliConfig) {

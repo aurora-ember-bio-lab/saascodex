@@ -1,7 +1,7 @@
 import {
   normalizeArtifactFocusPath,
   type ArtifactFocusSelection,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { artifactKind } from './format';
 
 /** Order the already admitted turn artifacts; focus must never widen that set. */

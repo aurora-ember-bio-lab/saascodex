@@ -31,8 +31,8 @@ afterEach(() => {
 function pluginFolderFiles(folderPath: string): ProjectFile[] {
   return [
     {
-      name: `${folderPath}/open-design.json`,
-      path: `${folderPath}/open-design.json`,
+      name: `${folderPath}/saascodex.json`,
+      path: `${folderPath}/saascodex.json`,
       size: 100,
       mtime: 1700000005,
       kind: 'code',
@@ -86,8 +86,8 @@ describe('AssistantMessage generated plugin files without in-chat install contro
     // Changing the host's install bookkeeping cannot recreate the retired UI.
     rerender(<AssistantMessage {...props} hiddenPluginActionPaths={new Set()} activePluginActionPaths={new Set()} />);
     expect(screen.queryByTestId(`assistant-plugin-actions-${folderPath}`)).toBeNull();
-    fireEvent.click(screen.getByTestId(`artifact-card-open-${folderPath}/open-design.json`));
-    expect(onOpen).toHaveBeenCalledWith(`${folderPath}/open-design.json`);
+    fireEvent.click(screen.getByTestId(`artifact-card-open-${folderPath}/saascodex.json`));
+    expect(onOpen).toHaveBeenCalledWith(`${folderPath}/saascodex.json`);
     expect(onAction).not.toHaveBeenCalled();
   });
 });

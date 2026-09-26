@@ -3,7 +3,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   canPublishPublicFile,
   publicFilePublishFailureKey,

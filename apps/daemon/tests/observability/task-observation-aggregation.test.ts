@@ -4,7 +4,7 @@ import {
   type NormalizedAgentObservationStatusV1,
   type NormalizedAgentObservationV1,
   type StrategyInputStageV2,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -59,8 +59,8 @@ function finalText(kind: 'bundle' | 'turn') {
   return {
     kind,
     schema: kind === 'bundle'
-      ? 'open-design.od-next-prompt-bundle/v2' as const
-      : 'open-design.od-next-request-turn/v1' as const,
+      ? 'saascodex.od-next-prompt-bundle/v2' as const
+      : 'saascodex.od-next-request-turn/v1' as const,
     text: `${kind}-fixture`,
     utf8Bytes: `${kind}-fixture`.length,
     sha256: 'a'.repeat(64),
@@ -102,7 +102,7 @@ function task(
     frozenSkillPackage: createEmptyFrozenSkillPackage(),
     promptBundle: finalText('bundle'),
     frozenInputIdentity: {
-      schema: 'open-design.od-next-frozen-input-identity/v1',
+      schema: 'saascodex.od-next-frozen-input-identity/v1',
       snapshotId: 'snapshot-1',
       strategyPackageHash: 'sha256:package',
       frozenSkillPackageIdentity: createEmptyFrozenSkillPackage().identity,
@@ -473,7 +473,7 @@ describe('strategy task observation aggregation', () => {
       type: 'trace-create',
       body: {
         id: 'strategy-task:task-1',
-        name: 'open-design-strategy-task',
+        name: 'saascodex-strategy-task',
         metadata: {
           agentCliVersions: ['opencode 1.18.18'],
           runtimeAdapterVersions: ['od-opencode-json-events/v1'],
@@ -546,7 +546,7 @@ describe('strategy task observation aggregation', () => {
       ? {
           status: 'failed',
           quality: {
-            schema: 'open-design.safe-run-quality/v1',
+            schema: 'saascodex.safe-run-quality/v1',
             result: {
               output: { text: 'safe assistant output', redacted: true, truncated: false },
               error: {

@@ -256,7 +256,7 @@ const WINDOWS_COMMAND_NOT_FOUND_EXIT = 9009;
 // opposed to the program running and reporting its own failure.
 //
 // Exit status alone cannot make this call on Windows. A global npm wrapper is
-// a `.CMD`, which OpenDesign runs through `cmd.exe /d /s /c`; when the package
+// a `.CMD`, which SaaSCodex runs through `cmd.exe /d /s /c`; when the package
 // behind it has been uninstalled, cmd.exe starts, node starts, and only then
 // does node fail to load the script the wrapper names — a plain exit 1 with
 // MODULE_NOT_FOUND on stderr. Nothing along that chain failed to *start*, so
@@ -751,7 +751,7 @@ async function probe(
     ...(runtimeCompanionVersion
       ? {
           runtimeCompanionName: def.id === 'deepseek-harness'
-            ? '@open-design/dsh-runtime'
+            ? '@saascodex/dsh-runtime'
             : 'runtime-profile',
           runtimeCompanionVersion,
         }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { ChatRunStatusResponse } from '@open-design/contracts';
+import type { ChatRunStatusResponse } from '@saascodex/contracts';
 
 import {
   foldRunsToProjectRunSummaries,

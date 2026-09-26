@@ -12,16 +12,16 @@ import {
 
 function policyFor(name: string): ToolBuildMetadataPolicy {
   return {
-    buildCommand: `pnpm --filter @open-design/${name} build`,
+    buildCommand: `pnpm --filter @saascodex/${name} build`,
     distEntries: ["dist/index.mjs"],
     inputs: ["src", "package.json", "esbuild.config.mjs", "tsconfig.json"],
-    packageName: `@open-design/${name}`,
+    packageName: `@saascodex/${name}`,
     toolName: name,
   };
 }
 
 async function createToolFixture(name: string): Promise<string> {
-  const root = await mkdtemp(join(tmpdir(), `open-design-${name}-`));
+  const root = await mkdtemp(join(tmpdir(), `saascodex-${name}-`));
   await mkdir(join(root, "src"), { recursive: true });
   await writeFile(join(root, "src", "index.ts"), "export const value = 1;\n", "utf8");
   await writeFile(join(root, "package.json"), JSON.stringify({ name, private: true }, null, 2), "utf8");

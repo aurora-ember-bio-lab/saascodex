@@ -10,18 +10,18 @@ type DesktopExportResult =
   | { ok: false; cancelled: true }
   | { ok: false; cancelled: false; message: string };
 
-interface OpenDesignDesktopApi {
+interface SaaSCodexDesktopApi {
   exportDiagnostics(): Promise<DesktopExportResult>;
 }
 
 declare global {
   interface Window {
-    openDesignDesktop?: OpenDesignDesktopApi;
+    openDesignDesktop?: SaaSCodexDesktopApi;
   }
 }
 
 const DIAGNOSTICS_EXPORT_PATH = '/api/diagnostics/export';
-const DIAGNOSTICS_FILENAME_PREFIX = 'open-design-diagnostics';
+const DIAGNOSTICS_FILENAME_PREFIX = 'saascodex-diagnostics';
 const STATUS_CLEAR_MS = 6000;
 
 type Status =

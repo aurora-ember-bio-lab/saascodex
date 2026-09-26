@@ -6,10 +6,10 @@ import {
 } from 'react';
 import {
   buildSocialSharePayload,
-  OPEN_DESIGN_GITHUB_REPO_URL,
+  SAASCODEX_GITHUB_REPO_URL,
   type SocialShareRequest,
   type SocialShareResponse,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   LOCALE_LABEL,
   LOCALES,
@@ -30,11 +30,11 @@ import { SocialShareGrid } from './SocialShareGrid';
 import { enterpriseUrl } from './enterpriseUrl';
 
 const DISCORD_URL = 'https://discord.gg/mHAjSMV6gz';
-const X_URL = 'https://x.com/OpenDesignHQ';
+const X_URL = 'https://x.com/SaaSCodexHQ';
 const THREADS_URL = 'https://www.threads.com/@opendesign.ai';
 const YOUTUBE_URL = 'https://www.youtube.com/@Open-Design-ai';
 const INSTAGRAM_URL = 'https://www.instagram.com/opendesign.ai/';
-const LINKEDIN_URL = 'https://www.linkedin.com/company/open-design-ai/';
+const LINKEDIN_URL = 'https://www.linkedin.com/company/saascodex-ai/';
 const XIAOHONGSHU_URL =
   'https://www.xiaohongshu.com/user/profile/691effad000000003002978f';
 
@@ -83,7 +83,7 @@ export function EntrySettingsMenu({
   const discordPresence = useDiscordPresence();
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [openDesignShare, setOpenDesignShare] = useState<SocialShareResponse | null>(null);
+  const [openDesignShare, setSaaSCodexShare] = useState<SocialShareResponse | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const langListRef = useRef<HTMLDivElement | null>(null);
@@ -95,17 +95,17 @@ export function EntrySettingsMenu({
   const openDesignShareRequest = useMemo<SocialShareRequest>(() => {
     const text = t('socialShare.openDesignText');
     return {
-      kind: 'open-design-repo',
+      kind: 'saascodex-repo',
       locale,
       title: t('socialShare.openDesignTitle'),
       text,
       copyText: t('socialShare.openDesignCopyText', {
         text,
-        url: OPEN_DESIGN_GITHUB_REPO_URL,
+        url: SAASCODEX_GITHUB_REPO_URL,
       }),
     };
   }, [locale, t]);
-  const fallbackOpenDesignShare = useMemo(
+  const fallbackSaaSCodexShare = useMemo(
     () => buildSocialSharePayload(openDesignShareRequest),
     [openDesignShareRequest],
   );
@@ -157,13 +157,13 @@ export function EntrySettingsMenu({
   useEffect(() => {
     if (!open) return;
     let cancelled = false;
-    setOpenDesignShare(null);
+    setSaaSCodexShare(null);
     void createSocialSharePayload(openDesignShareRequest)
       .then((payload) => {
-        if (!cancelled) setOpenDesignShare(payload);
+        if (!cancelled) setSaaSCodexShare(payload);
       })
       .catch(() => {
-        if (!cancelled) setOpenDesignShare(null);
+        if (!cancelled) setSaaSCodexShare(null);
       });
     return () => {
       cancelled = true;
@@ -281,7 +281,7 @@ export function EntrySettingsMenu({
               <span>{t('socialShare.openDesignSection')}</span>
             </div>
             <SocialShareGrid
-              share={openDesignShare ?? fallbackOpenDesignShare}
+              share={openDesignShare ?? fallbackSaaSCodexShare}
               className="entry-settings-social-share"
               onShare={(platform) => {
                 trackSettingsPopoverClick(analytics.track, {

@@ -14,7 +14,7 @@ import { T } from '@/timeouts';
 
 const AMR_AGENT = {
   id: 'amr',
-  name: 'OpenDesign AMR',
+  name: 'SaaSCodex AMR',
   bin: 'vela',
   available: true,
   version: 'test',
@@ -25,8 +25,8 @@ async function seedCloudRunFailure(page: Page, locale: 'en' | 'zh-CN') {
   // Use an ordinary run error: insufficient balance belongs to the separate
   // quota-card workflow covered by amr-run-failure-recovery.test.ts.
   await page.addInitScript((nextLocale) => {
-    window.localStorage.setItem('open-design:locale', nextLocale);
-    window.localStorage.setItem('open-design:locale-source', 'manual');
+    window.localStorage.setItem('saascodex:locale', nextLocale);
+    window.localStorage.setItem('saascodex:locale-source', 'manual');
   }, locale);
   await routeAgents(page, [AMR_AGENT]);
   await page.route('**/api/skills', (route) => route.fulfill({ json: { skills: [] } }));

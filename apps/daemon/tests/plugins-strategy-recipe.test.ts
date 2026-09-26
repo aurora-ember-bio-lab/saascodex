@@ -9,7 +9,7 @@ import {
   type InstalledPluginRecord,
   type OdNextStrategyRequestRecipeV2,
   type PluginPipeline,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { applyPlugin, InternalBundledStrategyApplyError } from '../src/plugins/apply.js';
 import { loadBundledAtomBodiesStrict } from '../src/plugins/atom-bodies.js';
 import { registerBundledPlugins } from '../src/plugins/bundled.js';
@@ -289,8 +289,8 @@ describe('OD Next V2 request recipe wiring', () => {
     expect(prompt).toContain('compact operator interfaces');
     expect(prompt).toContain('Use concise product language.');
     expect(prompt).toContain('Prioritize incident triage.');
-    expect(prompt).toContain('open-design.plan-contract/v2');
-    expect(prompt).toContain('open-design.strategy-state/v2');
+    expect(prompt).toContain('saascodex.plan-contract/v2');
+    expect(prompt).toContain('saascodex.strategy-state/v2');
     expect(prompt).toContain('capabilitySnapshotHash');
     expect(prompt).toContain('productionRoutes');
     expect(prompt).toContain('decisionSummary');

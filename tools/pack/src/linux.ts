@@ -12,7 +12,7 @@ import {
   type DesktopEvalResult,
   type DesktopScreenshotResult,
   type DesktopStatusSnapshot,
-} from "@open-design/sidecar-proto";
+} from "@saascodex/sidecar-proto";
 import {
   convergeSidecarLaunch,
   findSidecarProcesses,
@@ -20,8 +20,8 @@ import {
   invokeSidecar,
   stopSidecars,
   type SidecarStamp,
-} from "@open-design/sidecar";
-import { createPackageManagerInvocation, readLogTail } from "@open-design/platform";
+} from "@saascodex/sidecar";
+import { createPackageManagerInvocation, readLogTail } from "@saascodex/platform";
 
 import type { ToolPackConfig } from "./config/index.js";
 import {
@@ -50,23 +50,23 @@ const CONTAINER_NODE_VERSION = "24.14.1";
 const CONTAINER_TOOLS_PACK_CLI_PATH = "tools/pack/bin/tools-pack.mjs";
 
 export const INTERNAL_PACKAGES = [
-  { directory: "packages/release", name: "@open-design/release" },
-  { directory: "packages/components", name: "@open-design/components" },
-  { directory: "packages/contracts", name: "@open-design/contracts" },
-  { directory: "packages/registry-protocol", name: "@open-design/registry-protocol" },
-  { directory: "packages/sidecar-proto", name: "@open-design/sidecar-proto" },
-  { directory: "packages/launcher-proto", name: "@open-design/launcher-proto" },
-  { directory: "packages/platform", name: "@open-design/platform" },
-  { directory: "packages/sidecar", name: "@open-design/sidecar" },
-  { directory: "packages/download", name: "@open-design/download" },
-  { directory: "packages/host", name: "@open-design/host" },
-  { directory: "packages/agui-adapter", name: "@open-design/agui-adapter" },
-  { directory: "packages/plugin-runtime", name: "@open-design/plugin-runtime" },
-  { directory: "packages/diagnostics", name: "@open-design/diagnostics" },
-  { directory: "apps/daemon", name: "@open-design/daemon" },
-  { directory: "apps/web", name: "@open-design/web" },
-  { directory: "apps/desktop", name: "@open-design/desktop" },
-  { directory: "apps/packaged", name: "@open-design/packaged" },
+  { directory: "packages/release", name: "@saascodex/release" },
+  { directory: "packages/components", name: "@saascodex/components" },
+  { directory: "packages/contracts", name: "@saascodex/contracts" },
+  { directory: "packages/registry-protocol", name: "@saascodex/registry-protocol" },
+  { directory: "packages/sidecar-proto", name: "@saascodex/sidecar-proto" },
+  { directory: "packages/launcher-proto", name: "@saascodex/launcher-proto" },
+  { directory: "packages/platform", name: "@saascodex/platform" },
+  { directory: "packages/sidecar", name: "@saascodex/sidecar" },
+  { directory: "packages/download", name: "@saascodex/download" },
+  { directory: "packages/host", name: "@saascodex/host" },
+  { directory: "packages/agui-adapter", name: "@saascodex/agui-adapter" },
+  { directory: "packages/plugin-runtime", name: "@saascodex/plugin-runtime" },
+  { directory: "packages/diagnostics", name: "@saascodex/diagnostics" },
+  { directory: "apps/daemon", name: "@saascodex/daemon" },
+  { directory: "apps/web", name: "@saascodex/web" },
+  { directory: "apps/desktop", name: "@saascodex/desktop" },
+  { directory: "apps/packaged", name: "@saascodex/packaged" },
 ] as const;
 
 export function sanitizeNamespace(value: string): string {
@@ -134,7 +134,7 @@ export function buildDockerArgs(
   //
   // Shell-interpolation safety for the inner `bash -lc` command:
   //   - config.namespace is sanitized at config-time by resolveNamespace() in
-  //     @open-design/sidecar-proto (restricted to namespace charset)
+  //     @saascodex/sidecar-proto (restricted to namespace charset)
   //   - config.to is enum-validated by resolveToolPackBuildOutput() in config.ts
   //     to one of "all" | "appimage" | "dir"
   //   - config.portable is a boolean
@@ -221,9 +221,9 @@ export function buildDockerArgs(
     `${PRODUCTION_INSTALL_PNPM_BIN_ENV}=${CONTAINER_PNPM_PATH}`,
   ];
   if (config.telemetryRelayUrl != null) {
-    dockerArgs.push("-e", `OPEN_DESIGN_TELEMETRY_RELAY_URL=${config.telemetryRelayUrl}`);
+    dockerArgs.push("-e", `SAASCODEX_TELEMETRY_RELAY_URL=${config.telemetryRelayUrl}`);
   }
-  const velaBinHost = process.env.OPEN_DESIGN_VELA_CLI_BIN?.trim();
+  const velaBinHost = process.env.SAASCODEX_VELA_CLI_BIN?.trim();
   if (velaBinHost) {
     // The container only mounts /project, /tools-pack and cache/home dirs by
     // default, so a Vela CLI living outside those (a host path like
@@ -235,10 +235,10 @@ export function buildDockerArgs(
     const velaBinBase = basename(velaBinHost);
     const containerVelaDir = "/opt/vela-cli";
     dockerArgs.push("-v", `${hostVelaDir}:${containerVelaDir}:ro`);
-    dockerArgs.push("-e", `OPEN_DESIGN_VELA_CLI_BIN=${containerVelaDir}/${velaBinBase}`);
+    dockerArgs.push("-e", `SAASCODEX_VELA_CLI_BIN=${containerVelaDir}/${velaBinBase}`);
   }
   if (config.amrProfile != null) {
-    dockerArgs.push("-e", `OPEN_DESIGN_AMR_PROFILE=${config.amrProfile}`);
+    dockerArgs.push("-e", `SAASCODEX_AMR_PROFILE=${config.amrProfile}`);
   }
   // The vela web origin is resolved on the host (from the build-time secret)
   // but the packaged config is written inside the container, so the containerized
@@ -271,7 +271,7 @@ export function renderDesktopTemplate(template: string, values: DesktopTemplateV
 }
 
 export function renderLinuxPackagedMainEntry(): string {
-  return 'import("@open-design/packaged").catch((error) => {\n  console.error("packaged entry failed", error);\n  process.exit(1);\n});\n';
+  return 'import("@saascodex/packaged").catch((error) => {\n  console.error("packaged entry failed", error);\n  process.exit(1);\n});\n';
 }
 
 export function renderLinuxAppImageAppRun(): string {
@@ -377,11 +377,11 @@ function appImageInstallName(namespace: string): string {
 }
 
 function desktopFileName(namespace: string): string {
-  return `open-design-${sanitizeNamespace(namespace)}.desktop`;
+  return `saascodex-${sanitizeNamespace(namespace)}.desktop`;
 }
 
 function iconFileName(namespace: string): string {
-  return `open-design-${sanitizeNamespace(namespace)}.png`;
+  return `saascodex-${sanitizeNamespace(namespace)}.png`;
 }
 
 function resolveLinuxPaths(config: ToolPackConfig): LinuxPaths {
@@ -408,8 +408,8 @@ function resolveLinuxPaths(config: ToolPackConfig): LinuxPaths {
       "apps",
       iconFileName(config.namespace),
     ),
-    packagedConfigPath: join(namespaceRoot, "open-design-config.json"),
-    resourceRoot: join(namespaceRoot, "resources", "open-design"),
+    packagedConfigPath: join(namespaceRoot, "saascodex-config.json"),
+    resourceRoot: join(namespaceRoot, "resources", "saascodex"),
     tarballsRoot: join(namespaceRoot, "tarballs"),
   };
 }
@@ -533,7 +533,7 @@ async function writeAssembledApp(
   const version = await readPackagedVersion(config);
   const packageVersion = electronBuilderVersionForAppVersion(version);
   const packageJson = {
-    name: "open-design-packaged",
+    name: "saascodex-packaged",
     version: packageVersion,
     private: true,
     main: "main.cjs",
@@ -556,7 +556,7 @@ async function writeAssembledApp(
         ...(config.amrProfile == null ? {} : { amrProfile: config.amrProfile }),
         appVersion: version,
         namespace: config.namespace,
-        nodeCommandRelative: "open-design/bin/node",
+        nodeCommandRelative: "saascodex/bin/node",
         ...(config.telemetryRelayUrl == null ? {} : { telemetryRelayUrl: config.telemetryRelayUrl }),
         ...(config.posthogKey == null ? {} : { posthogKey: config.posthogKey }),
         ...(config.posthogHost == null ? {} : { posthogHost: config.posthogHost }),
@@ -588,7 +588,7 @@ async function writeLinuxBuilderConfig(config: ToolPackConfig, paths: LinuxPaths
   const packageVersion = electronBuilderVersionForAppVersion(packagedVersion);
 
   const builderConfig: Record<string, unknown> = {
-    appId: "io.open-design.desktop",
+    appId: "io.saascodex.desktop",
     artifactName: `${PRODUCT_NAME}-${namespaceToken}.\${ext}`,
     asar: false,
     buildDependenciesFromSource: false,
@@ -605,14 +605,14 @@ async function writeLinuxBuilderConfig(config: ToolPackConfig, paths: LinuxPaths
     executableName: PRODUCT_NAME,
     extraMetadata: {
       main: "./main.cjs",
-      name: "open-design-packaged-app",
+      name: "saascodex-packaged-app",
       productName: PRODUCT_NAME,
       version: packageVersion,
       ...(config.portable ? {} : { odToolsPackRuntimeRoot: config.roots.runtime.namespaceBaseRoot }),
     },
     extraResources: [
-      { from: paths.resourceRoot, to: "open-design" },
-      { from: paths.packagedConfigPath, to: "open-design-config.json" },
+      { from: paths.resourceRoot, to: "saascodex" },
+      { from: paths.packagedConfigPath, to: "saascodex-config.json" },
       // Vendored dom-to-pptx browser bundle for editable PPTX export (read from
       // process.resourcesPath by the desktop main at runtime).
       domToPptxBundleResource(config),
@@ -816,7 +816,7 @@ export async function installPackedLinuxApp(config: ToolPackConfig): Promise<Lin
   const rendered = renderDesktopTemplate(template, {
     namespace: sanitizeNamespace(config.namespace),
     execPath: paths.installAppImagePath,
-    iconName: `open-design-${sanitizeNamespace(config.namespace)}`,
+    iconName: `saascodex-${sanitizeNamespace(config.namespace)}`,
   });
   const tmpDesktopPath = `${paths.installDesktopFilePath}.tmp`;
   await writeFile(tmpDesktopPath, rendered, "utf8");
@@ -1150,12 +1150,12 @@ export type LinuxCleanupResult = {
 
 // Paths resolved relative to the assembled app written during `tools-pack linux build`.
 // The headless entry lives at:
-//   <assembledAppRoot>/node_modules/@open-design/packaged/dist/headless.mjs
+//   <assembledAppRoot>/node_modules/@saascodex/packaged/dist/headless.mjs
 // The bundled Node binary lives at:
-//   <namespaceRoot>/resources/open-design/bin/node  (populated by copyResourceTree)
+//   <namespaceRoot>/resources/saascodex/bin/node  (populated by copyResourceTree)
 
 function resolveHeadlessEntryPath(paths: LinuxPaths): string {
-  return join(paths.assembledAppRoot, "node_modules", "@open-design", "packaged", "dist", "headless.mjs");
+  return join(paths.assembledAppRoot, "node_modules", "@saascodex", "packaged", "dist", "headless.mjs");
 }
 
 function resolveHeadlessBundledNodePath(paths: LinuxPaths): string {
@@ -1163,7 +1163,7 @@ function resolveHeadlessBundledNodePath(paths: LinuxPaths): string {
 }
 
 function headlessLauncherPath(config: ToolPackConfig): string {
-  return join(homedir(), ".local", "bin", `open-design-headless-${sanitizeNamespace(config.namespace)}`);
+  return join(homedir(), ".local", "bin", `saascodex-headless-${sanitizeNamespace(config.namespace)}`);
 }
 
 function headlessLogPath(config: ToolPackConfig): string {

@@ -95,8 +95,8 @@ let styleEl: HTMLStyleElement;
 
 beforeEach(() => {
   window.localStorage.clear();
-  window.localStorage.setItem('open-design:locale', 'zh-CN');
-  window.localStorage.setItem('open-design:locale-source', 'manual');
+  window.localStorage.setItem('saascodex:locale', 'zh-CN');
+  window.localStorage.setItem('saascodex:locale-source', 'manual');
   styleEl = document.createElement('style');
   styleEl.textContent = `${seamCss}\n${dialogCss}`;
   document.head.appendChild(styleEl);

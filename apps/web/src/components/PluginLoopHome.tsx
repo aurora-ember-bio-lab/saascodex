@@ -9,7 +9,7 @@ import type {
   ProjectScenarioTaskProfile,
   LocalCatalogScope,
   RunContextSelection,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   applyPlugin,
   duplicatePluginAsProject,

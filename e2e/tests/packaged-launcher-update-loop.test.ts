@@ -201,7 +201,7 @@ const client = SidecarFactory.create({
         await mkdir(resources.dataRoot, { recursive: true });
         await writeFile(
           join(resources.dataRoot, "captured-daemon-env.json"),
-          JSON.stringify({ telemetryRelayUrl: process.env.OPEN_DESIGN_TELEMETRY_RELAY_URL ?? null }),
+          JSON.stringify({ telemetryRelayUrl: process.env.SAASCODEX_TELEMETRY_RELAY_URL ?? null }),
         );
       }
       return {
@@ -233,7 +233,7 @@ function fakePackagedConfig(root: string, testCase: PlatformCase): PackagedConfi
     nodeCommand: null,
     posthogHost: null,
     posthogKey: null,
-    resourceRoot: join(root, "installed", "resources", "open-design"),
+    resourceRoot: join(root, "installed", "resources", "saascodex"),
     telemetryRelayUrl: HISTORICAL_OUTER_RELAY_URL,
     webOutputMode: "server",
     webSidecarEntry: null,
@@ -267,8 +267,8 @@ async function createPayloadMetadataFixture(options: PlatformCase): Promise<Fixt
             artifacts: {
               [options.platform === "win32" ? "installer" : "dmg"]: {
                 name: options.platform === "win32"
-                  ? `open-design-${options.promotedVersion}-win-x64-setup.exe`
-                  : `open-design-${options.promotedVersion}-mac-arm64.dmg`,
+                  ? `saascodex-${options.promotedVersion}-win-x64-setup.exe`
+                  : `saascodex-${options.promotedVersion}-mac-arm64.dmg`,
                 sha256: "unused-full-package-checksum",
                 url: `http://${serverAddress(server)}/${options.platform === "win32" ? "installer.exe" : "app.dmg"}`,
               },
@@ -318,19 +318,19 @@ async function createPayloadMetadataFixture(options: PlatformCase): Promise<Fixt
 
 async function writeExtractedWindowsPayload(destinationRoot: string, testCase: PlatformCase): Promise<void> {
   const executableName = `${testCase.productName}.exe`;
-  await mkdir(join(destinationRoot, "payload", "resources", "open-design", "bin"), { recursive: true });
+  await mkdir(join(destinationRoot, "payload", "resources", "saascodex", "bin"), { recursive: true });
   await mkdir(join(destinationRoot, "payload", "resources", "prebundled", "daemon"), { recursive: true });
   await mkdir(join(destinationRoot, "payload", "resources", "prebundled", "web"), { recursive: true });
   await writeFile(join(destinationRoot, "payload", executableName), "");
-  await writeFile(join(destinationRoot, "payload", "resources", "open-design", "bin", "node.exe"), "");
+  await writeFile(join(destinationRoot, "payload", "resources", "saascodex", "bin", "node.exe"), "");
   await writeFile(join(destinationRoot, "payload", "resources", "prebundled", "daemon", "daemon-sidecar.mjs"), FAKE_SIDECAR_SOURCE);
   await writeFile(join(destinationRoot, "payload", "resources", "prebundled", "web", "web-sidecar.mjs"), FAKE_SIDECAR_SOURCE);
   await writeFile(
-    join(destinationRoot, "payload", "resources", "open-design-config.json"),
+    join(destinationRoot, "payload", "resources", "saascodex-config.json"),
     `${JSON.stringify({
       appVersion: testCase.promotedVersion,
       daemonSidecarEntryRelative: "prebundled/daemon/daemon-sidecar.mjs",
-      nodeCommandRelative: "open-design/bin/node.exe",
+      nodeCommandRelative: "saascodex/bin/node.exe",
       telemetryRelayUrl: PAYLOAD_RELAY_URL,
       webOutputMode: "standalone",
       webSidecarEntryRelative: "prebundled/web/web-sidecar.mjs",
@@ -353,20 +353,20 @@ async function writeExtractedWindowsPayload(destinationRoot: string, testCase: P
 async function writeExtractedMacPayload(destinationRoot: string, testCase: PlatformCase): Promise<void> {
   const appBundleName = `${testCase.productName}.app`;
   const resourcesRoot = join(destinationRoot, "payload", appBundleName, "Contents", "Resources");
-  await mkdir(join(resourcesRoot, "open-design", "bin"), { recursive: true });
+  await mkdir(join(resourcesRoot, "saascodex", "bin"), { recursive: true });
   await mkdir(join(resourcesRoot, "prebundled", "daemon"), { recursive: true });
   await mkdir(join(resourcesRoot, "prebundled", "web"), { recursive: true });
   await mkdir(join(destinationRoot, "payload", appBundleName, "Contents", "MacOS"), { recursive: true });
   await writeFile(join(destinationRoot, "payload", appBundleName, "Contents", "MacOS", testCase.productName), "");
-  await writeFile(join(resourcesRoot, "open-design", "bin", "node"), "");
+  await writeFile(join(resourcesRoot, "saascodex", "bin", "node"), "");
   await writeFile(join(resourcesRoot, "prebundled", "daemon", "daemon-sidecar.mjs"), FAKE_SIDECAR_SOURCE);
   await writeFile(join(resourcesRoot, "prebundled", "web", "web-sidecar.mjs"), FAKE_SIDECAR_SOURCE);
   await writeFile(
-    join(resourcesRoot, "open-design-config.json"),
+    join(resourcesRoot, "saascodex-config.json"),
     `${JSON.stringify({
       appVersion: testCase.promotedVersion,
       daemonSidecarEntryRelative: "prebundled/daemon/daemon-sidecar.mjs",
-      nodeCommandRelative: "open-design/bin/node",
+      nodeCommandRelative: "saascodex/bin/node",
       telemetryRelayUrl: PAYLOAD_RELAY_URL,
       webOutputMode: "standalone",
       webSidecarEntryRelative: "prebundled/web/web-sidecar.mjs",
@@ -401,11 +401,11 @@ const platformCases: PlatformCase[] = [
     expectedPayloadExecutablePath: (root, namespace) =>
       join(root, "launcher", "channels", "beta", "namespaces", namespace, "versions", "1.2.3-beta.5", "payload", "Open Design.exe"),
     expectedResourceRoot: (root, namespace) =>
-      join(root, "launcher", "channels", "beta", "namespaces", namespace, "versions", "1.2.3-beta.5", "payload", "resources", "open-design"),
+      join(root, "launcher", "channels", "beta", "namespaces", namespace, "versions", "1.2.3-beta.5", "payload", "resources", "saascodex"),
     fixturePlatformKey: "win",
     namespace: "release-beta-win",
     productName: "Open Design",
-    payloadArchiveName: "open-design-1.2.3-beta.5-win-x64-payload.7z",
+    payloadArchiveName: "saascodex-1.2.3-beta.5-win-x64-payload.7z",
     payloadPath: "/payload.7z",
     platform: "win32",
     promotedVersion: "1.2.3-beta.5",
@@ -418,11 +418,11 @@ const platformCases: PlatformCase[] = [
     expectedPayloadExecutablePath: (root, namespace) =>
       join(root, "launcher", "channels", "beta", "namespaces", namespace, "versions", "1.2.3-beta.5", "payload", "Open Design Beta.app", "Contents", "MacOS", "Open Design Beta"),
     expectedResourceRoot: (root, namespace) =>
-      join(root, "launcher", "channels", "beta", "namespaces", namespace, "versions", "1.2.3-beta.5", "payload", "Open Design Beta.app", "Contents", "Resources", "open-design"),
+      join(root, "launcher", "channels", "beta", "namespaces", namespace, "versions", "1.2.3-beta.5", "payload", "Open Design Beta.app", "Contents", "Resources", "saascodex"),
     fixturePlatformKey: "mac",
     namespace: "release-beta",
     productName: "Open Design Beta",
-    payloadArchiveName: "open-design-1.2.3-beta.5-mac-arm64-payload.zip",
+    payloadArchiveName: "saascodex-1.2.3-beta.5-mac-arm64-payload.zip",
     payloadPath: "/payload.zip",
     platform: "darwin",
     promotedVersion: "1.2.3-beta.5",
@@ -435,11 +435,11 @@ const platformCases: PlatformCase[] = [
     expectedPayloadExecutablePath: (root, namespace) =>
       join(root, "launcher", "channels", "prerelease", "namespaces", namespace, "versions", "1.2.3-prerelease.5", "payload", "Open Design Prerelease.app", "Contents", "MacOS", "Open Design Prerelease"),
     expectedResourceRoot: (root, namespace) =>
-      join(root, "launcher", "channels", "prerelease", "namespaces", namespace, "versions", "1.2.3-prerelease.5", "payload", "Open Design Prerelease.app", "Contents", "Resources", "open-design"),
+      join(root, "launcher", "channels", "prerelease", "namespaces", namespace, "versions", "1.2.3-prerelease.5", "payload", "Open Design Prerelease.app", "Contents", "Resources", "saascodex"),
     fixturePlatformKey: "mac",
     namespace: "release-prerelease",
     productName: "Open Design Prerelease",
-    payloadArchiveName: "open-design-1.2.3-prerelease.5-mac-arm64-payload.zip",
+    payloadArchiveName: "saascodex-1.2.3-prerelease.5-mac-arm64-payload.zip",
     payloadPath: "/prerelease-payload.zip",
     platform: "darwin",
     promotedVersion: "1.2.3-prerelease.5",
@@ -643,7 +643,7 @@ describe("packaged launcher payload update loop", () => {
  *  - the RUNNING version (`config.currentVersion`) advances with every payload
  *    update, so after one payload update it no longer describes the shell;
  *  - the INSTALLED OUTER version is read from the outer bundle's own
- *    `open-design-config.json` and is what an installer reinstall replaces.
+ *    `saascodex-config.json` and is what an installer reinstall replaces.
  *
  * A shell too old to run the new payload therefore looks CURRENT on the running
  * axis. Every scenario below keeps the two apart so a regression that compares
@@ -672,7 +672,7 @@ const RUNNING_PAYLOAD_VERSION = "0.16.1";
 /** The release that requires the newer outer, and the floor it publishes. */
 const RELEASE_VERSION = "0.17.0";
 /** Operator-supplied recovery link. Never an internal hostname in source. */
-const FLOOR_URL = "https://example.test/open-design/download";
+const FLOOR_URL = "https://example.test/saascodex/download";
 
 const CONFIGURED_FLOOR: NodeJS.ProcessEnv = {
   RELEASE_LAUNCHER_VERSION_MIN_STABLE: RELEASE_VERSION,
@@ -739,7 +739,7 @@ async function createFloorMetadataFixture(options: {
   const { target } = options;
   const payloadBody = Buffer.from("open design reinstall floor fixture payload");
   const payloadDigest = createHash("sha256").update(payloadBody).digest("hex");
-  const payloadArchiveName = `open-design-${RELEASE_VERSION}-${target.fixturePlatformKey}-${target.arch}-payload${target.payloadArchiveExtension}`;
+  const payloadArchiveName = `saascodex-${RELEASE_VERSION}-${target.fixturePlatformKey}-${target.arch}-payload${target.payloadArchiveExtension}`;
   // The installer artifact needs real bytes and a real digest here: every
   // reinstall scenario selects it, and the updater verifies it before it will
   // expose an install action.
@@ -759,7 +759,7 @@ async function createFloorMetadataFixture(options: {
             enabled: true,
             artifacts: {
               [target.installerArtifactKey]: {
-                name: `open-design-${RELEASE_VERSION}-${target.fixturePlatformKey}-${target.arch}${target.installerExtension}`,
+                name: `saascodex-${RELEASE_VERSION}-${target.fixturePlatformKey}-${target.arch}${target.installerExtension}`,
                 sha256: installerDigest,
                 size: installerBody.byteLength,
                 url: `http://${serverAddress(server)}/installer${target.installerExtension}`,
@@ -852,20 +852,20 @@ async function writeExtractedFloorMacPayload(destinationRoot: string): Promise<v
   const appBundleName = "Open Design.app";
   const bundleRoot = join(destinationRoot, "payload", appBundleName);
   const resourcesRoot = join(bundleRoot, "Contents", "Resources");
-  await mkdir(join(resourcesRoot, "open-design", "bin"), { recursive: true });
+  await mkdir(join(resourcesRoot, "saascodex", "bin"), { recursive: true });
   await mkdir(join(resourcesRoot, "prebundled", "daemon"), { recursive: true });
   await mkdir(join(resourcesRoot, "prebundled", "web"), { recursive: true });
   await mkdir(join(bundleRoot, "Contents", "MacOS"), { recursive: true });
   await writeFile(join(bundleRoot, "Contents", "MacOS", "Open Design"), "");
-  await writeFile(join(resourcesRoot, "open-design", "bin", "node"), "");
+  await writeFile(join(resourcesRoot, "saascodex", "bin", "node"), "");
   await writeFile(join(resourcesRoot, "prebundled", "daemon", "daemon-sidecar.mjs"), "");
   await writeFile(join(resourcesRoot, "prebundled", "web", "web-sidecar.mjs"), "");
   await writeFile(
-    join(resourcesRoot, "open-design-config.json"),
+    join(resourcesRoot, "saascodex-config.json"),
     `${JSON.stringify({
       appVersion: RELEASE_VERSION,
       daemonSidecarEntryRelative: "prebundled/daemon/daemon-sidecar.mjs",
-      nodeCommandRelative: "open-design/bin/node",
+      nodeCommandRelative: "saascodex/bin/node",
       webOutputMode: "standalone",
       webSidecarEntryRelative: "prebundled/web/web-sidecar.mjs",
     })}\n`,
@@ -892,19 +892,19 @@ async function writeExtractedFloorWindowsPayload(destinationRoot: string): Promi
   const executableName = "Open Design.exe";
   const payloadRoot = join(destinationRoot, "payload");
   const resourcesRoot = join(payloadRoot, "resources");
-  await mkdir(join(resourcesRoot, "open-design", "bin"), { recursive: true });
+  await mkdir(join(resourcesRoot, "saascodex", "bin"), { recursive: true });
   await mkdir(join(resourcesRoot, "prebundled", "daemon"), { recursive: true });
   await mkdir(join(resourcesRoot, "prebundled", "web"), { recursive: true });
   await writeFile(join(payloadRoot, executableName), "");
-  await writeFile(join(resourcesRoot, "open-design", "bin", "node.exe"), "");
+  await writeFile(join(resourcesRoot, "saascodex", "bin", "node.exe"), "");
   await writeFile(join(resourcesRoot, "prebundled", "daemon", "daemon-sidecar.mjs"), "");
   await writeFile(join(resourcesRoot, "prebundled", "web", "web-sidecar.mjs"), "");
   await writeFile(
-    join(resourcesRoot, "open-design-config.json"),
+    join(resourcesRoot, "saascodex-config.json"),
     `${JSON.stringify({
       appVersion: RELEASE_VERSION,
       daemonSidecarEntryRelative: "prebundled/daemon/daemon-sidecar.mjs",
-      nodeCommandRelative: "open-design/bin/node.exe",
+      nodeCommandRelative: "saascodex/bin/node.exe",
       webOutputMode: "standalone",
       webSidecarEntryRelative: "prebundled/web/web-sidecar.mjs",
     })}\n`,
@@ -926,8 +926,8 @@ async function writeExtractedFloorWindowsPayload(destinationRoot: string): Promi
 const floorPlatformTargets = {
   mac: {
     arch: "arm64",
-    // Inside the bundle: <launchPath>/Contents/Resources/open-design-config.json
-    installedOuterConfigPath: (launchPath) => join(launchPath, "Contents", "Resources", "open-design-config.json"),
+    // Inside the bundle: <launchPath>/Contents/Resources/saascodex-config.json
+    installedOuterConfigPath: (launchPath) => join(launchPath, "Contents", "Resources", "saascodex-config.json"),
     installedLaunchPath: (installedRoot) => join(installedRoot, "Open Design.app"),
     installedLaunchPathIsDirectory: true,
     installerArtifactKey: "dmg",
@@ -939,8 +939,8 @@ const floorPlatformTargets = {
   },
   win: {
     arch: "x64",
-    // Beside the executable: dirname(<launchPath>)/resources/open-design-config.json
-    installedOuterConfigPath: (launchPath) => join(dirname(launchPath), "resources", "open-design-config.json"),
+    // Beside the executable: dirname(<launchPath>)/resources/saascodex-config.json
+    installedOuterConfigPath: (launchPath) => join(dirname(launchPath), "resources", "saascodex-config.json"),
     installedLaunchPath: (installedRoot) => join(installedRoot, "Open Design.exe"),
     installedLaunchPathIsDirectory: false,
     installerArtifactKey: "installer",
@@ -983,7 +983,7 @@ type FloorScenario = {
   /**
    * What the physically installed outer package reports, or `null` to leave it
    * present but unidentifiable — the state a client lands in when the outer's
-   * own `open-design-config.json` cannot be read.
+   * own `saascodex-config.json` cannot be read.
    */
   installedOuterVersion: string | null;
   /** Remote launcher-contract schema, when the ABI axis is under test. */
@@ -1029,7 +1029,7 @@ async function checkPackagedUpdate(scenario: FloorScenario): Promise<{
       nodeCommand: null,
       posthogHost: null,
       posthogKey: null,
-      resourceRoot: join(root, "installed", "resources", "open-design"),
+      resourceRoot: join(root, "installed", "resources", "saascodex"),
       telemetryRelayUrl: null,
       webOutputMode: "server",
       webSidecarEntry: null,

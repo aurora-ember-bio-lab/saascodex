@@ -2,7 +2,7 @@ import {
   normalizeUpstreamCode,
   normalizeUpstreamStatus,
   type ApiFailureDetail,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 const NETWORK_ERROR_CODES = new Set([
   'ECONNREFUSED', 'ECONNRESET', 'ENOTFOUND', 'EAI_AGAIN', 'ETIMEDOUT',

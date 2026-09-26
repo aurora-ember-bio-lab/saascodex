@@ -4440,8 +4440,8 @@ export interface Dict {
   'assistant.forkingConversation': string;
   /** 分叉分界线下面那行脚注 —— 告诉人 Fork 不是跳走,上文已经带过去了。 */
   'assistant.forkNote': string;
-  'assistant.shareToOpenDesign': string;
-  'assistant.shareToOpenDesignBusy': string;
+  'assistant.shareToSaaSCodex': string;
+  'assistant.shareToSaaSCodexBusy': string;
   'assistant.feedbackPrompt': string;
   'assistant.feedbackPositive': string;
   'assistant.feedbackNegative': string;

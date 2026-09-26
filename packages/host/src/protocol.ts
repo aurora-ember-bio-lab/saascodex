@@ -1,43 +1,43 @@
-import type { ReleaseChannel } from "@open-design/release";
+import type { ReleaseChannel } from "@saascodex/release";
 
 /**
  * @module protocol
  *
- * The OpenDesign renderer host-bridge wire contract: the injected-global name
+ * The SaaSCodex renderer host-bridge wire contract: the injected-global name
  * and version, client/updater constant registries, and every request/result
- * type that crosses the host bridge — including the {@link OpenDesignHostBridge}
+ * type that crosses the host bridge — including the {@link SaaSCodexHostBridge}
  * shape itself. Pure declarations only; depends on nothing else in the package.
  */
 
-export const OPEN_DESIGN_HOST_GLOBAL = "__od__";
-export const OPEN_DESIGN_HOST_VERSION = 2;
+export const SAASCODEX_HOST_GLOBAL = "__od__";
+export const SAASCODEX_HOST_VERSION = 2;
 
-export const OPEN_DESIGN_HOST_CLIENT_TYPES = Object.freeze({
+export const SAASCODEX_HOST_CLIENT_TYPES = Object.freeze({
   DESKTOP: "desktop",
 } as const);
 
-export type OpenDesignHostClientType =
-  (typeof OPEN_DESIGN_HOST_CLIENT_TYPES)[keyof typeof OPEN_DESIGN_HOST_CLIENT_TYPES];
+export type SaaSCodexHostClientType =
+  (typeof SAASCODEX_HOST_CLIENT_TYPES)[keyof typeof SAASCODEX_HOST_CLIENT_TYPES];
 
-export type OpenDesignHostClient = {
+export type SaaSCodexHostClient = {
   // BCP-47 locale string (e.g. "zh-CN", "pt-BR") the host process read from
   // the OS at startup. The renderer uses this so the packaged desktop app
   // can follow the OS language even when Chromium's built-in
   // `navigator.language` would have defaulted to en-US.
   osLocale?: string;
   platform?: string;
-  type: OpenDesignHostClientType;
+  type: SaaSCodexHostClientType;
 };
 
-export type OpenDesignHostFailure = {
+export type SaaSCodexHostFailure = {
   details?: unknown;
   ok: false;
   reason: string;
 };
 
-export type OpenDesignHostActionResult =
+export type SaaSCodexHostActionResult =
   | { ok: true }
-  | OpenDesignHostFailure;
+  | SaaSCodexHostFailure;
 
 /**
  * The workspace attribution the renderer gives the host so a folder import
@@ -57,7 +57,7 @@ export type OpenDesignHostActionResult =
  * it would reject the very `WorkspaceCollabContext` callers pass. Callers hand
  * over a variable, not a fresh literal, so the extra fields ride along fine.
  */
-export type OpenDesignHostWorkspaceContext = {
+export type SaaSCodexHostWorkspaceContext = {
   lifecycleState: string;
   memberStatus: string;
   permissions: {
@@ -70,43 +70,43 @@ export type OpenDesignHostWorkspaceContext = {
   workspaceType: string;
 };
 
-export type OpenDesignHostProjectImportInit = {
+export type SaaSCodexHostProjectImportInit = {
   designSystemId?: string | null;
   name?: string;
   skillId?: string | null;
-  workspaceContext?: OpenDesignHostWorkspaceContext | null;
+  workspaceContext?: SaaSCodexHostWorkspaceContext | null;
 };
 
-export type OpenDesignHostProjectImportSuccess = {
+export type SaaSCodexHostProjectImportSuccess = {
   conversationId: string;
   entryFile: string | null;
   ok: true;
   projectId: string;
 };
 
-export type OpenDesignHostProjectImportResult =
-  | OpenDesignHostProjectImportSuccess
+export type SaaSCodexHostProjectImportResult =
+  | SaaSCodexHostProjectImportSuccess
   | {
       canceled: true;
       ok: false;
     }
-  | OpenDesignHostFailure;
+  | SaaSCodexHostFailure;
 
-export type OpenDesignHostProjectReplaceWorkingDirSuccess = {
+export type SaaSCodexHostProjectReplaceWorkingDirSuccess = {
   baseDir: string;
   entryFile: string | null;
   ok: true;
 };
 
-export type OpenDesignHostProjectReplaceWorkingDirResult =
-  | OpenDesignHostProjectReplaceWorkingDirSuccess
+export type SaaSCodexHostProjectReplaceWorkingDirResult =
+  | SaaSCodexHostProjectReplaceWorkingDirSuccess
   | {
       canceled: true;
       ok: false;
     }
-  | OpenDesignHostFailure;
+  | SaaSCodexHostFailure;
 
-export type OpenDesignHostPickWorkingDirSuccess = {
+export type SaaSCodexHostPickWorkingDirSuccess = {
   baseDir: string;
   ok: true;
   // Single-use HMAC token (minted by the host main process for `baseDir`)
@@ -116,24 +116,24 @@ export type OpenDesignHostPickWorkingDirSuccess = {
   token: string;
 };
 
-export type OpenDesignHostPickWorkingDirResult =
-  | OpenDesignHostPickWorkingDirSuccess
+export type SaaSCodexHostPickWorkingDirResult =
+  | SaaSCodexHostPickWorkingDirSuccess
   | {
       canceled: true;
       ok: false;
     }
-  | OpenDesignHostFailure;
+  | SaaSCodexHostFailure;
 
-export type OpenDesignHostPdfPrintOptions = {
+export type SaaSCodexHostPdfPrintOptions = {
   deck?: boolean;
 };
 
-export type OpenDesignHostCaptureClip = { x: number; y: number; width: number; height: number };
-export type OpenDesignHostCaptureOptions = { clip?: OpenDesignHostCaptureClip };
-export type OpenDesignHostCaptureSuccess = { dataUrl: string; h: number; ok: true; w: number };
-export type OpenDesignHostCaptureResult = OpenDesignHostCaptureSuccess | OpenDesignHostFailure;
+export type SaaSCodexHostCaptureClip = { x: number; y: number; width: number; height: number };
+export type SaaSCodexHostCaptureOptions = { clip?: SaaSCodexHostCaptureClip };
+export type SaaSCodexHostCaptureSuccess = { dataUrl: string; h: number; ok: true; w: number };
+export type SaaSCodexHostCaptureResult = SaaSCodexHostCaptureSuccess | SaaSCodexHostFailure;
 
-export type OpenDesignHostPreviewNavigationFailure = {
+export type SaaSCodexHostPreviewNavigationFailure = {
   errorCode: number;
   eventId: number;
   frameName?: string;
@@ -141,11 +141,11 @@ export type OpenDesignHostPreviewNavigationFailure = {
   validatedUrl: string;
 };
 
-export type OpenDesignHostPreviewNavigationFailureListener = (
-  failure: OpenDesignHostPreviewNavigationFailure,
+export type SaaSCodexHostPreviewNavigationFailureListener = (
+  failure: SaaSCodexHostPreviewNavigationFailure,
 ) => void;
 
-export type OpenDesignHostBrowserClearDataOptions = {
+export type SaaSCodexHostBrowserClearDataOptions = {
   cookies?: boolean;
   storage?: boolean;
 };
@@ -157,16 +157,16 @@ export type OpenDesignHostBrowserClearDataOptions = {
  * muddy gray when the OS is dark but the app theme is explicitly light);
  * `system` restores following the OS.
  */
-export const OPEN_DESIGN_HOST_APPEARANCE_THEMES = Object.freeze({
+export const SAASCODEX_HOST_APPEARANCE_THEMES = Object.freeze({
   DARK: "dark",
   LIGHT: "light",
   SYSTEM: "system",
 } as const);
 
-export type OpenDesignHostAppearanceTheme =
-  (typeof OPEN_DESIGN_HOST_APPEARANCE_THEMES)[keyof typeof OPEN_DESIGN_HOST_APPEARANCE_THEMES];
+export type SaaSCodexHostAppearanceTheme =
+  (typeof SAASCODEX_HOST_APPEARANCE_THEMES)[keyof typeof SAASCODEX_HOST_APPEARANCE_THEMES];
 
-export const OPEN_DESIGN_HOST_UPDATER_ACTIONS = Object.freeze({
+export const SAASCODEX_HOST_UPDATER_ACTIONS = Object.freeze({
   CHECK: "check",
   CLEAR_CACHE: "clear-cache",
   DOWNLOAD: "download",
@@ -175,16 +175,16 @@ export const OPEN_DESIGN_HOST_UPDATER_ACTIONS = Object.freeze({
   STATUS: "status",
 } as const);
 
-export type OpenDesignHostUpdaterAction =
-  (typeof OPEN_DESIGN_HOST_UPDATER_ACTIONS)[keyof typeof OPEN_DESIGN_HOST_UPDATER_ACTIONS];
+export type SaaSCodexHostUpdaterAction =
+  (typeof SAASCODEX_HOST_UPDATER_ACTIONS)[keyof typeof SAASCODEX_HOST_UPDATER_ACTIONS];
 
 /** @internal Updater actions that return a status snapshot (every action except `quit`). */
-export type OpenDesignHostUpdaterStatusAction = Exclude<
-  OpenDesignHostUpdaterAction,
-  typeof OPEN_DESIGN_HOST_UPDATER_ACTIONS.QUIT
+export type SaaSCodexHostUpdaterStatusAction = Exclude<
+  SaaSCodexHostUpdaterAction,
+  typeof SAASCODEX_HOST_UPDATER_ACTIONS.QUIT
 >;
 
-export const OPEN_DESIGN_HOST_UPDATER_STATES = Object.freeze({
+export const SAASCODEX_HOST_UPDATER_STATES = Object.freeze({
   AVAILABLE: "available",
   CHECKING: "checking",
   DOWNLOADED: "downloaded",
@@ -196,35 +196,35 @@ export const OPEN_DESIGN_HOST_UPDATER_STATES = Object.freeze({
   UNSUPPORTED: "unsupported",
 } as const);
 
-export type OpenDesignHostUpdaterState =
-  (typeof OPEN_DESIGN_HOST_UPDATER_STATES)[keyof typeof OPEN_DESIGN_HOST_UPDATER_STATES];
+export type SaaSCodexHostUpdaterState =
+  (typeof SAASCODEX_HOST_UPDATER_STATES)[keyof typeof SAASCODEX_HOST_UPDATER_STATES];
 
-export type OpenDesignHostUpdaterMode = "js-incremental" | "package-launcher";
-export type OpenDesignHostUpdaterChannel = ReleaseChannel;
+export type SaaSCodexHostUpdaterMode = "js-incremental" | "package-launcher";
+export type SaaSCodexHostUpdaterChannel = ReleaseChannel;
 
-export type OpenDesignHostUpdaterActionOptions = {
+export type SaaSCodexHostUpdaterActionOptions = {
   payload?: Record<string, unknown>;
 };
 
-export type OpenDesignHostUpdaterCapabilitySet = {
+export type SaaSCodexHostUpdaterCapabilitySet = {
   canApplyInPlace: boolean;
   canDownload: boolean;
   canOpenInstaller: boolean;
   requiresManualInstall: boolean;
 };
 
-export type OpenDesignHostUpdaterPathSnapshot = {
+export type SaaSCodexHostUpdaterPathSnapshot = {
   downloadRoot?: string;
   manifestPath?: string;
 };
 
-export type OpenDesignHostUpdaterChecksumSnapshot = {
+export type SaaSCodexHostUpdaterChecksumSnapshot = {
   algorithm: "sha256" | "sha512";
   url?: string;
   value?: string;
 };
 
-export type OpenDesignHostUpdaterArtifactSnapshot = {
+export type SaaSCodexHostUpdaterArtifactSnapshot = {
   name?: string;
   platformKey?: string;
   size?: number;
@@ -232,18 +232,18 @@ export type OpenDesignHostUpdaterArtifactSnapshot = {
   url: string;
 };
 
-export type OpenDesignHostUpdaterProgressSnapshot = {
+export type SaaSCodexHostUpdaterProgressSnapshot = {
   receivedBytes: number;
   totalBytes?: number;
 };
 
-export type OpenDesignHostUpdaterErrorSnapshot = {
+export type SaaSCodexHostUpdaterErrorSnapshot = {
   code: string;
   details?: unknown;
   message: string;
 };
 
-export type OpenDesignHostUpdaterInstallResult = {
+export type SaaSCodexHostUpdaterInstallResult = {
   activeVersion?: string;
   artifactPath?: string;
   dryRun?: boolean;
@@ -254,11 +254,11 @@ export type OpenDesignHostUpdaterInstallResult = {
   path: string;
 };
 
-export type OpenDesignHostUpdaterReleaseSnapshot = {
+export type SaaSCodexHostUpdaterReleaseSnapshot = {
   arch: string;
-  artifact: OpenDesignHostUpdaterArtifactSnapshot;
-  checksum: OpenDesignHostUpdaterChecksumSnapshot;
-  channel: OpenDesignHostUpdaterChannel;
+  artifact: SaaSCodexHostUpdaterArtifactSnapshot;
+  checksum: SaaSCodexHostUpdaterChecksumSnapshot;
+  channel: SaaSCodexHostUpdaterChannel;
   downloadedAt: string;
   key: string;
   metadata?: Record<string, unknown>;
@@ -267,29 +267,29 @@ export type OpenDesignHostUpdaterReleaseSnapshot = {
   version: string;
 };
 
-export type OpenDesignHostUpdaterIncomingSnapshot = {
+export type SaaSCodexHostUpdaterIncomingSnapshot = {
   arch: string;
-  artifact: OpenDesignHostUpdaterArtifactSnapshot;
-  channel: OpenDesignHostUpdaterChannel;
+  artifact: SaaSCodexHostUpdaterArtifactSnapshot;
+  channel: SaaSCodexHostUpdaterChannel;
   key?: string;
   metadata?: Record<string, unknown>;
-  progress?: OpenDesignHostUpdaterProgressSnapshot;
+  progress?: SaaSCodexHostUpdaterProgressSnapshot;
   startedAt: string;
   version: string;
 };
 
-export type OpenDesignHostUpdaterCacheLifecycleTrigger = "cold-start" | "manual" | "next-version-ready";
+export type SaaSCodexHostUpdaterCacheLifecycleTrigger = "cold-start" | "manual" | "next-version-ready";
 
-export type OpenDesignHostUpdaterReleaseLifecycleState =
+export type SaaSCodexHostUpdaterReleaseLifecycleState =
   | "cleanup-deferred"
   | "cleanup-removed"
   | "deprecated"
   | "retained"
   | "unknown";
 
-export type OpenDesignHostUpdaterCacheLifecycleSummary = {
+export type SaaSCodexHostUpdaterCacheLifecycleSummary = {
   lastRunAt?: string;
-  lastTrigger?: OpenDesignHostUpdaterCacheLifecycleTrigger;
+  lastTrigger?: SaaSCodexHostUpdaterCacheLifecycleTrigger;
   platform: string;
   releases: {
     cleanupDeferred: number;
@@ -302,11 +302,11 @@ export type OpenDesignHostUpdaterCacheLifecycleSummary = {
   };
 };
 
-export type OpenDesignHostUpdaterCacheSnapshot = {
-  lifecycle?: OpenDesignHostUpdaterCacheLifecycleSummary;
+export type SaaSCodexHostUpdaterCacheSnapshot = {
+  lifecycle?: SaaSCodexHostUpdaterCacheLifecycleSummary;
 };
 
-export type OpenDesignHostUpdaterReinstallReason =
+export type SaaSCodexHostUpdaterReinstallReason =
   | "launcher-schema"
   | "outer-below-min"
   | "outer-version-unreadable";
@@ -317,47 +317,47 @@ export type OpenDesignHostUpdaterReinstallReason =
  * outer package version; `url` is an optional operator-supplied explanation
  * link.
  */
-export type OpenDesignHostUpdaterReinstallSnapshot = {
+export type SaaSCodexHostUpdaterReinstallSnapshot = {
   installedVersion?: string;
   minVersion?: string;
-  reason: OpenDesignHostUpdaterReinstallReason;
+  reason: SaaSCodexHostUpdaterReinstallReason;
   url?: string;
 };
 
-export type OpenDesignHostUpdaterStatusSnapshot = {
-  active?: OpenDesignHostUpdaterReleaseSnapshot;
+export type SaaSCodexHostUpdaterStatusSnapshot = {
+  active?: SaaSCodexHostUpdaterReleaseSnapshot;
   arch: string;
-  artifact?: OpenDesignHostUpdaterArtifactSnapshot;
+  artifact?: SaaSCodexHostUpdaterArtifactSnapshot;
   artifactUrl?: string;
   availableVersion?: string;
-  cache?: OpenDesignHostUpdaterCacheSnapshot;
-  capabilities: OpenDesignHostUpdaterCapabilitySet;
-  channel: OpenDesignHostUpdaterChannel;
-  checksum?: OpenDesignHostUpdaterChecksumSnapshot;
+  cache?: SaaSCodexHostUpdaterCacheSnapshot;
+  capabilities: SaaSCodexHostUpdaterCapabilitySet;
+  channel: SaaSCodexHostUpdaterChannel;
+  checksum?: SaaSCodexHostUpdaterChecksumSnapshot;
   currentVersion: string;
   downloadPath?: string;
   enabled: boolean;
-  error?: OpenDesignHostUpdaterErrorSnapshot;
-  incoming?: OpenDesignHostUpdaterIncomingSnapshot;
-  installResult?: OpenDesignHostUpdaterInstallResult;
+  error?: SaaSCodexHostUpdaterErrorSnapshot;
+  incoming?: SaaSCodexHostUpdaterIncomingSnapshot;
+  installResult?: SaaSCodexHostUpdaterInstallResult;
   lastCheckedAt?: string;
   metadata?: Record<string, unknown>;
-  mode: OpenDesignHostUpdaterMode;
-  paths?: OpenDesignHostUpdaterPathSnapshot;
+  mode: SaaSCodexHostUpdaterMode;
+  paths?: SaaSCodexHostUpdaterPathSnapshot;
   platform: string;
-  progress?: OpenDesignHostUpdaterProgressSnapshot;
-  reinstall?: OpenDesignHostUpdaterReinstallSnapshot;
-  state: OpenDesignHostUpdaterState;
+  progress?: SaaSCodexHostUpdaterProgressSnapshot;
+  reinstall?: SaaSCodexHostUpdaterReinstallSnapshot;
+  state: SaaSCodexHostUpdaterState;
   supported: boolean;
 };
 
-export type OpenDesignHostUpdaterResult =
-  | { ok: true; status: OpenDesignHostUpdaterStatusSnapshot }
-  | OpenDesignHostFailure;
+export type SaaSCodexHostUpdaterResult =
+  | { ok: true; status: SaaSCodexHostUpdaterStatusSnapshot }
+  | SaaSCodexHostFailure;
 
-export type OpenDesignHostUpdaterStatusListener = (status: OpenDesignHostUpdaterStatusSnapshot) => void;
+export type SaaSCodexHostUpdaterStatusListener = (status: SaaSCodexHostUpdaterStatusSnapshot) => void;
 
-export type OpenDesignHostUpdaterMenuLabels = {
+export type SaaSCodexHostUpdaterMenuLabels = {
   check: string;
   checking: string;
   downloading: string;
@@ -366,27 +366,27 @@ export type OpenDesignHostUpdaterMenuLabels = {
   restart: string;
 };
 
-export type OpenDesignHostUpdaterOpenDialogRequest = {
+export type SaaSCodexHostUpdaterOpenDialogRequest = {
   source: string;
 };
 
-export type OpenDesignHostUpdaterOpenDialogListener = (request: OpenDesignHostUpdaterOpenDialogRequest) => void;
+export type SaaSCodexHostUpdaterOpenDialogListener = (request: SaaSCodexHostUpdaterOpenDialogRequest) => void;
 
-export type OpenDesignHostBridge = {
+export type SaaSCodexHostBridge = {
   // Optional so older host builds still satisfy the bridge shape; callers
   // must feature-detect before invoking.
   appearance?: {
-    setTheme(theme: OpenDesignHostAppearanceTheme): void;
+    setTheme(theme: SaaSCodexHostAppearanceTheme): void;
   };
   browser: {
-    clearData(options?: OpenDesignHostBrowserClearDataOptions): Promise<OpenDesignHostActionResult>;
+    clearData(options?: SaaSCodexHostBrowserClearDataOptions): Promise<SaaSCodexHostActionResult>;
   };
   capture: {
-    page(options?: OpenDesignHostCaptureOptions): Promise<OpenDesignHostCaptureResult>;
+    page(options?: SaaSCodexHostCaptureOptions): Promise<SaaSCodexHostCaptureResult>;
   };
-  client: OpenDesignHostClient;
+  client: SaaSCodexHostClient;
   pdf: {
-    print(html: string, nonce?: string, options?: OpenDesignHostPdfPrintOptions): Promise<OpenDesignHostActionResult>;
+    print(html: string, nonce?: string, options?: SaaSCodexHostPdfPrintOptions): Promise<SaaSCodexHostActionResult>;
   };
   pet: {
     setVisible(visible: boolean): void;
@@ -395,35 +395,35 @@ export type OpenDesignHostBridge = {
   // Electron is the only layer that can observe a compositor-affecting
   // subframe navigation failure after the iframe DOM remains healthy.
   preview?: {
-    getLatestNavigationFailure(): OpenDesignHostPreviewNavigationFailure | null;
-    subscribeNavigationFailure(listener: OpenDesignHostPreviewNavigationFailureListener): () => void;
+    getLatestNavigationFailure(): SaaSCodexHostPreviewNavigationFailure | null;
+    subscribeNavigationFailure(listener: SaaSCodexHostPreviewNavigationFailureListener): () => void;
   };
   project: {
-    pickAndImport(init?: OpenDesignHostProjectImportInit): Promise<OpenDesignHostProjectImportResult>;
-    pickAndReplaceWorkingDir(projectId: string): Promise<OpenDesignHostProjectReplaceWorkingDirResult>;
+    pickAndImport(init?: SaaSCodexHostProjectImportInit): Promise<SaaSCodexHostProjectImportResult>;
+    pickAndReplaceWorkingDir(projectId: string): Promise<SaaSCodexHostProjectReplaceWorkingDirResult>;
     // Optional so older host builds still satisfy the bridge shape; callers
     // must feature-detect before invoking.
-    pickWorkingDir?(): Promise<OpenDesignHostPickWorkingDirResult>;
+    pickWorkingDir?(): Promise<SaaSCodexHostPickWorkingDirResult>;
   };
   shell: {
-    openExternal(url: string): Promise<OpenDesignHostActionResult>;
-    openPath(projectId: string): Promise<OpenDesignHostActionResult>;
+    openExternal(url: string): Promise<SaaSCodexHostActionResult>;
+    openPath(projectId: string): Promise<SaaSCodexHostActionResult>;
   };
   // Desktop only. Absent in Web and old clients; callers must fail closed.
   updater: {
-    check(options?: OpenDesignHostUpdaterActionOptions): Promise<OpenDesignHostUpdaterStatusSnapshot>;
-    "clear-cache"(options?: OpenDesignHostUpdaterActionOptions): Promise<OpenDesignHostUpdaterStatusSnapshot>;
-    download(options?: OpenDesignHostUpdaterActionOptions): Promise<OpenDesignHostUpdaterStatusSnapshot>;
-    install(options?: OpenDesignHostUpdaterActionOptions): Promise<OpenDesignHostUpdaterStatusSnapshot>;
-    quit(options?: OpenDesignHostUpdaterActionOptions): Promise<OpenDesignHostActionResult>;
-    setMenuLabels(labels: OpenDesignHostUpdaterMenuLabels): Promise<OpenDesignHostActionResult>;
-    status(options?: OpenDesignHostUpdaterActionOptions): Promise<OpenDesignHostUpdaterStatusSnapshot>;
-    subscribe(listener: OpenDesignHostUpdaterStatusListener): () => void;
-    subscribeOpenDialog(listener: OpenDesignHostUpdaterOpenDialogListener): () => void;
+    check(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
+    "clear-cache"(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
+    download(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
+    install(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
+    quit(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostActionResult>;
+    setMenuLabels(labels: SaaSCodexHostUpdaterMenuLabels): Promise<SaaSCodexHostActionResult>;
+    status(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
+    subscribe(listener: SaaSCodexHostUpdaterStatusListener): () => void;
+    subscribeOpenDialog(listener: SaaSCodexHostUpdaterOpenDialogListener): () => void;
   };
-  version: typeof OPEN_DESIGN_HOST_VERSION;
+  version: typeof SAASCODEX_HOST_VERSION;
 };
 
-export type OpenDesignHostGlobalScope = Record<string, unknown> & {
+export type SaaSCodexHostGlobalScope = Record<string, unknown> & {
   window?: unknown;
 };

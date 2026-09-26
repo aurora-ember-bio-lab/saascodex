@@ -213,7 +213,7 @@ describe('OD Next canonical Prompt Bundle v2', () => {
     expect(() => parseOdNextPromptBundleV2(xml.replace('<echo_guard>', '<available_skills>')))
       .toThrow(/Non-canonical XML/);
     expect(() => parseOdNextPromptBundleV2(
-      xml.replace('open-design.od-next-prompt-bundle/v2', 'open-design.od-next-prompt-bundle/v1'),
+      xml.replace('saascodex.od-next-prompt-bundle/v2', 'saascodex.od-next-prompt-bundle/v1'),
     )).toThrow(/schema is not/);
     expect(() => parseOdNextPromptBundleV2(xml.replace(/open_design_prompt_bundle/g, 'other_root')))
       .toThrow(/root must be open_design_prompt_bundle/);

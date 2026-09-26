@@ -84,10 +84,10 @@ function completeHandshake(child: FakeChild, threadId = 'th-1') {
 describe('codex app-server session', () => {
   describe('handshake', () => {
     it.each([
-      ['open-design/0.122.0 (macOS 26.0; arm64) open-design/9.9.9', false],
-      ['open-design/0.123.0 (macOS 26.0; arm64)', true],
+      ['saascodex/0.122.0 (macOS 26.0; arm64) saascodex/9.9.9', false],
+      ['saascodex/0.123.0 (macOS 26.0; arm64)', true],
       ['codex/0.149.1', true],
-      ['open-design/0.153.4', true],
+      ['saascodex/0.153.4', true],
       ['codex/1.0.0', true],
       ['codex/0.123.0-alpha.1', false],
       ['codex/unknown client/9.9.9', false],
@@ -560,7 +560,7 @@ describe('OD-owned Codex thread visibility', () => {
   function ready(overrides: Record<string, unknown> = {}, version = '0.153.4') {
     const h = harness({ manageThreadVisibility: true, ...overrides });
     const init = h.child.sent('initialize')!;
-    h.child.say({ id: init.id, result: { userAgent: `open-design/${version}` } });
+    h.child.say({ id: init.id, result: { userAgent: `saascodex/${version}` } });
     const open = h.child.sent('thread/start') ?? h.child.sent('thread/resume');
     return { ...h, open: open! };
   }

@@ -1,9 +1,9 @@
-name: open-design
+name: saascodex
 
 services:
-  open-design:
-    container_name: open-design
-    image: ${OPEN_DESIGN_IMAGE:-ghcr.io/nexu-io/od:latest}
+  saascodex:
+    container_name: saascodex
+    image: ${SAASCODEX_IMAGE:-ghcr.io/nexu-io/od:latest}
     build:
       context: ..
       dockerfile: deploy/Dockerfile
@@ -12,14 +12,14 @@ services:
       NODE_ENV: production
       NODE_OPTIONS: ${NODE_OPTIONS:---max-old-space-size=192}
       OD_BIND_HOST: 0.0.0.0
-      OD_ALLOWED_ORIGINS: ${OPEN_DESIGN_ALLOWED_ORIGINS:-}
+      OD_ALLOWED_ORIGINS: ${SAASCODEX_ALLOWED_ORIGINS:-}
       OD_PORT: 7456
-      OD_WEB_PORT: ${OPEN_DESIGN_PORT:-7456}
+      OD_WEB_PORT: ${SAASCODEX_PORT:-7456}
       OD_API_TOKEN: ${OD_API_TOKEN:-}
-      OD_DISABLE_API_AUTH: ${OPEN_DESIGN_DISABLE_API_AUTH:-}
+      OD_DISABLE_API_AUTH: ${SAASCODEX_DISABLE_API_AUTH:-}
       OD_CODEX_SANDBOX: ${OD_CODEX_SANDBOX:-}
     ports:
-      - "127.0.0.1:${OPEN_DESIGN_PORT:-7456}:7456"
+      - "127.0.0.1:${SAASCODEX_PORT:-7456}:7456"
     volumes:
       - open_design_data:/app/.od
     read_only: true
@@ -27,7 +27,7 @@ services:
       - /tmp
     security_opt:
       - no-new-privileges:true
-    mem_limit: ${OPEN_DESIGN_MEM_LIMIT:-384m}
+    mem_limit: ${SAASCODEX_MEM_LIMIT:-384m}
     pids_limit: 256
     healthcheck:
       test:

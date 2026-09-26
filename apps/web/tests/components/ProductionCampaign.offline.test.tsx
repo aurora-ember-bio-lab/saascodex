@@ -13,11 +13,11 @@
 import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const { getOpenDesignHostMock, verifiedDispose } = vi.hoisted(() => ({
-	getOpenDesignHostMock: vi.fn(),
+const { getSaaSCodexHostMock, verifiedDispose } = vi.hoisted(() => ({
+	getSaaSCodexHostMock: vi.fn(),
 	verifiedDispose: vi.fn(),
 }));
-vi.mock("@open-design/host", () => ({ getOpenDesignHost: getOpenDesignHostMock }));
+vi.mock("@saascodex/host", () => ({ getSaaSCodexHost: getSaaSCodexHostMock }));
 vi.mock("../../src/providers/registry", () => ({ openExternalUrl: vi.fn(async () => true) }));
 vi.mock("../../src/components/HoverTouchpointOverlay", () => ({
 	HoverTouchpointOverlay: (props: { entry?: { id?: string } }) => (
@@ -42,7 +42,7 @@ vi.mock("../../src/components/touchpoint-component", async (importOriginal) => (
 import { ProductionCampaignBadge } from "../../src/components/ProductionCampaignBadge";
 import { ProductionCampaignHover } from "../../src/components/ProductionCampaignHover";
 import { ProductionCampaignModal } from "../../src/components/ProductionCampaignModal";
-import { OpenDesignTouchpointElement } from "../../src/components/touchpoint-component";
+import { SaaSCodexTouchpointElement } from "../../src/components/touchpoint-component";
 import { SERVER_FAULT_HEARTBEAT_MS } from "../../src/components/touchpoint-lifecycle";
 
 const T0 = "2030-01-01T00:00:00.000Z";
@@ -139,18 +139,18 @@ const router = (bodies: Record<string, unknown>) =>
 beforeEach(() => {
 	vi.useFakeTimers({ shouldAdvanceTime: true });
 	vi.setSystemTime(new Date(T0));
-	getOpenDesignHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
-	vi.spyOn(OpenDesignTouchpointElement.prototype, "mount").mockImplementation(async function (
-		this: OpenDesignTouchpointElement,
+	getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+	vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (
+		this: SaaSCodexTouchpointElement,
 	) {
 		this.shadowRoot?.replaceChildren(document.createTextNode("campaign"));
 	});
-	vi.spyOn(OpenDesignTouchpointElement.prototype, "dispose").mockResolvedValue();
+	vi.spyOn(SaaSCodexTouchpointElement.prototype, "dispose").mockResolvedValue();
 	localStorage.clear();
 });
 afterEach(() => {
 	cleanup();
-	getOpenDesignHostMock.mockReset();
+	getSaaSCodexHostMock.mockReset();
 	verifiedDispose.mockClear();
 	vi.unstubAllGlobals();
 	vi.restoreAllMocks();

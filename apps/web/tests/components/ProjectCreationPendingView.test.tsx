@@ -55,7 +55,7 @@ function renderPending(overrides: Partial<Parameters<typeof ProjectCreationPendi
 
 describe('ProjectCreationPendingView', () => {
   it('sizes the chat column from the saved width, the same source ProjectView reads (OPEND-3207)', () => {
-    window.localStorage.setItem('open-design.project.chatPanelWidth', '380');
+    window.localStorage.setItem('saascodex.project.chatPanelWidth', '380');
     try {
       renderPending();
       const split = screen.getByTestId('project-creation-pending-view') as HTMLElement;
@@ -67,7 +67,7 @@ describe('ProjectCreationPendingView', () => {
       expect(split.style.getPropertyValue('--project-workspace-panel-track')).toBe('minmax(400px, 1fr)');
       expect(split.classList.contains('split-settling')).toBe(false);
     } finally {
-      window.localStorage.removeItem('open-design.project.chatPanelWidth');
+      window.localStorage.removeItem('saascodex.project.chatPanelWidth');
     }
   });
 

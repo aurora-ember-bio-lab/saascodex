@@ -6,8 +6,8 @@ import {
   LAUNCHER_SCHEMA_VERSION,
   resolveLauncherPaths,
   resolveLauncherVersionPaths,
-} from "@open-design/launcher-proto";
-import { SIDECAR_SOURCES } from "@open-design/sidecar-proto";
+} from "@saascodex/launcher-proto";
+import { SIDECAR_SOURCES } from "@saascodex/sidecar-proto";
 import { describe, expect, it, vi } from "vitest";
 
 import {
@@ -251,12 +251,12 @@ describe("legacy payload desktop handoff", () => {
 
   it("does nothing outside the packaged desktop runtime", async () => {
     await expect(prepareLegacyPayloadDesktopHandoff({
-      dataRoot: "/tmp/open-design/data",
+      dataRoot: "/tmp/saascodex/data",
       env: {},
       namespace: "default",
       outerPid: null,
       platform: "darwin",
-      runtimeRoot: "/tmp/open-design/runtime",
+      runtimeRoot: "/tmp/saascodex/runtime",
       source: SIDECAR_SOURCES.TOOLS_DEV,
     })).resolves.toEqual({ kind: "none", reason: "not-packaged" });
   });

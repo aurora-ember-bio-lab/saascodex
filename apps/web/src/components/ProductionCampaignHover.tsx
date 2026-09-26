@@ -5,7 +5,7 @@ import {
 } from "./TestCampaignModal";
 import { useI18n } from "../i18n";
 import { useCallback, useMemo } from "react";
-import { getOpenDesignHost } from "@open-design/host";
+import { getSaaSCodexHost } from "@saascodex/host";
 import {
 	emitWebTouchpointDiagnostic,
 	supportsWebTouchpointCapabilities,
@@ -144,7 +144,7 @@ export function ProductionCampaignHover({
 		!testRuntime &&
 		authenticated &&
 		Boolean(sessionSubject) &&
-		getOpenDesignHost()?.client.type === "desktop" &&
+		getSaaSCodexHost()?.client.type === "desktop" &&
 		Boolean(locale);
 	const load = useCallback(
 		async (

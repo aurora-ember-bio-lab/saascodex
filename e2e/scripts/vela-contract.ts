@@ -58,7 +58,7 @@ if (values['require-continuation']) {
     const cursor = data?.continuation as Record<string, unknown> | undefined;
     const capabilities = incomplete?.initialize.result?.agentCapabilities as Record<string, unknown> | undefined;
     const extensions = capabilities?._meta as Record<string, { version?: unknown }> | undefined;
-    if (capabilities?.loadSession !== true || extensions?.['com.open-design.nativeSessionContinue']?.version !== 1 ||
+    if (capabilities?.loadSession !== true || extensions?.['com.saascodex.nativeSessionContinue']?.version !== 1 ||
         data?.kind !== 'opencode_continuation_incomplete' || data.code !== 'OPENCODE_COMPACTION_CONTINUATION_INCOMPLETE' ||
         data.runtime !== 'opencode' || data.phase !== 'post_tool_resume' || data.retryable !== false ||
         cursor?.version !== 1 || cursor.toolResultsCommitted !== true || typeof data.openCodeSessionId !== 'string') {

@@ -9,9 +9,9 @@ import { T } from '@/timeouts';
 import {
   PREVIEW_WHITE_SCREEN_CONFIRMATION_MS,
   PREVIEW_WHITE_SCREEN_TIMEOUT_MS,
-} from '@open-design/contracts/runtime/preview-observability';
+} from '@saascodex/contracts/runtime/preview-observability';
 
-const STORAGE_KEY = 'open-design:config';
+const STORAGE_KEY = 'saascodex:config';
 const TINY_PNG_B64 =
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO5W6McAAAAASUVORK5CYII=';
 
@@ -98,12 +98,12 @@ async function captureSafetyTelemetry(page: Page): Promise<CapturedSafetyEvent[]
         enabled: true,
         env: 'e2e',
         key: 'phc_e2e',
-        host: 'https://analytics.open-design.test',
+        host: 'https://analytics.saascodex.test',
         installationId: 'e2e-installation',
       },
     });
   });
-  await page.route('https://analytics.open-design.test/**', async (route) => {
+  await page.route('https://analytics.saascodex.test/**', async (route) => {
     const body = route.request().postData();
     if (body) {
       try {
@@ -186,7 +186,7 @@ async function createProjectNameOnly(page: Page, entry: UiScenario) {
 async function gotoEntryHome(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await waitForLoadingToClear(page);
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve OpenDesign' });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
     await expect(privacyDialog).toHaveCount(0);
@@ -405,7 +405,7 @@ async function revealDesignFileRow(page: Page, fileName: string): Promise<Locato
 }
 
 async function waitForLoadingToClear(page: Page) {
-  await page.getByText('Loading OpenDesign…').waitFor({ state: 'hidden', timeout: T.long });
+  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.long });
 }
 
 async function expectVisibleAcrossAnimationFrames(locator: Locator) {
@@ -494,7 +494,7 @@ async function runUploadedImageRendersInPreviewFlow(page: Page, entry: UiScenari
     projectId,
     'image-preview.html',
     // Generated pages commonly use site-root paths. Before the preview asset
-    // normalization fix, this resolved against the OpenDesign app origin and
+    // normalization fix, this resolved against the SaaSCodex app origin and
     // left the uploaded image broken even though its project raw URL was valid.
     '<!doctype html><html><body><main><h1>Image Preview</h1><img alt="Brand logo" src="/brand.png"></main></body></html>',
   );
@@ -746,12 +746,12 @@ test('[P1] new Excalidraw sketch emits analytics dimensions', async ({ page }) =
         enabled: true,
         env: 'e2e',
         key: 'phc_e2e',
-        host: 'https://analytics.open-design.test',
+        host: 'https://analytics.saascodex.test',
         installationId: 'e2e-installation',
       },
     });
   });
-  await page.route('https://analytics.open-design.test/**', async (route) => {
+  await page.route('https://analytics.saascodex.test/**', async (route) => {
     analyticsBodies.push(route.request().postData() ?? '');
     await route.fulfill({ status: 200, json: { status: 1 } });
   });

@@ -1,9 +1,9 @@
 ---
 name: share-github-pr
-description: Use this plugin when the user wants to package an accepted plugin or artifact as a GitHub pull request for OpenDesign or another target repository.
+description: Use this plugin when the user wants to package an accepted plugin or artifact as a GitHub pull request for SaaSCodex or another target repository.
 license: MIT
 metadata:
-  author: open-design-spec
+  author: saascodex-spec
   version: "0.1.0"
 ---
 

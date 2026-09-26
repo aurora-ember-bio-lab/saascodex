@@ -1,22 +1,22 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  OPEN_DESIGN_BRIEF_ARTIFACT_TYPES,
-  collectOpenDesignBrief,
-  formatOpenDesignBriefForCli,
+  SAASCODEX_BRIEF_ARTIFACT_TYPES,
+  collectSaaSCodexBrief,
+  formatSaaSCodexBriefForCli,
   openDesignBriefCatalog,
-  validateOpenDesignBriefCatalog,
+  validateSaaSCodexBriefCatalog,
 } from '../src/index.js';
 
-describe('OpenDesign shared Brief decisions', () => {
+describe('SaaSCodex shared Brief decisions', () => {
   it('defines deterministic choice-only questions for all eight artifact types', () => {
     expect(Object.keys(openDesignBriefCatalog).sort()).toEqual(
-      [...OPEN_DESIGN_BRIEF_ARTIFACT_TYPES].sort(),
+      [...SAASCODEX_BRIEF_ARTIFACT_TYPES].sort(),
     );
 
-    for (const artifactType of OPEN_DESIGN_BRIEF_ARTIFACT_TYPES) {
-      const first = collectOpenDesignBrief({ artifactType });
-      const retry = collectOpenDesignBrief({ artifactType });
+    for (const artifactType of SAASCODEX_BRIEF_ARTIFACT_TYPES) {
+      const first = collectSaaSCodexBrief({ artifactType });
+      const retry = collectSaaSCodexBrief({ artifactType });
 
       expect(retry).toEqual(first);
       expect(first.questions.length).toBeGreaterThanOrEqual(2);
@@ -34,7 +34,7 @@ describe('OpenDesign shared Brief decisions', () => {
 
   it('deep-freezes the shared catalog as runtime protocol truth', () => {
     expect(Object.isFrozen(openDesignBriefCatalog)).toBe(true);
-    for (const artifactType of OPEN_DESIGN_BRIEF_ARTIFACT_TYPES) {
+    for (const artifactType of SAASCODEX_BRIEF_ARTIFACT_TYPES) {
       const questions = openDesignBriefCatalog[artifactType];
       expect(Object.isFrozen(questions)).toBe(true);
       for (const question of questions) {
@@ -49,17 +49,17 @@ describe('OpenDesign shared Brief decisions', () => {
 
   it('caps invalid catalogs at five questions and rejects duplicate question or option ids', () => {
     const website = openDesignBriefCatalog.website;
-    expect(() => validateOpenDesignBriefCatalog({
+    expect(() => validateSaaSCodexBriefCatalog({
       ...openDesignBriefCatalog,
       website: [...website, ...website],
     })).toThrow(/at most 5/i);
 
-    expect(() => validateOpenDesignBriefCatalog({
+    expect(() => validateSaaSCodexBriefCatalog({
       ...openDesignBriefCatalog,
       website: [website[0]!, { ...website[1]!, id: website[0]!.id }],
     })).toThrow(/duplicate question id/i);
 
-    expect(() => validateOpenDesignBriefCatalog({
+    expect(() => validateSaaSCodexBriefCatalog({
       ...openDesignBriefCatalog,
       website: [{
         ...website[0]!,
@@ -69,14 +69,14 @@ describe('OpenDesign shared Brief decisions', () => {
   });
 
   it('does not repeat known decisions and invalidates answers after an artifact type switch', () => {
-    const website = collectOpenDesignBrief({
+    const website = collectSaaSCodexBrief({
       artifactType: 'website',
       knownAnswers: { 'website.goal': ['launch-product'] },
     });
     expect(website.questions.map((question) => question.id)).not.toContain('website.goal');
     expect(website.answers).toEqual({ 'website.goal': ['launch-product'] });
 
-    const prototype = collectOpenDesignBrief({
+    const prototype = collectSaaSCodexBrief({
       artifactType: 'product-prototype',
       previousArtifactType: 'website',
       knownAnswers: {
@@ -89,13 +89,13 @@ describe('OpenDesign shared Brief decisions', () => {
   });
 
   it('uses valid defaults for skipped or fully specified briefs and emits stable CLI text', () => {
-    const initial = collectOpenDesignBrief({ artifactType: 'audio', skip: true });
+    const initial = collectSaaSCodexBrief({ artifactType: 'audio', skip: true });
     expect(initial.complete).toBe(true);
     expect(initial.questions).toEqual([]);
     expect(Object.keys(initial.answers)).toHaveLength(openDesignBriefCatalog.audio.length);
 
-    const cli = formatOpenDesignBriefForCli(initial);
-    expect(cli).toContain('OpenDesign brief');
+    const cli = formatSaaSCodexBriefForCli(initial);
+    expect(cli).toContain('SaaSCodex brief');
     expect(cli).toContain('Artifact: audio');
     expect(cli).toContain('Ready to confirm');
     expect(cli).toContain('Current choices:');
@@ -103,7 +103,7 @@ describe('OpenDesign shared Brief decisions', () => {
     expect(cli).not.toContain('briefDraftId');
     expect(cli).not.toContain('nonce');
     expect(cli).not.toContain('[object Object]');
-    expect(formatOpenDesignBriefForCli(initial)).toBe(cli);
+    expect(formatSaaSCodexBriefForCli(initial)).toBe(cli);
   });
 
   it('offers a short-audio duration that covers the canonical 15-second fixture', () => {
@@ -117,7 +117,7 @@ describe('OpenDesign shared Brief decisions', () => {
 
   it('copies and deeply freezes accepted answer arrays', () => {
     const source = ['mobile'];
-    const brief = collectOpenDesignBrief({
+    const brief = collectSaaSCodexBrief({
       artifactType: 'product-prototype',
       knownAnswers: { 'prototype.platform': source },
     });

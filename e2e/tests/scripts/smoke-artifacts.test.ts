@@ -43,12 +43,12 @@ function metadataBody(origin: string): Record<string, unknown> {
     releaseTargets: {
       mac_arm64: {
         status: "published",
-        artifacts: { dmg: asset(`open-design-${VERSION}-mac-arm64.dmg`, DMG_BYTES) },
+        artifacts: { dmg: asset(`saascodex-${VERSION}-mac-arm64.dmg`, DMG_BYTES) },
       },
       mac_x64: { status: "missing", enabled: false, reason: "not requested", result: "skipped" },
       win_x64: {
         status: "published",
-        artifacts: { installer: asset(`open-design-${VERSION}-win-x64-setup.exe`, EXE_BYTES) },
+        artifacts: { installer: asset(`saascodex-${VERSION}-win-x64-setup.exe`, EXE_BYTES) },
       },
     },
   };
@@ -77,11 +77,11 @@ beforeAll(async () => {
       return;
     }
     if (path.endsWith("-mac-arm64.dmg.sha256")) {
-      send(`${sha256(DMG_BYTES)}  open-design-${VERSION}-mac-arm64.dmg\n`, "text/plain");
+      send(`${sha256(DMG_BYTES)}  saascodex-${VERSION}-mac-arm64.dmg\n`, "text/plain");
       return;
     }
     if (path.endsWith("-win-x64-setup.exe.sha256")) {
-      send(`${sha256(EXE_BYTES)}  open-design-${VERSION}-win-x64-setup.exe\n`, "text/plain");
+      send(`${sha256(EXE_BYTES)}  saascodex-${VERSION}-win-x64-setup.exe\n`, "text/plain");
       return;
     }
     if (path.endsWith("-mac-arm64.dmg")) {

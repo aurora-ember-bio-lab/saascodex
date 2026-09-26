@@ -194,7 +194,7 @@ export interface ChatRequest {
   context?: RunContextSelection;
   appliedPluginSnapshotId?: string | null;
   /**
-   * Run-scoped media execution policy. Omitted means current OpenDesign
+   * Run-scoped media execution policy. Omitted means current SaaSCodex
    * behavior: media generation is enabled and OD may execute its configured
    * local providers.
    */
@@ -611,7 +611,7 @@ export interface ChatRunDiagnosticValue<T> {
   state: ChatRunDiagnosticState;
   value?: T;
   evidence?: ChatRunDiagnosticEvidence;
-  source: 'open-design-daemon' | 'agent-runtime' | 'model-provider';
+  source: 'saascodex-daemon' | 'agent-runtime' | 'model-provider';
   complete?: boolean;
   definition?: string;
   missingReason?: string;
@@ -625,8 +625,8 @@ export interface ChatRunDiagnosticValue<T> {
 export interface ChatRunExecutionDiagnostics {
   schemaVersion: 1;
   collectorVersion:
-    | 'open-design-execution-diagnostics-v1'
-    | 'open-design-execution-diagnostics-v2';
+    | 'saascodex-execution-diagnostics-v1'
+    | 'saascodex-execution-diagnostics-v2';
   collectedAt: number;
   eventStreamCompleteness: 'complete' | 'partial';
   timing: {
@@ -974,7 +974,7 @@ export interface ChatCommentAttachment {
  * within its storage budget (a persisted run event never carries an unbounded
  * payload — see `apps/daemon/src/runtimes/run-event-payload-budget.ts`).
  *
- * The shortened text itself also carries an inline `[open-design: …]` marker
+ * The shortened text itself also carries an inline `[saascodex: …]` marker
  * naming what was cut, so a client that rebuilds the event without this field
  * still shows that the payload is incomplete. Absent on events that fit, and on
  * every event written before the budget existed.

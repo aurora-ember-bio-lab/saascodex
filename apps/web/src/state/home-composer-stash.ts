@@ -21,7 +21,7 @@
  * succeeds or a new optimistic create starts, so a later Home visit never
  * revives attachments that already belong to a project.
  */
-export const HOME_COMPOSER_ATTACHMENTS_EVENT = 'open-design:home-composer:attachments';
+export const HOME_COMPOSER_ATTACHMENTS_EVENT = 'saascodex:home-composer:attachments';
 
 let stashedAttachments: File[] | null = null;
 

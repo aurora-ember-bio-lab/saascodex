@@ -222,11 +222,11 @@ function runFixturePostinstall(sandbox: string, env: Record<string, string | und
     env: {
       ...process.env,
       npm_execpath: join(sandbox, "pnpm-stub.mjs"),
-      OPEN_DESIGN_POSTINSTALL_ENTRY: undefined,
-      OPEN_DESIGN_POSTINSTALL_PLAN_PATH: undefined,
-      OPEN_DESIGN_POSTINSTALL_RECEIPT_PATH: undefined,
-      OPEN_DESIGN_POSTINSTALL_TARGETS: undefined,
-      OPEN_DESIGN_POSTINSTALL_TIMING_PATH: undefined,
+      SAASCODEX_POSTINSTALL_ENTRY: undefined,
+      SAASCODEX_POSTINSTALL_PLAN_PATH: undefined,
+      SAASCODEX_POSTINSTALL_RECEIPT_PATH: undefined,
+      SAASCODEX_POSTINSTALL_TARGETS: undefined,
+      SAASCODEX_POSTINSTALL_TIMING_PATH: undefined,
       ...env,
     },
   });
@@ -261,7 +261,7 @@ describe("postinstall script contract", () => {
       const validation = spawnSync("python3", [workflowPostinstallPath, "validate"], {
         cwd: workspaceRoot,
         encoding: "utf8",
-        env: { ...process.env, OPEN_DESIGN_POSTINSTALL_TARGETS: '["tools/pack"]' },
+        env: { ...process.env, SAASCODEX_POSTINSTALL_TARGETS: '["tools/pack"]' },
       });
       expect(validation.status, validation.stderr).toBe(0);
       const planned = spawnSync("python3", [
@@ -344,18 +344,18 @@ describe("postinstall script contract", () => {
   it("[P2] executes a frozen workflow plan and emits a bound receipt", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writeTarget(sandbox, "tools/pack", {
-        name: "@open-design/tools-pack", dependencies: { "@open-design/release": "workspace:*" },
+        name: "@saascodex/tools-pack", dependencies: { "@saascodex/release": "workspace:*" },
       });
       const log = writePnpmStub(sandbox);
       const planPath = writeExternalPlan(sandbox, ["packages/release", "tools/pack"]);
       const receiptPath = join(sandbox, "postinstall-receipts.jsonl");
       const result = runFixturePostinstall(sandbox, {
-        OPEN_DESIGN_POSTINSTALL_ENTRY: "all",
-        OPEN_DESIGN_POSTINSTALL_PLAN_PATH: planPath,
-        OPEN_DESIGN_POSTINSTALL_RECEIPT_PATH: receiptPath,
-        OPEN_DESIGN_POSTINSTALL_TARGETS: '["apps/daemon"]',
+        SAASCODEX_POSTINSTALL_ENTRY: "all",
+        SAASCODEX_POSTINSTALL_PLAN_PATH: planPath,
+        SAASCODEX_POSTINSTALL_RECEIPT_PATH: receiptPath,
+        SAASCODEX_POSTINSTALL_TARGETS: '["apps/daemon"]',
       });
       expect(result.status, String(result.stderr)).toBe(0);
       expect(readStubEvents(log).filter((event) => event.event === "start").map((event) => event.target))
@@ -405,11 +405,11 @@ describe("postinstall script contract", () => {
   it("[P2] keys dependency preparation separately from tool compilation and business source", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writeTarget(sandbox, "tools/pack", {
-        name: "@open-design/tools-pack", dependencies: { "@open-design/release": "workspace:*" },
+        name: "@saascodex/tools-pack", dependencies: { "@saascodex/release": "workspace:*" },
       });
-      writeTarget(sandbox, "apps/daemon", { name: "@open-design/daemon" });
+      writeTarget(sandbox, "apps/daemon", { name: "@saascodex/daemon" });
       for (const path of [
         "package.json",
         "pnpm-lock.yaml",
@@ -433,7 +433,7 @@ describe("postinstall script contract", () => {
       expect(spawnSync("git", ["add", "."], { cwd: sandbox }).status).toBe(0);
       const describe = () => {
         const result = spawnSync("python3", ["-c", "import json,runpy; from pathlib import Path; print(json.dumps(runpy.run_path('.github/scripts/workspace.py')['describe'](Path.cwd())))"], {
-          cwd: sandbox, encoding: "utf8", env: { ...process.env, OPEN_DESIGN_POSTINSTALL_TARGETS: '["tools/pack"]' },
+          cwd: sandbox, encoding: "utf8", env: { ...process.env, SAASCODEX_POSTINSTALL_TARGETS: '["tools/pack"]' },
         });
         expect(result.status, result.stderr).toBe(0);
         return JSON.parse(result.stdout) as { key: string; paths: string[]; "dependencies-key": string };
@@ -456,24 +456,24 @@ describe("postinstall script contract", () => {
   it("[P2] separates dependency preparation, closure description and tool compilation", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writeTarget(sandbox, "tools/pack", {
-        name: "@open-design/tools-pack", dependencies: { "@open-design/release": "workspace:*" },
+        name: "@saascodex/tools-pack", dependencies: { "@saascodex/release": "workspace:*" },
       });
       const log = writePnpmStub(sandbox);
-      const env = { OPEN_DESIGN_POSTINSTALL_TARGETS: '["tools/pack"]' };
-      const description = runFixturePostinstall(sandbox, { ...env, OPEN_DESIGN_POSTINSTALL_PHASE: "describe" });
+      const env = { SAASCODEX_POSTINSTALL_TARGETS: '["tools/pack"]' };
+      const description = runFixturePostinstall(sandbox, { ...env, SAASCODEX_POSTINSTALL_PHASE: "describe" });
       expect(description.status, String(description.stderr)).toBe(0);
       expect(JSON.parse(String(description.stdout))).toEqual(["packages/release", "tools/pack"]);
       expect(readStubEvents(log)).toEqual([]);
-      const dependencies = runFixturePostinstall(sandbox, { ...env, OPEN_DESIGN_POSTINSTALL_PHASE: "dependencies" });
+      const dependencies = runFixturePostinstall(sandbox, { ...env, SAASCODEX_POSTINSTALL_PHASE: "dependencies" });
       expect(dependencies.status, String(dependencies.stderr)).toBe(0);
       expect(readStubEvents(log)).toEqual([]);
-      const build = runFixturePostinstall(sandbox, { ...env, OPEN_DESIGN_POSTINSTALL_PHASE: "build" });
+      const build = runFixturePostinstall(sandbox, { ...env, SAASCODEX_POSTINSTALL_PHASE: "build" });
       expect(build.status, String(build.stderr)).toBe(0);
       expect(readStubEvents(log).filter((entry) => entry.event === "start").map((entry) => entry.target))
         .toEqual(["packages/release", "tools/pack"]);
-      expect(runFixturePostinstall(sandbox, { ...env, OPEN_DESIGN_POSTINSTALL_PHASE: "invalid" }).status).not.toBe(0);
+      expect(runFixturePostinstall(sandbox, { ...env, SAASCODEX_POSTINSTALL_PHASE: "invalid" }).status).not.toBe(0);
     } finally {
       rmSync(sandbox, { recursive: true, force: true });
     }
@@ -482,18 +482,18 @@ describe("postinstall script contract", () => {
   it("[P2] selects a transitive tool build closure without compiling unrelated applications", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writeTarget(sandbox, "packages/contracts", {
-        name: "@open-design/contracts", dependencies: { "@open-design/release": "workspace:*" },
+        name: "@saascodex/contracts", dependencies: { "@saascodex/release": "workspace:*" },
       });
       writeTarget(sandbox, "tools/pack", {
-        name: "@open-design/tools-pack", dependencies: { "@open-design/contracts": "workspace:*" },
+        name: "@saascodex/tools-pack", dependencies: { "@saascodex/contracts": "workspace:*" },
       });
-      writeTarget(sandbox, "apps/daemon", { name: "@open-design/daemon" });
+      writeTarget(sandbox, "apps/daemon", { name: "@saascodex/daemon" });
       const log = writePnpmStub(sandbox);
       const result = runFixturePostinstall(sandbox, {
-        OPEN_DESIGN_POSTINSTALL_TARGETS: '["tools/pack","tools/pack"]',
-        OPEN_DESIGN_POSTINSTALL_CONCURRENCY: "2",
+        SAASCODEX_POSTINSTALL_TARGETS: '["tools/pack","tools/pack"]',
+        SAASCODEX_POSTINSTALL_CONCURRENCY: "2",
       });
       expect(result.status, String(result.stderr)).toBe(0);
       expect(readStubEvents(log).filter((event) => event.event === "start").map((event) => event.target))
@@ -507,9 +507,9 @@ describe("postinstall script contract", () => {
     ("[P2] rejects invalid install build scopes before invoking builds: %s", (scope) => {
       const sandbox = createSandbox();
       try {
-        writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+        writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
         const log = writePnpmStub(sandbox);
-        const result = runFixturePostinstall(sandbox, { OPEN_DESIGN_POSTINSTALL_TARGETS: scope });
+        const result = runFixturePostinstall(sandbox, { SAASCODEX_POSTINSTALL_TARGETS: scope });
         expect(result.status).not.toBe(0);
         expect(readStubEvents(log)).toEqual([]);
       } finally {
@@ -567,7 +567,7 @@ describe("postinstall script contract", () => {
     const targets = postinstallBuildTargetList();
     expect(missingBuildTargets).toEqual([]);
     expect(missingTsconfigs).toEqual([]);
-    expect(dependencySpecifier(rootManifest, "@open-design/daemon")).toBe("workspace:*");
+    expect(dependencySpecifier(rootManifest, "@saascodex/daemon")).toBe("workspace:*");
     expect(targets.indexOf("packages/release")).toBeGreaterThanOrEqual(0);
     expect(targets.indexOf("packages/contracts")).toBeGreaterThanOrEqual(0);
     expect(targets.indexOf("packages/release")).toBeLessThan(targets.indexOf("packages/contracts"));
@@ -577,19 +577,19 @@ describe("postinstall script contract", () => {
   it("[P2] skips absent tsconfig targets in partial install contexts on the default path", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writeTarget(sandbox, "packages/contracts", {
-        dependencies: { "@open-design/release": "workspace:*" },
-        name: "@open-design/contracts",
+        dependencies: { "@saascodex/release": "workspace:*" },
+        name: "@saascodex/contracts",
       });
       writeTarget(sandbox, "packages/components", {
-        dependencies: { "@open-design/contracts": "workspace:*" },
-        name: "@open-design/components",
+        dependencies: { "@saascodex/contracts": "workspace:*" },
+        name: "@saascodex/components",
       });
-      writeTarget(sandbox, "apps/daemon", { name: "@open-design/daemon", tsconfig: false });
+      writeTarget(sandbox, "apps/daemon", { name: "@saascodex/daemon", tsconfig: false });
       const invocationLog = writePnpmStub(sandbox);
 
-      const result = runFixturePostinstall(sandbox, { OPEN_DESIGN_POSTINSTALL_CONCURRENCY: "" });
+      const result = runFixturePostinstall(sandbox, { SAASCODEX_POSTINSTALL_CONCURRENCY: "" });
       expect(result.status, String(result.stderr)).toBe(0);
       expect(result.stdout).toContain("postinstall: dependency-aware parallel build enabled (concurrency=1)");
       expect(result.stdout).toContain("postinstall: skipping apps/daemon (no tsconfig.json in this context)");
@@ -608,19 +608,19 @@ describe("postinstall script contract", () => {
   it("[P2] preserves workspace dependency ordering when postinstall builds in parallel", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writeTarget(sandbox, "packages/contracts", {
-        dependencies: { "@open-design/release": "workspace:*" },
-        name: "@open-design/contracts",
+        dependencies: { "@saascodex/release": "workspace:*" },
+        name: "@saascodex/contracts",
       });
       writeTarget(sandbox, "packages/components", {
-        dependencies: { "@open-design/contracts": "workspace:*" },
-        name: "@open-design/components",
+        dependencies: { "@saascodex/contracts": "workspace:*" },
+        name: "@saascodex/components",
       });
-      writeTarget(sandbox, "packages/download", { name: "@open-design/download" });
+      writeTarget(sandbox, "packages/download", { name: "@saascodex/download" });
       const invocationLog = writePnpmStub(sandbox);
 
-      const result = runFixturePostinstall(sandbox, { OPEN_DESIGN_POSTINSTALL_CONCURRENCY: "2" });
+      const result = runFixturePostinstall(sandbox, { SAASCODEX_POSTINSTALL_CONCURRENCY: "2" });
       expect(result.status, String(result.stderr)).toBe(0);
       expect(result.stdout).toContain("postinstall: dependency-aware parallel build enabled (concurrency=2)");
 
@@ -636,18 +636,18 @@ describe("postinstall script contract", () => {
   it("[P2] records optional postinstall timings without changing the build closure", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writeTarget(sandbox, "tools/pack", {
-        dependencies: { "@open-design/release": "workspace:*" },
-        name: "@open-design/tools-pack",
+        dependencies: { "@saascodex/release": "workspace:*" },
+        name: "@saascodex/tools-pack",
       });
       const invocationLog = writePnpmStub(sandbox);
       const timingPath = join(sandbox, "observations", "postinstall.jsonl");
 
       const result = runFixturePostinstall(sandbox, {
-        OPEN_DESIGN_POSTINSTALL_PHASE: "build",
-        OPEN_DESIGN_POSTINSTALL_TARGETS: '["tools/pack"]',
-        OPEN_DESIGN_POSTINSTALL_TIMING_PATH: timingPath,
+        SAASCODEX_POSTINSTALL_PHASE: "build",
+        SAASCODEX_POSTINSTALL_TARGETS: '["tools/pack"]',
+        SAASCODEX_POSTINSTALL_TIMING_PATH: timingPath,
       });
       expect(result.status, String(result.stderr)).toBe(0);
       expect(readStubEvents(invocationLog).filter((event) => event.event === "start").map((event) => event.target))
@@ -671,14 +671,14 @@ describe("postinstall script contract", () => {
   it("[P2] does not fail postinstall when optional timing storage is unavailable", () => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "packages/release", { name: "@open-design/release" });
+      writeTarget(sandbox, "packages/release", { name: "@saascodex/release" });
       writePnpmStub(sandbox);
       const timingPath = join(sandbox, "timing-directory");
       mkdirSync(timingPath);
 
       const result = runFixturePostinstall(sandbox, {
-        OPEN_DESIGN_POSTINSTALL_PHASE: "build",
-        OPEN_DESIGN_POSTINSTALL_TIMING_PATH: timingPath,
+        SAASCODEX_POSTINSTALL_PHASE: "build",
+        SAASCODEX_POSTINSTALL_TIMING_PATH: timingPath,
       });
       expect(result.status, String(result.stderr)).toBe(0);
       expect(result.stderr).toContain("could not write optional timing data");
@@ -690,7 +690,7 @@ describe("postinstall script contract", () => {
   it.each([undefined, "[]"])("[P2] retains native-addon validation with install build scope %s", (scope) => {
     const sandbox = createSandbox();
     try {
-      writeTarget(sandbox, "apps/daemon", { name: "@open-design/daemon", tsconfig: false });
+      writeTarget(sandbox, "apps/daemon", { name: "@saascodex/daemon", tsconfig: false });
       const addonDirectory = join(sandbox, "apps/daemon/node_modules/better-sqlite3");
       mkdirSync(addonDirectory, { recursive: true });
       writeFileSync(join(addonDirectory, "package.json"), '{"name":"better-sqlite3","main":"index.cjs"}\n');
@@ -700,11 +700,11 @@ describe("postinstall script contract", () => {
       );
       const invocationLog = writePnpmStub(sandbox);
 
-      const result = runFixturePostinstall(sandbox, { OPEN_DESIGN_POSTINSTALL_TARGETS: scope });
+      const result = runFixturePostinstall(sandbox, { SAASCODEX_POSTINSTALL_TARGETS: scope });
       expect(result.status, String(result.stderr)).toBe(0);
       expect(result.stdout).toContain("postinstall: rebuilding better-sqlite3");
       expect(readStubEvents(invocationLog)).toContainEqual({
-        args: ["--filter", "@open-design/daemon", "rebuild", "better-sqlite3"],
+        args: ["--filter", "@saascodex/daemon", "rebuild", "better-sqlite3"],
         event: "start",
         target: "",
       });

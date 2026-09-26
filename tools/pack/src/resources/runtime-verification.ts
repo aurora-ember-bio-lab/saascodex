@@ -48,7 +48,7 @@ export async function verifyPackagedRuntime(input: RuntimeVerificationInput) {
   const manifestPath = await realpath(resolve(text(input.manifest, 'release manifest path')));
   const manifestBytes = await readFile(manifestPath);
   const manifest = object(JSON.parse(manifestBytes.toString('utf8')), 'release manifest');
-  const configPath = await packageFile(root, join(root, 'open-design-config.json'));
+  const configPath = await packageFile(root, join(root, 'saascodex-config.json'));
   const configBytes = await readFile(configPath);
   const config = object(JSON.parse(configBytes.toString('utf8')), 'packaged config');
   const version = text(manifest.releaseVersion, 'manifest releaseVersion');
@@ -66,8 +66,8 @@ export async function verifyPackagedRuntime(input: RuntimeVerificationInput) {
   if (!/^[a-f0-9]{40}$/.test(commit)) throw new Error('release commit must be an exact SHA');
   const suffix = host.platform === 'win32' ? '.exe' : '';
   // Resolve both before probing either: never fall back to a developer binary on PATH.
-  const vela = await packageFile(root, join(root, 'open-design/bin', `vela${suffix}`));
-  const opencode = await packageFile(root, join(root, 'open-design/bin/libexec/opencode', `opencode${suffix}`));
+  const vela = await packageFile(root, join(root, 'saascodex/bin', `vela${suffix}`));
+  const opencode = await packageFile(root, join(root, 'saascodex/bin/libexec/opencode', `opencode${suffix}`));
   const runVersion = input.runVersion ?? (async (binary: string) => {
     const result = await exec(binary, ['--version'], { timeout: 10_000, maxBuffer: 64 * 1024, windowsHide: true, encoding: 'utf8' });
     return result.stdout;

@@ -5,11 +5,11 @@ import { gunzip } from "node:zlib";
 import { promisify } from "node:util";
 
 import { BrowserWindow, nativeImage } from "electron";
-import type { DesktopRenderSlidesInput, DesktopRenderSlidesResult } from "@open-design/sidecar-proto";
+import type { DesktopRenderSlidesInput, DesktopRenderSlidesResult } from "@saascodex/sidecar-proto";
 
 import { waitForPrintableContent } from "./pdf-export.js";
 import { bgraBitmapHasPaint, FROZEN_MOTION_CSS } from "./static-capture.js";
-import { findRealTagEnd, findRealTagOffset, HTML_TAG_PATTERNS } from '@open-design/contracts/runtime/html-injection-points';
+import { findRealTagEnd, findRealTagOffset, HTML_TAG_PATTERNS } from '@saascodex/contracts/runtime/html-injection-points';
 
 // Re-exported so the long-standing import site (and its tests) keep working
 // after the definition moved to the module both capture paths share.
@@ -2201,7 +2201,7 @@ export async function runDomToPptx(
   }
 
   // dom-to-pptx's autoEmbedFonts scanner sees top-level CSSFontFaceRule entries,
-  // but many OpenDesign decks load Google Fonts through an inline `@import`.
+  // but many SaaSCodex decks load Google Fonts through an inline `@import`.
   // Expand those imports into a throwaway top-level style so the vendored engine
   // can discover and embed the actual font files instead of only writing their
   // family names into the PPTX. The render window is destroyed after export, so

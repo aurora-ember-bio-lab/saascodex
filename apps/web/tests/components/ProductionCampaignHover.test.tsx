@@ -9,8 +9,8 @@ const { overlaySpy, diagnosticSpy, useRealOverlay, verifiedDisposes } = vi.hoist
 	verifiedDisposes: vi.fn(),
 }));
 type HostGlobal = typeof globalThis & { __productionHoverHost?: unknown };
-vi.mock("@open-design/host", () => ({
-	getOpenDesignHost: () => (globalThis as HostGlobal).__productionHoverHost,
+vi.mock("@saascodex/host", () => ({
+	getSaaSCodexHost: () => (globalThis as HostGlobal).__productionHoverHost,
 }));
 vi.mock("../../src/components/HoverTouchpointOverlay", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("../../src/components/HoverTouchpointOverlay")>();
@@ -34,7 +34,7 @@ vi.mock(
 
 import { ProductionCampaignHover } from "../../src/components/ProductionCampaignHover";
 import { I18nProvider, useI18n } from "../../src/i18n";
-import { OpenDesignTouchpointElement } from "../../src/components/touchpoint-component";
+import { SaaSCodexTouchpointElement } from "../../src/components/touchpoint-component";
 import { clearTestRuntimeSession, setTestRuntimeSession, type TestRuntimeSession } from "../../src/components/TestCampaignModal";
 
 const content = (placementKey: string) => ({
@@ -165,7 +165,7 @@ describe("ProductionCampaignHover", () => {
 		useRealOverlay.current = true;
 		vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
 		const rects = vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue({ length: 1, item: () => null } as unknown as DOMRectList);
-		vi.spyOn(OpenDesignTouchpointElement.prototype, "mount").mockImplementation(async function (this: OpenDesignTouchpointElement, entryUrl: string) {
+		vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (this: SaaSCodexTouchpointElement, entryUrl: string) {
 			const image = document.createElement("img");
 			image.src = entryUrl;
 			this.shadowRoot?.replaceChildren(image);
@@ -174,7 +174,7 @@ describe("ProductionCampaignHover", () => {
 		vi.stubGlobal("fetch", fetchMock);
 		const { rerender } = render(<ProductionCampaignHover authenticated sessionSubject="account-a" />);
 		const root = await screen.findByTestId("cms-hover-overlay-root");
-		const [entry, layer] = Array.from(root.querySelectorAll<OpenDesignTouchpointElement>("opend-touchpoint"));
+		const [entry, layer] = Array.from(root.querySelectorAll<SaaSCodexTouchpointElement>("opend-touchpoint"));
 		if (!entry || !layer) throw new Error("expected paired hover elements");
 		await waitFor(() => expect(entry).not.toHaveAttribute("hidden"));
 		const entryImage = entry.shadowRoot?.querySelector("img");
@@ -203,7 +203,7 @@ describe("ProductionCampaignHover", () => {
 		useRealOverlay.current = true;
 		vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
 		const rects = vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue({ length: 1, item: () => null } as unknown as DOMRectList);
-		const mount = vi.spyOn(OpenDesignTouchpointElement.prototype, "mount").mockImplementation(async function (this: OpenDesignTouchpointElement, entryUrl: string) {
+		const mount = vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (this: SaaSCodexTouchpointElement, entryUrl: string) {
 			const image = document.createElement("img");
 			image.src = entryUrl;
 			this.shadowRoot?.replaceChildren(image);
@@ -228,7 +228,7 @@ describe("ProductionCampaignHover", () => {
 		vi.stubGlobal("fetch", fetchMock);
 		render(<ProductionCampaignHover authenticated sessionSubject="account-a" />);
 		const root = await screen.findByTestId("cms-hover-overlay-root");
-		const [entry, layer] = Array.from(root.querySelectorAll<OpenDesignTouchpointElement>("opend-touchpoint"));
+		const [entry, layer] = Array.from(root.querySelectorAll<SaaSCodexTouchpointElement>("opend-touchpoint"));
 		if (!entry || !layer) throw new Error("expected paired hover elements");
 		await waitFor(() => expect(mount).toHaveBeenCalledTimes(2));
 		online = false;
@@ -261,7 +261,7 @@ describe("ProductionCampaignHover", () => {
 		useRealOverlay.current = true;
 		vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
 		const rects = vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue({ length: 1, item: () => null } as unknown as DOMRectList);
-		const mount = vi.spyOn(OpenDesignTouchpointElement.prototype, "mount").mockImplementation(async function (this: OpenDesignTouchpointElement, entryUrl: string) {
+		const mount = vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (this: SaaSCodexTouchpointElement, entryUrl: string) {
 			const image = document.createElement("img");
 			image.src = entryUrl;
 			this.shadowRoot?.replaceChildren(image);
@@ -282,7 +282,7 @@ describe("ProductionCampaignHover", () => {
 		vi.stubGlobal("fetch", fetchMock);
 		render(<ProductionCampaignHover authenticated sessionSubject="account-a" />);
 		const root = await screen.findByTestId("cms-hover-overlay-root");
-		const [entry, layer] = Array.from(root.querySelectorAll<OpenDesignTouchpointElement>("opend-touchpoint"));
+		const [entry, layer] = Array.from(root.querySelectorAll<SaaSCodexTouchpointElement>("opend-touchpoint"));
 		if (!entry || !layer) throw new Error("expected paired hover elements");
 		await waitFor(() => expect(mount).toHaveBeenCalledTimes(2));
 		layerVersion = "version-opend.home.hover-layer-2";
@@ -293,7 +293,7 @@ describe("ProductionCampaignHover", () => {
 		// the layer's rendered bytes say which version actually reached the
 		// screen. Stale content here is the whole risk of dropping the layer's
 		// credential from the key without naming its content version.
-		const rebuiltLayer = Array.from(root.querySelectorAll<OpenDesignTouchpointElement>("opend-touchpoint"))[1];
+		const rebuiltLayer = Array.from(root.querySelectorAll<SaaSCodexTouchpointElement>("opend-touchpoint"))[1];
 		expect(rebuiltLayer?.shadowRoot?.querySelector("img")).toHaveAttribute(
 			"src",
 			"blob:version-opend.home.hover-layer-2",
@@ -305,7 +305,7 @@ describe("ProductionCampaignHover", () => {
 		useRealOverlay.current = true;
 		vi.stubGlobal("ResizeObserver", class { observe() {} disconnect() {} });
 		const rects = vi.spyOn(HTMLElement.prototype, "getClientRects").mockReturnValue({ length: 1, item: () => null } as unknown as DOMRectList);
-		vi.spyOn(OpenDesignTouchpointElement.prototype, "mount").mockImplementation(async function (this: OpenDesignTouchpointElement, entryUrl: string) {
+		vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (this: SaaSCodexTouchpointElement, entryUrl: string) {
 			const image = document.createElement("img");
 			image.src = entryUrl;
 			this.shadowRoot?.replaceChildren(image);
@@ -315,7 +315,7 @@ describe("ProductionCampaignHover", () => {
 		setTestRuntimeSession({ decisions: new Map([["opend.home.hover-entry", decision("opend.home.hover-entry")], ["opend.home.hover-layer", decision("opend.home.hover-layer")]]), isAuthorized: () => true } as unknown as TestRuntimeSession);
 		const { rerender } = render(<ProductionCampaignHover authenticated sessionSubject="account-a" />);
 		const root = await screen.findByTestId("cms-hover-overlay-root");
-		const [entry, layer] = Array.from(root.querySelectorAll<OpenDesignTouchpointElement>("opend-touchpoint"));
+		const [entry, layer] = Array.from(root.querySelectorAll<SaaSCodexTouchpointElement>("opend-touchpoint"));
 		if (!entry || !layer) throw new Error("expected paired hover elements");
 		await waitFor(() => expect(entry).not.toHaveAttribute("hidden"));
 		const images = [entry.shadowRoot?.querySelector("img"), layer.shadowRoot?.querySelector("img")];

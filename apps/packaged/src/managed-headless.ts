@@ -1,4 +1,4 @@
-import { SIDECAR_MESSAGES, type DesktopStatusSnapshot } from "@open-design/sidecar-proto";
+import { SIDECAR_MESSAGES, type DesktopStatusSnapshot } from "@saascodex/sidecar-proto";
 
 import type { PackagedHeadlessRequest } from "./headless-runtime.js";
 import type { PackagedLauncherRuntime } from "./launcher-runtime.js";

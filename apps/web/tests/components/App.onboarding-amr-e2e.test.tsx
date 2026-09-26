@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 //
 // High-fidelity integration test for the onboarding -> home agent-selection
-// bug: the user picks (or accepts the recommended default) OpenDesign AMR
+// bug: the user picks (or accepts the recommended default) SaaSCodex AMR
 // during first-run onboarding, but the home agent picker comes back showing
 // Claude Code. Unlike the component-level EntryShell tests (which mock
 // `onAgentChange` so it never updates config), this mounts the REAL `App`
@@ -11,7 +11,7 @@
 // the first agent probe — the exact window in which the bug surfaces.
 
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { installMockOpenDesignHost } from '@open-design/host/testing';
+import { installMockSaaSCodexHost } from '@saascodex/host/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { App } from '../../src/App';
@@ -297,7 +297,7 @@ describe('CMS campaigns outside the home view', () => {
   // bridge in place before they can say anything about gating.
   let restoreHost: (() => void) | undefined;
   beforeEach(() => {
-    restoreHost = installMockOpenDesignHost();
+    restoreHost = installMockSaaSCodexHost();
   });
   afterEach(() => {
     restoreHost?.();
@@ -382,7 +382,7 @@ describe('onboarding -> home AMR selection (end to end)', () => {
     // default and completes onboarding directly; the removed About-you,
     // Newsletter, and design-system steps must not be part of this witness.
     const hostedSource = await screen.findByRole('radio', {
-      name: /OpenDesign Hosted/i,
+      name: /SaaSCodex Hosted/i,
     });
     expect(hostedSource.getAttribute('aria-checked')).toBe('true');
     fireEvent.click(await screen.findByRole('button', { name: /^Continue$/i }));

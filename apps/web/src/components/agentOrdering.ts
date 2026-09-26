@@ -1,4 +1,4 @@
-export function orderAgentsWithOpenDesignFirst<T extends { id: string }>(
+export function orderAgentsWithSaaSCodexFirst<T extends { id: string }>(
   agents: readonly T[],
 ): T[] {
   const openDesignAgents: T[] = [];

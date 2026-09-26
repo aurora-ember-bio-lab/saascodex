@@ -116,13 +116,13 @@ export async function runElectronBuilder(
     executableName: identity.executableName,
     extraMetadata: {
       main: "./main.cjs",
-      name: "open-design-packaged-app",
+      name: "saascodex-packaged-app",
       productName: identity.productName,
       version: packageVersion,
     },
     extraResources: [
-      { from: paths.resourceRoot, to: "open-design" },
-      { from: paths.packagedConfigPath, to: "open-design-config.json" },
+      { from: paths.resourceRoot, to: "saascodex" },
+      { from: paths.packagedConfigPath, to: "saascodex-config.json" },
       // Vendored dom-to-pptx browser bundle for editable PPTX export. The desktop
       // main reads it from process.resourcesPath at runtime.
       domToPptxBundleResource(config),
@@ -159,7 +159,7 @@ export async function runElectronBuilder(
     publish: [
       {
         provider: "generic",
-        url: "https://updates.invalid/open-design",
+        url: "https://updates.invalid/saascodex",
       },
     ],
   };

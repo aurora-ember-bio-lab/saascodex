@@ -70,7 +70,7 @@ beforeEach(async () => {
     '<section class="slide hero dark"><p>fallback body via assets</p></section>',
   );
   await writeFile(
-    path.join(folder, 'open-design.json'),
+    path.join(folder, 'saascodex.json'),
     JSON.stringify({
       $schema: 'https://open-design.ai/schemas/plugin.v1.json',
       name: PLUGIN_ID,
@@ -127,6 +127,6 @@ describe('GET /api/plugins/:id/preview — fallback chain', () => {
     const body = await resp.text();
     expect(body).toContain('<main id="deck">');
     expect(body).toContain('fallback body via assets');
-    expect(body).toContain('Preview fallback fixture | OpenDesign Example');
+    expect(body).toContain('Preview fallback fixture | SaaSCodex Example');
   });
 });

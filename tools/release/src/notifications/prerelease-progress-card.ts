@@ -323,7 +323,7 @@ const ARTIFACT_BASENAME: Record<PlatformKey, string> = {
 
 function downloadUrlFor(platform: PlatformKey): string {
   if (publicOrigin.length === 0) return "";
-  return `${publicOrigin}/${channelSlug}/versions/${version}/open-design-${version}-${ARTIFACT_BASENAME[platform]}`;
+  return `${publicOrigin}/${channelSlug}/versions/${version}/saascodex-${version}-${ARTIFACT_BASENAME[platform]}`;
 }
 
 const verifiedUrls = new Set<string>();

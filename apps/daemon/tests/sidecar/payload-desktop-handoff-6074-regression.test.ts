@@ -6,13 +6,13 @@ import {
   LAUNCHER_SCHEMA_VERSION,
   resolveLauncherPaths,
   resolveLauncherVersionPaths,
-} from "@open-design/launcher-proto";
+} from "@saascodex/launcher-proto";
 import {
   APP_KEYS,
   SIDECAR_MESSAGES,
   SIDECAR_MODES,
   SIDECAR_SOURCES,
-} from "@open-design/sidecar-proto";
+} from "@saascodex/sidecar-proto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const startDaemonRuntime = vi.fn(async (_options?: unknown) => ({

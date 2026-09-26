@@ -169,7 +169,7 @@ describe('GoPlanSunsetDialog', () => {
 
     expect(open).toHaveBeenCalledWith(
       expect.stringContaining(
-        'https://open-design.powerformer.net/cloud/dashboard?source=open_design&billing=plan',
+        'https://saascodex.powerformer.net/cloud/dashboard?source=open_design&billing=plan',
       ),
       '_blank',
       'noopener,noreferrer',

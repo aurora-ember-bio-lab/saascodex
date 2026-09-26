@@ -39,7 +39,7 @@ import {
   stopProcesses,
   terminateProcessGroup,
   type ProcessIdentity,
-} from '@open-design/platform';
+} from '@saascodex/platform';
 
 const STAGED_PROMPT_PREFIX = 'agent-stdin-';
 const STAGED_PROMPT_SUFFIX = '.prompt';

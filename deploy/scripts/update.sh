@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# OpenDesign — Updater
+# SaaSCodex — Updater
 # Pulls the latest image and restarts the service
 #
 # Usage: ./update.sh [--image <ref>] [--non-interactive]
@@ -94,7 +94,7 @@ done
 printf "\n"
 printf "${BOLD}  ┌──────────────────────────────────────┐${RESET}\n"
 printf "${BOLD}  │${RESET}                                      ${BOLD}│${RESET}\n"
-printf "${BOLD}  │${RESET}   ${CYAN}◈${RESET}  ${BOLD}OpenDesign${RESET}                     ${BOLD}│${RESET}\n"
+printf "${BOLD}  │${RESET}   ${CYAN}◈${RESET}  ${BOLD}SaaSCodex${RESET}                     ${BOLD}│${RESET}\n"
 printf "${BOLD}  │${RESET}      ${DIM}Updater${RESET}                         ${BOLD}│${RESET}\n"
 printf "${BOLD}  │${RESET}                                      ${BOLD}│${RESET}\n"
 printf "${BOLD}  └──────────────────────────────────────┘${RESET}\n"
@@ -104,13 +104,13 @@ printf "\n"
 PORT=7456
 ENV_FILE="${DEPLOY_DIR}/.env"
 if [ -f "$ENV_FILE" ]; then
-  _port="$(grep '^OPEN_DESIGN_PORT=' "$ENV_FILE" | cut -d= -f2)"
+  _port="$(grep '^SAASCODEX_PORT=' "$ENV_FILE" | cut -d= -f2)"
   if [ -n "$_port" ]; then PORT="$_port"; fi
 fi
 
 # Override image if specified
 if [ -n "$OPT_IMAGE" ]; then
-  export OPEN_DESIGN_IMAGE="$OPT_IMAGE"
+  export SAASCODEX_IMAGE="$OPT_IMAGE"
 fi
 
 # Pull latest image

@@ -2,7 +2,7 @@ import type { Express, Request, Response } from 'express';
 import type {
   TestRuntimeAcceptanceRequest,
   TestRuntimeContextRequest,
-} from '@open-design/contracts/api/touchpointTestRuntime';
+} from '@saascodex/contracts/api/touchpointTestRuntime';
 import { createHash, randomUUID } from 'node:crypto';
 import dns from 'node:dns';
 import http from 'node:http';
@@ -72,7 +72,7 @@ import {
   touchpointStatusIsTransient,
   TOUCHPOINT_OFFLINE_REPLAY_HEADER,
   type TouchpointOfflineReplayReason,
-} from '@open-design/contracts/api/touchpointOffline';
+} from '@saascodex/contracts/api/touchpointOffline';
 
 const AMR_API_PROXY_PREFIX = '/api/integrations/vela/api-proxy';
 const VELA_MESSAGE_CENTER_PREFIX = '/api/integrations/vela/message-center';
@@ -235,11 +235,11 @@ function pluginLoginCorrelationEnv(input: {
     const pluginWorkflowId = validatePluginWorkflowId(body.pluginWorkflowId);
     return {
       OD_INSTALLATION_ID: analyticsContext.deviceId,
-      OPEN_DESIGN_PLUGIN_WORKFLOW_ID: pluginWorkflowId,
-      OPEN_DESIGN_EXTERNAL_PLUGIN_ID: context.id,
-      OPEN_DESIGN_EXTERNAL_PLUGIN_VERSION: context.version,
-      OPEN_DESIGN_DISTRIBUTION_MECHANISM: context.distributionMechanism,
-      OPEN_DESIGN_PUBLISHER_CLASS: context.publisherClass,
+      SAASCODEX_PLUGIN_WORKFLOW_ID: pluginWorkflowId,
+      SAASCODEX_EXTERNAL_PLUGIN_ID: context.id,
+      SAASCODEX_EXTERNAL_PLUGIN_VERSION: context.version,
+      SAASCODEX_DISTRIBUTION_MECHANISM: context.distributionMechanism,
+      SAASCODEX_PUBLISHER_CLASS: context.publisherClass,
     };
   } catch {
     // Login must remain functional when analytics metadata is absent or
@@ -1136,7 +1136,7 @@ export function registerVelaRoutes(app: Express, deps: RegisterVelaRoutesDeps): 
         // Local end-to-end runs may keep their login/Test origin while
         // exercising a separately owned publish-side API. Never forward a
         // stored credential to an arbitrary remote origin through this knob.
-        const localPublishOrigin = env.OPEN_DESIGN_CMS_PRODUCTION_API_URL?.trim();
+        const localPublishOrigin = env.SAASCODEX_CMS_PRODUCTION_API_URL?.trim();
         if (localPublishOrigin) {
           const target = new URL(localPublishOrigin);
           const login = new URL(context.apiUrl);

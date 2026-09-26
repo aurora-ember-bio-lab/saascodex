@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@open-design/components';
+import { Button } from '@saascodex/components';
 
 import { Icon } from './Icon';
 

@@ -14,9 +14,9 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
  * 这个文件**原来**断言的是另一件事:请求没带 skillId 时,评审指标要用项目的
  * **规范** skill id 打标。项目行里存着老 id `editorial-collage-deck`,
  * `resolveSkillId`(`apps/daemon/src/skills.ts` 的 `SKILL_ID_ALIASES`)把它归一成
- * `open-design-landing-deck`,于是 `/api/metrics` 上出现:
+ * `saascodex-landing-deck`,于是 `/api/metrics` 上出现:
  *
- *   open_design_critique_runs_total{status="shipped",adapter="qwen",skill="open-design-landing-deck"} 1
+ *   open_design_critique_runs_total{status="shipped",adapter="qwen",skill="saascodex-landing-deck"} 1
  *
  * 那条归一逻辑**没坏、也没改名**。把 `CRITIQUE_THEATER_RETIRED` 翻成 false,
  * 下面这套 fixture 原封不动,老的三条断言(SSE 上出现 `critique.run_started`、
@@ -104,7 +104,7 @@ setTimeout(() => process.exit(0), 250);
       body: JSON.stringify({
         id: projectId,
         name: 'Project skill critique label fixture',
-        skillId: 'open-design-landing-deck',
+        skillId: 'saascodex-landing-deck',
         designSystemId: 'sleek',
         // 项目级开关打开 —— 裁决前这是优先级最高的「开」信号之一。
         metadata: { critiqueTheaterEnabled: true },

@@ -1,7 +1,7 @@
 import type {
   MarketplaceTrust,
   TrustTier,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { useT } from '../i18n';
 
 type TrustBadgeTrust = TrustTier | MarketplaceTrust;

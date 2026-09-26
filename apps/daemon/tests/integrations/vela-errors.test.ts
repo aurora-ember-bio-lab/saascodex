@@ -23,9 +23,9 @@ describe('AMR account failure classification', () => {
 
   it('uses the selected profile origin for recharge failures', () => {
     expect(classifyAmrAccountFailure('insufficient_balance', {
-      OPEN_DESIGN_AMR_PROFILE: 'test',
+      SAASCODEX_AMR_PROFILE: 'test',
     })?.actionUrl).toBe(
-      'https://open-design.powerformer.net/cloud/dashboard?source=open_design',
+      'https://saascodex.powerformer.net/cloud/dashboard?source=open_design',
     );
 
     vi.stubEnv('OD_VELA_WEB_URLS', JSON.stringify({
@@ -34,7 +34,7 @@ describe('AMR account failure classification', () => {
     }));
     try {
       expect(classifyAmrAccountFailure('insufficient_balance', {
-        OPEN_DESIGN_AMR_PROFILE: 'feature-test',
+        SAASCODEX_AMR_PROFILE: 'feature-test',
       })?.actionUrl).toBe(
         'https://feature.example.invalid/cloud/dashboard?source=open_design',
       );

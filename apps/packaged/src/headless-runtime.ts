@@ -4,7 +4,7 @@ import {
   APP_KEYS,
   MCP_BOOTSTRAP_CONTRACT,
   SIDECAR_SOURCES,
-} from "@open-design/sidecar-proto";
+} from "@saascodex/sidecar-proto";
 import {
   getSidecarStatus,
   registerSidecarProcess,
@@ -13,8 +13,8 @@ import {
   type SidecarClient,
   type SidecarRuntimeContext,
   type SidecarStamp,
-} from "@open-design/sidecar";
-import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@open-design/release";
+} from "@saascodex/sidecar";
+import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@saascodex/release";
 
 import type { PackagedConfig } from "./config.js";
 import { confirmPackagedLauncherRuntime, resolvePackagedLauncherRuntime } from "./launcher-runtime.js";

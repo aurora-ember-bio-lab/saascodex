@@ -14,7 +14,7 @@ import {
   type McpServerConfig,
   type SkillSummary,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 const workspaceA: WorkspaceCollabContext = {
   workspaceId: 'workspace-a',
@@ -790,7 +790,7 @@ describe('HomeView context picker', () => {
       if (typeof url === 'string' && (url === '/api/projects/reference-a' || url.startsWith('/api/projects/reference-a?'))) {
         return new Response(JSON.stringify({
           project: referenceProject,
-          resolvedDir: '/tmp/open-design/missing-reference-a',
+          resolvedDir: '/tmp/saascodex/missing-reference-a',
         }), {
           status: 200,
           headers: { 'content-type': 'application/json' },
@@ -893,7 +893,7 @@ describe('HomeView context picker', () => {
       if (typeof url === 'string' && (url === '/api/projects/reference-a' || url.startsWith('/api/projects/reference-a?'))) {
         return new Response(JSON.stringify({
           project: referenceProject,
-          resolvedDir: '/tmp/open-design/reference-a',
+          resolvedDir: '/tmp/saascodex/reference-a',
         }), {
           status: 200,
           headers: { 'content-type': 'application/json' },
@@ -952,11 +952,11 @@ describe('HomeView context picker', () => {
             id: 'project:reference-a',
             kind: 'project',
             label: 'Reference A',
-            absolutePath: '/tmp/open-design/reference-a',
+            absolutePath: '/tmp/saascodex/reference-a',
           }),
         ],
       },
-      linkedDirs: ['/tmp/open-design/reference-a'],
+      linkedDirs: ['/tmp/saascodex/reference-a'],
     }));
   });
 

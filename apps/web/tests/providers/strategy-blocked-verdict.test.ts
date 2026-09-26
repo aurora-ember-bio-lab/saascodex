@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { StrategyTaskProjectionV2 } from '@open-design/contracts';
+import type { StrategyTaskProjectionV2 } from '@saascodex/contracts';
 
 import { streamViaDaemon } from '../../src/providers/daemon';
 

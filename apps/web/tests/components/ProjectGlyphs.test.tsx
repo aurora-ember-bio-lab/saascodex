@@ -13,7 +13,7 @@
 // glyph on a chat-bubble mark instead of the folder.
 
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryNavRail } from '../../src/components/EntryNavRail';
@@ -95,7 +95,7 @@ function stubRunsFeed() {
 /** Every project is an open tab, so the switcher lists all three. */
 function seedOpenTabs() {
   window.localStorage.setItem(
-    'open-design:workspace-tabs:v1',
+    'saascodex:workspace-tabs:v1',
     JSON.stringify({
       activeTabId: `project:${QUIET.id}`,
       tabs: PROJECTS.map((item, index) => ({

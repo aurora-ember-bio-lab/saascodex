@@ -26,9 +26,9 @@ import {
   type ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { Button, Textarea } from '@open-design/components';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
-import type { DesignSystemEditClickProps } from '@open-design/contracts/analytics';
+import { Button, Textarea } from '@saascodex/components';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { DesignSystemEditClickProps } from '@saascodex/contracts/analytics';
 import { useT } from '../i18n';
 import {
   fetchProjectFileText,

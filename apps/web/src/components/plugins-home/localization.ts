@@ -2,7 +2,7 @@ import {
   resolveLocalizedText,
   type InstalledPluginRecord,
   type LocalizedText,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { homePresetCopy } from './homePresetCopy';
 
 export function localizeHomePresetTitle(locale: string, record: InstalledPluginRecord): string {

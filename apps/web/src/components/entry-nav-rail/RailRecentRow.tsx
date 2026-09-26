@@ -9,7 +9,7 @@ import { reportProjectFailure } from '../../observability/experience-diagnostics
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import type { ProjectDisplayStatus, WorkspaceCollabContext } from '@open-design/contracts';
+import type { ProjectDisplayStatus, WorkspaceCollabContext } from '@saascodex/contracts';
 
 import { useT } from '../../i18n';
 import { Icon } from '../Icon';

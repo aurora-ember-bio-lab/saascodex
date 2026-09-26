@@ -110,8 +110,8 @@ describe('AssistantMessage client-provided system copy', () => {
 
     expect(screen.getByText(text)).toBeTruthy();
     expect(screen.queryByText('Design review helper')).toBeNull();
-    expect(screen.queryByRole('button', { name: '贡献到 open-design' })).toBeNull();
-    expect(screen.queryByRole('button', { name: 'Contribute to open-design' })).toBeNull();
+    expect(screen.queryByRole('button', { name: '贡献到 saascodex' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Contribute to saascodex' })).toBeNull();
     expect(screen.queryByText('正在启动…')).toBeNull();
     expect(screen.queryByText('Starting...')).toBeNull();
   });

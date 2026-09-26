@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type {
   ProjectContentTransferState,
   WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import {
   CollabClient,
   type CollabClientOptions,

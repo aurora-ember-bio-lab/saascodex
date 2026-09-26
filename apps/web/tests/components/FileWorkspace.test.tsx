@@ -11,7 +11,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 import {
   DESIGN_FILES_TAB,
@@ -2532,7 +2532,7 @@ describe('FileWorkspace launcher tab creation', () => {
       <FileWorkspace
         projectId="project-1"
         projectKind="prototype"
-        resolvedDir="/tmp/open-design/project-1"
+        resolvedDir="/tmp/saascodex/project-1"
         files={[]}
         liveArtifacts={[]}
         onRefreshFiles={vi.fn()}
@@ -2555,7 +2555,7 @@ describe('FileWorkspace launcher tab creation', () => {
       <FileWorkspace
         projectId="project-1"
         projectKind="prototype"
-        resolvedDir="/tmp/open-design/project-1"
+        resolvedDir="/tmp/saascodex/project-1"
         files={[workspaceFile('cover.html')]}
         liveArtifacts={[]}
         onRefreshFiles={vi.fn()}
@@ -2572,7 +2572,7 @@ describe('FileWorkspace launcher tab creation', () => {
         kind: 'design-files',
         label: 'Design Files',
         tabId: '__design_files__',
-        absolutePath: '/tmp/open-design/project-1',
+        absolutePath: '/tmp/saascodex/project-1',
       });
     });
   });
@@ -3227,7 +3227,7 @@ describe('DesignFilesPanel plugin folders', () => {
         projectId="project-1"
         projectKind="prototype"
         files={[
-          workspaceFile('generated-plugin/open-design.json'),
+          workspaceFile('generated-plugin/saascodex.json'),
           workspaceFile('generated-plugin/SKILL.md'),
           workspaceFile('generated-plugin/examples/demo.md'),
         ]}

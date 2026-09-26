@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 
-import type { WorkspaceBillingPreflight, WorkspaceBillingResponse } from '@open-design/contracts';
+import type { WorkspaceBillingPreflight, WorkspaceBillingResponse } from '@saascodex/contracts';
 import { expect, test } from 'vitest';
 
 import { createSmokeSuite } from '@/vitest/suite';

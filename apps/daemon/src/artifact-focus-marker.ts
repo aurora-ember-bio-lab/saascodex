@@ -1,6 +1,6 @@
 /**
  * Streaming half of the `<od-focus …/>` marker (shape lives in
- * `@open-design/contracts`, `api/artifact-focus-marker`).
+ * `@saascodex/contracts`, `api/artifact-focus-marker`).
  *
  * Three jobs, in order of how badly each fails when it is wrong:
  *
@@ -38,7 +38,7 @@ import {
   normalizeArtifactFocusPath,
   parseArtifactFocusMarker,
   type ArtifactFocusSelection,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 /**
  * How far into an already-identified `<od-focus` we keep waiting for its `>`.

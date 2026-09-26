@@ -5,7 +5,7 @@ import { dirname, join, relative } from "node:path";
 import { promisify } from "node:util";
 
 import { rebuild } from "@electron/rebuild";
-import { createCommandInvocation, createPackageManagerInvocation } from "@open-design/platform";
+import { createCommandInvocation, createPackageManagerInvocation } from "@saascodex/platform";
 
 import { hashJson, hashPath, ToolPackCache } from "../cache/index.js";
 import type { ToolPackConfig } from "../config/index.js";
@@ -75,7 +75,7 @@ async function runNpmInstall(appRoot: string): Promise<void> {
 }
 
 async function runEsbuild(config: ToolPackConfig, args: string[]): Promise<void> {
-  await runPnpm(config, ["--filter", "@open-design/packaged", "exec", "esbuild", ...args]);
+  await runPnpm(config, ["--filter", "@saascodex/packaged", "exec", "esbuild", ...args]);
 }
 
 async function runElectronRebuild(config: ToolPackConfig, appRoot: string): Promise<void> {
@@ -247,7 +247,7 @@ async function writeAssembledAppEntrypoints(
         dependencies: options.dependencies ?? createAssembledAppDependencies(config, paths, packedTarballs),
         description: "Open Design packaged runtime",
         main: "./main.cjs",
-        name: "open-design-packaged-app",
+        name: "saascodex-packaged-app",
         private: true,
         productName: PRODUCT_NAME,
         version: packageVersion,

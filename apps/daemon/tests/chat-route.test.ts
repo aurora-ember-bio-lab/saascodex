@@ -242,7 +242,7 @@ child.on('exit', (code, signal) => {
       'sample-plugin',
     );
     await fsp.cp(baseFixtureDir, fixtureDir, { recursive: true });
-    const manifestPath = resolve(fixtureDir, 'open-design.json');
+    const manifestPath = resolve(fixtureDir, 'saascodex.json');
     const manifest = JSON.parse(await fsp.readFile(manifestPath, 'utf8')) as {
       name: string;
       title: string;
@@ -696,7 +696,7 @@ const fs = require('node:fs');
 process.stdin.resume();
 process.stdin.on('end', () => {
   fs.writeFileSync(${JSON.stringify(envFile)}, process.env.OPENCODE_CONFIG_CONTENT || '');
-  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.OPEN_DESIGN_BYOK_API_KEY || '');
+  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SAASCODEX_BYOK_API_KEY || '');
   fs.writeFileSync(${JSON.stringify(argsFile)}, JSON.stringify(process.argv.slice(2)));
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: 'byok-opencode-ok' } }));
@@ -734,7 +734,7 @@ process.stdin.on('end', () => {
           '--dir',
           expect.stringContaining(projectId),
           '-m',
-          'open-design-byok/deepseek-v4-flash',
+          'saascodex-byok/deepseek-v4-flash',
         ]);
         const parsed = JSON.parse(await fsp.readFile(envFile, 'utf8')) as {
           provider?: Record<string, {
@@ -743,12 +743,12 @@ process.stdin.on('end', () => {
             models?: Record<string, unknown>;
           }>;
         };
-        const provider = parsed.provider?.['open-design-byok'];
+        const provider = parsed.provider?.['saascodex-byok'];
         expect(provider).toMatchObject({
           npm: '@ai-sdk/openai-compatible',
           options: {
             baseURL: 'https://api.senseaudio.cn',
-            apiKey: '{env:OPEN_DESIGN_BYOK_API_KEY}',
+            apiKey: '{env:SAASCODEX_BYOK_API_KEY}',
           },
         });
         expect(provider?.models?.['deepseek-v4-flash']).toEqual({
@@ -790,7 +790,7 @@ const fs = require('node:fs');
 process.stdin.resume();
 process.stdin.on('end', () => {
   fs.writeFileSync(${JSON.stringify(envFile)}, process.env.OPENCODE_CONFIG_CONTENT || '');
-  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.OPEN_DESIGN_BYOK_API_KEY || '');
+  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SAASCODEX_BYOK_API_KEY || '');
   fs.writeFileSync(${JSON.stringify(argsFile)}, JSON.stringify(process.argv.slice(2)));
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: 'byok-opencode-keyless-ok' } }));
@@ -829,7 +829,7 @@ process.stdin.on('end', () => {
           '--dir',
           expect.stringContaining(projectId),
           '-m',
-          'open-design-byok/model',
+          'saascodex-byok/model',
         ]);
         const rawConfig = await fsp.readFile(envFile, 'utf8');
         const parsed = JSON.parse(rawConfig) as {
@@ -839,7 +839,7 @@ process.stdin.on('end', () => {
             models?: Record<string, unknown>;
           }>;
         };
-        const provider = parsed.provider?.['open-design-byok'];
+        const provider = parsed.provider?.['saascodex-byok'];
         expect(provider).toMatchObject({
           npm: '@ai-sdk/openai-compatible',
           options: {
@@ -847,7 +847,7 @@ process.stdin.on('end', () => {
           },
         });
         expect(provider?.options).not.toHaveProperty('apiKey');
-        expect(rawConfig).not.toContain('OPEN_DESIGN_BYOK_API_KEY');
+        expect(rawConfig).not.toContain('SAASCODEX_BYOK_API_KEY');
       },
     );
   });
@@ -877,7 +877,7 @@ const fs = require('node:fs');
 process.stdin.resume();
 process.stdin.on('end', () => {
   fs.writeFileSync(${JSON.stringify(envFile)}, process.env.OPENCODE_CONFIG_CONTENT || '');
-  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.OPEN_DESIGN_BYOK_API_KEY || '');
+  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SAASCODEX_BYOK_API_KEY || '');
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: 'opencode-ok' } }));
   console.log(JSON.stringify({ type: 'step_finish', part: { tokens: { input: 1, output: 1 } } }));
@@ -906,7 +906,7 @@ process.stdin.on('end', () => {
         expect(body).toContain('opencode-ok');
         expect(await fsp.readFile(keyFile, 'utf8')).toBe('');
         const rawConfig = await fsp.readFile(envFile, 'utf8');
-        expect(rawConfig).not.toContain('open-design-byok');
+        expect(rawConfig).not.toContain('saascodex-byok');
         expect(rawConfig).not.toContain('sk-test-byok');
       },
     );
@@ -1567,10 +1567,10 @@ process.stdin.resume();
 process.stdin.on('end', () => {
   const pluginDir = path.join(process.cwd(), 'generated-plugin');
   fs.mkdirSync(pluginDir, { recursive: true });
-  fs.writeFileSync(path.join(pluginDir, 'open-design.json'), JSON.stringify({ name: 'generated-plugin' }, null, 2));
+  fs.writeFileSync(path.join(pluginDir, 'saascodex.json'), JSON.stringify({ name: 'generated-plugin' }, null, 2));
   fs.writeFileSync(path.join(pluginDir, 'SKILL.md'), '# Generated plugin\\n');
   console.log(JSON.stringify({ type: 'step_start' }));
-  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 OpenDesign 插件脚手架。先读取文档规范，再生成插件文件。' } }));
+  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 SaaSCodex 插件脚手架。先读取文档规范，再生成插件文件。' } }));
   console.log(JSON.stringify({ type: 'step_finish', part: { tokens: { input: 1, output: 1 } } }));
   process.exit(0);
 });
@@ -1584,7 +1584,7 @@ process.stdin.on('end', () => {
             projectId,
             conversationId,
             pluginId: 'od-plugin-authoring',
-            message: '请创建一个可刷新、可审计、由 API 驱动的 OpenDesign 插件脚手架。',
+            message: '请创建一个可刷新、可审计、由 API 驱动的 SaaSCodex 插件脚手架。',
           }),
         });
         expect(createResponse.status).toBe(202);
@@ -1600,7 +1600,7 @@ process.stdin.on('end', () => {
         const filesResponse = await fetch(`${baseUrl}/api/projects/${projectId}/files`);
         expect(filesResponse.status).toBe(200);
         const filesBody = await filesResponse.json() as { files: Array<{ name: string }> };
-        expect(filesBody.files.some((file) => file.name === 'generated-plugin/open-design.json')).toBe(true);
+        expect(filesBody.files.some((file) => file.name === 'generated-plugin/saascodex.json')).toBe(true);
         expect(filesBody.files.some((file) => file.name === 'generated-plugin/SKILL.md')).toBe(true);
       },
     );
@@ -1634,7 +1634,7 @@ process.stdin.on('end', () => {
 process.stdin.resume();
 process.stdin.on('end', () => {
   console.log(JSON.stringify({ type: 'step_start' }));
-  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 OpenDesign 插件脚手架。先读取文档规范，再生成插件文件。' } }));
+  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 SaaSCodex 插件脚手架。先读取文档规范，再生成插件文件。' } }));
   console.log(JSON.stringify({ type: 'step_finish', part: { tokens: { input: 1, output: 1 } } }));
   process.exit(0);
 });
@@ -1648,7 +1648,7 @@ process.stdin.on('end', () => {
             projectId,
             conversationId,
             pluginId: 'od-plugin-authoring',
-            message: '请创建一个可刷新、可审计、由 API 驱动的 OpenDesign 插件脚手架。',
+            message: '请创建一个可刷新、可审计、由 API 驱动的 SaaSCodex 插件脚手架。',
           }),
         });
         expect(createResponse.status).toBe(202);
@@ -2162,7 +2162,7 @@ process.stdin.on('data', (chunk) => {
 });
 process.stdin.on('end', () => {
   const checks = [
-    prompt.includes('## Composed skill — open-design-landing-deck') ? 'has-deck-skill-header' : 'missing-deck-skill-header',
+    prompt.includes('## Composed skill — saascodex-landing-deck') ? 'has-deck-skill-header' : 'missing-deck-skill-header',
     prompt.includes('# Slide deck — fixed framework (this is non-negotiable for deck mode)') ? 'has-deck-framework' : 'missing-deck-framework',
   ];
   console.log(JSON.stringify({ type: 'step_start' }));
@@ -2178,7 +2178,7 @@ process.stdin.on('end', () => {
           body: JSON.stringify({
             agentId: 'opencode',
             message: 'build an editorial brand deck',
-            skillIds: ['open-design-landing-deck'],
+            skillIds: ['saascodex-landing-deck'],
           }),
         });
         const body = await response.text();
@@ -2204,7 +2204,7 @@ process.stdin.on('data', (chunk) => {
 process.stdin.on('end', () => {
   const checks = [
     prompt.includes('# imagegen') ? 'has-base-image-skill-body' : 'missing-base-image-skill-body',
-    prompt.includes('## Composed skill — open-design-landing-deck') ? 'has-composed-deck-skill-header' : 'missing-composed-deck-skill-header',
+    prompt.includes('## Composed skill — saascodex-landing-deck') ? 'has-composed-deck-skill-header' : 'missing-composed-deck-skill-header',
     prompt.includes('## Media generation contract (load-bearing — overrides softer wording above)') ? 'has-image-contract' : 'missing-image-contract',
     prompt.includes('# Slide deck — fixed framework (this is non-negotiable for deck mode)') ? 'unexpected-deck-framework' : 'kept-deck-framework-out',
   ];
@@ -2222,7 +2222,7 @@ process.stdin.on('end', () => {
             agentId: 'opencode',
             message: 'generate an image while also referencing a deck template',
             skillId: 'imagegen',
-            skillIds: ['open-design-landing-deck'],
+            skillIds: ['saascodex-landing-deck'],
           }),
         });
         const body = await response.text();
@@ -2578,10 +2578,10 @@ process.stdin.on('data', (chunk) => {
   prompt += chunk;
 });
 process.stdin.on('end', () => {
-  const hasDuplicateComposedAlias = prompt.includes('## Composed skill — open-design-landing');
+  const hasDuplicateComposedAlias = prompt.includes('## Composed skill — saascodex-landing');
   const checks = [
     hasDuplicateComposedAlias ? 'duplicate-alias-composed-skill' : 'deduped-alias-composed-skill',
-    prompt.includes('# open-design-landing') ? 'has-base-alias-skill-body' : 'missing-base-alias-skill-body',
+    prompt.includes('# saascodex-landing') ? 'has-base-alias-skill-body' : 'missing-base-alias-skill-body',
   ];
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: checks.join('\\n') } }));
@@ -2595,9 +2595,9 @@ process.stdin.on('end', () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             agentId: 'opencode',
-            message: 'build the OpenDesign landing page',
+            message: 'build the SaaSCodex landing page',
             skillId: 'editorial-collage',
-            skillIds: ['open-design-landing'],
+            skillIds: ['saascodex-landing'],
           }),
         });
         const body = await response.text();

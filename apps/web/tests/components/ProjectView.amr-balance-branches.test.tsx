@@ -36,7 +36,7 @@ import {
   buildWorkspaceSeatSummary,
   type AmrWalletSnapshot,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import type { ComponentProps, ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 

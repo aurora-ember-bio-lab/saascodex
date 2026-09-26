@@ -2,7 +2,7 @@ import {
   composeOdNextIntentResolutionTurnV1,
   OdNextIntentResolutionResultSchema,
   parseOdNextPromptBundleV2,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 import type { StrategyTaskExecutionRecord } from '../task-store.js';
 import type { OdNextMachineProtocolResult } from './protocol.js';

@@ -10,7 +10,7 @@ import { forwardRef, type ComponentProps } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { buildWorkspacePermissions, buildWorkspaceSeatSummary, OD_NEXT_AGENT_DECLARED_BLOCK_REASON,
   StrategyTaskProjectionV2Schema, type ChatRunStatusResponse, type StrategyTaskProjectionV2,
-  type WorkspaceCollabContext } from '@open-design/contracts';
+  type WorkspaceCollabContext } from '@saascodex/contracts';
 import { ProjectView } from '../../src/components/ProjectView';
 import { I18nProvider } from '../../src/i18n';
 import { en } from '../../src/i18n/locales/en';

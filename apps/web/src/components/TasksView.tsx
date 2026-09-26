@@ -13,7 +13,7 @@ import type {
   Routine,
   RoutineRun,
   RoutineRunCrystallizeResponse,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 import { Icon, type IconName } from './Icon';
 import { navigate } from '../router';
@@ -35,7 +35,7 @@ import {
   workspaceIdentityCacheKey,
   workspaceProjectHeaders,
 } from '../collab/workspace-identity';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 
 type ProjectSummary = { id: string; name: string };
 type TemplateFilter =

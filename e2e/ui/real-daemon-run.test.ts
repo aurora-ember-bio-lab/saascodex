@@ -15,9 +15,9 @@ import { trackRunRequests } from '@/playwright/mock-factory';
 import type { FakeAcpHandshakeRuntime, FakeAgentId } from '@/playwright/fake-agents';
 import { T } from '@/timeouts';
 
-const STORAGE_KEY = 'open-design:config';
-const EXPERIENCE_SURVEY_RETIRED_KEY = 'open-design:experience-survey:v1:retired';
-const EXPERIENCE_SURVEY_DELIVERIES_KEY = 'open-design:experience-survey:v1:deliveries';
+const STORAGE_KEY = 'saascodex:config';
+const EXPERIENCE_SURVEY_RETIRED_KEY = 'saascodex:experience-survey:v1:retired';
+const EXPERIENCE_SURVEY_DELIVERIES_KEY = 'saascodex:experience-survey:v1:deliveries';
 const GENERATED_FILE = 'real-daemon-smoke.html';
 const GENERATED_HEADING = 'Real Daemon Smoke';
 const EDITED_GENERATED_HEADING = 'Real Daemon Smoke Edited';
@@ -602,7 +602,7 @@ test('[P0] ACP handshake refusal is actionable, persists, and does not auto-retr
   await expect(card).not.toContainText(rawError);
   // OPEND-2807 / G16: a failed local CLI run has exactly these three actions.
   await expect(card.getByRole('button')).toHaveText([
-    'Contact us', 'Export logs', 'Switch to OpenDesign Cloud',
+    'Contact us', 'Export logs', 'Switch to SaaSCodex Cloud',
   ]);
   await expect(card.getByRole('button', { name: /^Retry$/ })).toHaveCount(0);
   await expect.poll(() => countAcpRunSessionStarts(fakeAcpHandshakeRuntime.invocationLog)).toBe(1);
@@ -632,11 +632,11 @@ test('[P1] real daemon classifies a Claude prompt-too-long result and preserves 
   );
   // OPEND-2807 / G16: a failed local CLI run has exactly these three actions.
   await expect(card.getByRole('button')).toHaveText([
-    'Contact us', 'Export logs', 'Switch to OpenDesign Cloud',
+    'Contact us', 'Export logs', 'Switch to SaaSCodex Cloud',
   ]);
   await expect(card.getByRole('button', { name: /^Retry$/ })).toHaveCount(0);
   // The Cloud action remains in this one error card, with no separate suggestion card.
-  await expect(page.getByRole('button', { name: 'Switch to OpenDesign Cloud', exact: true })).toHaveCount(1);
+  await expect(page.getByRole('button', { name: 'Switch to SaaSCodex Cloud', exact: true })).toHaveCount(1);
 
   await page.reload({ waitUntil: 'domcontentloaded' });
   await waitForLoadingToClear(page);
@@ -1218,7 +1218,7 @@ test('[P1] plugin authoring produces a generated-plugin scaffold with action car
   await waitForLoadingToClear(page);
   await page.getByRole('button', { name: 'Add', exact: true }).click();
   await page.getByTestId('plugin-create-with-agent').click();
-  await expect(page.getByTestId('home-hero-input')).toHaveText(/Create an OpenDesign plugin for:/);
+  await expect(page.getByTestId('home-hero-input')).toHaveText(/Create an SaaSCodex plugin for:/);
 
   const projectRequestPromise = page.waitForRequest(isCreateProjectRequest);
   const runRequestPromise = page.waitForRequest(isCreateRunRequest);
@@ -1240,18 +1240,18 @@ test('[P1] plugin authoring produces a generated-plugin scaffold with action car
   await expectWorkspaceReady(page);
   const { projectId, conversationId } = await currentProjectContext(page);
   await expectProjectFilesToContain(page, projectId, [
-    'generated-plugin/open-design.json',
+    'generated-plugin/saascodex.json',
     'generated-plugin/SKILL.md',
     'generated-plugin/examples/demo.md',
   ]);
-  await expectProjectFileToContain(page, projectId, 'generated-plugin/open-design.json', '"name": "generated-plugin"');
+  await expectProjectFileToContain(page, projectId, 'generated-plugin/saascodex.json', '"name": "generated-plugin"');
   await expectProjectFileToContain(page, projectId, 'generated-plugin/SKILL.md', '# Generated Plugin');
 
   await expectRestoredDelayedAssistantMessage(page, projectId, conversationId, {
     producedFiles: [
       'generated-plugin/examples/demo.md',
       'generated-plugin/SKILL.md',
-      'generated-plugin/open-design.json',
+      'generated-plugin/saascodex.json',
     ],
     expectedThinking: false,
   });
@@ -1563,7 +1563,7 @@ async function gotoEntryHome(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await waitForLoadingToClear(page);
   await projectsSettled;
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve OpenDesign' });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
     await expect(privacyDialog).toHaveCount(0);
@@ -1658,7 +1658,7 @@ async function openNewProjectModal(page: Page) {
 }
 
 async function dismissPrivacyDialog(page: Page) {
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve OpenDesign' });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
     await expect(privacyDialog).toHaveCount(0);
@@ -1666,7 +1666,7 @@ async function dismissPrivacyDialog(page: Page) {
 }
 
 async function waitForLoadingToClear(page: Page) {
-  await page.getByText('Loading OpenDesign…').waitFor({ state: 'hidden', timeout: T.long });
+  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.long });
 }
 
 async function clickVisible(locator: Locator) {
@@ -1847,7 +1847,7 @@ async function countAcpRunSessionStarts(invocationLog: string): Promise<number> 
     .split('\n')
     .filter(Boolean)
     .map((line) => JSON.parse(line) as { client?: string; method?: string })
-    .filter((entry) => entry.client === 'open-design' && entry.method === 'session/new')
+    .filter((entry) => entry.client === 'saascodex' && entry.method === 'session/new')
     .length;
 }
 

@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
 
-import { ChildEvidenceCoverageV1Schema } from '@open-design/contracts';
+import { ChildEvidenceCoverageV1Schema } from '@saascodex/contracts';
 
 import { safeTaskObservationRuntimeVersions } from '../../src/observability/task-observation-aggregation.js';
 import {
@@ -400,7 +400,7 @@ describe('Vela OpenCode child evidence adapter', () => {
     const serialized = JSON.stringify(facts[1]);
     expect(serialized).not.toContain('sk-do-not-forward');
     expect(serialized).not.toContain('/private/user/workspace');
-    expect(serialized).toContain('open-design.child-injected-prompt');
+    expect(serialized).toContain('saascodex.child-injected-prompt');
     expect(serialized).toContain('Inspect');
     expect(serialized).toContain('[REDACTED:path]');
     expect(serialized).toContain('[REDACTED:sk_key]');

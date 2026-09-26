@@ -1,9 +1,9 @@
-import type { ArtifactOrigin, ProjectFileVersion } from '@open-design/contracts';
-import type { ArtifactExportResultProps } from '@open-design/contracts/analytics';
+import type { ArtifactOrigin, ProjectFileVersion } from '@saascodex/contracts';
+import type { ArtifactExportResultProps } from '@saascodex/contracts/analytics';
 
 const CONTENT_DIGEST_RE = /^[a-f0-9]{64}$/u;
 const ORIGIN_ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u;
-const EXTERNAL_PLUGIN_IDS = new Set(['open-design']);
+const EXTERNAL_PLUGIN_IDS = new Set(['saascodex']);
 
 export type ArtifactExportOriginProps = Pick<
   ArtifactExportResultProps,

@@ -29,7 +29,7 @@ import { chmod, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:f
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import type { AgentsResponse } from '@open-design/contracts';
+import type { AgentsResponse } from '@saascodex/contracts';
 import { describe, expect, test } from 'vitest';
 
 import { requestJson } from '@/vitest/http';

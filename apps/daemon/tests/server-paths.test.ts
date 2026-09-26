@@ -82,7 +82,7 @@ describe('resolveDaemonResourceRoot', () => {
       'Open Design Beta.app',
       'Contents',
       'Resources',
-      'open-design',
+      'saascodex',
     );
 
     expect(resolveDaemonResourceRoot({ configured, safeBases: [installationRoot] })).toBe(configured);
@@ -101,8 +101,8 @@ describe('resolveDaemonResourceRoot', () => {
 describe('resolveDaemonPluginPreviewsDir', () => {
   it('resolves under the resource root in the packaged layout', () => {
     // Packaged: the prebundled daemon's PROJECT_ROOT is Resources/app (no data/),
-    // but the bundled manifest lives under OD_RESOURCE_ROOT (Resources/open-design).
-    const resourceRoot = '/Applications/Open Design.app/Contents/Resources/open-design';
+    // but the bundled manifest lives under OD_RESOURCE_ROOT (Resources/saascodex).
+    const resourceRoot = '/Applications/Open Design.app/Contents/Resources/saascodex';
     const projectRoot = '/Applications/Open Design.app/Contents/Resources/app';
 
     expect(
@@ -125,14 +125,14 @@ describe('resolveDaemonPluginPreviewsDir', () => {
     expect(
       resolveDaemonPluginPreviewsDir({
         env: { OD_PLUGIN_PREVIEWS_DIR: '/abs/previews' },
-        resourceRoot: '/res/open-design',
+        resourceRoot: '/res/saascodex',
         projectRoot,
       }),
     ).toBe('/abs/previews');
     expect(
       resolveDaemonPluginPreviewsDir({
         env: { OD_PLUGIN_PREVIEWS_DIR: 'rel/previews' },
-        resourceRoot: '/res/open-design',
+        resourceRoot: '/res/saascodex',
         projectRoot,
       }),
     ).toBe(path.join(projectRoot, 'rel', 'previews'));

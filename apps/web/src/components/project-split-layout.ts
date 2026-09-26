@@ -14,7 +14,7 @@ import type { CSSProperties } from 'react';
  * it the same way from the same inputs.
  */
 
-export const CHAT_PANEL_WIDTH_STORAGE_KEY = 'open-design.project.chatPanelWidth';
+export const CHAT_PANEL_WIDTH_STORAGE_KEY = 'saascodex.project.chatPanelWidth';
 export const DEFAULT_CHAT_PANEL_WIDTH = 460;
 export const MIN_CHAT_PANEL_WIDTH = 345;
 export const FALLBACK_MAX_CHAT_PANEL_WIDTH = 720;

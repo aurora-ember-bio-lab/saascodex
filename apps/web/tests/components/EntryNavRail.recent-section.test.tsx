@@ -5,7 +5,7 @@
 // grid reads) and opening through the shell's pull-first opener.
 
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryNavRail } from '../../src/components/EntryNavRail';

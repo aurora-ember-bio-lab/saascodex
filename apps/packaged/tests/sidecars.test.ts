@@ -21,8 +21,8 @@ import { tmpdir } from 'node:os';
 import { delimiter, dirname, join, posix } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { SidecarStamp } from '@open-design/sidecar';
-import { APP_KEYS } from '@open-design/sidecar-proto';
+import type { SidecarStamp } from '@saascodex/sidecar';
+import { APP_KEYS } from '@saascodex/sidecar-proto';
 
 import {
   buildPackagedDaemonSpawnEnv,
@@ -479,7 +479,7 @@ describe('resolvePackagedElectronNodeCommand', () => {
   });
 
   it('keeps the main executable on non-macOS platforms', async () => {
-    const execPath = '/opt/Open Design/open-design';
+    const execPath = '/opt/Open Design/saascodex';
 
     await expect(resolvePackagedElectronNodeCommand(execPath, 'linux')).resolves.toBe(execPath);
   });
@@ -676,12 +676,12 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       appVersion: null,
       daemonCliEntry: null,
       legacyDataDir: null,
-      nodeCommand: 'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\open-design\\bin\\node.exe',
+      nodeCommand: 'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\saascodex\\bin\\node.exe',
       requireDesktopAuth: true,
     });
 
     expect(env.OD_NODE_BIN).toBe(
-      'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\open-design\\bin\\node.exe',
+      'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\saascodex\\bin\\node.exe',
     );
   });
 
@@ -693,7 +693,7 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       requireDesktopAuth: true,
       telemetryRelayUrl: 'https://telemetry.open-design.ai/api/langfuse',
     });
-    expect(env.OPEN_DESIGN_TELEMETRY_RELAY_URL).toBe(
+    expect(env.SAASCODEX_TELEMETRY_RELAY_URL).toBe(
       'https://telemetry.open-design.ai/api/langfuse',
     );
   });
@@ -706,7 +706,7 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       legacyDataDir: null,
       requireDesktopAuth: true,
     });
-    expect(env.OPEN_DESIGN_AMR_PROFILE).toBe('test');
+    expect(env.SAASCODEX_AMR_PROFILE).toBe('test');
   });
 
   it('forwards the per-profile Vela console origins to the daemon', () => {
@@ -741,7 +741,7 @@ describe('buildPackagedDaemonSpawnEnv', () => {
         requireDesktopAuth: true,
         velaWebUrl: 'https://vela.example.invalid',
       });
-      expect(env.OPEN_DESIGN_AMR_PROFILE).toBe(amrProfile);
+      expect(env.SAASCODEX_AMR_PROFILE).toBe(amrProfile);
       expect(env.OD_WORKSPACE_CONTEXT_SOURCE).toBe('vela');
       expect(env.OD_TEAM_PROJECTS_TRANSPORT).toBe('vela-cli');
       expect(env.OD_COLLAB_TRANSPORT).toBe('vela-cli');

@@ -1,7 +1,7 @@
 import {
 	touchpointOfflineReplayOf,
 	type TouchpointOfflineReplay,
-} from "@open-design/contracts/api/touchpointOffline";
+} from "@saascodex/contracts/api/touchpointOffline";
 import type { TouchpointOfflineRecovery } from "./touchpoint-lifecycle";
 
 export type ProductionRuntimeRevocationReceipt = Readonly<{

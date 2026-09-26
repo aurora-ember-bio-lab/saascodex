@@ -1,4 +1,4 @@
-import { RELEASE_CHANNELS, type ReleaseChannel } from "@open-design/release";
+import { RELEASE_CHANNELS, type ReleaseChannel } from "@saascodex/release";
 
 export const APP_KEYS = Object.freeze({
   DAEMON: "daemon",
@@ -80,13 +80,13 @@ export const SIDECAR_STAMP_FIELDS = ["app", "mode", "namespace", "ipc", "source"
 
 export const SIDECAR_DEFAULTS = Object.freeze({
   host: "127.0.0.1",
-  ipcBase: "/tmp/open-design/ipc",
+  ipcBase: "/tmp/saascodex/ipc",
   namespace: "default",
   projectTmpDirName: ".tmp",
-  windowsPipePrefix: "open-design",
+  windowsPipePrefix: "saascodex",
 } as const);
 
-export const OPEN_DESIGN_PRODUCT_NAME = "Open Design";
+export const SAASCODEX_PRODUCT_NAME = "Open Design";
 
 export function resolveWindowsReleaseNamespaceToken(value: string): string {
   return value.replace(/[^A-Za-z0-9._-]+/g, "-");
@@ -94,7 +94,7 @@ export function resolveWindowsReleaseNamespaceToken(value: string): string {
 
 export function resolveWindowsUninstallRegistryKey(namespace: string): string {
   const namespaceToken = resolveWindowsReleaseNamespaceToken(namespace);
-  return `Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${OPEN_DESIGN_PRODUCT_NAME}-${namespaceToken}`;
+  return `Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${SAASCODEX_PRODUCT_NAME}-${namespaceToken}`;
 }
 
 export const SIDECAR_MESSAGES = Object.freeze({
@@ -714,7 +714,7 @@ export type ShutdownResult = {
 
 /**
  * Legacy runtime-layout descriptor retained for the generic path/bootstrap
- * contract. This is not sidecar process identity: `@open-design/sidecar` owns
+ * contract. This is not sidecar process identity: `@saascodex/sidecar` owns
  * the authoritative five-field argv stamp, and IPC is private transport state.
  */
 export type LegacySidecarRuntimeLayout = {
@@ -728,7 +728,7 @@ export type LegacySidecarRuntimeLayout = {
 type LegacySidecarRuntimeLayoutInput = Partial<Record<(typeof SIDECAR_STAMP_FIELDS)[number], unknown>>;
 type LegacySidecarRuntimeLayoutCriteria = Partial<LegacySidecarRuntimeLayout>;
 
-export type OpenDesignSidecarContract = {
+export type SaaSCodexSidecarContract = {
   appKeys: typeof APP_KEYS;
   defaults: typeof SIDECAR_DEFAULTS;
   env: typeof SIDECAR_RUNTIME_ENV;
@@ -1176,7 +1176,7 @@ export function normalizeDesktopSidecarMessage(input: unknown): DesktopSidecarMe
   }
 }
 
-export const OPEN_DESIGN_SIDECAR_CONTRACT = Object.freeze({
+export const SAASCODEX_SIDECAR_CONTRACT = Object.freeze({
   appKeys: APP_KEYS,
   defaults: SIDECAR_DEFAULTS,
   env: SIDECAR_RUNTIME_ENV,
@@ -1195,4 +1195,4 @@ export const OPEN_DESIGN_SIDECAR_CONTRACT = Object.freeze({
   updateChannels: DESKTOP_UPDATE_CHANNELS,
   updateModes: DESKTOP_UPDATE_MODES,
   updateStates: DESKTOP_UPDATE_STATES,
-} as const satisfies OpenDesignSidecarContract);
+} as const satisfies SaaSCodexSidecarContract);

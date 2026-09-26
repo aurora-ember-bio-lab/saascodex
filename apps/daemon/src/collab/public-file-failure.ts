@@ -3,7 +3,7 @@ import {
   normalizeUpstreamStatus,
   type ApiFailureDetail,
   type ApiFailureStage,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { velaCommandStderr } from '../integrations/vela-command.js';
 
 /**

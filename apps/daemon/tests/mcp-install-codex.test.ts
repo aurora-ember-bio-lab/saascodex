@@ -55,7 +55,7 @@ describe('codex-cli default runner', () => {
     Object.defineProperty(process, 'platform', { configurable: true, value: 'win32' });
 
     const invocation = createCodexCliInvocation(
-      ['mcp', 'get', 'open-design'],
+      ['mcp', 'get', 'saascodex'],
       { ComSpec: 'C:\\Windows\\System32\\cmd.exe' },
       {},
       () => 'C:\\Users\\Amy\\AppData\\Roaming\\npm\\codex.cmd',
@@ -67,7 +67,7 @@ describe('codex-cli default runner', () => {
         '/d',
         '/s',
         '/c',
-        '"C:\\Users\\Amy\\AppData\\Roaming\\npm\\codex.cmd mcp get open-design"',
+        '"C:\\Users\\Amy\\AppData\\Roaming\\npm\\codex.cmd mcp get saascodex"',
       ],
       windowsVerbatimArguments: true,
     });
@@ -85,7 +85,7 @@ describe('codex-cli default runner', () => {
       vi.stubEnv('PATHEXT', '.CMD');
       vi.stubEnv('OD_AGENT_HOME', shimDir);
 
-      await expect(probeCodexInstall('open-design')).resolves.toEqual({
+      await expect(probeCodexInstall('saascodex')).resolves.toEqual({
         available: true,
         installed: true,
       });
@@ -104,44 +104,44 @@ describe('codex-cli probe', () => {
     });
     setCodexRunner(runner);
 
-    const status = await probeCodexInstall('open-design');
+    const status = await probeCodexInstall('saascodex');
     expect(status).toEqual({ available: false, installed: false });
     expect(runner.calls).toHaveLength(1);
-    expect(runner.calls[0]?.args).toEqual(['mcp', 'get', 'open-design']);
+    expect(runner.calls[0]?.args).toEqual(['mcp', 'get', 'saascodex']);
   });
 
   it('reports available:true installed:false when `codex mcp get` says no such server', async () => {
     const runner = makeStubRunner(async () => ({
       exitCode: 1,
       stdout: '',
-      stderr: "Error: No MCP server named 'open-design' found.\n",
+      stderr: "Error: No MCP server named 'saascodex' found.\n",
     }));
     setCodexRunner(runner);
 
-    const status = await probeCodexInstall('open-design');
+    const status = await probeCodexInstall('saascodex');
     expect(status).toEqual({ available: true, installed: false });
   });
 
   it('reports available:true installed:true when `codex mcp get` returns the server entry', async () => {
     const runner = makeStubRunner(async () => ({
       exitCode: 0,
-      stdout: 'open-design\n  enabled: true\n  transport: stdio\n',
+      stdout: 'saascodex\n  enabled: true\n  transport: stdio\n',
       stderr: '',
     }));
     setCodexRunner(runner);
 
-    const status = await probeCodexInstall('open-design');
+    const status = await probeCodexInstall('saascodex');
     expect(status).toEqual({ available: true, installed: true });
   });
 });
 
 describe('codex-cli install', () => {
   it('shells out `codex mcp add` with --env pairs and -- before the command', async () => {
-    const runner = makeStubRunner(async () => ({ exitCode: 0, stdout: "Added global MCP server 'open-design'.\n", stderr: '' }));
+    const runner = makeStubRunner(async () => ({ exitCode: 0, stdout: "Added global MCP server 'saascodex'.\n", stderr: '' }));
     setCodexRunner(runner);
 
     await installCodexMcp({
-      name: 'open-design',
+      name: 'saascodex',
       command: '/path/to/node',
       args: ['/path/to/cli.js', 'mcp'],
       env: { OD_DATA_DIR: '/tmp/od', OD_TEST_CLIENT_CAPABILITY: 'opaque' },
@@ -151,7 +151,7 @@ describe('codex-cli install', () => {
     expect(runner.calls[0]?.args).toEqual([
       'mcp',
       'add',
-      'open-design',
+      'saascodex',
       '--env',
       'OD_DATA_DIR=/tmp/od',
       '--env',
@@ -164,11 +164,11 @@ describe('codex-cli install', () => {
   });
 
   it('rejects when codex exits non-zero, surfacing stderr', async () => {
-    const runner = makeStubRunner(async () => ({ exitCode: 1, stdout: '', stderr: "Error: 'open-design' already exists\n" }));
+    const runner = makeStubRunner(async () => ({ exitCode: 1, stdout: '', stderr: "Error: 'saascodex' already exists\n" }));
     setCodexRunner(runner);
 
     await expect(
-      installCodexMcp({ name: 'open-design', command: 'node', args: ['cli.js', 'mcp'], env: {} }),
+      installCodexMcp({ name: 'saascodex', command: 'node', args: ['cli.js', 'mcp'], env: {} }),
     ).rejects.toThrow(/already exists/);
   });
 
@@ -176,8 +176,8 @@ describe('codex-cli install', () => {
     const runner = makeStubRunner(async () => ({ exitCode: 0, stdout: '', stderr: '' }));
     setCodexRunner(runner);
 
-    await installCodexMcp({ name: 'open-design', command: '/n', args: ['cli'], env: {} });
-    expect(runner.calls[0]?.args).toEqual(['mcp', 'add', 'open-design', '--', '/n', 'cli']);
+    await installCodexMcp({ name: 'saascodex', command: '/n', args: ['cli'], env: {} });
+    expect(runner.calls[0]?.args).toEqual(['mcp', 'add', 'saascodex', '--', '/n', 'cli']);
   });
 });
 
@@ -186,26 +186,26 @@ describe('codex-cli uninstall', () => {
     const runner = makeStubRunner(async () => ({ exitCode: 0, stdout: '', stderr: '' }));
     setCodexRunner(runner);
 
-    await uninstallCodexMcp('open-design');
-    expect(runner.calls[0]?.args).toEqual(['mcp', 'remove', 'open-design']);
+    await uninstallCodexMcp('saascodex');
+    expect(runner.calls[0]?.args).toEqual(['mcp', 'remove', 'saascodex']);
   });
 
   it('rejects when codex exits non-zero', async () => {
     const runner = makeStubRunner(async () => ({ exitCode: 1, stdout: '', stderr: 'Error: not found\n' }));
     setCodexRunner(runner);
-    await expect(uninstallCodexMcp('open-design')).rejects.toThrow(/not found/);
+    await expect(uninstallCodexMcp('saascodex')).rejects.toThrow(/not found/);
   });
 });
 
 describe('refreshOwnedCodexMcp', () => {
   const spec = {
-    name: 'open-design',
+    name: 'saascodex',
     command: '/Applications/Open Design Prerelease.app/Contents/Frameworks/Helper',
     args: ['/Applications/Open Design Prerelease.app/cli.js', 'mcp'],
     env: { OD_MCP_BOOTSTRAP_ARGS: '["--headless","--od-mcp-managed"]' },
   };
   const existingJson = JSON.stringify({
-    name: 'open-design',
+    name: 'saascodex',
     enabled: true,
     transport: { type: 'stdio', command: '/old/Helper', args: ['/old/cli.js', 'mcp'], env: { OD_DATA_DIR: '/data/prerelease' } },
   });
@@ -217,8 +217,8 @@ describe('refreshOwnedCodexMcp', () => {
     await expect(refreshOwnedCodexMcp(spec, isOwned)).resolves.toBe('refreshed');
     expect(isOwned).toHaveBeenCalledWith({ command: '/old/Helper', args: ['/old/cli.js', 'mcp'], env: { OD_DATA_DIR: '/data/prerelease' } });
     expect(runner.calls.map((call) => call.args.slice(0, 3))).toEqual([
-      ['mcp', 'get', 'open-design'],
-      ['mcp', 'add', 'open-design'],
+      ['mcp', 'get', 'saascodex'],
+      ['mcp', 'add', 'saascodex'],
     ]);
   });
 
@@ -227,7 +227,7 @@ describe('refreshOwnedCodexMcp', () => {
     setCodexRunner(runner);
     await expect(refreshOwnedCodexMcp(spec, () => false)).resolves.toBe('foreign');
     // Only the read ran: nothing was written.
-    expect(runner.calls.map((call) => call.args)).toEqual([['mcp', 'get', 'open-design', '--json']]);
+    expect(runner.calls.map((call) => call.args)).toEqual([['mcp', 'get', 'saascodex', '--json']]);
   });
 
   it('leaves a registration it cannot read untouched', async () => {

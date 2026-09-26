@@ -93,7 +93,7 @@ PRs.
     hash } } }`. 125 entries at base.
 - **How to pull:**
   ```
-  gh repo clone nexu-io/open-design && cd open-design
+  gh repo clone nexu-io/open-design && cd saascodex
   git checkout spec/plugin-preview-bake-pipeline   # this spec
   # the described code is on main:
   git show origin/main:.github/workflows/bake-plugin-previews.yml

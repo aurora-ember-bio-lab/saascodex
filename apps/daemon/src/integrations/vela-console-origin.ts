@@ -8,7 +8,7 @@ type EnvMap = NodeJS.ProcessEnv | Record<string, string | undefined>;
 // site — every consumer concatenates, none resolves against it as a URL base.
 //
 // The test entry moved off `vela.powerformer.net` onto
-// `open-design.powerformer.net/cloud` when vela cut the test Cloud domain over
+// `saascodex.powerformer.net/cloud` when vela cut the test Cloud domain over
 // (vela #1922 prepare, #1929 finalize). The new host serves the test Landing
 // page at `/` and hands `/cloud*` and `/amr*` to a test-only path proxy; the
 // legacy hostname is no longer a mapped test route and is scheduled for
@@ -22,7 +22,7 @@ export const DEFAULT_VELA_CONSOLE_ORIGIN = 'https://open-design.ai/cloud';
 
 const PUBLIC_ORIGINS: Partial<Record<string, string>> = {
   prod: DEFAULT_VELA_CONSOLE_ORIGIN,
-  test: 'https://open-design.powerformer.net/cloud',
+  test: 'https://saascodex.powerformer.net/cloud',
   local: 'http://localhost:5173',
 };
 
@@ -71,7 +71,7 @@ export function resolveEffectiveVelaConsoleOrigin(
     if (packagedOrigin) return packagedOrigin;
   }
   const hasRuntimeSelection = Boolean(
-    configuredEnv.OPEN_DESIGN_AMR_PROFILE?.trim() || configuredEnv.VELA_PROFILE?.trim(),
+    configuredEnv.SAASCODEX_AMR_PROFILE?.trim() || configuredEnv.VELA_PROFILE?.trim(),
   );
   const publicOrigin = hasRuntimeSelection ? PUBLIC_ORIGINS[selectedProfile] : undefined;
   if (publicOrigin) return publicOrigin;

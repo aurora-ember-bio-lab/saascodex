@@ -34,7 +34,7 @@ import {
   type WorkspaceBillingResponse,
   type WorkspaceBillingSummary,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryShell } from '../../src/components/EntryShell';
@@ -146,7 +146,7 @@ function billingResponse(
 function agent(): AgentInfo {
   return {
     id: 'amr',
-    name: 'OpenDesign AMR',
+    name: 'SaaSCodex AMR',
     bin: 'amr',
     available: true,
     models: [{ id: 'glm-5', label: 'GLM 5' }],
@@ -250,7 +250,7 @@ async function mountHomeShell(initial: WorkspaceCollabContext): Promise<Harness>
     }
     if (url.includes('/api/workspace/billing?')) {
       const workspaceId =
-        new URL(url, 'http://open-design.test').searchParams.get('workspaceId') ?? '';
+        new URL(url, 'http://saascodex.test').searchParams.get('workspaceId') ?? '';
       billingReads.push(workspaceId);
       if (workspaceId === PAID_TEAM.workspaceId) {
         return jsonResponse(
@@ -268,7 +268,7 @@ async function mountHomeShell(initial: WorkspaceCollabContext): Promise<Harness>
     if (url.endsWith('/api/plugins')) return jsonResponse({ plugins: [] });
     if (url.endsWith('/api/mcp/servers')) return jsonResponse({ servers: [] });
     if (url.endsWith('/api/community/discord')) return jsonResponse({ stale: true });
-    if (url.endsWith('/api/github/open-design')) return jsonResponse({ stale: true });
+    if (url.endsWith('/api/github/saascodex')) return jsonResponse({ stale: true });
     return jsonResponse({});
   }) as typeof fetch;
 

@@ -7,7 +7,7 @@ import {
   buildWorkspaceSeatSummary,
   type ConnectorDetail,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 import {
   buildDesignSystemPackageAuditRepairPrompt,
@@ -874,7 +874,7 @@ describe('DesignSystemCreationFlow', () => {
     await waitFor(() => expect(mocks.patchProject).toHaveBeenCalledWith(
       project.id,
       expect.objectContaining({
-        pendingPrompt: expect.stringContaining('Create this project as a complete OpenDesign design system workspace.'),
+        pendingPrompt: expect.stringContaining('Create this project as a complete SaaSCodex design system workspace.'),
       }),
     ));
     await waitFor(() => expect(onProjectPrepared).toHaveBeenCalledWith(
@@ -961,7 +961,7 @@ describe('DesignSystemCreationFlow', () => {
     expect(mocks.patchProject).toHaveBeenCalledWith(
       project.id,
       expect.objectContaining({
-        pendingPrompt: expect.stringContaining('Create this project as a complete OpenDesign design system workspace.'),
+        pendingPrompt: expect.stringContaining('Create this project as a complete SaaSCodex design system workspace.'),
       }),
     );
     expect(mocks.patchProject).toHaveBeenCalledWith(
@@ -2064,21 +2064,21 @@ describe('DesignSystemCreationFlow', () => {
 
   it.skip('adds website source links with Enter and keeps them out of GitHub intake', async () => {
     const system: DesignSystemDetail = {
-      id: 'user:open-design-website-design-system',
-      title: 'OpenDesign Website Design System',
+      id: 'user:saascodex-website-design-system',
+      title: 'SaaSCodex Website Design System',
       category: 'Custom',
-      summary: 'OpenDesign website source.',
+      summary: 'SaaSCodex website source.',
       swatches: [],
       surface: 'web',
-      body: '# OpenDesign Website Design System\n',
+      body: '# SaaSCodex Website Design System\n',
       source: 'user',
       status: 'draft',
       isEditable: true,
-      projectId: 'ds-open-design-website-design-system',
+      projectId: 'ds-saascodex-website-design-system',
     };
     const project: Project = {
-      id: 'ds-open-design-website-design-system',
-      name: 'OpenDesign Website Design System',
+      id: 'ds-saascodex-website-design-system',
+      name: 'SaaSCodex Website Design System',
       skillId: null,
       designSystemId: system.id,
       createdAt: 1,
@@ -2112,7 +2112,7 @@ describe('DesignSystemCreationFlow', () => {
     expect(sourceInput.value).toBe('');
 
     fireEvent.change(screen.getByPlaceholderText(/Mission Impastabowl/i), {
-      target: { value: 'OpenDesign website source' },
+      target: { value: 'SaaSCodex website source' },
     });
     continueToGeneration();
     continueToGeneration();
@@ -2165,7 +2165,7 @@ describe('DesignSystemCreationFlow', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Show access methods' }));
     expect(screen.getByText('This device')).toBeTruthy();
-    expect(screen.getByText('OpenDesign account')).toBeTruthy();
+    expect(screen.getByText('SaaSCodex account')).toBeTruthy();
     expect(screen.getByText('Connector platform')).toBeTruthy();
     expect(screen.getByText('Coming soon')).toBeTruthy();
     expect(screen.getByText('Not configured')).toBeTruthy();
@@ -2329,7 +2329,7 @@ describe('DesignSystemCreationFlow', () => {
         redirectUrl: 'https://example.com/oauth',
         expiresAt: '2099-05-08T10:00:00.000Z',
       },
-      error: 'Popup blocked. Allow popups for OpenDesign and try again.',
+      error: 'Popup blocked. Allow popups for SaaSCodex and try again.',
     });
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => ({ closed: false } as Window));
     const config = {
@@ -2350,7 +2350,7 @@ describe('DesignSystemCreationFlow', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Connect via Composio' }));
 
       await waitFor(() => expect(screen.getByText('Pending')).toBeTruthy());
-      expect(screen.getByText('Popup blocked. Allow popups for OpenDesign and try again.')).toBeTruthy();
+      expect(screen.getByText('Popup blocked. Allow popups for SaaSCodex and try again.')).toBeTruthy();
 
       fireEvent.click(screen.getByRole('button', { name: 'Open authorization' }));
 
@@ -2448,7 +2448,7 @@ describe('DesignSystemCreationFlow', () => {
     expect(mocks.writeProjectTextFile).toHaveBeenCalledWith(
       project.id,
       'context/source-context.md',
-      expect.stringContaining('"$OD_NODE_BIN" "$OD_BIN" tools connectors github-design-context --repo \'https://github.com/nexu-io/open-design\' --output context/github/nexu-io-open-design.md'),
+      expect.stringContaining('"$OD_NODE_BIN" "$OD_BIN" tools connectors github-design-context --repo \'https://github.com/nexu-io/open-design\' --output context/github/nexu-io-saascodex.md'),
       undefined,
       null,
     );

@@ -17,7 +17,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Dialog, DialogDescription, DialogFooter, DialogTitle } from '@open-design/components';
+import { Dialog, DialogDescription, DialogFooter, DialogTitle } from '@saascodex/components';
 
 const MOVE_CONFIRM_SKIP_KEY = 'od.projects.moveConfirmSkip';
 import { useT } from '../i18n';
@@ -54,7 +54,7 @@ import {
   workspaceContextHasTeamIdentity,
   type WorkspaceCollabContext,
   type WorkspaceProjectSummary,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { useWorkspaceInvalidation } from '../collab/workspace-events';
 import {
   THUMBNAIL_OVERSCAN_MARGIN,
@@ -90,7 +90,7 @@ import {
   countBucket,
   workspaceAnalyticsDimensions,
 } from '../analytics/workspace';
-import type { ProjectCollectionClickProps } from '@open-design/contracts/analytics';
+import type { ProjectCollectionClickProps } from '@saascodex/contracts/analytics';
 
 /** Which project space this strip renders. Drives the per-card 共享 badge
  *  (hidden in the all-shared team space) and the "{creator}创建" line: 'recent'

@@ -1,7 +1,7 @@
 import type {
   TrackingRunAdmissionPhase,
   TrackingRunPolicyReason,
-} from '@open-design/contracts/analytics';
+} from '@saascodex/contracts/analytics';
 import type {
   RunEventForFailureClassification,
   RunFailureClassification,

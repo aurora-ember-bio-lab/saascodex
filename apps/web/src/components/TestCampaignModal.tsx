@@ -2,12 +2,12 @@ import {
 	TOUCHPOINT_COMPONENT_V2_RUNTIME_API_VERSION,
 	TOUCHPOINT_COMPONENT_V2_SDK_VERSION,
 	TOUCHPOINT_COMPONENT_V2_WRAPPER_VERSION,
-} from "@open-design/contracts";
+} from "@saascodex/contracts";
 import type {
 	TestRuntimeContext,
 	TestRuntimeDecision,
-} from "@open-design/contracts/api/touchpointTestRuntime";
-import { getOpenDesignHost, OPEN_DESIGN_HOST_VERSION } from "@open-design/host";
+} from "@saascodex/contracts/api/touchpointTestRuntime";
+import { getSaaSCodexHost, SAASCODEX_HOST_VERSION } from "@saascodex/host";
 import { mountTouchpoint } from "./touchpoint-lifecycle";
 import {
 	navigateCampaignTarget,
@@ -193,10 +193,10 @@ export async function dispatchTestCampaignAction(
 }
 
 function supportsHost(authenticated: boolean): boolean {
-	const host = getOpenDesignHost();
+	const host = getSaaSCodexHost();
 	return (
 		authenticated &&
-		host?.version === OPEN_DESIGN_HOST_VERSION &&
+		host?.version === SAASCODEX_HOST_VERSION &&
 		host.client.type === "desktop"
 	);
 }
@@ -299,7 +299,7 @@ export async function recordTestAcceptance(
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify({
 				placementKey: input.placementKey,
-				hostVersion: input.hostVersion ?? String(OPEN_DESIGN_HOST_VERSION),
+				hostVersion: input.hostVersion ?? String(SAASCODEX_HOST_VERSION),
 				locale: input.locale,
 				scenario: input.scenario,
 				evidence: acceptanceEvidence(input),
@@ -307,7 +307,7 @@ export async function recordTestAcceptance(
 					? {
 							version: 1,
 							snapshotHash: input.snapshotHash,
-							hostFamily: "open-design-desktop",
+							hostFamily: "saascodex-desktop",
 							platform: "desktop",
 							hostRelease: process.env.NEXT_PUBLIC_CMS_HOST_RELEASE,
 							runtime: {
@@ -382,7 +382,7 @@ export type TestTouchpointMountProps = Readonly<{
 	onCloseControlChange?: (available: boolean | null) => void;
 }>;
 
-/** Mounts one immutable v2 placement in the real OpenDesign Shadow DOM host. */
+/** Mounts one immutable v2 placement in the real SaaSCodex Shadow DOM host. */
 export function TestTouchpointMount({
 	decision,
 	placementKey,
@@ -456,7 +456,7 @@ function validIso(value: unknown): value is string {
 	);
 }
 
-/** Real Electron Test harness for all enabled OpenDesign placements. */
+/** Real Electron Test harness for all enabled SaaSCodex placements. */
 export function TestCampaignModal({
 	authenticated,
 	sessionSubject,

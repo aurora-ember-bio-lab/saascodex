@@ -13,13 +13,13 @@ import {
   LAUNCHER_AFTER_QUIT_TIMEOUT_MS_ARG,
   LAUNCHER_SCHEMA_VERSION,
   resolveLauncherPaths,
-} from "@open-design/launcher-proto";
+} from "@saascodex/launcher-proto";
 import {
   DESKTOP_UPDATE_CHANNELS,
   DESKTOP_UPDATE_STATES,
   SIDECAR_SOURCES,
-} from "@open-design/sidecar-proto";
-import type { ReleaseChannel } from "@open-design/release";
+} from "@saascodex/sidecar-proto";
+import type { ReleaseChannel } from "@saascodex/release";
 
 import {
   compareVersions,
@@ -105,14 +105,14 @@ async function createUpdaterFixture(options: {
   const artifactExt = platform === "win" ? "exe" : "dmg";
   const arch = platform === "win" ? "x64" : "arm64";
   const artifactName = platform === "win"
-    ? `open-design-${version}-win-x64-setup.exe`
-    : `open-design-${version}-mac-arm64.dmg`;
+    ? `saascodex-${version}-win-x64-setup.exe`
+    : `saascodex-${version}-mac-arm64.dmg`;
   const artifactPath = `/artifact.${artifactExt}`;
   const artifactBody = Buffer.from(options.artifactBody ?? "open design updater fixture");
   const digest = createHash("sha256").update(artifactBody).digest("hex");
   const payloadName = platform === "win"
-    ? `open-design-${version}-win-x64-payload.7z`
-    : `open-design-${version}-mac-arm64-payload.zip`;
+    ? `saascodex-${version}-win-x64-payload.7z`
+    : `saascodex-${version}-mac-arm64-payload.zip`;
   const payloadPath = platform === "win" ? "/payload.7z" : "/payload.zip";
   const payloadBody = Buffer.from(options.payloadBody ?? "open design updater payload fixture");
   const payloadDigest = createHash("sha256").update(payloadBody).digest("hex");
@@ -272,10 +272,10 @@ function metadataResponse(version: string): Response {
         enabled: true,
         artifacts: {
           dmg: {
-            name: `open-design-${version}-mac-arm64.dmg`,
+            name: `saascodex-${version}-mac-arm64.dmg`,
             sha256: "0".repeat(64),
             size: 1,
-            url: `https://example.invalid/open-design-${version}-mac-arm64.dmg`,
+            url: `https://example.invalid/saascodex-${version}-mac-arm64.dmg`,
           },
         },
       },
@@ -299,9 +299,9 @@ async function writeReleaseFixture(root: string, key: string, channel: FixtureCh
 }
 
 async function writeLauncherPayloadFixture(destinationRoot: string, version: string): Promise<void> {
-  await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+  await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
   await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
-  await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+  await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
   await writeFile(join(destinationRoot, "manifest.json"), `${JSON.stringify({
     channel: "beta",
     entry: {
@@ -362,7 +362,7 @@ describe("desktop updater", () => {
 
       await updater.checkForUpdates({ autoDownload: false });
 
-      expect(logger.info).toHaveBeenCalledWith("[open-design updater] lifecycle", expect.objectContaining({
+      expect(logger.info).toHaveBeenCalledWith("[saascodex updater] lifecycle", expect.objectContaining({
         enabled: true,
         event: "session-start",
         metadataUrl: fixture.metadataUrl,
@@ -370,7 +370,7 @@ describe("desktop updater", () => {
         sessionId: "2026-06-09T07:50:51.000Z-12345",
         source: SIDECAR_SOURCES.PACKAGED,
       }));
-      expect(logger.info).toHaveBeenCalledWith("[open-design updater] lifecycle", expect.objectContaining({
+      expect(logger.info).toHaveBeenCalledWith("[saascodex updater] lifecycle", expect.objectContaining({
         event: "check-start",
         metadataUrl: fixture.metadataUrl,
         namespace: "release-beta",
@@ -578,7 +578,7 @@ describe("desktop updater", () => {
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
           extractCount += 1;
-          await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
           await writeFile(
             join(destinationRoot, "manifest.json"),
@@ -595,7 +595,7 @@ describe("desktop updater", () => {
               version: "1.0.0-beta.2",
             })}\n`,
           );
-          await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
         },
         launchAppAfterQuit: async (input) => {
           launches.push({
@@ -613,7 +613,7 @@ describe("desktop updater", () => {
 
       expect(checked.state).toBe(DESKTOP_UPDATE_STATES.DOWNLOADED);
       expect(checked.artifact?.type).toBe("payload");
-      expect(checked.artifact?.name).toBe("open-design-1.0.0-beta.2-win-x64-payload.7z");
+      expect(checked.artifact?.name).toBe("saascodex-1.0.0-beta.2-win-x64-payload.7z");
       expect(checked.capabilities.canApplyInPlace).toBe(true);
       expect(checked.capabilities.canOpenInstaller).toBe(false);
       expect(checked.capabilities.requiresManualInstall).toBe(false);
@@ -930,7 +930,7 @@ describe("desktop updater", () => {
     if (installedOuterVersion != null) {
       await mkdir(join(root, "installed", "resources"), { recursive: true });
       await writeFile(
-        join(root, "installed", "resources", "open-design-config.json"),
+        join(root, "installed", "resources", "saascodex-config.json"),
         `${JSON.stringify({ appVersion: installedOuterVersion })}\n`,
       );
     }
@@ -963,7 +963,7 @@ describe("desktop updater", () => {
     } as const;
     const updaterDeps: NonNullable<Parameters<typeof createDesktopUpdater>[1]> = {
       extractLauncherPayloadArchive: async ({ destinationRoot }) => {
-        await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+        await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
         await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
         await writeFile(
           join(destinationRoot, "manifest.json"),
@@ -977,7 +977,7 @@ describe("desktop updater", () => {
             version: "1.0.0-beta.2",
           })}\n`,
         );
-        await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+        await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
       },
       launchAppAfterQuit: async () => ({ helperLogPath: join(root, "updates", "helpers", "test.log") }),
       processExecPath: "C:\\Program Files\\Open Design Beta\\Open Design Beta.exe",
@@ -1226,7 +1226,7 @@ describe("desktop updater", () => {
       await mkdir(join(root, "state", "lock"), { recursive: true });
       await writeFile(join(root, "state", "lock", "owner.json"), JSON.stringify({
         createdAt: "2026-01-01T00:00:00.000Z",
-        owner: "open-design-updater-lifecycle",
+        owner: "saascodex-updater-lifecycle",
         pid: 2_147_483_647,
         version: 1,
       }));
@@ -1318,9 +1318,9 @@ describe("desktop updater", () => {
   it("rebuilds an owned update store with corrupt metadata through clear-cache", async () => {
     const root = makeRoot();
     try {
-      await writeFile(join(root, ".open-design-updater-root.json"), JSON.stringify({
+      await writeFile(join(root, ".saascodex-updater-root.json"), JSON.stringify({
         createdAt: "2026-01-01T00:00:00.000Z",
-        owner: "open-design-updater",
+        owner: "saascodex-updater",
         source: "tools-pack",
         version: 1,
       }));
@@ -1349,9 +1349,9 @@ describe("desktop updater", () => {
   it("rebuilds an owned update store with unexpected root entries through clear-cache", async () => {
     const root = makeRoot();
     try {
-      await writeFile(join(root, ".open-design-updater-root.json"), JSON.stringify({
+      await writeFile(join(root, ".saascodex-updater-root.json"), JSON.stringify({
         createdAt: "2026-01-01T00:00:00.000Z",
-        owner: "open-design-updater",
+        owner: "saascodex-updater",
         source: "tools-pack",
         version: 1,
       }));
@@ -1369,7 +1369,7 @@ describe("desktop updater", () => {
 
       expect(cleared.state).toBe(DESKTOP_UPDATE_STATES.IDLE);
       expect(existsSync(join(root, "stray-file.bin"))).toBe(false);
-      expect(existsSync(join(root, ".open-design-updater-root.json"))).toBe(true);
+      expect(existsSync(join(root, ".saascodex-updater-root.json"))).toBe(true);
     } finally {
       rmSync(root, { force: true, recursive: true });
     }
@@ -1400,8 +1400,8 @@ describe("desktop updater", () => {
   it("refuses to clear a root whose ownership marker belongs to another updater generation", async () => {
     const root = makeRoot();
     try {
-      await writeFile(join(root, ".open-design-updater-root.json"), JSON.stringify({
-        owner: "open-design-updater",
+      await writeFile(join(root, ".saascodex-updater-root.json"), JSON.stringify({
+        owner: "saascodex-updater",
         version: 999,
       }));
       await writeFile(join(root, "metadata.json"), "{ not json");
@@ -1522,7 +1522,7 @@ describe("desktop updater", () => {
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
           extractCount += 1;
-          await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
           await writeFile(
             join(destinationRoot, "manifest.json"),
@@ -1539,7 +1539,7 @@ describe("desktop updater", () => {
               version: "1.0.0-beta.2",
             })}\n`,
           );
-          await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
         },
         launchAppAfterQuit: async (input) => {
           launches.push({
@@ -1641,7 +1641,7 @@ describe("desktop updater", () => {
 
       expect(checked.state).toBe(DESKTOP_UPDATE_STATES.ERROR);
       expect(checked.error?.code).toBe("launcher-payload-prepare-failed");
-      expect(checked.error?.message).toContain("open-design-config.json");
+      expect(checked.error?.message).toContain("saascodex-config.json");
       expect(existsSync(join(namespaceRoot, "versions", "1.0.0-beta.2"))).toBe(false);
       expect(JSON.parse(await readFile(launcherRuntimePath, "utf8"))).toMatchObject({
         active: { generation: 0, version: "1.0.0-beta.1" },
@@ -1753,9 +1753,9 @@ describe("desktop updater", () => {
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
           await mkdir(join(destinationRoot, "payload", "Open Design Beta.app", "Contents", "MacOS"), { recursive: true });
-          await mkdir(join(destinationRoot, "payload", "Open Design Beta.app", "Contents", "Resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "Open Design Beta.app", "Contents", "Resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design Beta.app", "Contents", "MacOS", "Open Design Beta"), "");
-          await writeFile(join(destinationRoot, "payload", "Open Design Beta.app", "Contents", "Resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "Open Design Beta.app", "Contents", "Resources", "saascodex-config.json"), "{}\n");
           await writeFile(
             join(destinationRoot, "manifest.json"),
             `${JSON.stringify({
@@ -1880,9 +1880,9 @@ describe("desktop updater", () => {
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
           await mkdir(join(destinationRoot, "payload", "Open Design Prerelease.app", "Contents", "MacOS"), { recursive: true });
-          await mkdir(join(destinationRoot, "payload", "Open Design Prerelease.app", "Contents", "Resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "Open Design Prerelease.app", "Contents", "Resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design Prerelease.app", "Contents", "MacOS", "Open Design Prerelease"), "");
-          await writeFile(join(destinationRoot, "payload", "Open Design Prerelease.app", "Contents", "Resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "Open Design Prerelease.app", "Contents", "Resources", "saascodex-config.json"), "{}\n");
           await writeFile(
             join(destinationRoot, "manifest.json"),
             `${JSON.stringify({
@@ -1915,7 +1915,7 @@ describe("desktop updater", () => {
       expect(checked.state).toBe(DESKTOP_UPDATE_STATES.DOWNLOADED);
       expect(checked.channel).toBe(DESKTOP_UPDATE_CHANNELS.PRERELEASE);
       expect(checked.artifact?.type).toBe("payload");
-      expect(checked.artifact?.name).toBe("open-design-1.0.0-prerelease.3-mac-arm64-payload.zip");
+      expect(checked.artifact?.name).toBe("saascodex-1.0.0-prerelease.3-mac-arm64-payload.zip");
       expect(await readFile(checked.downloadPath ?? "", "utf8")).toBe("open design prerelease mac payload fixture");
 
       const installed = await updater.installUpdate();
@@ -2000,9 +2000,9 @@ describe("desktop updater", () => {
         source: SIDECAR_SOURCES.PACKAGED,
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
-          await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
-          await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
           await writeFile(
             join(destinationRoot, "manifest.json"),
             `${JSON.stringify({
@@ -2111,9 +2111,9 @@ describe("desktop updater", () => {
         source: SIDECAR_SOURCES.PACKAGED,
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
-          await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
-          await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
           await writeFile(
             join(destinationRoot, "manifest.json"),
             `${JSON.stringify({
@@ -2227,9 +2227,9 @@ describe("desktop updater", () => {
         source: SIDECAR_SOURCES.PACKAGED,
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
-          await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
-          await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
           await writeFile(
             join(destinationRoot, "manifest.json"),
             `${JSON.stringify({
@@ -2357,9 +2357,9 @@ describe("desktop updater", () => {
         source: SIDECAR_SOURCES.PACKAGED,
       }, {
         extractLauncherPayloadArchive: async ({ destinationRoot }) => {
-          await mkdir(join(destinationRoot, "payload", "resources", "open-design"), { recursive: true });
+          await mkdir(join(destinationRoot, "payload", "resources", "saascodex"), { recursive: true });
           await writeFile(join(destinationRoot, "payload", "Open Design.exe"), "");
-          await writeFile(join(destinationRoot, "payload", "resources", "open-design-config.json"), "{}\n");
+          await writeFile(join(destinationRoot, "payload", "resources", "saascodex-config.json"), "{}\n");
           await writeFile(
             join(destinationRoot, "manifest.json"),
             `${JSON.stringify({
@@ -2498,7 +2498,7 @@ describe("desktop updater", () => {
       expect(checked.state).toBe(DESKTOP_UPDATE_STATES.DOWNLOADED);
       expect(checked.error).toBeUndefined();
       expect(fixture.artifactRequests()).toBe(2);
-      // Byte-range resumption is covered by @open-design/download. At this
+      // Byte-range resumption is covered by @saascodex/download. At this
       // integration boundary, a full retry is also valid when the interrupted
       // response did not persist any partial bytes before the stream failed.
       expect(logger.warn).not.toHaveBeenCalled();
@@ -2890,10 +2890,10 @@ describe("desktop updater", () => {
               enabled: true,
               artifacts: {
                 dmg: {
-                  name: `open-design-${version}-mac-arm64.dmg`,
+                  name: `saascodex-${version}-mac-arm64.dmg`,
                   sha256: digest,
                   size: artifactBody.byteLength,
-                  url: `https://fixture.test/open-design-${version}-mac-arm64.dmg`,
+                  url: `https://fixture.test/saascodex-${version}-mac-arm64.dmg`,
                 },
               },
             },
@@ -2939,8 +2939,8 @@ describe("desktop updater", () => {
     const root = makeRoot();
     const fixture = await createUpdaterFixture();
     try {
-      await writeFile(join(root, ".open-design-updater-root.json"), JSON.stringify({
-        owner: "open-design-updater",
+      await writeFile(join(root, ".saascodex-updater-root.json"), JSON.stringify({
+        owner: "saascodex-updater",
         version: 1,
       }));
       await writeFile(join(root, "state.json"), "{}");
@@ -3541,10 +3541,10 @@ describe("desktop updater", () => {
         incoming: {
           arch: "x64",
           artifact: {
-            name: "open-design-1.0.1-win-x64-setup.exe",
+            name: "saascodex-1.0.1-win-x64-setup.exe",
             platformKey: "win",
             type: "installer",
-            url: "https://fixture.test/open-design-1.0.1-win-x64-setup.exe",
+            url: "https://fixture.test/saascodex-1.0.1-win-x64-setup.exe",
           },
           channel: "stable",
           cycleId,
@@ -3783,7 +3783,7 @@ describe("desktop updater", () => {
         removedAt: "2026-06-09T07:50:51.000Z",
         state: "cleanup-removed",
       });
-      expect(logger.info).toHaveBeenCalledWith("[open-design updater] lifecycle", expect.objectContaining({
+      expect(logger.info).toHaveBeenCalledWith("[saascodex updater] lifecycle", expect.objectContaining({
         event: "launcher-lifecycle",
         removed: 1,
         retained: 1,
@@ -3891,7 +3891,7 @@ describe("desktop updater", () => {
       const checked = await updater.checkForUpdates();
       expect(checked.state).toBe(DESKTOP_UPDATE_STATES.ERROR);
       expect(checked.error?.code).toBe("update-root-not-owned");
-      expect(existsSync(join(realRoot, ".open-design-updater-root.json"))).toBe(false);
+      expect(existsSync(join(realRoot, ".saascodex-updater-root.json"))).toBe(false);
     } finally {
       await fixture.close();
       rmSync(linkParent, { force: true, recursive: true });

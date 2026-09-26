@@ -1,4 +1,4 @@
-import type { WorkspaceDirectoryItem } from '@open-design/contracts';
+import type { WorkspaceDirectoryItem } from '@saascodex/contracts';
 
 export interface WorkspaceExactAuthorityCacheOptions {
   identity(): string;

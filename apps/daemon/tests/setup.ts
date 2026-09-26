@@ -26,7 +26,7 @@ function ensureDaemonCliBuilt() {
   });
 }
 
-const TEST_DATA_DIR_SYMBOL = Symbol.for('open-design.daemon.vitestDataDir');
+const TEST_DATA_DIR_SYMBOL = Symbol.for('saascodex.daemon.vitestDataDir');
 
 const globalState = globalThis as typeof globalThis & {
   [TEST_DATA_DIR_SYMBOL]?: string;
@@ -46,10 +46,10 @@ if (!globalState[TEST_DATA_DIR_SYMBOL]) {
 process.env.OD_DATA_DIR = globalState[TEST_DATA_DIR_SYMBOL];
 // Keep unit tests from reading a developer's stored Vela profile and routing
 // Langfuse-shaped telemetry through the authenticated Vela sink by accident.
-process.env.OPEN_DESIGN_VELA_TELEMETRY ??= 'off';
+process.env.SAASCODEX_VELA_TELEMETRY ??= 'off';
 
 // Publish/share endpoints shell out through OD_NODE_BIN + OD_BIN (dist/cli.js).
 // Build the CLI artifact once per vitest process so package tests do not depend
-// on a prior manual `pnpm --filter @open-design/daemon build`.
+// on a prior manual `pnpm --filter @saascodex/daemon build`.
 ensureDaemonCliBuilt();
 process.env.OD_DAEMON_CLI_PATH = daemonCliDist;

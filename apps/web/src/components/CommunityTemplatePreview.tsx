@@ -15,7 +15,7 @@
 import type {
   InstalledPluginRecord,
   WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useT } from '../i18n';
@@ -409,7 +409,7 @@ function templatePreviewHtml(template: TemplateDemo): string {
     <section class="sections">
       <div class="section"><b>Structure</b><span>Ready-made sections and hierarchy.</span></div>
       <div class="section"><b>Visual System</b><span>Color, type, rhythm, and reusable blocks.</span></div>
-      <div class="section"><b>Editable</b><span>Remix into a real OpenDesign project.</span></div>
+      <div class="section"><b>Editable</b><span>Remix into a real SaaSCodex project.</span></div>
     </section>
   </main>
 </body>

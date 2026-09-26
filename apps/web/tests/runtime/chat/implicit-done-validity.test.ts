@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest';
-import type { PersistedAgentEvent } from '@open-design/contracts';
+import type { PersistedAgentEvent } from '@saascodex/contracts';
 import { createArtifactParser } from '../../../src/artifacts/parser';
 import { readQuestionFormPayloadAt } from '../../../src/artifacts/question-form';
 import { buildTurnBlocks } from '../../../src/runtime/chat/build-turn-blocks';

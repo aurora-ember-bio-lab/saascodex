@@ -16,14 +16,14 @@
 import { spawn } from 'node:child_process';
 import { access, constants as fsConstants } from 'node:fs/promises';
 import path from 'node:path';
-import { createCommandInvocation } from '@open-design/platform';
+import { createCommandInvocation } from '@saascodex/platform';
 import type { Express } from 'express';
 import type {
   HostEditor,
   HostEditorId,
   HostEditorsResponse,
   OpenProjectInEditorResponse,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import type { RouteDeps } from '../server-context.js';
 import type { AuthorizeProjectRequest } from '../collab/project-request-authority.js';
 

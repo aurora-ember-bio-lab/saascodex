@@ -5,7 +5,7 @@
 //
 //   - Copy plugin id          (raw `<id>` for paste-into-yaml)
 //   - Copy install command    (`od plugin install <ref>`)
-//   - Copy README badge       (OpenDesign powered, includes link)
+//   - Copy README badge       (SaaSCodex powered, includes link)
 //   - Open source on GitHub   (when the source is a github repo)
 //   - Open homepage           (when manifest.homepage is set)
 //   - Open in marketplace     (always — the canonical detail page)
@@ -16,14 +16,14 @@
 // toast confirms every copy action so the user trusts the click landed.
 
 import { useEffect, useRef, useState } from 'react';
-import type { InstalledPluginRecord } from '@open-design/contracts';
+import type { InstalledPluginRecord } from '@saascodex/contracts';
 import { Icon } from '../Icon';
 import { useT } from '../../i18n';
 import { copyToClipboard } from '../../lib/copy-to-clipboard';
 import { derivePluginSourceLinks } from '../../runtime/plugin-source';
-import { pluginShareUrl } from '@open-design/contracts';
+import { pluginShareUrl } from '@saascodex/contracts';
 
-const PUBLIC_OPEN_DESIGN_MARKETPLACE_ID = 'official';
+const PUBLIC_SAASCODEX_MARKETPLACE_ID = 'official';
 const PUBLIC_COMMUNITY_MARKETPLACE_ID = 'community';
 
 interface Props {
@@ -83,7 +83,7 @@ export function buildPluginShareUrl(record: InstalledPluginRecord): string | nul
   // no link — never leak a local tools-dev origin (127.0.0.1:<port>).
   const hasPublicPage =
     record.sourceKind === 'bundled' ||
-    record.sourceMarketplaceId === PUBLIC_OPEN_DESIGN_MARKETPLACE_ID ||
+    record.sourceMarketplaceId === PUBLIC_SAASCODEX_MARKETPLACE_ID ||
     record.sourceMarketplaceId === PUBLIC_COMMUNITY_MARKETPLACE_ID;
   if (!hasPublicPage) return null;
   // Community marketplace entry names use the `community/<folder>` path form
@@ -105,7 +105,7 @@ function buildPluginMarketplacePath(record: InstalledPluginRecord): string {
 }
 
 function buildMarkdownBadge(record: InstalledPluginRecord, url: string): string {
-  return `[![${record.title} — OpenDesign plugin](https://img.shields.io/badge/Open%20Design-${encodeURIComponent(record.title)}-d65a31?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2C)](${url})`;
+  return `[![${record.title} — SaaSCodex plugin](https://img.shields.io/badge/Open%20Design-${encodeURIComponent(record.title)}-d65a31?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2C)](${url})`;
 }
 
 export function PluginShareMenu({ record, variant = 'default' }: Props) {

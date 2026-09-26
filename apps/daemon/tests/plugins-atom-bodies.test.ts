@@ -3,7 +3,7 @@
 // The substrate slice for lifting `composeSystemPrompt`'s prompt
 // constants into the bundled atom plugins. The daemon-side helper
 // reads `<bundled-fsPath>/SKILL.md` and strips frontmatter; the
-// pure renderer in @open-design/contracts then assembles the stage
+// pure renderer in @saascodex/contracts then assembles the stage
 // prompt block. This test pins both halves of the contract so a
 // future PR that lifts system.ts has zero scaffolding to build.
 
@@ -15,7 +15,7 @@ import Database from 'better-sqlite3';
 import { migratePlugins } from '../src/plugins/persistence.js';
 import { registerBundledPlugins } from '../src/plugins/bundled.js';
 import { loadAtomBodies } from '../src/plugins/atom-bodies.js';
-import { renderActiveStageBlock, renderActiveStageBlocks } from '@open-design/contracts';
+import { renderActiveStageBlock, renderActiveStageBlocks } from '@saascodex/contracts';
 
 const SAMPLE_MANIFEST = (id: string) =>
   JSON.stringify({
@@ -49,9 +49,9 @@ beforeEach(async () => {
   const atomB = path.join(tmpRoot, 'atoms', 'todo-write');
   await mkdir(atomA, { recursive: true });
   await mkdir(atomB, { recursive: true });
-  await writeFile(path.join(atomA, 'open-design.json'), SAMPLE_MANIFEST('discovery-question-form'));
+  await writeFile(path.join(atomA, 'saascodex.json'), SAMPLE_MANIFEST('discovery-question-form'));
   await writeFile(path.join(atomA, 'SKILL.md'), SAMPLE_SKILL('discovery-question-form', 'Ask the user about audience.'));
-  await writeFile(path.join(atomB, 'open-design.json'), SAMPLE_MANIFEST('todo-write'));
+  await writeFile(path.join(atomB, 'saascodex.json'), SAMPLE_MANIFEST('todo-write'));
   await writeFile(path.join(atomB, 'SKILL.md'), SAMPLE_SKILL('todo-write', 'Commit a numbered plan.'));
 
   await registerBundledPlugins({ db, bundledRoot: tmpRoot });

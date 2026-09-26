@@ -13,11 +13,11 @@
 // needs to commit.
 
 import { useMemo, useRef, useState } from 'react';
-import { VisuallyHidden } from '@open-design/components';
+import { VisuallyHidden } from '@saascodex/components';
 import type {
   InstalledPluginRecord,
   WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { useI18n } from '../../i18n';
 import { useDeckPreviewScale } from '../../lib/use-deck-preview-scale';
 import type { PluginShareAction } from '../../state/projects';
@@ -393,18 +393,18 @@ export function PluginCard({
               <button
                 type="button"
                 className="plugins-home__action plugins-home__action--secondary plugins-home__action--compact"
-                onClick={() => onShareAction(record, 'contribute-open-design')}
+                onClick={() => onShareAction(record, 'contribute-saascodex')}
                 disabled={pendingAny || shareBusy}
-                aria-busy={sharePendingAction === 'contribute-open-design' ? 'true' : undefined}
+                aria-busy={sharePendingAction === 'contribute-saascodex' ? 'true' : undefined}
                 aria-label={t('pluginCard.contributeAria', { title })}
                 title={t('pluginCard.contributeTitle')}
-                data-testid={`plugins-home-contribute-open-design-${record.id}`}
+                data-testid={`plugins-home-contribute-saascodex-${record.id}`}
               >
                 <Icon
-                  name={sharePendingAction === 'contribute-open-design' ? 'spinner' : 'share'}
+                  name={sharePendingAction === 'contribute-saascodex' ? 'spinner' : 'share'}
                   size={12}
                 />
-                <span>{sharePendingAction === 'contribute-open-design' ? t('pluginCard.starting') : t('pluginCard.contribute')}</span>
+                <span>{sharePendingAction === 'contribute-saascodex' ? t('pluginCard.starting') : t('pluginCard.contribute')}</span>
               </button>
             </div>
           ) : null}

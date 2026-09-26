@@ -95,8 +95,8 @@ describe('G16 · 环境类报错卡的固定按钮', () => {
     renderPane({ messages: certificateFailureTurn('opencode'), onRetry, onOpenSettings, onSwitchToAmrAndRetry });
     const card = screen.getByTestId('chat-run-error-card');
     expect(within(card).getAllByRole('button').map((button) => button.textContent?.trim()))
-      .toEqual(['联系我们', '导出日志', '切换到 OpenDesign Cloud']);
-    fireEvent.click(within(card).getByRole('button', { name: '切换到 OpenDesign Cloud' }));
+      .toEqual(['联系我们', '导出日志', '切换到 SaaSCodex Cloud']);
+    fireEvent.click(within(card).getByRole('button', { name: '切换到 SaaSCodex Cloud' }));
     expect(onSwitchToAmrAndRetry).toHaveBeenCalledWith(expect.objectContaining({ id: 'assistant-1', agentId: 'opencode' }));
     expect(onRetry).not.toHaveBeenCalled();
     expect(onOpenSettings).not.toHaveBeenCalled();

@@ -59,15 +59,15 @@ import { promisify } from 'node:util';
 import { Agent as UndiciAgent } from 'undici';
 import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
 import { load as loadHtml } from 'cheerio';
-import { SETTINGS_MEDIA_PROVIDERS_PATH } from '@open-design/contracts';
+import { SETTINGS_MEDIA_PROVIDERS_PATH } from '@saascodex/contracts';
 import {
   findRealTagOffset,
   HTML_TAG_PATTERNS,
-} from '@open-design/contracts/runtime/html-injection-points';
+} from '@saascodex/contracts/runtime/html-injection-points';
 import type {
   DesktopRenderFramesInput,
   DesktopRenderFramesResult,
-} from '@open-design/sidecar-proto';
+} from '@saascodex/sidecar-proto';
 import {
   AUDIO_DURATIONS_SEC,
   type AudioKind,
@@ -1921,7 +1921,7 @@ async function renderOpenRouterImage(
       'authorization': `Bearer ${credentials.apiKey}`,
       'content-type': 'application/json',
       'HTTP-Referer': 'https://opendesign.dev',
-      'X-Title': 'OpenDesign',
+      'X-Title': 'SaaSCodex',
     },
     body: JSON.stringify(body),
     signal: AbortSignal.timeout(Math.max(OPENAI_IMAGE_HEADERS_TIMEOUT_MS, OPENAI_IMAGE_BODY_TIMEOUT_MS)),
@@ -2081,7 +2081,7 @@ async function renderOpenRouterVideo(
       // OpenRouter attribution headers per
       // https://openrouter.ai/docs/app-attribution
       'HTTP-Referer': 'https://opendesign.dev',
-      'X-Title': 'OpenDesign',
+      'X-Title': 'SaaSCodex',
     },
     body: JSON.stringify(body),
   }));
@@ -2137,7 +2137,7 @@ async function renderOpenRouterVideo(
       headers: {
         'authorization': `Bearer ${credentials.apiKey}`,
         'HTTP-Referer': 'https://opendesign.dev',
-        'X-Title': 'OpenDesign',
+        'X-Title': 'SaaSCodex',
       },
     }));
     const pollText = await pollResp.text();
@@ -3935,7 +3935,7 @@ async function renderHyperFrames(
     'The agent must write index.html (with window.__timelines registration) before dispatch.',
   );
 
-  const tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'open-design-hf-'));
+  const tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'saascodex-hf-'));
   const tmpOutput = path.join(tmpRoot, 'render.mp4');
   const usesHeadlessOverride = Boolean(process.env.HYPERFRAMES_BROWSER_PATH?.trim());
   const usesDesktopRenderer = !usesHeadlessOverride && desktopFrameRenderer != null;

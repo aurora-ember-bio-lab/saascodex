@@ -105,7 +105,7 @@ describe("updater fixture server", () => {
   });
 
   it("serves a local artifact file as the updater installer", async () => {
-    const root = await mkdtemp(join(tmpdir(), "open-design-updater-fixture-"));
+    const root = await mkdtemp(join(tmpdir(), "saascodex-updater-fixture-"));
     const artifactPath = join(root, "Open Design-release-beta-win-setup.exe");
     await writeFile(artifactPath, "real local installer bytes");
     const server = await startUpdaterFixtureServer({
@@ -213,7 +213,7 @@ describe("updater fixture server", () => {
   });
 
   it("serves a local launcher payload artifact file", async () => {
-    const root = await mkdtemp(join(tmpdir(), "open-design-updater-payload-fixture-"));
+    const root = await mkdtemp(join(tmpdir(), "saascodex-updater-payload-fixture-"));
     const payloadPath = join(root, "Open Design-release-beta-win-payload.7z");
     await writeFile(payloadPath, "real local payload bytes");
     const server = await startUpdaterFixtureServer({

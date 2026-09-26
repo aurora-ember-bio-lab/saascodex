@@ -53,7 +53,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import historyStyles from './chat/ConversationHistoryDock.module.css';
-import { hasOdCard, OD_NEXT_STRATEGY_ID, type ProjectMediaTask } from '@open-design/contracts';
+import { hasOdCard, OD_NEXT_STRATEGY_ID, type ProjectMediaTask } from '@saascodex/contracts';
 import { useAnalytics } from '../analytics/provider';
 import { getResolvedDeviceId } from '../analytics/client';
 import {
@@ -110,11 +110,11 @@ import type {
   ChatSessionMode,
   RunContextSelection,
   WorkspaceContextItem,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import type {
   TrackingProjectKind,
   TrackingRunRecoveryActionType,
-} from '@open-design/contracts/analytics';
+} from '@saascodex/contracts/analytics';
 import { isDesignSystemWorkspacePrompt } from '../design-system-auto-prompt';
 import {
   isTodoWriteToolName,
@@ -720,11 +720,11 @@ interface Props {
   ) => Promise<{ message?: string; url?: string } | void> | { message?: string; url?: string } | void;
   activePluginActionPaths?: Set<string>;
   hiddenPluginActionPaths?: Set<string>;
-  // "Share to OpenDesign" button on each completed assistant message —
+  // "Share to SaaSCodex" button on each completed assistant message —
   // wired by ProjectView to handleSend with the bundled
   // `od-share-to-community` scenario's trigger prompt.
-  onShareToOpenDesign?: (assistantMessageId: string) => void;
-  shareToOpenDesignBusyMessageId?: string | null;
+  onShareToSaaSCodex?: (assistantMessageId: string) => void;
+  shareToSaaSCodexBusyMessageId?: string | null;
   forceStreamingMessageIds?: Set<string>;
   initialDraft?: string;
   // Product path of the Home recommendation that started this project. When
@@ -983,7 +983,7 @@ interface Props {
   config?: AppConfig;
 }
 
-const AMR_PROFILE_ENV_KEY = 'OPEN_DESIGN_AMR_PROFILE';
+const AMR_PROFILE_ENV_KEY = 'SAASCODEX_AMR_PROFILE';
 
 type Tab = 'chat' | 'comments';
 
@@ -1350,8 +1350,8 @@ export function ChatPane({
   onRequestPluginFolderAgentAction,
   activePluginActionPaths,
   hiddenPluginActionPaths,
-  onShareToOpenDesign,
-  shareToOpenDesignBusyMessageId,
+  onShareToSaaSCodex,
+  shareToSaaSCodexBusyMessageId,
   forceStreamingMessageIds,
   initialDraft,
   onboardingStarterPath = null,
@@ -1732,7 +1732,7 @@ export function ChatPane({
     onBrandBrowserAssistConfirm,
     onArtifactShare,
     onForkFromMessage,
-    onShareToOpenDesign,
+    onShareToSaaSCodex,
     onNextStepAiOptimize: onContinueBrandEnrichment,
     onNextStepContinueExtraction: onContinueBrandExtraction,
     onNextStepContinueAiExtraction: onContinueBrandAgentExtraction,
@@ -1746,7 +1746,7 @@ export function ChatPane({
     onBrandBrowserAssistConfirm,
     onArtifactShare,
     onForkFromMessage,
-    onShareToOpenDesign,
+    onShareToSaaSCodex,
     onNextStepAiOptimize: onContinueBrandEnrichment,
     onNextStepContinueExtraction: onContinueBrandExtraction,
     onNextStepContinueAiExtraction: onContinueBrandAgentExtraction,
@@ -4444,8 +4444,8 @@ export function ChatPane({
                   onRequestPluginFolderAgentAction={onRequestPluginFolderAgentAction}
                   activePluginActionPaths={activePluginActionPaths}
                   hiddenPluginActionPaths={hiddenPluginActionPaths}
-                  onShareToOpenDesign={onShareToOpenDesign}
-                  shareToOpenDesignBusyMessageId={shareToOpenDesignBusyMessageId}
+                  onShareToSaaSCodex={onShareToSaaSCodex}
+                  shareToSaaSCodexBusyMessageId={shareToSaaSCodexBusyMessageId}
                   forceStreamingMessageIds={forceStreamingMessageIds}
                   lastAssistantId={lastAssistantId}
                   lastTurnAssistantId={lastTurnAssistantId}
@@ -4792,7 +4792,7 @@ interface AssistantCallbacks {
   onBrandBrowserAssistConfirm: BrandBrowserAssistConfirm | undefined;
   onArtifactShare: ((fileName: string, anchorId?: string) => void) | undefined;
   onForkFromMessage: ((message: ChatMessage) => void) | undefined;
-  onShareToOpenDesign: ((assistantMessageId: string) => void) | undefined;
+  onShareToSaaSCodex: ((assistantMessageId: string) => void) | undefined;
   onNextStepAiOptimize: (() => void) | undefined;
   onNextStepContinueExtraction: (() => void) | undefined;
   onNextStepContinueAiExtraction: (() => void) | undefined;
@@ -5204,8 +5204,8 @@ function ChatRows({
   onRequestPluginFolderAgentAction,
   activePluginActionPaths,
   hiddenPluginActionPaths,
-  onShareToOpenDesign,
-  shareToOpenDesignBusyMessageId,
+  onShareToSaaSCodex,
+  shareToSaaSCodexBusyMessageId,
   forceStreamingMessageIds,
   lastAssistantId,
   lastTurnAssistantId,
@@ -5287,8 +5287,8 @@ function ChatRows({
   onRequestPluginFolderAgentAction?: (relativePath: string, action: PluginFolderAgentAction) => void;
   activePluginActionPaths?: Set<string>;
   hiddenPluginActionPaths?: Set<string>;
-  onShareToOpenDesign?: (assistantMessageId: string) => void;
-  shareToOpenDesignBusyMessageId?: string | null;
+  onShareToSaaSCodex?: (assistantMessageId: string) => void;
+  shareToSaaSCodexBusyMessageId?: string | null;
   forceStreamingMessageIds?: Set<string>;
   lastAssistantId: string | undefined;
   lastTurnAssistantId: string | undefined;
@@ -5420,12 +5420,12 @@ function ChatRows({
         onRequestPluginFolderAgentAction={onRequestPluginFolderAgentAction}
         activePluginActionPaths={activePluginActionPaths}
         hiddenPluginActionPaths={hiddenPluginActionPaths}
-        onShareToOpenDesign={
-          onShareToOpenDesign
-            ? () => assistantCallbacksRef.current.onShareToOpenDesign?.(m.id)
+        onShareToSaaSCodex={
+          onShareToSaaSCodex
+            ? () => assistantCallbacksRef.current.onShareToSaaSCodex?.(m.id)
             : undefined
         }
-        shareToOpenDesignBusy={shareToOpenDesignBusyMessageId === m.id}
+        shareToSaaSCodexBusy={shareToSaaSCodexBusyMessageId === m.id}
         showRole={assistantRoleByMessageId.get(m.id) ?? true}
         isLast={m.id === lastAssistantId}
         isLastTurn={m.id === lastTurnAssistantId}
@@ -6194,7 +6194,7 @@ function queuedTipPlacement(
   );
 }
 
-  const QUEUED_SEND_DRAG_MIME = 'application/x-open-design-queued-send';
+  const QUEUED_SEND_DRAG_MIME = 'application/x-saascodex-queued-send';
 
 interface QueuedSendDragState {
   draggingId: string;
@@ -6528,7 +6528,7 @@ export function buildRunErrorDiagnosticText(input: RunErrorDiagnosticInput): str
   }
 
   lines.push(
-    'OpenDesign run error diagnostics',
+    'SaaSCodex run error diagnostics',
     `trace_id: ${input.traceId ?? 'n/a'}`,
     `run_id: ${input.traceId ?? 'n/a'}`,
     `error_code: ${input.errorCode ?? 'n/a'}`,

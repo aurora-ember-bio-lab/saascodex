@@ -48,10 +48,10 @@ function createPaths(root: string): WinPaths {
     installTimingPath: join(namespaceRoot, "logs", "install.timing.json"),
     nsisLogPath: join(namespaceRoot, "logs", "nsis.log"),
     nsisIncludePath: join(namespaceRoot, "nsis", "installer.nsh"),
-    packagedConfigPath: join(namespaceRoot, "open-design-config.json"),
+    packagedConfigPath: join(namespaceRoot, "saascodex-config.json"),
     packagedMainPrebundleMetaPath: join(namespaceRoot, "prebundle-meta", "packaged-main.meta.json"),
     packagedMainPrebundlePath: join(namespaceRoot, "assembled", "app", "prebundled", "packaged-main.mjs"),
-    resourceRoot: join(namespaceRoot, "resources", "open-design"),
+    resourceRoot: join(namespaceRoot, "resources", "saascodex"),
     setupPath: join(namespaceRoot, "builder", "Open Design-second-setup.exe"),
     setupZipPath: join(namespaceRoot, "builder", "Open Design-second-portable.zip"),
     startMenuShortcutPath: join(namespaceRoot, "start-menu.lnk"),
@@ -72,7 +72,7 @@ function createPaths(root: string): WinPaths {
 
 describe("materializeCachedUnpackedForInstaller", () => {
   it("overwrites cached packaged config and app package version", async () => {
-    const root = await mkdtemp(join(tmpdir(), "open-design-win-builder-"));
+    const root = await mkdtemp(join(tmpdir(), "saascodex-win-builder-"));
     const cachedUnpackedRoot = join(root, "cache", "builder", "win-unpacked");
     const paths = createPaths(root);
 
@@ -80,14 +80,14 @@ describe("materializeCachedUnpackedForInstaller", () => {
       await mkdir(join(cachedUnpackedRoot, "resources"), { recursive: true });
       await writeFile(join(cachedUnpackedRoot, "Open Design.exe"), await createVersionedExecutable("0.5.0-beta.1"));
       await writeFile(
-        join(cachedUnpackedRoot, "resources", "open-design-config.json"),
+        join(cachedUnpackedRoot, "resources", "saascodex-config.json"),
         `${JSON.stringify({ namespace: "first", version: 1 })}\n`,
         "utf8",
       );
       await mkdir(join(cachedUnpackedRoot, "resources", "app"), { recursive: true });
       await writeFile(
         join(cachedUnpackedRoot, "resources", "app", "package.json"),
-        `${JSON.stringify({ name: "open-design-packaged-app", version: "0.5.0-beta.1" })}\n`,
+        `${JSON.stringify({ name: "saascodex-packaged-app", version: "0.5.0-beta.1" })}\n`,
         "utf8",
       );
       const nodePtyPrebuildRoot = join(
@@ -120,13 +120,13 @@ describe("materializeCachedUnpackedForInstaller", () => {
 
       expect(manifest.source).toBe("namespace");
       expect(manifest.unpackedRoot).toBe(paths.unpackedRoot);
-      await expect(readFile(join(paths.unpackedRoot, "resources", "open-design-config.json"), "utf8")).resolves.toContain(
+      await expect(readFile(join(paths.unpackedRoot, "resources", "saascodex-config.json"), "utf8")).resolves.toContain(
         '"namespace":"second"',
       );
       await expect(readFile(join(paths.unpackedRoot, "resources", "app", "package.json"), "utf8")).resolves.toContain(
         '"version": "0.5.0-beta.2"',
       );
-      await expect(readFile(join(paths.unpackedRoot, "resources", "open-design-config.json"), "utf8")).resolves.toContain(
+      await expect(readFile(join(paths.unpackedRoot, "resources", "saascodex-config.json"), "utf8")).resolves.toContain(
         '"appVersion":"0.5.0-beta.2"',
       );
       await expect(readWinExecutableVersionSnapshot(join(paths.unpackedRoot, "Open Design.exe"))).resolves.toMatchObject({
@@ -191,7 +191,7 @@ describe("Windows pack artifact boundaries", () => {
 
 describe("launcher runtime sync helper", () => {
   it.runIf(process.platform === "win32")("writes cleanup.json for superseded launcher runtime pointers", async () => {
-    const root = await mkdtemp(join(tmpdir(), "open-design-launcher-sync-"));
+    const root = await mkdtemp(join(tmpdir(), "saascodex-launcher-sync-"));
     const runtimePath = join(root, "runtime.json");
     const attemptsPath = join(root, "state", "attempt.json");
     const cleanupPath = join(root, "state", "cleanup.json");

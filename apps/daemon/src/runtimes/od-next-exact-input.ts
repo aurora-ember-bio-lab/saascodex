@@ -1,7 +1,7 @@
-import { parseOdNextPromptBundleV2 } from '@open-design/contracts';
+import { parseOdNextPromptBundleV2 } from '@saascodex/contracts';
 
 export const OD_NEXT_EXACT_INPUT_MAP_VERSION =
-  'open-design.od-next-exact-input-map/v2' as const;
+  'saascodex.od-next-exact-input-map/v2' as const;
 
 /**
  * Every addressable node of the v2 Prompt Bundle tree that a text contributor
@@ -425,7 +425,7 @@ export const OD_NEXT_EXACT_INPUT_MAP_V1 = [
   {
     id: 'runtime_tool_environment',
     classification: 'out_of_band',
-    source: 'createOpenDesignToolEnv() / spawnEnvForAgent() including OD_TOOL_TOKEN',
+    source: 'createSaaSCodexToolEnv() / spawnEnvForAgent() including OD_TOOL_TOKEN',
     owner: 'runtime transport',
     note: 'Executable paths, daemon/data coordinates and the scoped tool credential are child environment facts, not Bundle text.',
   },

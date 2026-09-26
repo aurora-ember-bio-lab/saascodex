@@ -8,7 +8,7 @@ import {
 	TouchpointModuleCache,
 	type TouchpointSdk,
 	TouchpointUpdateQueue,
-} from "@open-design/contracts";
+} from "@saascodex/contracts";
 
 export type WebTouchpointContent = {
 	id: string;
@@ -73,7 +73,7 @@ function isVisibleAndEnabled(element: Element): boolean {
 }
 
 export function hasWebTouchpointCloseControl(
-	element: OpenDesignTouchpointElement,
+	element: SaaSCodexTouchpointElement,
 ): boolean {
 	const root = element.shadowRoot;
 	if (!root || !isVisibleAndEnabled(element)) return false;
@@ -269,7 +269,7 @@ const TouchpointElementBase: typeof HTMLElement =
 		? (class {} as typeof HTMLElement)
 		: HTMLElement;
 
-export class OpenDesignTouchpointElement extends TouchpointElementBase {
+export class SaaSCodexTouchpointElement extends TouchpointElementBase {
 	private generation = 0;
 	private disposed = true;
 	private disposing?: Promise<void>;
@@ -552,11 +552,11 @@ export class OpenDesignTouchpointElement extends TouchpointElementBase {
 	}
 }
 
-export function ensureWebTouchpointElement(): typeof OpenDesignTouchpointElement {
+export function ensureWebTouchpointElement(): typeof SaaSCodexTouchpointElement {
 	const current = customElements.get(ELEMENT_NAME);
-	if (current) return current as typeof OpenDesignTouchpointElement;
-	customElements.define(ELEMENT_NAME, OpenDesignTouchpointElement);
-	return OpenDesignTouchpointElement;
+	if (current) return current as typeof SaaSCodexTouchpointElement;
+	customElements.define(ELEMENT_NAME, SaaSCodexTouchpointElement);
+	return SaaSCodexTouchpointElement;
 }
 
 /** Resolves the verified placement locale without inventing unsupported locales. */

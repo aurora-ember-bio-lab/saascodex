@@ -8,11 +8,11 @@ import {
 import { CapabilitySupportV2Schema } from '../plugins/strategy-v2.js';
 
 export const OD_NEXT_RUNTIME_FIXTURE_MANIFEST_V1_SCHEMA =
-  'open-design.od-next-runtime-fixture-manifest/v1' as const;
+  'saascodex.od-next-runtime-fixture-manifest/v1' as const;
 export const OD_NEXT_RUNTIME_CAPABILITY_EVIDENCE_V1_SCHEMA =
-  'open-design.od-next-runtime-capability-evidence/v1' as const;
+  'saascodex.od-next-runtime-capability-evidence/v1' as const;
 export const OD_NEXT_RUNTIME_CAPABILITY_SNAPSHOT_V1_SCHEMA =
-  'open-design.od-next-runtime-capability-snapshot/v1' as const;
+  'saascodex.od-next-runtime-capability-snapshot/v1' as const;
 
 const nonEmptyStringSchema = z.string().trim().min(1);
 const sha256Schema = z.string().regex(/^sha256:[0-9a-f]{64}$/u);

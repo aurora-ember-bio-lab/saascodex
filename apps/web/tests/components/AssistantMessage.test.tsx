@@ -138,8 +138,8 @@ describe('internal control markers', () => {
   it('never renders OD Next machine protocol blocks as prose', () => {
     const content = [
       'Plan is frozen.',
-      '<open-design-plan-contract>{"schema":"open-design.plan-contract/v2"}</open-design-plan-contract>',
-      '<open-design-runtime-state>{"schema":"open-design.strategy-state/v2"}</open-design-runtime-state>',
+      '<saascodex-plan-contract>{"schema":"saascodex.plan-contract/v2"}</saascodex-plan-contract>',
+      '<saascodex-runtime-state>{"schema":"saascodex.strategy-state/v2"}</saascodex-runtime-state>',
     ].join('\n\n');
 
     render(
@@ -153,8 +153,8 @@ describe('internal control markers', () => {
       />,
     );
 
-    expect(document.body.textContent).not.toContain('open-design-plan-contract');
-    expect(document.body.textContent).not.toContain('open-design-runtime-state');
+    expect(document.body.textContent).not.toContain('saascodex-plan-contract');
+    expect(document.body.textContent).not.toContain('saascodex-runtime-state');
     expect(document.body.textContent).toContain('Plan is frozen.');
   });
 });
@@ -252,7 +252,7 @@ describe('AssistantMessage feedback gate', () => {
     expect(container.querySelector('[data-user-action-card="plugin-suggestion"]')).toBeNull();
     expect(screen.queryByText('Design review helper')).toBeNull();
     expect(screen.queryByText('Turn this repository workflow into a reusable helper.')).toBeNull();
-    expect(screen.queryByRole('button', { name: 'Contribute to open-design' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Contribute to saascodex' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'View details' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Create plugin/template' })).toBeNull();
     expect(container.textContent).not.toContain('candidate-1');
@@ -405,7 +405,7 @@ describe('AssistantMessage feedback gate', () => {
   });
 
   /*
-   * 「贡献到 OpenDesign 社区」原来的用例住在这里,走的是下一步引导的
+   * 「贡献到 SaaSCodex 社区」原来的用例住在这里,走的是下一步引导的
    * 更多 → 分享 → 贡献 三级路径。产品裁决(2026-08-26)把 `default` 那一档
    * 整档换成 agent 现写的三条行为引导,那条路径连同它的三级菜单一起没了,
    * 这个入口因此**没有落点了**。

@@ -848,7 +848,7 @@ winDescribe('packaged windows runtime smoke', () => {
         );
         expect(preUpdateScreenshot.screenshot?.path).toBe(preUpdateScreenshotPath);
         expect(await fileSizeBytes(preUpdateScreenshotPath)).toBeGreaterThan(0);
-        await report.report.save('screenshots/open-design-win-before-update.png', await readFile(preUpdateScreenshotPath));
+        await report.report.save('screenshots/saascodex-win-before-update.png', await readFile(preUpdateScreenshotPath));
       } else if (verifyUpgradePersistence) {
         throw new Error('upgrade persistence validation requires desktop IPC eval support');
       }
@@ -1048,7 +1048,7 @@ winDescribe('packaged windows runtime smoke', () => {
           ? { afterUpdate: null, beforeUpdate: null }
           : {
               afterUpdate: report.screenshotRelpath,
-              beforeUpdate: 'screenshots/open-design-win-before-update.png',
+              beforeUpdate: 'screenshots/saascodex-win-before-update.png',
             },
         start: {
           executablePath: start.executablePath,
@@ -1209,7 +1209,7 @@ winDescribe('packaged windows runtime smoke', () => {
       cleanupInstalled = true;
       await seedPackagedOnboardingComplete();
 
-      const sevenZipExe = join(install.installDir, 'resources', 'open-design', 'bin', '7z.exe');
+      const sevenZipExe = join(install.installDir, 'resources', 'saascodex', 'bin', '7z.exe');
       expect((await stat(sevenZipExe)).isFile()).toBe(true);
       const corruptPayloadPath = await buildCorruptedWinPayloadFixture(
         localUpdate.payloadPath,
@@ -1403,12 +1403,12 @@ winOnboardingDescribe('packaged windows onboarding AMR smoke', () => {
       const screenshot = await runToolsPackJson<WinInspectResult>('inspect', ['--path', onboardingScreenshotPath]);
       expect(screenshot.screenshot?.path).toBe(onboardingScreenshotPath);
       expect(await fileSizeBytes(onboardingScreenshotPath)).toBeGreaterThan(0);
-      await report.report.save('screenshots/open-design-win-onboarding-smoke.png', await readFile(onboardingScreenshotPath));
+      await report.report.save('screenshots/saascodex-win-onboarding-smoke.png', await readFile(onboardingScreenshotPath));
       await report.report.json('onboarding-summary.json', {
         health,
         initial,
         namespace,
-        screenshot: 'screenshots/open-design-win-onboarding-smoke.png',
+        screenshot: 'screenshots/saascodex-win-onboarding-smoke.png',
         start: {
           executablePath: start.executablePath,
           logPath: start.logPath,
@@ -1588,7 +1588,7 @@ async function runSameVersionUpdaterRecoveryAcceptance(options: {
     persistedProjectId: options.persistedProjectId,
   });
   const installedConfig = JSON.parse(
-    await readFile(join(options.installDir, 'resources', 'open-design-config.json'), 'utf8'),
+    await readFile(join(options.installDir, 'resources', 'saascodex-config.json'), 'utf8'),
   ) as { appVersion?: unknown };
   expect(installedConfig.appVersion).toBe(options.targetVersion);
 
@@ -1917,7 +1917,7 @@ async function runDirectInstaller(
   );
   const code = isExecError(error) ? Number(error.code) : error == null ? 0 : null;
   const installedConfig = JSON.parse(await readFile(
-    join(installDir, 'resources', 'open-design-config.json'), 'utf8',
+    join(installDir, 'resources', 'saascodex-config.json'), 'utf8',
   ));
   return {
     code,
@@ -2351,8 +2351,8 @@ async function buildVersionBumpedWinPayloadFixture(
     if (executableRelPath == null || executableRelPath.length === 0) {
       throw new Error(`payload manifest has no entry.executable: ${payloadSevenZPath}`);
     }
-    // <payload dir>/<binary>.exe → <payload dir>/resources/open-design-config.json
-    const configPath = join(extractRoot, dirname(executableRelPath), 'resources', 'open-design-config.json');
+    // <payload dir>/<binary>.exe → <payload dir>/resources/saascodex-config.json
+    const configPath = join(extractRoot, dirname(executableRelPath), 'resources', 'saascodex-config.json');
     const config = JSON.parse(await readFile(configPath, 'utf8')) as { appVersion?: string };
     config.appVersion = bumpedVersion;
     await writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
@@ -2534,7 +2534,7 @@ async function assertPayloadDesktopIdentity(
     normalizePathForComparison(resolve(legacyInstalledExecutablePath)),
   );
   const resourceRoot = await readDesktopStartupResourceRoot(identity.pid);
-  expectPathInside(resourceRoot, join(payloadRoot, 'resources', 'open-design'));
+  expectPathInside(resourceRoot, join(payloadRoot, 'resources', 'saascodex'));
 }
 
 async function readDesktopStartupResourceRoot(pid: number): Promise<string> {
@@ -2732,7 +2732,7 @@ async function readInviteContinuationResults(): Promise<InviteContinuationResult
     }
     if (!isRecord(entry) || entry.message !== 'console.info' || !isRecord(entry.meta)) continue;
     const args = entry.meta.args;
-    if (!Array.isArray(args) || args[0] !== '[open-design desktop] invite deeplink continuation completed') continue;
+    if (!Array.isArray(args) || args[0] !== '[saascodex desktop] invite deeplink continuation completed') continue;
     const outcome = args[1];
     if (!isRecord(outcome) || typeof outcome.ok !== 'boolean') continue;
     results.push({

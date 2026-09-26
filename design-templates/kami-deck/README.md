@@ -33,7 +33,7 @@ agent reads `SKILL.md`, gathers the brief, then writes
 [`design-systems/kami/DESIGN.md`](../../design-systems/kami/DESIGN.md)
 and the layout primitives in [`example.html`](./example.html).
 
-To preview the canonical OpenDesign instance:
+To preview the canonical SaaSCodex instance:
 
 ```bash
 open example.html
@@ -51,7 +51,7 @@ To start a fresh project:
 design-templates/kami-deck/
 ├── SKILL.md      # ← agent contract (read this first)
 ├── README.md     # ← you are here
-└── example.html  # canonical OpenDesign rendering (9 slides)
+└── example.html  # canonical SaaSCodex rendering (9 slides)
 ```
 
 ## Boundaries
@@ -66,7 +66,7 @@ design-templates/kami-deck/
 
 - [`kami-landing`](../kami-landing/) — long-form one-pager sister.
 - [`design-systems/kami/DESIGN.md`](../../design-systems/kami/DESIGN.md) — token spec.
-- [`open-design-landing-deck`](../open-design-landing-deck/) — same
+- [`saascodex-landing-deck`](../saascodex-landing-deck/) — same
   swipe nav model, different visual language (Atelier Zero).
 - Upstream: [`tw93/kami`](https://github.com/tw93/kami) — original
   Claude skill (MIT) the design system adapts.

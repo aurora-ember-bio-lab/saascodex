@@ -19,7 +19,7 @@ import {
   modelIdForTracking,
   type TrackingRunCancelOrigin,
   type TrackingRunTerminalTrigger,
-} from '@open-design/contracts/analytics';
+} from '@saascodex/contracts/analytics';
 import {
   DELIVERABLE_SYNTAX_FINALIZATION_REASONS,
   DELIVERABLE_SYNTAX_SAFE_FIX_REFUSALS,
@@ -30,7 +30,7 @@ import {
   type DeliverableSyntaxValidationEvidence,
   type OdNextRolloutDecision,
   type SafeRunQualityV1,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 import { agentCliEnvForAgent, readAppConfig, type TelemetryPrefs } from './app-config.js';
 import type { AppVersionInfo } from './app-version.js';
@@ -1372,7 +1372,7 @@ export async function buildSafeRunQualityProjectionFromDaemon(
   });
   const redactedPrompt = opts.exactPrompt ? redactPromptText(opts.exactPrompt.text) : undefined;
   const runEvidence = opts.prefs.content === true ? JSON.stringify({
-    schema: 'open-design.run-evidence/v1', runId: run.id, taskTraceId: opts.taskTraceId,
+    schema: 'saascodex.run-evidence/v1', runId: run.id, taskTraceId: opts.taskTraceId,
     projectId: run.projectId, conversationId: run.conversationId,
     input: redactPromptText(run.userPrompt ?? ''), output: completeQuality?.result?.output?.text ?? '',
     tools: completeQuality?.tools ?? [],
@@ -1402,7 +1402,7 @@ export async function buildSafeRunQualityProjectionFromDaemon(
     ...(opts.env ? { env: opts.env } : {}),
     ...(opts.fetchImpl ? { fetchImpl: opts.fetchImpl } : {}),
   };
-  const objectMode = (opts.env ?? process.env).OPEN_DESIGN_OBJECT_OUTBOX_MODE;
+  const objectMode = (opts.env ?? process.env).SAASCODEX_OBJECT_OUTBOX_MODE;
   const captureTaskObjects = opts.taskTraceId && opts.captureObjects !== false && taskObjectDeliveryEnabled(objectMode);
   let frozen = captureTaskObjects ? await readObjectEvidence(dataDir, run.id) : undefined;
   if (captureTaskObjects && !frozen && ['succeeded', 'failed', 'canceled'].includes(run.status)) {
@@ -1571,7 +1571,7 @@ export async function reportRunCompletedFromDaemon(
     const installationId = cfg.installationId ?? null;
     const configuredAmrEnv = agentCliEnvForAgent(cfg.agentCliEnv, 'amr');
 
-    const evalMode = evidenceMode(process.env.OPEN_DESIGN_EVAL_CONTRACT_V2_MODE);
+    const evalMode = evidenceMode(process.env.SAASCODEX_EVAL_CONTRACT_V2_MODE);
     let resultDeliveryState: unknown;
     let v2Attachments: ReturnType<typeof attachmentContext> | undefined;
     let messageContent = '';
@@ -1790,7 +1790,7 @@ export async function reportRunCompletedFromDaemon(
     };
     };
 
-    if (evidenceMode(process.env.OPEN_DESIGN_OBJECT_OUTBOX_MODE) === 'send') {
+    if (evidenceMode(process.env.SAASCODEX_OBJECT_OUTBOX_MODE) === 'send') {
       const sources = await freezeTraceObjectSources({ ...objectManifestOptions, prompt: redactSecrets(telemetryPrompt) });
       const frozen = await buildTraceObjectManifests({ ...objectManifestOptions, frozenSources: sources, uploadMode: 'manifest-only' });
       const context = buildContext(mergeTraceSafeManifests(manifests, frozen));
@@ -1921,7 +1921,7 @@ export async function reportRunFeedbackFromDaemon(
     customReason: opts.customReason,
     ...(opts.scoreMetadata ? { metadata: opts.scoreMetadata } : {}),
   };
-  if (evidenceMode(process.env.OPEN_DESIGN_OBJECT_OUTBOX_MODE) === 'send' || (ctx.traceId && taskObjectDeliveryEnabled(process.env.OPEN_DESIGN_OBJECT_OUTBOX_MODE))) {
+  if (evidenceMode(process.env.SAASCODEX_OBJECT_OUTBOX_MODE) === 'send' || (ctx.traceId && taskObjectDeliveryEnabled(process.env.SAASCODEX_OBJECT_OUTBOX_MODE))) {
     const queued = await enqueueFeedbackEvidence(opts.dataDir, { ...ctx, customReason: redactSecrets(ctx.customReason), ...(ctx.metadata ? { metadata: { ...ctx.metadata, customReason: redactSecrets(ctx.customReason) } } : {}) });
     if (queued === 'capacity_exceeded') return { status: 'accepted', deliveryStatus: 'unavailable', reason: 'outbox_capacity_exceeded' };
     void drainEvidence(opts.dataDir, opts.fetchImpl).catch(() => console.warn('[evidence-outbox] delivery_pass_failed'));

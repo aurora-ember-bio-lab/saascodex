@@ -14,10 +14,10 @@ export async function assertPackagedSidecarRuntime(appRoot: string, entries: rea
   }
   for (const entry of entries) {
     const entryPath = await ownedFile(join(root, entry));
-    const sidecar = await ownedFile(createRequire(entryPath).resolve("@open-design/sidecar"));
+    const sidecar = await ownedFile(createRequire(entryPath).resolve("@saascodex/sidecar"));
     const supervisor = await ownedFile(join(dirname(sidecar), "supervisor.mjs"));
-    await ownedFile(createRequire(sidecar).resolve("@open-design/platform"));
-    await ownedFile(createRequire(supervisor).resolve("@open-design/platform"));
+    await ownedFile(createRequire(sidecar).resolve("@saascodex/platform"));
+    await ownedFile(createRequire(supervisor).resolve("@saascodex/platform"));
   }
   const manifest = JSON.parse(await readFile(join(root, "package.json"), "utf8")) as {
     dependencies?: Record<string, string>; optionalDependencies?: Record<string, string>;

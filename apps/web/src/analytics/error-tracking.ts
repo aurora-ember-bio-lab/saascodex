@@ -37,7 +37,7 @@ import { reportExperienceEvent } from '../observability/experience-diagnostics';
 import {
   EVENT_SCHEMA_VERSION,
   type AnalyticsClientType,
-} from '@open-design/contracts/analytics';
+} from '@saascodex/contracts/analytics';
 import { scrubExceptionList, scrubFilePath } from './scrub';
 
 export type BrowserOsName =

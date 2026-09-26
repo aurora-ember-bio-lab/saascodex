@@ -3,7 +3,7 @@ import fs, { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { WorkspaceDirectoryItem } from '@open-design/contracts';
+import type { WorkspaceDirectoryItem } from '@saascodex/contracts';
 import {
   createCachedWorkspaceDirectoryFetcher,
   createFreshWorkspaceDirectoryFetcher,
@@ -961,7 +961,7 @@ describe('createVelaWorkspaceContextProvider', () => {
     ) => SESSION as ReturnType<typeof readVelaControlApiContext>);
     const provider = createVelaWorkspaceContextProvider({
       fetch: (async () => jsonResponse(200, B_TEAM_CONTEXT)) as unknown as typeof fetch,
-      configuredEnv: () => ({ OPEN_DESIGN_AMR_PROFILE: profile }),
+      configuredEnv: () => ({ SAASCODEX_AMR_PROFILE: profile }),
       readSession,
     });
 
@@ -970,8 +970,8 @@ describe('createVelaWorkspaceContextProvider', () => {
     await provider.current({});
 
     expect(readSession.mock.calls.map((call) => call[1])).toEqual([
-      { OPEN_DESIGN_AMR_PROFILE: 'prod' },
-      { OPEN_DESIGN_AMR_PROFILE: 'test' },
+      { SAASCODEX_AMR_PROFILE: 'prod' },
+      { SAASCODEX_AMR_PROFILE: 'test' },
     ]);
   });
 

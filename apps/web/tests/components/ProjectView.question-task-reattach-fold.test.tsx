@@ -20,12 +20,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ProjectView } from '../../src/components/ProjectView';
 import type { ProjectWorkspaceScopeState } from '../../src/collab/useProjectWorkspaceScope';
-import { StrategyTaskProjectionV2Schema } from '@open-design/contracts';
+import { StrategyTaskProjectionV2Schema } from '@saascodex/contracts';
 import type {
   ChatRunStatusResponse,
   StrategyTaskProjectionV2,
   WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import type {
   AgentInfo,
   AppConfig,

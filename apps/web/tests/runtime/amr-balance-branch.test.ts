@@ -21,7 +21,7 @@ import {
   buildWorkspaceSeatSummary,
   type WorkspaceBillingSummary,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { describe, expect, it } from 'vitest';
 
 import {

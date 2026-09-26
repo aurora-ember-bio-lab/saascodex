@@ -7,13 +7,13 @@ import {
   isModelWindowLimitFailure,
   readMembershipConcurrencyResetAt,
   readModelWindowResetAt,
-} from '@open-design/contracts';
-import type { RunFailureAction } from '@open-design/contracts';
+} from '@saascodex/contracts';
+import type { RunFailureAction } from '@saascodex/contracts';
 import { byokApiKeyIsEditableInSettings } from '../utils/byokProvider';
 
 // AMR model-gateway console (account, balance, top-up, plans).
 // `source=open_design` tags the landing page_view so vela analytics can
-// attribute the visit to OpenDesign (per-product revenue/traffic attribution).
+// attribute the visit to SaaSCodex (per-product revenue/traffic attribution).
 //
 // The console's dashboard — not a wallet page — is the account surface every
 // entry here targets. A wallet route still answers on B's side, but it is no
@@ -93,7 +93,7 @@ export const AMR_CONSOLE_AUTO_RECHARGE_INTENT = 'auto-recharge';
 export const AMR_CONSOLE_RECHARGE_INTENT = 'recharge';
 
 // The test entry moved off `vela.powerformer.net` onto
-// `open-design.powerformer.net/cloud` when vela cut the test Cloud domain over
+// `saascodex.powerformer.net/cloud` when vela cut the test Cloud domain over
 // (vela #1922 prepare, #1929 finalize). That host serves the test Landing page
 // at `/` and routes `/cloud*` to the AMR web origin; the legacy hostname is no
 // longer a mapped test route and must not be relied on for a redirect.
@@ -103,7 +103,7 @@ export const AMR_CONSOLE_RECHARGE_INTENT = 'recharge';
 // it arrives through the daemon's runtime console origin instead.
 const AMR_CONSOLE_URL_BY_PROFILE: Record<string, string> = {
   prod: DEFAULT_AMR_RECHARGE_URL,
-  test: 'https://open-design.powerformer.net/cloud/dashboard?source=open_design',
+  test: 'https://saascodex.powerformer.net/cloud/dashboard?source=open_design',
   local: 'http://localhost:5173/dashboard?source=open_design',
 };
 
@@ -850,7 +850,7 @@ export function daemonFailureVerdictFrom(
  * alongside.
  *
  * ⚠️ Reads the ladder ONLY. Since OPEND-2772 a BYOK / local-CLI card also
- * carries 〔switch to OpenDesign Cloud〕 in its primary slot (`cloudSwitchCta`),
+ * carries 〔switch to SaaSCodex Cloud〕 in its primary slot (`cloudSwitchCta`),
  * which IS a control that pushes the run forward — but that one is universal,
  * so folding it in here would make this predicate constantly true for every
  * non-Cloud run and destroy the distinction its callers are asking about.
@@ -1318,7 +1318,7 @@ const AGENT_AGNOSTIC_DETAIL_FAILURE_UI: Record<string, RunFailureUi> = {
   // The bundled agent binary needs a CPU instruction set (AVX2) this device
   // doesn't have, so it crashes on launch — retrying reproduces the crash and
   // switching hosted models doesn't help (the runtime binary is the problem).
-  // The fix is updating OpenDesign to a build that bundles a compatible
+  // The fix is updating SaaSCodex to a build that bundles a compatible
   // (baseline) runtime, so show guidance copy without a dead Retry button.
   // Ladder rung 4. §6.Z names this one explicitly under principle 4 ("quota
   // spent, account suspended, CPU unsupported — these three get no Retry").

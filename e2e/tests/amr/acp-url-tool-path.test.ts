@@ -1,7 +1,7 @@
 import { EventEmitter } from 'node:events';
 import { PassThrough } from 'node:stream';
 import { expect, test } from 'vitest';
-import type { PersistedAgentEvent } from '@open-design/contracts';
+import type { PersistedAgentEvent } from '@saascodex/contracts';
 import { attachAcpSession } from '../../../apps/daemon/src/agent-protocol/acp/session.ts';
 import { runSseEventToPersistedAgentEvent } from '../../../apps/daemon/src/runtimes/chat-run-messages.ts';
 

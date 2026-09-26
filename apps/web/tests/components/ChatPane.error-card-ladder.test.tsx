@@ -2,7 +2,7 @@
 //
 // 报错卡不泄漏原始错误；专属文案和真实重连行的交接保持不变。
 // OPEND-2807 / G16 覆盖旧恢复阶梯：联系我们、导出日志常驻次级，
-// Cloud 的主动作固定重试，CLI/BYOK 的主动作固定切换到 OpenDesign Cloud。
+// Cloud 的主动作固定重试，CLI/BYOK 的主动作固定切换到 SaaSCodex Cloud。
 import { cleanup, render, screen } from '@testing-library/react';
 import { forwardRef } from 'react';
 import type { ComponentProps } from 'react';

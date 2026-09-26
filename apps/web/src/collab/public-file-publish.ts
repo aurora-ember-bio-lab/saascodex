@@ -4,7 +4,7 @@ import {
   type PublicFileManualRevokeRequiredData,
   type PublicProjectFilePublication,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 
 export class PublicFilePublishError extends Error {
   constructor(

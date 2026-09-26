@@ -111,7 +111,7 @@ export function buildEvalContext(input: EvalContextInput) {
   } : null);
   if (!turnUsage) reasons.add('usage_unavailable');
   return {
-    schema: 'open-design.eval-context/v2' as const,
+    schema: 'saascodex.eval-context/v2' as const,
     productOutcome: {
       runStatus: input.runStatus, resultDeliveryState: input.resultDeliveryState ?? 'unknown',
       endedWithUnfinishedWork: input.endedWithUnfinishedWork ?? false,

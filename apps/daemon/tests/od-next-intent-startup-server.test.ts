@@ -6,7 +6,7 @@ import type Database from 'better-sqlite3';
 import { Agent, fetch } from 'undici';
 import { afterEach, expect, it, vi } from 'vitest';
 import { composeOdNextStrategyBundleHeadV2, serializeOdNextPromptBundleV2,
-  type AppliedPluginSnapshot, type OpenDesignPlanContractV2 } from '@open-design/contracts';
+  type AppliedPluginSnapshot, type SaaSCodexPlanContractV2 } from '@saascodex/contracts';
 
 const telemetry = vi.hoisted(() => ({ pending: null as Promise<void> | null, entered: false, runId: '' }));
 vi.mock('../src/langfuse-bridge.js', async importOriginal => {
@@ -213,8 +213,8 @@ async function seedWindow(db: Database.Database, window: Window) {
       return { kind: 'ready' as const, run, creationKind: 'created' as const, resumed: false };
     }, start: vi.fn((run: ReturnType<typeof create>) => run),
   };
-  const parsed = protocol([SOURCE_TEXT, block('open-design-plan-contract', planContract(snapshot)),
-    block('open-design-runtime-state', { ...runtimeState({ outcome: 'plan_ready', executionMode: 'simple' }), executionIntent: undefined })].join('\n')).finish();
+  const parsed = protocol([SOURCE_TEXT, block('saascodex-plan-contract', planContract(snapshot)),
+    block('saascodex-runtime-state', { ...runtimeState({ outcome: 'plan_ready', executionMode: 'simple' }), executionIntent: undefined })].join('\n')).finish();
   const prepared = prepareAutomaticStrategyContinuation({ db, task, parsed, toolUseCount: 0, completionEvidence: evidence(), service,
     createMeta: (stage, instruction, taskRunIndex) => ({ stage, instruction, taskRunIndex }) });
   expect(prepared.stage).toBe('intent_resolution');
@@ -228,7 +228,7 @@ async function seedWindow(db: Database.Database, window: Window) {
   upsertMessage(db, conversationId, { id: `${taskId}-resolution`, role: 'assistant', content: '', runId: resolution.id, runStatus: 'running', createdAt: 3 });
   startIntentResolution(db, taskId, resolution.id);
   const produce = window === 'consumed-produce-successor';
-  const reply = protocol(block('open-design-runtime-state', { ...runtimeState({ outcome: produce ? 'plan_ready' : 'completed', executionMode: 'simple' }),
+  const reply = protocol(block('saascodex-runtime-state', { ...runtimeState({ outcome: produce ? 'plan_ready' : 'completed', executionMode: 'simple' }),
     executionIntent: produce ? 'produce' : 'plan_only' })).finish();
   createStrategyRunWriteEvidenceRecorder(db).finish({ id: resolution.id, artifactOutcome: evidence() });
   captureIntentResolutionReply(db, { taskExecutionId: taskId, runId: resolution.id,
@@ -272,10 +272,10 @@ function realRequestBundle(snapshot: AppliedPluginSnapshot, request: string) {
   });
 }
 
-function planContract(snapshot: AppliedPluginSnapshot): OpenDesignPlanContractV2 {
+function planContract(snapshot: AppliedPluginSnapshot): SaaSCodexPlanContractV2 {
   const strategy = snapshot.strategy!;
   return {
-    schema: 'open-design.plan-contract/v2',
+    schema: 'saascodex.plan-contract/v2',
     strategy: {
       id: 'od-next-strategy',
       version: strategy.version,
@@ -346,7 +346,7 @@ function runtimeState(input: {
   executionMode?: 'simple' | null;
 }) {
   return {
-    schema: 'open-design.strategy-state/v2' as const,
+    schema: 'saascodex.strategy-state/v2' as const,
     executionIntent: 'produce' as const,
     route: input.route ?? 'full_plan',
     inputStage: input.inputStage ?? 'request',

@@ -12,7 +12,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { WorkspaceCollabContext } from '@open-design/contracts';
+import type { WorkspaceCollabContext } from '@saascodex/contracts';
 import Database from 'better-sqlite3';
 import express from 'express';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -102,7 +102,7 @@ beforeEach(async () => {
   const pluginFolder = path.join(pluginRoot, PLUGIN_ID);
   await mkdir(pluginFolder, { recursive: true });
   await writeFile(
-    path.join(pluginFolder, 'open-design.json'),
+    path.join(pluginFolder, 'saascodex.json'),
     JSON.stringify({
       $schema: 'https://open-design.ai/schemas/plugin.v1.json',
       name: PLUGIN_ID,

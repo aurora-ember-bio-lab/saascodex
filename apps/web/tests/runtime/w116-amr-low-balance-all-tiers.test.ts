@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 // Positive balances must never introduce a subscription lookup or warning.
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { AmrWalletSnapshot } from '@open-design/contracts';
+import type { AmrWalletSnapshot } from '@saascodex/contracts';
 import { checkAmrBalanceGate } from '../../src/runtime/amr-balance-gate';
 import {
   fetchAmrWalletSnapshot,

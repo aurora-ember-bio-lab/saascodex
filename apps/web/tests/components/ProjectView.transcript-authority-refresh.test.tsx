@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
-import { buildWorkspacePermissions, type WorkspaceCollabContext } from '@open-design/contracts';
+import { buildWorkspacePermissions, type WorkspaceCollabContext } from '@saascodex/contracts';
 import { forwardRef, useImperativeHandle, type ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 

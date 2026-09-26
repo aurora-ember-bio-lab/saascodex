@@ -1,4 +1,4 @@
-import type { OpenDesignPlanContractV2 } from '@open-design/contracts';
+import type { SaaSCodexPlanContractV2 } from '@saascodex/contracts';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -8,7 +8,7 @@ import {
 } from '../../../src/strategies/od-next/protocol.js';
 
 const plan = {
-  schema: 'open-design.plan-contract/v2',
+  schema: 'saascodex.plan-contract/v2',
   strategy: {
     id: 'od-next-strategy',
     version: '2.0.0',
@@ -59,7 +59,7 @@ const plan = {
 } as const;
 
 const state = {
-  schema: 'open-design.strategy-state/v2',
+  schema: 'saascodex.strategy-state/v2',
   route: 'full_plan',
   inputStage: 'request',
   outcome: 'plan_ready',
@@ -75,9 +75,9 @@ describe('OD Next machine protocol stream', () => {
   it('recognizes exact blocks across every chunk boundary and never returns machine bytes', () => {
     const wire = [
       'Ready to build.\n',
-      machineBlock('open-design-plan-contract', plan),
+      machineBlock('saascodex-plan-contract', plan),
       '\n',
-      machineBlock('open-design-runtime-state', state),
+      machineBlock('saascodex-runtime-state', state),
       '\nOne open decision remains.',
     ].join('');
 
@@ -85,8 +85,8 @@ describe('OD Next machine protocol stream', () => {
       const stream = new OdNextMachineProtocolStream();
       const visible = stream.push(wire.slice(0, split)) + stream.push(wire.slice(split));
       const result = stream.finish();
-      expect(visible).not.toContain('open-design-plan-contract');
-      expect(visible).not.toContain('open-design-runtime-state');
+      expect(visible).not.toContain('saascodex-plan-contract');
+      expect(visible).not.toContain('saascodex-runtime-state');
       expect(result.visibleText).toBe('Ready to build.\n\n\nOne open decision remains.');
       expect(result.issues).toEqual([]);
       expect(result.planContract).toEqual(plan);
@@ -101,16 +101,16 @@ describe('OD Next machine protocol stream', () => {
     const stream = new OdNextMachineProtocolStream();
     stream.push([
       '先对齐两个问题。',
-      '<open-design-runtime-state>',
+      '<saascodex-runtime-state>',
       JSON.stringify({
-        schema: 'open-design.strategy-state/v2',
+        schema: 'saascodex.strategy-state/v2',
         route: 'full_plan',
         inputStage: 'request',
         outcome: 'clarification_required',
         executionMode: 'simple',
         reasonCodes: ['scope_required'],
       }),
-      '</open-design-runtime-state>',
+      '</saascodex-runtime-state>',
     ].join('\n'));
     const result = stream.finish();
     expect(result.issues).toEqual([]);
@@ -138,9 +138,9 @@ describe('OD Next machine protocol stream', () => {
     const stream = new OdNextMachineProtocolStream();
     const visible = stream.push([
       'summary',
-      machineBlock('open-design-plan-contract', plan),
-      machineBlock('open-design-plan-contract', plan),
-      machineBlock('open-design-runtime-state', state),
+      machineBlock('saascodex-plan-contract', plan),
+      machineBlock('saascodex-plan-contract', plan),
+      machineBlock('saascodex-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -155,12 +155,12 @@ describe('OD Next machine protocol stream', () => {
   it('keeps one schema-valid fenced contract only as a repair anchor', () => {
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<open-design-plan-contract>',
+      '<saascodex-plan-contract>',
       '```json',
       JSON.stringify(plan),
       '```',
-      '</open-design-plan-contract>',
-      machineBlock('open-design-runtime-state', state),
+      '</saascodex-plan-contract>',
+      machineBlock('saascodex-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -178,14 +178,14 @@ describe('OD Next machine protocol stream', () => {
     // task went straight to a terminal block.
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<open-design-plan-contract>',
+      '<saascodex-plan-contract>',
       'Here is the plan:',
       '```json',
       JSON.stringify(plan),
       '```',
       'Let me know if you want changes.',
-      '</open-design-plan-contract>',
-      machineBlock('open-design-runtime-state', state),
+      '</saascodex-plan-contract>',
+      machineBlock('saascodex-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -198,10 +198,10 @@ describe('OD Next machine protocol stream', () => {
     // partial object mistaken for a declaration.
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<open-design-plan-contract>',
+      '<saascodex-plan-contract>',
       JSON.stringify(plan).slice(0, 60),
-      '</open-design-plan-contract>',
-      machineBlock('open-design-runtime-state', state),
+      '</saascodex-plan-contract>',
+      machineBlock('saascodex-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -216,11 +216,11 @@ describe('OD Next machine protocol stream', () => {
     };
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<open-design-plan-contract>',
+      '<saascodex-plan-contract>',
       'plan follows',
       JSON.stringify(withBrace),
-      '</open-design-plan-contract>',
-      machineBlock('open-design-runtime-state', state),
+      '</saascodex-plan-contract>',
+      machineBlock('saascodex-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -230,7 +230,7 @@ describe('OD Next machine protocol stream', () => {
   it('suppresses malformed and oversized reserved blocks instead of leaking them', () => {
     const stream = new OdNextMachineProtocolStream({ maxMachineBlockBytes: 64 });
     const visible = stream.push(
-      `before<open-design-plan-contract data-x="bad">${'x'.repeat(200)}\n</open-design-plan-contract>after`,
+      `before<saascodex-plan-contract data-x="bad">${'x'.repeat(200)}\n</saascodex-plan-contract>after`,
     );
     const result = stream.finish();
 
@@ -244,7 +244,7 @@ describe('OD Next machine protocol stream', () => {
   });
 
   it('consumes an incomplete closing tag at EOF across every chunk boundary', () => {
-    const complete = machineBlock('open-design-plan-contract', plan);
+    const complete = machineBlock('saascodex-plan-contract', plan);
     const wire = `summary\n${complete.slice(0, -1)}`;
 
     for (let split = 0; split <= wire.length; split += 1) {
@@ -266,7 +266,7 @@ describe('OD Next machine protocol stream', () => {
   });
 
   it('leaves the ordinary Run path byte-for-byte unchanged', () => {
-    const ordinary = `Visible <open-design-runtime-state>{"not":"active"}</open-design-runtime-state>`;
+    const ordinary = `Visible <saascodex-runtime-state>{"not":"active"}</saascodex-runtime-state>`;
     expect(passThroughOrdinaryAssistantText(null, ordinary)).toBe(ordinary);
 
     const strategy = new OdNextMachineProtocolStream();
@@ -275,14 +275,14 @@ describe('OD Next machine protocol stream', () => {
   });
 
   it('does not terminate suppression on a closing-tag string inside JSON', () => {
-    const hostile = structuredClone(plan) as unknown as OpenDesignPlanContractV2;
-    hostile.taskProfile.goal = 'Never leak </open-design-plan-contract> machine bytes';
+    const hostile = structuredClone(plan) as unknown as SaaSCodexPlanContractV2;
+    hostile.taskProfile.goal = 'Never leak </saascodex-plan-contract> machine bytes';
     hostile.decisionSummary.goal = hostile.taskProfile.goal;
     const stream = new OdNextMachineProtocolStream();
     const visible = stream.push([
       'summary',
-      machineBlock('open-design-plan-contract', hostile),
-      machineBlock('open-design-runtime-state', state),
+      machineBlock('saascodex-plan-contract', hostile),
+      machineBlock('saascodex-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -297,10 +297,10 @@ describe('OD Next machine protocol stream', () => {
 
 describe('physical-run protocol output ownership', () => {
   it.each([undefined, 'intent_resolution'] as const)('preserves parsed reply bytes with purpose %s and only emits ordinary answers', purpose => {
-    const runtime = { schema: 'open-design.strategy-state/v2', route: 'full_plan', inputStage: 'request',
+    const runtime = { schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'request',
       outcome: 'completed', executionMode: 'simple', executionIntent: 'plan_only', reasonCodes: [] };
     const visible = 'Discuss this JSON: {"runtimeState":{"example":true}}.\n';
-    const text = `${visible}<open-design-runtime-state>\n${JSON.stringify(runtime)}\n</open-design-runtime-state>`;
+    const text = `${visible}<saascodex-runtime-state>\n${JSON.stringify(runtime)}\n</saascodex-runtime-state>`;
     const stream = createOdNextRunProtocol(purpose ? { purpose } : null);
     let emitted = '';
     for (let i = 0; i < text.length; i += 7) emitted += stream.push(text.slice(i, i + 7));
@@ -313,7 +313,7 @@ describe('physical-run protocol output ownership', () => {
 
   it.each([undefined, 'intent_resolution'] as const)('handles a close-time withheld text tail with purpose %s', purpose => {
     const stream = createOdNextRunProtocol(purpose ? { purpose } : null);
-    const text = 'Example: <open-design-runtime-sta';
+    const text = 'Example: <saascodex-runtime-sta';
     const emitted = stream.push(text);
     const finished = stream.finish();
     expect(finished.parsed.visibleText).toBe(text);

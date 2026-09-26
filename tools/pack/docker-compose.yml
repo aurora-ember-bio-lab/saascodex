@@ -7,7 +7,7 @@
 #
 # Build the image first (from the repo root):
 #
-#   docker build -f deploy/Dockerfile -t open-design/od:dev .
+#   docker build -f deploy/Dockerfile -t saascodex/od:dev .
 #
 # Or pull a published tag:
 #
@@ -21,7 +21,7 @@ services:
   od:
     # The image tag the operator wants. Spec §15.5 expects multi-arch
     # ghcr.io/nexu-io/od:<tag>; the build path above produces
-    # `open-design/od:dev` locally.
+    # `saascodex/od:dev` locally.
     image: ${OD_IMAGE:-ghcr.io/nexu-io/od:latest}
     container_name: od
 

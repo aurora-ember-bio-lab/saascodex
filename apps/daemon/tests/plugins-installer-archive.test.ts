@@ -109,7 +109,7 @@ describe('archive installer', () => {
     let success = false;
     let error: string | undefined;
     for await (const ev of installPlugin(db, {
-      source: 'github:open-design/sample-plugin',
+      source: 'github:saascodex/sample-plugin',
       roots: { userPluginsRoot: pluginsRoot },
       fetcher,
     })) {
@@ -120,9 +120,9 @@ describe('archive installer', () => {
       throw new Error(`install failed: ${error}`);
     }
     expect(success).toBe(true);
-    expect(urlSeen).toBe('https://codeload.github.com/open-design/sample-plugin/tar.gz/HEAD');
+    expect(urlSeen).toBe('https://codeload.github.com/saascodex/sample-plugin/tar.gz/HEAD');
     const row = db.prepare(`SELECT source_kind, source FROM installed_plugins WHERE id = 'sample-plugin'`).get();
-    expect(row).toEqual({ source_kind: 'github', source: 'github:open-design/sample-plugin' });
+    expect(row).toEqual({ source_kind: 'github', source: 'github:saascodex/sample-plugin' });
   });
 
   it('normalizes a browser GitHub repository URL through the GitHub installer', async () => {
@@ -135,7 +135,7 @@ describe('archive installer', () => {
     let success = false;
     let error: string | undefined;
     for await (const ev of installPlugin(db, {
-      source: 'https://github.com/open-design/sample-plugin/',
+      source: 'https://github.com/saascodex/sample-plugin/',
       roots: { userPluginsRoot: pluginsRoot },
       fetcher,
     })) {
@@ -146,20 +146,20 @@ describe('archive installer', () => {
       throw new Error(`install failed: ${error}`);
     }
 
-    expect(urlSeen).toBe('https://codeload.github.com/open-design/sample-plugin/tar.gz/HEAD');
+    expect(urlSeen).toBe('https://codeload.github.com/saascodex/sample-plugin/tar.gz/HEAD');
     const row = db.prepare(
       `SELECT source_kind, source FROM installed_plugins WHERE id = 'sample-plugin'`,
     ).get();
     expect(row).toEqual({
       source_kind: 'github',
-      source: 'github:open-design/sample-plugin',
+      source: 'github:saascodex/sample-plugin',
     });
   });
 
   it.each([
-    'https://github.com/open-design/sample-plugin/issues',
-    'https://github.com/open-design/sample-plugin/tree/main',
-    'https://github.com/open-design/sample-plugin?tab=readme',
+    'https://github.com/saascodex/sample-plugin/issues',
+    'https://github.com/saascodex/sample-plugin/tree/main',
+    'https://github.com/saascodex/sample-plugin?tab=readme',
   ])('rejects a non-root GitHub browser URL before fetching it: %s', async (source) => {
     let fetched = false;
     let error: string | undefined;
@@ -227,7 +227,7 @@ describe('archive installer', () => {
     [429, 'Too Many Requests', 'too many requests'],
   ])('falls back to codeload when GitHub contents returns %i for a plugin subpath', async (status, statusText, body) => {
     const tarball = await buildFixtureTarball({
-      rootPrefix: 'open-design-main',
+      rootPrefix: 'saascodex-main',
       pluginSubpath: 'plugins/community/import-smoke-test',
     });
     const urlsSeen: string[] = [];

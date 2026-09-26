@@ -32,7 +32,7 @@ import type {
   McpServerConfig,
   WorkspaceCollabContext,
   WorkspaceContextItem,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { DesignSystemPicker } from './DesignSystemPicker';
 import type { SkillSummary } from '../types';
 import { Icon, type IconName } from './Icon';
@@ -91,7 +91,7 @@ import { TemplatePicker } from './home-hero/TemplatePicker';
 import { LibraryPicker } from './LibraryPicker';
 import { assetTitle } from './LibraryAssetMeta';
 import { libraryAssetRawUrl } from '../providers/registry';
-import type { LibraryAsset } from '@open-design/contracts';
+import type { LibraryAsset } from '@saascodex/contracts';
 import { WorkingDirPicker } from './WorkingDirPicker';
 import {
   ProjectReferenceModal,
@@ -2324,7 +2324,7 @@ export const HomeHero = forwardRef<HomeHeroHandle, Props>(function HomeHero(
                 });
                 setFigmaHelpOpen(true);
               }}
-              onOpenDesignSystems={onDesignSystemChange ? () => {
+              onSaaSCodexSystems={onDesignSystemChange ? () => {
                 trackHomeChatComposerClick(analytics.track, {
                   page_name: 'home',
                   area: 'chat_composer',

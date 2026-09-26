@@ -5,8 +5,8 @@ import { join } from "node:path";
 import {
   buildLauncherAfterQuitArgs,
   buildLauncherDelegatedArgs,
-} from "@open-design/launcher-proto";
-import { SidecarFactory } from "@open-design/sidecar";
+} from "@saascodex/launcher-proto";
+import { SidecarFactory } from "@saascodex/sidecar";
 
 import { HELPERS_DIR, ensureOwnedSubdir } from "./store.js";
 

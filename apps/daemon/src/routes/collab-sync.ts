@@ -12,7 +12,7 @@ import {
   type ProjectSyncIntentEvent,
   type TeamProject,
   type WorkspaceCollabContext,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import type {
   ProjectContentTransferToken,
 } from '../collab/project-content-transfer-state.js';
@@ -61,7 +61,7 @@ import { clientRequestIdFor } from '../http/client-request-id.js';
 import { isAbortedOperationError } from '../integrations/aborted-error.js';
 import { readProjectManifest } from '../project-locations.js';
 import { redactSecrets } from '../redact.js';
-import { findRealElementRange, HTML_TAG_PATTERNS } from '@open-design/contracts/runtime/html-injection-points';
+import { findRealElementRange, HTML_TAG_PATTERNS } from '@saascodex/contracts/runtime/html-injection-points';
 
 /** The fields register-on-pull reads out of a pulled project's manifest. */
 export interface PulledProjectManifest {
@@ -444,7 +444,7 @@ async function inferNameFromSkillManifest(projectDir: string): Promise<string | 
     return null;
   }
   for (const entry of entries) {
-    const manifest = await readJsonObject(path.join(skillsDir, entry, 'open-design.json'));
+    const manifest = await readJsonObject(path.join(skillsDir, entry, 'saascodex.json'));
     const title = cleanPulledProjectName(manifest?.title);
     if (title) return title;
     const name = cleanPulledProjectName(manifest?.name);
@@ -581,7 +581,7 @@ function workspaceIdentityRequiredBody() {
   return {
     error: 'WORKSPACE_IDENTITY_REQUIRED',
     message:
-      'Publishing a public link needs a signed-in workspace. Sign in to OpenDesign Cloud, ' +
+      'Publishing a public link needs a signed-in workspace. Sign in to SaaSCodex Cloud, ' +
       'or use Deploy to publish this file without one.',
   };
 }
@@ -1298,7 +1298,7 @@ export function registerCollabSyncRoutes(
       await mkdir(path.dirname(targetFile), { recursive: true });
       await writeFile(targetFile, data);
       const metadata = {
-        source: 'open-design',
+        source: 'saascodex',
         projectId,
         fileName: filePath,
       };

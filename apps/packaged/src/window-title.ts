@@ -2,7 +2,7 @@ import {
   releaseChannelFromNamespace,
   releaseChannelFromVersion,
   releaseInstallIdentity,
-} from "@open-design/release";
+} from "@saascodex/release";
 
 const DEFAULT_WINDOW_TITLE = "Open Design";
 

@@ -9,11 +9,11 @@ import path from 'node:path';
 import type {
   InstalledPluginRecord,
   PluginManifest,
-} from '@open-design/contracts';
+} from '@saascodex/contracts';
 import { applyPlugin } from '../src/plugins/apply.js';
 import { openDatabase } from '../src/db.js';
 import { upsertInstalledPlugin } from '../src/plugins/registry.js';
-import { resolveAppliedPipeline, type ScenarioRegistryEntry } from '@open-design/plugin-runtime';
+import { resolveAppliedPipeline, type ScenarioRegistryEntry } from '@saascodex/plugin-runtime';
 
 let tmpRoot: string;
 
@@ -184,7 +184,7 @@ describe('daemon scenarios collector (registry view source)', () => {
     const db = openDatabase(tmpRoot, { dataDir });
     const folder = path.join(tmpRoot, 'od-code-migration');
     await mkdir(folder, { recursive: true });
-    await writeFile(path.join(folder, 'open-design.json'), JSON.stringify({
+    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({
       name: 'od-code-migration',
       version: '0.0.1',
       od: {

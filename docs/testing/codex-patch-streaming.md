@@ -29,7 +29,7 @@ rewriting the user's persistent Codex configuration.
 Run from the repository root with an ordinary installed Codex binary:
 
 ```sh
-OD_E2E_CODEX_BIN="$(command -v codex)" corepack pnpm --filter @open-design/e2e test tests/dialog/codex-patch-stream.test.ts
+OD_E2E_CODEX_BIN="$(command -v codex)" corepack pnpm --filter @saascodex/e2e test tests/dialog/codex-patch-stream.test.ts
 ```
 
 The test is explicitly skipped without `OD_E2E_CODEX_BIN`. It starts the shared
@@ -50,7 +50,7 @@ file order, repeated snapshots, failed execution, cancellation, late events,
 legacy fallback, and bounded preview payloads:
 
 ```sh
-corepack pnpm --filter @open-design/daemon exec vitest run tests/codex-app-server-patch-stream.test.ts tests/codex-app-server-session.test.ts tests/codex-app-server-normalize.test.ts tests/codex-app-server-parity.test.ts tests/codex-app-server-command-output-stream.test.ts tests/codex-app-server-transport-switch.test.ts tests/codex-app-server-protocol-contract.test.ts
+corepack pnpm --filter @saascodex/daemon exec vitest run tests/codex-app-server-patch-stream.test.ts tests/codex-app-server-session.test.ts tests/codex-app-server-normalize.test.ts tests/codex-app-server-parity.test.ts tests/codex-app-server-command-output-stream.test.ts tests/codex-app-server-transport-switch.test.ts tests/codex-app-server-protocol-contract.test.ts
 ```
 
 ## Local validation on 2026-09-11

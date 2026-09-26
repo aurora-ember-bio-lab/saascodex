@@ -1,8 +1,8 @@
 # Vela Touchpoint「真实时间活动」测试交接
 
-> 写于 2026-09-14。本文是 OpenDesign 对 Vela 的待实现依赖交接，不是上线记录。
+> 写于 2026-09-14。本文是 SaaSCodex 对 Vela 的待实现依赖交接，不是上线记录。
 >
-> 后续用户已批准本地客户端开发：OpenDesign worktree 已接入共享展示生命周期和 Test 授权字段；本文同步记录客户端实现与验证边界。不执行 Vela 远程部署或数据库操作，既有生产服务端协议、不可变发布快照及 deployments/acceptances 历史不因此改变。Vela 客户端与服务端的待交付要求仍保留。
+> 后续用户已批准本地客户端开发：SaaSCodex worktree 已接入共享展示生命周期和 Test 授权字段；本文同步记录客户端实现与验证边界。不执行 Vela 远程部署或数据库操作，既有生产服务端协议、不可变发布快照及 deployments/acceptances 历史不因此改变。Vela 客户端与服务端的待交付要求仍保留。
 
 ## 已决定的产品语义
 
@@ -37,13 +37,13 @@ Admin 排期输入和展示固定使用北京时间 `Asia/Shanghai`（UTC+08:00�
 
 这证明旧模拟 context 可在真实窗口结束后继续生成 `active` 与回执，正是本次要切断的路径。它不是一次真实时间验收成功的证据，不能据此 promotion 或宣称上线。
 
-## OpenDesign 本地验证（非 live Vela 联调）
+## SaaSCodex 本地验证（非 live Vela 联调）
 
 本轮在实际 Chromium 中使用本地 HTTP 协议 fixture 和正式桌面宿主桥协议 fixture，经过真实客户端入口验证：Test before 零挂载，active 四触点挂载；活动仍 active 时，断网后短期授权到期使四触点全部撤下，deployment 选择保留，界面不把授权过期误报为活动 ended。生产弹窗也经过真实获取入口验证短期授权先于活动结束时撤下。缺少 Test 授权字段的 fixture 零挂载、零回执。共享 owner 的虚拟时钟测试另覆盖续期、响应耗时、本地钟后退、恢复、请求超时与迟到响应。上述是本地客户端证明，**不是** live Vela 联调、原生桌面功能或部署证明。
 
 ## 客户端核心要求：Test 与 Production 必须共用一个展示生命周期
 
-**OpenDesign worktree 已合并展示生命周期实现。** `TestCampaignModal`、`ProductionCampaignModal`、`ProductionCampaignBadge`、`ProductionCampaignHover` 均调用 `touchpoint-lifecycle.ts` 的 `useTouchpointLifecycle`；旧的各宿主 polling/lease/wake effects 已移除。独立展示组各自持有实例，但调度、授权和代际隔离只有这一套实现，Test 不再绕开它。Test 选择/验收、生产展示频控和布局留在外层。下表保留重构前审计，不能当作当前代码状态。
+**SaaSCodex worktree 已合并展示生命周期实现。** `TestCampaignModal`、`ProductionCampaignModal`、`ProductionCampaignBadge`、`ProductionCampaignHover` 均调用 `touchpoint-lifecycle.ts` 的 `useTouchpointLifecycle`；旧的各宿主 polling/lease/wake effects 已移除。独立展示组各自持有实例，但调度、授权和代际隔离只有这一套实现，Test 不再绕开它。Test 选择/验收、生产展示频控和布局留在外层。下表保留重构前审计，不能当作当前代码状态。
 
 ### 重构前调用链与差异（历史基线）
 
@@ -68,7 +68,7 @@ Admin 排期输入和展示固定使用北京时间 `Asia/Shanghai`（UTC+08:00�
 - **展示宿主**：modal/badge/hover 保留各自布局、交互与展示频控，但消费同一 controller 的当前授权和挂载结果；不得保留平行的取数/lease effect。授权失效时所有宿主和异步 mount 回调都受同一代际失效约束，不能重新挂回旧内容。
 - **生命周期之外**：Test 选择面板只改变适配器输入；Test context 创建由 Test 适配器处理。`recordTestAcceptance`（TestCampaignModal.tsx:249–297）及 `recordVisibleTestTouchpoint`（:300–332）的验收业务留在外层，仅观察共享生命周期已授权且实际可见的结果；轮询、恢复和无效/过期响应不得产生新验收。外层不得反向维持另一套展示时钟。
 
-OpenDesign 实施位置：`touchpoint-lifecycle.ts` 统一拥有 30 秒 polling、请求超时、服务器相对授权期限、开始边界重新 GET、页面恢复/可见性、请求取消及代际隔离。各宿主的数据适配器只获取和验证响应；生产继续调用 `loadProductionTouchpointDecision`，Test 在选择作用域创建 context 并获取 placements。相同 immutable decision 的正常 polling 续期保留挂载身份，不重复展示/验收。授权到期撤下内容，不自行将服务器 active 状态改为 ended。
+SaaSCodex 实施位置：`touchpoint-lifecycle.ts` 统一拥有 30 秒 polling、请求超时、服务器相对授权期限、开始边界重新 GET、页面恢复/可见性、请求取消及代际隔离。各宿主的数据适配器只获取和验证响应；生产继续调用 `loadProductionTouchpointDecision`，Test 在选择作用域创建 context 并获取 placements。相同 immutable decision 的正常 polling 续期保留挂载身份，不重复展示/验收。授权到期撤下内容，不自行将服务器 active 状态改为 ended。
 
 ### Test deployment 目录发现（OPEND-3172）
 
@@ -90,7 +90,7 @@ OpenDesign 实施位置：`touchpoint-lifecycle.ts` 统一拥有 30 秒 polling�
 - 普通窗口 `focus` 不等同于页面恢复：页面仍可见且当前 lease 尚未到期时，立即后台验证并保留原挂载，不改变原授权截止；同一内容的有效响应只续期。`visibilitychange`、`pageshow`、`online` 仍走暂停展示的恢复路径，focus 时已过期的 lease 也先撤下。请求失败、超时、匹配撤销及到期的清理规则不变。
 - Test 弹窗与 Production 使用同一展示频控：弹窗实际可见即写入 localStorage `touchpoint-displayed:v1:<账号>:<活动ID>`，同一账号、活动在本设备只自动弹出一次，跨刷新、重新挂载与客户端重启保持；Test 与 Production 共用该记录。已打开的弹窗可在续期、验证与语言切换中保持；此后同一活动的新 deployment、临时空 decision 或关闭后的重新下发均不再自动弹出。账号角标与 hover 不受该频控影响。
 - 生产 loader 的 404 是 no-decision，并不自行撤销有效 lease；只有有效且绑定当前 touchpointDecisionId/deploymentId/activityId/contentVersionId 的 410 receipt 才构成服务端撤销。匹配的撤销清除当前展示，但不停止后续发现新活动。非 Abort 的当前请求失败仍诊断后 clear。恢复期间先暂停旧展示；no-decision 或不匹配撤销只能保留尚未到期的原授权及原截止，不能续期或复活过期授权。
-- **用户已确认：Test 也由服务端返回 authorizationExpiresAt，与 Production 使用相同的短期展示授权规则。** OpenDesign Test DTO 已将此字段设为必填；适配器不得伪造授权或 fallback 到仅受 endsAt 限制。Vela 新响应仍待交付验证。
+- **用户已确认：Test 也由服务端返回 authorizationExpiresAt，与 Production 使用相同的短期展示授权规则。** SaaSCodex Test DTO 已将此字段设为必填；适配器不得伪造授权或 fallback 到仅受 endsAt 限制。Vela 新响应仍待交付验证。
 - Vela 当前生产服务端最长授权 60 秒（`services/api/src/touchpoints/persistence.ts`：`resolveProductionRuntime`）；Test 每 GET 使用同一 serverTime 生成 `authorizationExpiresAt = min(endsAt, serverTime + 60 秒)`。before/ended 也返回该字段及完整 metadata，但不可挂载；ended 的授权时间可早于 serverTime。客户端 5 分钟安全上限不是服务端授权时长，不能延长 60 秒授权。
 - 两种数据源进入同一授权与展示算法：服务器确认 active 且授权有效才能挂载；授权或活动到期取较早者撤载，断网也不续期。只有新的有效服务端响应可以续期；本地计时只能使展示失效，不能自行将 before 激活。
 
@@ -98,7 +98,7 @@ OpenDesign 实施位置：`touchpoint-lifecycle.ts` 统一拥有 30 秒 polling�
 
 Test/Production 保留各自 endpoint、认证、选择方式和响应形状，不要求生产接口改为 Test 三态 200。两个适配器统一输出已验证的 identity/content、服务器窗口及授权限制，交给同一 lifecycle owner；统一 polling、挂载、撤载、恢复和迟到响应隔离。Test 选择与验收外置。生产既有 no-decision、撤销和失败语义按前文保留，不把不同响应混为相同撤销信号。
 
-OpenDesign 本地 DTO 与客户端已按上述分层实现；Vela 侧 DTO、服务端、适配器及 fixtures 仍需迁移并完成真实联调，不能因本地实现完成而宣称两仓已交付。
+SaaSCodex 本地 DTO 与客户端已按上述分层实现；Vela 侧 DTO、服务端、适配器及 fixtures 仍需迁移并完成真实联调，不能因本地实现完成而宣称两仓已交付。
 
 ### 共享完成的验收要求（两仓整体仍待验收）
 
@@ -111,7 +111,7 @@ OpenDesign 本地 DTO 与客户端已按上述分层实现；Vela 侧 DTO、服�
 
 ## Wire 契约
 
-OpenDesign 客户端 DTO 位于 `@open-design/contracts/api/touchpointTestRuntime`。Vela 与 OpenDesign 按下列 wire 契约对齐，但两个仓库**不得互相 import**对方的 contracts/package；Vela 应用等价的本地 type/schema，不能另造不同字段或语义。
+SaaSCodex 客户端 DTO 位于 `@saascodex/contracts/api/touchpointTestRuntime`。Vela 与 SaaSCodex 按下列 wire 契约对齐，但两个仓库**不得互相 import**对方的 contracts/package；Vela 应用等价的本地 type/schema，不能另造不同字段或语义。
 
 ```ts
 import type {
@@ -122,7 +122,7 @@ import type {
   TestRuntimeScenario,
   TestRuntimeScheduleState,
   TestRuntimeTiming,
-} from "@open-design/contracts/api/touchpointTestRuntime";
+} from "@saascodex/contracts/api/touchpointTestRuntime";
 
 // TestRuntimeScenario = "realtime"
 // TestRuntimeScheduleState = "before" | "active" | "ended"
@@ -130,7 +130,7 @@ import type {
 // TestRuntimeContext = TestRuntimeContextRequest & {
 //   testerMemberId?: string; updatedAt: string // ISO-8601
 // }
-// OpenDesign DTO 已同步授权字段；Vela 等价类型与响应仍需实现/验证。
+// SaaSCodex DTO 已同步授权字段；Vela 等价类型与响应仍需实现/验证。
 // TestRuntimeTiming = { serverTime: string; startsAt: string; endsAt: string; authorizationExpiresAt: string } // UTC ISO-8601
 // TestRuntimeDecision<Content, StaticActions> = {
 //   deploymentId: string; activityId?: string; snapshotHash?: string;
@@ -279,7 +279,7 @@ Vela review 补充的交付要求：同库 promotion 和跨库 `getPromotionEvid
 - 未选择 context、deployment 不存在、placement 不匹配、无 runtime 授权保持现有 404/认证失败语义；不得以虚假 active 掩盖。
 - `before`/`ended` **不是 404**：必须 HTTP 200，含完整既有 identity、snapshot hashes、placement、capabilities、staticActions、context、timing 和同形 `content`。它们供客户端等待开始/停用；客户端/host 非 active 时禁止挂载 content、发 runtime event 或 acceptance，并必须撤下已显示触点。
 - `updatedAt` 是 context 选择更新时间，不替代 `serverTime`，不能判排期。客户端本地钟只可用于刷新/展示，不决定 active。
-- 本轮仅修改 OpenDesign 本地客户端、契约、构建入口和相关测试/交接记录，不修改 Vela 运行时代码或远程环境。“不改生产”指不借此改变生产服务端协议、展示授权上限及既有推广门槛。历史证据过滤仍由 Vela 补齐；不重写 deployment/acceptance 审计或内容快照，不更改凭证和数据库连接。
+- 本轮仅修改 SaaSCodex 本地客户端、契约、构建入口和相关测试/交接记录，不修改 Vela 运行时代码或远程环境。“不改生产”指不借此改变生产服务端协议、展示授权上限及既有推广门槛。历史证据过滤仍由 Vela 补齐；不重写 deployment/acceptance 审计或内容快照，不更改凭证和数据库连接。
 
 ## Vela 与客户端后续验收清单
 
@@ -305,7 +305,7 @@ Vela review 补充的交付要求：同库 promotion 和跨库 `getPromotionEvid
 
 | 交付面 | 状态 | 可宣称的范围 |
 | --- | --- | --- |
-| OpenDesign 当前 worktree 客户端与 contracts | 已接入共享生命周期及必填 Test 授权；本地测试与浏览器协议 fixture 验证 | 覆盖本地客户端，不代表 Vela 新协议已部署；真实联调与正式发布仍待完成。 |
-| Vela runtime、persistence、migration、acceptance 与 Vela Web 消费者 | 待实现、待部署、待真实窗口验证 | 不能将本文协议、OpenDesign worktree 代码或 A-HYT 的旧模拟回执表述为 Vela 已部署或真实时间活动已上线。 |
+| SaaSCodex 当前 worktree 客户端与 contracts | 已接入共享生命周期及必填 Test 授权；本地测试与浏览器协议 fixture 验证 | 覆盖本地客户端，不代表 Vela 新协议已部署；真实联调与正式发布仍待完成。 |
+| Vela runtime、persistence、migration、acceptance 与 Vela Web 消费者 | 待实现、待部署、待真实窗口验证 | 不能将本文协议、SaaSCodex worktree 代码或 A-HYT 的旧模拟回执表述为 Vela 已部署或真实时间活动已上线。 |
 
-剩余上线阻碍：Vela 客户端共享生命周期与服务端授权响应；migration、每 GET realtime、active-only acceptance、同库 promotion 与跨库 getPromotionEvidence 历史过滤；维护窗口、旧页面策略与两仓真实窗口联调。OpenDesign 本地实现不替代这些交付，也不构成部署或数据库修改授权。
+剩余上线阻碍：Vela 客户端共享生命周期与服务端授权响应；migration、每 GET realtime、active-only acceptance、同库 promotion 与跨库 getPromotionEvidence 历史过滤；维护窗口、旧页面策略与两仓真实窗口联调。SaaSCodex 本地实现不替代这些交付，也不构成部署或数据库修改授权。

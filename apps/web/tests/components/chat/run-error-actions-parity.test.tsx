@@ -22,7 +22,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { forwardRef } from 'react';
-import { Button } from '@open-design/components';
+import { Button } from '@saascodex/components';
 
 import { ChatPane } from '../../../src/components/ChatPane';
 import type { AppConfig, ChatMessage } from '../../../src/types';

@@ -326,7 +326,7 @@ CSS 3105 注释解释了为什么白底不红底:「红底又和下面那三个�
 
 **差在哪**
 - ~~**〔形态〕两张卡 → 一张卡。** 把 `AmrGuidance` 的主 CTA 收进报错卡的 primary 位。~~ **已做**(OPEND-2772 / T68,红测 `apps/web/tests/components/chat/opend-2772-one-card-one-cta.test.tsx`)。
-- **〔样式〕文案逐字替换**:现有 `chat.amrCard.switchTitle/switchBody/switchCta` 换成稿子原文。⚠️ **没做,而且是有意不做**:产品 2026-09-07 逐字「我没让你改文案吧?」。合并后主 CTA 仍念产品那句 `chat.amrCard.switchCta`「切换到 OpenDesign Cloud 并重试」,不是稿子的「切换到 Cloud」;`switchTitle` / `switchBody` / 三枚 chip 随卡一起下线。
+- **〔样式〕文案逐字替换**:现有 `chat.amrCard.switchTitle/switchBody/switchCta` 换成稿子原文。⚠️ **没做,而且是有意不做**:产品 2026-09-07 逐字「我没让你改文案吧?」。合并后主 CTA 仍念产品那句 `chat.amrCard.switchCta`「切换到 SaaSCodex Cloud 并重试」,不是稿子的「切换到 Cloud」;`switchTitle` / `switchBody` / 三枚 chip 随卡一起下线。
 - **〔数据〕做得到** —— `showSwitchCard` 已经在算,`onSwitchToAmrAndRetry` 已经接线。
 - **⚠ 但这一格的文案对不上最大的真实场景。** 稿子写的是「需要云端算力」;而 `error-ux-design.md` 的 **S08 供应商额度用完(每月 23,333 次、9,220 台设备、环比 ↑55%、P0 第一大类,今天一个按钮都没有)** 才是这张卡最该承接的内容,它的文案是「{供应商} 的额度用完了 —— 这是你在 {供应商} 那边的额度,重试不会恢复」。**卡面能复用,文案要产品给第二套。**
 

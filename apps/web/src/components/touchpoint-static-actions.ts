@@ -1,4 +1,4 @@
-import type { TouchpointComponentV2Manifest } from "@open-design/contracts";
+import type { TouchpointComponentV2Manifest } from "@saascodex/contracts";
 
 type SharedStaticAction =
 	TouchpointComponentV2Manifest["placements"][number]["staticActions"][number];

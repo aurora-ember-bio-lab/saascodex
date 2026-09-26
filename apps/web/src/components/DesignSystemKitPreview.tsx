@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { BrandSummary, WorkspaceCollabContext } from '@open-design/contracts';
+import type { BrandSummary, WorkspaceCollabContext } from '@saascodex/contracts';
 import { useT } from '../i18n';
 import { fetchDesignSystem } from '../providers/registry';
 import {
