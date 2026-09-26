@@ -29,7 +29,7 @@
  * `displayStatusForSummary`, ✓-spending included — applies everywhere.
  */
 import { useEffect, useMemo, useRef, useSyncExternalStore } from 'react';
-import type { ProjectDisplayStatus, WorkspaceCollabContext } from '@open-design/contracts';
+import type { ProjectDisplayStatus, WorkspaceCollabContext } from '@saascodex/contracts';
 import { listRunsForProject, RUNS_CHANGED_EVENT } from '../providers/daemon';
 import {
   displayStatusForSummary,
