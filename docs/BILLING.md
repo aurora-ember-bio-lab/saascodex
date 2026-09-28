@@ -46,7 +46,7 @@ in [architecture.md](./architecture.md#api-authentication). Paid plans
    - Pro: €28 / month → copy the price ID (`price_...`)
    - Studios: €48 / month → copy the price ID (`price_...`)
 2. Add a webhook endpoint pointing at
-   `https://<your-host>/api/billing/webhook` with these events:
+   `https://app.saascodex.com/api/billing/webhook` with these events:
    - `checkout.session.completed`
    - `customer.subscription.updated`
    - `customer.subscription.deleted`
@@ -130,3 +130,18 @@ every handled event, and the store's trial seeding and expiry:
 ```bash
 pnpm --filter @saascodex/daemon exec vitest run -c vitest.config.ts tests/billing.test.ts
 ```
+
+`apps/daemon/tests/billing-routes.test.ts` is a full **HTTP integration test**
+of the subscription lifecycle: it mounts the real billing routes on an express
+app (webhook behind `express.raw`, exactly like `server.ts`), points the Stripe
+client at a mock `fetch`, and drives plans → Checkout → signed webhook →
+subscription state → cancellation:
+
+```bash
+pnpm --filter @saascodex/daemon exec vitest run -c vitest.config.ts tests/billing-routes.test.ts
+```
+
+No Stripe account is needed for either suite. For an end-to-end check against a
+real account, point the webhook at `https://app.saascodex.com/api/billing/webhook`
+and use `stripe listen --forward-to localhost:7456/api/billing/webhook` in
+development.
