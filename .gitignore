@@ -103,3 +103,7 @@ deploy/agent-bins/
 # Python bytecode from workflow helper self-checks / local compile.
 __pycache__/
 *.py[cod]
+
+# Release build outputs (docs/RELEASING.md)
+dist-release/
+.release/

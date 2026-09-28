@@ -11,7 +11,10 @@ set -euo pipefail
 # Configuration
 # ---------------------------------------------------------------------------
 DEFAULT_PORT=7456
-DEFAULT_IMAGE="ghcr.io/nexu-io/od:latest"
+# Container image to install. Override with SAASCODEX_IMAGE or --image <ref>.
+# This default points at the SaaSCodex fork's GHCR package; adjust the owner or
+# repository name if the fork lives elsewhere (see docs/RELEASING.md).
+DEFAULT_IMAGE="${SAASCODEX_IMAGE:-ghcr.io/cargounetcom/open-design-main:latest}"
 DEFAULT_MEM_LIMIT="384m"
 HEALTH_TIMEOUT=60
 

@@ -20,6 +20,7 @@
     "guard": "tsx ./scripts/guard.ts",
     "lint:craft": "tsx ./scripts/lint-craft-references.ts",
     "check:skills": "tsx ./scripts/check-skills-catalog.ts",
+    "package:release": "tsx ./scripts/package-release.ts",
     "db:up": "docker compose -f deploy/docker-compose.yml up -d postgres",
     "db:migrate": "docker compose -f deploy/docker-compose.yml run --rm migrate",
     "db:hash": "docker compose -f deploy/docker-compose.yml run --rm atlas migrate hash --dir file://migrations",
