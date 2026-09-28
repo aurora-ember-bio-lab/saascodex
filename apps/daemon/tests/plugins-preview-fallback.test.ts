@@ -72,7 +72,7 @@ beforeEach(async () => {
   await writeFile(
     path.join(folder, 'saascodex.json'),
     JSON.stringify({
-      $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+      $schema: 'https://saascodex.com/schemas/plugin.v1.json',
       name: PLUGIN_ID,
       title: 'Preview fallback fixture',
       version: '1.0.0',

@@ -1,0 +1,29 @@
+{
+  "brand": "SaaSCodex",
+  "domain": "saascodex.com",
+  "author": "Aurora Ember Cyber Bio Lab",
+  "tagline": "Ship interfaces with agent-grade craft",
+  "colors": {
+    "auroraInk": "#0B0F0E",
+    "auroraMint": "#3BE8B0",
+    "emberAmber": "#F5A524",
+    "emberRed": "#FF5C5C",
+    "indigo": "#4F46E5",
+    "paper": "#F5F7F6",
+    "inkText": "#06110D"
+  },
+  "gradients": {
+    "aurora": { "from": "#3BE8B0", "to": "#4F46E5" }
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Inter",
+    "mono": "JetBrains Mono"
+  },
+  "assets": {
+    "mark": "logo-mark.svg",
+    "markMono": "logo-mark-mono.svg",
+    "lockup": "logo.svg",
+    "favicon": "favicon.svg"
+  }
+}

@@ -41,7 +41,7 @@ describe('brand enrichment runtime helpers', () => {
     const prompt = buildBrandEnrichmentPrompt('Existing extraction prompt', {
       metadata: {
         kind: 'brand',
-        brandSourceUrl: 'https://open-design.ai/',
+        brandSourceUrl: 'https://saascodex.com/',
         brandId: 'brand_open_design',
         brandDesignSystemId: 'user:saascodex-6',
         entryFile: 'brand.html',
@@ -67,7 +67,7 @@ describe('brand enrichment runtime helpers', () => {
 
     expect(prompt).toContain('Current programmatic extraction context:');
     expect(prompt).toContain('Existing registered design system: SaaSCodex (user:saascodex-6)');
-    expect(prompt).toContain('Source to re-check: https://open-design.ai/');
+    expect(prompt).toContain('Source to re-check: https://saascodex.com/');
     expect(prompt).toContain('system/variables.css');
     expect(prompt).toContain('fonts/Inter.woff2');
     expect(prompt).toContain('Programmatic modules to inspect and reconcile');

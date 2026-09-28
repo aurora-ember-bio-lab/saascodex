@@ -1412,7 +1412,7 @@ export async function openExternalUrl(url: string): Promise<boolean> {
 async function bridgeFirstPartyUrl(url: string): Promise<string | null> {
   try {
     const target = new URL(url);
-    if (!['open-design.ai', 'www.open-design.ai', 'staging.open-design.ai'].includes(target.hostname)) return null;
+    if (!['saascodex.com', 'www.saascodex.com', 'staging.saascodex.com'].includes(target.hostname)) return null;
     const resp = await fetch('/api/attribution/bridge-url', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

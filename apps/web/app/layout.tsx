@@ -15,8 +15,12 @@ import '../src/components/OnboardingWelcome.module.css';
 
 export const metadata: Metadata = {
   title: 'SaaSCodex',
+  metadataBase: new URL('https://saascodex.com'),
   icons: {
-    icon: '/app-icon.png',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/app-icon.png', type: 'image/png' },
+    ],
     apple: '/app-icon.png',
   },
 };

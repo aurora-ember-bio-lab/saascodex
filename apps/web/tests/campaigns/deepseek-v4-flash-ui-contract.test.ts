@@ -109,7 +109,7 @@ describe('DeepSeek V4 Flash workbench campaign entry', () => {
     expect(workbenchCampaignBadgeSource).toContain("'noopener,noreferrer'");
     // The destination comes from the active app locale rather than pinning one
     // language into a link shown to every locale.
-    expect(workbenchCampaignBadgeSource).not.toContain('open-design.ai/zh/pricing');
+    expect(workbenchCampaignBadgeSource).not.toContain('saascodex.com/zh/pricing');
   });
 
   it('reuses the existing DeepSeek badge treatment without Go-only chrome', () => {

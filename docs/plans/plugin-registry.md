@@ -109,7 +109,7 @@ Product surface semantics:
   status later.
 - **Plugins / Team** is the enterprise governance layer: private catalogs,
   organization allowlists, approvals, audit, and policy.
-- **open-design.ai/plugins** is the public renderer of the official and
+- **saascodex.com/plugins** is the public renderer of the official and
   community registry sources, not a separate source of truth.
 
 Agent consumption boundary:
@@ -273,7 +273,7 @@ Fallback archives require integrity hashes.
    tarball download + checksum, manifest replay, optional preview render.
 9. On merge, `publish-index.yml` regenerates `marketplace.json` and pushes
    it to `main`. GitHub Pages / CDN serves it as the fetchable marketplace
-   JSON, while `https://open-design.ai/plugins/` renders the public browser
+   JSON, while `https://saascodex.com/plugins/` renders the public browser
    and detail pages over that same source data.
 
 **Yanking** uses the same PR shape with a `yanked: true, reason: "..."` patch
@@ -321,11 +321,11 @@ swap symlink, rollback on failure).
 
 Two consumers of the same `marketplace.json`:
 
-- **Official site (open-design.ai/plugins)** — static, SSG against
+- **Official site (saascodex.com/plugins)** — static, SSG against
   repo-owned `plugins/registry/*/saascodex-marketplace.json` sources. Browse,
   search, copy install command, render plugin details, preview asset,
   capability & permission summary, version history, publisher links, and
-  canonical SEO pages. `open-design.ai/marketplace` can be kept as an alias
+  canonical SEO pages. `saascodex.com/marketplace` can be kept as an alias
   once routes are finalized.
 - **Self-hosted third-party site** — out of the box, anyone running the
   same registry repo template gets the static site as a copy-paste
@@ -398,7 +398,7 @@ This repo now has the first registry closure in place:
 - The extracted marketing-site repository now exposes the public SEO renderer at `/plugins/` plus
   static per-plugin detail pages. It reads `plugins/registry/official`,
   `plugins/registry/community`, and bundled official manifests at build time,
-  so open-design.ai can show the ecosystem without calling daemon APIs.
+  so saascodex.com can show the ecosystem without calling daemon APIs.
 - The `Create plugin` product prompt is agent-assisted and explicitly drives
   scaffold/validate/local install/pack/login/whoami/publish expectations.
 - Registry evaluation cases now live in
@@ -518,7 +518,7 @@ first, headless, JSON-emitting.
   now carries the source shape and generated registry inputs; creating the
   external GitHub repo is an operational launch step, not a code blocker.
 - [x] **P3.2 Static site renderer.** The extracted marketing-site repository now
-  statically generates `open-design.ai/plugins` and per-plugin detail routes
+  statically generates `saascodex.com/plugins` and per-plugin detail routes
   from `plugins/registry/*/saascodex-marketplace.json` plus bundled official
   manifests, with SEO metadata, search JSON, and `od://` detail links.
 - [x] **P3.3 Submission guide.** `docs/publishing-a-plugin.md` + zh-CN. The
@@ -543,7 +543,7 @@ first, headless, JSON-emitting.
 
 - [x] **P4.1 DB-backed RegistryBackend.** Same interface, SQLite or Postgres.
   Validates R2.
-- [x] **P4.2 Search index.** Static `open-design.ai/plugins/search.json`
+- [x] **P4.2 Search index.** Static `saascodex.com/plugins/search.json`
   exposes the website search index; CLI still works against
   `marketplace.json` directly. Typesense/Meilisearch can replace the static
   file later without changing registry semantics.

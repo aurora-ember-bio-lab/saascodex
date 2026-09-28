@@ -85,7 +85,7 @@
     reloadedReopen: 'Reloaded - reopen this popup to continue.',
     toolbarDrag: 'Drag to move',
     toolbarDragLabel: 'Drag the SaaSCodex bar',
-    toolbarHomeTip: 'SaaSCodex - open-design.ai',
+    toolbarHomeTip: 'SaaSCodex - saascodex.com',
     toolbarHomeLabel: 'SaaSCodex home',
     toolbarCapturePage: 'Capture page -> Library',
     toolbarExtractDesignSystem: 'Extract design system',

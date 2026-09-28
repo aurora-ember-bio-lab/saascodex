@@ -51,7 +51,7 @@ describe('complete Task trace evidence', () => {
   it('freezes the entire >64 KiB redacted Prompt, with immutable Run identity and explicit oversize failure', async () => {
     const text = redactPromptText('界'.repeat(40000) + ' /Users/private/secrets/file');
     const options = { installationId: 'synthetic', projectId: 'p', runId: 'r', projectsRoot: '/unused', prompt: '', runEvidence: text,
-      prefs: { metrics: true, content: true }, env: { SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.open-design.ai/api/langfuse' } };
+      prefs: { metrics: true, content: true }, env: { SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.saascodex.com/api/langfuse' } };
     const sources = await freezeTraceObjectSources(options);
     expect(sources).toHaveLength(1);
     expect(sources[0]?.body?.toString()).toBe(text);

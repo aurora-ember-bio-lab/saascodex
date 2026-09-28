@@ -1,10 +1,10 @@
 export const SAASCODEX_TELEMETRY_RELAY_URLS = {
-  test: 'https://telemetry-test.open-design.ai/api/langfuse',
-  prod: 'https://telemetry.open-design.ai/api/langfuse',
+  test: 'https://telemetry-test.saascodex.com/api/langfuse',
+  prod: 'https://telemetry.saascodex.com/api/langfuse',
 } as const;
 
-const LEGACY_TEST_RELAY_ORIGIN = 'https://telemetry-selfhost.open-design.ai';
-const TEST_RELAY_ORIGIN = 'https://telemetry-test.open-design.ai';
+const LEGACY_TEST_RELAY_ORIGIN = 'https://telemetry-selfhost.saascodex.com';
+const TEST_RELAY_ORIGIN = 'https://telemetry-test.saascodex.com';
 
 /**
  * Keep legacy test configurations working while moving the test Worker to its

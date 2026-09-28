@@ -16,7 +16,7 @@
 // this file never reads env.
 
 // Canonical public site origin for shareable plugin links.
-export const SAASCODEX_SITE_ORIGIN = 'https://open-design.ai';
+export const SAASCODEX_SITE_ORIGIN = 'https://saascodex.com';
 
 // Slugify one path segment: lower-cased, non-url-safe runs collapsed to `-`,
 // leading/trailing `-` trimmed. Must match the landing site byte-for-byte.

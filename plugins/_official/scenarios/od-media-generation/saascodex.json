@@ -1,5 +1,5 @@
 {
-  "$schema": "https://open-design.ai/schemas/plugin.v1.json",
+  "$schema": "https://saascodex.com/schemas/plugin.v1.json",
   "specVersion": "1.0.0",
   "name": "od-media-generation",
   "title": "Media generation (default scenario)",

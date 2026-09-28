@@ -51,7 +51,7 @@ describe('resolveVelaConsoleOrigin', () => {
       'https://saascodex.powerformer.net/cloud',
     );
     expect(resolveVelaConsoleOrigin({}, { SAASCODEX_AMR_PROFILE: 'prod' })).toBe(
-      'https://open-design.ai/cloud',
+      'https://saascodex.com/cloud',
     );
     expect(resolveVelaConsoleOrigin({}, { SAASCODEX_AMR_PROFILE: 'local' })).toBe(
       'http://localhost:5173',

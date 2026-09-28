@@ -89,7 +89,7 @@ Explicit, fixed-synthetic upload canary (never accepts an external dataset,
 fixture manifest, real mode, production profile or more than one repeat):
 
 ```bash
-SAASCODEX_TELEMETRY_RELAY_URL=https://telemetry-test.open-design.ai/api/langfuse \
+SAASCODEX_TELEMETRY_RELAY_URL=https://telemetry-test.saascodex.com/api/langfuse \
   pnpm exec tsx scripts/syntax-acceptance.ts --mode replay --upload-telemetry --repeat 1
 ```
 

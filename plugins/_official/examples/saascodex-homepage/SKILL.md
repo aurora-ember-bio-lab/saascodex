@@ -1,13 +1,13 @@
 ---
 name: saascodex-homepage
 title: SaaSCodex Homepage
-description: A pixel-faithful, self-contained mirror of the live open-design.ai homepage — an interactive React Three Fiber / Next.js hero with a real-time 3D wordmark, sticker collage, variable fonts, and scroll-driven motion. First-party showcase of the visual ceiling for interactive web marketing surfaces.
+description: A pixel-faithful, self-contained mirror of the live saascodex.com homepage — an interactive React Three Fiber / Next.js hero with a real-time 3D wordmark, sticker collage, variable fonts, and scroll-driven motion. First-party showcase of the visual ceiling for interactive web marketing surfaces.
 license: MIT
 ---
 
 # SaaSCodex Homepage
 
-A first-party **showcase** template that mirrors the live [open-design.ai](https://open-design.ai) homepage, captured as a fully self-contained bundle that renders in the sandboxed preview.
+A first-party **showcase** template that mirrors the live [saascodex.com](https://saascodex.com) homepage, captured as a fully self-contained bundle that renders in the sandboxed preview.
 
 It is here to demonstrate the **visual ceiling** SaaSCodex targets for interactive, WebGL-grade marketing surfaces on the web — not a fill-in-the-blank generator. Treat it as a reference build to study and adapt.
 

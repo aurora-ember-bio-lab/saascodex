@@ -63,7 +63,7 @@ const SHOW_PAYLOAD: WhatsNewResponse = {
     title: 'Design system sync',
     body: 'Import, edit and sync design systems\nFaster canvas pan and zoom\nProject import and dark-mode contrast fixes',
     imageUrl: 'https://cdn.example.test/whats-new/0-16-1.jpg',
-    linkUrl: 'https://open-design.ai/blog/0-16-1/',
+    linkUrl: 'https://saascodex.com/blog/0-16-1/',
   },
 };
 
@@ -321,8 +321,8 @@ describe('WhatsNewPopup actions', () => {
   });
 
   it.each([
-    ['en', 'View Arena', 'https://open-design.ai/llm-arena-for-design/'],
-    ['zh-CN', '查看评测站', 'https://open-design.ai/zh/llm-arena-for-design/'],
+    ['en', 'View Arena', 'https://saascodex.com/llm-arena-for-design/'],
+    ['zh-CN', '查看评测站', 'https://saascodex.com/zh/llm-arena-for-design/'],
   ])('uses the configured %s CTA and matching Arena destination', async (locale, label, url) => {
     window.localStorage.setItem('saascodex:locale', locale!);
     window.localStorage.setItem('saascodex:locale-source', 'manual');
@@ -331,9 +331,9 @@ describe('WhatsNewPopup actions', () => {
       content: {
         ...SHOW_PAYLOAD.content!,
         ctaLabel: 'View Arena',
-        linkUrl: 'https://open-design.ai/llm-arena-for-design/',
+        linkUrl: 'https://saascodex.com/llm-arena-for-design/',
         locales: {
-          'zh-CN': { ctaLabel: '查看评测站', linkUrl: 'https://open-design.ai/zh/llm-arena-for-design/' },
+          'zh-CN': { ctaLabel: '查看评测站', linkUrl: 'https://saascodex.com/zh/llm-arena-for-design/' },
         },
       },
     });
@@ -360,7 +360,7 @@ describe('WhatsNewPopup actions', () => {
 
     fireEvent.click(await screen.findByTestId('whats-new-cta'));
 
-    expect(mockedOpenExternalUrl).toHaveBeenCalledWith('https://open-design.ai/blog/0-16-1/');
+    expect(mockedOpenExternalUrl).toHaveBeenCalledWith('https://saascodex.com/blog/0-16-1/');
     expect(window.localStorage.getItem(WHATS_NEW_LAST_SEEN_STORAGE_KEY)).toBe('highlight-0-16-1');
     expect(screen.queryByTestId('whats-new-popup')).toBeNull();
   });

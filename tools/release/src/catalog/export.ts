@@ -32,7 +32,7 @@ import { loadCatalogSystemTokens } from "./system-tokens.ts";
 
 const REPO_TREE = "https://github.com/nexu-io/open-design/tree/main";
 const REPO_BLOB = "https://github.com/nexu-io/open-design/blob/main";
-const PLUGIN_PREVIEWS_BASE_URL = "https://repo-assets.open-design.ai/plugin-previews";
+const PLUGIN_PREVIEWS_BASE_URL = "https://repo-assets.saascodex.com/plugin-previews";
 
 const OFFICIAL_BUCKETS = [
   "examples",

@@ -47,5 +47,5 @@ registry / distribution / website / multi-source 的细分用例。
 
 | ID | 场景 | 原因 |
 | --- | --- | --- |
-| REG-M01 | open-design.ai marketplace 页面视觉、SEO、插件详情叙事 | 强依赖品牌表达和真实内容质量，适合人工验收 |
+| REG-M01 | saascodex.com marketplace 页面视觉、SEO、插件详情叙事 | 强依赖品牌表达和真实内容质量，适合人工验收 |
 | REG-M02 | 第三方真实自托管 registry 接入体验 | 涉及外部 repo、GitHub 权限、网络和组织流程，适合作为发布前 smoke |

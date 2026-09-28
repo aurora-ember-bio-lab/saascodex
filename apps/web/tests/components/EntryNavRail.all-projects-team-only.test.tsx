@@ -22,7 +22,7 @@ function contextFor(workspaceType: 'team' | 'personal'): WorkspaceCollabContext 
     memberStatus: 'active',
     lifecycleState: 'active',
     permissions: { canInviteMembers: true, canViewWorkspaceSettings: true },
-    workspaceSettingsUrl: 'https://open-design.ai/cloud/workspace/settings',
+    workspaceSettingsUrl: 'https://saascodex.com/cloud/workspace/settings',
   } as unknown as WorkspaceCollabContext;
 }
 

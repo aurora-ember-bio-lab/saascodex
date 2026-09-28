@@ -13,7 +13,7 @@ import {
   type PendingAttribution,
 } from '../installation.js';
 
-const DEFAULT_ATTRIBUTION_LEDGER_URL = 'https://download.open-design.ai/api/attribution';
+const DEFAULT_ATTRIBUTION_LEDGER_URL = 'https://download.saascodex.com/api/attribution';
 
 type ReadAppConfig = (dataDir: string) => Promise<AppConfigPrefs>;
 
@@ -331,7 +331,7 @@ function trustedFirstPartyUrl(value: string): URL | null {
   try {
     const url = new URL(value);
     if (url.protocol !== 'https:') return null;
-    return ['open-design.ai', 'www.open-design.ai', 'staging.open-design.ai'].includes(url.hostname)
+    return ['saascodex.com', 'www.saascodex.com', 'staging.saascodex.com'].includes(url.hostname)
       ? url
       : null;
   } catch {

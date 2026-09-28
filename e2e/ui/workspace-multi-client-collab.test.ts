@@ -853,7 +853,7 @@ test('[P0] two isolated clients converge shared plugins and skills without scope
       projectId,
       'plugin-source/saascodex.json',
       JSON.stringify({
-        $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+        $schema: 'https://saascodex.com/schemas/plugin.v1.json',
         name: pluginId,
         title: 'Realtime Shared Plugin',
         version: '0.1.0',

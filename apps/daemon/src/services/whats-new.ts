@@ -27,7 +27,7 @@ export interface WhatsNewService {
 }
 
 /** The dedicated, hardcoded highlights document. Operators update this file. */
-export const DEFAULT_WHATS_NEW_URL = 'https://whatsnew.open-design.ai/whats-new.json';
+export const DEFAULT_WHATS_NEW_URL = 'https://whatsnew.saascodex.com/whats-new.json';
 
 /**
  * The post-update card is a release feature. Only real release channels fetch

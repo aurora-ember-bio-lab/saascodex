@@ -123,7 +123,7 @@ The UI layers are not additional backends; they are different views over this sa
 - **Plugins / Available** is the discovery layer: registry entries from configured Sources that are not installed yet or have a newer version available.
 - **Plugins / Sources** is the registry management layer: official, community, self-hosted, and enterprise catalog sources; trust tier; refresh; removal; auth/cache status later.
 - **Plugins / Team** is the future enterprise governance layer: private catalogs, organization policy, allowlists, review, audit, and refresh policy.
-- **open-design.ai/plugins** is the public presentation of the official and community registry sources. It is equivalent to a polished static renderer over repo-owned catalog data, not a separate source of truth. `open-design.ai/marketplace` can remain an alias later if needed.
+- **saascodex.com/plugins** is the public presentation of the official and community registry sources. It is equivalent to a polished static renderer over repo-owned catalog data, not a separate source of truth. `saascodex.com/marketplace` can remain an alias later if needed.
 - **`od` CLI** remains the canonical client. Every UI action must map to a CLI operation or daemon API that the CLI can also drive.
 - **SaaSCodex GitHub registry repo** is the v1 storage backend. It can later be swapped for a database backend without changing user-facing nouns.
 
@@ -178,7 +178,7 @@ The `Create plugin` product entry should therefore start an agent workflow, not 
 High-level architecture relationship:
 
 ```text
-                    open-design.ai/plugins
+                    saascodex.com/plugins
                  public registry pages and docs
                                |
                                v
@@ -299,7 +299,7 @@ Minimum entry shape:
     "github": "saascodex"
   },
   "sourceRepository": "https://github.com/saascodex/plugins/tree/main/make-a-deck",
-  "homepage": "https://open-design.ai/plugins/saascodex/make-a-deck/",
+  "homepage": "https://saascodex.com/plugins/saascodex/make-a-deck/",
   "license": "MIT",
   "capabilitiesSummary": ["prompt:inject", "fs:read"],
   "tags": ["deck", "presentation", "investor"],
@@ -622,7 +622,7 @@ Goal: upgrade from "installed plugin gallery" to "multi-source plugin registry".
 - [x] Add install/use/upgrade card states for available entries. Current install uses the existing bare-name `od plugin install <name>` path and now preserves provenance; explicit `--from <marketplace-id>` remains a P1 follow-up.
 - [x] Rename the Home page official shelf copy to `Official starters` or `Official installed`, and add a lightweight `Browse registry` path to `/plugins` so Home stays a fast-use surface while `/plugins` remains the registry console.
 - [x] Make `Create plugin` launch an agent-assisted authoring flow backed by `od plugin scaffold/validate/pack/publish`, including local install/run validation before publish and `gh` login/whoami checks before opening a registry PR. Current slice updates the agent prompt and CLI wrapper; full GitHub PR mutation remains in P2.
-- [x] Add public `/plugins/` route on the marketing site for open-design.ai: searchable official/community registry listing, static plugin detail pages, canonical/OG/Twitter metadata, JSON-LD item/detail data, and homepage/header entry points.
+- [x] Add public `/plugins/` route on the marketing site for saascodex.com: searchable official/community registry listing, static plugin detail pages, canonical/OG/Twitter metadata, JSON-LD item/detail data, and homepage/header entry points.
 - [x] Add Available-source filtering for all configured sources or one specific marketplace source.
 - [ ] Add the broader semantic filters across surfaces: Official, Community, My plugins, and Team.
 - [x] Add detail provenance, publisher, version, integrity, command, and risk sections to the public website detail route; in-app drawer polish remains tracked separately.

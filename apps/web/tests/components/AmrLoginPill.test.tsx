@@ -376,7 +376,7 @@ describe('AmrLoginPill', () => {
 
     expect(screen.queryByText('PROD')).toBeNull();
     expect(screen.getByRole('link', { name: 'Manage' }).getAttribute('href')).toBe(
-      'https://open-design.ai/cloud/dashboard?source=open_design',
+      'https://saascodex.com/cloud/dashboard?source=open_design',
     );
   });
 
@@ -384,7 +384,7 @@ describe('AmrLoginPill', () => {
     const fetchMock = vi.fn(async (input: string | URL | Request) => {
       const url = typeof input === 'string' ? input : input.toString();
       if (url === '/api/attribution/bridge-url') {
-        return jsonResponse({ body: { url: 'https://open-design.ai/amr/dashboard?od_bridge=odbr_12345678' } });
+        return jsonResponse({ body: { url: 'https://saascodex.com/amr/dashboard?od_bridge=odbr_12345678' } });
       }
       if (url === '/api/system/open-external') return jsonResponse({ body: { ok: true } });
       return new Response('{}', { status: 202 });
@@ -433,7 +433,7 @@ describe('AmrLoginPill', () => {
       '/api/system/open-external',
       expect.objectContaining({
         method: 'POST',
-        body: JSON.stringify({ url: 'https://open-design.ai/amr/dashboard?od_bridge=odbr_12345678' }),
+        body: JSON.stringify({ url: 'https://saascodex.com/amr/dashboard?od_bridge=odbr_12345678' }),
       }),
     );
   });

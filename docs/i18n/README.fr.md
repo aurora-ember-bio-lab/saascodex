@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex : l'alternative open source à Claude Design</h1>
 
-> ⚡ **[SaaSCodex Cloud — le service de modèles officiel.](https://open-design.ai/zh/pricing/)** Une seule recharge pour utiliser des modèles d'agents et d'images dans SaaSCodex : GPT, Claude et DeepSeek pour les agents ; GPT Image 2.0, Seedream 5.0 Pro et Nano Banana 2.0 pour les images.
+> ⚡ **[SaaSCodex Cloud — le service de modèles officiel.](https://saascodex.com/zh/pricing/)** Une seule recharge pour utiliser des modèles d'agents et d'images dans SaaSCodex : GPT, Claude et DeepSeek pour les agents ; GPT Image 2.0, Seedream 5.0 Pro et Nano Banana 2.0 pour les images.
 >
-> 🚀 **[DeepSeek V4 Flash et V4 Pro sont maintenant disponibles.](https://open-design.ai/zh/pricing/)** Mettez une intelligence de premier plan au service des prototypes, présentations, systèmes de design et tâches quotidiennes des agents. Les membres SaaSCodex peuvent utiliser les deux modèles sans limite pendant deux semaines, directement dans l'application.
+> 🚀 **[DeepSeek V4 Flash et V4 Pro sont maintenant disponibles.](https://saascodex.com/zh/pricing/)** Mettez une intelligence de premier plan au service des prototypes, présentations, systèmes de design et tâches quotidiennes des agents. Les membres SaaSCodex peuvent utiliser les deux modèles sans limite pendant deux semaines, directement dans l'application.
 >
-> 🧩 **[DeepSeek Harness est maintenant pris en charge.](https://open-design.ai/zh/agents/deepseek-harness-design/)** Connectez l'Agent Harness officiel `dsh` de DeepSeek à SaaSCodex en tant que runtime natif, avec raisonnement structuré, appels d'outils, découverte des modèles, annulation et reprise de session. Les fichiers générés restent dans le workflow SaaSCodex pour la prévisualisation en direct et la livraison.
+> 🧩 **[DeepSeek Harness est maintenant pris en charge.](https://saascodex.com/zh/agents/deepseek-harness-design/)** Connectez l'Agent Harness officiel `dsh` de DeepSeek à SaaSCodex en tant que runtime natif, avec raisonnement structuré, appels d'outils, découverte des modèles, annulation et reprise de session. Les fichiers générés restent dans le workflow SaaSCodex pour la prévisualisation en direct et la livraison.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="Bannière SaaSCodex — le titre &quot;L’alternative open source à Claude Design&quot; sur une scène de colonnes et de personnages drapés devant un fond de code, avec des cartes présentant les systèmes de design, les plugins, les agents de code et les fournisseurs média" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="Bannière SaaSCodex — le titre &quot;L’alternative open source à Claude Design&quot; sur une scène de colonnes et de personnages drapés devant un fond de code, avec des cartes présentant les systèmes de design, les plugins, les agents de code et les fournisseurs média" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_website">Site web</a> ·
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download">Télécharger</a> ·
-  <a href="https://open-design.ai/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_website">Site web</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download">Télécharger</a> ·
+  <a href="https://saascodex.com/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">Suivre @SaaSCodexHQ</a>
 </p>
@@ -137,7 +137,7 @@ Pour DeepSeek Harness, installez d'abord la CLI officielle `dsh`, puis sélectio
 ¹ La configuration automatique du serveur MCP pour Claude Desktop est actuellement prise en charge uniquement sur macOS et Windows.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="Les 26 CLI d'agents de code pris en charge par SaaSCodex — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="Les 26 CLI d'agents de code pris en charge par SaaSCodex — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **Aucun CLI installé ?** Le proxy BYOK à `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` vous offre la même boucle (sans spawn de processus) — collez `baseUrl` + `apiKey` + `model`, avec des préréglages pour OpenAI, Atlas Cloud, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM ou tout point de terminaison compatible OpenAI. Atlas Cloud utilise `https://api.atlascloud.ai/v1` avec votre propre clé et des identifiants de modèles compatibles OpenAI comme `qwen/qwen3.5-flash`. Une protection SSRF par cible bloque les IP internes / link-local / CGNAT à la périphérie du daemon.
@@ -284,8 +284,8 @@ SaaSCodex (OD) est l'alternative open source. La même boucle, le même modèle 
 
 Le moyen le plus rapide d'utiliser SaaSCodex. Pas de Node, pas de pnpm, pas de clone.
 
-- **macOS** (Apple Silicon · Intel x64) → [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) ou [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) ou [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) ou [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) ou [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage, voie optionnelle) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 Après l'installation : l'application détecte automatiquement chaque CLI d'agent de code présent dans votre `PATH`, charge plus de 100 skills fonctionnels, le catalogue séparé de modèles de rendu et 151 packages de systèmes de design, et vous permet de saisir un brief dans la vue d'entrée.
@@ -304,7 +304,7 @@ od mcp install <agent>
 #         | trae | opencode
 
 # Hosted equivalent for curl-based setup:
-curl -fsSL https://open-design.ai/install.sh | sh -s <agent>
+curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
 ```
 
 `install.sh` est un simple script d'enveloppe pour `od mcp install` : l'URL hébergée renvoie ainsi un script shell plutôt que la page d'accueil HTML. Le script s'arrête immédiatement si le shell trouve un exécutable `od` qui n'appartient pas à SaaSCodex.
@@ -711,7 +711,7 @@ Merci à toutes les personnes qui ont pris part — code, documentation, retours
 ## Activité du dépôt
 
 <picture>
-  <img alt="SaaSCodex — métriques du dépôt" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — métriques du dépôt" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 Le SVG ci-dessus est régénéré quotidiennement par [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) à l'aide de [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -721,7 +721,7 @@ Le SVG ci-dessus est régénéré quotidiennement par [`.github/workflows/metric
 ## Mettez-nous une étoile
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Mettez une étoile à SaaSCodex sur GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Mettez une étoile à SaaSCodex sur GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 Si cela vous a fait gagner trente minutes, mettez-lui une ★. Les étoiles ne paient pas le loyer — mais elles disent au prochain designer, agent et contributeur que cette expérience mérite leur attention. Un clic, trois secondes, un vrai signal.

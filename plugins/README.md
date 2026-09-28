@@ -9,6 +9,13 @@ This directory has two different jobs:
 - `registry/` - default registry source manifests (`saascodex-marketplace.json`) for official and community catalogs. These feed the Plugins Available/Sources UI.
 - `spec/` - the portable plugin specification, templates, examples, and agent handoff kit for building, testing, publishing, or opening a PR back to SaaSCodex.
 
+A third **premium** tier lives outside this directory:
+`registry/premium/saascodex-marketplace.json` (catalog seed),
+[`../premium-ecosystem/premium_plugins/`](../premium-ecosystem/premium_plugins)
+(licensed sources), and [`../commercial-core/`](../commercial-core)
+(entitlement + licensing). See
+[`../docs/PLUGIN-ECOSYSTEM.md`](../docs/PLUGIN-ECOSYSTEM.md).
+
 The common contract is the same everywhere: a plugin is a portable agent skill folder with a `SKILL.md`, plus an optional versioned `saascodex.json` sidecar that gives SaaSCodex marketplace metadata, inputs, previews, pipelines, and trust/capability hints.
 
 Start here:

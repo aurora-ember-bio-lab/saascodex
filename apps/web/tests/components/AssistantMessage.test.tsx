@@ -620,7 +620,7 @@ describe('AssistantMessage status badge updates (Bug A)', () => {
               // 不是某一个 label。
               label: 'context_compaction',
               detail:
-                'AMR Cloud reported insufficient balance. Top up at https://open-design.ai/amr/dashboard, then retry.',
+                'AMR Cloud reported insufficient balance. Top up at https://saascodex.com/amr/dashboard, then retry.',
             } as ChatMessage['events'][number],
           ],
         })}
@@ -630,8 +630,8 @@ describe('AssistantMessage status badge updates (Bug A)', () => {
       />,
     );
 
-    const link = screen.getByRole('link', { name: 'https://open-design.ai/amr/dashboard' });
-    expect(link.getAttribute('href')).toBe('https://open-design.ai/amr/dashboard');
+    const link = screen.getByRole('link', { name: 'https://saascodex.com/amr/dashboard' });
+    expect(link.getAttribute('href')).toBe('https://saascodex.com/amr/dashboard');
     expect(link.classList.contains('md-link')).toBe(true);
   });
 
@@ -1370,7 +1370,7 @@ describe('AssistantMessage question forms', () => {
     expect(screen.getByText('Editorial narrative')).toBeTruthy();
     expect(screen.getByRole('img', { name: 'Visual tone: Editorial narrative' })).toHaveAttribute(
       'src',
-      'https://repo-assets.open-design.ai/style-catalog/v1/deck-editorial-narrative-v1.webp',
+      'https://repo-assets.saascodex.com/style-catalog/v1/deck-editorial-narrative-v1.webp',
     );
   });
 
@@ -1412,7 +1412,7 @@ describe('AssistantMessage question forms', () => {
       screen.getByRole('img', { name: 'Visual direction: Expressive consumer' }),
     ).toHaveAttribute(
       'src',
-      'https://repo-assets.open-design.ai/style-catalog/v1/prototype-expressive-consumer-v1.webp',
+      'https://repo-assets.saascodex.com/style-catalog/v1/prototype-expressive-consumer-v1.webp',
     );
     expect(screen.queryByText('prototype-expressive-consumer')).toBeNull();
   });
@@ -1508,37 +1508,37 @@ describe('AssistantMessage question forms', () => {
     {
       projectKind: 'web_clone' as const,
       title: 'Quiet SaaS',
-      src: 'https://repo-assets.open-design.ai/style-catalog/v1/prototype-quiet-saas-v1.webp',
+      src: 'https://repo-assets.saascodex.com/style-catalog/v1/prototype-quiet-saas-v1.webp',
     },
     {
       projectKind: 'wireframe' as const,
       title: 'Quiet SaaS',
-      src: 'https://repo-assets.open-design.ai/style-catalog/v1/prototype-quiet-saas-v1.webp',
+      src: 'https://repo-assets.saascodex.com/style-catalog/v1/prototype-quiet-saas-v1.webp',
     },
     {
       projectKind: 'live_artifact' as const,
       title: 'Quiet SaaS',
-      src: 'https://repo-assets.open-design.ai/style-catalog/v1/prototype-quiet-saas-v1.webp',
+      src: 'https://repo-assets.saascodex.com/style-catalog/v1/prototype-quiet-saas-v1.webp',
     },
     {
       projectKind: 'document' as const,
       title: 'Docs reference',
-      src: 'https://repo-assets.open-design.ai/style-catalog/v1/document-docs-reference-v1.webp',
+      src: 'https://repo-assets.saascodex.com/style-catalog/v1/document-docs-reference-v1.webp',
     },
     {
       projectKind: 'image' as const,
       title: 'Editorial photo',
-      src: 'https://repo-assets.open-design.ai/style-catalog/v1/image-photo-editorial-v1.webp',
+      src: 'https://repo-assets.saascodex.com/style-catalog/v1/image-photo-editorial-v1.webp',
     },
     {
       projectKind: 'video' as const,
       title: 'Swiss Pulse',
-      src: 'https://repo-assets.open-design.ai/style-catalog/v1/video-swiss-pulse-v1.webp',
+      src: 'https://repo-assets.saascodex.com/style-catalog/v1/video-swiss-pulse-v1.webp',
     },
     {
       projectKind: 'hyperframes' as const,
       title: 'Swiss Pulse',
-      src: 'https://repo-assets.open-design.ai/style-catalog/v1/video-swiss-pulse-v1.webp',
+      src: 'https://repo-assets.saascodex.com/style-catalog/v1/video-swiss-pulse-v1.webp',
     },
   ])('keeps selected $projectKind style previews in the answered summary', ({
     projectKind,
@@ -1611,7 +1611,7 @@ describe('AssistantMessage question forms', () => {
     expect(screen.getByRole('img', { name: 'Visual tone: Editorial narrative' })).toBeTruthy();
     expect(screen.getByRole('img', { name: 'Visual tone: Premium pitch' })).toHaveAttribute(
       'src',
-      'https://repo-assets.open-design.ai/style-catalog/v1/deck-premium-pitch-v1.webp',
+      'https://repo-assets.saascodex.com/style-catalog/v1/deck-premium-pitch-v1.webp',
     );
   });
 

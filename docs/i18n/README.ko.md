@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex: 오픈소스 Claude Design 대안</h1>
 
-> ⚡ **[SaaSCodex Cloud — 공식 모델 서비스.](https://open-design.ai/zh/pricing/)** 한 번 충전하면 SaaSCodex 안에서 에이전트 모델과 이미지 모델을 함께 사용할 수 있습니다. 에이전트용 GPT, Claude, DeepSeek와 이미지용 GPT Image 2.0, Seedream 5.0 Pro, Nano Banana 2.0을 지원합니다.
+> ⚡ **[SaaSCodex Cloud — 공식 모델 서비스.](https://saascodex.com/zh/pricing/)** 한 번 충전하면 SaaSCodex 안에서 에이전트 모델과 이미지 모델을 함께 사용할 수 있습니다. 에이전트용 GPT, Claude, DeepSeek와 이미지용 GPT Image 2.0, Seedream 5.0 Pro, Nano Banana 2.0을 지원합니다.
 >
-> 🚀 **[DeepSeek V4 Flash와 V4 Pro를 사용할 수 있습니다.](https://open-design.ai/zh/pricing/)** 프로토타입, 덱, 디자인 시스템, 일상적인 에이전트 작업에 최상급 지능을 활용하세요. SaaSCodex 회원은 앱에서 두 모델을 2주 동안 무제한으로 사용할 수 있습니다.
+> 🚀 **[DeepSeek V4 Flash와 V4 Pro를 사용할 수 있습니다.](https://saascodex.com/zh/pricing/)** 프로토타입, 덱, 디자인 시스템, 일상적인 에이전트 작업에 최상급 지능을 활용하세요. SaaSCodex 회원은 앱에서 두 모델을 2주 동안 무제한으로 사용할 수 있습니다.
 >
-> 🧩 **[DeepSeek Harness를 지원합니다.](https://open-design.ai/zh/agents/deepseek-harness-design/)** DeepSeek 공식 `dsh` Agent Harness를 SaaSCodex의 네이티브 런타임으로 연결하고 구조화된 사고, 도구 호출, 모델 검색, 취소, 세션 재개를 사용할 수 있습니다. 생성된 파일은 라이브 미리보기와 전달을 위해 SaaSCodex 워크플로 안에 유지됩니다.
+> 🧩 **[DeepSeek Harness를 지원합니다.](https://saascodex.com/zh/agents/deepseek-harness-design/)** DeepSeek 공식 `dsh` Agent Harness를 SaaSCodex의 네이티브 런타임으로 연결하고 구조화된 사고, 도구 호출, 모델 검색, 취소, 세션 재개를 사용할 수 있습니다. 생성된 파일은 라이브 미리보기와 전달을 위해 SaaSCodex 워크플로 안에 유지됩니다.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/">웹사이트</a> ·
-  <a href="https://open-design.ai/">다운로드</a> ·
-  <a href="https://open-design.ai/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/">웹사이트</a> ·
+  <a href="https://saascodex.com/">다운로드</a> ·
+  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">@SaaSCodexHQ 팔로우</a>
 </p>
@@ -133,7 +133,7 @@ SaaSCodex의 핵심 워크플로를 빠르게 살펴봅니다. **Home**에서 �
 `od mcp install <agent> --print`로 드라이런 미리보기 · `--uninstall`로 제거 · 전체 목록은 `od mcp install --help`로 확인.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **CLI를 설치하지 않았다고요?** `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream`의 BYOK 프록시가 동일한 루프(프로세스 스폰 없이)를 제공합니다 — `baseUrl` + `apiKey` + `model`을 붙여넣기만 하면 되며, OpenAI, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM 또는 OpenAI 호환 엔드포인트라면 무엇이든 지원합니다. 대상별 SSRF 보호가 데몬 경계에서 내부 IP / 링크 로컬 / CGNAT를 차단합니다.
@@ -280,8 +280,8 @@ SaaSCodex(OD)는 그 오픈소스 대안입니다. 같은 루프, 같은 아티�
 
 SaaSCodex를 사용하는 가장 빠른 방법입니다. Node도, pnpm도, 클론도 필요 없습니다.
 
-- **macOS** (Apple Silicon · Intel x64) → [**open-design.ai**](https://open-design.ai/) 또는 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**open-design.ai**](https://open-design.ai/) 또는 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/) 또는 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/) 또는 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage, 선택적 레인) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 설치 후: 앱이 당신의 `PATH`에 있는 모든 코딩 에이전트 CLI를 자동으로 감지하고, 100개 이상의 기능 스킬과 별도 렌더링 템플릿 카탈로그, 151개의 디자인 시스템 패키지를 불러오며, entry view에서 브리프를 입력할 수 있게 합니다.
@@ -678,7 +678,7 @@ gh pr create --fill
 ## 저장소 활동
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 위의 SVG는 [`lowlighter/metrics`](https://github.com/lowlighter/metrics)를 사용해 [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml)에 의해 매일 다시 생성됩니다.
@@ -688,7 +688,7 @@ gh pr create --fill
 ## 스타를 눌러주세요
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 이것이 당신의 30분을 아껴줬다면 ★를 눌러주세요. 스타가 집세를 내주지는 않지만 — 다음 디자이너, 에이전트, 기여자에게 이 실험이 관심을 쏟을 가치가 있다고 알려줍니다. 한 번의 클릭, 3초, 진짜 신호입니다.

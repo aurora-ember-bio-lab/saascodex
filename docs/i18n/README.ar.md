@@ -2,20 +2,20 @@
 
 <h1 align="center">SaaSCodex: البديل مفتوح المصدر لـ Claude Design</h1>
 
-> ⚡ **[‏SaaSCodex Cloud — خدمة النماذج الرسمية.](https://open-design.ai/zh/pricing/)** شحنة واحدة لاستخدام نماذج الوكلاء والصور داخل SaaSCodex: ‏GPT وClaude وDeepSeek للوكلاء؛ وGPT Image 2.0 وSeedream 5.0 Pro وNano Banana 2.0 للصور.
+> ⚡ **[‏SaaSCodex Cloud — خدمة النماذج الرسمية.](https://saascodex.com/zh/pricing/)** شحنة واحدة لاستخدام نماذج الوكلاء والصور داخل SaaSCodex: ‏GPT وClaude وDeepSeek للوكلاء؛ وGPT Image 2.0 وSeedream 5.0 Pro وNano Banana 2.0 للصور.
 >
-> 🚀 **[أصبح DeepSeek V4 Flash وV4 Pro متاحين الآن.](https://open-design.ai/zh/pricing/)** استخدم ذكاءً من الطراز الأول للنماذج الأولية والعروض التقديمية وأنظمة التصميم ومهام الوكلاء اليومية. يمكن لأعضاء SaaSCodex استخدام النموذجين بلا حدود لمدة أسبوعين مباشرة داخل التطبيق.
+> 🚀 **[أصبح DeepSeek V4 Flash وV4 Pro متاحين الآن.](https://saascodex.com/zh/pricing/)** استخدم ذكاءً من الطراز الأول للنماذج الأولية والعروض التقديمية وأنظمة التصميم ومهام الوكلاء اليومية. يمكن لأعضاء SaaSCodex استخدام النموذجين بلا حدود لمدة أسبوعين مباشرة داخل التطبيق.
 >
-> 🧩 **[أصبح DeepSeek Harness مدعومًا الآن.](https://open-design.ai/zh/agents/deepseek-harness-design/)** صِل Agent Harness الرسمي `dsh` من DeepSeek بـ SaaSCodex كبيئة تشغيل أصلية، مع التفكير المنظم واستدعاءات الأدوات واكتشاف النماذج والإلغاء واستئناف الجلسات. تبقى الملفات الناتجة ضمن سير عمل SaaSCodex للمعاينة الحية والتسليم.
+> 🧩 **[أصبح DeepSeek Harness مدعومًا الآن.](https://saascodex.com/zh/agents/deepseek-harness-design/)** صِل Agent Harness الرسمي `dsh` من DeepSeek بـ SaaSCodex كبيئة تشغيل أصلية، مع التفكير المنظم واستدعاءات الأدوات واكتشاف النماذج والإلغاء واستئناف الجلسات. تبقى الملفات الناتجة ضمن سير عمل SaaSCodex للمعاينة الحية والتسليم.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/">الموقع</a> ·
-  <a href="https://open-design.ai/">التنزيل</a> ·
-  <a href="https://open-design.ai/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/">الموقع</a> ·
+  <a href="https://saascodex.com/">التنزيل</a> ·
+  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">تابع ‎@SaaSCodexHQ</a>
 </p>
@@ -135,7 +135,7 @@
 `od mcp install <agent> --print` لمعاينة تجريبية دون تنفيذ · `--uninstall` للإزالة · القائمة الكاملة عبر `od mcp install --help`.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **لا توجد واجهة CLI مثبَّتة؟** يمنحك وكيل BYOK على `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` الحلقة نفسها (دون إنشاء عملية) — الصق `baseUrl` + `apiKey` + `model`، مع دعم OpenAI وAnthropic وAzure OpenAI وGoogle Gemini وOllama وLM Studio وvLLM، أو أي نقطة نهاية متوافقة مع OpenAI. تمنع حماية SSRF لكل هدف عناوين IP الداخلية / link-local / CGNAT عند حافة الـ daemon.
@@ -282,8 +282,8 @@
 
 أسرع طريقة لاستخدام SaaSCodex. لا Node، ولا pnpm، ولا استنساخ.
 
-- **macOS** (Apple Silicon · Intel x64) ← [**open-design.ai**](https://open-design.ai/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) ← [**open-design.ai**](https://open-design.ai/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) ← [**saascodex.com**](https://saascodex.com/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) ← [**saascodex.com**](https://saascodex.com/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage، مسار اختياري) ← [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
 
 بعد التثبيت: يكتشف التطبيق تلقائيًا كل واجهة CLI لوكلاء البرمجة في `PATH` لديك، ويحمّل أكثر من 100 مهارة وظيفية وكتالوج قوالب التصيير المنفصل و151 حزمة نظام تصميم، ويتيح لك كتابة موجز في واجهة الدخول.
@@ -680,7 +680,7 @@ gh pr create --fill
 ## نشاط المستودع
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 يُعاد توليد ملف SVG أعلاه يوميًا بواسطة [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) باستخدام [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -690,7 +690,7 @@ gh pr create --fill
 ## امنحنا نجمة
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 إن وفّر عليك هذا ثلاثين دقيقة، فامنحه ★. النجوم لا تدفع الإيجار — لكنها تخبر المصمم والوكيل والمساهم التالي بأن هذه التجربة تستحق اهتمامهم. نقرة واحدة، وثلاث ثوانٍ، وإشارة حقيقية.

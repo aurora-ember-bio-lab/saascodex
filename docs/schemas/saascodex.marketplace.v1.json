@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://open-design.ai/schemas/marketplace.v1.json",
+  "$id": "https://saascodex.com/schemas/marketplace.v1.json",
   "title": "SaaSCodex plugin marketplace index (v1)",
   "description": "Schema for `saascodex-marketplace.json` federated catalog files. See docs/plugins-spec.md §6.",
   "type": "object",

@@ -100,7 +100,7 @@ cancellation/attempt-limit policy.
 Host: macOS Darwin 24.6.0, arm64, Node 24.16.0. SaaSCodex test source baseline:
 `d54f5cf07d35261dce3c8c2e7fc187c6cc9efb86`.
 
-The immutable [0.22.1-prerelease.13 macOS manifest](https://releases.open-design.ai/prerelease/versions/0.22.1-prerelease.13/platforms/mac_arm64.json)
+The immutable [0.22.1-prerelease.13 macOS manifest](https://releases.saascodex.com/prerelease/versions/0.22.1-prerelease.13/platforms/mac_arm64.json)
 identifies app commit `ee76e93c75c5235bbb7a3464e832cff987d80c91`. Its downloaded
 payload passed the published archive checksum. Selected executables were
 extracted from that verified payload; the full app was not installed/launched.

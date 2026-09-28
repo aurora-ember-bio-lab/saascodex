@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex: The open-source Claude Design alternative</h1>
 
-> ⚡ **[SaaSCodex Cloud — the official model service.](https://open-design.ai/zh/pricing/)** One recharge to use both agent and image models inside SaaSCodex: GPT, Claude, and DeepSeek for agents; GPT Image 2.0, Seedream 5.0 Pro, and Nano Banana 2.0 for images.
+> ⚡ **[SaaSCodex Cloud — the official model service.](https://saascodex.com/zh/pricing/)** One recharge to use both agent and image models inside SaaSCodex: GPT, Claude, and DeepSeek for agents; GPT Image 2.0, Seedream 5.0 Pro, and Nano Banana 2.0 for images.
 >
-> 🚀 **[DeepSeek V4 Flash and V4 Pro are now available.](https://open-design.ai/zh/pricing/)** Put top-tier intelligence to work across prototypes, decks, design systems, and everyday agent tasks. SaaSCodex members can use both models without limits for two weeks, directly inside the app.
+> 🚀 **[DeepSeek V4 Flash and V4 Pro are now available.](https://saascodex.com/zh/pricing/)** Put top-tier intelligence to work across prototypes, decks, design systems, and everyday agent tasks. SaaSCodex members can use both models without limits for two weeks, directly inside the app.
 >
-> 🧩 **[DeepSeek Harness is now supported.](https://open-design.ai/zh/agents/deepseek-harness-design/)** Connect DeepSeek's official `dsh` agent harness to SaaSCodex as a native runtime, with structured thinking, tool calls, model discovery, cancellation, and session resume. Generated files stay in the SaaSCodex workflow for live preview and delivery.
+> 🧩 **[DeepSeek Harness is now supported.](https://saascodex.com/zh/agents/deepseek-harness-design/)** Connect DeepSeek's official `dsh` agent harness to SaaSCodex as a native runtime, with structured thinking, tool calls, model discovery, cancellation, and session resume. Generated files stay in the SaaSCodex workflow for live preview and delivery.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="SaaSCodex hero banner — the headline &quot;The open-source Claude Design alternative&quot; over a classical scene of columns and robed figures on a digital-code backdrop, with stat cards for design systems, plugins, coding agents, and media providers" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner — the headline &quot;The open-source Claude Design alternative&quot; over a classical scene of columns and robed figures on a digital-code backdrop, with stat cards for design systems, plugins, coding agents, and media providers" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_website">Website</a> ·
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download">Download</a> ·
-  <a href="https://open-design.ai/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_website">Website</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download">Download</a> ·
+  <a href="https://saascodex.com/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">Follow @SaaSCodexHQ</a>
 </p>
@@ -138,7 +138,7 @@ For DeepSeek Harness, install the official `dsh` CLI first, then select it in Sa
 ¹ Automatic MCP configuration for Claude Desktop is currently supported on macOS and Windows only.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="The 26 coding-agent CLIs SaaSCodex supports — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 26 coding-agent CLIs SaaSCodex supports — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **No CLI installed?** The BYOK proxy at `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` gives you the same loop (no process spawn) — paste `baseUrl` + `apiKey` + `model`, with presets for OpenAI, Atlas Cloud, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM, or any OpenAI-compatible endpoint. Atlas Cloud uses `https://api.atlascloud.ai/v1` with your own key and OpenAI-compatible model ids such as `qwen/qwen3.5-flash`. Per-target SSRF protection blocks internal IPs / link-local / CGNAT at the daemon edge.
@@ -285,8 +285,8 @@ SaaSCodex (OD) is the open-source alternative. Same loop, same artifact-first me
 
 The fastest way to use SaaSCodex. No Node, no pnpm, no clone.
 
-- **macOS** (Apple Silicon · Intel x64) → [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux** → No prebuilt Linux artifact is currently published in the official releases. For now, [run SaaSCodex from source](#-run-from-source); Linux release work is tracked in [#4368](https://github.com/nexu-io/open-design/issues/4368).
 
 After install: the app auto-detects every coding-agent CLI on your `PATH`, loads 100+ functional skills, the separate rendering-template catalog, and 151 design systems, and lets you type a brief in the entry view.
@@ -309,7 +309,7 @@ od mcp install <agent>
 #         | trae | opencode
 
 # Hosted equivalent for curl-based setup:
-curl -fsSL https://open-design.ai/install.sh | sh -s <agent>
+curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
 ```
 
 `install.sh` is a thin shell wrapper around `od mcp install`; it exists so the
@@ -723,7 +723,7 @@ Thanks to everyone who has taken part — code, docs, feedback, a sharp issue, a
 ## Repository activity
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 The SVG above is regenerated daily by [`.github/workflows/metrics.yml`](.github/workflows/metrics.yml) using [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -733,7 +733,7 @@ The SVG above is regenerated daily by [`.github/workflows/metrics.yml`](.github/
 ## Star us
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 If this saved you thirty minutes, give it a ★. Stars don't pay rent — but they tell the next designer, agent, and contributor that this experiment is worth their attention. One click, three seconds, a real signal.

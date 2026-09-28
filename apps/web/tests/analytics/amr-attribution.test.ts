@@ -374,14 +374,14 @@ describe('AMR attribution helper', () => {
 
   it('adds SaaSCodex attribution params to AMR wallet URLs', () => {
     expect(
-      attributedAmrUrl('https://open-design.ai/amr/dashboard?tab=recharge', {
+      attributedAmrUrl('https://saascodex.com/amr/dashboard?tab=recharge', {
         entryId: 'od-amr-entry-123',
         sourceProduct: 'open_design',
         sourceDetail: 'generation_preview_recharge',
         occurredAt: '2026-06-03T12:00:00.000Z',
       }),
     ).toBe(
-      'https://open-design.ai/amr/dashboard?tab=recharge&od_origin=open_design&od_entry_id=od-amr-entry-123&od_entry_source=generation_preview_recharge&od_entry_at=2026-06-03T12%3A00%3A00.000Z',
+      'https://saascodex.com/amr/dashboard?tab=recharge&od_origin=open_design&od_entry_id=od-amr-entry-123&od_entry_source=generation_preview_recharge&od_entry_at=2026-06-03T12%3A00%3A00.000Z',
     );
   });
 
@@ -394,11 +394,11 @@ describe('AMR attribution helper', () => {
     };
     // With a device id (user opted into metrics): od_device_id is present.
     expect(
-      attributedAmrUrl('https://open-design.ai/amr/dashboard', attribution, 'od-install-abc'),
+      attributedAmrUrl('https://saascodex.com/amr/dashboard', attribution, 'od-install-abc'),
     ).toContain('od_device_id=od-install-abc');
     // Without one (consent off): no od_device_id param leaks into the URL.
     expect(
-      attributedAmrUrl('https://open-design.ai/amr/dashboard', attribution, null),
+      attributedAmrUrl('https://saascodex.com/amr/dashboard', attribution, null),
     ).not.toContain('od_device_id');
   });
 
@@ -425,7 +425,7 @@ describe('AMR attribution helper', () => {
       undefined,
     );
     const url = new URL(
-      attributedAmrUrl('https://open-design.ai/zh/pricing/', attribution),
+      attributedAmrUrl('https://saascodex.com/zh/pricing/', attribution),
     );
     expect(url.searchParams.get('od_entry_id')).toBe(attribution.entryId);
     expect(url.searchParams.get('od_entry_source')).toBe('deepseek_workbench_badge');

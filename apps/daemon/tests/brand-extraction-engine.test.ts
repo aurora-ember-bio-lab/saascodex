@@ -346,8 +346,8 @@ describe('agent-driven brand extraction engine', () => {
 
   it('prefers source-backed human brand tokens over script/debug color noise', () => {
     const brand = brandFromMaterial({
-      url: 'https://open-design.ai/',
-      finalUrl: 'https://open-design.ai/',
+      url: 'https://saascodex.com/',
+      finalUrl: 'https://saascodex.com/',
       siteName: 'SaaSCodex',
       title: 'SaaSCodex',
       description: 'SaaSCodex design system.',
@@ -374,7 +374,7 @@ describe('agent-driven brand extraction engine', () => {
       thin: false,
       blocked: false,
       materialMd: '',
-    }, 'https://open-design.ai/');
+    }, 'https://saascodex.com/');
 
     expect(brand.colors.find((color) => color.role === 'accent')?.hex).toBe('#63fe13');
     expect(brand.typography.body.family).toBe('Albert Sans');

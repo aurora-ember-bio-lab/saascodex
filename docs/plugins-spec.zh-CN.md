@@ -221,7 +221,7 @@ my-plugin/
 
 ```json
 {
-  "$schema": "https://open-design.ai/schemas/plugin.v1.json",
+  "$schema": "https://saascodex.com/schemas/plugin.v1.json",
   "specVersion": "1.0.0",
   "name": "make-a-deck",
   "title": "Make a deck",
@@ -232,7 +232,7 @@ my-plugin/
     "en": "Generate a 12-slide investor deck from a one-line brief.",
     "zh-CN": "根据一句 brief 生成 12 页投资人 deck。"
   },
-  "author":   { "name": "SaaSCodex", "url": "https://open-design.ai" },
+  "author":   { "name": "SaaSCodex", "url": "https://saascodex.com" },
   "license":  "MIT",
   "homepage": "https://github.com/saascodex/plugins/make-a-deck",
   "icon":     "./icon.svg",
@@ -432,11 +432,11 @@ export type ContextItem =
 
 ```json
 {
-  "$schema": "https://open-design.ai/schemas/marketplace.v1.json",
+  "$schema": "https://saascodex.com/schemas/marketplace.v1.json",
   "specVersion": "1.0.0",
   "name": "saascodex-official",
   "version": "1.0.0",
-  "owner":    { "name": "SaaSCodex", "url": "https://open-design.ai" },
+  "owner":    { "name": "SaaSCodex", "url": "https://saascodex.com" },
   "metadata": { "description": "First-party plugins", "version": "1.0.0" },
   "plugins": [
     { "name": "make-a-deck", "version": "1.0.0", "source": "github:saascodex/plugins/make-a-deck", "tags": ["deck"] },
@@ -1490,13 +1490,13 @@ od files read "$PID" index.html > out.html
 
 > **Implementation rule:** 如果 code agent 能通过 desktop UI 做某件事，它就必须能通过 `od …` 用相同参数和等价输出完成。不能有 silent UI-only capabilities。
 
-## 13. 公网 Web 表面（open-design.ai/marketplace）
+## 13. 公网 Web 表面（saascodex.com/marketplace）
 
-产品网站已经是 [open-design.ai](https://open-design.ai)。公网 marketplace 作为同一站点下的路径发布：`open-design.ai/marketplace`（canonical），并把 `open-design.ai/plugins` 作为 alias；不是单独域名。它是一个从官方 `saascodex-marketplace.json` index 渲染出的 static-rendered catalog，插件详情页由每个 listed repo 内的同一份 `saascodex.json` 支撑。视觉上它类似 [`skills.sh`](https://skills.sh/) 对 skills 的处理，但详情页会渲染 OD 专属 previews（`od.preview.entry` HTML、sample outputs、use-case query、chip preview）。
+产品网站已经是 [saascodex.com](https://saascodex.com)。公网 marketplace 作为同一站点下的路径发布：`saascodex.com/marketplace`（canonical），并把 `saascodex.com/plugins` 作为 alias；不是单独域名。它是一个从官方 `saascodex-marketplace.json` index 渲染出的 static-rendered catalog，插件详情页由每个 listed repo 内的同一份 `saascodex.json` 支撑。视觉上它类似 [`skills.sh`](https://skills.sh/) 对 skills 的处理，但详情页会渲染 OD 专属 previews（`od.preview.entry` HTML、sample outputs、use-case query、chip preview）。
 
 这个站点与 in-app marketplace 共享一个 source of truth：
 
-- 同一组 JSON Schemas（`https://open-design.ai/schemas/plugin.v1.json`、`https://open-design.ai/schemas/marketplace.v1.json`）。
+- 同一组 JSON Schemas（`https://saascodex.com/schemas/plugin.v1.json`、`https://saascodex.com/schemas/marketplace.v1.json`）。
 - 同一套联邦 listing format（`saascodex-marketplace.json`）。
 - 同一份 plugin manifests（每个 repo 内的 `saascodex.json`）。
 
@@ -1505,7 +1505,7 @@ od files read "$PID" index.html > out.html
 | Surface | Audience | Primary CTA |
 | --- | --- | --- |
 | In-app marketplace（`/marketplace`，§11.6） | 已登录 OD 用户 | “Use this plugin” → apply in place |
-| Public marketplace（`open-design.ai/marketplace`） | 匿名访客、SEO、分享 | Deep-link `od://plugins/<id>?apply=1`（自动在 desktop app 中安装并 apply），以及 “Copy install command” |
+| Public marketplace（`saascodex.com/marketplace`） | 匿名访客、SEO、分享 | Deep-link `od://plugins/<id>?apply=1`（自动在 desktop app 中安装并 apply），以及 “Copy install command” |
 
 Deep-link contract（Phase 4 deliverable，但在这里先锁定 schema 支持）：
 
@@ -1513,7 +1513,7 @@ Deep-link contract（Phase 4 deliverable，但在这里先锁定 schema 支持�
 - `od://plugins/<id>?apply=1[&input.k=v...]`：如果缺失则安装，然后用 supplied inputs apply。
 - `od://marketplace/add?url=<urlencoded>`：注册新的联邦 catalog。
 
-desktop app 注册 `od://` URL scheme；点击 `open-design.ai/marketplace` 上的按钮时，如果 desktop 已安装则启动 desktop，否则 fallback 到「How to install SaaSCodex」流程。
+desktop app 注册 `od://` URL scheme；点击 `saascodex.com/marketplace` 上的按钮时，如果 desktop 已安装则启动 desktop，否则 fallback 到「How to install SaaSCodex」流程。
 
 **状态：不属于 v1 implementation scope。** 但这里锁定 JSON shapes 和 URL scheme，使 in-app marketplace 与公网站点可以独立开发而不分叉。
 

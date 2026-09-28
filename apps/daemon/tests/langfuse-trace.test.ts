@@ -167,13 +167,13 @@ describe('readLangfuseConfig', () => {
 describe('readTelemetrySinkConfig', () => {
   it('prefers the SaaSCodex telemetry relay when configured', () => {
     const cfg = readTelemetrySinkConfig({
-      SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.open-design.ai/api/langfuse//',
+      SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.saascodex.com/api/langfuse//',
       LANGFUSE_PUBLIC_KEY: 'pk',
       LANGFUSE_SECRET_KEY: 'sk',
     });
     expect(cfg).toEqual({
       kind: 'relay',
-      relayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry.saascodex.com/api/langfuse',
       timeoutMs: 20_000,
       retries: 1,
     });
@@ -181,7 +181,7 @@ describe('readTelemetrySinkConfig', () => {
 
   it('uses relay-specific timeout and retry tuning when present', () => {
     const cfg = readTelemetrySinkConfig({
-      SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.open-design.ai/api/langfuse',
+      SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.saascodex.com/api/langfuse',
       SAASCODEX_TELEMETRY_TIMEOUT_MS: '30000',
       SAASCODEX_TELEMETRY_RETRIES: '3',
       LANGFUSE_TIMEOUT_MS: '1',
@@ -197,11 +197,11 @@ describe('readTelemetrySinkConfig', () => {
   it('migrates the legacy self-host test relay hostname', () => {
     const cfg = readTelemetrySinkConfig({
       SAASCODEX_TELEMETRY_RELAY_URL:
-        'https://telemetry-selfhost.open-design.ai/api/langfuse',
+        'https://telemetry-selfhost.saascodex.com/api/langfuse',
     });
     expect(cfg).toMatchObject({
       kind: 'relay',
-      relayUrl: 'https://telemetry-test.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry-test.saascodex.com/api/langfuse',
     });
   });
 
@@ -222,7 +222,7 @@ describe('readRunTelemetrySinkConfig', () => {
     const cfg = readRunTelemetrySinkConfig(
       {
         SAASCODEX_TELEMETRY_RELAY_URL:
-          'https://telemetry.open-design.ai/api/langfuse',
+          'https://telemetry.saascodex.com/api/langfuse',
       },
       {
         VELA_CONTROL_KEY: 'ck_test',
@@ -244,14 +244,14 @@ describe('readRunTelemetrySinkConfig', () => {
       {
         SAASCODEX_VELA_TELEMETRY: 'off',
         SAASCODEX_TELEMETRY_RELAY_URL:
-          'https://telemetry.open-design.ai/api/langfuse',
+          'https://telemetry.saascodex.com/api/langfuse',
       },
       { VELA_CONTROL_KEY: 'ck_test' },
     );
 
     expect(cfg).toMatchObject({
       kind: 'relay',
-      relayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry.saascodex.com/api/langfuse',
     });
   });
 
@@ -2290,7 +2290,7 @@ describe('reportRunCompleted', () => {
   it('falls back anonymously on an explicit Vela auth rejection', async () => {
     vi.stubEnv(
       'SAASCODEX_TELEMETRY_RELAY_URL',
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     const fetchSpy = vi
       .fn()
@@ -2315,7 +2315,7 @@ describe('reportRunCompleted', () => {
 
     expect(fetchSpy.mock.calls.map((call) => call[0])).toEqual([
       'https://vela.example.test/api/v1/saascodex/telemetry',
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     ]);
     expect(result.langfuse_delivery_status).toBe('accepted');
   });
@@ -2325,7 +2325,7 @@ describe('reportRunCompleted', () => {
     async (status) => {
       vi.stubEnv(
         'SAASCODEX_TELEMETRY_RELAY_URL',
-        'https://telemetry.open-design.ai/api/langfuse',
+        'https://telemetry.saascodex.com/api/langfuse',
       );
       const fetchSpy = vi.fn().mockResolvedValue(new Response('', { status }));
 
@@ -2360,7 +2360,7 @@ describe('reportRunCompleted', () => {
   it('fails object registration closed when the Vela installation identity is missing', async () => {
     vi.stubEnv(
       'SAASCODEX_TELEMETRY_RELAY_URL',
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     const fetchSpy = vi.fn().mockResolvedValue(new Response('{}', { status: 200 }));
 
@@ -2393,7 +2393,7 @@ describe('reportRunCompleted', () => {
   it('does not anonymously overwrite a throttled Vela delivery', async () => {
     vi.stubEnv(
       'SAASCODEX_TELEMETRY_RELAY_URL',
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     const fetchSpy = vi.fn().mockResolvedValue(new Response('', { status: 429 }));
 
@@ -2585,7 +2585,7 @@ describe('reportRunCompleted', () => {
   it('POSTs serialized ingestion batches to the SaaSCodex telemetry relay', async () => {
     const relayConfig: TelemetrySinkConfig = {
       kind: 'relay',
-      relayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry.saascodex.com/api/langfuse',
       timeoutMs: 20_000,
       retries: 0,
     };
@@ -2605,7 +2605,7 @@ describe('reportRunCompleted', () => {
     const call = fetchSpy.mock.calls[0]!;
     const url = call[0] as string;
     const init = call[1] as RequestInit & { headers: Record<string, string> };
-    expect(url).toBe('https://telemetry.open-design.ai/api/langfuse');
+    expect(url).toBe('https://telemetry.saascodex.com/api/langfuse');
     expect(init.method).toBe('POST');
     expect(init.headers.Authorization).toBeUndefined();
     expect(init.headers['Content-Type']).toBe('application/json');
@@ -2621,7 +2621,7 @@ describe('reportRunCompleted', () => {
   it('warns when the relay returns per-event errors', async () => {
     const relayConfig: TelemetrySinkConfig = {
       kind: 'relay',
-      relayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry.saascodex.com/api/langfuse',
       timeoutMs: 20_000,
       retries: 0,
     };
@@ -2654,7 +2654,7 @@ describe('reportRunCompleted', () => {
   it('classifies relay 413 responses as relay_413', async () => {
     const relayConfig: TelemetrySinkConfig = {
       kind: 'relay',
-      relayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry.saascodex.com/api/langfuse',
       timeoutMs: 20_000,
       retries: 0,
     };
@@ -2680,7 +2680,7 @@ describe('reportRunCompleted', () => {
   it('classifies relay 5xx responses as relay_5xx', async () => {
     const relayConfig: TelemetrySinkConfig = {
       kind: 'relay',
-      relayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry.saascodex.com/api/langfuse',
       timeoutMs: 20_000,
       retries: 0,
     };
@@ -2726,7 +2726,7 @@ describe('reportRunCompleted', () => {
   it('classifies relay per-event 429s separately from generic 4xx', async () => {
     const relayConfig: TelemetrySinkConfig = {
       kind: 'relay',
-      relayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      relayUrl: 'https://telemetry.saascodex.com/api/langfuse',
       timeoutMs: 20_000,
       retries: 0,
     };
@@ -3034,7 +3034,7 @@ describe('reportRunFeedback', () => {
     vi.stubEnv('VELA_API_URL', 'https://vela.example.test');
     vi.stubEnv(
       'SAASCODEX_TELEMETRY_RELAY_URL',
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     const fetchSpy = vi.fn().mockResolvedValue(new Response(
       JSON.stringify({
@@ -3084,7 +3084,7 @@ describe('reportRunFeedback', () => {
     vi.stubEnv('VELA_API_URL', 'https://vela.example.test');
     vi.stubEnv(
       'SAASCODEX_TELEMETRY_RELAY_URL',
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     const fetchSpy = vi.fn().mockResolvedValue(new Response('', { status: 401 }));
 

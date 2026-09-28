@@ -657,7 +657,7 @@ describe('余额不足:身份 × 订阅的四种分支', () => {
     const url = String(mockedWindowOpen.mock.calls[0]?.[0]);
     expect(url).toContain('billing=auto-recharge');
     // 反向对照:确认他没有被送去买一个他已经在用的套餐。
-    expect(url).not.toContain('open-design.ai/pricing');
+    expect(url).not.toContain('saascodex.com/pricing');
 
     // 弹窗那颗主按钮同样要认出这个生产形状(context 不带 planId)。
     fireEvent.click(await screen.findByTestId('amr-balance-dialog-plans'));
@@ -699,7 +699,7 @@ describe('余额不足:身份 × 订阅的四种分支', () => {
     await sendAs(
       callerContext('owner', 'team_max', {
         workspaceSettingsUrl:
-          'https://open-design.ai/amr/settings?workspaceId=nt3itfm1b95puq5w33tvzu44',
+          'https://saascodex.com/amr/settings?workspaceId=nt3itfm1b95puq5w33tvzu44',
       }),
       EMPTY_WALLET,
     );

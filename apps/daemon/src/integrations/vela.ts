@@ -151,7 +151,7 @@ const AMR_ENTRY_SOURCE_PAGE_BY_SOURCE: Record<
 };
 
 const AMR_ANALYTICS_EVENTS_URL =
-  'https://amr-api.open-design.ai/api/v1/analytics/events';
+  'https://amr-api.saascodex.com/api/v1/analytics/events';
 const AMR_ANALYTICS_TIMEOUT_MS = 1500;
 const OD_DEVICE_ID_MAX_LENGTH = 128;
 
@@ -764,7 +764,7 @@ function readRawVelaControlApiContext(
     const status = readRawVelaLoginStatus(env, configuredEnv);
     return {
       profile,
-      apiUrl: envApiUrl || 'https://amr-api.open-design.ai',
+      apiUrl: envApiUrl || 'https://amr-api.saascodex.com',
       controlKey: envControlKey,
       user: status.user,
       configMtimeMs: null,
@@ -794,7 +794,7 @@ export function readVelaApiContext(
     apiUrl:
       snapshot.stored?.apiUrl?.trim()
       || mergedEnv.VELA_API_URL?.trim()
-      || 'https://amr-api.open-design.ai',
+      || 'https://amr-api.saascodex.com',
   };
 }
 

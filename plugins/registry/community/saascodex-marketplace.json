@@ -1,11 +1,11 @@
 {
-  "$schema": "https://open-design.ai/schemas/marketplace.v1.json",
+  "$schema": "https://saascodex.com/schemas/marketplace.v1.json",
   "specVersion": "1.0.0",
   "name": "saascodex-community",
   "version": "0.2.10",
   "owner": {
     "name": "SaaSCodex Community",
-    "url": "https://open-design.ai/marketplace/community"
+    "url": "https://saascodex.com/marketplace/community"
   },
   "metadata": {
     "description": "Default community plugin registry seed. Entries here are discoverable by default but remain restricted until the user installs and trusts them.",

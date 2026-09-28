@@ -515,7 +515,7 @@ export function readRunTelemetrySinkConfig(
     if (context && controlKey) {
       return {
         kind: 'vela',
-        apiUrl: (context.apiUrl.trim() || 'https://amr-api.open-design.ai').replace(
+        apiUrl: (context.apiUrl.trim() || 'https://amr-api.saascodex.com').replace(
           /\/+$/,
           '',
         ),

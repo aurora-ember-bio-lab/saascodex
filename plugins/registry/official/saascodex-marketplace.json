@@ -1,15 +1,15 @@
 {
-  "$schema": "https://open-design.ai/schemas/marketplace.v1.json",
+  "$schema": "https://saascodex.com/schemas/marketplace.v1.json",
   "specVersion": "1.0.0",
   "name": "saascodex-official",
   "version": "0.1.0",
   "owner": {
     "name": "SaaSCodex",
-    "url": "https://open-design.ai"
+    "url": "https://saascodex.com"
   },
   "trust": "official",
   "metadata": {
-    "description": "Official SaaSCodex plugin registry seed. The generated public catalog is served from open-design.ai/marketplace.",
+    "description": "Official SaaSCodex plugin registry seed. The generated public catalog is served from saascodex.com/marketplace.",
     "version": "0.1.0",
     "generatedFrom": "plugins/_official",
     "bundledPreinstallCount": 414
@@ -22,7 +22,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/build-test",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -48,7 +48,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/code-import",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -72,7 +72,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/critique-theater",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -94,7 +94,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/design-extract",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -119,7 +119,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/agentic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -143,7 +143,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/airbnb",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -167,7 +167,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/airtable",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -191,7 +191,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/ant",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -215,7 +215,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/apple",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -239,7 +239,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/application",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -263,7 +263,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/arc",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -287,7 +287,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/artistic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -311,7 +311,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/atelier-zero",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -335,7 +335,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/bento",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -359,7 +359,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/binance",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -383,7 +383,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/bmw",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -407,7 +407,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/bmw-m",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -431,7 +431,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/bold",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -455,7 +455,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/brutalism",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -479,7 +479,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/bugatti",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -503,7 +503,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/cafe",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -527,7 +527,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/cal",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -551,7 +551,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/canva",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -575,7 +575,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/claude",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -599,7 +599,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/clay",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -623,7 +623,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/claymorphism",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -647,7 +647,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/clean",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -671,7 +671,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/clickhouse",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -695,7 +695,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/cohere",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -719,7 +719,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/coinbase",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -743,7 +743,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/colorful",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -767,7 +767,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/composio",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -791,7 +791,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/contemporary",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -815,7 +815,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/corporate",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -839,7 +839,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/cosmic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -863,7 +863,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/creative",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -887,7 +887,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/cursor",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -911,7 +911,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/dashboard",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -935,7 +935,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/default",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -959,7 +959,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/discord",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -983,7 +983,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/dithered",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1007,7 +1007,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/doodle",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1031,7 +1031,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/dramatic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1055,7 +1055,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/duolingo",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1079,7 +1079,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/editorial",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1103,7 +1103,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/elegant",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1127,7 +1127,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/elevenlabs",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1151,7 +1151,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/energetic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1175,7 +1175,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/enterprise",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1199,7 +1199,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/expo",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1223,7 +1223,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/expressive",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1247,7 +1247,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/fantasy",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1271,7 +1271,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/ferrari",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1295,7 +1295,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/figma",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1319,7 +1319,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/flat",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1343,7 +1343,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/framer",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1367,7 +1367,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/friendly",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1391,7 +1391,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/futuristic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1415,7 +1415,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/github",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1439,7 +1439,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/glassmorphism",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1463,7 +1463,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/gradient",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1487,7 +1487,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/hashicorp",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1511,7 +1511,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/huggingface",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1535,7 +1535,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/ibm",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1559,7 +1559,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/intercom",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1583,7 +1583,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/kami",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1607,7 +1607,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/kraken",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1631,7 +1631,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/lamborghini",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1655,7 +1655,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/levels",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1679,7 +1679,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/linear-app",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1703,7 +1703,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/lingo",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1727,7 +1727,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/lovable",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1751,7 +1751,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/luxury",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1775,7 +1775,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/mastercard",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1799,7 +1799,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/material",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1823,7 +1823,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/meta",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1847,7 +1847,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/minimal",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1871,7 +1871,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/minimax",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1895,7 +1895,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/mintlify",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1919,7 +1919,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/miro",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1943,7 +1943,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/mission-control",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1967,7 +1967,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/mistral-ai",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -1991,7 +1991,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/modern",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2015,7 +2015,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/mongodb",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2039,7 +2039,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/mono",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2063,7 +2063,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/neobrutalism",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2087,7 +2087,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/neon",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2111,7 +2111,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/neumorphism",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2135,7 +2135,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/nike",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2159,7 +2159,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/notion",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2183,7 +2183,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/nvidia",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2207,7 +2207,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/ollama",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2231,7 +2231,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/openai",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2255,7 +2255,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/opencode-ai",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2279,7 +2279,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/pacman",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2303,7 +2303,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/paper",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2327,7 +2327,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/perplexity",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2351,7 +2351,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/perspective",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2375,7 +2375,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/pinterest",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2399,7 +2399,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/playstation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2423,7 +2423,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/posthog",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2447,7 +2447,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/premium",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2471,7 +2471,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/professional",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2495,7 +2495,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/publication",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2519,7 +2519,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/raycast",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2543,7 +2543,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/refined",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2567,7 +2567,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/renault",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2591,7 +2591,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/replicate",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2615,7 +2615,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/resend",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2639,7 +2639,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/retro",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2663,7 +2663,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/revolut",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2687,7 +2687,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/runwayml",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2711,7 +2711,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/sanity",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2735,7 +2735,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/sentry",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2759,7 +2759,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/shadcn",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2783,7 +2783,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/shopify",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2807,7 +2807,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/simple",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2831,7 +2831,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/skeumorphism",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2855,7 +2855,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/sleek",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2879,7 +2879,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/spacex",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2903,7 +2903,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/spacious",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2927,7 +2927,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/spotify",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2951,7 +2951,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/starbucks",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2975,7 +2975,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/storytelling",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -2999,7 +2999,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/stripe",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3023,7 +3023,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/supabase",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3047,7 +3047,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/superhuman",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3071,7 +3071,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/tesla",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3095,7 +3095,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/tetris",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3119,7 +3119,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/theverge",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3143,7 +3143,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/together-ai",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3167,7 +3167,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/totality-festival",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3191,7 +3191,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/uber",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3215,7 +3215,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/urdu",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3239,7 +3239,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/vercel",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3263,7 +3263,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/vibrant",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3287,7 +3287,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/vintage",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3311,7 +3311,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/vodafone",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3335,7 +3335,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/voltagent",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3359,7 +3359,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/warm-editorial",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3383,7 +3383,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/warp",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3407,7 +3407,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/webflow",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3431,7 +3431,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/wired",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3455,7 +3455,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/wise",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3479,7 +3479,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/x-ai",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3503,7 +3503,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/xiaohongshu",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3527,7 +3527,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/design-systems/zapier",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3551,7 +3551,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/diff-review",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3577,7 +3577,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/direction-picker",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -3599,7 +3599,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/discovery-question-form",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -3621,7 +3621,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/article-magazine",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3660,7 +3660,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/audio-jingle",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3692,7 +3692,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/blog-post",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3726,7 +3726,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/card-twitter",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3765,7 +3765,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/card-xiaohongshu",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3803,7 +3803,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/clinical-case-report",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3838,7 +3838,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/critique",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3874,7 +3874,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/dashboard",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3906,7 +3906,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/data-report",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3945,7 +3945,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/dating-web",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -3979,7 +3979,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/dcf-valuation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4013,7 +4013,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/deck-guizang-editorial",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4052,7 +4052,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/deck-open-slide-canvas",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4091,7 +4091,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/deck-swiss-international",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4131,7 +4131,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/design-brief",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4162,7 +4162,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/digital-eguide",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4198,7 +4198,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/doc-kami-parchment",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4240,7 +4240,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/docs-page",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4273,7 +4273,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/email-marketing",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4307,7 +4307,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/eng-runbook",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4340,7 +4340,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/finance-report",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4373,7 +4373,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/flowai-live-dashboard-template",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4406,7 +4406,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/frame-data-chart-nyt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4443,7 +4443,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/frame-flowchart-sticky",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4481,7 +4481,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/frame-glitch-title",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4519,7 +4519,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/frame-light-leak-cinema",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4557,7 +4557,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/frame-liquid-bg-hero",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4595,7 +4595,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/frame-logo-outro",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4632,7 +4632,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/frame-macos-notification",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4669,7 +4669,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/gamified-app",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4705,7 +4705,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/github-dashboard",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4740,7 +4740,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/guizang-ppt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4775,7 +4775,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/hatch-pet",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4806,7 +4806,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/hr-onboarding",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4837,7 +4837,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4874,7 +4874,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-course-module",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4906,7 +4906,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-graphify-dark-graph",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4938,7 +4938,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-hermes-cyber-terminal",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -4970,7 +4970,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-knowledge-arch-blueprint",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5002,7 +5002,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-obsidian-claude-gradient",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5034,7 +5034,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-pitch-deck",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5067,7 +5067,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-presenter-mode-reveal",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5097,7 +5097,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-product-launch",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5129,7 +5129,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-taste-brutalist",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5155,7 +5155,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-taste-editorial",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5181,7 +5181,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-tech-sharing",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5213,7 +5213,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-testing-safety-alert",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5245,7 +5245,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-weekly-report",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5277,7 +5277,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-xhs-pastel-card",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5308,7 +5308,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-xhs-white-editorial",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5338,7 +5338,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-8-bit-orbit",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5375,7 +5375,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-biennale-yellow",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5412,7 +5412,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-block-frame",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5450,7 +5450,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-blue-professional",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5487,7 +5487,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-bold-poster",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5524,7 +5524,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-broadside",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5561,7 +5561,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-capsule",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5598,7 +5598,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-cartesian",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5635,7 +5635,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-cobalt-grid",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5672,7 +5672,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-coral",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5709,7 +5709,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-creative-mode",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5746,7 +5746,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-daisy-days",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5783,7 +5783,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-editorial-tri-tone",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5819,7 +5819,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-grove",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5856,7 +5856,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-long-table",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5892,7 +5892,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-mat",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5929,7 +5929,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-monochrome",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -5965,7 +5965,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-neo-grid-bold",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6002,7 +6002,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-peoples-platform",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6040,7 +6040,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-pin-and-paper",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6078,7 +6078,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-pink-script",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6116,7 +6116,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-playful",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6153,7 +6153,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-raw-grid",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6190,7 +6190,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-retro-windows",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6226,7 +6226,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-retro-zine",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6263,7 +6263,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-sakura-chroma",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6299,7 +6299,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-scatterbrain",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6336,7 +6336,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-signal",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6373,7 +6373,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-soft-editorial",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6409,7 +6409,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-stencil-tablet",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6446,7 +6446,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-studio",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6483,7 +6483,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/html-ppt-zhangzara-vellum",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6519,7 +6519,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/hyperframes",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6556,7 +6556,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/ib-pitch-book",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6592,7 +6592,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/image-poster",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6622,7 +6622,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/codex-interactive-capability-map",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6656,7 +6656,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/invoice",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6687,7 +6687,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/kami-deck",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6719,7 +6719,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/kami-landing",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6754,7 +6754,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/kanban-board",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6787,7 +6787,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/last30days",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6822,7 +6822,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/live-artifact",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6855,7 +6855,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/live-dashboard",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6890,7 +6890,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/magazine-poster",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6925,7 +6925,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/meeting-notes",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6957,7 +6957,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/mobile-app",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -6992,7 +6992,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/mobile-onboarding",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7025,7 +7025,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/mockup-device-3d",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7065,7 +7065,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/motion-frames",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7101,7 +7101,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/saascodex-landing",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7134,7 +7134,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/saascodex-landing-deck",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7168,7 +7168,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/orbit-general",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7198,7 +7198,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/orbit-github",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7230,7 +7230,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/orbit-gmail",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7262,7 +7262,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/orbit-linear",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7294,7 +7294,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/orbit-notion",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7326,7 +7326,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/pm-spec",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7359,7 +7359,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/poster-hero",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7396,7 +7396,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/ppt-keynote",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7433,7 +7433,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/pptx-html-fidelity-audit",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7466,7 +7466,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/pricing-page",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7499,7 +7499,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/replit-deck",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7534,7 +7534,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/resume-modern",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7572,7 +7572,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/saas-landing",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7602,7 +7602,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/simple-deck",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7632,7 +7632,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/social-carousel",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7666,7 +7666,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/social-media-dashboard",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7699,7 +7699,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/social-media-matrix-tracker-template",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7737,7 +7737,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/social-reddit-card",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7777,7 +7777,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/social-spotify-card",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7817,7 +7817,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/social-x-post-card",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7857,7 +7857,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/sprite-animation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7892,7 +7892,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/team-okrs",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7924,7 +7924,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/trading-analysis-dashboard-template",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7957,7 +7957,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/tweaks",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -7992,7 +7992,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/vfx-text-cursor",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8030,7 +8030,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/video-hyperframes",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8065,7 +8065,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/video-shortform",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8094,7 +8094,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/waitlist-page",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8126,7 +8126,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/web-prototype",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8158,7 +8158,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/web-prototype-taste-brutalist",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8184,7 +8184,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/web-prototype-taste-editorial",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8210,7 +8210,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/web-prototype-taste-soft",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8236,7 +8236,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/weekly-update",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8267,7 +8267,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/wireframe-sketch",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8301,7 +8301,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/x-research",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8337,7 +8337,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/figma-extract",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -8361,7 +8361,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/handoff",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -8385,7 +8385,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/3d-stone-staircase-evolution-infographic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8411,7 +8411,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/anime-martial-arts-battle-illustration",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8438,7 +8438,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/e-commerce-live-stream-ui-mockup",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8466,7 +8466,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/game-screenshot-anime-fighting-game-captain-ryuuga-vs-kaze-renshin",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8499,7 +8499,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/game-screenshot-three-kingdoms-guanyu-slaying-yanliang",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8532,7 +8532,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/game-screenshot-three-kingdoms-lyubu-yuanmen-archery",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8564,7 +8564,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/game-screenshot-three-kingdoms-zhaoyun-cradle-escape",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8598,7 +8598,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/game-ui-ancient-china-open-world-mmo-hud",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8629,7 +8629,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/illustrated-city-food-map",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8656,7 +8656,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/illustration-crayon-kid-drawing-rework",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8688,7 +8688,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/infographic-otaku-dance-choreography-breakdown-gokurakujodo-16-panels",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8722,7 +8722,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/momotaro-explainer-slide-in-hybrid-style",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8747,7 +8747,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/notion-team-dashboard-live-artifact",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8774,7 +8774,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-anime-girl-to-cinematic-photo",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8802,7 +8802,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-casual-fashion-grid-photoshoot",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8830,7 +8830,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-cinematic-south-asian-male-portrait-with-vultures",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8858,7 +8858,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-cyberpunk-anime-portrait-with-neon-face-text",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8887,7 +8887,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-elegant-fantasy-girl-in-violet-garden",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8916,7 +8916,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-ethereal-blue-haired-fantasy-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8945,7 +8945,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-glamorous-woman-in-black-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8972,7 +8972,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-hyper-realistic-selfie-texture-prompts",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -8999,7 +8999,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-lavender-fantasy-mage-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9028,7 +9028,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-monochrome-studio-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9055,7 +9055,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-old-photo-restoration-to-dslr-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9082,7 +9082,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-poetic-woman-in-garden-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9109,7 +9109,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-professional-identity-portrait-wallpaper",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9138,7 +9138,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-realistically-imperfect-ai-selfie",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9165,7 +9165,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-signed-marker-portrait-on-shikishi",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9193,7 +9193,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-snow-rabbit-empress-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9222,7 +9222,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-snow-rabbit-mask-hanfu-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9251,7 +9251,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-snowy-rabbit-hanfu-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9279,7 +9279,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-snowy-rabbit-spirit-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9307,7 +9307,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/profile-avatar-song-dynasty-hanfu-portrait",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9333,7 +9333,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-anime-pokemon-shop-outfit-teaser-poster",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9362,7 +9362,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-cinematic-elevator-scene",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9388,7 +9388,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-confused-elf-girl-at-pastel-desk",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9415,7 +9415,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-editorial-fashion-photography",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9440,7 +9440,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-fashion-editorial-collage",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9468,7 +9468,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-psg-transfer-announcement-poster",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9495,7 +9495,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-sensational-girl-dance-storyboard-8-shots",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9526,7 +9526,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-showa-day-retro-culture-magazine-cover",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9554,7 +9554,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-social-media-fashion-outfit-generation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9580,7 +9580,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-travel-snapshot-collage-prompt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9607,7 +9607,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/social-media-post-vintage-sign-painter-sketch",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9633,7 +9633,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/image-templates/vr-headset-exploded-view-poster",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9661,7 +9661,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-code-migration",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9688,7 +9688,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-default",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9718,7 +9718,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-design-refine",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9747,7 +9747,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-figma-migration",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9773,7 +9773,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-media-generation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9803,7 +9803,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-new-generation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -9826,7 +9826,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-nextjs-export",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9856,7 +9856,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-plugin-authoring",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -9880,7 +9880,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/od-plugin-contribute-saascodex",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "fs:read",
@@ -9912,7 +9912,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/examples/od-plugin-publish-github",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "fs:read",
@@ -9944,7 +9944,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-react-export",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9973,7 +9973,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-tune-collab",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -9998,7 +9998,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-vue-export",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10027,7 +10027,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/scenarios/od-web-effect-extractor",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10059,7 +10059,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/patch-edit",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10085,7 +10085,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/rewrite-plan",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -10109,7 +10109,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/todo-write",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -10131,7 +10131,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/atoms/token-map",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject"
@@ -10155,7 +10155,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/3d-animated-boy-building-lego",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10180,7 +10180,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/a-decade-of-refinement-glow-up",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10208,7 +10208,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/ancient-guardian-dragon-rescue",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10235,7 +10235,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/ancient-indian-kingdom-fpv-video",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10262,7 +10262,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/animation-transfer-and-camera-tracking-prompt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10287,7 +10287,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/beat-synced-outfit-transformation-dance",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10313,7 +10313,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/character-intro-motion-graphics-sequence",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10341,7 +10341,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-birthday-celebration-sequence",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10368,7 +10368,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-dragon-interaction-flight",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10395,7 +10395,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-east-asian-woman-hand-dance",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10421,7 +10421,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-emotional-face-close-up",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10448,7 +10448,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-marine-biologist-exploration",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10473,7 +10473,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-music-podcast-and-guitar-technique",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10500,7 +10500,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-route-navigation-guide",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10527,7 +10527,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-street-racing-sequence-for-seedance-2",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10554,7 +10554,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cinematic-vampire-alley-fight-sequence",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10580,7 +10580,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/crimson-horizon-sci-fi-cinematic-sequence",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10605,7 +10605,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/cyberpunk-game-trailer-script",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10633,7 +10633,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/forbidden-city-cat-satire",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10659,7 +10659,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/hollywood-haute-couture-fantasy-video-prompt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10687,7 +10687,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/hunched-character-animation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10712,7 +10712,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/live-action-anime-adaptation-water-vs-thunder-breathing-duel",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10739,7 +10739,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/luxury-supercar-cinematic-narrative",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10766,7 +10766,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/magical-academy-storyboard-sequence",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10792,7 +10792,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/modern-rural-aesthetics-healing-short-film-video-prompt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10819,7 +10819,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/nightclub-flyer-atmospheric-animation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10846,7 +10846,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/retro-hk-wuxia-film-aesthetic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10872,7 +10872,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/seedance-2-0-15-second-cinematic-japanese-romance-short-film",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10898,7 +10898,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/seedance-2-0-80-year-old-rapper-mv",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10925,7 +10925,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/sequence-and-movement-instruction-for-martial-arts-video",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10952,7 +10952,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/soul-switching-mirror-magic-sequence",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -10978,7 +10978,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/toaster-rocket-jumpscare",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11004,7 +11004,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/traditional-dance-performance",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11032,7 +11032,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/video-seedance-desk-hologram-ar-realdesk",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11067,7 +11067,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/video-seedance-three-kingdoms-guanyu-slaying-yanliang",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11102,7 +11102,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/video-seedance-three-kingdoms-lyubu-yuanmen-archery",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11137,7 +11137,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/video-seedance-three-kingdoms-zhaoyun-cradle-escape",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11173,7 +11173,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/vintage-disney-style-pirate-crocodile-animation",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11198,7 +11198,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/viral-k-pop-dance-choreography",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11225,7 +11225,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/wasteland-factory-chase",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11251,7 +11251,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-bold-poster",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11289,7 +11289,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-bold-signal",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11325,7 +11325,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-build-minimal",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11361,7 +11361,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-creative-voltage",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11396,7 +11396,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-data-chart-nyt",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11431,7 +11431,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-data-rollup",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11468,7 +11468,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-decision-tree",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11501,7 +11501,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-electric-studio",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11536,7 +11536,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-glitch-title",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11571,7 +11571,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-kinetic-type",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11605,7 +11605,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-light-leak-cinema",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11640,7 +11640,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-liquid-bg-hero",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11675,7 +11675,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-logo-outro",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11710,7 +11710,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-nyt-graph",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11744,7 +11744,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-pentagram-stat",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11780,7 +11780,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-play-mode",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11814,7 +11814,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-product-promo",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11848,7 +11848,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-product-promo-30s",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11884,7 +11884,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-swiss-grid",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11918,7 +11918,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-takram-organic",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11954,7 +11954,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-vignelli",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -11988,7 +11988,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/frame-warm-grain",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",
@@ -12022,7 +12022,7 @@
       "source": "github:nexu-io/open-design@main/plugins/_official/video-templates/vfx-text-cursor",
       "publisher": {
         "id": "saascodex",
-        "url": "https://open-design.ai"
+        "url": "https://saascodex.com"
       },
       "capabilitiesSummary": [
         "prompt:inject",

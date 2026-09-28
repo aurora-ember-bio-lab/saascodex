@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex：開源的 Claude Design 替代方案</h1>
 
-> ⚡ **[SaaSCodex Cloud——官方模型服務。](https://open-design.ai/zh/pricing/)** 一次儲值，即可在 SaaSCodex 中使用 Agent 與圖像模型：GPT、Claude 與 DeepSeek Agent 模型，以及 GPT Image 2.0、Seedream 5.0 Pro 與 Nano Banana 2.0 圖像模型。
+> ⚡ **[SaaSCodex Cloud——官方模型服務。](https://saascodex.com/zh/pricing/)** 一次儲值，即可在 SaaSCodex 中使用 Agent 與圖像模型：GPT、Claude 與 DeepSeek Agent 模型，以及 GPT Image 2.0、Seedream 5.0 Pro 與 Nano Banana 2.0 圖像模型。
 >
-> 🚀 **[DeepSeek V4 Flash 與 V4 Pro 現已上線。](https://open-design.ai/zh/pricing/)** 將頂級智慧用於原型、簡報、設計系統與日常 Agent 任務。SaaSCodex 會員可直接在應用程式內無限量使用兩週。
+> 🚀 **[DeepSeek V4 Flash 與 V4 Pro 現已上線。](https://saascodex.com/zh/pricing/)** 將頂級智慧用於原型、簡報、設計系統與日常 Agent 任務。SaaSCodex 會員可直接在應用程式內無限量使用兩週。
 >
-> 🧩 **[現已支援 DeepSeek Harness。](https://open-design.ai/zh/agents/deepseek-harness-design/)** 將 DeepSeek 官方 `dsh` Agent Harness 作為原生執行環境接入 SaaSCodex，支援結構化思考、工具呼叫、模型探索、取消與工作階段恢復；生成檔案仍留在 SaaSCodex 工作流程中供即時預覽與交付。
+> 🧩 **[現已支援 DeepSeek Harness。](https://saascodex.com/zh/agents/deepseek-harness-design/)** 將 DeepSeek 官方 `dsh` Agent Harness 作為原生執行環境接入 SaaSCodex，支援結構化思考、工具呼叫、模型探索、取消與工作階段恢復；生成檔案仍留在 SaaSCodex 工作流程中供即時預覽與交付。
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_website">官方網站</a> ·
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download">下載</a> ·
-  <a href="https://open-design.ai/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_website">官方網站</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download">下載</a> ·
+  <a href="https://saascodex.com/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">追蹤 @SaaSCodexHQ</a>
 </p>
@@ -133,7 +133,7 @@ SaaSCodex 是這樣誕生的：當 Anthropic 隨 Claude Design 推出的那套 *
 `od mcp install <agent> --print` 可預覽 dry-run · `--uninstall` 可移除 · 完整清單請執行 `od mcp install --help`。
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **沒有安裝任何 CLI？** 位於 `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` 的 BYOK 代理可提供相同的迴圈（不需衍生程序）——貼上 `baseUrl` + `apiKey` + `model` 即可，支援 OpenAI、Anthropic、Azure OpenAI、Google Gemini、Ollama、LM Studio、vLLM，或任何相容 OpenAI 的端點。逐目標的 SSRF 防護會在 daemon 邊界阻擋內部 IP／link-local／CGNAT。
@@ -280,8 +280,8 @@ SaaSCodex（OD）就是那個開源的替代方案。同樣的迴圈、同樣以
 
 使用 SaaSCodex 最快的方式。無須 Node、無須 pnpm、無須 clone。
 
-- **macOS**（Apple Silicon · Intel x64）→ [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows**（x64）→ [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS**（Apple Silicon · Intel x64）→ [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows**（x64）→ [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux**（AppImage，選用通道）→ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 安裝後：應用程式會自動偵測你 `PATH` 上的每一個編碼 agent CLI、載入 100+ 個功能 skills、獨立渲染範本型錄與 151 套設計系統套件，並讓你在入口視圖中輸入需求。
@@ -297,7 +297,7 @@ od mcp install <agent>
 #         | pi | vibe | hermes | cline | kimi | kiro | trae | opencode
 
 # Hosted equivalent for curl-based setup:
-curl -fsSL https://open-design.ai/install.sh | sh -s <agent>
+curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
 ```
 
 `install.sh` 是包在 `od mcp install` 外的輕量 shell wrapper；它的用途是讓 hosted URL 回傳 shell 指令、而非 landing page 的 HTML fallback，並在你的 shell 解析到非 SaaSCodex 的 `od` 執行檔時快速失敗。
@@ -690,7 +690,7 @@ gh pr create --fill
 ## 儲存庫活動
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 上方的 SVG 由 [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) 使用 [`lowlighter/metrics`](https://github.com/lowlighter/metrics) 每日重新生成。
@@ -700,7 +700,7 @@ gh pr create --fill
 ## 給我們一顆星
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 如果這幫你省下了三十分鐘，給它一顆 ★。星星不能付房租——但它們會告訴下一位設計師、agent 與貢獻者，這場實驗值得他們關注。一鍵、三秒，一個真實的訊號。

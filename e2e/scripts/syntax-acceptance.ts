@@ -29,7 +29,7 @@ export function resolveSyntaxTelemetryCanary(input: {
     || (input.repeat !== undefined && input.repeat !== '1')) {
     throw new Error('Telemetry canary requires replay, test profile, one repeat and built-in synthetic fixtures only');
   }
-  if (input.relayUrl !== 'https://telemetry-test.open-design.ai/api/langfuse') {
+  if (input.relayUrl !== 'https://telemetry-test.saascodex.com/api/langfuse') {
     throw new Error('Telemetry canary requires explicit SAASCODEX_TELEMETRY_RELAY_URL pointing to the official test relay');
   }
   if (!input.token || !/^[a-z0-9]{8}$/.test(input.token)) throw new Error('Missing isolated canary token');

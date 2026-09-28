@@ -101,7 +101,7 @@ describe("saascodex sidecar contract", () => {
 
     expect(() =>
       normalizeDaemonSidecarMessage({
-        input: { url: "https://open-design.ai" },
+        input: { url: "https://saascodex.com" },
         type: SIDECAR_MESSAGES.REGISTER_WEB_URL,
       }),
     ).toThrow(/loopback|http/i);

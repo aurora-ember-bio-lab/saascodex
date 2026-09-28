@@ -6,18 +6,18 @@ import {
 } from '../../src/integrations/telemetry-relay.js';
 
 describe('SaaSCodex telemetry relay URLs', () => {
-  it('keeps production on telemetry.open-design.ai', () => {
+  it('keeps production on telemetry.saascodex.com', () => {
     expect(SAASCODEX_TELEMETRY_RELAY_URLS.prod).toBe(
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     expect(normalizeSaaSCodexTelemetryRelayUrl(
-      'https://telemetry.open-design.ai/api/langfuse//',
+      'https://telemetry.saascodex.com/api/langfuse//',
     )).toBe(SAASCODEX_TELEMETRY_RELAY_URLS.prod);
   });
 
-  it('moves legacy self-host test URLs to telemetry-test.open-design.ai', () => {
+  it('moves legacy self-host test URLs to telemetry-test.saascodex.com', () => {
     expect(normalizeSaaSCodexTelemetryRelayUrl(
-      'https://telemetry-selfhost.open-design.ai/api/langfuse/',
+      'https://telemetry-selfhost.saascodex.com/api/langfuse/',
     )).toBe(SAASCODEX_TELEMETRY_RELAY_URLS.test);
   });
 

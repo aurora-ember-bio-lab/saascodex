@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex：The open-source Claude Design alternative</h1>
 
-> ⚡ **[SaaSCodex Cloud——官方模型服务。](https://open-design.ai/zh/pricing/)** 一次充值，即可在 SaaSCodex 里直接使用 Agent 与图像模型：GPT、Claude 与 DeepSeek Agent 模型，以及 GPT Image 2.0、Seedream 5.0 Pro 与 Nano Banana 2.0 图像模型。
+> ⚡ **[SaaSCodex Cloud——官方模型服务。](https://saascodex.com/zh/pricing/)** 一次充值，即可在 SaaSCodex 里直接使用 Agent 与图像模型：GPT、Claude 与 DeepSeek Agent 模型，以及 GPT Image 2.0、Seedream 5.0 Pro 与 Nano Banana 2.0 图像模型。
 >
-> 🚀 **[DeepSeek V4 Flash 与 V4 Pro 现已上线。](https://open-design.ai/zh/pricing/)** 面向原型、演示文稿、设计系统与日常 Agent 任务，直接使用顶级智能。SaaSCodex 会员可在应用内无限量使用两周。
+> 🚀 **[DeepSeek V4 Flash 与 V4 Pro 现已上线。](https://saascodex.com/zh/pricing/)** 面向原型、演示文稿、设计系统与日常 Agent 任务，直接使用顶级智能。SaaSCodex 会员可在应用内无限量使用两周。
 >
-> 🧩 **[现已支持 DeepSeek Harness。](https://open-design.ai/zh/agents/deepseek-harness-design/)** 将 DeepSeek 官方 `dsh` Agent Harness 作为原生运行时接入 SaaSCodex，支持结构化思考、工具调用、模型发现、取消与会话恢复；生成文件仍进入 SaaSCodex 的实时预览与交付流程。
+> 🧩 **[现已支持 DeepSeek Harness。](https://saascodex.com/zh/agents/deepseek-harness-design/)** 将 DeepSeek 官方 `dsh` Agent Harness 作为原生运行时接入 SaaSCodex，支持结构化思考、工具调用、模型发现、取消与会话恢复；生成文件仍进入 SaaSCodex 的实时预览与交付流程。
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/">官网</a> ·
-  <a href="https://open-design.ai/">下载</a> ·
-  <a href="https://open-design.ai/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/">官网</a> ·
+  <a href="https://saascodex.com/">下载</a> ·
+  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">关注 @SaaSCodexHQ</a>
 </p>
@@ -138,7 +138,7 @@ SaaSCodex 是这样一种产物：Anthropic 随 Claude Design 推出的 **Agent 
 ¹ Claude Desktop 的自动 MCP 配置目前仅在 macOS 和 Windows 上支持。
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="SaaSCodex 支持的 26 个编码 Agent CLI — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="SaaSCodex 支持的 26 个编码 Agent CLI — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **未安装任何 CLI？** `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` 的 BYOK 代理提供同样的循环（无需 spawn 进程）——粘贴 `baseUrl` + `apiKey` + `model`，支持 OpenAI、Anthropic、Azure OpenAI、Google Gemini、Ollama、LM Studio、vLLM 或任何 OpenAI 兼容端点。每个目标的 SSRF 防护在守护进程边缘拦截内网 IP / link-local / CGNAT。
@@ -285,8 +285,8 @@ SaaSCodex (OD) 是开源替代品。同样的循环，同样的工件优先心�
 
 使用 SaaSCodex 最快的方式。无需 Node、pnpm 或克隆仓库。
 
-- **macOS**（Apple Silicon · Intel x64）→ [**open-design.ai**](https://open-design.ai/) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows**（x64）→ [**open-design.ai**](https://open-design.ai/) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS**（Apple Silicon · Intel x64）→ [**saascodex.com**](https://saascodex.com/) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows**（x64）→ [**saascodex.com**](https://saascodex.com/) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux**（AppImage，可选通道）→ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 安装后：应用自动检测 `PATH` 上的所有编码 Agent CLI，加载 100+ 功能技能、独立渲染模板目录和 151 个设计系统包，打开后即可在入口视图中输入需求。
@@ -688,7 +688,7 @@ gh pr create --fill
 ## 仓库活跃度
 
 <picture>
-  <img alt="SaaSCodex——仓库指标" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex——仓库指标" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 上方 SVG 由 [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) 使用 [`lowlighter/metrics`](https://github.com/lowlighter/metrics) 每日重新生成。
@@ -698,7 +698,7 @@ gh pr create --fill
 ## 给我们 Star
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="在 GitHub 上给 SaaSCodex 一个 Star — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="在 GitHub 上给 SaaSCodex 一个 Star — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 如果这为你节省了三十分钟，请给一个 ★。Star 不能当饭吃——但它告诉下一位设计师、Agent 和贡献者，这个实验值得他们关注。一次点击，三秒钟，真实的信号。

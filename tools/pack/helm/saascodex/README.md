@@ -26,7 +26,7 @@ values-self.yaml     persistence.backend=hostPath  secrets.backend=env
 ## Installing
 
 ```bash
-helm repo add saascodex https://open-design.ai/charts
+helm repo add saascodex https://saascodex.com/charts
 helm install od saascodex/saascodex \
   --set image.tag=edge \
   --set secrets.apiToken="$(openssl rand -hex 32)" \

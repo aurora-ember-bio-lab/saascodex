@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex: ทางเลือกโอเพนซอร์สแทน Claude Design</h1>
 
-> ⚡ **[SaaSCodex Cloud — บริการโมเดลอย่างเป็นทางการ.](https://open-design.ai/zh/pricing/)** เติมเงินครั้งเดียวเพื่อใช้ทั้งโมเดล Agent และโมเดลภาพใน SaaSCodex: GPT, Claude และ DeepSeek สำหรับ Agent; GPT Image 2.0, Seedream 5.0 Pro และ Nano Banana 2.0 สำหรับภาพ
+> ⚡ **[SaaSCodex Cloud — บริการโมเดลอย่างเป็นทางการ.](https://saascodex.com/zh/pricing/)** เติมเงินครั้งเดียวเพื่อใช้ทั้งโมเดล Agent และโมเดลภาพใน SaaSCodex: GPT, Claude และ DeepSeek สำหรับ Agent; GPT Image 2.0, Seedream 5.0 Pro และ Nano Banana 2.0 สำหรับภาพ
 >
-> 🚀 **[DeepSeek V4 Flash และ V4 Pro พร้อมใช้งานแล้ว.](https://open-design.ai/zh/pricing/)** ใช้ความสามารถระดับสูงกับ prototype, deck, design system และงาน Agent ประจำวัน สมาชิก SaaSCodex ใช้ทั้งสองโมเดลแบบไม่จำกัดได้สองสัปดาห์ภายในแอป
+> 🚀 **[DeepSeek V4 Flash และ V4 Pro พร้อมใช้งานแล้ว.](https://saascodex.com/zh/pricing/)** ใช้ความสามารถระดับสูงกับ prototype, deck, design system และงาน Agent ประจำวัน สมาชิก SaaSCodex ใช้ทั้งสองโมเดลแบบไม่จำกัดได้สองสัปดาห์ภายในแอป
 >
-> 🧩 **[รองรับ DeepSeek Harness แล้ว.](https://open-design.ai/zh/agents/deepseek-harness-design/)** เชื่อมต่อ `dsh` Agent Harness อย่างเป็นทางการของ DeepSeek เป็น runtime แบบ native ใน SaaSCodex พร้อม structured thinking, tool calls, model discovery, cancellation และ session resume ไฟล์ที่สร้างยังอยู่ใน workflow ของ SaaSCodex เพื่อ live preview และส่งมอบ
+> 🧩 **[รองรับ DeepSeek Harness แล้ว.](https://saascodex.com/zh/agents/deepseek-harness-design/)** เชื่อมต่อ `dsh` Agent Harness อย่างเป็นทางการของ DeepSeek เป็น runtime แบบ native ใน SaaSCodex พร้อม structured thinking, tool calls, model discovery, cancellation และ session resume ไฟล์ที่สร้างยังอยู่ใน workflow ของ SaaSCodex เพื่อ live preview และส่งมอบ
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/">เว็บไซต์</a> ·
-  <a href="https://open-design.ai/">ดาวน์โหลด</a> ·
-  <a href="https://open-design.ai/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/">เว็บไซต์</a> ·
+  <a href="https://saascodex.com/">ดาวน์โหลด</a> ·
+  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/qhbcCH8Am4">Discord</a> ·
   <a href="https://x.com/nexudotio">ติดตาม @nexudotio</a>
 </p>
@@ -133,7 +133,7 @@ SaaSCodex คือสิ่งที่เกิดขึ้นเมื่อ 
 ใช้ `od mcp install <agent> --print` เพื่อ preview แบบ dry-run · ใช้ `--uninstall` เพื่อลบ · ดูรายการเต็มด้วย `od mcp install --help`.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="CLI coding-agent 25 ตัวที่ SaaSCodex รองรับ — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="CLI coding-agent 25 ตัวที่ SaaSCodex รองรับ — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **ยังไม่มี CLI ติดตั้ง?** BYOK proxy ที่ `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` ให้ loop แบบเดียวกัน (ไม่ต้อง spawn process) — วาง `baseUrl` + `apiKey` + `model` ได้เลย พร้อมรองรับ OpenAI, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM หรือ endpoint ที่เข้ากันได้กับ OpenAI. การป้องกัน SSRF ต่อ target จะบล็อก internal IPs / link-local / CGNAT ที่ daemon edge.
@@ -280,8 +280,8 @@ SaaSCodex (OD) คือทางเลือกโอเพนซอร์ส. 
 
 วิธีที่เร็วที่สุดในการใช้ SaaSCodex. ไม่ต้องมี Node, ไม่ต้องมี pnpm, ไม่ต้อง clone.
 
-- **macOS** (Apple Silicon · Intel x64) → [**open-design.ai**](https://open-design.ai/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**open-design.ai**](https://open-design.ai/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage, optional lane) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 หลังติดตั้ง: แอปจะ auto-detect coding-agent CLI ทุกตัวบน `PATH`, โหลด functional skills 100+ รายการ, rendering-template catalog ที่แยกต่างหาก และ design-system packages 151 ชุด แล้วให้คุณพิมพ์ brief ใน entry view ได้ทันที.
@@ -292,7 +292,7 @@ SaaSCodex (OD) คือทางเลือกโอเพนซอร์ส. 
 
 ```bash
 # One-line install into the agent you're using:
-curl -fsSL https://open-design.ai/install.sh | sh -s <agent>
+curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
 # <agent> = claude | codex | reasonix | raven | cursor | copilot | openclaw | antigravity
 #         | pi | vibe | hermes | cline | kimi | kiro | trae | opencode
 ```
@@ -349,7 +349,7 @@ SaaSCodex ship **stdio MCP server** และ **install scripts** สำหร�
 
 ```bash
 # One-line install (รองรับ 16+ CLIs):
-curl -fsSL https://open-design.ai/install.sh | sh -s <agent>
+curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
 
 # Then the agent can:
 od project list --json
@@ -682,7 +682,7 @@ Contribution flow สำหรับ agent, code style และ PR bar แบ�
 ## Repository activity
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 SVG ด้านบน regenerate ทุกวันโดย [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) ด้วย [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -692,7 +692,7 @@ SVG ด้านบน regenerate ทุกวันโดย [`.github/workflow
 ## Star us
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Star SaaSCodex บน GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex บน GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 ถ้าสิ่งนี้ช่วยคุณประหยัดเวลาได้สามสิบนาที กด ★ ให้เราได้เลย. Stars ไม่ได้จ่ายค่าเช่า — แต่มันบอก designer, agent และ contributor คนถัดไปว่าการทดลองนี้ควรค่าแก่ความสนใจ. คลิกเดียว, สามวินาที, เป็นสัญญาณจริง.

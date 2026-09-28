@@ -19,7 +19,7 @@ import { renderActiveStageBlock, renderActiveStageBlocks } from '@saascodex/cont
 
 const SAMPLE_MANIFEST = (id: string) =>
   JSON.stringify({
-    $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+    $schema: 'https://saascodex.com/schemas/plugin.v1.json',
     name: id,
     title: id,
     version: '0.1.0',

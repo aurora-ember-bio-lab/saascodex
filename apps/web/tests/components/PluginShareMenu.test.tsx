@@ -180,7 +180,7 @@ describe('PluginShareMenu', () => {
     await Promise.resolve();
     expect(writes.some((value) => (
       value.includes('Badge Plugin') &&
-      value.includes('https://open-design.ai/plugins/badge-plugin')
+      value.includes('https://saascodex.com/plugins/badge-plugin')
     ))).toBe(true);
   });
 
@@ -243,7 +243,7 @@ describe('PluginShareMenu', () => {
     expect(labels.some((label) => label.includes('Copy install command'))).toBe(false);
   });
 
-  it('points Open in marketplace at the public open-design.ai page for bundled plugins', () => {
+  it('points Open in marketplace at the public saascodex.com page for bundled plugins', () => {
     renderMenu(make({ id: 'plain' }));
     openPopover();
     const items = Array.from(
@@ -256,19 +256,19 @@ describe('PluginShareMenu', () => {
       container.querySelectorAll<HTMLAnchorElement>('a.plugin-share-item'),
     ).find((link) => link.textContent?.includes('Open in marketplace'));
     // Bundled plugins have a public detail page, so the link is the public
-    // open-design.ai URL — not a local /marketplace path.
+    // saascodex.com URL — not a local /marketplace path.
     expect(marketplaceLink?.getAttribute('href')).toBe(
-      'https://open-design.ai/plugins/plain/',
+      'https://saascodex.com/plugins/plain/',
     );
   });
 
-  it('builds a public open-design.ai share link for bundled plugins', () => {
+  it('builds a public saascodex.com share link for bundled plugins', () => {
     expect(buildPluginShareUrl(make({ id: 'simple-deck' }))).toBe(
-      'https://open-design.ai/plugins/simple-deck/',
+      'https://saascodex.com/plugins/simple-deck/',
     );
   });
 
-  it('builds a public open-design.ai share link for community marketplace plugins', () => {
+  it('builds a public saascodex.com share link for community marketplace plugins', () => {
     // Community manifest names carry a `community-` prefix, but the landing
     // page routes are keyed on the folder name via routeId=`community/<folder>`.
     // buildPluginShareUrl must use sourceMarketplaceEntryName so pluginDetailSlug
@@ -283,7 +283,7 @@ describe('PluginShareMenu', () => {
           marketplaceEntryName: 'community/registry-starter',
         }),
       ),
-    ).toBe('https://open-design.ai/plugins/registry-starter/');
+    ).toBe('https://saascodex.com/plugins/registry-starter/');
   });
 
   it('copies a README badge for community marketplace plugins', async () => {
@@ -304,7 +304,7 @@ describe('PluginShareMenu', () => {
       writes.some(
         (value) =>
           value.includes('Community Registry Starter') &&
-          value.includes('https://open-design.ai/plugins/registry-starter/'),
+          value.includes('https://saascodex.com/plugins/registry-starter/'),
       ),
     ).toBe(true);
   });
@@ -324,7 +324,7 @@ describe('PluginShareMenu', () => {
       container.querySelectorAll<HTMLAnchorElement>('a.plugin-share-item'),
     ).find((link) => link.textContent?.includes('Open in marketplace'));
     expect(marketplaceLink?.getAttribute('href')).toBe(
-      'https://open-design.ai/plugins/registry-starter/',
+      'https://saascodex.com/plugins/registry-starter/',
     );
   });
 

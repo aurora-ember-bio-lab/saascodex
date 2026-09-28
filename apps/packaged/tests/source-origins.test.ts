@@ -28,7 +28,7 @@ const PUBLISHABLE_HOSTS = new Set([
   "127.0.0.1",
   "localhost",
   "github.com",
-  "open-design.ai",
+  "saascodex.com",
   "us.i.posthog.com",
 ]);
 

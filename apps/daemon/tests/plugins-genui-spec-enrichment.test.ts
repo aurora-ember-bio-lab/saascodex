@@ -104,7 +104,7 @@ beforeEach(async () => {
   await writeFile(
     path.join(pluginFolder, 'saascodex.json'),
     JSON.stringify({
-      $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+      $schema: 'https://saascodex.com/schemas/plugin.v1.json',
       name: PLUGIN_ID,
       title: 'Phase 2A.5 fixture',
       version: '1.0.0',

@@ -53,7 +53,7 @@ describe('local MCP Vela login tools', () => {
             profile: 'default',
             user: null,
             configPath: '/local/private/vela.json',
-            activationUrl: 'https://amr-link.open-design.ai/activate',
+            activationUrl: 'https://amr-link.saascodex.com/activate',
             userCode: 'ABCD-EFGH',
           }),
           { status: 200 },
@@ -77,7 +77,7 @@ describe('local MCP Vela login tools', () => {
         loginInFlight: true,
         profile: 'default',
         user: null,
-        activationUrl: 'https://amr-link.open-design.ai/activate',
+        activationUrl: 'https://amr-link.saascodex.com/activate',
         userCode: 'ABCD-EFGH',
       },
     });

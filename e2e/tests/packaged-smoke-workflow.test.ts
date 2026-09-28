@@ -3250,8 +3250,8 @@ process.stdin.on("end", () => {
 
   it("[P2] writes stable release notes from the release public origin variable", async () => {
     for (const [envName, origin] of [
-      ["RELEASE_PUBLIC_ORIGIN", "https://releases.open-design.ai/current/"],
-      ["CLOUDFLARE_R2_RELEASES_PUBLIC_ORIGIN", "https://releases.open-design.ai/legacy/"],
+      ["RELEASE_PUBLIC_ORIGIN", "https://releases.saascodex.com/current/"],
+      ["CLOUDFLARE_R2_RELEASES_PUBLIC_ORIGIN", "https://releases.saascodex.com/legacy/"],
     ] as const) {
       const runnerTemp = await mkdtemp(join(tmpdir(), "od-stable-notes-"));
       const outputPath = join(runnerTemp, "github-output.txt");
@@ -3377,7 +3377,7 @@ process.stdin.on("end", () => {
           {
         artifacts: {
           dmg: {
-            url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.3.unsigned/Open Design Beta.dmg",
+            url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.3.unsigned/Open Design Beta.dmg",
           },
         },
         channel: "beta",
@@ -3420,7 +3420,7 @@ process.stdin.on("end", () => {
             RELEASE_MANIFEST_DIR: platformManifestRoot,
             RELEASE_METADATA_DIR: join(runnerTemp, "release-metadata"),
             RELEASE_OUTPUTS_PATH: join(runnerTemp, "release-metadata", "outputs.json"),
-            RELEASE_PUBLIC_ORIGIN: "https://releases.open-design.ai",
+            RELEASE_PUBLIC_ORIGIN: "https://releases.saascodex.com",
             RELEASE_SIGNED: "false",
             RELEASE_STORAGE_ACCESS_KEY_ID: "test-access-key",
             RELEASE_STORAGE_BUCKET: fixture.bucket,
@@ -3461,7 +3461,7 @@ process.stdin.on("end", () => {
           {
         artifacts: {
           dmg: {
-            url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/Open Design Beta.dmg",
+            url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/Open Design Beta.dmg",
           },
         },
         channel: "beta",
@@ -3504,7 +3504,7 @@ process.stdin.on("end", () => {
             RELEASE_MANIFEST_DIR: platformManifestRoot,
             RELEASE_METADATA_DIR: join(runnerTemp, "release-metadata"),
             RELEASE_OUTPUTS_PATH: join(runnerTemp, "release-metadata", "outputs.json"),
-            RELEASE_PUBLIC_ORIGIN: "https://releases.open-design.ai",
+            RELEASE_PUBLIC_ORIGIN: "https://releases.saascodex.com",
             RELEASE_SIGNED: "false",
             RELEASE_STORAGE_ACCESS_KEY_ID: "test-access-key",
             RELEASE_STORAGE_BUCKET: fixture.bucket,
@@ -3545,7 +3545,7 @@ process.stdin.on("end", () => {
           {
         artifacts: {
           dmg: {
-            url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/Open Design Beta.dmg",
+            url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/Open Design Beta.dmg",
           },
         },
         channel: "beta",
@@ -3585,7 +3585,7 @@ process.stdin.on("end", () => {
           RELEASE_MANIFEST_DIR: platformManifestRoot,
           RELEASE_METADATA_DIR: join(runnerTemp, "release-metadata"),
           RELEASE_OUTPUTS_PATH: join(runnerTemp, "release-metadata", "outputs.json"),
-          RELEASE_PUBLIC_ORIGIN: "https://releases.open-design.ai",
+          RELEASE_PUBLIC_ORIGIN: "https://releases.saascodex.com",
           RELEASE_SIGNED: "false",
           RELEASE_STORAGE_ACCESS_KEY_ID: "test-access-key",
           RELEASE_STORAGE_BUCKET: fixture.bucket,
@@ -3624,7 +3624,7 @@ process.stdin.on("end", () => {
           {
             artifacts: {
               installer: {
-                url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-setup.exe",
+                url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-setup.exe",
               },
             },
             channel: "beta",
@@ -3636,7 +3636,7 @@ process.stdin.on("end", () => {
             legacyPlatformKey: "win",
             feed: {
               name: "latest.yml",
-              url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/latest.yml",
+              url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/latest.yml",
             },
             platform: "win",
             platformKey: "win_x64",
@@ -3670,7 +3670,7 @@ process.stdin.on("end", () => {
           RELEASE_MANIFEST_DIR: platformManifestRoot,
           RELEASE_METADATA_DIR: join(runnerTemp, "release-metadata"),
           RELEASE_OUTPUTS_PATH: join(runnerTemp, "release-metadata", "outputs.json"),
-          RELEASE_PUBLIC_ORIGIN: "https://releases.open-design.ai",
+          RELEASE_PUBLIC_ORIGIN: "https://releases.saascodex.com",
           RELEASE_SIGNED: "false",
           RELEASE_STORAGE_ACCESS_KEY_ID: "test-access-key",
           RELEASE_STORAGE_BUCKET: fixture.bucket,
@@ -3716,11 +3716,11 @@ process.stdin.on("end", () => {
           {
             artifacts: {
               dmg: {
-                url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-mac-arm64.dmg",
+                url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-mac-arm64.dmg",
               },
               payload: {
-                sha256Url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-mac-arm64-payload.zip.sha256",
-                url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-mac-arm64-payload.zip",
+                sha256Url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-mac-arm64-payload.zip.sha256",
+                url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-mac-arm64-payload.zip",
               },
             },
             channel: "beta",
@@ -3750,17 +3750,17 @@ process.stdin.on("end", () => {
           {
             artifacts: {
               installer: {
-                url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-setup.exe",
+                url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-setup.exe",
               },
               payload: {
-                sha256Url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-payload.7z.sha256",
-                url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-payload.7z",
+                sha256Url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-payload.7z.sha256",
+                url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/saascodex-1.2.3-beta.4.unsigned-win-x64-payload.7z",
               },
             },
             channel: "beta",
             feed: {
               name: "latest.yml",
-              url: "https://releases.open-design.ai/betas/versions/1.2.3-beta.4.unsigned/latest.yml",
+              url: "https://releases.saascodex.com/betas/versions/1.2.3-beta.4.unsigned/latest.yml",
             },
             github: {
               commit: "current-sha",
@@ -3800,7 +3800,7 @@ process.stdin.on("end", () => {
           RELEASE_MANIFEST_DIR: platformManifestRoot,
           RELEASE_METADATA_DIR: join(runnerTemp, "release-metadata"),
           RELEASE_OUTPUTS_PATH: join(runnerTemp, "release-metadata", "outputs.json"),
-          RELEASE_PUBLIC_ORIGIN: "https://releases.open-design.ai",
+          RELEASE_PUBLIC_ORIGIN: "https://releases.saascodex.com",
           RELEASE_SIGNED: "false",
           RELEASE_STORAGE_ACCESS_KEY_ID: "test-access-key",
           RELEASE_STORAGE_BUCKET: fixture.bucket,

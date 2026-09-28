@@ -79,7 +79,7 @@
 排查过程中证伪的三条假设留档,免得下次再追:①目录 **96 张**预览图逐个探过,非 200 的 **0** 张;②真实客户端 `new Image()` 拉那个域秒回 1600×1200,不是 CSP;③CSS 画的降级骨架也都在。
 **方法教训**:我一度在陈列页量到「52 张图全 pending、一张不 error」差点当成 bug —— 真因是**那个标签页在后台**,Chrome 会推迟 `loading="lazy"`。量 lazy 图必须让标签页在前台。
 ①**不是资源缺失** —— 目录里全部 **96 张**预览图逐个探过,**非 200 的 0 张**(deck 25 / prototype 26 / document 11 / image 22 / video 12);
-②**不是 CSP / 网络** —— 在真实客户端页面里 `new Image()` 拉 `repo-assets.open-design.ai` 的图,秒回 1600×1200;
+②**不是 CSP / 网络** —— 在真实客户端页面里 `new Image()` 拉 `repo-assets.saascodex.com` 的图,秒回 1600×1200;
 ③**不是降级样式丢了** —— `.qf-visual-preview-prototype` / `.qf-preview-app` 那套 CSS 画的骨架都在。
 顺带记一条**方法教训**:我一度在陈列页量到「52 张图全 pending、一张不 error」,差点当成 bug ——
 真因是**那个标签页在后台**,Chrome 会推迟 `loading="lazy"` 的图;切到前台立刻开始加载。
@@ -247,7 +247,7 @@
 - **真功能是活的**:内置目录挂在 discovery 简报的 `tone` 那道题上,宿主认到
   `q.id === 'tone'` 就把模型给的纯文字选项换成目录卡。共 **96 张**预览图(deck 25 /
   prototype 26 / document 11 / image 22 / video 12),住在 R2
-  `repo-assets.open-design.ai/style-catalog/v1/` —— 逐张探过,**非 200 的 0 张**。
+  `repo-assets.saascodex.com/style-catalog/v1/` —— 逐张探过,**非 200 的 0 张**。
 - **用户截到的「四张纯色卡」不是这条路**:那是模型**自己现开**的 `direction-cards`
   (提示词允许它在「用户明确要看视觉方向」时发)。模型现开的卡**没有素材**,
   预览面只能画占位块。

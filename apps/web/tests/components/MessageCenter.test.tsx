@@ -8,7 +8,7 @@ import { I18nProvider, useI18n } from '../../src/i18n';
 import type { MessageCenterMessage } from '../../src/message-center-client';
 
 const defaultMessages: MessageCenterMessage[] = [
-  { id: 'release', audienceType: 'global', typeName: 'Product update', title: 'SaaSCodex 0.14 is available', body: 'The new release is ready.', ctaLabel: 'View update', ctaUrl: 'https://open-design.ai/update', publishedAt: '2026-07-16T12:00:00.000Z', readAt: null },
+  { id: 'release', audienceType: 'global', typeName: 'Product update', title: 'SaaSCodex 0.14 is available', body: 'The new release is ready.', ctaLabel: 'View update', ctaUrl: 'https://saascodex.com/update', publishedAt: '2026-07-16T12:00:00.000Z', readAt: null },
   { id: 'benefit', audienceType: 'targeted', typeName: 'Benefit', title: 'Credits added', body: 'Your credits are ready.', ctaLabel: null, ctaUrl: null, publishedAt: '2026-07-15T12:00:00.000Z', readAt: '2026-07-16T01:00:00.000Z' },
 ];
 
@@ -214,7 +214,7 @@ describe('MessageCenter', () => {
   });
 
   it('reveals the media on expand with type and date below it', async () => {
-    const imageUrl = 'https://open-design.ai/update-card.png';
+    const imageUrl = 'https://saascodex.com/update-card.png';
     mockFetch({
       messages: [{ ...defaultMessages[0]!, imageUrl }],
     });
@@ -262,7 +262,7 @@ describe('MessageCenter', () => {
     expect(row.closest('article')?.className).toContain('itemExpanded');
     expect(screen.getByText('The new release is ready.')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'View update' }));
-    expect(open).toHaveBeenCalledWith('https://open-design.ai/update', '_blank', 'noopener,noreferrer');
+    expect(open).toHaveBeenCalledWith('https://saascodex.com/update', '_blank', 'noopener,noreferrer');
   });
 
   it('keeps both anonymous reads when two expands resolve out of order', async () => {

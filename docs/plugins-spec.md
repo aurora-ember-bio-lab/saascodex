@@ -221,7 +221,7 @@ Rules of authorship:
 
 ```json
 {
-  "$schema": "https://open-design.ai/schemas/plugin.v1.json",
+  "$schema": "https://saascodex.com/schemas/plugin.v1.json",
   "specVersion": "1.0.0",
   "name": "make-a-deck",
   "title": "Make a deck",
@@ -232,7 +232,7 @@ Rules of authorship:
     "en": "Generate a 12-slide investor deck from a one-line brief.",
     "zh-CN": "根据一句 brief 生成 12 页投资人 deck。"
   },
-  "author":   { "name": "SaaSCodex", "url": "https://open-design.ai" },
+  "author":   { "name": "SaaSCodex", "url": "https://saascodex.com" },
   "license":  "MIT",
   "homepage": "https://github.com/saascodex/plugins/make-a-deck",
   "icon":     "./icon.svg",
@@ -433,11 +433,11 @@ Mirrors [`anthropics/skills/.claude-plugin/marketplace.json`](https://raw.github
 
 ```json
 {
-  "$schema": "https://open-design.ai/schemas/marketplace.v1.json",
+  "$schema": "https://saascodex.com/schemas/marketplace.v1.json",
   "specVersion": "1.0.0",
   "name": "saascodex-official",
   "version": "1.0.0",
-  "owner":    { "name": "SaaSCodex", "url": "https://open-design.ai" },
+  "owner":    { "name": "SaaSCodex", "url": "https://saascodex.com" },
   "metadata": { "description": "First-party plugins", "version": "1.0.0" },
   "plugins": [
     { "name": "make-a-deck", "version": "1.0.0", "source": "github:saascodex/plugins/make-a-deck", "tags": ["deck"] },
@@ -1495,13 +1495,13 @@ Every group above is additive to [`apps/daemon/src/cli.ts`](../apps/daemon/src/c
 
 > **Implementation rule:** if a code agent can do something through the desktop UI, it MUST be doable through `od …` with the same arguments and equivalent output. No silent UI-only capabilities.
 
-## 13. Public web surface (open-design.ai/marketplace)
+## 13. Public web surface (saascodex.com/marketplace)
 
-The product site already lives at [open-design.ai](https://open-design.ai). The public marketplace ships as a path on that same site — `open-design.ai/marketplace` (canonical) with `open-design.ai/plugins` as an alias — not as a separate domain. It is a static-rendered catalog rendered from the official `saascodex-marketplace.json` index, with plugin detail pages backed by the same `saascodex.json` files inside each listed repo. Visually it mirrors what [`skills.sh`](https://skills.sh/) does for skills, but its detail pages render OD-specific previews (the `od.preview.entry` HTML, sample outputs, the use-case query, the chip preview).
+The product site already lives at [saascodex.com](https://saascodex.com). The public marketplace ships as a path on that same site — `saascodex.com/marketplace` (canonical) with `saascodex.com/plugins` as an alias — not as a separate domain. It is a static-rendered catalog rendered from the official `saascodex-marketplace.json` index, with plugin detail pages backed by the same `saascodex.json` files inside each listed repo. Visually it mirrors what [`skills.sh`](https://skills.sh/) does for skills, but its detail pages render OD-specific previews (the `od.preview.entry` HTML, sample outputs, the use-case query, the chip preview).
 
 The site shares one source of truth with the in-app marketplace:
 
-- Same JSON Schemas (`https://open-design.ai/schemas/plugin.v1.json`, `https://open-design.ai/schemas/marketplace.v1.json`).
+- Same JSON Schemas (`https://saascodex.com/schemas/plugin.v1.json`, `https://saascodex.com/schemas/marketplace.v1.json`).
 - Same federated listing format (`saascodex-marketplace.json`).
 - Same plugin manifests (`saascodex.json` inside each repo).
 
@@ -1510,7 +1510,7 @@ Two consumption surfaces, one substrate:
 | Surface                                                | Audience                       | Primary CTA                                                                                                       |
 | ------------------------------------------------------ | ------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
 | In-app marketplace (`/marketplace`, §11.6)             | Logged-in OD users             | "Use this plugin" → applies in place                                                                              |
-| Public marketplace (`open-design.ai/marketplace`)      | Anonymous visitors, SEO, share | Deep-link `od://plugins/<id>?apply=1` (auto-installs and applies in the desktop app), plus "Copy install command" |
+| Public marketplace (`saascodex.com/marketplace`)      | Anonymous visitors, SEO, share | Deep-link `od://plugins/<id>?apply=1` (auto-installs and applies in the desktop app), plus "Copy install command" |
 
 Deep-link contract (Phase 4 deliverable, scoped here so the schema supports it):
 
@@ -1518,7 +1518,7 @@ Deep-link contract (Phase 4 deliverable, scoped here so the schema supports it):
 - `od://plugins/<id>?apply=1[&input.k=v...]` — install if missing, then apply with the supplied inputs.
 - `od://marketplace/add?url=<urlencoded>` — register a new federated catalog.
 
-The desktop app registers the `od://` URL scheme; clicking a button on `open-design.ai/marketplace` either launches the desktop or, if it is not installed, falls back to a "How to install SaaSCodex" flow.
+The desktop app registers the `od://` URL scheme; clicking a button on `saascodex.com/marketplace` either launches the desktop or, if it is not installed, falls back to a "How to install SaaSCodex" flow.
 
 **Status: out of scope for the v1 implementation,** but the JSON shapes and the URL scheme are locked here so the in-app marketplace and the public site can be developed independently without divergence.
 

@@ -10,7 +10,7 @@ Open Design 0.22.1 builds on 0.22.0 with a simpler start for supported design ta
 - 🧭 **Start supported design tasks with OD Next.** Prototypes, slide decks, marketing designs, and Hyperframes videos use OD Next by default on supported agents. Settings → Labs → Design Harness still lets you turn it off, and an existing choice to disable it stays respected. (#7876)
 - 🧰 **Keep design work focused.** OD Next uses more concise tool guidance, clearer completion instructions, and the active run's workspace when loading media skills. (#7804)
 
-> 📥 **Download:** [Open Design downloads](https://open-design.ai/download/).
+> 📥 **Download:** [Open Design downloads](https://saascodex.com/download/).
 
 ## 🐛 Fixed
 

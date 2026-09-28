@@ -185,11 +185,11 @@ realMacLaunchServicesTest(
 );
 
 describe("openFirstPartyMailto", () => {
-  const MAILTO = "mailto:support@open-design.ai";
+  const MAILTO = "mailto:support@saascodex.com";
 
   test("refuses anything that is not a mailto", async () => {
     const calls: string[] = [];
-    const opened = await openFirstPartyMailto("https://open-design.ai", {
+    const opened = await openFirstPartyMailto("https://saascodex.com", {
       platform: "darwin",
       readHandlerBundleId: async () => null,
       openWithAppleMail: async (url) => void calls.push(`mail:${url}`),
@@ -272,7 +272,7 @@ describe("openFirstPartyMailto", () => {
     });
     expect(opened).toBe(false);
     expect(calls).toEqual([]);
-    expect(notified).toEqual(["support@open-design.ai"]);
+    expect(notified).toEqual(["support@saascodex.com"]);
   });
 
   test("win32: copies the address and notifies when the registered handler refuses the launch", async () => {
@@ -288,7 +288,7 @@ describe("openFirstPartyMailto", () => {
       notifyNoMailClient: async (address) => void notified.push(address),
     });
     expect(opened).toBe(false);
-    expect(notified).toEqual(["support@open-design.ai"]);
+    expect(notified).toEqual(["support@saascodex.com"]);
   });
 
   test("win32: a registered handler that accepts the launch shows no notice", async () => {
@@ -341,7 +341,7 @@ describe("openFirstPartyMailto", () => {
       notifyNoMailClient: async (address) => void notified.push(address),
     });
     expect(opened).toBe(false);
-    expect(notified).toEqual(["support@open-design.ai"]);
+    expect(notified).toEqual(["support@saascodex.com"]);
   });
 
   test("a failing notice never escapes to the caller", async () => {
@@ -361,11 +361,11 @@ describe("openFirstPartyMailto", () => {
 
 describe("mailto fallback helpers (OPEND-2799)", () => {
   test("mailtoAddress reads the recipient and ignores query parameters", () => {
-    expect(mailtoAddress("mailto:support@open-design.ai")).toBe("support@open-design.ai");
-    expect(mailtoAddress("mailto:support@open-design.ai?subject=%E5%8F%8D%E9%A6%88")).toBe(
-      "support@open-design.ai",
+    expect(mailtoAddress("mailto:support@saascodex.com")).toBe("support@saascodex.com");
+    expect(mailtoAddress("mailto:support@saascodex.com?subject=%E5%8F%8D%E9%A6%88")).toBe(
+      "support@saascodex.com",
     );
-    expect(mailtoAddress("https://open-design.ai")).toBeNull();
+    expect(mailtoAddress("https://saascodex.com")).toBeNull();
     expect(mailtoAddress("mailto:")).toBeNull();
     expect(mailtoAddress("not a url")).toBeNull();
   });
@@ -382,11 +382,11 @@ describe("mailto fallback helpers (OPEND-2799)", () => {
   });
 
   test("noMailClientNotice names the copied address in the OS language", () => {
-    const zh = noMailClientNotice("support@open-design.ai", "zh-CN");
-    expect(zh.detail).toContain("已复制 support@open-design.ai 到剪贴板");
+    const zh = noMailClientNotice("support@saascodex.com", "zh-CN");
+    expect(zh.detail).toContain("已复制 support@saascodex.com 到剪贴板");
     expect(zh.button).toBe("好");
-    const en = noMailClientNotice("support@open-design.ai", "en-US");
-    expect(en.detail).toContain("support@open-design.ai has been copied to your clipboard");
+    const en = noMailClientNotice("support@saascodex.com", "en-US");
+    expect(en.detail).toContain("support@saascodex.com has been copied to your clipboard");
     expect(en.button).toBe("OK");
     expect(noMailClientNotice("a@b.c", "fr-FR").button).toBe("OK");
   });

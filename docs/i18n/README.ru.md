@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex: открытая альтернатива Claude Design</h1>
 
-> ⚡ **[SaaSCodex Cloud — официальный сервис моделей.](https://open-design.ai/zh/pricing/)** Одно пополнение открывает доступ к агентным и графическим моделям в SaaSCodex: GPT, Claude и DeepSeek для агентов; GPT Image 2.0, Seedream 5.0 Pro и Nano Banana 2.0 для изображений.
+> ⚡ **[SaaSCodex Cloud — официальный сервис моделей.](https://saascodex.com/zh/pricing/)** Одно пополнение открывает доступ к агентным и графическим моделям в SaaSCodex: GPT, Claude и DeepSeek для агентов; GPT Image 2.0, Seedream 5.0 Pro и Nano Banana 2.0 для изображений.
 >
-> 🚀 **[DeepSeek V4 Flash и V4 Pro уже доступны.](https://open-design.ai/zh/pricing/)** Используйте передовой интеллект для прототипов, презентаций, дизайн-систем и повседневных агентных задач. Участники SaaSCodex могут пользоваться обеими моделями без ограничений две недели прямо в приложении.
+> 🚀 **[DeepSeek V4 Flash и V4 Pro уже доступны.](https://saascodex.com/zh/pricing/)** Используйте передовой интеллект для прототипов, презентаций, дизайн-систем и повседневных агентных задач. Участники SaaSCodex могут пользоваться обеими моделями без ограничений две недели прямо в приложении.
 >
-> 🧩 **[DeepSeek Harness теперь поддерживается.](https://open-design.ai/zh/agents/deepseek-harness-design/)** Подключите официальный Agent Harness `dsh` от DeepSeek к SaaSCodex как нативную среду выполнения со структурированным мышлением, вызовами инструментов, поиском моделей, отменой и возобновлением сессии. Созданные файлы остаются в рабочем процессе SaaSCodex для живого предпросмотра и передачи результата.
+> 🧩 **[DeepSeek Harness теперь поддерживается.](https://saascodex.com/zh/agents/deepseek-harness-design/)** Подключите официальный Agent Harness `dsh` от DeepSeek к SaaSCodex как нативную среду выполнения со структурированным мышлением, вызовами инструментов, поиском моделей, отменой и возобновлением сессии. Созданные файлы остаются в рабочем процессе SaaSCodex для живого предпросмотра и передачи результата.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="Баннер SaaSCodex: заголовок &quot;Открытая альтернатива Claude Design&quot; на фоне классической сцены с колоннами, фигурами в тогах и цифровым кодом, а также карточками статистики по дизайн-системам, плагинам, кодинг-агентам и медиапровайдерам" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="Баннер SaaSCodex: заголовок &quot;Открытая альтернатива Claude Design&quot; на фоне классической сцены с колоннами, фигурами в тогах и цифровым кодом, а также карточками статистики по дизайн-системам, плагинам, кодинг-агентам и медиапровайдерам" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_website">Сайт</a> ·
-  <a href="https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download">Скачать</a> ·
-  <a href="https://open-design.ai/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_website">Сайт</a> ·
+  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download">Скачать</a> ·
+  <a href="https://saascodex.com/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">Подписаться @SaaSCodexHQ</a>
 </p>
@@ -133,7 +133,7 @@ SaaSCodex превращает этот цикл в **файловую сист�
 `od mcp install <agent> --print` для предпросмотра без изменений · `--uninstall` для удаления · полный список через `od mcp install --help`.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="25 CLI кодинг-агента, которые поддерживает SaaSCodex — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="25 CLI кодинг-агента, которые поддерживает SaaSCodex — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **Нет установленного CLI?** BYOK-прокси по адресу `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` даёт вам тот же цикл (без запуска процессов) — вставьте `baseUrl` + `apiKey` + `model`, с поддержкой OpenAI, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM или любого OpenAI-совместимого эндпоинта. Защита от SSRF для каждой цели блокирует внутренние IP / link-local / CGNAT на границе демона.
@@ -280,8 +280,8 @@ SaaSCodex (OD) — это открытая альтернатива. Тот же
 
 Самый быстрый способ использовать SaaSCodex. Никакого Node, никакого pnpm, никакого клонирования.
 
-- **macOS** (Apple Silicon · Intel x64) → [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) или [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**open-design.ai**](https://open-design.ai/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) или [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) или [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) или [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage, опциональная линия) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 После установки: приложение автоматически обнаруживает каждый CLI кодинг-агента в вашем `PATH`, загружает 100+ функциональных навыков, отдельный каталог шаблонов рендеринга и 151 пакет дизайн-систем и позволяет вам ввести бриф на экране входа.
@@ -297,7 +297,7 @@ od mcp install <agent>
 #         | pi | vibe | hermes | cline | kimi | kiro | trae | opencode
 
 # Аналогичная установка через hosted shell-скрипт:
-curl -fsSL https://open-design.ai/install.sh | sh -s <agent>
+curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
 ```
 
 `install.sh` — тонкая shell-обертка вокруг `od mcp install`. Она нужна, чтобы hosted URL возвращал shell-скрипт вместо HTML-fallback лендинга и быстро падал, если ваша оболочка находит не SaaSCodex, а другой бинарник `od`.
@@ -700,7 +700,7 @@ gh pr create --fill
 ## Активность репозитория
 
 <picture>
-  <img alt="SaaSCodex — метрики репозитория" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — метрики репозитория" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 SVG выше регенерируется ежедневно через [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) с помощью [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -710,7 +710,7 @@ SVG выше регенерируется ежедневно через [`.githu
 ## Поставьте нам звезду
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Поставьте звезду SaaSCodex на GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Поставьте звезду SaaSCodex на GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 Если это сэкономило вам тридцать минут, поставьте ★. Звёзды не платят за аренду — но они говорят следующему дизайнеру, агенту и контрибьютору, что этот эксперимент достоин их внимания. Один клик, три секунды, настоящий сигнал.

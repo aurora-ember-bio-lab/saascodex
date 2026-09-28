@@ -86,7 +86,7 @@
 | 可续跑 | `ChatPane.tsx:1480–1483 canResumeFailedRun`;契约字段 `ChatSseEndPayload.resumable`(`packages/contracts/src/sse/chat.ts:95`) |
 | 失败分类(daemon 侧) | `apps/daemon/src/run-failure-classification.ts`(`classifyRunFailure:1038`、`isResumableFailure:610`);写到终帧 `apps/daemon/src/runtimes/runs.ts:524/1135/1214` |
 | 样式 | 全局:`apps/web/src/styles/chat.css` — `.run-error__details:965`、`.run-error__diagnostic:987`、`.chat-error-action:1098`、`.chat-error-retry:1114`、`.amr-card__*:1179–1210`;卡壳是 CSS Module `UserActionCard.module.css` |
-| **联系支持** | **没有任何实现**。全仓仅有 `EntryNavRail.tsx:101` 的 `mailto:support@open-design.ai`(账号菜单里一枚小图标)与 `EntryHelpMenu.tsx:31` 的 `DISCORD_URL`。`apps/web/src` 里**搜不到飞书 / feishu / lark** |
+| **联系支持** | **没有任何实现**。全仓仅有 `EntryNavRail.tsx:101` 的 `mailto:support@saascodex.com`(账号菜单里一枚小图标)与 `EntryHelpMenu.tsx:31` 的 `DISCORD_URL`。`apps/web/src` 里**搜不到飞书 / feishu / lark** |
 | **导出日志** | chat 里**没有**。只有剪贴板复制诊断串;真正的导出是 `ExportDiagnosticsButton.tsx`,只挂在 `SettingsDialog.tsx:64` |
 | 能否单挂做对照 | **不能整块单挂**。它绑死在 5123 行的 `ChatPane` 上(`onRetry` / `onResumeRun` / `onSwitchToAmrAndRetry` / `onLaunchAntigravityOauth` / AMR 登录 pill 的真实轮询)。陈列页只能用 `UserActionCard` + 纯函数 `resolveRunFailureUi` 重搭 |
 
@@ -345,7 +345,7 @@ cmp-ops 把设计意图写死了:「开一个【全局弹窗】,不是在报错�
 **现在**
 **没有任何实现。**
 - 无支持弹窗 / 对话框 / 卡内链接;`contactSupport` / `supportUrl` 在 `apps/web/src/components` 零命中。
-- 只有 `EntryNavRail.tsx:101` `mailto:support@open-design.ai`(账号菜单社交行里一枚图标,:1051–1061)与 `EntryHelpMenu.tsx:31` `DISCORD_URL = 'https://discord.gg/mHAjSMV6gz'`。
+- 只有 `EntryNavRail.tsx:101` `mailto:support@saascodex.com`(账号菜单社交行里一枚图标,:1051–1061)与 `EntryHelpMenu.tsx:31` `DISCORD_URL = 'https://discord.gg/mHAjSMV6gz'`。
 - **飞书 / feishu / lark 在 `apps/web/src` 里一个字都没有。**
 
 **差在哪**

@@ -59,7 +59,7 @@ jobs:
         run: |
           AUTHOR="$(git log -1 --format='%ae')"
           echo "head commit author: $AUTHOR"
-          if [ "$AUTHOR" = "bot@open-design.ai" ]; then
+          if [ "$AUTHOR" = "bot@saascodex.com" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             echo "head commit is the bake bot's manifest commit — skipping to break the loop"
           else
@@ -113,7 +113,7 @@ jobs:
           esac
           cp "$NEW" "$OLD"
           git config user.name "open-design-bot"
-          git config user.email "bot@open-design.ai"
+          git config user.email "bot@saascodex.com"
           git add "$OLD"
           git commit -m "chore(plugin-previews): refresh baked preview manifest (release cut)"
           # Push as open-design-bot (a ruleset bypass actor) via an explicit token

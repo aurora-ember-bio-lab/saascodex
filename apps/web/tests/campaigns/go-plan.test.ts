@@ -23,24 +23,24 @@ describe('Go plan touchpoints', () => {
     expect(goPlanCampaignNextBoundary(start - 1)).toBe(start);
     expect(goPlanCampaignNextBoundary(start)).toBe(end);
     expect(goPlanCampaignNextBoundary(end)).toBeNull();
-    expect(GO_PLAN_PRICING_URL).toBe('https://open-design.ai/pricing/');
+    expect(GO_PLAN_PRICING_URL).toBe('https://saascodex.com/pricing/');
   });
 
   it('hands Pricing the source locale without targeting retired Landing routes', () => {
     expect(goPlanPricingUrl('en')).toBe(
-      'https://open-design.ai/pricing/?od_locale=en',
+      'https://saascodex.com/pricing/?od_locale=en',
     );
     expect(goPlanPricingUrl('zh-CN')).toBe(
-      'https://open-design.ai/zh/pricing/?od_locale=zh',
+      'https://saascodex.com/zh/pricing/?od_locale=zh',
     );
     expect(goPlanPricingUrl('pt-BR')).toBe(
-      'https://open-design.ai/pt-br/pricing/?od_locale=pt-br',
+      'https://saascodex.com/pt-br/pricing/?od_locale=pt-br',
     );
     expect(goPlanPricingUrl('es-ES')).toBe(
-      'https://open-design.ai/es/pricing/?od_locale=es',
+      'https://saascodex.com/es/pricing/?od_locale=es',
     );
     expect(goPlanPricingUrl('no')).toBe(
-      'https://open-design.ai/pricing/?od_locale=en',
+      'https://saascodex.com/pricing/?od_locale=en',
     );
   });
 

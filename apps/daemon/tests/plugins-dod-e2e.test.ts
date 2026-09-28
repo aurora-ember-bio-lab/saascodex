@@ -47,7 +47,7 @@ let projectCwd: string;
 async function freshFixture(targetPath: string, version = '1.0.0') {
   await mkdir(targetPath, { recursive: true });
   const manifest = {
-    $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+    $schema: 'https://saascodex.com/schemas/plugin.v1.json',
     name: 'sample-plugin',
     title: 'Sample Plugin',
     version,
@@ -203,7 +203,7 @@ describe('Plan §8 e2e — daemon-side anchors', () => {
     const folder = path.join(tmpRoot, 'connector-plugin');
     await mkdir(folder, { recursive: true });
     const manifest = {
-      $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+      $schema: 'https://saascodex.com/schemas/plugin.v1.json',
       name: 'connector-plugin',
       title: 'Connector Plugin',
       version: '1.0.0',

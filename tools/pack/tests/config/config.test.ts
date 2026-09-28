@@ -135,9 +135,9 @@ describe("resolveToolPackConfig namespace defaults", () => {
 
 describe("resolveToolPackConfig telemetry relay", () => {
   it("reads and normalizes SAASCODEX_TELEMETRY_RELAY_URL for packaged config", () => {
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = "https://telemetry.open-design.ai/api/langfuse//";
+    process.env.SAASCODEX_TELEMETRY_RELAY_URL = "https://telemetry.saascodex.com/api/langfuse//";
     const config = resolveToolPackConfig("mac", { namespace: "telemetry-test" });
-    expect(config.telemetryRelayUrl).toBe("https://telemetry.open-design.ai/api/langfuse");
+    expect(config.telemetryRelayUrl).toBe("https://telemetry.saascodex.com/api/langfuse");
   });
 
   it("rejects invalid telemetry relay URLs", () => {
@@ -148,7 +148,7 @@ describe("resolveToolPackConfig telemetry relay", () => {
   });
 
   it("rejects plaintext telemetry relay URLs for packaged config", () => {
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = "http://telemetry.open-design.ai/api/langfuse";
+    process.env.SAASCODEX_TELEMETRY_RELAY_URL = "http://telemetry.saascodex.com/api/langfuse";
     expect(() => resolveToolPackConfig("mac")).toThrow(
       /SAASCODEX_TELEMETRY_RELAY_URL must use https/,
     );

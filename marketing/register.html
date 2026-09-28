@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create your account - SaaSCodex</title>
+  <meta name="description" content="Create a SaaSCodex account to start your free trial." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="nav">
+      <a class="brand" href="/"><img src="favicon.svg" alt="" /> SaaSCodex</a>
+      <nav><a href="/pricing.html">Pricing</a></nav>
+      <a class="btn btn-line cta" style="width:auto;padding:0 16px;margin-top:0" href="https://app.saascodex.com">Sign in</a>
+    </header>
+
+    <section class="hero" style="padding-bottom:0">
+      <p class="eyebrow">Registration</p>
+      <h1>Create your account</h1>
+      <p class="lead">Start your 7-day Pro trial. No credit card required.</p>
+    </section>
+
+    <div class="form-wrap">
+      <form class="card" id="register-form" novalidate>
+        <label for="name">Name</label>
+        <input id="name" name="name" autocomplete="name" placeholder="Your name" />
+
+        <label for="email">Work email</label>
+        <input id="email" name="email" type="email" autocomplete="username" placeholder="you@company.com" required />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" required />
+
+        <label for="plan">Plan</label>
+        <select id="plan" name="plan">
+          <option value="free">Free — €0</option>
+          <option value="pro">Pro — €28 / month</option>
+          <option value="studios">Studios — €48 / month</option>
+        </select>
+
+        <button class="btn btn-primary" type="submit" id="submit">Create account</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+        <p class="alt">Already have an account? <a href="https://app.saascodex.com">Sign in</a></p>
+      </form>
+    </div>
+
+    <footer>
+      <p>© <span id="year"></span> SaaSCodex · Aurora Ember Cyber Bio Lab</p>
+    </footer>
+  </div>
+
+  <script>
+    // The control-plane API. Point this at the deployed daemon when the
+    // marketing site and API are on different origins.
+    var API_BASE = 'https://app.saascodex.com';
+    var APP_URL = 'https://app.saascodex.com';
+
+    (function () {
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+
+      var params = new URLSearchParams(location.search);
+      var plan = params.get('plan');
+      if (plan) {
+        var select = document.getElementById('plan');
+        if ([].some.call(select.options, function (o) { return o.value === plan; })) select.value = plan;
+      }
+
+      var form = document.getElementById('register-form');
+      var status = document.getElementById('status');
+      var submit = document.getElementById('submit');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var email = form.email.value.trim();
+        var password = form.password.value;
+        if (!email || password.length < 8) {
+          status.className = 'status error';
+          status.textContent = 'Enter an email and a password of at least 8 characters.';
+          return;
+        }
+        submit.disabled = true;
+        status.className = 'status';
+        status.textContent = 'Creating your account…';
+
+        fetch(API_BASE + '/api/auth/register', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ email: email, password: password, name: form.name.value.trim(), plan: form.plan.value }),
+        })
+          .then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (body) {
+              return { ok: res.ok, status: res.status, body: body };
+            });
+          })
+          .then(function (result) {
+            if (result.ok) {
+              status.className = 'status ok';
+              status.textContent = 'Account created. Opening the app…';
+              var plan = form.plan.value;
+              var target = plan === 'free' ? APP_URL : APP_URL + '/billing?plan=' + encodeURIComponent(plan);
+              location.assign(target);
+              return;
+            }
+            if (result.status === 501 || result.status === 404) {
+              status.className = 'status error';
+              status.textContent = 'Registration is not enabled on this deployment yet.';
+              return;
+            }
+            status.className = 'status error';
+            status.textContent = (result.body && result.body.error && result.body.error.message) || 'Could not create the account. Try again.';
+          })
+          .catch(function () {
+            status.className = 'status error';
+            status.textContent = 'Could not reach the server. Check your connection and try again.';
+          })
+          .then(function () { submit.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

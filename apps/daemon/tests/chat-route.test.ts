@@ -160,7 +160,7 @@ describe('/api/chat', () => {
     const invocationLog = join(tmpdir(), `od-amr-model-request-${randomUUID()}.jsonl`);
     try {
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
       process.env.FAKE_VELA_INVOCATION_LOG = invocationLog;
       process.env.FAKE_VELA_LOG_SET_MODEL = '1';
       process.env.FAKE_VELA_LOG_PROMPT = '1';
@@ -1167,7 +1167,7 @@ process.exit(1);
     try {
       // Unique key so the shared model cache key is unique per test run.
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
       const workspaceFixture =
         await createPersonalWorkspaceBoundProjectFixture('Transient AMR catalog fixture');
 
@@ -1186,7 +1186,7 @@ if (args[0] === 'model' && args[1] === 'list') {
   state.attempts += 1;
   writeFileSync(stateFile, JSON.stringify(state), 'utf8');
   if (state.attempts < 3) {
-    process.stderr.write('Get "https://amr-link.open-design.ai/v1/models": context deadline exceeded\\n');
+    process.stderr.write('Get "https://amr-link.saascodex.com/v1/models": context deadline exceeded\\n');
     process.exit(1);
   }
 }
@@ -1257,7 +1257,7 @@ child.on('exit', (code, signal) => {
       // shared model cache key unique so this case never reuses another test's
       // cached remote catalog.
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
       const workspaceFixture =
         await createPersonalWorkspaceBoundProjectFixture('Cached AMR catalog fixture');
 
@@ -1272,7 +1272,7 @@ const args = process.argv.slice(2);
 // \`login\`, and \`agent run\` still delegate to the fixture, mirroring the real
 // CLI where the offline preset and the ACP run do not need the gateway.
 if (args[0] === 'model' && args[1] === 'list') {
-  process.stderr.write('Get "https://amr-link.open-design.ai/v1/models": context deadline exceeded\\n');
+  process.stderr.write('Get "https://amr-link.saascodex.com/v1/models": context deadline exceeded\\n');
   process.exit(1);
 }
 const child = spawn(process.execPath, [fixture, ...args], {
@@ -1330,7 +1330,7 @@ child.on('exit', (code, signal) => {
     const model = 'claude-observability-5';
     try {
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
       process.env.FAKE_VELA_MODEL_PRESET_JSON = JSON.stringify({
         source: 'preset',
         data: [{

@@ -141,7 +141,7 @@ describe('marketplaces', () => {
   it('normalizes public marketplace urls to the canonical raw registry', async () => {
     const seenUrls: string[] = [];
     const result = await addMarketplace(db, {
-      url: 'https://open-design.ai/marketplace/community/saascodex-marketplace.json',
+      url: 'https://saascodex.com/marketplace/community/saascodex-marketplace.json',
       fetcher: async (url) => {
         seenUrls.push(url);
         return {
@@ -204,7 +204,7 @@ describe('marketplaces', () => {
   it('refresh normalizes legacy public urls before fetching', async () => {
     const seeded = ensureMarketplaceManifest(db, {
       id: 'community',
-      url: 'https://open-design.ai/marketplace/community/saascodex-marketplace.json',
+      url: 'https://saascodex.com/marketplace/community/saascodex-marketplace.json',
       trust: 'restricted',
       manifestText: VALID_MANIFEST,
     });
@@ -248,7 +248,7 @@ describe('marketplaces', () => {
   it('upserts a fixed built-in marketplace manifest', () => {
     const result = ensureMarketplaceManifest(db, {
       id: 'official',
-      url: 'https://open-design.ai/marketplace/saascodex-marketplace.json',
+      url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
       trust: 'official',
       manifestText: VALID_MANIFEST,
       now: 123,
@@ -265,7 +265,7 @@ describe('marketplaces', () => {
     });
     const updated = ensureMarketplaceManifest(db, {
       id: 'official',
-      url: 'https://open-design.ai/marketplace/saascodex-marketplace.json',
+      url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
       trust: 'official',
       manifestText: updatedManifest,
       now: 456,
@@ -285,7 +285,7 @@ describe('marketplaces', () => {
 
     const seeded = ensureMarketplaceManifest(db, {
       id: 'community',
-      url: 'https://open-design.ai/marketplace/community/saascodex-marketplace.json',
+      url: 'https://saascodex.com/marketplace/community/saascodex-marketplace.json',
       trust: 'restricted',
       manifestText: communityManifest,
       now: 123,
@@ -324,7 +324,7 @@ describe('marketplaces', () => {
 
     const seeded = ensureMarketplaceManifest(db, {
       id: 'official',
-      url: 'https://open-design.ai/marketplace/saascodex-marketplace.json',
+      url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
       trust: 'official',
       manifestText: officialManifestText,
       now: 123,

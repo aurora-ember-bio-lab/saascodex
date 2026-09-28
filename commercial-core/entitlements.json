@@ -1,0 +1,30 @@
+{
+  "$schema": "./entitlements.schema.json",
+  "version": "1.0.0",
+  "updatedAt": "2026-09-28",
+  "plans": {
+    "free": {
+      "premiumPlugins": false,
+      "seats": 1,
+      "trialDays": 7,
+      "priceMonthlyEur": null
+    },
+    "pro": {
+      "premiumPlugins": true,
+      "seats": 1,
+      "priceMonthlyEur": 28
+    },
+    "studios": {
+      "premiumPlugins": true,
+      "seats": 10,
+      "priceMonthlyEur": 48
+    }
+  },
+  "plugins": {
+    "premium-plugin-template": {
+      "requiresPlan": ["pro", "studios"],
+      "license": "Commercial",
+      "trialSeconds": 604800
+    }
+  }
+}

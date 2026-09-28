@@ -598,7 +598,7 @@ describe('task observation rollout', () => {
   it('rebuilds safe Run quality from durable facts before exporting the Task payload', async () => {
     vi.stubEnv(
       'SAASCODEX_TELEMETRY_RELAY_URL',
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     upsertMessage(db, 'conversation-1', {
       id: 'user-quality',

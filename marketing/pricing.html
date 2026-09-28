@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pricing - SaaSCodex</title>
+  <meta name="description" content="SaaSCodex plans: start free with a 7-day Pro trial, then Pro €28/month or Studios €48/month." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="nav">
+      <a class="brand" href="/"><img src="favicon.svg" alt="" /> SaaSCodex</a>
+      <nav>
+        <a href="/#features">Features</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="https://app.saascodex.com">Open app</a>
+      </nav>
+      <a class="btn btn-primary cta" style="width:auto;padding:0 18px;margin-top:0" href="register.html">Start free</a>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">Pricing</p>
+      <h1>Start free. Upgrade when it ships.</h1>
+      <p class="lead">Every plan runs the full local-first workspace. Pro and Studios remove the watermark, lift the project cap, and unlock API access.</p>
+      <div class="toggle" role="group" aria-label="Billing period">
+        <button type="button" data-period="monthly" aria-pressed="true">Monthly</button>
+        <button type="button" data-period="annual" aria-pressed="false">Annual</button>
+        <span class="save">2 months free</span>
+      </div>
+    </section>
+
+    <main>
+      <div class="plans">
+        <article class="plan">
+          <h2>Free</h2>
+          <p class="who">Local-first workspace with a 7-day Pro trial.</p>
+          <div class="price" data-monthly="€0<small>/mo</small>" data-annual="€0<small>/mo</small>">€0<small>/mo</small></div>
+          <div class="bill">No card required</div>
+          <a class="btn btn-line" href="register.html?plan=free">Start free</a>
+          <ul>
+            <li>3 active projects</li>
+            <li>7-day Pro trial</li>
+            <li>Watermarked exports</li>
+            <li class="off">API key access</li>
+            <li class="off">Shared brand libraries</li>
+          </ul>
+        </article>
+
+        <article class="plan reco">
+          <span class="flag">Recommended</span>
+          <h2>Pro</h2>
+          <p class="who">For professionals shipping client work weekly.</p>
+          <div class="price" data-monthly="€28<small>/mo</small>" data-annual="€280<small>/yr</small>">€28<small>/mo</small></div>
+          <div class="bill" data-monthly="per seat, billed monthly" data-annual="per seat, ~2 months free">per seat, billed monthly</div>
+          <a class="btn btn-primary" href="register.html?plan=pro">Start 7-day trial</a>
+          <ul>
+            <li>Unlimited projects</li>
+            <li>Watermark-free exports</li>
+            <li>API key access</li>
+            <li>Email support, 1 business day</li>
+            <li class="off">Shared brand libraries</li>
+          </ul>
+        </article>
+
+        <article class="plan">
+          <h2>Studios</h2>
+          <p class="who">For teams running many brands together.</p>
+          <div class="price" data-monthly="€48<small>/mo</small>" data-annual="€480<small>/yr</small>">€48<small>/mo</small></div>
+          <div class="bill" data-monthly="per seat, billed monthly" data-annual="per seat, ~2 months free">per seat, billed monthly</div>
+          <a class="btn btn-line" href="register.html?plan=studios">Choose Studios</a>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>Shared brand libraries</li>
+            <li>Roles and approval flows</li>
+            <li>Priority support, 4 hours</li>
+            <li>Audit log export</li>
+          </ul>
+        </article>
+      </div>
+      <p class="muted-note">All prices in EUR. Cancel anytime. The free plan stays free forever.</p>
+
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        <details><summary>How long is the free trial?</summary><p>Seven days on the Free plan with Pro behavior enabled. No credit card is required to start.</p></details>
+        <details><summary>How do subscriptions work?</summary><p>Subscriptions are billed through Stripe. Pro and Studios are per seat; viewers are always free. Manage or cancel from the app's billing portal.</p></details>
+        <details><summary>Do you offer yearly billing?</summary><p>Yes — annual billing is roughly two months free. Studios customers can also pay by invoice.</p></details>
+        <details><summary>What is the API key tier?</summary><p>Pro and Studios include programmatic API access; the Free plan is UI-only.</p></details>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> SaaSCodex · Aurora Ember Cyber Bio Lab · <a href="register.html">Create account</a></p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+      var prices = Array.prototype.slice.call(document.querySelectorAll('.price[data-monthly]'));
+      var bills = Array.prototype.slice.call(document.querySelectorAll('.bill[data-monthly]'));
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.toggle button[data-period]'));
+      function apply(period) {
+        prices.forEach(function (el) { el.innerHTML = el.dataset[period]; });
+        bills.forEach(function (el) { el.textContent = el.dataset[period]; });
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.period === period)); });
+      }
+      buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.period); }); });
+    })();
+  </script>
+</body>
+</html>

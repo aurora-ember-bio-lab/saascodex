@@ -245,7 +245,7 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'official',
-        url: 'https://open-design.ai/marketplace/saascodex-marketplace.json',
+        url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
         trust: 'official',
         manifest: {
           name: 'SaaSCodex Official',
@@ -685,7 +685,7 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'official',
-        url: 'https://open-design.ai/marketplace/saascodex-marketplace.json',
+        url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
         trust: 'official',
         manifest: {
           name: 'SaaSCodex Official',

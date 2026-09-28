@@ -2104,11 +2104,11 @@ describe('DesignSystemCreationFlow', () => {
     );
 
     const sourceInput = screen.getByPlaceholderText('https://example.com or https://github.com/owner/repo') as HTMLInputElement;
-    fireEvent.change(sourceInput, { target: { value: 'open-design.ai' } });
+    fireEvent.change(sourceInput, { target: { value: 'saascodex.com' } });
     fireEvent.keyDown(sourceInput, { key: 'Enter', code: 'Enter' });
 
-    const previewLink = screen.getByRole('link', { name: 'Open open-design.ai' }) as HTMLAnchorElement;
-    expect(previewLink.href).toBe('https://open-design.ai/');
+    const previewLink = screen.getByRole('link', { name: 'Open saascodex.com' }) as HTMLAnchorElement;
+    expect(previewLink.href).toBe('https://saascodex.com/');
     expect(sourceInput.value).toBe('');
 
     fireEvent.change(screen.getByPlaceholderText(/Mission Impastabowl/i), {
@@ -2124,7 +2124,7 @@ describe('DesignSystemCreationFlow', () => {
       githubRepoCount: 0,
     }));
     const draftInput = mocks.createDesignSystemDraft.mock.calls[0]?.[0];
-    expect(draftInput?.provenance?.sourceUrls).toEqual(['https://open-design.ai']);
+    expect(draftInput?.provenance?.sourceUrls).toEqual(['https://saascodex.com']);
     expect(draftInput?.provenance?.githubUrls).toBeUndefined();
 
     await waitFor(() => expect(mocks.writeProjectTextFile).toHaveBeenCalled());
@@ -2132,7 +2132,7 @@ describe('DesignSystemCreationFlow', () => {
       (call) => call[0] === project.id && call[1] === 'context/source-context.md',
     );
     expect(sourceManifestCall?.[2]).toEqual(expect.stringContaining('## Source Links'));
-    expect(sourceManifestCall?.[2]).toEqual(expect.stringContaining('- https://open-design.ai'));
+    expect(sourceManifestCall?.[2]).toEqual(expect.stringContaining('- https://saascodex.com'));
     expect(sourceManifestCall?.[2]).not.toEqual(expect.stringContaining('GitHub Connector Intake Runbook'));
     expect(mocks.patchProject).toHaveBeenCalledWith(
       project.id,

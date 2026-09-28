@@ -1,19 +1,19 @@
 <h1 align="center">SaaSCodex: Açık kaynaklı Claude Design alternatifi</h1>
 
-> ⚡ **[SaaSCodex Cloud — resmî model servisi.](https://open-design.ai/zh/pricing/)** Tek bir yüklemeyle SaaSCodex içinde hem agent hem de görsel modelleri kullanın: agent'lar için GPT, Claude ve DeepSeek; görseller için GPT Image 2.0, Seedream 5.0 Pro ve Nano Banana 2.0.
+> ⚡ **[SaaSCodex Cloud — resmî model servisi.](https://saascodex.com/zh/pricing/)** Tek bir yüklemeyle SaaSCodex içinde hem agent hem de görsel modelleri kullanın: agent'lar için GPT, Claude ve DeepSeek; görseller için GPT Image 2.0, Seedream 5.0 Pro ve Nano Banana 2.0.
 >
-> 🚀 **[DeepSeek V4 Flash ve V4 Pro artık kullanılabilir.](https://open-design.ai/zh/pricing/)** Prototipler, sunumlar, tasarım sistemleri ve günlük agent görevlerinde üst düzey zekâyı kullanın. SaaSCodex üyeleri her iki modeli de uygulama içinde iki hafta boyunca sınırsız kullanabilir.
+> 🚀 **[DeepSeek V4 Flash ve V4 Pro artık kullanılabilir.](https://saascodex.com/zh/pricing/)** Prototipler, sunumlar, tasarım sistemleri ve günlük agent görevlerinde üst düzey zekâyı kullanın. SaaSCodex üyeleri her iki modeli de uygulama içinde iki hafta boyunca sınırsız kullanabilir.
 >
-> 🧩 **[DeepSeek Harness artık destekleniyor.](https://open-design.ai/zh/agents/deepseek-harness-design/)** DeepSeek'in resmî `dsh` Agent Harness'ini yapılandırılmış düşünme, araç çağrıları, model keşfi, iptal ve oturum devam ettirme özellikleriyle SaaSCodex'a yerel bir runtime olarak bağlayın. Üretilen dosyalar canlı önizleme ve teslimat için SaaSCodex iş akışında kalır.
+> 🧩 **[DeepSeek Harness artık destekleniyor.](https://saascodex.com/zh/agents/deepseek-harness-design/)** DeepSeek'in resmî `dsh` Agent Harness'ini yapılandırılmış düşünme, araç çağrıları, model keşfi, iptal ve oturum devam ettirme özellikleriyle SaaSCodex'a yerel bir runtime olarak bağlayın. Üretilen dosyalar canlı önizleme ve teslimat için SaaSCodex iş akışında kalır.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://open-design.ai/">Web Sitesi</a> ·
-  <a href="https://open-design.ai/">İndir</a> ·
-  <a href="https://open-design.ai/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://saascodex.com/">Web Sitesi</a> ·
+  <a href="https://saascodex.com/">İndir</a> ·
+  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
   <a href="https://x.com/SaaSCodexHQ">@SaaSCodexHQ'yu takip et</a>
 </p>
@@ -133,7 +133,7 @@ Bir projenin Studio alanında konuşma, üretilen dosyalar ve canlı önizleme a
 Kuru çalıştırma önizlemesi için `od mcp install <agent> --print` · kaldırmak için `--uninstall` · tam liste için `od mcp install --help`.
 
 <p align="center">
-  <img src="https://repo-assets.open-design.ai/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **Kurulu CLI yok mu?** `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` adresindeki BYOK proxy size aynı döngüyü verir (süreç başlatma yok) — `baseUrl` + `apiKey` + `model` yapıştırın; OpenAI, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM veya herhangi bir OpenAI uyumlu uç nokta desteğiyle. Hedef bazlı SSRF koruması, daemon kenarında dahili IP'leri / link-local / CGNAT adreslerini engeller.
@@ -280,8 +280,8 @@ SaaSCodex (OD) açık kaynaklı alternatiftir. Aynı döngü, aynı artifact ön
 
 SaaSCodex'ı kullanmanın en hızlı yolu. Node yok, pnpm yok, klonlama yok.
 
-- **macOS** (Apple Silicon · Intel x64) → [**open-design.ai**](https://open-design.ai/) veya [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**open-design.ai**](https://open-design.ai/) veya [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/) veya [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/) veya [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage, isteğe bağlı hat) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 Kurulumdan sonra: uygulama `PATH`'inizdeki her kodlama ajanı CLI'sini otomatik algılar, 100+ işlevsel beceriyi, ayrı render şablonu kataloğunu ve 151 tasarım sistemi paketini yükler ve giriş görünümünde bir özet yazmanıza olanak tanır.
@@ -678,7 +678,7 @@ Katılan herkese teşekkürler — kod, belge, geri bildirim, keskin bir issue, 
 ## Depo etkinliği
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.open-design.ai/resources/images/github-metrics.svg" />
+  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
 </picture>
 
 Yukarıdaki SVG, [`lowlighter/metrics`](https://github.com/lowlighter/metrics) kullanılarak [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) tarafından günlük olarak yeniden oluşturulur.
@@ -688,7 +688,7 @@ Yukarıdaki SVG, [`lowlighter/metrics`](https://github.com/lowlighter/metrics) k
 ## Bize yıldız verin
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.open-design.ai/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 Bu size otuz dakika kazandırdıysa, bir ★ verin. Yıldızlar kira ödemez — ama bir sonraki tasarımcıya, ajana ve katkıda bulunana bu deneyin dikkatlerine değer olduğunu söyler. Tek tıkla, üç saniyede, gerçek bir sinyal.

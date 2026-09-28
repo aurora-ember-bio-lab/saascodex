@@ -172,11 +172,11 @@ describe("buildDockerArgs", () => {
     const args = buildDockerArgs(
       {
         ...makeConfig(),
-        telemetryRelayUrl: "https://telemetry.open-design.ai/api/langfuse",
+        telemetryRelayUrl: "https://telemetry.saascodex.com/api/langfuse",
       },
       { uid: 1000, gid: 1000 },
     );
-    expect(args).toContain("SAASCODEX_TELEMETRY_RELAY_URL=https://telemetry.open-design.ai/api/langfuse");
+    expect(args).toContain("SAASCODEX_TELEMETRY_RELAY_URL=https://telemetry.saascodex.com/api/langfuse");
   });
 
   it("passes the AMR profile into containerized builds when configured", () => {

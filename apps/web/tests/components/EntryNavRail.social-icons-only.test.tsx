@@ -18,7 +18,7 @@ import { I18nProvider } from '../../src/i18n';
 const SOCIAL_LINKS = [
   { href: 'https://discord.gg/mHAjSMV6gz', label: 'Join our Discord for free credits' },
   { href: 'https://x.com/SaaSCodexHQ', label: 'Follow @SaaSCodexHQ for updates' },
-  { href: 'mailto:support@open-design.ai', label: 'Questions? Email our team' },
+  { href: 'mailto:support@saascodex.com', label: 'Questions? Email our team' },
 ];
 
 function teamContext(): WorkspaceCollabContext {

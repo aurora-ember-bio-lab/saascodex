@@ -171,7 +171,7 @@ describe('same-run retry runtime', () => {
     delete process.env.LANGFUSE_BASE_URL;
     delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-    process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+    process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
 
     started = await startServer({ port: 0, returnServer: true }) as StartedServer;
     await putConfig(started.url, {
@@ -217,7 +217,7 @@ describe('same-run retry runtime', () => {
     delete process.env.LANGFUSE_BASE_URL;
     delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-    process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+    process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
     // The heartbeats keep both legacy inactivity watchdogs alive. Only the
     // absolute first-output deadline may terminate attempt 0.
     process.env.OD_CHAT_RUN_FIRST_OUTPUT_TIMEOUT_MS = '100';
@@ -313,7 +313,7 @@ describe('same-run retry runtime', () => {
     delete process.env.LANGFUSE_BASE_URL;
     delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
     process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-    process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+    process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
     process.env.OD_CHAT_RUN_FIRST_OUTPUT_TIMEOUT_MS = '100';
     process.env.OD_CHAT_RUN_INACTIVITY_TIMEOUT_MS = STALL_WATCHDOG_TIMEOUT_MS;
     process.env.OD_ACP_STAGE_TIMEOUT_MS = STALL_WATCHDOG_TIMEOUT_MS;
@@ -686,7 +686,7 @@ function configureAmrFirstOutputEnv(): void {
   delete process.env.LANGFUSE_BASE_URL;
   delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
   process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-  process.env.VELA_LINK_URL = 'https://amr-link.open-design.ai/v1';
+  process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
   process.env.OD_CHAT_RUN_FIRST_OUTPUT_TIMEOUT_MS = '100';
   process.env.OD_CHAT_RUN_INACTIVITY_TIMEOUT_MS = STALL_WATCHDOG_TIMEOUT_MS;
   process.env.OD_ACP_STAGE_TIMEOUT_MS = STALL_WATCHDOG_TIMEOUT_MS;

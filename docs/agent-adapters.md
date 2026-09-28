@@ -380,17 +380,17 @@ the active-run staging implementation is in
   Harness Web UI for provider setup after installation:
 
   ```sh
-  curl -fsSL 'https://open-design.ai/install-dsh.sh?version=1' | sh
+  curl -fsSL 'https://saascodex.com/install-dsh.sh?version=1' | sh
   ```
 
   ```powershell
-  & ([scriptblock]::Create((irm 'https://open-design.ai/install-dsh.ps1?version=1')))
+  & ([scriptblock]::Create((irm 'https://saascodex.com/install-dsh.ps1?version=1')))
   ```
 
   From Windows Command Prompt, the equivalent bootstrap is:
 
   ```bat
-  curl -fsSL "https://open-design.ai/install-dsh.cmd?version=1" -o "%TEMP%\install-dsh.cmd" && call "%TEMP%\install-dsh.cmd"
+  curl -fsSL "https://saascodex.com/install-dsh.cmd?version=1" -o "%TEMP%\install-dsh.cmd" && call "%TEMP%\install-dsh.cmd"
   ```
 
   Pass `--no-launch` to the downloaded POSIX script or `-NoLaunch` to the

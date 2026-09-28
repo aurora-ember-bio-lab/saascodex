@@ -635,7 +635,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     await writeAppCfg({ installationId: 'synthetic', telemetry: { metrics: true, content: true } });
     enableTestVelaTelemetry();
     vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.open-design.ai/api/langfuse');
+    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
     const fetchSpy = vi.fn().mockResolvedValue(new Response('{}', { status: 202 }));
     const result = await reportRunCompletedFromDaemon({
       db: makeDbWithListMessages({ 'conv-1': [{ id: 'msg-1', role: 'assistant', content: 'done' }] }),
@@ -1386,7 +1386,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     const priorNodeEnv = process.env.NODE_ENV;
     process.env.NODE_ENV = 'production';
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.open-design.ai/api/langfuse';
+    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.saascodex.com/api/langfuse';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1433,8 +1433,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
 
     expect(fetchSpy).toHaveBeenCalledTimes(4);
     expect(fetchSpy.mock.calls[0]![0]).toBe(TEST_VELA_TELEMETRY_URL);
-    expect(fetchSpy.mock.calls[1]![0]).toBe('https://telemetry.open-design.ai/api/objects/authorize');
-    expect(fetchSpy.mock.calls[2]![0]).toBe('https://telemetry.open-design.ai/api/objects/batch');
+    expect(fetchSpy.mock.calls[1]![0]).toBe('https://telemetry.saascodex.com/api/objects/authorize');
+    expect(fetchSpy.mock.calls[2]![0]).toBe('https://telemetry.saascodex.com/api/objects/batch');
     expect(fetchSpy.mock.calls[3]![0]).toBe(TEST_VELA_TELEMETRY_URL);
     const telemetryBody = fetchSpy.mock.calls[3]![1]!.body as string;
     expect(telemetryBody).not.toContain('private attachment body');
@@ -1459,7 +1459,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     await writeAppCfg({ installationId: 'install-uuid-1', telemetry: { metrics: true, content: true, artifactManifest: true } });
     enableTestVelaTelemetry();
     vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.open-design.ai/api/langfuse');
+    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
     const projectDir = path.join(dataDir, 'projects', 'proj-1');
     await mkdir(projectDir, { recursive: true });
     const original = '<!doctype html><h1>frozen original</h1>';
@@ -1509,7 +1509,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     await writeAppCfg({ installationId: 'install-uuid-1', telemetry: { metrics: true, content: true, artifactManifest: true } });
     enableTestVelaTelemetry();
     vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.open-design.ai/api/langfuse');
+    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
     const fetchSpy = vi.fn();
     const quality = await buildSafeRunQualityProjectionFromDaemon({
       db: makeDbWithListMessages({ 'conv-1': [{ id: 'msg-1', role: 'assistant' as const, content: 'done', producedFiles: [{ name: 'index.html', kind: 'html', size: 42 }] }] }),
@@ -1533,7 +1533,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     await writeAppCfg({ installationId: 'install-uuid-1', telemetry: { metrics: true, content: true, artifactManifest: true } });
     enableTestVelaTelemetry();
     vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.open-design.ai/api/langfuse');
+    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
     const projectDir = path.join(dataDir, 'projects', 'proj-1');
     await mkdir(projectDir, { recursive: true });
     const original = '<!doctype html><h1>frozen original</h1>';
@@ -1638,7 +1638,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     });
 
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.open-design.ai/api/langfuse';
+    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.saascodex.com/api/langfuse';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1747,7 +1747,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     delete process.env.VELA_CONTROL_KEY;
     process.env.AMR_HOME = path.join(dataDir, 'signed-out-amr-home');
     process.env.SAASCODEX_OBJECT_RELAY_URL =
-      'https://telemetry.open-design.ai/api/objects/batch';
+      'https://telemetry.saascodex.com/api/objects/batch';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1806,9 +1806,9 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     delete process.env.VELA_CONTROL_KEY;
     process.env.AMR_HOME = path.join(dataDir, 'signed-out-relay-amr-home');
     process.env.SAASCODEX_TELEMETRY_RELAY_URL =
-      'https://telemetry.open-design.ai/api/langfuse';
+      'https://telemetry.saascodex.com/api/langfuse';
     process.env.SAASCODEX_OBJECT_RELAY_URL =
-      'https://telemetry.open-design.ai/api/objects/batch';
+      'https://telemetry.saascodex.com/api/objects/batch';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1843,7 +1843,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0]![0]).toBe(
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
     expect(fetchSpy.mock.calls.some(([url]) => String(url).includes('/api/objects/')))
       .toBe(false);
@@ -1871,7 +1871,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         velaEnvelopes.push(envelope);
         return new Response(JSON.stringify({ ok: true }), { status: 202 });
       }
-      if (url === 'https://telemetry.open-design.ai/api/objects/authorize') {
+      if (url === 'https://telemetry.saascodex.com/api/objects/authorize') {
         const parsed = JSON.parse(init.body as string) as {
           run_id: string;
           objects: Array<{ storage_ref: string }>;
@@ -1880,7 +1880,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         expect(parsed.objects[0]?.storage_ref).toContain('/runs/run-id-1/');
         return new Response(JSON.stringify({ upload_token: 'upload-token' }), { status: 200 });
       }
-      if (url === 'https://telemetry.open-design.ai/api/objects/batch') {
+      if (url === 'https://telemetry.saascodex.com/api/objects/batch') {
         const parsed = JSON.parse(init.body as string) as {
           run_id: string;
           objects: Array<{ storage_ref: string; content_base64: string }>;
@@ -1906,7 +1906,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     process.env.VELA_CONTROL_KEY = 'ck_test';
     process.env.VELA_API_URL = 'https://vela.example.test';
     process.env.SAASCODEX_OBJECT_RELAY_URL =
-      'https://telemetry.open-design.ai/api/objects/batch';
+      'https://telemetry.saascodex.com/api/objects/batch';
     try {
       await reportRunCompletedFromDaemon({
         db: makeDbWithListMessages({
@@ -1937,7 +1937,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     expect(fetchSpy).toHaveBeenCalledTimes(4);
     expect(velaEnvelopes).toHaveLength(2);
     expect(fetchSpy.mock.calls.map((call) => call[0])).not.toContain(
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
 
     const velaRegistrationEvent = velaEnvelopes[0].events.find(
@@ -2006,7 +2006,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     });
 
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_OBJECT_RELAY_URL = 'https://telemetry.open-design.ai/api/objects/batch';
+    process.env.SAASCODEX_OBJECT_RELAY_URL = 'https://telemetry.saascodex.com/api/objects/batch';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -2098,8 +2098,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     });
 
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_OBJECT_RELAY_URL = 'https://telemetry.open-design.ai/api/objects/batch';
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.open-design.ai/api/langfuse';
+    process.env.SAASCODEX_OBJECT_RELAY_URL = 'https://telemetry.saascodex.com/api/objects/batch';
+    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.saascodex.com/api/langfuse';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {

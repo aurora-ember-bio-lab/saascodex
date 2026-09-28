@@ -658,7 +658,7 @@ process.exit(result.status ?? 0);
     await writeFile(
       path.join(fixture, 'saascodex.json'),
       JSON.stringify({
-        $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+        $schema: 'https://saascodex.com/schemas/plugin.v1.json',
         name: pluginId,
         title: 'Headless CLI Plugin',
         version: '1.0.0',
@@ -795,7 +795,7 @@ process.stdin.on('end', () => {
     await fs.writeFile(
       path.join(fixture, 'saascodex.json'),
       JSON.stringify({
-        $schema: 'https://open-design.ai/schemas/plugin.v1.json',
+        $schema: 'https://saascodex.com/schemas/plugin.v1.json',
         name: 'pipeline-plugin',
         title: 'Pipeline Plugin',
         version: '1.0.0',

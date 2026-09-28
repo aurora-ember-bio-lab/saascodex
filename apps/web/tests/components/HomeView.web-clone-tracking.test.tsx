@@ -121,8 +121,8 @@ describe('web-clone example-card tracking', () => {
     expect(screen.queryByTestId('home-hero-plugin-presets')).toBeNull();
     // No remix/duplicate affordance on the web-clone rail.
     expect(document.querySelector('[data-testid^="home-hero-plugin-preset-duplicate"]')).toBeNull();
-    // Site cards show the bare domain (e.g. open-design.ai), not the raw prompt line.
-    expect(textCards.some((c) => (c.textContent ?? '').includes('open-design.ai'))).toBe(true);
+    // Site cards show the bare domain (e.g. saascodex.com), not the raw prompt line.
+    expect(textCards.some((c) => (c.textContent ?? '').includes('saascodex.com'))).toBe(true);
     expect(textCards.every((c) => !(c.textContent ?? '').includes('https://'))).toBe(true);
     expect(document.querySelector('.home-hero__prompt-example--site')).not.toBeNull();
   });
@@ -139,7 +139,7 @@ describe('web-clone example-card tracking', () => {
     await pickHomeTemplate('web-clone');
     const siteCards = await screen.findAllByTestId('home-hero-prompt-example');
     const domains = siteCards.map((c) => (c.textContent ?? '').trim());
-    expect(domains).toEqual(['open-design.ai']);
+    expect(domains).toEqual(['saascodex.com']);
     // Every card must be the site variant (favicon tile + bare domain).
     expect(
       siteCards.every((c) => c.classList.contains('home-hero__prompt-example--site')),
@@ -172,7 +172,7 @@ describe('web-clone example-card tracking', () => {
     fireEvent.error(localLogo!);
     const remoteFallback = siteCard.querySelector<HTMLImageElement>('.home-hero__site-badge img');
     expect(remoteFallback?.getAttribute('src')).toBe(
-      'https://www.google.com/s2/favicons?sz=128&domain=open-design.ai',
+      'https://www.google.com/s2/favicons?sz=128&domain=saascodex.com',
     );
 
     fireEvent.error(remoteFallback!);

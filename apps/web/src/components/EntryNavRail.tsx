@@ -145,7 +145,7 @@ const GITHUB_HELP_URL = `${REPO_URL}/issues/new`;
 const GITHUB_FEATURE_URL = `${REPO_URL}/pulls`;
 const DISCORD_URL = 'https://discord.gg/mHAjSMV6gz';
 const X_URL = 'https://x.com/SaaSCodexHQ';
-const CONTACT_EMAIL_URL = 'mailto:support@open-design.ai';
+const CONTACT_EMAIL_URL = 'mailto:support@saascodex.com';
 const externalLinkProps = { target: '_blank', rel: 'noreferrer noopener' } as const;
 
 // Last directory this shell successfully read. `coalescedGet` only collapses

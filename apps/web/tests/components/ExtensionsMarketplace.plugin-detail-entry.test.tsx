@@ -57,7 +57,7 @@ const INSTALLED_OFFICIAL = InstalledPluginRecordSchema.parse({
 const MARKETPLACES = [
   {
     id: 'official',
-    url: 'https://open-design.ai/marketplace/saascodex-marketplace.json',
+    url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
     trust: 'official',
     manifest: {
       name: 'SaaSCodex Official',
@@ -75,7 +75,7 @@ const MARKETPLACES = [
   },
   {
     id: 'community',
-    url: 'https://open-design.ai/marketplace/community.json',
+    url: 'https://saascodex.com/marketplace/community.json',
     trust: 'restricted',
     manifest: {
       name: 'Community',

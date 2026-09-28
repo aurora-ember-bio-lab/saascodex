@@ -1,5 +1,5 @@
 {
-  "$schema": "https://open-design.ai/schemas/plugin.v1.json",
+  "$schema": "https://saascodex.com/schemas/plugin.v1.json",
   "specVersion": "1.0.0",
   "name": "video-template-video-seedance-three-kingdoms-zhaoyun-cradle-escape",
   "title": "Video - Three Kingdoms ARPG - Zhao Yun Cradle Escape (Seedance 2.0)",
@@ -77,8 +77,8 @@
     "surface": "video",
     "preview": {
       "type": "video",
-      "poster": "https://repo-assets.open-design.ai/resources/images/prompt-templates/video-seedance-three-kingdoms-zhaoyun-cradle-escape-poster.jpg",
-      "video": "https://repo-assets.open-design.ai/resources/videos/prompt-templates/video-seedance-three-kingdoms-zhaoyun-cradle-escape.mp4"
+      "poster": "https://repo-assets.saascodex.com/resources/images/prompt-templates/video-seedance-three-kingdoms-zhaoyun-cradle-escape-poster.jpg",
+      "video": "https://repo-assets.saascodex.com/resources/videos/prompt-templates/video-seedance-three-kingdoms-zhaoyun-cradle-escape.mp4"
     },
     "useCase": {
       "query": {

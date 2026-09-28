@@ -1080,7 +1080,7 @@ interface RendererCrashScreenContext {
 }
 
 const CRASH_REPORT_ISSUES_URL = "https://github.com/nexu-io/open-design/issues/new";
-const SUPPORT_EMAIL = "support@open-design.ai";
+const SUPPORT_EMAIL = "support@saascodex.com";
 // Every address the app is allowed to hand to the OS mail client. Keep this in
 // sync with the renderer's own contact affordances (`CONTACT_EMAIL_URL` in
 // `apps/web/src/components/EntryNavRail.tsx`); an address that is not listed
@@ -1090,8 +1090,8 @@ const FIRST_PARTY_EMAILS = new Set([SUPPORT_EMAIL, "contact@open.design"]);
 // Narrow allowlist for the crash screen's "Email us" action: only a mailto
 // addressed to our own support address, carrying nothing but the crash-screen's
 // own `subject`/`body`, opens. Validating just protocol+pathname is not enough —
-// `mailto:support@open-design.ai?bcc=attacker@example.com` (or `?to=`/`?cc=`)
-// keeps `pathname === "support@open-design.ai"` yet smuggles extra recipients
+// `mailto:support@saascodex.com?bcc=attacker@example.com` (or `?to=`/`?cc=`)
+// keeps `pathname === "support@saascodex.com"` yet smuggles extra recipients
 // and headers through to `shell.openExternal`. Because this predicate widens the
 // renderer-exposed `shell:open-external` bridge past http, a compromised
 // renderer could otherwise launch the mail client with arbitrary recipients, so

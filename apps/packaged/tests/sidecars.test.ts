@@ -691,10 +691,10 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       daemonCliEntry: null,
       legacyDataDir: null,
       requireDesktopAuth: true,
-      telemetryRelayUrl: 'https://telemetry.open-design.ai/api/langfuse',
+      telemetryRelayUrl: 'https://telemetry.saascodex.com/api/langfuse',
     });
     expect(env.SAASCODEX_TELEMETRY_RELAY_URL).toBe(
-      'https://telemetry.open-design.ai/api/langfuse',
+      'https://telemetry.saascodex.com/api/langfuse',
     );
   });
 
@@ -800,13 +800,13 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       daemonCliEntry: null,
       legacyDataDir: null,
       requireDesktopAuth: true,
-      velaWebUrl: 'https://open-design.ai/cloud',
+      velaWebUrl: 'https://saascodex.com/cloud',
     });
     expect(env.OD_WORKSPACE_CONTEXT_SOURCE).toBe('vela');
     expect(env.OD_TEAM_PROJECTS_TRANSPORT).toBe('vela-cli');
     expect(env.OD_COLLAB_TRANSPORT).toBe('vela-cli');
     expect(env.OD_RESOURCE_TRANSPORT).toBe('vela-cli');
-    expect(env.OD_VELA_WEB_URL).toBe('https://open-design.ai/cloud');
+    expect(env.OD_VELA_WEB_URL).toBe('https://saascodex.com/cloud');
   });
 
   // The profile allowlist remains the load-bearing half of the gate for every

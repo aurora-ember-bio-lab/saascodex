@@ -33,7 +33,7 @@ const todoWrite = (
 } as PersistedAgentEvent);
 
 const INIT = 'Init clone scaffold (NOTES.md, RECON/)';
-const SEARCH = 'Search GitHub for real source of open-design.ai';
+const SEARCH = 'Search GitHub for real source of saascodex.com';
 const RECON = 'Recon the original site (CDP probe + screenshots)';
 const HARVEST = 'Harvest fonts/images/assets to local';
 const ASSESS = 'Assess complexity (L1-L6) and pick fidelity path';

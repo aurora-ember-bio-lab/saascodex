@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saascodex.com/schemas/commercial.entitlements.v1.json",
+  "title": "SaaSCodex commercial entitlements",
+  "description": "Plan -> premium-plugin access map and the premium plugin commercial sidecar.",
+  "$defs": {
+    "planId": { "enum": ["free", "pro", "studios"] },
+    "commercialSidecar": {
+      "type": "object",
+      "required": ["plugin", "requiresPlan"],
+      "additionalProperties": true,
+      "properties": {
+        "plugin": { "type": "string" },
+        "title": { "type": "string" },
+        "vendor": { "type": "string" },
+        "priceMonthlyEur": { "type": ["number", "null"] },
+        "requiresPlan": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/planId" },
+          "minItems": 1
+        },
+        "trialSeconds": { "type": ["integer", "null"], "minimum": 0 },
+        "license": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "scope": { "enum": ["workspace", "seat", "perpetual"] },
+            "offline": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/commercialSidecar" },
+    {
+      "type": "object",
+      "required": ["version", "plans"],
+      "additionalProperties": true,
+      "properties": {
+        "version": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "plans": {
+          "type": "object",
+          "properties": {
+            "free": { "$ref": "#/$defs/planAccess" },
+            "pro": { "$ref": "#/$defs/planAccess" },
+            "studios": { "$ref": "#/$defs/planAccess" }
+          }
+        },
+        "plugins": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["requiresPlan"],
+            "additionalProperties": true,
+            "properties": {
+              "requiresPlan": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/planId" }
+              },
+              "license": { "type": "string" },
+              "trialSeconds": { "type": ["integer", "null"] }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

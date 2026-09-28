@@ -7,7 +7,7 @@ All copy is keyword-tuned for discoverability (ASO) without keyword stuffing.
 - **Public name:** SaaSCodex Web Clipper
 - **Version:** 0.2.0 (MV3)
 - **Package:** the `clipper/` directory (no build step — zip it as-is)
-- **Homepage:** https://open-design.ai
+- **Homepage:** https://saascodex.com
 - **Source:** https://github.com/nexu-io/open-design (folder `clipper/`)
 - **Support / issues:** https://github.com/nexu-io/open-design/issues
 - **Assets:** see `assets/` in this folder and the "Asset manifest" section below
@@ -86,7 +86,7 @@ Built for designers, researchers, and builders who collect references all day: d
 
 ━━ HOW TO USE ━━
 
-1. Install the open-source SaaSCodex app — https://open-design.ai
+1. Install the open-source SaaSCodex app — https://saascodex.com
 2. Start it so the local daemon is running.
 3. Click the SaaSCodex Web Clipper toolbar icon and capture. That's it.
 
@@ -125,7 +125,7 @@ Capture web content — full pages, design systems, screenshots, images, page el
 - Health / financial / authentication / personal communications / location / web history: **No**
 - User activity / website content: handled **locally only**, never transmitted off-device to us.
 - **Not sold to third parties. Not used for ads. Not used for creditworthiness/lending.** Used only for the item's single purpose.
-- Privacy policy URL: `https://open-design.ai/clipper/privacy` (publish `PRIVACY.md` from this folder there; or link the raw GitHub file).
+- Privacy policy URL: `https://saascodex.com/clipper/privacy` (publish `PRIVACY.md` from this folder there; or link the raw GitHub file).
 
 ### Screenshots (1280×800 PNG/JPEG, up to 5) — order + captions
 1. **Popup over a real page** — `Clip the whole page into your Library — one click.`
@@ -175,7 +175,7 @@ The **same MV3 package** publishes to Edge unchanged.
 
 Firefox needs the gecko settings already added to `manifest.json`:
 ```json
-"browser_specific_settings": { "gecko": { "id": "web-clipper@open-design.ai", "strict_min_version": "121.0" } }
+"browser_specific_settings": { "gecko": { "id": "web-clipper@saascodex.com", "strict_min_version": "121.0" } }
 ```
 And the dual background key (already in `manifest.json`) — Firefox uses
 `background.scripts`, Chrome/Edge use `background.service_worker`:

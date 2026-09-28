@@ -124,7 +124,7 @@ Common install paths:
 | Claude Code | `~/.local/bin/claude` (symlink) + `~/.local/share/claude` (binaries) |
 | opencode | `~/.opencode/bin/opencode` |
 | Codex | `~/.local/bin/codex` |
-| Vela / AMR | npm package `@powerformer/vela-cli`; [Open Design AMR](https://open-design.ai/amr) is the browser account/wallet page |
+| Vela / AMR | npm package `@powerformer/vela-cli`; [Open Design AMR](https://saascodex.com/amr) is the browser account/wallet page |
 
 Vela is published as the `@powerformer/vela-cli` npm package. The Open Design
 AMR URL above is not a shell installer. For Linux Docker, install Vela under a

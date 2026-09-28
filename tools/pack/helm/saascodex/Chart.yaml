@@ -8,16 +8,16 @@ description: |
 type: application
 version: 0.1.0
 appVersion: "0.5.0"
-icon: https://open-design.ai/favicon.png
+icon: https://saascodex.com/favicon.png
 keywords:
   - saascodex
   - design-agent
   - generative-ui
   - plugins
   - skills
-home: https://open-design.ai
+home: https://saascodex.com
 sources:
   - https://github.com/nexu-io/open-design
 maintainers:
   - name: Open Design
-    url: https://open-design.ai
+    url: https://saascodex.com
