@@ -178,6 +178,13 @@ const residualAllowedPathPrefixes = [
   // (Jane-xiaoer/claude-skill-web-clone). Global skill assets staged into the
   // project cwd for direct `node scripts/...` execution by the agent.
   "skills/web-clone/scripts/",
+  // Vendored upstream ui-ux-pro-max skill helper scripts
+  // (nextlevelbuilder/ui-ux-pro-max-skill). These are portable, single-file
+  // Node-run skill utilities invoked from a user workspace by explicit script
+  // path, and stay as `.cjs` to preserve the upstream skill packaging — the
+  // same precedent as `skills/web-clone/scripts/` above.
+  "skills/brand/scripts/",
+  "skills/design-system/scripts/",
   // Replay-based mock CLIs that impersonate the agent CLIs OD spawns
   // (opencode/claude/codex/gemini/cursor-agent + ACP family). Need to
   // be directly executable via Node so `child_process.spawn` from test
