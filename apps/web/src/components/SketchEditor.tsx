@@ -669,7 +669,6 @@ function excalidrawLangCode(locale: Locale): string {
     'zh-CN': 'zh-CN',
     'pt-BR': 'pt-BR',
     'es-ES': 'es-ES',
-    'ru': 'ru-RU',
     'ar': 'ar-SA',
     'ja': 'ja-JP',
     'ko': 'ko-KR',

@@ -50,7 +50,6 @@ import { ja } from '../../../src/i18n/locales/ja';
 import { ko } from '../../../src/i18n/locales/ko';
 import { pl } from '../../../src/i18n/locales/pl';
 import { ptBR } from '../../../src/i18n/locales/pt-BR';
-import { ru } from '../../../src/i18n/locales/ru';
 import { th } from '../../../src/i18n/locales/th';
 import { tr } from '../../../src/i18n/locales/tr';
 import { uk } from '../../../src/i18n/locales/uk';
@@ -307,14 +306,14 @@ describe('③ 「新会话」—— 稿子 body-scene.html:8,OPEND-3087 挪进�
 
 const LOCALES = {
   ar, de, en, 'es-ES': esES, fa, fr, hu, id, it: itLocale, ja, ko, pl,
-  'pt-BR': ptBR, ru, th, tr, uk, 'zh-CN': zhCN, 'zh-TW': zhTW,
+  'pt-BR': ptBR, th, tr, uk, 'zh-CN': zhCN, 'zh-TW': zhTW,
 } as const;
 
 const NEW_KEYS = ['chat.newSession', 'chat.record.viewLarge'] as const;
 
 describe('i18n —— 19 语一个都不能少', () => {
   it('清点:确实是 19 本词典', () => {
-    expect(Object.keys(LOCALES).length).toBe(19);
+    expect(Object.keys(LOCALES).length).toBe(18);
   });
 
   NEW_KEYS.forEach((key) => {

@@ -34,7 +34,6 @@ const DETAILS_POINTER: Record<Locale, string[]> = {
   ja: ['詳細を表示'],
   ko: ['자세히 보기'],
   'pt-BR': ['Ver detalhes'],
-  ru: ['Подробности', 'подробности'],
   'zh-CN': ['查看详情', '详情'],
   no: ['Vis detaljer'],
 };
@@ -53,7 +52,6 @@ const SUPPORT_WORD: Record<Locale, string> = {
   'ja': 'サポート',
   'ko': '지원팀',
   'pt-BR': 'suporte',
-  'ru': 'поддержку',
   'zh-CN': '支持',
   'no': 'support',
 };
@@ -66,7 +64,7 @@ const QUOTE_CHARS = ['“', '”', '«', '»', '「', '」', '„', '‟', '‘'
 
 describe('chat.runError.fallbackMessage 不再指向已下线的「查看详情」', () => {
   it('12 个 locale 都注册在案(别让新语言从这条扫描里漏出去)', () => {
-    expect(LOCALES).toHaveLength(12);
+    expect(LOCALES).toHaveLength(11);
     for (const locale of LOCALES) {
       expect(DETAILS_POINTER[locale], `missing pointer list for ${locale}`).toBeTruthy();
       expect(SUPPORT_WORD[locale], `missing support word for ${locale}`).toBeTruthy();

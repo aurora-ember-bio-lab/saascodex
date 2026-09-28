@@ -16,7 +16,6 @@ const ENTERPRISE_LOCALE_SEGMENT: Record<string, string> = {
   ko: 'ko',
   de: 'de',
   fr: 'fr',
-  ru: 'ru',
   'es-ES': 'es',
   'pt-BR': 'pt-br',
   it: 'it',

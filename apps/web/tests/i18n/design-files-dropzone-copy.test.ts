@@ -8,7 +8,6 @@ import { fr } from '../../src/i18n/locales/fr';
 import { id } from '../../src/i18n/locales/id';
 import { ja } from '../../src/i18n/locales/ja';
 import { ptBR } from '../../src/i18n/locales/pt-BR';
-import { ru } from '../../src/i18n/locales/ru';
 import { zhCN } from '../../src/i18n/locales/zh-CN';
 import { zhTW } from '../../src/i18n/locales/zh-TW';
 
@@ -21,7 +20,6 @@ const LOCALE_DICTS = {
   id,
   ja,
   ptBR,
-  ru,
   zhCN,
   zhTW,
 };

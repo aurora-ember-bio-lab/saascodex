@@ -13,14 +13,6 @@ import {
   FR_SKILL_COPY,
 } from './content.fr';
 import {
-  RU_DESIGN_SYSTEM_CATEGORIES,
-  RU_DESIGN_SYSTEM_SUMMARIES,
-  RU_PROMPT_TEMPLATE_CATEGORIES,
-  RU_PROMPT_TEMPLATE_COPY,
-  RU_PROMPT_TEMPLATE_TAGS,
-  RU_SKILL_COPY,
-} from './content.ru';
-import {
   ZH_CN_DESIGN_SYSTEM_CATEGORIES,
   ZH_CN_DESIGN_SYSTEM_SUMMARIES,
   ZH_CN_PROMPT_TEMPLATE_CATEGORIES,
@@ -1021,14 +1013,6 @@ const LOCALIZED_CONTENT: Partial<Record<Locale, LocalizedContentBundle>> = {
     promptTemplateTags: DE_PROMPT_TEMPLATE_TAGS,
     promptTemplateCopy: DE_PROMPT_TEMPLATE_COPY,
   },
-  ru: {
-    skillCopy: RU_SKILL_COPY,
-    designSystemSummaries: RU_DESIGN_SYSTEM_SUMMARIES,
-    designSystemCategories: RU_DESIGN_SYSTEM_CATEGORIES,
-    promptTemplateCategories: RU_PROMPT_TEMPLATE_CATEGORIES,
-    promptTemplateTags: RU_PROMPT_TEMPLATE_TAGS,
-    promptTemplateCopy: RU_PROMPT_TEMPLATE_COPY,
-  },
   fr: {
     skillCopy: FR_SKILL_COPY,
     designSystemSummaries: FR_DESIGN_SYSTEM_SUMMARIES,
@@ -1108,12 +1092,10 @@ function buildLocalizedContentIds(content: LocalizedContentBundle): LocalizedCon
 
 export const LOCALIZED_CONTENT_IDS = {
   de: buildLocalizedContentIds(LOCALIZED_CONTENT.de!),
-  ru: buildLocalizedContentIds(LOCALIZED_CONTENT.ru!),
   fr: buildLocalizedContentIds(LOCALIZED_CONTENT.fr!),
-} satisfies Record<'de' | 'ru' | 'fr', LocalizedContentIds>;
+} satisfies Record<'de' | 'fr', LocalizedContentIds>;
 
 export const GERMAN_CONTENT_IDS = LOCALIZED_CONTENT_IDS.de;
-export const RUSSIAN_CONTENT_IDS = LOCALIZED_CONTENT_IDS.ru;
 export const FRENCH_CONTENT_IDS = LOCALIZED_CONTENT_IDS.fr;
 
 // True when a locale resolves a built-in-content bundle — either its own

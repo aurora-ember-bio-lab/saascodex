@@ -36,7 +36,6 @@ import { ja } from '../../src/i18n/locales/ja';
 import { ko } from '../../src/i18n/locales/ko';
 import { pl } from '../../src/i18n/locales/pl';
 import { ptBR } from '../../src/i18n/locales/pt-BR';
-import { ru } from '../../src/i18n/locales/ru';
 import { th } from '../../src/i18n/locales/th';
 import { tr } from '../../src/i18n/locales/tr';
 import { uk } from '../../src/i18n/locales/uk';
@@ -48,7 +47,7 @@ const KEY = 'fileViewer.versions.open' as const;
 const LOCALES: ReadonlyArray<readonly [string, Dict]> = [
   ['ar', ar], ['de', de], ['en', en], ['es-ES', esES], ['fa', fa],
   ['fr', fr], ['hu', hu], ['id', id], ['it', itIT], ['ja', ja],
-  ['ko', ko], ['pl', pl], ['pt-BR', ptBR], ['ru', ru], ['th', th],
+  ['ko', ko], ['pl', pl], ['pt-BR', ptBR], ['th', th],
   ['tr', tr], ['uk', uk], ['zh-CN', zhCN], ['zh-TW', zhTW],
 ];
 

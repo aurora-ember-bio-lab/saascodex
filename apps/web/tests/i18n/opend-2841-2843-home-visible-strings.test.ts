@@ -72,7 +72,6 @@ const NATIVE_SCRIPT: Partial<Record<Locale, RegExp>> = {
   ar: /\p{Script=Arabic}/u,
   ja: /[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u,
   ko: /\p{Script=Hangul}/u,
-  ru: /\p{Script=Cyrillic}/u,
   'zh-CN': /\p{Script=Han}/u,
 };
 

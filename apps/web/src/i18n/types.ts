@@ -1,9 +1,9 @@
 // Supported UI locales. Adding a new locale requires creating a new
 // dictionary in `./locales/` and registering it in `./index.tsx`.
 // SaaSCodex ships a curated 12-language set.
-export type Locale = 'en' | 'de' | 'zh-CN' | 'pt-BR' | 'es-ES' | 'ru' | 'ar' | 'ja' | 'ko' | 'fr' | 'it' | 'no';
+export type Locale = 'en' | 'de' | 'zh-CN' | 'pt-BR' | 'es-ES' | 'ar' | 'ja' | 'ko' | 'fr' | 'it' | 'no';
 
-export const LOCALES: Locale[] = ['en', 'de', 'zh-CN', 'pt-BR', 'es-ES', 'ru', 'ar', 'ja', 'ko', 'fr', 'it', 'no'];
+export const LOCALES: Locale[] = ['en', 'de', 'zh-CN', 'pt-BR', 'es-ES', 'ar', 'ja', 'ko', 'fr', 'it', 'no'];
 
 export const LOCALE_LABEL: Record<Locale, string> = {
   'en': 'English',
@@ -11,7 +11,6 @@ export const LOCALE_LABEL: Record<Locale, string> = {
   'zh-CN': '简体中文',
   'pt-BR': 'Português (Brasil)',
   'es-ES': 'Español (España)',
-  'ru': 'Русский',
   'ar': 'العربية',
   'ja': '日本語',
   'ko': '한국어',

@@ -60,7 +60,6 @@ import { ja } from '../../../src/i18n/locales/ja';
 import { ko } from '../../../src/i18n/locales/ko';
 import { pl } from '../../../src/i18n/locales/pl';
 import { ptBR } from '../../../src/i18n/locales/pt-BR';
-import { ru } from '../../../src/i18n/locales/ru';
 import { th } from '../../../src/i18n/locales/th';
 import { tr } from '../../../src/i18n/locales/tr';
 import { uk } from '../../../src/i18n/locales/uk';
@@ -199,7 +198,7 @@ describe('③ 删干净:`chat.new` 这个 key 跟着它的按钮一起撤', () =
 
 const LOCALES = {
   ar, de, en, 'es-ES': esES, fa, fr, hu, id, it: itLocale, ja, ko, pl,
-  'pt-BR': ptBR, ru, th, tr, uk, 'zh-CN': zhCN, 'zh-TW': zhTW,
+  'pt-BR': ptBR, th, tr, uk, 'zh-CN': zhCN, 'zh-TW': zhTW,
 } as const;
 
 /**
@@ -220,7 +219,6 @@ const EXPECTED: Record<keyof typeof LOCALES, { busy: string; failed: string }> =
   ko: { busy: '새 대화 시작 중…', failed: '새 대화를 시작할 수 없습니다.' },
   pl: { busy: 'Rozpoczynanie nowej rozmowy…', failed: 'Nie udało się rozpocząć nowej rozmowy.' },
   'pt-BR': { busy: 'Iniciando nova conversa…', failed: 'Não foi possível iniciar uma nova conversa.' },
-  ru: { busy: 'Начинается новый разговор…', failed: 'Не удалось начать новый разговор.' },
   th: { busy: 'กำลังเริ่มสนทนาใหม่…', failed: 'ไม่สามารถเริ่มสนทนาใหม่ได้' },
   tr: { busy: 'Yeni konuşma başlatılıyor…', failed: 'Yeni konuşma başlatılamadı.' },
   uk: { busy: 'Починається нова розмова…', failed: 'Не вдалося почати нову розмову.' },
@@ -230,8 +228,8 @@ const EXPECTED: Record<keyof typeof LOCALES, { busy: string; failed: string }> =
 
 describe('② 面板内说同一句', () => {
   it('清点:确实是 19 本词典', () => {
-    expect(Object.keys(LOCALES).length).toBe(19);
-    expect(Object.keys(EXPECTED).length).toBe(19);
+    expect(Object.keys(LOCALES).length).toBe(18);
+    expect(Object.keys(EXPECTED).length).toBe(18);
   });
 
   it('面板头图标键和回合动作行说的是同一句', () => {

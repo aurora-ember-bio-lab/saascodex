@@ -38,7 +38,6 @@ const CONTACT_US: Record<Locale, string> = {
   ja: 'お問い合わせ',
   ko: '문의하기',
   'pt-BR': 'Fale conosco',
-  ru: 'Связаться с нами',
   'zh-CN': '联系我们',
   no: 'Kontakt oss',
 };
@@ -54,16 +53,15 @@ const OLD_CONTACT_SUPPORT: Record<Locale, string> = {
   ja: 'サポートに問い合わせる',
   ko: '지원팀에 문의',
   'pt-BR': 'Falar com o suporte',
-  ru: 'Связаться с поддержкой',
   'zh-CN': '联系支持',
   no: 'Kontakt kundestøtte',
 };
 
 describe('OPEND-2807 · 〔联系我们〕12 语齐', () => {
   it('清点:确实是 12 本词典', () => {
-    expect(LOCALES.length).toBe(12);
-    expect(Object.keys(CONTACT_US).length).toBe(12);
-    expect(Object.keys(OLD_CONTACT_SUPPORT).length).toBe(12);
+    expect(LOCALES.length).toBe(11);
+    expect(Object.keys(CONTACT_US).length).toBe(11);
+    expect(Object.keys(OLD_CONTACT_SUPPORT).length).toBe(11);
   });
 
   it.each(LOCALES)('%s 的值就是工单定稿那一句', async (locale) => {

@@ -34,7 +34,6 @@ const ALL_PROJECTS: Record<Locale, string> = {
   ja: 'すべてのプロジェクト',
   ko: '모든 프로젝트',
   'pt-BR': 'Todos os projetos',
-  ru: 'Все проекты',
   'zh-CN': '全部项目',
   no: 'Alle prosjekter',
 };

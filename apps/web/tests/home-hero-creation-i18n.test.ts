@@ -13,7 +13,6 @@ import { ja } from '../src/i18n/locales/ja';
 import { ko } from '../src/i18n/locales/ko';
 import { pl } from '../src/i18n/locales/pl';
 import { ptBR } from '../src/i18n/locales/pt-BR';
-import { ru } from '../src/i18n/locales/ru';
 import { th } from '../src/i18n/locales/th';
 import { tr } from '../src/i18n/locales/tr';
 import { uk } from '../src/i18n/locales/uk';
@@ -28,7 +27,6 @@ const dictionaries: Dict[] = [
   zhTW,
   ptBR,
   esES,
-  ru,
   fa,
   ar,
   ja,
@@ -44,7 +42,7 @@ const dictionaries: Dict[] = [
 
 describe('Home creation hierarchy i18n', () => {
   it('localizes Prototype in every supported locale and keeps WebGL as the product label', () => {
-    expect(dictionaries).toHaveLength(19);
+    expect(dictionaries).toHaveLength(18);
     for (const dict of dictionaries) {
       expect(dict['homeHero.chip.prototype'].trim()).not.toBe('');
       expect(dict['homeHero.chip.prototype']).not.toBe('UI Mockup');

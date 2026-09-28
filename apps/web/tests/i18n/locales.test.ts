@@ -5,7 +5,7 @@ import { en } from '../../src/i18n/locales/en';
 import { zhCN } from '../../src/i18n/locales/zh-CN';
 import { LOCALES, LOCALE_LABEL, type Dict, type Locale } from '../../src/i18n/types';
 
-const EXPECTED_LOCALES = ['en', 'de', 'zh-CN', 'pt-BR', 'es-ES', 'ru', 'ar', 'ja', 'ko', 'fr', 'it', 'no'];
+const EXPECTED_LOCALES = ['en', 'de', 'zh-CN', 'pt-BR', 'es-ES', 'ar', 'ja', 'ko', 'fr', 'it', 'no'];
 
 function placeholders(value: string): string[] {
   const names: string[] = [];
@@ -64,7 +64,6 @@ describe('i18n locales', () => {
       ja: 'プロトタイプ',
       ko: '프로토타입',
       'pt-BR': 'Protótipo',
-      ru: 'Прототип',
       'zh-CN': '原型',
       no: 'Prototype',
     };
@@ -142,7 +141,6 @@ describe('i18n locales', () => {
       ja: '利用枠',
       ko: '사용 한도',
       'pt-BR': 'Cota',
-      ru: 'Лимит',
       'zh-CN': '额度',
       no: 'Kvote',
     };
@@ -187,7 +185,6 @@ describe('i18n locales', () => {
       ja: 'チャージ',
       ko: '충전',
       'pt-BR': 'Recarregar',
-      ru: 'Пополнить',
       'zh-CN': '充值',
       no: 'Fyll på',
     };

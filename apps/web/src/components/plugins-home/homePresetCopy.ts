@@ -29,10 +29,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Especificación de producto',
       prompt: 'Redacta una especificación de producto para una herramienta que ayude a equipos remotos a programar reuniones entre zonas horarias, con necesidades de los usuarios, funciones principales, flujos de uso y criterios de aceptación.',
     },
-    ru: {
-      title: 'Спецификация продукта',
-      prompt: 'Напиши спецификацию инструмента, который помогает удалённым командам планировать встречи в разных часовых поясах. Опиши потребности пользователей, основные функции, сценарии использования и критерии приёмки.',
-    },
     ar: {
       title: 'مواصفات المنتج',
       prompt: 'اكتب وثيقة مواصفات لأداة تساعد الفرق التي تعمل عن بُعد على جدولة اجتماعات عبر مناطق زمنية مختلفة، مع احتياجات المستخدمين والميزات الأساسية ومسارات الاستخدام ومعايير القبول.',
@@ -74,10 +70,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Informe financiero',
       prompt: 'Crea un informe financiero trimestral de una marca de café ficticia. Utiliza datos de ejemplo plausibles para mostrar ingresos, costes, beneficios y flujo de caja, y analizar el rendimiento del negocio. Indica que los datos son ilustrativos.',
-    },
-    ru: {
-      title: 'Финансовый отчёт',
-      prompt: 'Создай квартальный финансовый отчёт вымышленного кофейного бренда. На правдоподобных демонстрационных данных покажи выручку, расходы, прибыль и денежный поток, проанализируй результаты бизнеса. Отметь, что данные приведены для примера.',
     },
     ar: {
       title: 'تقرير مالي',
@@ -121,10 +113,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Informe de caso clínico',
       prompt: 'Redacta un caso ficticio de neumonía adquirida en la comunidad con fines docentes. Incluye motivo de consulta, antecedentes, resultados de las exploraciones, razonamiento diagnóstico, evolución clínica y seguimiento. Identifícalo como caso docente ficticio.',
     },
-    ru: {
-      title: 'Клинический случай',
-      prompt: 'Напиши вымышленный учебный отчёт о случае внебольничной пневмонии. Включи жалобы, анамнез, результаты обследований, обоснование диагноза, ход лечения и последующее наблюдение. Отметь, что это вымышленный учебный случай.',
-    },
     ar: {
       title: 'تقرير حالة سريرية',
       prompt: 'اكتب تقريراً تعليمياً عن حالة خيالية لالتهاب رئوي مكتسب من المجتمع. ضمّن الشكوى الرئيسية والتاريخ المرضي ونتائج الفحوص ومبررات التشخيص ومسار العلاج والمتابعة. وضّح أنها حالة تعليمية خيالية.',
@@ -166,10 +154,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Currículum minimalista',
       prompt: 'Crea un currículum minimalista de una página para una persona ficticia dedicada al diseño de producto con tres años de experiencia. Incluye perfil, habilidades, experiencia laboral y proyectos destacados. Completa todos los datos con información ficticia e identifícalo como currículum de ejemplo.',
-    },
-    ru: {
-      title: 'Минималистичное резюме',
-      prompt: 'Создай минималистичное резюме на одну страницу для вымышленного продуктового дизайнера с трёхлетним опытом. Включи сведения о специалисте, навыки, опыт работы и избранные проекты. Заполни все поля вымышленными данными и обозначь документ как пример резюме.',
     },
     ar: {
       title: 'سيرة ذاتية بسيطة',
@@ -213,10 +197,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Factura',
       prompt: 'Crea una factura de servicios de diseño de marca de un estudio ficticio, con datos completos de ejemplo del cliente, servicios, importes desglosados e instrucciones de pago. Identifícala como factura de ejemplo.',
     },
-    ru: {
-      title: 'Счёт на оплату',
-      prompt: 'Создай счёт за услуги по разработке фирменного стиля от вымышленной дизайн-студии. Укажи полные примерные данные клиента, услуги, детализацию стоимости и порядок оплаты. Обозначь документ как образец счёта.',
-    },
     ar: {
       title: 'فاتورة',
       prompt: 'أنشئ فاتورة لخدمات تصميم هوية علامة تجارية من استوديو تصميم خيالي. املأ بيانات العميل والخدمات وتفاصيل الرسوم وتعليمات الدفع بمعلومات نموذجية كاملة. وضّح أنها فاتورة نموذجية.',
@@ -258,10 +238,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Póster de despiece de visor VR',
       prompt: 'Crea un póster con una vista explosionada de un visor conceptual llamado NOVA VR. Muestra carcasa, lentes, pantallas y sensores en capas flotantes, con etiquetas de los componentes y textos breves sobre el producto.',
-    },
-    ru: {
-      title: 'Постер с разборкой VR-гарнитуры',
-      prompt: 'Создай постер с разнесённым видом концептуальной гарнитуры NOVA VR. Покажи корпус, линзы, дисплеи и датчики парящими слоями с подписями компонентов и коротким текстом о продукте.',
     },
     ar: {
       title: 'ملصق تفكيك نظارة واقع افتراضي',
@@ -305,10 +281,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Póster de anuncio de fichaje',
       prompt: 'Diseña un póster conceptual del fichaje del jugador ficticio Lucas Moreau por el Paris Saint-Germain, con colores rojo y azul, un retrato del jugador y el titular WELCOME LUCAS destacado. Añade una pequeña indicación de concepto de aficionado en una esquina.',
     },
-    ru: {
-      title: 'Постер о трансфере игрока',
-      prompt: 'Создай концептуальный постер о переходе вымышленного игрока Lucas Moreau в «Пари Сен-Жермен». Используй красный и синий цвета, портрет игрока и крупный заголовок WELCOME LUCAS. В углу добавь небольшую пометку «фанатский концепт».',
-    },
     ar: {
       title: 'ملصق إعلان انتقال لاعب',
       prompt: 'صمّم ملصقاً تصورياً لانتقال اللاعب الخيالي Lucas Moreau إلى باريس سان جيرمان. استخدم الأحمر والأزرق وصورة اللاعب وعنوان WELCOME LUCAS بارزاً، وأضف في الزاوية عبارة صغيرة توضح أنه تصور من أحد المشجعين.',
@@ -350,10 +322,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Póster de rotulación retro',
       prompt: 'Convierte SLOW MORNINGS en un póster de rotulación a mano inspirado en los letreros de cafeterías antiguas, con una pequeña ilustración de una taza de café, textura de papel crema, guías de lápiz y trazos visibles de rotulador.',
-    },
-    ru: {
-      title: 'Постер с ретро-леттерингом',
-      prompt: 'Оформи SLOW MORNINGS как постер с ручным леттерингом в стиле старых вывесок кафе. Добавь небольшую иллюстрацию кофейной чашки, фактуру кремовой бумаги, карандашные направляющие и заметные штрихи маркера.',
     },
     ar: {
       title: 'ملصق حروف مرسومة بطابع قديم',
@@ -397,10 +365,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Avatar de anime ciberpunk',
       prompt: 'Crea un avatar de un personaje original de anime con pelo plateado corto y auriculares, iluminado con neón azul y violeta. Integra las letras DREAM IN NEON en la iluminación del rostro, con una ciudad futurista nocturna desenfocada de fondo.',
     },
-    ru: {
-      title: 'Аниме-аватар в стиле киберпанк',
-      prompt: 'Создай аватар оригинального аниме-персонажа с короткими серебристыми волосами и наушниками. Освети лицо синим и фиолетовым неоном, вплети надпись DREAM IN NEON в световой рисунок на лице. Фоном сделай размытый ночной город будущего.',
-    },
     ar: {
       title: 'صورة رمزية أنمي سايبربانك',
       prompt: 'أنشئ صورة رمزية لشخصية أنمي أصلية بشعر فضي قصير وسماعات رأس. أضئ الوجه بنيون أزرق وبنفسجي وادمج عبارة DREAM IN NEON في إضاءة الوجه، مع خلفية ضبابية لمدينة مستقبلية ليلاً.',
@@ -442,10 +406,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Retrato de estudio en blanco y negro',
       prompt: 'Genera un retrato de estudio en blanco y negro de una persona joven ficticia del sector creativo, con jersey negro de cuello alto y expresión relajada. Usa un fondo dividido entre claro y oscuro y una luz lateral suave que destaque el rostro, manteniendo la textura natural de la piel.',
-    },
-    ru: {
-      title: 'Чёрно-белый студийный портрет',
-      prompt: 'Создай чёрно-белый студийный портрет вымышленного молодого специалиста творческой профессии в чёрной водолазке со спокойным выражением лица. Используй фон из светлой и тёмной половин и мягкий боковой свет, подчёркивающий черты лица и естественную текстуру кожи.',
     },
     ar: {
       title: 'بورتريه استوديو بالأبيض والأسود',
@@ -489,10 +449,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Presentación de ronda semilla',
       prompt: 'Crea una presentación de financiación para mi startup que explique la oportunidad de mercado, las ventajas del producto, la evolución del negocio y el plan de financiación.',
     },
-    ru: {
-      title: 'Презентация для посевного раунда',
-      prompt: 'Создай инвестиционную презентацию моего стартапа, раскрывающую рыночную возможность, преимущества продукта, развитие бизнеса и план привлечения средств.',
-    },
     ar: {
       title: 'عرض تمويل تأسيسي',
       prompt: 'أنشئ عرضاً لجمع التمويل لشركتي الناشئة يشرح فرصة السوق ومزايا المنتج وتقدم الأعمال وخطة التمويل.',
@@ -534,10 +490,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Propuesta comercial B2B',
       prompt: 'Crea una propuesta comercial para un cliente empresarial que aborde sus problemas con una solución, los beneficios esperados y un plan de implantación.',
-    },
-    ru: {
-      title: 'Коммерческое предложение B2B',
-      prompt: 'Создай коммерческое предложение для корпоративного клиента: опиши его проблемы, решение, ожидаемые выгоды и план внедрения.',
     },
     ar: {
       title: 'عرض مبيعات للشركات',
@@ -581,10 +533,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Presentación al consejo',
       prompt: 'Mejora mi presentación existente para una reunión del consejo: aclara el hilo narrativo, destaca las pruebas clave y unifica el estilo visual.',
     },
-    ru: {
-      title: 'Презентация для совета директоров',
-      prompt: 'Доработай мою существующую презентацию для совета директоров: выстрой последовательное повествование, выдели ключевые доказательства и приведи оформление к единому стилю.',
-    },
     ar: {
       title: 'عرض لمجلس الإدارة',
       prompt: 'حسّن عرضي الحالي ليلائم اجتماع مجلس الإدارة، مع توضيح تسلسل الأفكار وإبراز الأدلة الرئيسية وتوحيد الأسلوب البصري.',
@@ -626,10 +574,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Defensa de proyecto de fin de grado',
       prompt: 'Crea una presentación para defender mi proyecto de fin de grado, exponiendo claramente el problema de investigación, el enfoque, los resultados de validación y las aportaciones originales.',
-    },
-    ru: {
-      title: 'Защита дипломного проекта',
-      prompt: 'Создай презентацию для защиты моего дипломного проекта. Ясно изложи исследовательскую проблему, подход, результаты проверки и оригинальный вклад.',
     },
     ar: {
       title: 'عرض مناقشة مشروع التخرج',
@@ -673,10 +617,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Plan de crecimiento de marca',
       prompt: 'Crea un plan de crecimiento de marca que defina el público objetivo, el posicionamiento, las acciones de marketing y las métricas para medir los resultados.',
     },
-    ru: {
-      title: 'План роста бренда',
-      prompt: 'Создай план роста бренда с описанием целевой аудитории, позиционирования, маркетинговых действий и показателей для оценки результатов.',
-    },
     ar: {
       title: 'خطة نمو العلامة التجارية',
       prompt: 'أنشئ خطة لنمو العلامة التجارية تحدد الجمهور المستهدف والتموضع والإجراءات التسويقية ومؤشرات قياس النتائج.',
@@ -718,10 +658,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Web de promoción inmobiliaria de lujo',
       prompt: 'Diseña una web para una promoción residencial de lujo que muestre su carácter con grandes fotografías de arquitectura y animaciones de desplazamiento fluidas.',
-    },
-    ru: {
-      title: 'Сайт элитной недвижимости',
-      prompt: 'Разработай сайт элитного жилого комплекса, передающий его характер с помощью крупных архитектурных фотографий и плавной анимации при прокрутке.',
     },
     ar: {
       title: 'موقع عقارات فاخرة',
@@ -765,10 +701,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'Guía de incorporación',
       prompt: 'Crea una guía para nuevos empleados con el programa de la primera semana, presentaciones del equipo, tareas de aprendizaje y una lista de equipos.',
     },
-    ru: {
-      title: 'Руководство для новых сотрудников',
-      prompt: 'Создай руководство для новых сотрудников с расписанием первой недели, знакомством с командой, учебными заданиями и списком оборудования.',
-    },
     ar: {
       title: 'دليل الموظفين الجدد',
       prompt: 'أنشئ دليلاً للموظفين الجدد يتضمن جدول الأسبوع الأول والتعريف بالفريق ومهام التعلم وقائمة المعدات.',
@@ -810,10 +742,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Página de precios',
       prompt: 'Diseña una página de precios que compare claramente los importes y las funciones de los planes y responda a las dudas habituales de compra.',
-    },
-    ru: {
-      title: 'Страница тарифов',
-      prompt: 'Разработай страницу тарифов, которая наглядно сравнивает цены и возможности планов и отвечает на частые вопросы о покупке.',
     },
     ar: {
       title: 'صفحة أسعار المنتج',
@@ -857,10 +785,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
       title: 'App de hábitos gamificada',
       prompt: 'Diseña una aplicación móvil que convierta los hábitos diarios en misiones y registre el progreso con puntos de experiencia, niveles y rachas de días consecutivos.',
     },
-    ru: {
-      title: 'Приложение привычек с геймификацией',
-      prompt: 'Разработай мобильное приложение, превращающее ежедневные привычки в задания и отслеживающее прогресс с помощью очков опыта, уровней и серий последовательных дней.',
-    },
     ar: {
       title: 'تطبيق عادات بأسلوب الألعاب',
       prompt: 'صمّم تطبيقاً للهاتف يحوّل العادات اليومية إلى مهام، ويتابع التقدم عبر نقاط الخبرة والمستويات وسلاسل الأيام المتتالية.',
@@ -902,10 +826,6 @@ const HOME_PRESET_COPY: Record<string, Partial<Record<Locale, HomePresetCopy>>> 
     'es-ES': {
       title: 'Web de marca con estilo collage',
       prompt: 'Diseña una web inspirada en revistas para mi marca, presentando el producto con titulares llamativos, collages de imágenes y animaciones de desplazamiento.',
-    },
-    ru: {
-      title: 'Сайт бренда в стиле коллажа',
-      prompt: 'Разработай для моего бренда сайт в журнальном стиле, представляющий продукт с помощью выразительных заголовков, фотоколлажей и анимации при прокрутке.',
     },
     ar: {
       title: 'موقع علامة تجارية بأسلوب الكولاج',
