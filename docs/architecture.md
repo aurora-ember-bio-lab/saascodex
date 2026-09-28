@@ -277,3 +277,81 @@ Shared DTOs live in `packages/contracts`.
 When a user-facing capability changes, keep its daemon endpoint, shared
 contract, web surface, and `od` CLI surface aligned as required by the root
 `AGENTS.md` dual-track rule.
+
+## 9. Hosted control plane (full stack)
+
+The local-first runtime above is complete on its own. The **hosted** shape adds
+a control plane so a team can sign in, pay, sync project metadata, and search
+content semantically.
+
+```
+            ┌──────────────┐        ┌───────────────────────────┐
+  browser → │  web (Vercel)│  /api  │  daemon (Railway)         │
+            │  or served   │ ─────► │  Express API + web export │
+            │  by daemon   │        └───────┬───────────┬───────┘
+            └──────────────┘                │           │
+                                   ┌────────▼──────┐   ┌▼──────────────┐
+                                   │ Postgres 16   │   │ Stripe        │
+                                   │ + pgvector    │   │ (checkout,    │
+                                   │ users/…/vec   │   │  webhooks)    │
+                                   └───────────────┘   └───────────────┘
+```
+
+| Layer | Component | Source / doc |
+|---|---|---|
+| Web UI | Next.js app, static export | `apps/web` → [DEPLOYMENT.md](./DEPLOYMENT.md) |
+| API + runtime | Express daemon (also serves the export) | `apps/daemon` |
+| Control-plane DB | PostgreSQL 16 + pgvector | [`db/`](../db) → [DATABASE.md](./DATABASE.md) |
+| Billing | Stripe subscriptions + webhooks | `apps/daemon/src/routes/billing.ts` → [BILLING.md](./BILLING.md) |
+| Auth | Daemon token/Basic + hosted JWT sessions & API keys | [AUTH.md](./AUTH.md) |
+| Image | Runtime container | `deploy/Dockerfile` → [DEPLOYMENT.md](./DEPLOYMENT.md) |
+| Release / scan | GHCR image, bundle artifacts, Trivy | [RELEASING.md](./RELEASING.md), [SECURITY.md](./SECURITY.md) |
+
+### Storage split
+
+- **Local** — SQLite for projects/runs, plus `billing.json` for subscription
+  state (`apps/daemon/src/billing/store.ts`). No server required.
+- **Hosted** — Postgres holds accounts, sessions, API keys, a Stripe mirror,
+  hosted project metadata, and `skill_embeddings` (pgvector). Migrations are
+  Atlas-versioned; see [DATABASE.md](./DATABASE.md).
+
+### Hosted data flows
+
+1. **Sign-in / session** — credentials → JWT (HS256, `JWT_SECRET`); the
+   session row (`sessions.token_hash`) is the revocation handle.
+2. **Subscription** — checkout session → Stripe → webhook →
+   `subscriptions` + `users.plan`; plan gating drives project caps, export
+   watermarking, and API-key access (see [BILLING.md](./BILLING.md)).
+3. **Semantic search** — content is embedded into `skill_embeddings`
+   (`vector(1536)`, HNSW cosine index) for nearest-neighbour lookup over skills,
+   templates, design systems, and docs.
+4. **API access** — paid tiers issue keys (`api_keys`); the daemon's
+   token/Basic path stays the local/self-host credential.
+
+### Deployment shapes
+
+- **Single service** — one Railway service (daemon + web export) + Postgres.
+- **Split** — Vercel serves the web; Railway runs the daemon; `/api` is proxied
+  from Vercel to the daemon. Both are documented in
+  [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+## 10. API authentication
+
+Public or shared deployments must authenticate every `/api` call. The daemon
+enforces a bearer token (`OD_API_TOKEN`) or HTTP Basic, with loopback callers
+exempt and the health probes open; hosted accounts add JWT sessions and API
+keys on top. The full model — token comparison, exemptions, JWT/session and
+API-key lifecycle, rotation, and the security checklist — lives in
+[AUTH.md](./AUTH.md).
+
+## 11. Related documents
+
+| Topic | Doc |
+|---|---|
+| Billing and plans | [BILLING.md](./BILLING.md) |
+| Database and migrations | [DATABASE.md](./DATABASE.md) |
+| Authentication | [AUTH.md](./AUTH.md) |
+| Deployment (Vercel/Railway/Docker) | [DEPLOYMENT.md](./DEPLOYMENT.md) |
+| Releasing | [RELEASING.md](./RELEASING.md) |
+| Security scanning | [SECURITY.md](./SECURITY.md) |
+| Style templates and languages | [STYLE-TEMPLATES.md](./STYLE-TEMPLATES.md) |
