@@ -44,6 +44,30 @@ Accounts, login sessions, and programmatic keys live in Postgres:
 | `sessions` | `token_hash`, `expires_at`, `revoked_at` | one row per login/refresh |
 | `api_keys` | `prefix` (display), `key_hash`, `last_used_at`, `revoked_at` | paid-tier programmatic access |
 
+### Endpoints (implemented)
+
+`apps/daemon/src/routes/auth.ts` (store: `apps/daemon/src/auth/store.ts`). Every
+route answers `501 AUTH_NOT_CONFIGURED` until `JWT_SECRET` (≥ 16 chars) is set.
+
+| Method | Path | Auth | Purpose |
+|---|---|---|---|
+| `POST` | `/api/auth/register` | public | Create an account (`email`, `password`, `name?`, `plan?`) |
+| `POST` | `/api/auth/login` | public | Exchange credentials for a session token |
+| `GET` | `/api/auth/session` | Bearer session | Current user + plan |
+| `POST` | `/api/auth/logout` | Bearer session | Revoke the current session |
+| `GET` | `/api/auth/api-keys` | Bearer session | List keys (id, name, prefix, timestamps) |
+| `POST` | `/api/auth/api-keys` | Bearer session + paid plan | Create a key (returned once) |
+| `DELETE` | `/api/auth/api-keys/:id` | Bearer session | Revoke a key |
+
+Registration creates the account on the **Free** plan (7-day Pro trial) and
+issues a session. A requested Pro/Studios plan returns `next: "checkout"` so the
+client continues to Stripe Checkout (`POST /api/billing/checkout`); the plan is
+only upgraded once payment succeeds. Registration and login are the only public
+auth routes; the rest require `Authorization: Bearer <session token>`.
+
+Passwords are hashed with **scrypt** (`scrypt$N$r$p$salt$hash`, timing-safe
+verify) and sessions are stored as `sha256` token hashes.
+
 ### JWT sessions
 
 - Sign with **HS256** using `JWT_SECRET` (32+ random bytes,

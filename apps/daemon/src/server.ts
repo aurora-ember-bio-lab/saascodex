@@ -901,6 +901,7 @@ import { registerActiveContextRoutes } from './routes/active-context.js';
 import { registerAutomationRoutes } from './routes/automation.js';
 import { registerAttributionRoutes } from './routes/attribution.js';
 import { registerBillingRoutes } from './routes/billing.js';
+import { registerAuthRoutes } from './routes/auth.js';
 import { registerDaemonRoutes } from './routes/daemon.js';
 import { registerGenuiRoutes } from './routes/genui.js';
 import { registerDesignSystemRoutes } from './routes/design-systems.js';
@@ -3252,6 +3253,10 @@ export async function startServer({
       // Stripe webhooks authenticate with a signed payload instead of the
       // daemon bearer token; the route verifies Stripe-Signature itself.
       '/billing/webhook',
+      // Registration and login are public by nature; every other auth route
+      // (session, api-keys) still requires a bearer session.
+      '/auth/register',
+      '/auth/login',
     ]);
     app.use('/api', (req, res, next) => {
       if (openProbePaths.has(req.path)) return next();
@@ -8192,6 +8197,7 @@ export async function startServer({
     paths: { RUNTIME_DATA_DIR },
     env: process.env,
   });
+  registerAuthRoutes(app, { db, env: process.env });
   const pathDeps = {
     PROJECT_ROOT,
     PROJECTS_DIR,

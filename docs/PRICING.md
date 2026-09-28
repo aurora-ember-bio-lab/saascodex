@@ -51,9 +51,10 @@ keys, hashing, and rotation live in [AUTH.md](./AUTH.md).
 - `POST /api/auth/login` → verify credentials, issue a session.
 - `GET /api/auth/session` → current user + plan.
 
-Until the daemon exposes `/api/auth/register`, `register.html` reports
-"registration is not enabled on this deployment yet" and the plan page still
-serves as the reference for the subscription flow.
+Registration is implemented by the daemon
+(`apps/daemon/src/routes/auth.ts`); it requires `JWT_SECRET` and otherwise
+answers `501`, which `register.html` surfaces as "registration is not enabled
+on this deployment yet".
 
 ## Environment
 
