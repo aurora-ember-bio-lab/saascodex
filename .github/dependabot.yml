@@ -1,0 +1,33 @@
+# Dependabot configuration for SaaSCodex.
+# Docs: docs/DEPENDENCY-TRIAGE.md
+#
+# Groups updates to keep PR noise low on a large monorepo, and keeps GitHub
+# Actions pinned versions current.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "docker"
+    directory: "/deploy"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 5
