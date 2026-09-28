@@ -47,6 +47,12 @@ pnpm exec tsx scripts/package-release.ts --daemon-dir .release/daemon --version 
 
 ## Installing a release
 
+**Desktop installers (Tauri v2):** built by
+[`.github/workflows/desktop.yml`](../.github/workflows/desktop.yml) for Windows
+(NSIS/MSI), macOS (`.dmg`, universal), and Linux (`.AppImage`/`.deb`), and
+attached to the tag release. The shell wraps the local daemon — see
+[`desktop/tauri/README.md`](../desktop/tauri/README.md).
+
 **Docker (recommended):**
 
 ```bash

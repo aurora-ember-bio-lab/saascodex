@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SaaSCodex</title>
+    <meta name="saascodex-daemon-url" content="http://127.0.0.1:7456" />
+    <style>
+      html, body { margin: 0; height: 100%; }
+      body {
+        display: grid;
+        place-items: center;
+        background: #0b0f0e;
+        color: #ecf4f1;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      .card { text-align: center; max-width: 460px; padding: 24px; }
+      h1 { font-size: 20px; margin: 0 0 8px; }
+      p { color: #93a7a0; margin: 0; line-height: 1.6; }
+      button {
+        margin-top: 18px; min-height: 40px; padding: 0 18px;
+        border: 0; border-radius: 10px; background: #3be8b0; color: #06110d;
+        font: inherit; font-weight: 600; cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>SaaSCodex</h1>
+      <p>Opening your local workspace…</p>
+      <p id="hint"></p>
+      <button id="retry" type="button">Retry</button>
+    </div>
+    <script>
+      // The desktop shell is a window over the local daemon. If the daemon is
+      // not running, show a hint instead of a blank window.
+      var url = document.querySelector('meta[name="saascodex-daemon-url"]').content;
+      var hint = document.getElementById('hint');
+      fetch(url + '/api/health')
+        .then(function (r) {
+          if (r.ok) { location.replace(url); return; }
+          throw new Error('unhealthy');
+        })
+        .catch(function () {
+          hint.textContent = 'The SaaSCodex daemon is not running. Start it (od --no-open) and retry.';
+        });
+      document.getElementById('retry').addEventListener('click', function () { location.reload(); });
+    </script>
+  </body>
+</html>

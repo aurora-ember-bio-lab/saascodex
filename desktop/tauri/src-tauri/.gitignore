@@ -1,0 +1,6 @@
+target/
+gen/
+icons/*.png
+icons/*.ico
+icons/*.icns
+!icons/.gitkeep
