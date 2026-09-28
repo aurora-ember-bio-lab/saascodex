@@ -44,6 +44,17 @@ jobs:
         with:
           sarif_file: trivy-fs.sarif
           category: trivy-fs
+      # Hard gate: fail the build on any CRITICAL vulnerability. The reporting
+      # step above still surfaces HIGH findings without failing.
+      - name: Trivy critical gate
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          severity: CRITICAL
+          exit-code: '1'
+          trivyignores: .trivyignore
 
   trivy-image:
     name: Trivy (image)

@@ -3,6 +3,34 @@
 Baseline scan of the SaaSCodex dependency tree, captured 2026-09-28 with
 `pnpm audit` (and corroborated by Dependabot on the GitHub repo).
 
+## Remediation applied (2026-09-28)
+
+| | Before | After |
+|---|---|---|
+| Critical | 2 | **0** |
+| High | 55 | 19 |
+| Moderate | 43 | 30 |
+| Low | 8 | 7 |
+| **Total** | **108** | **56** |
+
+Changes:
+
+- `apps/web`: `next` **16.2.6 → ^16.3.6** (clears both criticals + Next highs),
+  `postcss` `^8.5.28`.
+- `apps/daemon`: `multer` **2.2.0 → ^2.4.0**, `postcss` `^8.5.28`.
+- Root `pnpm.overrides` (these packages were pinned, which is why a plain spec
+  bump did not move them): `postcss` 8.5.15 → **8.5.28**, `protobufjs` 8.4.0 →
+  **8.4.1**, `fast-uri` 3.1.5 → **3.1.6**, and new pins `js-yaml` **4.3.0**,
+  `lodash-es` **4.18.0**, `form-data` **4.0.6**, `@xmldom/xmldom` **0.9.12**
+  (mirrored in `pnpm-workspace.yaml`).
+
+Verified after the bump: web + daemon `typecheck` green, 40 daemon tests green,
+and the web app boots (HTTP 200) on Next 16.3.6.
+
+Remaining highs (19) are mostly tooling/transitive without a clean in-range fix;
+Dependabot tracks them. `nanoid` is intentionally **not** blanket-pinned (the
+fix is in a different major, so forcing it risks breaking consumers).
+
 ## Summary
 
 | Source | Critical | High | Moderate | Low | Total |
@@ -66,9 +94,11 @@ Dependency families with the most advisories: `@xmldom/xmldom` (23), `next`
 
 ## Gating
 
-The Trivy workflow (`.github/workflows/security.yml`) currently **reports**
-(`exit-code: 0`). Flip it to `'1'` once step 1 lands and the `HIGH/CRITICAL`
-baseline is clean, so new criticals fail CI instead of accumulating.
+The Trivy workflow (`.github/workflows/security.yml`) **reports** all
+`HIGH/CRITICAL` findings as SARIF and **a second step hard-fails on
+`CRITICAL`**. With the criticals now at zero the gate passes; it will fail the
+build the moment a new critical is introduced. Highs stay report-only until the
+tooling/transitive set is cleared.
 
 ## Reproduce
 
