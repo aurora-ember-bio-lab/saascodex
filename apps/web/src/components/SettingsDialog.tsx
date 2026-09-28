@@ -550,18 +550,6 @@ function codexPathStrings(locale: Locale) {
         `已配置的 Codex 路径启动失败：${configuredPath}。本次测试改用 PATH 中的 Codex CLI：${detectedPath}。建议更新 CODEX_BIN 或清空自定义路径。`,
     };
   }
-  if (locale === 'zh-TW') {
-    return {
-      repairHint: '目前儲存的 Codex 路徑不適合繼續使用。',
-      useDetected: '使用偵測到的 Codex',
-      clearCustom: '清除自訂路徑',
-      configuredSuccess: (path: string) => `本次測試使用的是已設定的 Codex 路徑：${path}。`,
-      invalidFallback: (configuredPath: string, detectedPath: string) =>
-        `已設定的 Codex 路徑無效或不可執行：${configuredPath}。本次測試改用 PATH 中的 Codex CLI：${detectedPath}。建議更新 CODEX_BIN 或清除自訂路徑。`,
-      failedFallback: (configuredPath: string, detectedPath: string) =>
-        `已設定的 Codex 路徑啟動失敗：${configuredPath}。本次測試改用 PATH 中的 Codex CLI：${detectedPath}。建議更新 CODEX_BIN 或清除自訂路徑。`,
-    };
-  }
   if (locale === 'ja') {
     return {
       repairHint: '保存されている Codex のパスは、このテストで使用すべきバイナリではありません。',

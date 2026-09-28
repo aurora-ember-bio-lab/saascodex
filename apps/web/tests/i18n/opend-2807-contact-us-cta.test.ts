@@ -33,21 +33,14 @@ const CONTACT_US: Record<Locale, string> = {
   de: 'Kontakt aufnehmen',
   en: 'Contact us',
   'es-ES': 'Contactar con nosotros',
-  fa: 'تماس با ما',
   fr: 'Nous contacter',
-  hu: 'Kapcsolatfelvétel',
-  id: 'Hubungi kami',
   it: 'Contattaci',
   ja: 'お問い合わせ',
   ko: '문의하기',
-  pl: 'Skontaktuj się z nami',
   'pt-BR': 'Fale conosco',
   ru: 'Связаться с нами',
-  th: 'ติดต่อเรา',
-  tr: 'Bize ulaşın',
-  uk: 'Зв’язатися з нами',
   'zh-CN': '联系我们',
-  'zh-TW': '聯絡我們',
+  no: 'Kontakt oss',
 };
 
 /** 改之前那一版「联系支持」。命中说明这个语言被漏掉了。 */
@@ -56,28 +49,21 @@ const OLD_CONTACT_SUPPORT: Record<Locale, string> = {
   de: 'Support kontaktieren',
   en: 'Contact support',
   'es-ES': 'Contactar con soporte',
-  fa: 'تماس با پشتیبانی',
   fr: 'Contacter le support',
-  hu: 'Kapcsolatfelvétel a támogatással',
-  id: 'Hubungi dukungan',
   it: 'Contatta il supporto',
   ja: 'サポートに問い合わせる',
   ko: '지원팀에 문의',
-  pl: 'Skontaktuj się z pomocą',
   'pt-BR': 'Falar com o suporte',
   ru: 'Связаться с поддержкой',
-  th: 'ติดต่อฝ่ายสนับสนุน',
-  tr: 'Destekle iletişime geç',
-  uk: 'Звернутися до підтримки',
   'zh-CN': '联系支持',
-  'zh-TW': '聯絡支援',
+  no: 'Kontakt kundestøtte',
 };
 
-describe('OPEND-2807 · 〔联系我们〕19 语齐', () => {
-  it('清点:确实是 19 本词典', () => {
-    expect(LOCALES.length).toBe(19);
-    expect(Object.keys(CONTACT_US).length).toBe(19);
-    expect(Object.keys(OLD_CONTACT_SUPPORT).length).toBe(19);
+describe('OPEND-2807 · 〔联系我们〕12 语齐', () => {
+  it('清点:确实是 12 本词典', () => {
+    expect(LOCALES.length).toBe(12);
+    expect(Object.keys(CONTACT_US).length).toBe(12);
+    expect(Object.keys(OLD_CONTACT_SUPPORT).length).toBe(12);
   });
 
   it.each(LOCALES)('%s 的值就是工单定稿那一句', async (locale) => {
@@ -108,7 +94,7 @@ describe('OPEND-2807 · 〔联系我们〕19 语齐', () => {
    * 回归的另一种形状:整本词典被英文占位盖掉。RTL 两语(ar / fa)单独点名 ——
    * 它们最容易在批量改文案时被当成「反正看不懂」直接抄英文。
    */
-  it.each(['ar', 'fa'] as const)('%s 是真译文,不是英文回落', async (locale) => {
+  it.each(['ar'] as const)('%s 是真译文,不是英文回落', async (locale) => {
     const dict = await loadDict(locale);
     const value = dict['chat.runError.contactSupportCta'];
     expect(value).not.toMatch(/[A-Za-z]/);

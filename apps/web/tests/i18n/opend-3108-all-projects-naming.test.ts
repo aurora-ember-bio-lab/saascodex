@@ -29,21 +29,14 @@ const ALL_PROJECTS: Record<Locale, string> = {
   de: 'Alle Projekte',
   en: 'All projects',
   'es-ES': 'Todos los proyectos',
-  fa: 'همه پروژه‌ها',
   fr: 'Tous les projets',
-  hu: 'Összes projekt',
-  id: 'Semua proyek',
   it: 'Tutti i progetti',
   ja: 'すべてのプロジェクト',
   ko: '모든 프로젝트',
-  pl: 'Wszystkie projekty',
   'pt-BR': 'Todos os projetos',
   ru: 'Все проекты',
-  th: 'โปรเจกต์ทั้งหมด',
-  tr: 'Tüm projeler',
-  uk: 'Усі проєкти',
   'zh-CN': '全部项目',
-  'zh-TW': '全部專案',
+  no: 'Alle prosjekter',
 };
 
 describe('OPEND-3108 · 「项目」→「全部项目」', () => {

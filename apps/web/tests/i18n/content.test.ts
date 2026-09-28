@@ -57,7 +57,6 @@ describe('localized resource content', () => {
     } as unknown as SkillSummary;
 
     expect(localizeSkillName('zh-CN', inlineSkill)).toBe('内联技能');
-    expect(localizeSkillName('zh-TW', inlineSkill)).toBe('内联技能');
     expect(localizeSkillName('fr', inlineSkill)).toBe('Inline Skill');
     expect(localizeSkillDescription('zh-CN', inlineSkill)).toBe('中文内联描述。');
     expect(localizeSkillDescription('fr', inlineSkill)).toBe('English inline description.');
@@ -123,8 +122,12 @@ describe('localized resource content', () => {
   // gap this PR fixes (it was missing for `it`). This locks every non-English
   // locale to a resolvable bundle so a future locale addition can't regress.
   it('resolves a built-in-content bundle for every supported non-English locale', () => {
+    // `no` intentionally ships English library copy (skill / design-system /
+    // prompt-template tables) until a dedicated NO bundle lands; it is the one
+    // non-English locale without a bundle, and the dictionary itself still
+    // resolves through the `...en` spread.
     const missing = LOCALES.filter(
-      (locale) => locale !== 'en' && !hasLocalizedContent(locale),
+      (locale) => locale !== 'en' && locale !== 'no' && !hasLocalizedContent(locale),
     );
     expect(
       missing,

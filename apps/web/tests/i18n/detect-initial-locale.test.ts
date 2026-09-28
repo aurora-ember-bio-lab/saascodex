@@ -89,11 +89,18 @@ describe('detectInitialLocale priority chain', () => {
     expect(detectInitialLocale()).toBe('zh-CN');
   });
 
-  it('routes packaged OS locale strings through resolveSystemLocale (zh-Hant → zh-TW)', () => {
+  it('routes packaged OS locale strings through resolveSystemLocale (zh-Hant → zh-CN)', () => {
     installHostWithOsLocale('zh-Hant-TW');
     setNavigatorLanguages(['en-US']);
 
-    expect(detectInitialLocale()).toBe('zh-TW');
+    expect(detectInitialLocale()).toBe('zh-CN');
+  });
+
+  it('routes Norwegian OS locale strings onto the shipped no dictionary (nb-NO → no)', () => {
+    installHostWithOsLocale('nb-NO');
+    setNavigatorLanguages(['en-US']);
+
+    expect(detectInitialLocale()).toBe('no');
   });
 
   it('falls back to navigator when host osLocale is missing or not a string', () => {

@@ -11,23 +11,16 @@ import {
 } from 'react';
 import { de } from './locales/de';
 import { en } from './locales/en';
-import { id } from './locales/id';
 import { esES } from './locales/es-ES';
-import { fa } from './locales/fa';
 import { ar } from './locales/ar';
 import { ja } from './locales/ja';
 import { ko } from './locales/ko';
 import { ptBR } from './locales/pt-BR';
 import { ru } from './locales/ru';
 import { zhCN } from './locales/zh-CN';
-import { zhTW } from './locales/zh-TW';
-import { pl } from './locales/pl';
-import { hu } from './locales/hu';
 import { fr } from './locales/fr';
-import { uk } from './locales/uk';
-import { tr } from './locales/tr';
-import { th } from './locales/th';
 import { it } from './locales/it';
+import { no } from './locales/no';
 import { getSaaSCodexHost } from '@saascodex/host';
 import { LOCALES, type Dict, type Locale } from './types';
 
@@ -38,24 +31,17 @@ type DictKey = keyof Dict;
 
 const DICTS: Record<Locale, Dict> = {
   'en': en,
-  'id': id,
   'de': de,
   'zh-CN': zhCN,
-  'zh-TW': zhTW,
   'pt-BR': ptBR,
   'es-ES': esES,
   'ru': ru,
-  'fa': fa,
   'ar': ar,
   'ja': ja,
   'ko': ko,
-  'pl': pl,
-  'hu': hu,
   'fr': fr,
-  'uk': uk,
-  'tr': tr,
-  'th': th,
   'it': it,
+  'no': no,
 };
 
 const LS_KEY = 'saascodex:locale';
@@ -76,12 +62,17 @@ export function resolveSystemLocale(languages: readonly string[]): Locale | null
     const exact = LOCALES.find((locale) => locale.toLowerCase() === normalized.toLowerCase());
     if (exact) return exact;
 
-    const [language, regionOrScript] = normalized.toLowerCase().split('-');
+    const [language] = normalized.toLowerCase().split('-');
     if (language === 'zh') {
-      if (regionOrScript === 'hant' || regionOrScript === 'tw' || regionOrScript === 'hk' || regionOrScript === 'mo') {
-        return 'zh-TW';
-      }
+      // zh-TW is retired from the shipped set; every Chinese variant
+      // resolves to Simplified, which still carries the Han content tables.
       return 'zh-CN';
+    }
+
+    // Norwegian Bokmål / Nynorsk browsers report `nb-NO` / `nn-NO`; both map
+    // onto the shipped `no` dictionary.
+    if (language === 'nb' || language === 'nn') {
+      return 'no';
     }
 
     const baseMatch = LOCALES.find((locale) => locale.toLowerCase().split('-')[0] === language);
@@ -197,7 +188,7 @@ interface ProviderProps {
   children: ReactNode;
 }
 
-const RTL_LOCALES: Locale[] = ['ar', 'fa'];
+const RTL_LOCALES: Locale[] = ['ar'];
 
 /**
  * Whether a locale lays out right-to-left. Exported because direction also

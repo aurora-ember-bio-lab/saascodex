@@ -29,21 +29,14 @@ const DETAILS_POINTER: Record<Locale, string[]> = {
   de: ['Details anzeigen'],
   en: ['View details', 'view details'],
   'es-ES': ['Ver detalles'],
-  fa: ['مشاهده جزئیات'],
   fr: ['Voir les détails'],
-  hu: ['Részletek megtekintése'],
-  id: ['Lihat detail'],
   it: ['Vedi dettagli'],
   ja: ['詳細を表示'],
   ko: ['자세히 보기'],
-  pl: ['Zobacz szczegóły'],
   'pt-BR': ['Ver detalhes'],
   ru: ['Подробности', 'подробности'],
-  th: ['ดูรายละเอียด'],
-  tr: ['Ayrıntıları gör'],
-  uk: ['Докладніше', 'докладніше'],
   'zh-CN': ['查看详情', '详情'],
-  'zh-TW': ['查看詳情', '詳情'],
+  no: ['Vis detaljer'],
 };
 
 /**
@@ -55,21 +48,14 @@ const SUPPORT_WORD: Record<Locale, string> = {
   'de': 'Support',
   'en': 'support',
   'es-ES': 'soporte',
-  'fa': 'پشتیبانی',
   'fr': 'assistance',
-  'hu': 'ügyfélszolgálat',
-  'id': 'dukungan',
   'it': 'assistenza',
   'ja': 'サポート',
   'ko': '지원팀',
-  'pl': 'pomocą techniczną',
   'pt-BR': 'suporte',
   'ru': 'поддержку',
-  'th': 'ฝ่ายสนับสนุน',
-  'tr': 'destek',
-  'uk': 'підтримки',
   'zh-CN': '支持',
-  'zh-TW': '支援',
+  'no': 'support',
 };
 
 /**
@@ -79,8 +65,8 @@ const SUPPORT_WORD: Record<Locale, string> = {
 const QUOTE_CHARS = ['“', '”', '«', '»', '「', '」', '„', '‟', '‘', '’', '〈', '〉'];
 
 describe('chat.runError.fallbackMessage 不再指向已下线的「查看详情」', () => {
-  it('19 个 locale 都注册在案(别让新语言从这条扫描里漏出去)', () => {
-    expect(LOCALES).toHaveLength(19);
+  it('12 个 locale 都注册在案(别让新语言从这条扫描里漏出去)', () => {
+    expect(LOCALES).toHaveLength(12);
     for (const locale of LOCALES) {
       expect(DETAILS_POINTER[locale], `missing pointer list for ${locale}`).toBeTruthy();
       expect(SUPPORT_WORD[locale], `missing support word for ${locale}`).toBeTruthy();

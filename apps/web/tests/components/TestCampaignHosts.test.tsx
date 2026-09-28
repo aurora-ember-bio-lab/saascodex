@@ -315,7 +315,7 @@ describe("Test decisions at the existing host touchpoints", () => {
 		}
 	});
 
-	it.each(["zh-TW", "ko", "ja", "zh-CN"] as const)("uses app locale %s on first mount and language changes even when document lang stays English", async (initialLocale) => {
+	it.each(["ko", "ja", "zh-CN"] as const)("uses app locale %s on first mount and language changes even when document lang stays English", async (initialLocale) => {
 		// Editors and initial HTML can leave this unrelated DOM attribute stale.
 		vi.spyOn(document.documentElement, "lang", "get").mockReturnValue("en");
 		const deployment = {

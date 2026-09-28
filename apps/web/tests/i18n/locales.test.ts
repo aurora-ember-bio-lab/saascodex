@@ -2,12 +2,10 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { resolveSystemLocale } from '../../src/i18n';
 import { en } from '../../src/i18n/locales/en';
-import { id } from '../../src/i18n/locales/id';
 import { zhCN } from '../../src/i18n/locales/zh-CN';
-import { zhTW } from '../../src/i18n/locales/zh-TW';
 import { LOCALES, LOCALE_LABEL, type Dict, type Locale } from '../../src/i18n/types';
 
-const EXPECTED_LOCALES = ['en', 'id', 'de', 'zh-CN', 'zh-TW', 'pt-BR', 'es-ES', 'ru', 'fa', 'ar', 'ja', 'ko', 'pl', 'hu', 'fr', 'uk', 'tr', 'th', 'it'];
+const EXPECTED_LOCALES = ['en', 'de', 'zh-CN', 'pt-BR', 'es-ES', 'ru', 'ar', 'ja', 'ko', 'fr', 'it', 'no'];
 
 function placeholders(value: string): string[] {
   const names: string[] = [];
@@ -38,16 +36,18 @@ function explicitLocaleKeys(locale: Locale): string[] {
 describe('i18n locales', () => {
   it('resolves the initial locale from browser language preferences', () => {
     expect(resolveSystemLocale(['zh-Hans-CN', 'en-US'])).toBe('zh-CN');
-    expect(resolveSystemLocale(['zh-Hant-HK', 'en-US'])).toBe('zh-TW');
+    expect(resolveSystemLocale(['zh-Hant-HK', 'en-US'])).toBe('zh-CN');
     expect(resolveSystemLocale(['pt-PT', 'en-US'])).toBe('pt-BR');
     expect(resolveSystemLocale(['es-MX', 'en-US'])).toBe('es-ES');
+    expect(resolveSystemLocale(['nb-NO', 'en-US'])).toBe('no');
+    expect(resolveSystemLocale(['nn-NO', 'en-US'])).toBe('no');
     expect(resolveSystemLocale(['nl-NL', 'en-US'])).toBe('en');
     expect(resolveSystemLocale(['nl-NL'])).toBeNull();
   });
 
   it('registers every supported locale in the language menu', () => {
     expect(LOCALES).toEqual(EXPECTED_LOCALES);
-    expect((LOCALE_LABEL as Record<string, string>).id).toBe('Bahasa Indonesia');
+    expect((LOCALE_LABEL as Record<string, string>).no).toBe('Norsk');
     expect((LOCALE_LABEL as Record<string, string>).de).toBe('Deutsch');
     expect((LOCALE_LABEL as Record<string, string>).it).toBe('Italiano');
     expect((LOCALE_LABEL as Record<string, string>).ja).toBe('日本語');
@@ -59,21 +59,14 @@ describe('i18n locales', () => {
       de: 'Prototyp',
       en: 'Prototype',
       'es-ES': 'Prototipo',
-      fa: 'نمونه اولیه',
       fr: 'Prototype',
-      hu: 'Prototípus',
-      id: 'Prototipe',
       it: 'Prototipo',
       ja: 'プロトタイプ',
       ko: '프로토타입',
-      pl: 'Prototyp',
       'pt-BR': 'Protótipo',
       ru: 'Прототип',
-      th: 'ต้นแบบ',
-      tr: 'Prototip',
-      uk: 'Прототип',
       'zh-CN': '原型',
-      'zh-TW': '原型',
+      no: 'Prototype',
     };
 
     for (const locale of LOCALES) {
@@ -88,7 +81,7 @@ describe('i18n locales', () => {
   // paragraph the DAEMON wrote into `run.error`, so a Chinese UI showed a
   // Chinese title over an English body. It is a dictionary entry now — pin the
   // language the product signed off, and let the parity test below prove the
-  // other seventeen exist with the same placeholders.
+  // other locales exist with the same placeholders.
   it('localizes the ACP CLI session refusal card', async () => {
     const zh = await loadDict('zh-CN');
     expect(zh['chat.runError.title.cliSessionRefused']).toBe('智能体版本不兼容');
@@ -144,21 +137,14 @@ describe('i18n locales', () => {
       de: 'Kontingent',
       en: 'Allowance',
       'es-ES': 'Cuota',
-      fa: 'سهمیه',
       fr: 'Quota',
-      hu: 'Keret',
-      id: 'Kuota',
       it: 'Quota',
       ja: '利用枠',
       ko: '사용 한도',
-      pl: 'Limit',
       'pt-BR': 'Cota',
       ru: 'Лимит',
-      th: 'โควตา',
-      tr: 'Kota',
-      uk: 'Ліміт',
       'zh-CN': '额度',
-      'zh-TW': '額度',
+      no: 'Kvote',
     };
 
     for (const locale of LOCALES) {
@@ -175,14 +161,6 @@ describe('i18n locales', () => {
       'chat.amrError.balanceMessage',
       'chat.amrBalanceGate.message',
       'chat.amrBalanceGate.watchingWallet',
-      // `chat.amrLowBalance.title` / `.message` 曾经也在这张表里 —— 那两条属于
-      // 首页的软提醒弹窗 `AmrLowBalanceDialog`,产品 2026-09-06 裁决删掉整张弹窗
-      // (规格 T53),key 随之清掉。
-      //
-      // 软那一档现在只剩项目页流水里的升级卡,而它的 `chat.upgrade.balance`
-      // **不能**加进这张表:zh-CN「剩余额度」/ zh-TW「剩餘額度」里天然含有
-      // 「余额」/「餘額」这两个子串,会被下面那条反向断言判红。术语一致性对
-      // 那一族另说,不在这条用例的范围里。
       'chat.runError.title.balance',
       'entry.creditsAria',
       'entry.creditsAriaWithBalance',
@@ -190,10 +168,7 @@ describe('i18n locales', () => {
       'entry.creditsRemaining',
     ];
 
-    for (const [locale, dict, quota] of [
-      ['zh-CN', zhCN, '额度'],
-      ['zh-TW', zhTW, '額度'],
-    ] as const) {
+    for (const [locale, dict, quota] of [['zh-CN', zhCN, '额度']] as const) {
       for (const key of keys) {
         expect(dict[key], `${locale}.${key}`).toContain(quota);
         expect(dict[key], `${locale}.${key}`).not.toMatch(/余额|餘額|积分|積分/);
@@ -207,21 +182,14 @@ describe('i18n locales', () => {
       de: 'Aufladen',
       en: 'Top up',
       'es-ES': 'Recargar',
-      fa: 'شارژ',
       fr: 'Recharger',
-      hu: 'Feltöltés',
-      id: 'Isi ulang',
       it: 'Ricarica',
       ja: 'チャージ',
       ko: '충전',
-      pl: 'Doładuj',
       'pt-BR': 'Recarregar',
       ru: 'Пополнить',
-      th: 'เติมเงิน',
-      tr: 'Bakiye yükle',
-      uk: 'Поповнити',
       'zh-CN': '充值',
-      'zh-TW': '儲值',
+      no: 'Fyll på',
     };
 
     for (const locale of LOCALES) {
@@ -229,63 +197,6 @@ describe('i18n locales', () => {
       expect(dict['chat.amrError.rechargeCta'], `${locale}.chat.amrError.rechargeCta`).toBe(
         expected[locale],
       );
-    }
-  });
-
-  it('keeps Indonesian connector settings copy translated instead of falling back to English', () => {
-    const translatedKeys: Array<keyof Dict> = [
-      'settings.connectorsNavHint',
-      'settings.connectorsHint',
-      'settings.connectorsComposioApiKey',
-      'settings.connectorsSavedTitle',
-      'settings.connectorsSaved',
-      'settings.connectorsGetApiKey',
-      'settings.connectorsApiKeyPlaceholder',
-      'settings.connectorsClear',
-      'settings.connectorsSaveKey',
-      'settings.connectorsKeyError',
-      'settings.connectorsHelpEmpty',
-      'settings.connectorsLoadingSavedKey',
-      'settings.autosaveSaving',
-      'settings.autosaveSaved',
-      'settings.autosaveError',
-      'settings.orbit.eyebrow',
-      'settings.orbit.navHint',
-      'settings.orbit.lede',
-      'settings.orbit.statusOnTitle',
-      'settings.orbit.statusOffTitle',
-      'settings.orbit.runTitle',
-      'settings.orbit.running',
-      'settings.orbit.runOpen',
-      'settings.orbit.dailySummaryTitle',
-      'settings.orbit.dailySummarySub',
-      'settings.orbit.runTimeTitle',
-      'settings.orbit.runTimeSub',
-      'settings.orbit.nextRun',
-      'settings.orbit.nextRunScheduledAfterSave',
-      'settings.orbit.schedule',
-      'settings.orbit.pausedManualOnly',
-      'settings.orbit.templateTitle',
-      'settings.orbit.templateMissing',
-      'settings.orbit.templateMissingOption',
-      'settings.orbit.templateMissingInstall',
-      'settings.orbit.templateMissingPickAnother',
-      'settings.orbit.templateResetTitle',
-      'settings.orbit.templateReset',
-      'settings.orbit.templateHelp',
-      'settings.orbit.templatesLoading',
-      'settings.orbit.templatesOptgroup',
-      'settings.orbit.lastRun',
-      'settings.orbit.countChecked',
-      'settings.orbit.countSucceeded',
-      'settings.orbit.countSkipped',
-      'settings.orbit.countFailed',
-      'settings.orbit.runError',
-      'settings.orbit.artifactKickerLive',
-    ];
-
-    for (const key of translatedKeys) {
-      expect(id[key], key).not.toBe(en[key]);
     }
   });
 
@@ -316,7 +227,6 @@ describe('i18n locales', () => {
 
     for (const key of translatedKeys) {
       expect(zhCN[key], `zh-CN.${key}`).not.toBe(en[key]);
-      expect(zhTW[key], `zh-TW.${key}`).not.toBe(en[key]);
     }
   });
 
@@ -326,9 +236,6 @@ describe('i18n locales', () => {
     );
     expect(zhCN['settings.byokDraftNotice']).toBe(
       '填写必填项后即可保存此提供商；当前配置将继续保持生效。',
-    );
-    expect(zhTW['settings.byokDraftNotice']).toBe(
-      '填寫必填欄位後即可儲存此供應商；目前的設定將繼續維持生效。',
     );
   });
 
@@ -353,23 +260,7 @@ describe('i18n locales', () => {
 
     for (const key of translatedKeys) {
       expect(zhCN[key], `zh-CN.${key}`).not.toBe(en[key]);
-      expect(zhTW[key], `zh-TW.${key}`).not.toBe(en[key]);
     }
-  });
-
-  it('declares CI-sensitive Indonesian fallback keys explicitly', () => {
-    const explicitKeys = new Set(explicitLocaleKeys('id'));
-    const requiredExplicitKeys = Object.keys(en).filter((key) => {
-      return key.startsWith('connectors.category.') || key.startsWith('liveArtifact.viewer.');
-    });
-
-    expect(requiredExplicitKeys.filter((key) => !explicitKeys.has(key))).toEqual([]);
-  });
-
-  it('avoids brittle per-key English lookups in the Indonesian locale source', () => {
-    const source = readFileSync(new URL('../../src/i18n/locales/id.ts', import.meta.url), 'utf8');
-
-    expect(source).not.toMatch(/en\['(?:connectors\.category\.|liveArtifact\.viewer\.)/);
   });
 
   // Tier-1 locale parity lock (issue #1894):
@@ -462,37 +353,15 @@ describe('i18n locales', () => {
    * `tests/components/chat/waiting-first-output.test.tsx` for the revert, and
    * `ExecutionShell.tsx` for why the *detection* behind it stayed.
    *
-   * ⚠️ **The key and its 19 translations stay.** Product removed a rendering,
-   * not the situation it describes; the plan of record is to bring it back in a
-   * different form (same call product made for S12 on 2026-08-27). Deleting the
-   * key now means re-translating it into 19 locales later — and it is exactly
-   * the dead-key period that let the bug below slip in unnoticed the first time.
-   *
-   * That dead period had already hidden a mistranslation: `tr` read
-   * 「İlk girdi için bekleniyor」— *waiting for first **input***, the exact
-   * inverse of what the line reports. This test is what keeps the next dead
-   * period from hiding another one.
-   *
-   * ⚠️ **What this test can and cannot prove.** Asserting a translated string
-   * against the file that defines it is a tautology — it can never tell you
-   * whether the Turkish is *good*, only that it is not the specific broken
-   * string we already found. So the two halves below claim exactly that much:
-   *
-   *  · the key resolves to non-empty text in all 19 locales (a real
-   *    completeness check — `types.ts` forces the key to exist, not to be
-   *    filled in with something), and
-   *  · no locale's value carries its own language's word for **input**, which
-   *    is a lint pinning one known regression shut, not evidence of quality.
-   *
-   * The `input`-word list stays SHORT and evidence-backed: only languages
-   * where a wrong-direction word was actually observed, or where the
-   * input/output pair is close enough to swap by accident. Guessing an
-   * "input" word for a language nobody here reads would make this test lie in
-   * the other direction.
+   * The key and its translations stay: product removed a rendering, not the
+   * situation it describes, so deleting the key now would only mean
+   * re-translating it later. The assertion below is a lint, not a quality
+   * claim: it proves the key resolves to non-empty text in every locale and
+   * never carries a locale's own word for "input" (the direction bug once
+   * observed in Turkish).
    */
   it('never says "waiting for first INPUT" in any locale (assistant.waitingFirstOutput)', async () => {
     const inputWords: Partial<Record<Locale, RegExp>> = {
-      tr: /girdi/i,
       de: /Eingabe/i,
       it: /\binput\b/i,
       'es-ES': /\bentrada\b/i,

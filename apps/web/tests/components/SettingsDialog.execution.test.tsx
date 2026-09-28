@@ -4977,10 +4977,10 @@ describe('SettingsDialog language interactions', () => {
   it('sets rtl direction for rtl locales', async () => {
     renderLanguageSettingsDialog('en');
 
-    fireEvent.change(screen.getByLabelText('Language'), { target: { value: 'fa' } });
+    fireEvent.change(screen.getByLabelText('Language'), { target: { value: 'ar' } });
 
-    expect(window.localStorage.getItem('saascodex:locale')).toBe('fa');
-    expect(document.documentElement.getAttribute('lang')).toBe('fa');
+    expect(window.localStorage.getItem('saascodex:locale')).toBe('ar');
+    expect(document.documentElement.getAttribute('lang')).toBe('ar');
     expect(document.documentElement.getAttribute('dir')).toBe('rtl');
   });
 
