@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Appearance - select or customize a theme</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss">
+    :root { --accent: #7c3aed; --g1: #7c3aed; --g2: #db2777; --g3: #f59e0b; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(60% 60% at 12% 8%, color-mix(in oklab, var(--g1), transparent 25%), transparent 60%),
+        radial-gradient(55% 55% at 88% 12%, color-mix(in oklab, var(--g2), transparent 30%), transparent 62%),
+        radial-gradient(70% 70% at 50% 105%, color-mix(in oklab, var(--g3), transparent 35%), transparent 68%),
+        #0b0a14;
+    }
+    .glass { @apply backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl; }
+    .glass-soft { @apply backdrop-blur-lg bg-white/5 border border-white/15 rounded-2xl; }
+    .theme[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
+    .swatch { @apply h-9 w-full rounded-lg border border-white/25; }
+  </style>
+</head>
+<body class="min-h-screen text-white">
+  <main class="mx-auto max-w-3xl px-4 py-12">
+    <header class="mb-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em]" style="color:color-mix(in oklab, var(--accent), white 35%)">Appearance</p>
+      <h1 class="mt-3 text-3xl font-bold tracking-tight">Select or customize a theme</h1>
+      <p class="mt-2 text-white/70">Pick a glass preset, or choose your own accent below. Changes apply instantly.</p>
+    </header>
+
+    <section class="glass p-6" aria-label="Theme preview">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-wider text-white/60">Live preview</p>
+          <p class="text-lg font-semibold" id="active-name">Aurora</p>
+        </div>
+        <span class="rounded-full px-3 py-1 text-xs font-semibold" style="background:color-mix(in oklab, var(--accent), transparent 75%)" id="active-accent">#7c3aed</span>
+      </div>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        <button class="rounded-xl px-5 py-2.5 font-semibold text-white" style="background:var(--accent)" type="button">Primary action</button>
+        <a href="#" class="text-sm font-semibold underline" style="color:color-mix(in oklab, var(--accent), white 30%)">Secondary link</a>
+        <span class="glass-soft px-3 py-1.5 text-sm text-white/80">Card surface</span>
+      </div>
+      <div class="mt-5 h-20 rounded-xl border border-white/15" style="background:linear-gradient(120deg, color-mix(in oklab, var(--g1), transparent 30%), color-mix(in oklab, var(--g3), transparent 45%))"></div>
+    </section>
+
+    <h2 class="mt-10 text-lg font-semibold">Preset themes</h2>
+    <div class="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3" role="group" aria-label="Preset themes">
+      <button class="theme glass-soft p-4 text-left hover:bg-white/10" type="button" aria-pressed="true" data-name="Aurora" data-g1="#7c3aed" data-g2="#db2777" data-g3="#f59e0b" data-accent="#7c3aed">
+        <span class="swatch" style="background:linear-gradient(120deg,#7c3aed,#db2777,#f59e0b)"></span>
+        <span class="mt-3 flex items-center justify-between"><span class="font-semibold">Aurora</span><span class="check text-sm" style="color:var(--accent)">✓</span></span>
+      </button>
+      <button class="theme glass-soft p-4 text-left hover:bg-white/10" type="button" aria-pressed="false" data-name="Ocean" data-g1="#0ea5e9" data-g2="#22d3ee" data-g3="#6366f1" data-accent="#0ea5e9">
+        <span class="swatch" style="background:linear-gradient(120deg,#0ea5e9,#22d3ee,#6366f1)"></span>
+        <span class="mt-3 flex items-center justify-between"><span class="font-semibold">Ocean</span><span class="check text-sm" style="color:var(--accent)">✓</span></span>
+      </button>
+      <button class="theme glass-soft p-4 text-left hover:bg-white/10" type="button" aria-pressed="false" data-name="Ember" data-g1="#f43f5e" data-g2="#fb923c" data-g3="#facc15" data-accent="#f43f5e">
+        <span class="swatch" style="background:linear-gradient(120deg,#f43f5e,#fb923c,#facc15)"></span>
+        <span class="mt-3 flex items-center justify-between"><span class="font-semibold">Ember</span><span class="check text-sm" style="color:var(--accent)">✓</span></span>
+      </button>
+      <button class="theme glass-soft p-4 text-left hover:bg-white/10" type="button" aria-pressed="false" data-name="Forest" data-g1="#10b981" data-g2="#34d399" data-g3="#a3e635" data-accent="#10b981">
+        <span class="swatch" style="background:linear-gradient(120deg,#10b981,#34d399,#a3e635)"></span>
+        <span class="mt-3 flex items-center justify-between"><span class="font-semibold">Forest</span><span class="check text-sm" style="color:var(--accent)">✓</span></span>
+      </button>
+      <button class="theme glass-soft p-4 text-left hover:bg-white/10" type="button" aria-pressed="false" data-name="Orchid" data-g1="#a855f7" data-g2="#8b5cf6" data-g3="#3b82f6" data-accent="#a855f7">
+        <span class="swatch" style="background:linear-gradient(120deg,#a855f7,#8b5cf6,#3b82f6)"></span>
+        <span class="mt-3 flex items-center justify-between"><span class="font-semibold">Orchid</span><span class="check text-sm" style="color:var(--accent)">✓</span></span>
+      </button>
+      <button class="theme glass-soft p-4 text-left hover:bg-white/10" type="button" aria-pressed="false" data-name="Slate" data-g1="#64748b" data-g2="#71717a" data-g3="#404040" data-accent="#64748b">
+        <span class="swatch" style="background:linear-gradient(120deg,#64748b,#71717a,#404040)"></span>
+        <span class="mt-3 flex items-center justify-between"><span class="font-semibold">Slate</span><span class="check text-sm" style="color:var(--accent)">✓</span></span>
+      </button>
+    </div>
+
+    <h2 class="mt-10 text-lg font-semibold">Customize</h2>
+    <div class="glass mt-4 flex flex-wrap items-center gap-4 p-5">
+      <label class="flex items-center gap-3 text-sm text-white/75">
+        Custom accent
+        <input id="custom-accent" type="color" value="#7c3aed" class="h-10 w-16 cursor-pointer rounded-lg border border-white/30 bg-transparent" aria-label="Custom accent color" />
+      </label>
+      <button id="reset" class="glass-soft px-4 py-2 text-sm font-semibold hover:bg-white/10" type="button">Reset to Aurora</button>
+      <p class="w-full text-xs text-white/50">Choosing a custom color clears the preset selection; pick a preset to restore it.</p>
+    </div>
+
+    <p id="live" class="sr-only" aria-live="polite">Aurora theme selected</p>
+  </main>
+
+  <script>
+    (function () {
+      var themes = Array.prototype.slice.call(document.querySelectorAll('.theme[data-accent]'));
+      var custom = document.getElementById('custom-accent');
+      var live = document.getElementById('live');
+      var nameEl = document.getElementById('active-name');
+      var accentEl = document.getElementById('active-accent');
+
+      function setVars(g1, g2, g3, accent) {
+        var s = document.body.style;
+        s.setProperty('--g1', g1); s.setProperty('--g2', g2); s.setProperty('--g3', g3); s.setProperty('--accent', accent);
+        accentEl.textContent = accent;
+      }
+      function select(el) {
+        setVars(el.dataset.g1, el.dataset.g2, el.dataset.g3, el.dataset.accent);
+        custom.value = el.dataset.accent;
+        nameEl.textContent = el.dataset.name;
+        themes.forEach(function (t) { t.setAttribute('aria-pressed', String(t === el)); });
+        live.textContent = el.dataset.name + ' theme selected';
+      }
+      themes.forEach(function (el) { el.addEventListener('click', function () { select(el); }); });
+      custom.addEventListener('input', function () {
+        document.body.style.setProperty('--accent', custom.value);
+        nameEl.textContent = 'Custom';
+        themes.forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
+        live.textContent = 'Custom accent selected';
+      });
+      document.getElementById('reset').addEventListener('click', function () { select(themes[0]); });
+    })();
+  </script>
+</body>
+</html>
