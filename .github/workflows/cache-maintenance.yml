@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout main
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Seed Windows pnpm cache
         uses: ./.github/actions/setup-workspace
@@ -39,7 +39,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout main
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Seed Linux pnpm cache
         uses: ./.github/actions/setup-workspace

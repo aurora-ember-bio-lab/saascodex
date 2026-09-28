@@ -95,14 +95,14 @@ jobs:
       delivered: ${{ steps.track.outputs.card_delivered }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # Deliberately the ref this workflow was dispatched on, NOT the built
           # commit: the watcher is infrastructure, and pinning it to the build's
           # commit would run whatever notifier that branch happened to carry.
           fetch-depth: 1
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -226,14 +226,14 @@ jobs:
       FEISHU_WEBHOOK: ${{ secrets.FEISHU_RELEASE_WEBHOOK }}
     steps:
       - name: Checkout notifier
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # Both scripts below import nothing but node builtins, so this job
           # needs no dependency install — which is the point: the last-resort
           # path should have as little between it and the POST as possible.
           fetch-depth: 1
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 

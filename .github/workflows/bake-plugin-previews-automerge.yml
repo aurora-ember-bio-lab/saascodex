@@ -34,7 +34,7 @@ jobs:
     if: ${{ github.repository == 'nexu-io/open-design' && github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.head_branch == 'chore/plugin-previews' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app
         with:
           app-id: ${{ secrets.RELEASE_BOT_APP_ID }}

@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Require maintainer check for configured contributors
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           NEEDS_MAINTAINER_CHECK_USER_IDS: ${{ secrets.NEEDS_MAINTAINER_CHECK_USER_IDS }}
         with:

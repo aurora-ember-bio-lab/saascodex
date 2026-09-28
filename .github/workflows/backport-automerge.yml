@@ -26,14 +26,14 @@ jobs:
     if: ${{ github.repository == 'nexu-io/open-design' && github.event.workflow_run.event == 'pull_request' && startsWith(github.event.workflow_run.head_branch, 'backport-') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app
         with:
           app-id: ${{ secrets.RELEASE_BOT_APP_ID }}
           private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}
 
       - name: Checkout trusted repository history
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository }}
           ref: ${{ github.event.repository.default_branch }}

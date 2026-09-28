@@ -63,18 +63,18 @@ jobs:
           echo "ref=main" >> "$GITHUB_OUTPUT"
 
       - name: Checkout workflow helper
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           path: workflow-source
 
       - name: Checkout build ref for recovery check
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ steps.pick.outputs.ref }}
           path: build-source
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout built ref
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.resolve.outputs.ref }}
           fetch-depth: 0
@@ -128,7 +128,7 @@ jobs:
           echo "file=$file" >> "$GITHUB_OUTPUT"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -166,12 +166,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout trusted notifier
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: main
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 

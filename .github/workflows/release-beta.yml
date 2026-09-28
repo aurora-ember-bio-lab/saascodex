@@ -374,18 +374,18 @@ jobs:
       state_source: ${{ steps.beta.outputs.state_source }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.ref != '' && inputs.ref || github.ref }}
           fetch-depth: 0
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -478,17 +478,17 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -511,7 +511,7 @@ jobs:
 
       - name: Restore mac_arm64 tools-pack cache
         id: mac_arm64_tools_pack_cache_restore
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -760,7 +760,7 @@ jobs:
 
       - name: Save mac_arm64 tools-pack cache
         if: ${{ success() && (steps.mac_arm64_tools_pack_cache_restore.outputs.cache-hit != 'true' || steps.mac_arm64_tools_pack_build.outcome == 'failure') }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -826,7 +826,7 @@ jobs:
       - name: Read mac_arm64 platform outputs
         id: mac_arm64_platform_outputs
         if: ${{ inputs.publish }}
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require("fs");
@@ -850,17 +850,17 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -883,7 +883,7 @@ jobs:
 
       - name: Restore mac_x64 tools-pack cache
         id: mac_x64_tools_pack_cache_restore
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -1042,7 +1042,7 @@ jobs:
 
       - name: Save mac_x64 tools-pack cache
         if: ${{ success() && (steps.mac_x64_tools_pack_cache_restore.outputs.cache-hit != 'true' || steps.mac_x64_tools_pack_build.outcome == 'failure') }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -1121,17 +1121,17 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -1153,7 +1153,7 @@ jobs:
 
       - name: Restore Windows tools-pack cache
         id: win_tools_pack_cache_restore
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}\tools-pack-cache
@@ -1350,7 +1350,7 @@ jobs:
 
       - name: Save Windows tools-pack cache
         if: ${{ success() && (steps.win_tools_pack_cache_restore.outputs.cache-hit != 'true' || steps.win_tools_pack_build.outcome == 'failure') }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}\tools-pack-cache
@@ -1409,7 +1409,7 @@ jobs:
       - name: Read win_x64 platform outputs
         id: win_x64_platform_outputs
         if: ${{ inputs.publish }}
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require("fs");
@@ -1433,17 +1433,17 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -1571,7 +1571,7 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
 
@@ -1604,12 +1604,12 @@ jobs:
           path: ${{ runner.temp }}/release-platform-manifests
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -1667,7 +1667,7 @@ jobs:
 
       - name: Read metadata outputs
         id: outputs
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require("fs");

@@ -30,7 +30,7 @@ jobs:
     if: ${{ github.repository == 'nexu-io/open-design' }}
     steps:
       - name: Send 24h E2E coverage reminder
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           FEISHU_WEBHOOK: ${{ secrets.FEISHU_MAIN_CI_WEBHOOK }}
         with:

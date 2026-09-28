@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout trusted workflow code
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository }}
           ref: ${{ github.event.repository.default_branch }}
@@ -248,7 +248,7 @@ jobs:
 
       - name: Checkout trusted base revision
         if: ${{ steps.capture_artifacts.outputs.found == 'true' && steps.trusted-pr.outputs.stale != 'true' }}
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository }}
           ref: ${{ steps.report_request.outputs.base_sha }}
