@@ -1,0 +1,8 @@
+# Known/accepted findings for Trivy. One CVE/ID per line, `#` for comments.
+#
+# Add an entry only with a short justification and a link to the tracking
+# issue; prefer fixing or upgrading. Example:
+#
+#   CVE-2024-00000  # <package> transitive; no fix available upstream — TRACK-123
+#
+# Empty for now: the baseline scan is expected to be clean at HIGH/CRITICAL.

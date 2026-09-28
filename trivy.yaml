@@ -1,0 +1,44 @@
+# Trivy configuration for SaaSCodex (https://trivy.dev).
+#
+# Used by local runs (`trivy fs --config trivy.yaml .`) and as a reference for
+# the CI workflow in .github/workflows/security.yml. Docs: docs/SECURITY.md.
+scan:
+  # Keep scans on the code we own; never walk installed deps, build output, or
+  # the large vendored skill/template/asset trees. Dependency advisories are
+  # still covered by the root `pnpm-lock.yaml`.
+  skip-dirs:
+    - "**/node_modules"
+    - "**/.git"
+    - "**/.next"
+    - "**/.next-*"
+    - "apps/web/out"
+    - "**/dist"
+    - "**/coverage"
+    - "e2e/reports"
+    - "e2e/test-results"
+    - "**/test-results"
+    # Vendored / generated content (source of truth lives upstream):
+    - "skills"
+    - "design-templates"
+    - "prompt-templates"
+    - "plugins/_official/examples"
+    - "data"
+    - "assets"
+    - "docs/assets"
+    - "docs/i18n"
+  skip-files:
+    - "**/*.min.js"
+  scanners:
+    - vuln
+    - secret
+    - misconfig
+  severity:
+    - HIGH
+    - CRITICAL
+  ignorefile: .trivyignore
+  # Report findings without failing the local run; CI decides the gate.
+  exit-code: 0
+
+vulnerability:
+  # Don't report transitive CVEs that have no upstream fix yet.
+  ignore-unfixed: true
