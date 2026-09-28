@@ -18,10 +18,14 @@ services:
       OD_API_TOKEN: ${OD_API_TOKEN:-}
       OD_DISABLE_API_AUTH: ${SAASCODEX_DISABLE_API_AUTH:-}
       OD_CODEX_SANDBOX: ${OD_CODEX_SANDBOX:-}
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/saascodex?sslmode=disable}
     ports:
       - "127.0.0.1:${SAASCODEX_PORT:-7456}:7456"
     volumes:
       - open_design_data:/app/.od
+    depends_on:
+      postgres:
+        condition: service_healthy
     read_only: true
     tmpfs:
       - /tmp
@@ -42,5 +46,58 @@ services:
       retries: 3
       start_period: 20s
 
+  # Postgres 16 with pgvector (control-plane database; see docs/DATABASE.md).
+  postgres:
+    container_name: saascodex-postgres
+    image: pgvector/pgvector:pg16
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-saascodex}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - saascodex_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Atlas CLI with the migration directory mounted. Run ad-hoc, e.g.
+  #   docker compose run --rm atlas migrate hash --dir file://migrations
+  #   docker compose run --rm atlas migrate lint --dir file://migrations --dev-url <url>
+  atlas:
+    container_name: saascodex-atlas
+    image: arigaio/atlas:latest
+    volumes:
+      - ../db:/work
+    working_dir: /work
+    profiles: ["tools"]
+
+  # One-shot migration runner: applies pending migrations on `up`.
+  migrate:
+    container_name: saascodex-migrate
+    image: arigaio/atlas:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ../db:/work
+    working_dir: /work
+    command:
+      [
+        "migrate",
+        "apply",
+        "--dir",
+        "file://migrations",
+        "--url",
+        "postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-saascodex}?sslmode=disable"
+      ]
+    restart: "no"
+
 volumes:
   open_design_data:
+  saascodex_postgres_data:
