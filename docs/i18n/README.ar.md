@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
   <a href="../../LICENSE"><img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://discord.gg/mHAjSMV6gz"><img alt="discord" src="https://img.shields.io/discord/1479002485040480266?style=flat&logo=discord&logoColor=white&label=discord&color=5865F2&cacheSeconds=3600" /></a>
   <a href="../../QUICKSTART.md"><img alt="quickstart" src="https://img.shields.io/badge/quickstart-3%20commands-green?style=flat" /></a>
@@ -282,9 +282,9 @@
 
 أسرع طريقة لاستخدام SplatStudio. لا Node، ولا pnpm، ولا استنساخ.
 
-- **macOS** (Apple Silicon · Intel x64) ← [**splatstudio.app**](https://splatstudio.app/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) ← [**splatstudio.app**](https://splatstudio.app/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
-- **Linux** (AppImage، مسار اختياري) ← [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) ← [**splatstudio.app**](https://splatstudio.app/) أو [إصدارات GitHub](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Windows** (x64) ← [**splatstudio.app**](https://splatstudio.app/) أو [إصدارات GitHub](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Linux** (AppImage، مسار اختياري) ← [إصدارات GitHub](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
 
 بعد التثبيت: يكتشف التطبيق تلقائيًا كل واجهة CLI لوكلاء البرمجة في `PATH` لديك، ويحمّل أكثر من 100 مهارة وظيفية وكتالوج قوالب التصيير المنفصل و151 حزمة نظام تصميم، ويتيح لك كتابة موجز في واجهة الدخول.
 
@@ -310,7 +310,7 @@ od mcp install <agent>
 ### 🐳 التشغيل باستخدام Docker
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
@@ -327,7 +327,7 @@ docker compose up -d
 ### 🧑‍💻 التشغيل من المصدر
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
@@ -590,10 +590,10 @@ pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 
 - 💬 **Discord** — دردشة يومية، مشاركة الإضافات، أسئلة ← [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
 - 🐦 **X / Twitter** — ملاحظات الإصدارات، المعالم، ما وراء الكواليس ← [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
-- 🗣️ **GitHub Discussions** — أسئلة وأجوبة معمّقة، RFCs، "اعرض عملك" ← [**Discussions**](https://github.com/nexu-io/open-design/discussions)
-- 🐛 **GitHub Issues** — تقارير الأخطاء، طلبات الميزات ← [**Issues**](https://github.com/nexu-io/open-design/issues)
+- 🗣️ **GitHub Discussions** — أسئلة وأجوبة معمّقة، RFCs، "اعرض عملك" ← [**Discussions**](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
+- 🐛 **GitHub Issues** — تقارير الأخطاء، طلبات الميزات ← [**Issues**](https://github.com/aurora-ember-bio-lab/splatstudio/issues)
 
-تصنيفا [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) و[`help-wanted`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) هما أسهل طريق للدخول.
+تصنيفا [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) و[`help-wanted`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) هما أسهل طريق للدخول.
 
 ---
 
@@ -609,7 +609,7 @@ pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 | **نظام تصميم** جديد | أسقِط حزمة تتمحور حول `DESIGN.md`، وأضف `manifest.json` أو `tokens.css` أو المكوّنات أو الأصول أو بيانات المصدر عند الحاجة | [`design-systems/<brand>/`](../../design-systems/) |
 | **إضافة** جديدة | أسقِط `splatstudio.json` + حمولة النوع ضمن مجلد فئة | [`plugins/community/`](../../plugins/community/) · المواصفة في [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · دليل تطوير الوكيل في [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | دعم **واجهة CLI** جديدة لوكيل برمجة | تعريف runtime + تسجيل؛ parser فقط لتنسيق جديد | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
-| إصلاح خطأ أو تحسين الواجهة | تصفّح تصنيف [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues ←](https://github.com/nexu-io/open-design/issues) |
+| إصلاح خطأ أو تحسين الواجهة | تصفّح تصنيف [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues ←](https://github.com/aurora-ember-bio-lab/splatstudio/issues) |
 | ترجمة الوثائق | حدّث ملفات `README.<lang>.md` | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
 
 ### 🤖 المساهمة بصفتك وكيلًا
@@ -618,7 +618,7 @@ pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 
 ```bash
 # 1. Boot locally
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
@@ -671,7 +671,7 @@ gh pr create --fill
 
 شكرًا لكل من شارك — شفرة، وثائق، ملاحظات، مشكلة دقيقة، مهارة جديدة، نظام تصميم جديد.
 
-<a href="https://github.com/nexu-io/open-design/graphs/contributors">
+<a href="https://github.com/aurora-ember-bio-lab/splatstudio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
@@ -690,7 +690,7 @@ gh pr create --fill
 ## امنحنا نجمة
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/aurora-ember-bio-lab/splatstudio" width="100%" /></a>
 </p>
 
 إن وفّر عليك هذا ثلاثين دقيقة، فامنحه ★. النجوم لا تدفع الإيجار — لكنها تخبر المصمم والوكيل والمساهم التالي بأن هذه التجربة تستحق اهتمامهم. نقرة واحدة، وثلاث ثوانٍ، وإشارة حقيقية.

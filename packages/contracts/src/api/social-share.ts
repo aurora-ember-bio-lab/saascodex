@@ -1,4 +1,4 @@
-export const SPLATSTUDIO_GITHUB_REPO_URL = 'https://github.com/nexu-io/open-design';
+export const SPLATSTUDIO_GITHUB_REPO_URL = 'https://github.com/aurora-ember-bio-lab/splatstudio';
 
 export type SocialShareTargetKind = 'splatstudio-repo' | 'project-html';
 

@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
   <a href="../../LICENSE"><img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://discord.gg/mHAjSMV6gz"><img alt="discord" src="https://img.shields.io/discord/1479002485040480266?style=flat&logo=discord&logoColor=white&label=discord&color=5865F2&cacheSeconds=3600" /></a>
   <a href="QUICKSTART.zh-TW.md"><img alt="quickstart" src="https://img.shields.io/badge/quickstart-3%20commands-green?style=flat" /></a>
@@ -280,9 +280,9 @@ SplatStudio（OD）就是那個開源的替代方案。同樣的迴圈、同樣�
 
 使用 SplatStudio 最快的方式。無須 Node、無須 pnpm、無須 clone。
 
-- **macOS**（Apple Silicon · Intel x64）→ [**splatstudio.app**](https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows**（x64）→ [**splatstudio.app**](https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) 或 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Linux**（AppImage，選用通道）→ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS**（Apple Silicon · Intel x64）→ [**splatstudio.app**](https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) 或 [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Windows**（x64）→ [**splatstudio.app**](https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) 或 [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Linux**（AppImage，選用通道）→ [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
 
 安裝後：應用程式會自動偵測你 `PATH` 上的每一個編碼 agent CLI、載入 100+ 個功能 skills、獨立渲染範本型錄與 151 套設計系統套件，並讓你在入口視圖中輸入需求。
 
@@ -317,7 +317,7 @@ curl -fsSL https://splatstudio.app/install.sh | sh -s <agent>
 ### 🐳 以 Docker 執行
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
@@ -336,7 +336,7 @@ Sealos App Store 範本會執行已發布的 SplatStudio Docker 映像，提供�
 ### 🧑‍💻 從原始碼執行
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
@@ -600,10 +600,10 @@ pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 
 - 💬 **Discord**——每日聊天、外掛分享、提問 → [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
 - 🐦 **X / Twitter**——發行說明、里程碑、幕後花絮 → [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
-- 🗣️ **GitHub Discussions**——深入問答、RFC、「秀出你的成果」 → [**Discussions**](https://github.com/nexu-io/open-design/discussions)
-- 🐛 **GitHub Issues**——錯誤回報、功能請求 → [**Issues**](https://github.com/nexu-io/open-design/issues)
+- 🗣️ **GitHub Discussions**——深入問答、RFC、「秀出你的成果」 → [**Discussions**](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
+- 🐛 **GitHub Issues**——錯誤回報、功能請求 → [**Issues**](https://github.com/aurora-ember-bio-lab/splatstudio/issues)
 
-[`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 與 [`help-wanted`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) 這兩個標籤是最容易的入門方式。
+[`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 與 [`help-wanted`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) 這兩個標籤是最容易的入門方式。
 
 ---
 
@@ -619,7 +619,7 @@ SplatStudio 之所以能持續前進，是因為貢獻者——設計師、工�
 | 一套新的 **設計系統** | 放進以 `DESIGN.md` 為核心的套件；按需加入 `manifest.json`、`tokens.css`、元件、資產或來源資訊 | [`design-systems/<brand>/`](../../design-systems/) |
 | 一個新的 **外掛** | 在某個分類資料夾下放進 `splatstudio.json` + 對應類型的 payload | [`plugins/community/`](../../plugins/community/) · 規格見 [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · agent 開發指南見 [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | 支援一個新的 **編碼 agent CLI** | Runtime 定義 + registry 項目；僅新 wire format 需要 parser | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
-| 修錯誤或打磨 UI | 瀏覽 [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 標籤 | [Issues →](https://github.com/nexu-io/open-design/issues) |
+| 修錯誤或打磨 UI | 瀏覽 [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 標籤 | [Issues →](https://github.com/aurora-ember-bio-lab/splatstudio/issues) |
 | 翻譯文件 | 更新 `README.<lang>.md` 檔案 | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
 
 ### 🤖 以 agent 身分貢獻
@@ -628,7 +628,7 @@ SplatStudio 之所以能持續前進，是因為貢獻者——設計師、工�
 
 ```bash
 # 1. Boot locally
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
@@ -681,7 +681,7 @@ gh pr create --fill
 
 感謝每一位參與過的人——程式碼、文件、回饋、一則犀利的 issue、一個新的 skill、一套新的設計系統。
 
-<a href="https://github.com/nexu-io/open-design/graphs/contributors">
+<a href="https://github.com/aurora-ember-bio-lab/splatstudio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
@@ -700,7 +700,7 @@ gh pr create --fill
 ## 給我們一顆星
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/aurora-ember-bio-lab/splatstudio" width="100%" /></a>
 </p>
 
 如果這幫你省下了三十分鐘，給它一顆 ★。星星不能付房租——但它們會告訴下一位設計師、agent 與貢獻者，這場實驗值得他們關注。一鍵、三秒，一個真實的訊號。

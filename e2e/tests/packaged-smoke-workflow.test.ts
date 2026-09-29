@@ -666,7 +666,7 @@ describe("packaged smoke workflow", () => {
               id: 101,
               name: "Daemon tests (1/4)",
               conclusion: "failure",
-              html_url: `https://github.com/nexu-io/open-design/actions/runs/${runId}/job/101`,
+              html_url: `https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/${runId}/job/101`,
               steps: [
                 { name: "Checkout", conclusion: "success" },
                 { name: "Run daemon test shard", conclusion: "failure" },
@@ -677,7 +677,7 @@ describe("packaged smoke workflow", () => {
               id: 103,
               name: "Merge policy",
               conclusion: mergePolicyConclusion,
-              html_url: `https://github.com/nexu-io/open-design/actions/runs/${runId}/job/103`,
+              html_url: `https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/${runId}/job/103`,
               steps: [{ name: "Block merge while a merge-blocking label is present", conclusion: mergePolicyConclusion }],
             },
             // Replaying a completed run reports the gate itself as failed; it must never be listed.
@@ -790,10 +790,10 @@ else { process.stderr.write("unexpected gh call: " + args + "\\n"); process.exit
     });
     expect(workloadFailure.body).toContain("<!-- merge-queue-ci-failure -->");
     expect(workloadFailure.body).toContain(
-      `[run ${runId}](https://github.com/nexu-io/open-design/actions/runs/${runId})`,
+      `[run ${runId}](https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/${runId})`,
     );
     expect(workloadFailure.body).toContain(
-      `- **Daemon tests (1/4)** — failure at \`Run daemon test shard\` ([job log](https://github.com/nexu-io/open-design/actions/runs/${runId}/job/101))`,
+      `- **Daemon tests (1/4)** — failure at \`Run daemon test shard\` ([job log](https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/${runId}/job/101))`,
     );
     expect(workloadFailure.body).not.toContain("Daemon tests (2/4)");
     expect(workloadFailure.body).not.toContain("Validate workspace");
@@ -966,7 +966,7 @@ else { process.stderr.write("unexpected gh call: " + args + "\\n"); process.exit
     expect(workflow).toContain("workflow_dispatch:");
     expect(workflow).toContain("github.event_name == 'workflow_dispatch'");
     expect(workflow).toContain("github.event.workflow_run.conclusion == 'success'");
-    expect(workflow).toContain("github.repository == 'nexu-io/open-design'");
+    expect(workflow).toContain("github.repository == 'aurora-ember-bio-lab/splatstudio'");
     expect(workflow).not.toContain("github.event.workflow_run.conclusion != 'cancelled'");
 
     // It mints the privileged release App token for label deletion, branch push, PR + merge-queue.
@@ -3032,7 +3032,7 @@ process.stdin.on("end", () => {
     expect(dispatchJob).toContain("tools/release/src/notifications/feishu-notice.ts");
     expect(dispatchJob).toContain("STAGE: dispatch");
     // `always()` so a dispatch that failed above still reaches the notifier.
-    expect(dispatchJob).toContain("always() && github.repository == 'nexu-io/open-design' &&");
+    expect(dispatchJob).toContain("always() && github.repository == 'aurora-ember-bio-lab/splatstudio' &&");
     expect(dispatchJob).toContain("steps.checkout.outcome == 'success'");
 
     // 3. Silent on a healthy release. A green watcher job is NOT proof of a

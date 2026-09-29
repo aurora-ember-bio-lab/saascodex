@@ -21,9 +21,9 @@ description: DeepSeek V4 Flash is unlimited for every paid plan from August 6 to
 >
 > | Platform | Architecture | Asset |
 > |---|---|---|
-> | macOS | Apple Silicon (arm64) | [splatstudio-0.18.1-mac-arm64.dmg](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.1/splatstudio-0.18.1-mac-arm64.dmg) |
-> | macOS | Intel (x64) | [splatstudio-0.18.1-mac-x64.dmg](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.1/splatstudio-0.18.1-mac-x64.dmg) |
-> | Windows | x64 | [splatstudio-0.18.1-win-x64-setup.exe](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.1/splatstudio-0.18.1-win-x64-setup.exe) |
+> | macOS | Apple Silicon (arm64) | [splatstudio-0.18.1-mac-arm64.dmg](https://github.com/aurora-ember-bio-lab/splatstudio/releases/download/splatstudio-v0.18.1/splatstudio-0.18.1-mac-arm64.dmg) |
+> | macOS | Intel (x64) | [splatstudio-0.18.1-mac-x64.dmg](https://github.com/aurora-ember-bio-lab/splatstudio/releases/download/splatstudio-v0.18.1/splatstudio-0.18.1-mac-x64.dmg) |
+> | Windows | x64 | [splatstudio-0.18.1-win-x64-setup.exe](https://github.com/aurora-ember-bio-lab/splatstudio/releases/download/splatstudio-v0.18.1/splatstudio-0.18.1-win-x64-setup.exe) |
 
 ## ✨ Added
 

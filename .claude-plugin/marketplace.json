@@ -3,7 +3,7 @@
   "name": "open-design",
   "owner": {
     "name": "nexu-io",
-    "url": "https://github.com/nexu-io/open-design"
+    "url": "https://github.com/aurora-ember-bio-lab/splatstudio"
   },
   "description": "OpenDesign — local-first design app exposed to coding agents over MCP. Install once with your agent's plugin command and projects/files/skills are reachable through stdio.",
   "plugins": [

@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "owner": {
     "name": "SplatStudio Spec Examples",
-    "url": "https://github.com/nexu-io/open-design"
+    "url": "https://github.com/aurora-ember-bio-lab/splatstudio"
   },
   "metadata": {
     "description": "Example plugin spec catalog for authoring and PR workflows.",

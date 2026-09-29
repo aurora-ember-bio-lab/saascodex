@@ -12,7 +12,7 @@ const DOC = {
   title: 'Design system sync',
   body: 'Import, edit and sync design systems.',
   imageUrl: 'https://whatsnew.splatstudio.app/0.13.0.png',
-  linkUrl: 'https://github.com/nexu-io/open-design/releases/tag/splatstudio-v0.13.0',
+  linkUrl: 'https://github.com/aurora-ember-bio-lab/splatstudio/releases/tag/splatstudio-v0.13.0',
   locales: { 'zh-CN': { title: '设计系统同步' } },
 };
 

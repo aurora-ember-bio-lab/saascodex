@@ -28,7 +28,7 @@ export function registerSplatStudioPublicMetadataRoutes(
     try {
       const stats = await openDesignPublicMetadata.readGithubRepoStats();
       const payload: SplatStudioGithubRepoResponse = {
-        repo: 'nexu-io/open-design',
+        repo: 'aurora-ember-bio-lab/splatstudio',
         stargazers_count: stats.stargazersCount,
         fetchedAt: stats.fetchedAt,
         stale: stats.stale,
@@ -43,7 +43,7 @@ export function registerSplatStudioPublicMetadataRoutes(
     try {
       const release = await openDesignPublicMetadata.readLatestReleaseInfo();
       const payload: SplatStudioGithubLatestReleaseResponse = {
-        repo: 'nexu-io/open-design',
+        repo: 'aurora-ember-bio-lab/splatstudio',
         tag_name: release.tagName,
         html_url: release.htmlUrl,
         fetchedAt: release.fetchedAt,

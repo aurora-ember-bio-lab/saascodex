@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
   <a href="../../LICENSE"><img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://discord.gg/mHAjSMV6gz"><img alt="discord" src="https://img.shields.io/discord/1479002485040480266?style=flat&logo=discord&logoColor=white&label=discord&color=5865F2&cacheSeconds=3600" /></a>
   <a href="QUICKSTART.ja-JP.md"><img alt="quickstart" src="https://img.shields.io/badge/quickstart-3%20commands-green?style=flat" /></a>
@@ -280,9 +280,9 @@ SplatStudio (OD) はそのオープンソースの代替ツールです。同じ
 
 SplatStudio を使う最も速い方法。Node も、pnpm も、クローンも不要です。
 
-- **macOS**（Apple Silicon · Intel x64）→ [**splatstudio.app**](https://splatstudio.app/) または [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows**（x64）→ [**splatstudio.app**](https://splatstudio.app/) または [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Linux**（AppImage、オプションのレーン）→ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS**（Apple Silicon · Intel x64）→ [**splatstudio.app**](https://splatstudio.app/) または [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Windows**（x64）→ [**splatstudio.app**](https://splatstudio.app/) または [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Linux**（AppImage、オプションのレーン）→ [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
 
 インストール後: アプリはあなたの `PATH` 上のすべてのコーディングエージェント CLI を自動検出し、100 種類以上の機能スキル、独立したレンダリングテンプレートカタログ、151 のデザインシステムパッケージを読み込み、エントリービューでブリーフを入力できるようにします。
 
@@ -308,7 +308,7 @@ od mcp install <agent>
 ### 🐳 Docker で実行
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
@@ -325,7 +325,7 @@ Sealos App Store テンプレートは、公開済みの SplatStudio Docker イ�
 ### 🧑‍💻 ソースから実行
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
@@ -588,10 +588,10 @@ pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 
 - 💬 **Discord** — 日々のチャット、プラグインの共有、質問 → [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
 - 🐦 **X / Twitter** — リリースノート、マイルストーン、舞台裏 → [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
-- 🗣️ **GitHub Discussions** — 深い Q&A、RFC、「成果を見せて」 → [**Discussions**](https://github.com/nexu-io/open-design/discussions)
-- 🐛 **GitHub Issues** — バグ報告、機能リクエスト → [**Issues**](https://github.com/nexu-io/open-design/issues)
+- 🗣️ **GitHub Discussions** — 深い Q&A、RFC、「成果を見せて」 → [**Discussions**](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
+- 🐛 **GitHub Issues** — バグ報告、機能リクエスト → [**Issues**](https://github.com/aurora-ember-bio-lab/splatstudio/issues)
 
-[`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) と [`help-wanted`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) のラベルが、最も入りやすい入口です。
+[`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) と [`help-wanted`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) のラベルが、最も入りやすい入口です。
 
 ---
 
@@ -607,7 +607,7 @@ SplatStudio が動き続けるのは、貢献者——デザイナー、エン�
 | 新しい**デザインシステム** | `DESIGN.md` を中心とするパッケージをドロップし、必要に応じて `manifest.json`、`tokens.css`、コンポーネント、アセット、出典情報を追加 | [`design-systems/<brand>/`](../../design-systems/) |
 | 新しい**プラグイン** | カテゴリーフォルダの下に `splatstudio.json` + 種類固有のペイロードをドロップ | [`plugins/community/`](../../plugins/community/) · 仕様は [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · エージェント開発ガイドは [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | 新しい**コーディングエージェント CLI** をサポート | Runtime 定義 + registry entry。新しい wire format のみ parser を追加 | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
-| バグ修正や UI の磨き上げ | [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) ラベルを閲覧 | [Issues →](https://github.com/nexu-io/open-design/issues) |
+| バグ修正や UI の磨き上げ | [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) ラベルを閲覧 | [Issues →](https://github.com/aurora-ember-bio-lab/splatstudio/issues) |
 | ドキュメントを翻訳 | `README.<lang>.md` ファイルを更新 | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
 
 ### 🤖 エージェントとして貢献する
@@ -616,7 +616,7 @@ SplatStudio が動き続けるのは、貢献者——デザイナー、エン�
 
 ```bash
 # 1. Boot locally
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
@@ -669,7 +669,7 @@ gh pr create --fill
 
 参加してくださったすべての方に感謝します——コード、ドキュメント、フィードバック、鋭い issue、新しいスキル、新しいデザインシステム。
 
-<a href="https://github.com/nexu-io/open-design/graphs/contributors">
+<a href="https://github.com/aurora-ember-bio-lab/splatstudio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
@@ -688,7 +688,7 @@ gh pr create --fill
 ## スターをお願いします
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/aurora-ember-bio-lab/splatstudio" width="100%" /></a>
 </p>
 
 これで 30 分を節約できたなら、★ を付けてください。スターは家賃を払ってはくれません——でも、次のデザイナー、エージェント、貢献者に、この実験が注目に値することを伝えてくれます。ワンクリック、3 秒、本物のシグナルです。

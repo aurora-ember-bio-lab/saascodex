@@ -27,14 +27,14 @@ landed enforcement slice from the still-proposed request/executor work. That
 review-first shape follows the maintainer pattern from recent architecture
 threads:
 
-- Issue [#2146](https://github.com/nexu-io/open-design/issues/2146) accepted a
+- Issue [#2146](https://github.com/aurora-ember-bio-lab/splatstudio/issues/2146) accepted a
   focused contract proposal before implementation.
-- Issue [#1969](https://github.com/nexu-io/open-design/issues/1969) asked for a
+- Issue [#1969](https://github.com/aurora-ember-bio-lab/splatstudio/issues/1969) asked for a
   focused design note with schema, fixture, and comparison criteria before a
   multi-mode export implementation.
-- Issue [#1637](https://github.com/nexu-io/open-design/issues/1637), PR
-  [#1746](https://github.com/nexu-io/open-design/pull/1746), and PR
-  [#3021](https://github.com/nexu-io/open-design/pull/3021) established that a
+- Issue [#1637](https://github.com/aurora-ember-bio-lab/splatstudio/issues/1637), PR
+  [#1746](https://github.com/aurora-ember-bio-lab/splatstudio/pull/1746), and PR
+  [#3021](https://github.com/aurora-ember-bio-lab/splatstudio/pull/3021) established that a
   broad prototype should become a doc-only integration-shape review surface
   before implementation is treated as mergeable.
 

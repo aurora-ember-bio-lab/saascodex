@@ -36,7 +36,7 @@ describe('DISCOVERY_AND_PHILOSOPHY (contracts copy) — TodoWrite plan item coun
     const prompt = composeSystemPrompt({ sessionMode: 'chat' });
 
     expect(prompt).toContain('# Ask mode — bare conversation');
-    expect(prompt).toContain('https://github.com/nexu-io/open-design');
+    expect(prompt).toContain('https://github.com/aurora-ember-bio-lab/splatstudio');
     expect(prompt).toContain('https://splatstudio.app/');
     expect(prompt).toContain('https://discord.gg/mHAjSMV6gz');
     expect(prompt).toContain('Do not emit a default discovery `<question-form>`');

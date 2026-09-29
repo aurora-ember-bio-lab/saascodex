@@ -32,7 +32,7 @@ describe("download attribution token extraction", () => {
   it("does not treat GitHub release paths as attributed download URLs", () => {
     expect(
       extractDownloadAttributionTokenFromUrl(
-        "https://github.com/nexu-io/open-design/releases/download/splatstudio-v1/Open-Design-mac-arm64.dmg",
+        "https://github.com/aurora-ember-bio-lab/splatstudio/releases/download/splatstudio-v1/Open-Design-mac-arm64.dmg",
       ),
     ).toBeNull();
   });

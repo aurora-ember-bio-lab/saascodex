@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
   <a href="../../LICENSE"><img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://discord.gg/mHAjSMV6gz"><img alt="discord" src="https://img.shields.io/discord/1479002485040480266?style=flat&logo=discord&logoColor=white&label=discord&color=5865F2&cacheSeconds=3600" /></a>
   <a href="QUICKSTART.ko.md"><img alt="quickstart" src="https://img.shields.io/badge/quickstart-3%20commands-green?style=flat" /></a>
@@ -280,9 +280,9 @@ SplatStudio(OD)는 그 오픈소스 대안입니다. 같은 루프, 같은 아�
 
 SplatStudio를 사용하는 가장 빠른 방법입니다. Node도, pnpm도, 클론도 필요 없습니다.
 
-- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/) 또는 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/) 또는 [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Linux** (AppImage, 선택적 레인) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/) 또는 [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/) 또는 [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Linux** (AppImage, 선택적 레인) → [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
 
 설치 후: 앱이 당신의 `PATH`에 있는 모든 코딩 에이전트 CLI를 자동으로 감지하고, 100개 이상의 기능 스킬과 별도 렌더링 템플릿 카탈로그, 151개의 디자인 시스템 패키지를 불러오며, entry view에서 브리프를 입력할 수 있게 합니다.
 
@@ -308,7 +308,7 @@ od mcp install <agent>
 ### 🐳 Docker로 실행
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
@@ -325,7 +325,7 @@ Sealos App Store 템플릿은 게시된 SplatStudio Docker 이미지를 영구 �
 ### 🧑‍💻 소스에서 실행
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
@@ -588,10 +588,10 @@ pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 
 - 💬 **Discord** — 매일의 대화, 플러그인 공유, 질문 → [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
 - 🐦 **X / Twitter** — 릴리스 노트, 마일스톤, 비하인드 → [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
-- 🗣️ **GitHub Discussions** — 깊이 있는 Q&A, RFC, "당신의 작업을 보여주세요" → [**Discussions**](https://github.com/nexu-io/open-design/discussions)
-- 🐛 **GitHub Issues** — 버그 리포트, 기능 요청 → [**Issues**](https://github.com/nexu-io/open-design/issues)
+- 🗣️ **GitHub Discussions** — 깊이 있는 Q&A, RFC, "당신의 작업을 보여주세요" → [**Discussions**](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
+- 🐛 **GitHub Issues** — 버그 리포트, 기능 요청 → [**Issues**](https://github.com/aurora-ember-bio-lab/splatstudio/issues)
 
-[`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)와 [`help-wanted`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) 라벨이 가장 쉬운 진입로입니다.
+[`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)와 [`help-wanted`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) 라벨이 가장 쉬운 진입로입니다.
 
 ---
 
@@ -607,7 +607,7 @@ SplatStudio가 계속 나아가는 것은 기여자들 — 디자이너, 엔지�
 | 새 **디자인 시스템** | `DESIGN.md` 중심의 패키지를 넣고 필요하면 `manifest.json`, `tokens.css`, 컴포넌트, 에셋, 출처 정보를 추가 | [`design-systems/<brand>/`](../../design-systems/) |
 | 새 **플러그인** | 카테고리 폴더 아래에 `splatstudio.json` + 유형별 페이로드를 넣기 | [`plugins/community/`](../../plugins/community/) · 사양은 [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md)에 · 에이전트 개발 가이드는 [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md)에 |
 | 새 **코딩 에이전트 CLI** 지원 | Runtime 정의 + registry entry; 새 wire format에만 parser 추가 | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
-| 버그 수정 또는 UI 다듬기 | [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 라벨 둘러보기 | [Issues →](https://github.com/nexu-io/open-design/issues) |
+| 버그 수정 또는 UI 다듬기 | [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) 라벨 둘러보기 | [Issues →](https://github.com/aurora-ember-bio-lab/splatstudio/issues) |
 | 문서 번역 | `README.<lang>.md` 파일 업데이트 | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
 
 ### 🤖 에이전트로서 기여하기
@@ -616,7 +616,7 @@ SplatStudio가 계속 나아가는 것은 기여자들 — 디자이너, 엔지�
 
 ```bash
 # 1. Boot locally
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
@@ -669,7 +669,7 @@ gh pr create --fill
 
 참여해 주신 모든 분께 감사드립니다 — 코드, 문서, 피드백, 날카로운 이슈, 새 스킬, 새 디자인 시스템.
 
-<a href="https://github.com/nexu-io/open-design/graphs/contributors">
+<a href="https://github.com/aurora-ember-bio-lab/splatstudio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
@@ -688,7 +688,7 @@ gh pr create --fill
 ## 스타를 눌러주세요
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/aurora-ember-bio-lab/splatstudio" width="100%" /></a>
 </p>
 
 이것이 당신의 30분을 아껴줬다면 ★를 눌러주세요. 스타가 집세를 내주지는 않지만 — 다음 디자이너, 에이전트, 기여자에게 이 실험이 관심을 쏟을 가치가 있다고 알려줍니다. 한 번의 클릭, 3초, 진짜 신호입니다.

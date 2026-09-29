@@ -160,13 +160,13 @@ describe('marketplaces', () => {
 
   it('normalizes legacy branch raw urls to the canonical raw registry', () => {
     expect(resolveMarketplaceFetchUrl(
-      'https://raw.githubusercontent.com/nexu-io/open-design/garnet-hemisphere/plugins/registry/community/splatstudio-marketplace.json',
+      'https://raw.githubusercontent.com/aurora-ember-bio-lab/splatstudio/garnet-hemisphere/plugins/registry/community/splatstudio-marketplace.json',
     )).toBe(marketplaceManifestUrlForRegistry('community'));
   });
 
   it('requires a raw splatstudio-marketplace.json document, not a GitHub tree page', async () => {
     const result = await addMarketplace(db, {
-      url: 'https://github.com/nexu-io/open-design/tree/garnet-hemisphere/plugins/registry/community',
+      url: 'https://github.com/aurora-ember-bio-lab/splatstudio/tree/garnet-hemisphere/plugins/registry/community',
       fetcher: fixtureFetcher('<!doctype html><html><body>GitHub tree page</body></html>'),
     });
 
@@ -373,7 +373,7 @@ describe('marketplaces', () => {
     expect(JSON.parse(sourceManifest)).toMatchObject({
       name: 'community-registry-starter',
       plugin: {
-        repo: expect.stringContaining('github.com/nexu-io/open-design'),
+        repo: expect.stringContaining('github.com/aurora-ember-bio-lab/splatstudio'),
       },
     });
   });

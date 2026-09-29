@@ -204,7 +204,7 @@ describe('archive installer', () => {
     };
     let success = false;
     let error: string | undefined;
-    const source = 'github:nexu-io/open-design@garnet-hemisphere/plugins/community/registry-starter';
+    const source = 'github:aurora-ember-bio-lab/splatstudio@garnet-hemisphere/plugins/community/registry-starter';
     for await (const ev of installPlugin(db, {
       source,
       roots: { userPluginsRoot: pluginsRoot },
@@ -217,7 +217,7 @@ describe('archive installer', () => {
       throw new Error(`install failed: ${error}`);
     }
     expect(urlsSeen).toContain(apiUrl);
-    expect(urlsSeen).not.toContain('https://codeload.github.com/nexu-io/open-design/tar.gz/garnet-hemisphere');
+    expect(urlsSeen).not.toContain('https://codeload.github.com/aurora-ember-bio-lab/splatstudio/tar.gz/garnet-hemisphere');
     const row = db.prepare(`SELECT source_kind, source FROM installed_plugins WHERE id = 'sample-plugin'`).get();
     expect(row).toEqual({ source_kind: 'github', source });
   });
@@ -233,7 +233,7 @@ describe('archive installer', () => {
     const urlsSeen: string[] = [];
     const contentsUrl =
       'https://api.github.com/repos/nexu-io/open-design/contents/plugins/community/import-smoke-test?ref=main';
-    const tarballUrl = 'https://codeload.github.com/nexu-io/open-design/tar.gz/main';
+    const tarballUrl = 'https://codeload.github.com/aurora-ember-bio-lab/splatstudio/tar.gz/main';
     const fetcher: ArchiveFetcher = async (u) => {
       urlsSeen.push(u);
       if (u === contentsUrl) {
@@ -245,7 +245,7 @@ describe('archive installer', () => {
 
     let success = false;
     let error: string | undefined;
-    const source = 'github:nexu-io/open-design@main/plugins/community/import-smoke-test';
+    const source = 'github:aurora-ember-bio-lab/splatstudio@main/plugins/community/import-smoke-test';
     for await (const ev of installPlugin(db, {
       source,
       roots: { userPluginsRoot: pluginsRoot },
@@ -267,7 +267,7 @@ describe('archive installer', () => {
     const urlsSeen: string[] = [];
     const contentsUrl =
       'https://api.github.com/repos/nexu-io/open-design/contents/plugins/community/import-smoke-test?ref=main';
-    const tarballUrl = 'https://codeload.github.com/nexu-io/open-design/tar.gz/main';
+    const tarballUrl = 'https://codeload.github.com/aurora-ember-bio-lab/splatstudio/tar.gz/main';
     const fetcher: ArchiveFetcher = async (u) => {
       urlsSeen.push(u);
       if (u === contentsUrl) {
@@ -278,7 +278,7 @@ describe('archive installer', () => {
     };
 
     let error: string | undefined;
-    const source = 'github:nexu-io/open-design@main/plugins/community/import-smoke-test';
+    const source = 'github:aurora-ember-bio-lab/splatstudio@main/plugins/community/import-smoke-test';
     for await (const ev of installPlugin(db, {
       source,
       roots: { userPluginsRoot: pluginsRoot },

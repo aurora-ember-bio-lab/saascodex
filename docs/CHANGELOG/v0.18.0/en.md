@@ -11,7 +11,7 @@ description: SplatStudio 0.18.0 introduces Team Workspace—a shared home where 
 
 - 🤝 **Team workspaces — your team gets a home.** *Collaboration used to mean leaving SplatStudio: export the file, paste the screenshot, chase the latest copy.* Now a **Team workspace** lives right next to your personal one. Create it, switch into it, and invite colleagues with a role through a seat-aware invite flow — everyone lands in the same place, signed in through one SplatStudio Cloud account. (#6142, #6459)
 
-- 🚀 **SplatStudio for Codex — in case you missed 0.17.0.** *The last release lived for exactly two days, so its headline rides again:* Codex Desktop and CLI can call SplatStudio as a complete creative engine. Confirm a visual brief, choose SplatStudio Cloud or a supported local runtime, and receive a real Preview or Studio result. The signed SplatStudio runtime starts headlessly when needed, so there is no second app to keep open and no stack to wire together by hand. Upgrading from 0.16.x? This one is new to you too. (#6055, #6273, #6362 — shipped in [0.17.0](https://github.com/nexu-io/open-design/releases/tag/splatstudio-v0.17.0))
+- 🚀 **SplatStudio for Codex — in case you missed 0.17.0.** *The last release lived for exactly two days, so its headline rides again:* Codex Desktop and CLI can call SplatStudio as a complete creative engine. Confirm a visual brief, choose SplatStudio Cloud or a supported local runtime, and receive a real Preview or Studio result. The signed SplatStudio runtime starts headlessly when needed, so there is no second app to keep open and no stack to wire together by hand. Upgrading from 0.16.x? This one is new to you too. (#6055, #6273, #6362 — shipped in [0.17.0](https://github.com/aurora-ember-bio-lab/splatstudio/releases/tag/splatstudio-v0.17.0))
 
 - 🔌 **And Codex doesn't lose SplatStudio anymore.** External MCP hosts — Codex and friends — used to go dark if SplatStudio's local service came back on a different port after a restart. The connection now finds its way home on its own, so `@splatstudio` keeps working across restarts without re-setup. (#6391)
 
@@ -33,9 +33,9 @@ description: SplatStudio 0.18.0 introduces Team Workspace—a shared home where 
 >
 > | Platform | Architecture | Asset |
 > |---|---|---|
-> | macOS | Apple Silicon (arm64) | [splatstudio-0.18.0-mac-arm64.dmg](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-mac-arm64.dmg) |
-> | macOS | Intel (x64) | [splatstudio-0.18.0-mac-x64.dmg](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-mac-x64.dmg) |
-> | Windows | x64 | [splatstudio-0.18.0-win-x64-setup.exe](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-win-x64-setup.exe) |
+> | macOS | Apple Silicon (arm64) | [splatstudio-0.18.0-mac-arm64.dmg](https://github.com/aurora-ember-bio-lab/splatstudio/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-mac-arm64.dmg) |
+> | macOS | Intel (x64) | [splatstudio-0.18.0-mac-x64.dmg](https://github.com/aurora-ember-bio-lab/splatstudio/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-mac-x64.dmg) |
+> | Windows | x64 | [splatstudio-0.18.0-win-x64-setup.exe](https://github.com/aurora-ember-bio-lab/splatstudio/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-win-x64-setup.exe) |
 
 ## ✨ Added
 

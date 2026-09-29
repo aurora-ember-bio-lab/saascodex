@@ -33,7 +33,7 @@ interface can connect to its local engine on first launch. (#7520) Thanks
 key, and pick from its current DeepSeek, MiniMax, Qwen, GLM, Kimi and GPT-OSS  
 models without hand-building the provider setup. (#6327) Thanks @jax-novita.
 
-> 📥 **Download:**[Open Design 0.24.0](https://github.com/nexu-io/open-design/releases/tag/splatstudio-v0.24.0).
+> 📥 **Download:**[Open Design 0.24.0](https://github.com/aurora-ember-bio-lab/splatstudio/releases/tag/splatstudio-v0.24.0).
 
 ## ✨ Added
 

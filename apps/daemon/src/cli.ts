@@ -5381,7 +5381,7 @@ fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`
     return result;
   };
 
-  await run('fork', 'gh', ['repo', 'fork', 'nexu-io/open-design'], {
+  await run('fork', 'gh', ['repo', 'fork', 'aurora-ember-bio-lab/splatstudio'], {
     tolerate: (r) => /already exists|existing fork/i.test(`${r.stdout}\n${r.stderr}`),
   });
   await run('clone fork', 'git', [
@@ -5413,7 +5413,7 @@ fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`
   ].filter(Boolean).join('\n');
   const pr = await run('open PR form', 'gh', [
     'pr', 'create',
-    '--repo', 'nexu-io/open-design',
+    '--repo', 'aurora-ember-bio-lab/splatstudio',
     '--head', `${target.owner}:${branch}`,
     '--base', 'main',
     '--title', `Add ${title} plugin`,
@@ -5725,7 +5725,7 @@ marks a version unresolvable for new installs while preserving lockfile replay.`
     name: parsed.name,
     version: parsed.range,
     reason,
-    url: `https://github.com/nexu-io/open-design/issues/new?${params.toString()}`,
+    url: `https://github.com/aurora-ember-bio-lab/splatstudio/issues/new?${params.toString()}`,
     body,
   };
   if (flags.json) {

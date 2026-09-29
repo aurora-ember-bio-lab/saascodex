@@ -10,9 +10,9 @@
     "name": "SplatStudio Community",
     "url": "https://splatstudio.app/marketplace/community"
   },
-  "homepage": "https://github.com/nexu-io/open-design/tree/main/plugins/community/registry-starter",
+  "homepage": "https://github.com/aurora-ember-bio-lab/splatstudio/tree/main/plugins/community/registry-starter",
   "plugin": {
-    "repo": "https://github.com/nexu-io/open-design/tree/main/plugins/community/registry-starter"
+    "repo": "https://github.com/aurora-ember-bio-lab/splatstudio/tree/main/plugins/community/registry-starter"
   },
   "tags": [
     "community",

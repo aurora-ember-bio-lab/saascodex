@@ -130,7 +130,7 @@ async function startStub(scenarios: Scenario[]): Promise<{ counters: Counters; s
               : [
                   {
                     conclusion: run.conclusion,
-                    html_url: `https://github.com/nexu-io/open-design/actions/runs/${id}`,
+                    html_url: `https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/${id}`,
                     id: Number(id),
                     name: `prerelease ${isTests ? "tests" : "smoke"} · 0.22.1-prerelease.12 · ${RUN_MARKER}`,
                     run_attempt: run.run_attempt,

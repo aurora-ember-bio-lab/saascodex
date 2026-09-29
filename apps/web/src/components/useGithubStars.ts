@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import type { SplatStudioGithubRepoResponse } from '@splatstudio/contracts';
 
 const API = '/api/github/splatstudio';
-const REPO = 'https://github.com/nexu-io/open-design';
+const REPO = 'https://github.com/aurora-ember-bio-lab/splatstudio';
 const LS_KEY = 'splatstudio:gh-stars';
 const FAILURE_LS_KEY = 'splatstudio:gh-stars:last-failure';
 export const GITHUB_STARS_FALLBACK_LABEL = '40K+';

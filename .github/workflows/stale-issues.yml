@@ -30,7 +30,7 @@ concurrency:
 
 jobs:
   stale:
-    if: github.repository == 'nexu-io/open-design'
+    if: github.repository == 'aurora-ember-bio-lab/splatstudio'
     runs-on: ubuntu-latest
     steps:
       - name: Exempt org-member issues from staling

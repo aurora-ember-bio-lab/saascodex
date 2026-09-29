@@ -23,7 +23,7 @@ same environment.
 ## 1. Install from source in WSL
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git ~/tools/splatstudio
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git ~/tools/splatstudio
 cd ~/tools/splatstudio
 
 node --version   # should print v24.x.x

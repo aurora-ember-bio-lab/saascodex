@@ -77,7 +77,7 @@ describe('buildPluginFolderAgentActionPrompt', () => {
     const prompt = buildPluginFolderAgentActionPrompt(FOLDER, 'contribute');
 
     it('delegates SplatStudio PR creation to the deterministic plugin CLI helper', () => {
-      expect(prompt).toContain('nexu-io/open-design');
+      expect(prompt).toContain('aurora-ember-bio-lab/splatstudio');
       expect(prompt).toContain(`"$OD_NODE_BIN" "$OD_BIN" plugin splatstudio-pr ${FOLDER}`);
     });
 

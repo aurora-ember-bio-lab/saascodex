@@ -10,7 +10,7 @@ the existing Langfuse trace forwarding and PostHog run analytics, then defines
 the target loop that adds datasets, experiments, annotation, and release gates
 around those signals.
 
-Issue: [#3713](https://github.com/nexu-io/open-design/issues/3713)
+Issue: [#3713](https://github.com/aurora-ember-bio-lab/splatstudio/issues/3713)
 
 ## Current State
 

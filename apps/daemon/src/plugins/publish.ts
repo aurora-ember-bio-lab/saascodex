@@ -152,10 +152,10 @@ export function buildPublishLink(args: {
         '- Generated index: `plugins/registry/community/splatstudio-marketplace.json`',
         '- Required checks: `od plugin validate`, `od plugin pack`, integrity digest, preview smoke.',
       ].join('\n');
-      const url = newIssueUrl('nexu-io/open-design', title, bodyWithRegistry);
+      const url = newIssueUrl('aurora-ember-bio-lab/splatstudio', title, bodyWithRegistry);
       return {
         catalog: args.catalog,
-        catalogLabel: 'nexu-io/open-design',
+        catalogLabel: 'aurora-ember-bio-lab/splatstudio',
         url,
         prBody: bodyWithRegistry,
       };

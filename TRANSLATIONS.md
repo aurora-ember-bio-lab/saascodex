@@ -406,7 +406,7 @@ when a natural French equivalent exists:
 
 ### zh-CN ↔ zh-TW Glossary
 
-When converting between Simplified and Traditional Chinese, prefer Taiwan-specific phrasing in zh-TW rather than character-only conversion. This list grew out of [PR #194](https://github.com/nexu-io/open-design/pull/194) and is meant as a starting point, not a rulebook.
+When converting between Simplified and Traditional Chinese, prefer Taiwan-specific phrasing in zh-TW rather than character-only conversion. This list grew out of [PR #194](https://github.com/aurora-ember-bio-lab/splatstudio/pull/194) and is meant as a starting point, not a rulebook.
 
 **Tooling:** [OpenCC](https://github.com/BYVoid/OpenCC) with `s2twp.json` handles most core terms automatically. The idiomatic table below is where human review pays off.
 
@@ -802,8 +802,8 @@ If yes to all, it's good enough!
 
 ## 🆘 Getting Help
 
-- **Questions?** Open a [GitHub Discussion](https://github.com/nexu-io/open-design/discussions)
-- **Found an issue?** Open a [GitHub Issue](https://github.com/nexu-io/open-design/issues)
+- **Questions?** Open a [GitHub Discussion](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
+- **Found an issue?** Open a [GitHub Issue](https://github.com/aurora-ember-bio-lab/splatstudio/issues)
 - **Want to chat?** Join our [Discord](https://discord.gg/mHAjSMV6gz)
 - **Need a review?** Tag `@nexu-io/maintainers` in your PR
 
@@ -816,7 +816,7 @@ Genuinely undecided — flagged so contributors know they're live design discuss
 - **README freshness signal.** A small badge or front-matter timestamp on each `README.<code>.md` could help readers gauge how current a translation is.
 - **Native-speaker review window.** Whether `~7 days` is too short for smaller language communities — adjust if real data shows otherwise.
 
-If you have an opinion on any of the above, open an issue or comment on [#195](https://github.com/nexu-io/open-design/issues/195).
+If you have an opinion on any of the above, open an issue or comment on [#195](https://github.com/aurora-ember-bio-lab/splatstudio/issues/195).
 
 ---
 
@@ -825,7 +825,7 @@ If you have an opinion on any of the above, open an issue or comment on [#195](h
 These remain deferred despite the repository now carrying 19 UI locales; crossing the old locale-count triggers did not itself adopt a tool or generation contract. Either change needs an explicit maintainer decision:
 
 - **Translation memory tooling** (Crowdin / Weblate / Lingui).
-- **README template-driven generation** (e.g. [NRG](https://github.com/nanolaba/readme-generator), custom `.src.md` build scripts, All Contributors-style tooling). Discussion in [#195](https://github.com/nexu-io/open-design/issues/195) captures the tradeoff between switcher maintenance and locale-specific structure.
+- **README template-driven generation** (e.g. [NRG](https://github.com/nanolaba/readme-generator), custom `.src.md` build scripts, All Contributors-style tooling). Discussion in [#195](https://github.com/aurora-ember-bio-lab/splatstudio/issues/195) captures the tradeoff between switcher maintenance and locale-specific structure.
 
 ---
 
@@ -836,7 +836,7 @@ Thank you to all our translation contributors! 🌍
 Every translation makes SplatStudio accessible to more developers worldwide.
 
 **Current contributors:**
-- See [Contributors](https://github.com/nexu-io/open-design/graphs/contributors) for the full list
+- See [Contributors](https://github.com/aurora-ember-bio-lab/splatstudio/graphs/contributors) for the full list
 
 ---
 

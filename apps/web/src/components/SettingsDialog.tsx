@@ -293,7 +293,7 @@ interface ByokProviderPreset {
 // sign-in coachmark when the user has not authorized AMR yet).
 export type SettingsHighlight = 'amr' | null;
 
-const SPLATSTUDIO_RELEASES_URL = 'https://github.com/nexu-io/open-design/releases';
+const SPLATSTUDIO_RELEASES_URL = 'https://github.com/aurora-ember-bio-lab/splatstudio/releases';
 
 type AboutUpdatePrimaryAction = 'check' | 'download' | 'install' | 'quit';
 type AboutUpdateTone = 'neutral' | 'success' | 'warning' | 'error';

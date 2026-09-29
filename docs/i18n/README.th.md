@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
   <a href="../../LICENSE"><img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://discord.gg/qhbcCH8Am4"><img alt="discord" src="https://img.shields.io/discord/1479002485040480266?style=flat&logo=discord&logoColor=white&label=discord&color=5865F2&cacheSeconds=3600" /></a>
   <a href="QUICKSTART.th.md"><img alt="quickstart" src="https://img.shields.io/badge/quickstart-3%20commands-green?style=flat" /></a>
@@ -280,9 +280,9 @@ SplatStudio (OD) คือทางเลือกโอเพนซอร์ส
 
 วิธีที่เร็วที่สุดในการใช้ SplatStudio. ไม่ต้องมี Node, ไม่ต้องมี pnpm, ไม่ต้อง clone.
 
-- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Linux** (AppImage, optional lane) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/) หรือ [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/) หรือ [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Linux** (AppImage, optional lane) → [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
 
 หลังติดตั้ง: แอปจะ auto-detect coding-agent CLI ทุกตัวบน `PATH`, โหลด functional skills 100+ รายการ, rendering-template catalog ที่แยกต่างหาก และ design-system packages 151 ชุด แล้วให้คุณพิมพ์ brief ใน entry view ได้ทันที.
 
@@ -308,7 +308,7 @@ curl -fsSL https://splatstudio.app/install.sh | sh -s <agent>
 ### 🐳 รันด้วย Docker
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
@@ -321,7 +321,7 @@ docker compose up -d
 ### 🧑‍💻 รันจาก source
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
@@ -585,10 +585,10 @@ Phased delivery → [`docs/roadmap.md`](../../docs/roadmap.md).
 
 - 💬 **Discord** — คุยรายวัน, แชร์ plugin, ถามคำถาม → [**discord.gg/qhbcCH8Am4**](https://discord.gg/qhbcCH8Am4)
 - 🐦 **X / Twitter** — release notes, milestones, behind the scenes → [**@nexudotio**](https://x.com/nexudotio)
-- 🗣️ **GitHub Discussions** — Q&A เชิงลึก, RFCs, "show your work" → [**Discussions**](https://github.com/nexu-io/open-design/discussions)
-- 🐛 **GitHub Issues** — bug reports, feature requests → [**Issues**](https://github.com/nexu-io/open-design/issues)
+- 🗣️ **GitHub Discussions** — Q&A เชิงลึก, RFCs, "show your work" → [**Discussions**](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
+- 🐛 **GitHub Issues** — bug reports, feature requests → [**Issues**](https://github.com/aurora-ember-bio-lab/splatstudio/issues)
 
-Label [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) และ [`help-wanted`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) เป็นจุดเริ่มที่ง่ายที่สุด.
+Label [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) และ [`help-wanted`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) เป็นจุดเริ่มที่ง่ายที่สุด.
 
 ---
 
@@ -604,7 +604,7 @@ SplatStudio เดินหน้าได้เพราะ contributors — de
 | **design system** ใหม่ | วาง package ที่มี `DESIGN.md` เป็นแกน และเพิ่ม `manifest.json`, `tokens.css`, components, assets หรือ provenance ตามต้องการ | [`design-systems/<brand>/`](../../design-systems/) |
 | **plugin** ใหม่ | วาง `splatstudio.json` + payload เฉพาะประเภทใน category folder | [`plugins/community/`](../../plugins/community/) · spec ใน [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · agent dev guide ใน [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | รองรับ **coding-agent CLI** ใหม่ | Runtime definition + registry entry; เพิ่ม parser เฉพาะ wire format ใหม่ | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
-| แก้ bug หรือ polish UI | ดู label [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues →](https://github.com/nexu-io/open-design/issues) |
+| แก้ bug หรือ polish UI | ดู label [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues →](https://github.com/aurora-ember-bio-lab/splatstudio/issues) |
 | แปล docs | อัปเดตไฟล์ `README.<lang>.md` | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
 
 ### 🤖 Contributing ในฐานะ agent
@@ -613,7 +613,7 @@ SplatStudio เดินหน้าได้เพราะ contributors — de
 
 ```bash
 # 1. Boot locally
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
@@ -673,7 +673,7 @@ Contribution flow สำหรับ agent, code style และ PR bar แบ�
 
 ขอบคุณทุกคนที่มีส่วนร่วม — code, docs, feedback, issue ที่คม, skill ใหม่, design system ใหม่.
 
-<a href="https://github.com/nexu-io/open-design/graphs/contributors">
+<a href="https://github.com/aurora-ember-bio-lab/splatstudio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
@@ -692,7 +692,7 @@ SVG ด้านบน regenerate ทุกวันโดย [`.github/workflow
 ## Star us
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio บน GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio บน GitHub — github.com/aurora-ember-bio-lab/splatstudio" width="100%" /></a>
 </p>
 
 ถ้าสิ่งนี้ช่วยคุณประหยัดเวลาได้สามสิบนาที กด ★ ให้เราได้เลย. Stars ไม่ได้จ่ายค่าเช่า — แต่มันบอก designer, agent และ contributor คนถัดไปว่าการทดลองนี้ควรค่าแก่ความสนใจ. คลิกเดียว, สามวินาที, เป็นสัญญาณจริง.

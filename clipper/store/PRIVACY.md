@@ -48,4 +48,4 @@ new "Last updated" date.
 
 ## Contact
 
-Questions: https://github.com/nexu-io/open-design/issues
+Questions: https://github.com/aurora-ember-bio-lab/splatstudio/issues

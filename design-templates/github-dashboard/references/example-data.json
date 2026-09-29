@@ -2,7 +2,7 @@
   "repository": {
     "name": "splatstudio",
     "fullName": "nexu-io/open-design",
-    "url": "https://github.com/nexu-io/open-design",
+    "url": "https://github.com/aurora-ember-bio-lab/splatstudio",
     "description": "Local-first, open-source alternative to Anthropic's Claude Design. 19 Skills · 71 brand-grade Design Systems · Generate web/desktop/mobile prototypes · slides · images · videos",
     "language": "TypeScript",
     "license": "Apache-2.0",

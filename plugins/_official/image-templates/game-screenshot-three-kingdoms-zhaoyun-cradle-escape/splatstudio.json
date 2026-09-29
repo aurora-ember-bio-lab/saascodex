@@ -49,9 +49,9 @@
   "license": "Apache-2.0",
   "author": {
     "name": "splatstudio contributors",
-    "url": "https://github.com/nexu-io/open-design"
+    "url": "https://github.com/aurora-ember-bio-lab/splatstudio"
   },
-  "homepage": "https://github.com/nexu-io/open-design",
+  "homepage": "https://github.com/aurora-ember-bio-lab/splatstudio",
   "tags": [
     "image-template",
     "first-party",
@@ -75,7 +75,7 @@
     "surface": "image",
     "preview": {
       "type": "image",
-      "poster": "https://raw.githubusercontent.com/nexu-io/open-design/main/assets/prompt-templates/image/game-screenshot-three-kingdoms-zhaoyun-cradle-escape.jpg"
+      "poster": "https://raw.githubusercontent.com/aurora-ember-bio-lab/splatstudio/main/assets/prompt-templates/image/game-screenshot-three-kingdoms-zhaoyun-cradle-escape.jpg"
     },
     "useCase": {
       "query": {

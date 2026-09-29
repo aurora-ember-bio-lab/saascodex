@@ -43,7 +43,7 @@ function state(overrides: Partial<PrereleaseCardState> = {}): PrereleaseCardStat
     commit: "0123456789abcdef0123456789abcdef01234567",
     previousCommit: "fedcba9876543210fedcba9876543210fedcba98",
     repo: "nexu-io/open-design",
-    originRunUrl: "https://github.com/nexu-io/open-design/actions/runs/1",
+    originRunUrl: "https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/1",
     testsRunUrl: "",
     smokeRunUrl: "",
     changelog: { lines: ["fix(web): keep the composer mounted (abc1234567)"], total: 1, truncated: false },
@@ -534,7 +534,7 @@ describe("prerelease progress card", () => {
       );
       expect(noteText(shipped)).toContain("本轮总耗时 47m09s");
       // Still next to the links it has always sat beside.
-      expect(noteText(shipped)).toContain("[打包运行](https://github.com/nexu-io/open-design/actions/runs/1)");
+      expect(noteText(shipped)).toContain("[打包运行](https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/1)");
     });
 
     it("says nothing about the round when it does not know when the run started", () => {
@@ -547,13 +547,13 @@ describe("prerelease progress card", () => {
     const card = render(
       state({
         platforms: [platform("mac_arm64", "success")],
-        testsRunUrl: "https://github.com/nexu-io/open-design/actions/runs/2",
-        smokeRunUrl: "https://github.com/nexu-io/open-design/actions/runs/3",
+        testsRunUrl: "https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/2",
+        smokeRunUrl: "https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/3",
       }),
     );
     const note = card.elements.at(-1)?.elements?.[0]?.content ?? "";
-    expect(note).toContain("[打包运行](https://github.com/nexu-io/open-design/actions/runs/1)");
-    expect(note).toContain("[代码测试](https://github.com/nexu-io/open-design/actions/runs/2)");
-    expect(note).toContain("[包 smoke](https://github.com/nexu-io/open-design/actions/runs/3)");
+    expect(note).toContain("[打包运行](https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/1)");
+    expect(note).toContain("[代码测试](https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/2)");
+    expect(note).toContain("[包 smoke](https://github.com/aurora-ember-bio-lab/splatstudio/actions/runs/3)");
   });
 });

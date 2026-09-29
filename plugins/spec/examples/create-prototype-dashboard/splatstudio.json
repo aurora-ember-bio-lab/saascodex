@@ -8,9 +8,9 @@
   "license": "MIT",
   "author": {
     "name": "SplatStudio Spec Examples",
-    "url": "https://github.com/nexu-io/open-design"
+    "url": "https://github.com/aurora-ember-bio-lab/splatstudio"
   },
-  "homepage": "https://github.com/nexu-io/open-design/tree/main/plugins/spec/examples/create-prototype-dashboard",
+  "homepage": "https://github.com/aurora-ember-bio-lab/splatstudio/tree/main/plugins/spec/examples/create-prototype-dashboard",
   "tags": ["create", "prototype", "dashboard", "operations"],
   "compat": {
     "agentSkills": [{ "path": "./SKILL.md" }]

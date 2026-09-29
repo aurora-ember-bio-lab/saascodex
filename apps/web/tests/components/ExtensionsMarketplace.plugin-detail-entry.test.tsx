@@ -66,7 +66,7 @@ const MARKETPLACES = [
         {
           name: 'splatstudio/build-test',
           title: 'Build test',
-          source: 'github:nexu-io/open-design@main/plugins/_official/build-test',
+          source: 'github:aurora-ember-bio-lab/splatstudio@main/plugins/_official/build-test',
           version: '0.1.0',
           description: 'A real installed Official plugin.',
         },

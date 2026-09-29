@@ -25,7 +25,7 @@ une PR doit atteindre avant d’être mergée.
 | Améliorer la doc, porter une section en Français / Deutsch / 中文, corriger une faute | documentation | `README.md`, `docs/i18n/README.fr.md`, `docs/i18n/README.de.md`, `docs/i18n/README.zh-CN.md`, `docs/`, `QUICKSTART.md` | une PR |
 
 Si vous ne savez pas dans quelle catégorie tombe votre idée, [ouvrez d'abord
-une discussion ou une issue](https://github.com/nexu-io/open-design/issues/new)
+une discussion ou une issue](https://github.com/aurora-ember-bio-lab/splatstudio/issues/new)
 et nous vous orienterons vers la bonne surface.
 
 ---
@@ -36,7 +36,7 @@ Le setup complet en une page se trouve dans [`QUICKSTART.fr.md`](QUICKSTART.fr.m
 TL;DR pour contribuer :
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 corepack enable           # sélectionne la version de pnpm définie par packageManager
 pnpm install
@@ -384,7 +384,7 @@ afin de voir si la violation vient du modèle ou du prompt.
 ## Poser des questions
 
 - Question d'architecture, question de design, "bug ou mauvaise utilisation ?" →
-  [GitHub Discussions](https://github.com/nexu-io/open-design/discussions)
+  [GitHub Discussions](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
   (préféré, car searchable pour la personne suivante).
 - "Comment écrire un Skill qui fait X ?" → ouvrez une discussion. Nous y
   répondrons et transformerons la réponse en ajout dans
@@ -444,7 +444,7 @@ Le tl;dr : livrez de bonnes PR, faites des reviews réfléchies, traînez
 dans les [Discussions][discussions] / sur [Discord][discord], et le reste
 se fait tout seul.
 
-[discussions]: https://github.com/nexu-io/open-design/discussions
+[discussions]: https://github.com/aurora-ember-bio-lab/splatstudio/discussions
 [discord]: https://discord.gg/mHAjSMV6gz
 
 ---

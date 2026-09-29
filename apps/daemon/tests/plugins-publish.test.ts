@@ -66,7 +66,7 @@ describe('buildPublishLink', () => {
     // (plugins/community/<plugin-name>/), keeping contribution where stars and
     // PR traffic already are.
     const link = buildPublishLink({ catalog: 'splatstudio', meta: META });
-    expect(link.catalogLabel).toBe('nexu-io/open-design');
+    expect(link.catalogLabel).toBe('aurora-ember-bio-lab/splatstudio');
     expect(link.url).toMatch(/^https:\/\/github\.com\/nexu-io\/splatstudio\/issues\/new\?/);
     expect(link.prBody).toContain('plugins/community/<plugin-name>/splatstudio.json');
     expect(link.prBody).toContain('plugins/registry/community/splatstudio-marketplace.json');

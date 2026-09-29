@@ -9,7 +9,7 @@ Deploy SplatStudio on Linux or macOS with a single command. The installer wraps 
 Clone the repository and run the installer:
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 bash deploy/scripts/install.sh
 ```

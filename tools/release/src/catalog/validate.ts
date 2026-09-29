@@ -34,7 +34,7 @@ function validateRecord(record: CatalogRecord, index: number, errors: string[]):
   if (typeof record.description !== "string") {
     errors.push(`${prefix}.description must be a string`);
   }
-  if (!isNonEmptyString(record.sourceUrl) || !record.sourceUrl.startsWith("https://github.com/nexu-io/open-design/")) {
+  if (!isNonEmptyString(record.sourceUrl) || !record.sourceUrl.startsWith("https://github.com/aurora-ember-bio-lab/splatstudio/")) {
     errors.push(`${prefix}.sourceUrl must be a nexu-io/open-design GitHub URL`);
   }
   if (typeof record.body !== "string") {

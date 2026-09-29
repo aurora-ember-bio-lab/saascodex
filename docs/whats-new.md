@@ -63,7 +63,7 @@ down is an explicit act rather than something a typo can do for you.
   "title": "Design system sync",
   "body": "Import, edit and sync design systems with cleaner release highlights on Home.",
   "imageUrl": "https://whatsnew.splatstudio.app/0.13.0.png",
-  "linkUrl": "https://github.com/nexu-io/open-design/releases/tag/splatstudio-v0.13.0",
+  "linkUrl": "https://github.com/aurora-ember-bio-lab/splatstudio/releases/tag/splatstudio-v0.13.0",
   "ctaLabel": "View release notes",
   "locales": {
     "zh-CN": {

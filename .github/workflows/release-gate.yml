@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   gate:
-    if: github.repository == 'nexu-io/open-design'
+    if: github.repository == 'aurora-ember-bio-lab/splatstudio'
     runs-on: ubuntu-latest
     steps:
       - name: Check for un-landed backports

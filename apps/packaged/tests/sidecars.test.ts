@@ -13,7 +13,7 @@
  *
  * @see apps/packaged/src/sidecars.ts
  * @see apps/daemon/src/legacy-data-migrator.ts
- * @see https://github.com/nexu-io/open-design/issues/710
+ * @see https://github.com/aurora-ember-bio-lab/splatstudio/issues/710
  */
 import { EventEmitter } from 'node:events';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -119,7 +119,7 @@ describe('resolveDaemonStatusTimeoutMs', () => {
     // Apple Silicon cold boots, after which the parent tears the sidecars down
     // and the desktop falls back to a stale web URL. The wider budget matches
     // the win32/linux "slow, not dead" safety net.
-    // https://github.com/nexu-io/open-design/issues/6637
+    // https://github.com/aurora-ember-bio-lab/splatstudio/issues/6637
     expect(resolveDaemonStatusTimeoutMs({}, 'darwin')).toBe(90_000);
   });
 
@@ -129,7 +129,7 @@ describe('resolveDaemonStatusTimeoutMs', () => {
     // EVERY launch and can blow past the 35s baseline. The prewarm pass cuts the
     // usual case to a few seconds; the wider budget is the safety net for slow
     // devices, mirroring the win32 rationale.
-    // https://github.com/nexu-io/open-design/issues/5835
+    // https://github.com/aurora-ember-bio-lab/splatstudio/issues/5835
     expect(resolveDaemonStatusTimeoutMs({}, 'linux')).toBe(90_000);
   });
 

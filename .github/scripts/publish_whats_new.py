@@ -55,7 +55,7 @@ READ_BACK_TIMEOUT = 20.0
 # verification fails on every run and the publisher can never confirm anything.
 READ_HEADERS = {
     "accept": "application/json",
-    "user-agent": "open-design-whats-new-publisher/1 (+https://github.com/nexu-io/open-design)",
+    "user-agent": "open-design-whats-new-publisher/1 (+https://github.com/aurora-ember-bio-lab/splatstudio)",
 }
 
 REQUIRED_STORAGE_VARS = (

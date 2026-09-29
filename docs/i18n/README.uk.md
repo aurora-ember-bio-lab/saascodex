@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio/releases"><img alt="release" src="https://img.shields.io/github/v/release/nexu-io/open-design?style=flat&color=blueviolet&label=release&include_prereleases&display_name=tag" /></a>
   <a href="../../LICENSE"><img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://discord.gg/mHAjSMV6gz"><img alt="discord" src="https://img.shields.io/discord/1479002485040480266?style=flat&logo=discord&logoColor=white&label=discord&color=5865F2&cacheSeconds=3600" /></a>
   <a href="../../QUICKSTART.md"><img alt="quickstart" src="https://img.shields.io/badge/quickstart-3%20commands-green?style=flat" /></a>
@@ -280,9 +280,9 @@ SplatStudio (OD) — це альтернатива з відкритим код�
 
 Найшвидший спосіб скористатися SplatStudio. Без Node, без pnpm, без клонування.
 
-- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/) або [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/) або [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Linux** (AppImage, опціональна лінія) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/) або [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/) або [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
+- **Linux** (AppImage, опціональна лінія) → [GitHub Releases](https://github.com/aurora-ember-bio-lab/splatstudio/releases)
 
 Після встановлення: застосунок автоматично виявляє кожен CLI кодувального агента у вашому `PATH`, завантажує 100+ функціональних навичок, окремий каталог шаблонів рендерингу та 151 пакет дизайн-систем і дозволяє ввести бриф у вікні входу.
 
@@ -308,7 +308,7 @@ od mcp install <agent>
 ### 🐳 Запуск через Docker
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
@@ -325,7 +325,7 @@ docker compose up -d
 ### 🧑‍💻 Запуск із вихідного коду
 
 ```bash
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
@@ -588,10 +588,10 @@ pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 
 - 💬 **Discord** — щоденний чат, обмін плагінами, запитання → [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
 - 🐦 **X / Twitter** — нотатки до релізів, віхи, закулісся → [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
-- 🗣️ **GitHub Discussions** — глибокі Q&A, RFC, «покажи свою роботу» → [**Discussions**](https://github.com/nexu-io/open-design/discussions)
-- 🐛 **GitHub Issues** — звіти про баги, запити на функції → [**Issues**](https://github.com/nexu-io/open-design/issues)
+- 🗣️ **GitHub Discussions** — глибокі Q&A, RFC, «покажи свою роботу» → [**Discussions**](https://github.com/aurora-ember-bio-lab/splatstudio/discussions)
+- 🐛 **GitHub Issues** — звіти про баги, запити на функції → [**Issues**](https://github.com/aurora-ember-bio-lab/splatstudio/issues)
 
-Мітки [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) та [`help-wanted`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) — найлегший спосіб долучитися.
+Мітки [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) та [`help-wanted`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) — найлегший спосіб долучитися.
 
 ---
 
@@ -607,7 +607,7 @@ SplatStudio продовжує рухатися, бо контриб'ютори 
 | Нову **дизайн-систему** | Покладіть пакет із `DESIGN.md` в основі; за потреби додайте `manifest.json`, `tokens.css`, компоненти, ресурси або дані про походження | [`design-systems/<brand>/`](../../design-systems/) |
 | Новий **плагін** | Покладіть `splatstudio.json` + payload відповідного типу під текою категорії | [`plugins/community/`](../../plugins/community/) · специфікація в [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · посібник із розробки агентом у [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | Підтримку нового **CLI кодувального агента** | Визначення runtime + запис у registry; parser лише для нового формату | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
-| Виправити баг або відполірувати UI | Перегляньте мітку [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues →](https://github.com/nexu-io/open-design/issues) |
+| Виправити баг або відполірувати UI | Перегляньте мітку [`good-first-issue`](https://github.com/aurora-ember-bio-lab/splatstudio/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues →](https://github.com/aurora-ember-bio-lab/splatstudio/issues) |
 | Перекласти документацію | Оновіть файли `README.<lang>.md` | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
 
 ### 🤖 Внесок як агент
@@ -616,7 +616,7 @@ SplatStudio продовжує рухатися, бо контриб'ютори 
 
 ```bash
 # 1. Boot locally
-git clone https://github.com/nexu-io/open-design.git
+git clone https://github.com/aurora-ember-bio-lab/splatstudio.git
 cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
@@ -669,7 +669,7 @@ gh pr create --fill
 
 Дякуємо всім, хто долучився — кодом, документацією, відгуками, влучним issue, новою навичкою, новою дизайн-системою.
 
-<a href="https://github.com/nexu-io/open-design/graphs/contributors">
+<a href="https://github.com/aurora-ember-bio-lab/splatstudio/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
@@ -688,7 +688,7 @@ SVG вище щодня перегенеровується [`.github/workflows/m
 ## Поставте нам зірку
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/aurora-ember-bio-lab/splatstudio"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/aurora-ember-bio-lab/splatstudio" width="100%" /></a>
 </p>
 
 Якщо це зекономило вам тридцять хвилин, поставте ★. Зірки не платять за оренду — але вони кажуть наступному дизайнеру, агенту й контриб'ютору, що цей експеримент вартий їхньої уваги. Один клік, три секунди, реальний сигнал.

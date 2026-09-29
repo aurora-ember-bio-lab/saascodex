@@ -140,7 +140,7 @@ const ACCOUNT_MENU_CARD_INSET = 11;
  *  instead of collapsing the menu into a sliver. */
 const ACCOUNT_MENU_MIN_HEIGHT = 200;
 
-const REPO_URL = 'https://github.com/nexu-io/open-design';
+const REPO_URL = 'https://github.com/aurora-ember-bio-lab/splatstudio';
 const GITHUB_HELP_URL = `${REPO_URL}/issues/new`;
 const GITHUB_FEATURE_URL = `${REPO_URL}/pulls`;
 const DISCORD_URL = 'https://discord.gg/mHAjSMV6gz';

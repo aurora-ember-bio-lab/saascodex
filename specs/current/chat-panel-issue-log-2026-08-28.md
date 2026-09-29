@@ -588,7 +588,7 @@ sh 2033   layoutMax 1450   wheelReached 1449.5   frozen: false
 
 ### 模板 / 插件上下文错误
 
-- 主线 PR：<https://github.com/nexu-io/open-design/pull/7533>
+- 主线 PR：<https://github.com/aurora-ember-bio-lab/splatstudio/pull/7533>
 - 用户已确认该 PR 合并。
 - 本分支需要持续确认已集成对应提交，避免首页选择的模板进入会话后被错误替换为“克制的 COO 经营复盘”，或顶部“正在使用”插件消失 / 显示错误。
 
