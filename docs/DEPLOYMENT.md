@@ -99,6 +99,37 @@ The image is also published by this repo's Docker workflow
 (`deploy/Dockerfile`). Compose services: `splatstudio`, `postgres`, `migrate`,
 and `atlas` (profile `tools`).
 
+## Hosted runtime (chat + generation)
+
+Chat and generation **need an agent runtime** — a code-agent CLI the daemon
+spawns. The hosted container ships **none**, so `GET /api/agents` reports every
+runtime `available: false` and any chat run fails. This is the #1 hosted gap.
+
+Options to enable it:
+
+1. **Install a CLI in the image** (recommended): set `SPLATSTUDIO_AGENT_CLI` to
+   an npm package (e.g. `@anthropic-ai/claude-code`, `opencode-ai`) at build
+   time, and the provider key env (e.g. `ANTHROPIC_API_KEY`). Then pick that CLI
+   in Settings → Code agent.
+2. **SplatStudio Cloud (AMR)** — the hosted model gateway (`vela`); needs the
+   cloud service and `VELA_BIN`/auth.
+3. **Desktop app** — chat uses your *local* CLI (Claude Code / Codex / OpenCode
+   / …) and works today; only the hosted container lacks a runtime.
+
+Verify after enabling: `GET /api/agents` should show at least one
+`available: true`.
+
+### Plugin import on hosted vs desktop
+
+| Surface | Hosted (Railway) | Desktop/local |
+|---|---|---|
+| `github:owner/repo@ref/path` install | ✅ works | ✅ |
+| Marketplace / registry source | ✅ works | ✅ |
+| Local **folder / zip** upload (`/api/plugins/upload-*`) | loopback-only (rejected) | ✅ |
+
+On the hosted app, import plugins from GitHub or a marketplace source; local
+folder/zip import is desktop-only by design (it reads your filesystem).
+
 ## Verify a deployment
 
 ```bash
