@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "note": "Aurora Ember ecosystem domains and license prefixes. One licensing service issues keys for all of them; each product verifies offline.",
+  "tiers": {
+    "starter": "STR",
+    "pro": "PRO",
+    "studio": "STU",
+    "usage": "USG"
+  },
+  "domains": [
+    { "domain": "ascodex.com", "prefix": "ASC2", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "ascodex.app", "prefix": "ASCX", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "ainordic.app", "prefix": "NRAI", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "nordiclab.app", "prefix": "NRLB", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "ambershield.app", "prefix": "AMSH", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "atlantgen.com", "prefix": "ATGN", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "getcertus.app", "prefix": "CRSS", "tiers": ["starter", "pro", "studio", "usage"] },
+    { "domain": "templateai.app", "prefix": "TMAI", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "voxaeterna.app", "prefix": "VXET", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "voxaeternalab.com", "prefix": "VXEL", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "infiniteheroes.app", "prefix": "INHR", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "aegissolver.com", "prefix": "AEGS", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "splatstudio.app", "prefix": "SPLT", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "teleportlab.app", "prefix": "TLPT", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "vitreouslab.app", "prefix": "VTLB", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "artcyber.app", "prefix": "CIDE", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "apexproof.app", "prefix": "APXP", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "candylab.app", "prefix": "CDLB", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "cineticgenfonts.com", "prefix": "CNGF", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "claritasheadshots.app", "prefix": "CLHT", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "familywhole.com", "prefix": "FMWL", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "formulajewelry.com", "prefix": "FMJL", "tiers": ["starter", "pro", "studio"] },
+    { "domain": "ticketwhole.com", "prefix": "TKWL", "tiers": ["starter", "pro", "studio"] }
+  ]
+}

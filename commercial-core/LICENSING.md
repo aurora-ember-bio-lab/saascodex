@@ -13,15 +13,37 @@ How premium plugins are licensed. Complements the entitlement map in
 
 ## Key format
 
+Human-entered license **keys** use the ecosystem prefix format:
+
 ```
-SCX1.<base64url(payload)>.<base64url(signature)>
+<PREFIX>-<TAG>-XXXXX-XXXXX-XXXXX-XXXX
 ```
 
-- `payload` — JSON `{ "licenseId", "workspace", "plugin", "plan", "seats",
-  "issuedAt", "expiresAt" }`.
-- `signature` — Ed25519 over the payload, issued by Aurora Ember Cyber Bio Lab's
-  licensing key. The public key ships in the app; the private key never leaves
-  the licensing service.
+- `PREFIX` — 4-char domain id (`SPLT`, `ASC2`, `NRLB`, …; see
+  [`domains.json`](./domains.json)).
+- `TAG` — 3-char tier id: `STR` starter, `PRO` pro, `STU` studio, `USG` usage.
+- body — 19 [Crockford base32](https://www.crockford.com/base32.html) chars
+  (alphabet excludes `I L O U`) = 18 random + 1 position-weighted checksum, so a
+  mistyped key fails locally before any server call.
+
+Generate test keys:
+
+```bash
+pnpm exec tsx commercial-core/scripts/gen-license-keys.ts          # table
+pnpm exec tsx commercial-core/scripts/gen-license-keys.ts --json    # machine-readable
+```
+
+Keys are issued by the **licensing service**; the generator here only produces
+`TEST`-format keys (not stored server-side). On activation the service returns
+a short-lived **signed token** for offline use:
+
+```
+SCX1.<base64url(payload)>.<base64url(Ed25519 signature)>
+```
+
+with `payload = { licenseId, workspace, plugin, plan, seats, issuedAt, expiresAt }`.
+Offline verification checks the Ed25519 signature against the bundled public key
+plus `expiresAt` and the revocation list.
 
 ## Verification
 
