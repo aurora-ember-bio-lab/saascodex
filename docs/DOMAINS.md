@@ -69,24 +69,47 @@ moves fully to Vercel independently — then `app.splatstudio.app` rewrites
 
 ## Wired (current)
 
+**Marketing** — Vercel team `aurora-ember-cyber`, project `marketing`, domain `splatstudio.app` (pending verification).
+
+**App + API** — Railway project `splatstudio`, service `splatstudio`, live at
+`https://splatstudio-production.up.railway.app` (health 200, 399 skills, register 201).
+Custom domain `app.splatstudio.app` attached.
+
+| Host | Provider | Target |
+|---|---|---|
+| `splatstudio.app` | Vercel (`marketing`) | `76.76.21.21` *(already set)* |
+| `app.splatstudio.app` | Railway (`splatstudio`) | CNAME `80ojqcr4.up.railway.app` |
+
+### DNS records to add (Namecheap)
+
+| Type | Host | Value | For |
+|---|---|---|---|
+| TXT | `_vercel` | `vc-domain-verify=splatstudio.app,17f99ec8ef6ae9338902` | Vercel (marketing) |
+| CNAME | `app` | `80ojqcr4.up.railway.app` | Railway (app + API) |
+| TXT | `_railway-verify.app` | `railway-verify=a384f123bae65ce676295c93efaa3d12a3c062e239b90218b0963e41ef78a911` | Railway domain ownership |
+| CNAME | `www` | `cname.vercel-dns.com` *(optional)* | Vercel www |
+
+After DNS: `vercel domains verify splatstudio.app --scope aurora-ember-cyber`
+and `railway domain status 120f4beb-e807-4269-b2a4-4ab31f0ce025`.
+
+### Railway service
+
 | | |
 |---|---|
-| Vercel team | `aurora-ember-cyber` |
-| Vercel project | `marketing` (`prj_45NHPdMaIbKL2I1YHQDrR06LACSy`) — deployed from `marketing/` |
-| Production URL | `https://marketing-six-sable-12.vercel.app` |
-| Domain | `splatstudio.app` attached to `marketing` (**pending verification**) |
+| Project / service | `splatstudio` / `splatstudio` |
+| URL | `https://splatstudio-production.up.railway.app` |
+| Build | Railpack (root `build` script: web static export + daemon) |
+| Start | root `start` script → `node apps/daemon/dist/cli.js --no-open --host 0.0.0.0 --port $PORT` |
+| Database | Railway Postgres service (`DATABASE_URL` wired) |
 
-**DNS at the registrar (Namecheap — nameservers are `dns1/dns2.registrar-servers.com`):**
+Env: `JWT_SECRET`, `OD_PUBLIC_BASE_URL=https://app.splatstudio.app`,
+`SPLATSTUDIO_ALLOWED_ORIGINS=https://splatstudio.app`, `DATABASE_URL`,
+`OD_DISABLE_API_AUTH=1` (launch trade-off — see note below).
 
-| Type | Host | Value |
-|---|---|---|
-| TXT | `_vercel` | `vc-domain-verify=splatstudio.app,17f99ec8ef6ae9338902` |
-| A | `@` | `76.76.21.21` *(already present)* |
-| CNAME | `www` | `cname.vercel-dns.com` *(optional)* |
-
-Add the TXT record, then re-run `vercel domains verify splatstudio.app --scope aurora-ember-cyber` (or Vercel verifies automatically). Alternatively, switch the domain's nameservers to `ns1.vercel-dns.com` / `ns2.vercel-dns.com`.
-
-The app + API (`app.splatstudio.app`) points at the **daemon** (Railway), not Vercel — see [DEPLOYMENT.md](./DEPLOYMENT.md).
+> **Security follow-up:** `OD_DISABLE_API_AUTH=1` is required because the daemon
+> refuses a `0.0.0.0` bind without `OD_API_TOKEN`, and a public browser app can't
+> hold that token. This leaves `/api` open on the Railway URL; harden it with a
+> real edge/JWT gate before wide launch.
 
 ## Wiring checklist
 

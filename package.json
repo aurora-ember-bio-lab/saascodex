@@ -13,6 +13,8 @@
   "scripts": {
     "postinstall": "node ./scripts/postinstall.mjs",
     "bootstrap": "node ./scripts/postinstall.mjs",
+    "build": "pnpm --filter @splatstudio/daemon build && pnpm --filter @splatstudio/web build",
+    "start": "node apps/daemon/dist/cli.js --no-open --host 0.0.0.0 --port ${PORT:-7456}",
     "tools-dev": "pnpm exec tools-dev",
     "tools-pack": "pnpm exec tools-pack",
     "tools-release": "pnpm exec tools-release",
