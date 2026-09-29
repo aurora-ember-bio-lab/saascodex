@@ -2,27 +2,25 @@
 
 Decision record for SaaSCodex hostnames.
 
-## Recommendation
+## Decision
 
-**Keep one apex: `saascodex.com`. Put everything on subdomains.**
-
-`ascodex.com` and its subdomains (`ide.ascodex.com`, `des.ascodex.com`,
-`ai.ascodex.com`) belong to a **different project** and are **out of scope**
-for this repo — SaaSCodex uses only `saascodex.com`.
+**SaaSCodex runs on one apex: `saascodex.com`.** Everything else is a
+subdomain of it. `ascodex.com` — and `ide./des./ai.ascodex.com` — is a
+**separate project** (may be a different project entirely) and stays **out of
+scope** for this repo.
 
 | Hostname | Serves | Notes |
 |---|---|---|
 | `saascodex.com` | Marketing site (`marketing/`) | landing, pricing, register — cookie-free |
 | `app.saascodex.com` | The app + API | web export **and** daemon `/api` on the same origin |
 | `docs.saascodex.com` | Documentation (`docs/`) | optional; can be a Vercel/Pages deploy |
-| `ide.saascodex.com` | In-browser editor surface | **only when a real IDE ships** — see below |
 | `status.saascodex.com` | Uptime/status | optional |
 | `cdn.saascodex.com` | Static assets | optional; only if you outgrow Vercel's CDN |
 
-### Out of scope: the other `ascodex.com` project
+### Out of scope: `ascodex.com`
 
 `ascodex.com` and its subdomains — `ide.ascodex.com`, `des.ascodex.com`,
-`ai.ascodex.com` — belong to a **separate project**, not SaaSCodex. They are not
+`ai.ascodex.com` — may be a **separate project**, not SaaSCodex. They are not
 part of this domain plan and must not be linked from the SaaSCodex marketing
 site or app. Inside SaaSCodex the editor lives under `app.saascodex.com`.
 
