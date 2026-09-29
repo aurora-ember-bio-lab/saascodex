@@ -46,6 +46,7 @@ import { migrateCritique } from './critique/persistence.js';
 import { migrateMediaTasks } from './media/tasks.js';
 import { migrateLibrary } from './library-store.js';
 import { migrateAuth } from './auth/store.js';
+import { migrateLicensing } from './licensing/store.js';
 import { migratePlugins } from './plugins/persistence.js';
 import { migrateProjectScenarioBindings } from './plugins/scenario-binding.js';
 import { emittedRenderableQuestionForm } from './question-form-detect.js';
@@ -627,6 +628,7 @@ function migrate(db: SqliteDb): void {
   migrateAmrTerminalReportOutbox(db);
   migratePublicFilePublications(db);
   migrateAuth(db);
+  migrateLicensing(db);
 }
 
 /**

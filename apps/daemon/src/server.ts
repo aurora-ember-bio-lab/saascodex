@@ -902,6 +902,7 @@ import { registerAutomationRoutes } from './routes/automation.js';
 import { registerAttributionRoutes } from './routes/attribution.js';
 import { registerBillingRoutes } from './routes/billing.js';
 import { registerAuthRoutes } from './routes/auth.js';
+import { registerLicensingRoutes } from './routes/licensing.js';
 import { registerDaemonRoutes } from './routes/daemon.js';
 import { registerGenuiRoutes } from './routes/genui.js';
 import { registerDesignSystemRoutes } from './routes/design-systems.js';
@@ -8198,6 +8199,9 @@ export async function startServer({
     env: process.env,
   });
   registerAuthRoutes(app, { db, env: process.env });
+  // Registered before the plugin routes so the premium-plugin gate middleware
+  // runs ahead of `POST /api/plugins/:id/apply`.
+  registerLicensingRoutes(app, { db, env: process.env });
   const pathDeps = {
     PROJECT_ROOT,
     PROJECTS_DIR,
