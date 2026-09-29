@@ -2,25 +2,25 @@
 
 Language: English | [简体中文](AGENT-DEVELOPMENT.zh-CN.md)
 
-Give this file to a coding agent when you want it to create or improve an SaaSCodex plugin.
+Give this file to a coding agent when you want it to create or improve an SplatStudio plugin.
 
 ## Mission
 
-Create a portable SaaSCodex plugin that can:
+Create a portable SplatStudio plugin that can:
 
 1. Run as a normal Agent Skill through `SKILL.md`.
-2. Install into SaaSCodex through `saascodex.json`.
+2. Install into SplatStudio through `splatstudio.json`.
 3. Be validated locally.
-4. Be published as an independent open source repo or submitted as a PR to SaaSCodex.
+4. Be published as an independent open source repo or submitted as a PR to SplatStudio.
 
 ## Required Reading
 
 Read these files before editing:
 
 - `plugins/spec/SPEC.md`
-- `docs/schemas/saascodex.plugin.v1.json`
+- `docs/schemas/splatstudio.plugin.v1.json`
 - `docs/plugins-spec.md` when you need deeper product semantics
-- `plugins/spec/PUBLISHING-REGISTRIES.md` when the user asks to publish outside SaaSCodex
+- `plugins/spec/PUBLISHING-REGISTRIES.md` when the user asks to publish outside SplatStudio
 - A nearby example under `plugins/spec/examples/`
 
 ## Build Procedure
@@ -31,12 +31,12 @@ Read these files before editing:
 ```text
 <plugin-id>/
   SKILL.md
-  saascodex.json
+  splatstudio.json
   README.md
 ```
 
-3. Keep the `SKILL.md` portable. It may mention SaaSCodex behavior, but the core workflow must still make sense in any Agent Skills compatible agent.
-4. Put OD-specific display, `specVersion`, plugin `version`, inputs, preview, pipeline, atoms, connectors, and capabilities in `saascodex.json`.
+3. Keep the `SKILL.md` portable. It may mention SplatStudio behavior, but the core workflow must still make sense in any Agent Skills compatible agent.
+4. Put OD-specific display, `specVersion`, plugin `version`, inputs, preview, pipeline, atoms, connectors, and capabilities in `splatstudio.json`.
 5. Add `examples/`, `preview/`, `assets/`, or `references/` only when they materially help the agent produce better results.
 6. Add `evals/evals.json` when the plugin has enough behavior to regress.
 7. If publishing externally, prepare registry-safe README sections for skills.sh, ClawHub, and canonical GitHub source.
@@ -53,7 +53,7 @@ The plugin is not done until:
 
 - `SKILL.md` has a clear "Use this plugin when..." description.
 - The workflow states the expected output files or handoff result.
-- `saascodex.json` validates against the v1 shape and carries explicit `specVersion` plus plugin `version`.
+- `splatstudio.json` validates against the v1 shape and carries explicit `specVersion` plus plugin `version`.
 - The declared atoms are known first-party atoms or clearly marked future work.
 - The declared capabilities are the minimum needed.
 - Visual plugins include a preview or concrete example output.
@@ -68,7 +68,7 @@ Run what is available in this environment:
 
 ```bash
 pnpm guard
-pnpm --filter @saascodex/plugin-runtime typecheck
+pnpm --filter @splatstudio/plugin-runtime typecheck
 ```
 
 If the daemon CLI is built:

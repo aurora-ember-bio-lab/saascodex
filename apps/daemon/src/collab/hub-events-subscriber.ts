@@ -18,7 +18,7 @@
 //     frame at least every 15s, so 45s of silence means the TCP stream is
 //     zombied and we abort + reconnect.
 
-import type { WorkspaceBillingRevisionClock } from '@saascodex/contracts';
+import type { WorkspaceBillingRevisionClock } from '@splatstudio/contracts';
 
 export type HubResourceStatus = 'shared' | 'retracted';
 export type HubWorkspaceMemberChange = 'added' | 'removed' | 'updated';

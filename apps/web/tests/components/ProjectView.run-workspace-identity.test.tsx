@@ -38,7 +38,7 @@ import {
   buildWorkspaceSeatSummary,
   type PreviewComment,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { ComponentProps, ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 

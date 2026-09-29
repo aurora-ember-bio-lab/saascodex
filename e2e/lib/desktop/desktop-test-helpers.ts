@@ -11,9 +11,9 @@ import { T } from '../timeouts.ts';
 const execFileAsync = promisify(execFile);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolveRepoRoot(__dirname);
-const screenshotDir = path.join(os.tmpdir(), 'saascodex-e2e-screenshots');
+const screenshotDir = path.join(os.tmpdir(), 'splatstudio-e2e-screenshots');
 
-export const STORAGE_KEY = 'saascodex:config';
+export const STORAGE_KEY = 'splatstudio:config';
 
 export type DesktopStatus = {
   pid?: number;

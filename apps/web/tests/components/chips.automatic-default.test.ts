@@ -11,8 +11,8 @@
 // "use the system automatic scenario" on a project that had never left it.
 
 import { describe, expect, it } from 'vitest';
-import { defaultScenarioPluginIdForProjectMetadata } from '@saascodex/contracts';
-import type { ProjectMetadata } from '@saascodex/contracts';
+import { defaultScenarioPluginIdForProjectMetadata } from '@splatstudio/contracts';
+import type { ProjectMetadata } from '@splatstudio/contracts';
 import { CREATE_RAIL_ORDER, HOME_HERO_CHIPS } from '../../src/components/home-hero/chips';
 
 function railChip(chipId: string) {

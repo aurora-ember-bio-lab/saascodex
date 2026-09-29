@@ -1,4 +1,4 @@
-const FIRST_PARTY_HOSTS = new Set(['saascodex.com', 'www.saascodex.com', 'staging.saascodex.com']);
+const FIRST_PARTY_HOSTS = new Set(['splatstudio.app', 'www.splatstudio.app', 'staging.splatstudio.app']);
 
 export function openFirstPartyExternalLinkFromClick(event: MouseEvent, openExternal: (url: string) => void): void {
   if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

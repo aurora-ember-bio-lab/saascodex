@@ -16,8 +16,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createRef } from 'react';
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { DEFAULT_UNSELECTED_SCENARIO_PLUGIN_ID } from '@saascodex/contracts';
-import type { AppliedPluginSnapshot } from '@saascodex/contracts';
+import { DEFAULT_UNSELECTED_SCENARIO_PLUGIN_ID } from '@splatstudio/contracts';
+import type { AppliedPluginSnapshot } from '@splatstudio/contracts';
 
 import { ChatComposer, type ChatComposerHandle } from '../../src/components/ChatComposer';
 import { flushMounts, typeAndSettle } from '../helpers/lexical-composer';

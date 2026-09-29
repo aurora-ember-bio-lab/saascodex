@@ -6,8 +6,8 @@ import {
   type ReactNode,
   type SetStateAction,
 } from 'react';
-import type { ChatSessionMode, ConnectorDetail } from '@saascodex/contracts';
-import type { SaaSCodexHostProjectImportSuccess } from '@saascodex/host';
+import type { ChatSessionMode, ConnectorDetail } from '@splatstudio/contracts';
+import type { SplatStudioHostProjectImportSuccess } from '@splatstudio/host';
 import {
   DEFAULT_AUDIO_MODEL,
   DEFAULT_IMAGE_MODEL,
@@ -57,7 +57,7 @@ type EntryCreateProjectInput = Omit<CreateInput, 'metadata'> & {
   pluginType?: string;
   appliedPluginSnapshotId?: string;
   pluginInputs?: Record<string, unknown>;
-  automaticStrategyTaskProfile?: import('@saascodex/contracts').ProjectScenarioTaskProfile;
+  automaticStrategyTaskProfile?: import('@splatstudio/contracts').ProjectScenarioTaskProfile;
   conversationMode?: ChatSessionMode;
   autoSendFirstMessage?: boolean;
   requestId?: string;
@@ -85,7 +85,7 @@ interface Props {
   // detecting/skeleton state while the cold-start agent stream is in flight.
   agentsLoading?: boolean;
   amrLoggedIn?: boolean | null;
-  amrSessionState?: import('@saascodex/contracts').AmrSessionState;
+  amrSessionState?: import('@splatstudio/contracts').AmrSessionState;
   /** Forwarded to EntryShell for personal free campaign audience resolution. */
   amrAccountPlan?: string | null;
   /** Stable account boundary for CMS authorization instances. */
@@ -137,7 +137,7 @@ interface Props {
     file: File,
   ) => Promise<ImportClaudeDesignOutcome | void> | ImportClaudeDesignOutcome | void;
   onImportFolder?: (baseDir: string) => Promise<void> | void;
-  onImportFolderResponse?: (response: SaaSCodexHostProjectImportSuccess) => Promise<void> | void;
+  onImportFolderResponse?: (response: SplatStudioHostProjectImportSuccess) => Promise<void> | void;
   onOpenProject: (
     id: string,
     fileName?: string,
@@ -155,7 +155,7 @@ interface Props {
   ) => Promise<boolean> | boolean;
   onChangeDefaultDesignSystem: (id: string) => void;
   onCreateDesignSystem?: () => void;
-  onSaaSCodexSystem?: (id: string) => void;
+  onSplatStudioSystem?: (id: string) => void;
   onDesignSystemsRefresh?: () => Promise<void> | void;
   onPersistComposioKey: (composio: AppConfig['composio']) => Promise<void> | void;
   onOpenSettings: (section?: 'execution' | 'media' | 'composio' | 'orbit' | 'integrations' | 'mcpClient' | 'language' | 'appearance' | 'notifications' | 'pet' | 'projectLocations' | 'library' | 'about' | 'memory' | 'designSystems') => void;
@@ -310,7 +310,7 @@ export function EntryView({
   onTeamProjectContentReady,
   onChangeDefaultDesignSystem,
   onCreateDesignSystem,
-  onSaaSCodexSystem,
+  onSplatStudioSystem,
   onDesignSystemsRefresh,
   onPersistComposioKey,
   onOpenSettings,
@@ -438,7 +438,7 @@ export function EntryView({
       onTeamProjectContentReady={onTeamProjectContentReady}
       onChangeDefaultDesignSystem={onChangeDefaultDesignSystem}
       onCreateDesignSystem={onCreateDesignSystem}
-      onSaaSCodexSystem={onSaaSCodexSystem}
+      onSplatStudioSystem={onSplatStudioSystem}
       onDesignSystemsRefresh={onDesignSystemsRefresh}
       onPersistComposioKey={onPersistComposioKey}
       onOpenSettings={onOpenSettings}

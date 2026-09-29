@@ -3,8 +3,8 @@
 import { act, cleanup, renderHook } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('@saascodex/host', () => ({
-  isSaaSCodexHostAvailable: () => true,
+vi.mock('@splatstudio/host', () => ({
+  isSplatStudioHostAvailable: () => true,
   pickAndImportHostProject: vi.fn(),
 }));
 
@@ -16,7 +16,7 @@ vi.mock('../../src/collab/useWorkspaceContext', () => ({
   }),
 }));
 
-import { pickAndImportHostProject } from '@saascodex/host';
+import { pickAndImportHostProject } from '@splatstudio/host';
 import { useOpenFolderImport } from '../../src/components/useOpenFolderImport';
 
 afterEach(() => {

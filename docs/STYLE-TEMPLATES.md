@@ -1,6 +1,6 @@
 # Style templates: glassmorphism, themes, and brand marks
 
-SaaSCodex ships a set of **style templates** alongside the general generate
+SplatStudio ships a set of **style templates** alongside the general generate
 templates. They live in [`design-templates/`](../design-templates/) and follow
 the same contract as every other template: a `SKILL.md` (frontmatter + workflow)
 and a self-contained `example.html` the agent uses as a reference.
@@ -20,9 +20,9 @@ backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl
 
 | Template | Path | What it generates |
 |---|---|---|
-| Glass landing | `design-templates/saascodex-glass-landing/` | Glass marketing landing page with a live color-variation switcher |
-| Glass theme picker | `design-templates/saascodex-glass-theme-picker/` | The **Appearance** panel: "Select or customize a theme" with presets + custom accent |
-| Brand mark | `design-templates/saascodex-brand-mark/` | Project **logo + favicon** set as inline SVG, with an icon-size matrix |
+| Glass landing | `design-templates/splatstudio-glass-landing/` | Glass marketing landing page with a live color-variation switcher |
+| Glass theme picker | `design-templates/splatstudio-glass-theme-picker/` | The **Appearance** panel: "Select or customize a theme" with presets + custom accent |
+| Brand mark | `design-templates/splatstudio-brand-mark/` | Project **logo + favicon** set as inline SVG, with an icon-size matrix |
 
 Tailwind is loaded through the Play CDN in the examples for zero-build
 prototyping. Production output should compile Tailwind instead of using the
@@ -46,7 +46,7 @@ color input that updates the preview live.
 
 ## Appearance: select or customize a theme
 
-`saascodex-glass-theme-picker` is the reference implementation of the
+`splatstudio-glass-theme-picker` is the reference implementation of the
 Appearance surface. Its interaction contract:
 
 - six preset theme cards, each with a gradient thumbnail, a name, and an accent
@@ -60,7 +60,7 @@ Appearance surface. Its interaction contract:
 
 ## Logo and favicon
 
-`saascodex-brand-mark` generates a project's logo and favicon in one file:
+`splatstudio-brand-mark` generates a project's logo and favicon in one file:
 
 - an SVG **glyph** (fixed `0 0 64 64` viewBox, rounded corners, accent
   gradient) and a **wordmark lockup** (horizontal + stacked);

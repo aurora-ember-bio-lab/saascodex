@@ -273,7 +273,7 @@ async function uploadFile(name, content) {
   if (!conversationId) throw new Error("project create response did not include conversationId");
 
   await uploadFile("generated-plugin/open-design.json", JSON.stringify({
-    "$schema": "https://saascodex.com/schemas/plugin.v1.json",
+    "$schema": "https://splatstudio.app/schemas/plugin.v1.json",
     specVersion: "1.0.0",
     name: `agent-fixture-plugin-${prNumber}`,
     title: "Agent Fixture Plugin",

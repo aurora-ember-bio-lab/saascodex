@@ -1,6 +1,6 @@
 # Docker deployment
 
-This deployment ships SaaSCodex as a single Alpine-based runtime image. The
+This deployment ships SplatStudio as a single Alpine-based runtime image. The
 daemon serves both the API and the built Next.js static export, so there is no
 separate nginx container.
 
@@ -14,7 +14,7 @@ Before starting:
    cp .env.example .env
    ```
 
-2. Generate a secure token (recommended unless your reverse proxy will both authenticate every request and set `SAASCODEX_DISABLE_API_AUTH=1`):
+2. Generate a secure token (recommended unless your reverse proxy will both authenticate every request and set `SPLATSTUDIO_DISABLE_API_AUTH=1`):
 
    ```bash
    openssl rand -hex 32
@@ -22,26 +22,26 @@ Before starting:
 
 3. Open `.env` in your editor and choose one auth mode:
    - default: paste the token into `OD_API_TOKEN=`
-   - trusted reverse proxy that already authenticates every request: leave `OD_API_TOKEN=` empty and set `SAASCODEX_DISABLE_API_AUTH=1`
+   - trusted reverse proxy that already authenticates every request: leave `OD_API_TOKEN=` empty and set `SPLATSTUDIO_DISABLE_API_AUTH=1`
 
 Then pull and start the service:
 
 ```bash
-SAASCODEX_IMAGE=ghcr.io/nexu-io/od:latest docker compose pull
-SAASCODEX_IMAGE=ghcr.io/nexu-io/od:latest docker compose up -d --no-build
+SPLATSTUDIO_IMAGE=ghcr.io/aurora-ember-bio-lab/splatstudio:latest docker compose pull
+SPLATSTUDIO_IMAGE=ghcr.io/aurora-ember-bio-lab/splatstudio:latest docker compose up -d --no-build
 ```
 
-Use `ghcr.io/nexu-io/od:latest` for the latest stable image, or
-`ghcr.io/nexu-io/od:<version>` to pin a supported release.
+Use `ghcr.io/aurora-ember-bio-lab/splatstudio:latest` for the latest stable image, or
+`ghcr.io/aurora-ember-bio-lab/splatstudio:<version>` to pin a supported release.
 
 Open `http://127.0.0.1:7456`. When Docker's bridge makes the browser appear as a
 non-loopback peer, the browser displays its native sign-in dialog. Enter
-`saascodex` as the username and the `OD_API_TOKEN` value from `.env` as the
+`splatstudio` as the username and the `OD_API_TOKEN` value from `.env` as the
 password. The browser reuses those credentials for same-origin API requests;
 CLI clients and reverse proxies can continue to send
 `Authorization: Bearer <OD_API_TOKEN>`.
 
-The published `ghcr.io/nexu-io/od` package must be public for anonymous
+The published `ghcr.io/aurora-ember-bio-lab/splatstudio` package must be public for anonymous
 `docker pull`, Docker Compose, and Dokploy installs to work. If GHCR returns an
 authentication or access-denied error for this image, an organization maintainer
 must open GitHub -> Packages -> `od` -> Package settings and change visibility
@@ -50,12 +50,12 @@ packages, so confirm the package is intended to stay public before switching it.
 
 Defaults:
 
-- Host port: `127.0.0.1:7456` (`SAASCODEX_PORT=8080` to publish on `127.0.0.1:8080`)
+- Host port: `127.0.0.1:7456` (`SPLATSTUDIO_PORT=8080` to publish on `127.0.0.1:8080`)
 - Runtime data: before documenting, changing, or choosing persistent daemon
   storage, you MUST read root [`AGENTS.md`](../AGENTS.md) → **Daemon data
   directory contract**. This README MUST NOT restate it.
 - Node heap cap: `--max-old-space-size=192`
-- Compose memory cap: `384m` (`SAASCODEX_MEM_LIMIT=256m` to override)
+- Compose memory cap: `384m` (`SPLATSTUDIO_MEM_LIMIT=256m` to override)
 
 Do not publish the daemon directly on a public or shared LAN interface. The shared
 API token is single-tenant authentication, not user-level access control, and both
@@ -64,18 +64,18 @@ should keep Compose bound to localhost and put an authenticated TLS reverse prox
 SSH tunnel, or VPN in front of it.
 
 When exposing the service through an authenticated public IP, domain, or reverse
-proxy, set `SAASCODEX_ALLOWED_ORIGINS` to the exact browser origins that should
+proxy, set `SPLATSTUDIO_ALLOWED_ORIGINS` to the exact browser origins that should
 be allowed to call `/api`:
 
 ```bash
-SAASCODEX_ALLOWED_ORIGINS=https://od.example.com,http://203.0.113.10:7456 docker compose up -d --no-build
+SPLATSTUDIO_ALLOWED_ORIGINS=https://od.example.com,http://203.0.113.10:7456 docker compose up -d --no-build
 ```
 
 If the reverse proxy already authenticates every request and you do not want it
 to inject `Authorization: Bearer <OD_API_TOKEN>` upstream, set:
 
 ```bash
-SAASCODEX_DISABLE_API_AUTH=1
+SPLATSTUDIO_DISABLE_API_AUTH=1
 ```
 
 Use this only for trusted deployments where the daemon is reachable strictly
@@ -86,7 +86,7 @@ Compose variable maps to daemon env `OD_DISABLE_API_AUTH`.
 Pin a specific published image with a digest instead of the mutable `latest` tag:
 
 ```bash
-SAASCODEX_IMAGE=ghcr.io/nexu-io/od@sha256:<digest> docker compose up -d --no-build
+SPLATSTUDIO_IMAGE=ghcr.io/aurora-ember-bio-lab/splatstudio@sha256:<digest> docker compose up -d --no-build
 ```
 The image intentionally does not bundle Claude/Codex/Gemini CLI binaries. Keep
 those outside the image, or build a separate private runtime layer if a server
@@ -102,13 +102,13 @@ Linux; it switches to `network_mode: host` and adds the CLI mounts.
 **1. Build the local image** (adds `libc6-compat` so glibc-linked CLIs run on Alpine):
 
 ```bash
-docker build -t saascodex-local -f deploy/Dockerfile.local .
+docker build -t splatstudio-local -f deploy/Dockerfile.local .
 ```
 
 **2. Point `.env` at the local image:**
 
 ```bash
-SAASCODEX_IMAGE=saascodex-local
+SPLATSTUDIO_IMAGE=splatstudio-local
 ```
 
 **3. Edit `docker-compose.linux.yml`** to match your CLI install paths, then start:
@@ -124,7 +124,7 @@ Common install paths:
 | Claude Code | `~/.local/bin/claude` (symlink) + `~/.local/share/claude` (binaries) |
 | opencode | `~/.opencode/bin/opencode` |
 | Codex | `~/.local/bin/codex` |
-| Vela / AMR | npm package `@powerformer/vela-cli`; [Open Design AMR](https://saascodex.com/amr) is the browser account/wallet page |
+| Vela / AMR | npm package `@powerformer/vela-cli`; [Open Design AMR](https://splatstudio.app/amr) is the browser account/wallet page |
 
 Vela is published as the `@powerformer/vela-cli` npm package. The Open Design
 AMR URL above is not a shell installer. For Linux Docker, install Vela under a
@@ -153,7 +153,7 @@ Once the container is running, inspect both `PATH` discovery and any explicit
 Vela override:
 
 ```bash
-docker compose exec saascodex sh -lc 'which vela; echo "$VELA_BIN"'
+docker compose exec splatstudio sh -lc 'which vela; echo "$VELA_BIN"'
 ```
 
 Use either a `vela` launcher discoverable on `PATH` or a `VELA_BIN` path that
@@ -180,7 +180,7 @@ user (e.g. `node`, uid 1000), the data volume may need an ownership fix before t
 can write to it:
 
 ```bash
-docker run --rm -v saascodex_open_design_data:/data alpine chown -R 1001:1001 /data
+docker run --rm -v splatstudio_open_design_data:/data alpine chown -R 1001:1001 /data
 ```
 
 Pass provider API keys via `.env`:
@@ -220,7 +220,7 @@ deploy/scripts/publish-images.sh --image ghcr.io/your-org/od:0.1.0
 
 The script defaults to:
 
-- `ghcr.io/nexu-io/od:<tag>`
+- `ghcr.io/aurora-ember-bio-lab/splatstudio:<tag>`
 - `linux/amd64,linux/arm64`
 - `skopeo` push strategy with registry credentials read from `~/.docker/config.json`
 - preloading base images through `skopeo` to reduce Docker Hub pull flakiness
@@ -278,6 +278,6 @@ custom `COLIMA_BUILD_SWAPFILE`, cleanup refuses to remove it unless
 
 Docker Desktop bridge networking makes host-browser traffic appear to the daemon
 as a non-loopback peer. This is expected: keep the default bridge configuration
-and complete the browser's native sign-in prompt with username `saascodex` and
+and complete the browser's native sign-in prompt with username `splatstudio` and
 the `OD_API_TOKEN` value from `.env`. Host networking is no longer required for
 the web UI authentication path.

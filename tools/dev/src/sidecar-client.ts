@@ -3,8 +3,8 @@ import {
   type DaemonStatusSnapshot,
   type DesktopStatusSnapshot,
   type WebStatusSnapshot,
-} from "@saascodex/sidecar-proto";
-import { getSidecarStatus, type SidecarStamp } from "@saascodex/sidecar";
+} from "@splatstudio/sidecar-proto";
+import { getSidecarStatus, type SidecarStamp } from "@splatstudio/sidecar";
 
 export type AppRuntimeLookup = {
   base: string;

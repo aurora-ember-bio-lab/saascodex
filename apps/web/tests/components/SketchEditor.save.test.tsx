@@ -170,7 +170,7 @@ function saveButton(): HTMLButtonElement {
 }
 
 describe('SketchEditor save', () => {
-  it('renders Excalidraw with the current SaaSCodex locale', () => {
+  it('renders Excalidraw with the current SplatStudio locale', () => {
     renderEditor({ dirty: true });
     expect(document.querySelector('[data-testid="excalidraw"]')?.getAttribute('data-lang')).toBe('zh-CN');
   });
@@ -434,9 +434,9 @@ describe('SketchEditor save', () => {
     renderEditor({ dirty: true });
 
     const validate = mockData.lastProps?.validateEmbeddable as ((link: string) => boolean) | undefined;
-    expect(validate?.('https://saascodex.com')).toBe(true);
+    expect(validate?.('https://splatstudio.app')).toBe(true);
     expect(validate?.('http://localhost:3000')).toBe(true);
-    expect(validate?.('saascodex.com')).toBe(false);
+    expect(validate?.('splatstudio.app')).toBe(false);
     expect(validate?.('   ')).toBe(false);
     expect(validate?.('javascript:alert(1)')).toBe(false);
   });

@@ -1,4 +1,4 @@
-import type { ResearchSource } from '@saascodex/contracts/api/research';
+import type { ResearchSource } from '@splatstudio/contracts/api/research';
 
 const DEFAULT_BASE_URL = 'https://api.tavily.com';
 const DEFAULT_TIMEOUT_MS = 30_000;

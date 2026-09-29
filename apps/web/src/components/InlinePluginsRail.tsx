@@ -10,7 +10,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type {
   ApplyResult,
   InstalledPluginRecord,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   applyPlugin,
   listPlugins,

@@ -4,7 +4,7 @@
 // the user, rather than a Settings continuation, sends the next task.
 
 import { act, cleanup, fireEvent, render, waitFor, within } from '@testing-library/react';
-import { buildWorkspacePermissions, type WorkspaceCollabContext } from '@saascodex/contracts';
+import { buildWorkspacePermissions, type WorkspaceCollabContext } from '@splatstudio/contracts';
 import { forwardRef, useImperativeHandle, useState, type ComponentProps, type ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -274,7 +274,7 @@ describe('ProjectView OPEND-3205 in-project Cloud switch', () => {
     const host = side ? await view.findByTestId('side-chat-recovery-host') : view.container;
     await within(host).findByText(failure.content);
     const card = within(host).getByTestId('chat-run-error-card');
-    const switchButton = within(card).getByRole('button', { name: '切换到 SaaSCodex Cloud' });
+    const switchButton = within(card).getByRole('button', { name: '切换到 SplatStudio Cloud' });
     expect(switchButton).not.toBeDisabled();
     await act(async () => { fireEvent.click(switchButton); });
 
@@ -283,7 +283,7 @@ describe('ProjectView OPEND-3205 in-project Cloud switch', () => {
     expect(arm).not.toHaveBeenCalled();
     await waitFor(() => expect(view.getByTestId('selected-runtime')).toHaveTextContent('daemon:amr'));
     // Literal approved by the current OPEND-3205 body, not read back from Dict.
-    expect(await view.findByText('已切换到 SaaSCodex Cloud，请重新发送任务。')).toBeVisible();
+    expect(await view.findByText('已切换到 SplatStudio Cloud，请重新发送任务。')).toBeVisible();
     expect(streamViaDaemon).not.toHaveBeenCalled();
     expect(createConversation).not.toHaveBeenCalled();
     expect(transcript).toEqual(original);
@@ -325,7 +325,7 @@ describe('ProjectView OPEND-3205 in-project Cloud switch', () => {
       const view = render(host());
       await view.findByText(failure.content);
       const card = view.getByTestId('chat-run-error-card');
-      const action = within(card).getByRole('button', { name: '切换到 SaaSCodex Cloud' });
+      const action = within(card).getByRole('button', { name: '切换到 SplatStudio Cloud' });
       try {
         await act(async () => {
           fireEvent.click(action);
@@ -335,7 +335,7 @@ describe('ProjectView OPEND-3205 in-project Cloud switch', () => {
         expect(settings).not.toHaveBeenCalled();
         expect(arm).not.toHaveBeenCalled();
         expect(streamViaDaemon).not.toHaveBeenCalled();
-        expect(view.queryByText('已切换到 SaaSCodex Cloud，请重新发送任务。')).toBeNull();
+        expect(view.queryByText('已切换到 SplatStudio Cloud，请重新发送任务。')).toBeNull();
         expect(view.getByTestId('chat-run-error-card')).toBeVisible();
         expect(view.getByText(failure.content)).toBeVisible();
         if (scenario === 'view unmounted') view.unmount();
@@ -349,9 +349,9 @@ describe('ProjectView OPEND-3205 in-project Cloud switch', () => {
           await receipt.catch(() => undefined);
         });
         if (scenario === 'pending double click') {
-          expect(await view.findByText('已切换到 SaaSCodex Cloud，请重新发送任务。')).toBeVisible();
+          expect(await view.findByText('已切换到 SplatStudio Cloud，请重新发送任务。')).toBeVisible();
         } else {
-          expect(document.body.textContent).not.toContain('已切换到 SaaSCodex Cloud，请重新发送任务。');
+          expect(document.body.textContent).not.toContain('已切换到 SplatStudio Cloud，请重新发送任务。');
         }
         if (scenario === 'save failure') {
           expect(await view.findByText('保存更改失败。本地 daemon 可能不在线。')).toBeVisible();
@@ -402,7 +402,7 @@ describe('ProjectView OPEND-3205 in-project Cloud switch', () => {
     })}</I18nProvider>);
     const host = side ? await view.findByTestId('side-chat-recovery-host') : view.container;
     await within(host).findByText(failure.content);
-    const action = within(within(host).getByTestId('chat-run-error-card')).getByRole('button', { name: '切换到 SaaSCodex Cloud' });
+    const action = within(within(host).getByTestId('chat-run-error-card')).getByRole('button', { name: '切换到 SplatStudio Cloud' });
     if (readOnly) {
       expect(action).toBeDisabled();
       fireEvent.click(action);
@@ -411,7 +411,7 @@ describe('ProjectView OPEND-3205 in-project Cloud switch', () => {
       expect(action).not.toBeDisabled();
       await act(async () => { fireEvent.click(action); });
       expect(receipt).toHaveBeenCalledOnce();
-      expect(await view.findByText('已切换到 SaaSCodex Cloud，请重新发送任务。')).toBeVisible();
+      expect(await view.findByText('已切换到 SplatStudio Cloud，请重新发送任务。')).toBeVisible();
     }
     expect(settings).not.toHaveBeenCalled();
     expect(arm).not.toHaveBeenCalled();

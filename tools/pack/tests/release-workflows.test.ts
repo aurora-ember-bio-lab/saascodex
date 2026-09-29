@@ -309,8 +309,8 @@ describe("release workflows", () => {
     expect(prepareMac).toContain('RELEASE_ASSET_SUFFIX="${RELEASE_ASSET_SUFFIX:-}"');
     expect(prepareWin).toContain("[AllowEmptyString()]");
     expect(prepareWin).toContain("$sourcePayload = [string]$build.payloadPath");
-    expect(prepareWin).toContain("saascodex-$ReleaseVersion$ReleaseAssetSuffix-win-x64-payload.7z");
-    expect(publishPlatform).toContain("saascodex-${releaseVersion}${assetSuffix}-win-x64-payload.7z");
+    expect(prepareWin).toContain("splatstudio-$ReleaseVersion$ReleaseAssetSuffix-win-x64-payload.7z");
+    expect(publishPlatform).toContain("splatstudio-${releaseVersion}${assetSuffix}-win-x64-payload.7z");
     expect(publishPlatform).toContain("payload: assetEntry(payload)");
     expect(publishPlatform).toContain("versionLockObjectKey(releaseVersion, countedReleaseChannel)");
     expect(publishPlatform).toContain("assertCurrentVersionReservation(storage, releaseVersion, versionLockKey, countedReleaseChannel)");
@@ -331,30 +331,30 @@ describe("release workflows", () => {
     expect(macWorkspace).toContain("await ensureWorkspaceBuildArtifacts(");
     expect(linuxPack).toContain("await runWorkspaceBuild(");
     for (const buildSource of [winApp, macWorkspace, linuxPack]) {
-      expect(buildSource).not.toContain('["--filter", "@saascodex/platform", "build"]');
-      expect(buildSource).not.toContain('["--filter", "@saascodex/sidecar", "build"]');
+      expect(buildSource).not.toContain('["--filter", "@splatstudio/platform", "build"]');
+      expect(buildSource).not.toContain('["--filter", "@splatstudio/sidecar", "build"]');
     }
-    const dependencyClosureBuild = '"--filter", "@saascodex/packaged^..."';
-    const webSidecarBuild = '"--filter", "@saascodex/web", "run", "build:sidecar"';
-    const packagedBuild = '"--filter", "@saascodex/packaged", "run", "build"';
-    expect(workspaceBuild).toContain('"--filter", "@saascodex/dsh-runtime..."');
+    const dependencyClosureBuild = '"--filter", "@splatstudio/packaged^..."';
+    const webSidecarBuild = '"--filter", "@splatstudio/web", "run", "build:sidecar"';
+    const packagedBuild = '"--filter", "@splatstudio/packaged", "run", "build"';
+    expect(workspaceBuild).toContain('"--filter", "@splatstudio/dsh-runtime..."');
     expect(workspaceBuild.indexOf(dependencyClosureBuild)).toBeLessThan(workspaceBuild.indexOf(webSidecarBuild));
     expect(workspaceBuild.indexOf(webSidecarBuild)).toBeLessThan(workspaceBuild.indexOf(packagedBuild));
     expect(prerelease).toContain("name: release-prerelease");
     expect(prerelease).toContain("pnpm exec tools-release prepare prerelease");
-    expect(prerelease).toContain("SAASCODEX_PRERELEASE_METADATA_URL");
+    expect(prerelease).toContain("SPLATSTUDIO_PRERELEASE_METADATA_URL");
     expect(prerelease).toContain("RELEASE_CHANNEL: prerelease");
-    expect(prerelease).toContain("saascodex-prerelease-mac-arm64-publish-manifest");
-    expect(prerelease).toContain("saascodex-prerelease-win-x64-publish-manifest");
+    expect(prerelease).toContain("splatstudio-prerelease-mac-arm64-publish-manifest");
+    expect(prerelease).toContain("splatstudio-prerelease-win-x64-publish-manifest");
     expect(prerelease).toContain("workflow_call:");
-    expect(prerelease).toContain("SAASCODEX_STABLE_VERSION: ${{ inputs.release_version }}");
+    expect(prerelease).toContain("SPLATSTUDIO_STABLE_VERSION: ${{ inputs.release_version }}");
     expect(prerelease).toContain("GITHUB_SHA: ${{ needs.metadata.outputs.commit }}");
     expect(prerelease).toContain("previous_commit: ${{ steps.prev.outputs.previous_commit }}");
     expect(prerelease).toContain("version_metadata_url: ${{ steps.outputs.outputs.version_metadata_url }}");
     expect(prerelease).not.toContain("RELEASE_CHANNEL: Prerelease");
     expect(prerelease).not.toContain("tools-release prepare preview");
     expect(prereleaseMetadata).toContain("GH_TOKEN: ${{ github.token }}");
-    expect(prereleaseMetadata).toContain("SAASCODEX_RELEASE_CHANNEL: prerelease");
+    expect(prereleaseMetadata).toContain("SPLATSTUDIO_RELEASE_CHANNEL: prerelease");
     expect(prereleasePublish).toContain('GITHUB_RELEASE_ENABLED: "false"');
     expect(prerelease).not.toContain("gh release");
     expect(prereleaseMac).toContain("uses: actions/cache/restore@v5");
@@ -438,19 +438,19 @@ describe("release workflows", () => {
     expect(stable).not.toContain("RELEASE_BRANCH: ${{ github.ref_name }}");
     expect(stable).toContain("tools-release verify-metadata");
     expect(stable).toContain("tools-release summary-metadata");
-    expect(stable).toContain("saascodex-release-mac-arm64-publish-manifest");
-    expect(stable).toContain("saascodex-release-win-x64-publish-manifest");
+    expect(stable).toContain("splatstudio-release-mac-arm64-publish-manifest");
+    expect(stable).toContain("splatstudio-release-win-x64-publish-manifest");
     expect(stable).toContain("--signed");
     expect(stable).toContain("--notarize");
     expect(stable).toContain("run: pnpm exec tools-release prepare stable");
-    expect(stable).toContain("SAASCODEX_RELEASE_CHANNEL: stable");
-    expect(stable).not.toContain("SAASCODEX_STABLE_VERSION:");
+    expect(stable).toContain("SPLATSTUDIO_RELEASE_CHANNEL: stable");
+    expect(stable).not.toContain("SPLATSTUDIO_STABLE_VERSION:");
     expect(stable).toContain("type: choice");
     expect(stable).toContain("- metadata");
     expect(stable).toContain("- prepublish");
     expect(stable).toContain("- publish");
     expect(stable).toContain("default: metadata");
-    expect(stable).toContain("SAASCODEX_RELEASE_DRY_RUN: ${{ inputs.dry_run == 'publish' && 'false' || inputs.dry_run }}");
+    expect(stable).toContain("SPLATSTUDIO_RELEASE_DRY_RUN: ${{ inputs.dry_run == 'publish' && 'false' || inputs.dry_run }}");
     expect(stable).toContain("run_prepublish_jobs: ${{ steps.stable.outputs.run_prepublish_jobs }}");
     expect(stable).toContain("publish_side_effects_enabled: ${{ steps.stable.outputs.publish_side_effects_enabled }}");
     expect(stable).toContain("if: ${{ needs.metadata.outputs.run_prepublish_jobs == 'true' }}");
@@ -628,7 +628,7 @@ describe("release workflows", () => {
       readFile(new URL("../../../.github/scripts/release/dispatch-validation.sh", import.meta.url), "utf8"),
     ]);
 
-    expect(prerelease).toContain("group: saascodex-release-prerelease");
+    expect(prerelease).toContain("group: splatstudio-release-prerelease");
     for (const jobId of ["  functional_e2e:", "  e2e_vitest:", "  daemon_unit_tests:", "  verify:", "  test_signals:"]) {
       expect(prerelease, `${jobId} must not be a release-prerelease job any more`).not.toContain(jobId);
     }
@@ -669,7 +669,7 @@ describe("release workflows", () => {
       ["card", card],
     ] as const) {
       expect(workflow, label).toContain("workflow_dispatch:");
-      expect(workflow, label).not.toContain("saascodex-release-prerelease");
+      expect(workflow, label).not.toContain("splatstudio-release-prerelease");
       expect(workflow, label).toContain("cancel-in-progress: false");
       // Correlation is the run name: `gh workflow run` returns no run id, so
       // the Feishu card finds these runs by matching `origin-run <id>`.
@@ -679,8 +679,8 @@ describe("release workflows", () => {
 
     // The suites moved verbatim and still run against the resolved build commit.
     for (const suite of [
-      "pnpm --filter @saascodex/e2e test",
-      "pnpm --filter @saascodex/daemon test --shard=${{ matrix.shard }}/4",
+      "pnpm --filter @splatstudio/e2e test",
+      "pnpm --filter @splatstudio/daemon test --shard=${{ matrix.shard }}/4",
       "pnpm -r --workspace-concurrency=4 --if-present run typecheck",
       "run: pnpm guard",
       "uses: ./.github/workflows/ui-extended-main.yml",
@@ -760,7 +760,7 @@ describe("release workflows", () => {
     // nothing" once a package reaches a user. So the presence of both halves is
     // asserted per lane rather than left to the packaging step to notice.
     for (const workflow of [beta, prerelease, stable]) {
-      expect(workflow).toContain("SAASCODEX_AMR_PROFILE:");
+      expect(workflow).toContain("SPLATSTUDIO_AMR_PROFILE:");
       expect(workflow).toContain("OD_VELA_WEB_URL:");
     }
 
@@ -781,8 +781,8 @@ describe("release workflows", () => {
 
     // beta and prerelease are validation lanes and stay dispatch-driven, so an
     // operator can aim a build at feature-test or test.
-    expect(beta).toContain("SAASCODEX_AMR_PROFILE: ${{ inputs.amr_profile }}");
-    expect(prerelease).toContain("SAASCODEX_AMR_PROFILE: ${{ inputs.amr_profile }}");
+    expect(beta).toContain("SPLATSTUDIO_AMR_PROFILE: ${{ inputs.amr_profile }}");
+    expect(prerelease).toContain("SPLATSTUDIO_AMR_PROFILE: ${{ inputs.amr_profile }}");
     expect(beta).toContain(
       "(inputs.amr_profile == 'prod' || inputs.amr_profile == '') && secrets.VELA_WEB_URL_PROD || ''",
     );
@@ -791,7 +791,7 @@ describe("release workflows", () => {
     // instead of accepting an input removes the footgun of publishing a stable
     // build wired to the test backend — there is no legitimate reason for one.
     for (const workflow of [stable]) {
-      expect(workflow).toContain("SAASCODEX_AMR_PROFILE: prod");
+      expect(workflow).toContain("SPLATSTUDIO_AMR_PROFILE: prod");
       expect(workflow).toContain("OD_VELA_WEB_URL: ${{ secrets.VELA_WEB_URL_PROD }}");
       expect(workflow).not.toContain("inputs.amr_profile");
     }

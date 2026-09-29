@@ -4,7 +4,7 @@ Follow the root `AGENTS.md` first. This file only records module-level boundarie
 
 ## Active apps
 
-- `apps/closure`: independently distributable SaaSCodex Closure content. During the cold-start phase it owns only a Web/daemon-independent lifecycle fixture and component contribution; do not add shell, Store, channel, or generation policy here.
+- `apps/closure`: independently distributable SplatStudio Closure content. During the cold-start phase it owns only a Web/daemon-independent lifecycle fixture and component contribution; do not add shell, Store, channel, or generation policy here.
 - `apps/web`: Next.js 16 App Router + React 18 web runtime. Entrypoints live in `apps/web/app/`; the main client shell is `apps/web/src/App.tsx`. During local `tools-dev` web runs, `apps/web/next.config.ts` rewrites `/api/*`, `/artifacts/*`, and `/frames/*` to `OD_PORT`.
 - `apps/daemon`: Express + SQLite local daemon and `od` bin. It owns REST/SSE APIs, agent CLI spawning, skills, design systems, artifact persistence, static serving, and daemon-managed data. Before describing or changing daemon data paths, read the root `AGENTS.md` section **Daemon data directory contract**; it is mandatory and must not be restated here.
 - `apps/desktop`: Electron shell. Desktop does not guess the web port; it reads runtime status through sidecar IPC and opens the reported web URL.
@@ -48,13 +48,13 @@ Follow the root `AGENTS.md` first. This file only records module-level boundarie
 ## Common app commands
 
 ```bash
-pnpm --filter @saascodex/web typecheck
-pnpm --filter @saascodex/web test
-pnpm --filter @saascodex/daemon typecheck
-pnpm --filter @saascodex/daemon test
-pnpm --filter @saascodex/daemon build
-pnpm --filter @saascodex/desktop typecheck
-pnpm --filter @saascodex/desktop build
-pnpm --filter @saascodex/packaged typecheck
-pnpm --filter @saascodex/packaged build
+pnpm --filter @splatstudio/web typecheck
+pnpm --filter @splatstudio/web test
+pnpm --filter @splatstudio/daemon typecheck
+pnpm --filter @splatstudio/daemon test
+pnpm --filter @splatstudio/daemon build
+pnpm --filter @splatstudio/desktop typecheck
+pnpm --filter @splatstudio/desktop build
+pnpm --filter @splatstudio/packaged typecheck
+pnpm --filter @splatstudio/packaged build
 ```

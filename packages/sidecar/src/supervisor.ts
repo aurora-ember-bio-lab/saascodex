@@ -3,7 +3,7 @@ import { spawn } from "node:child_process";
 import {
   captureProcessSnapshot,
   stopProcesses,
-} from "@saascodex/platform";
+} from "@splatstudio/platform";
 
 import {
   readSidecarLaunchResources,

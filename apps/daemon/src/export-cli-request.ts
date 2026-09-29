@@ -1,4 +1,4 @@
-import type { ExportFormat, ExportImageFormat, ExportResult } from "@saascodex/contracts";
+import type { ExportFormat, ExportImageFormat, ExportResult } from "@splatstudio/contracts";
 
 export interface ExportCliRequestOptions {
   fileName: string;

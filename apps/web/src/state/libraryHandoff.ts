@@ -7,7 +7,7 @@
 // here is persisted — a refresh drops the hand-off, which is the desired
 // behaviour (a stale seed should never resurface).
 
-import type { ChatAttachment } from '@saascodex/contracts';
+import type { ChatAttachment } from '@splatstudio/contracts';
 
 // --- Path A: seed the "Create design system" flow ---------------------------
 // Selected Library assets, fetched into File objects, to pre-fill the design

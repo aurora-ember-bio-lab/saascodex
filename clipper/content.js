@@ -1,10 +1,10 @@
-// SaaSCodex web clipper on-page UI.
+// SplatStudio web clipper on-page UI.
 //
 // Three on-page surfaces, all isolated in their own Shadow DOM so page CSS
 // can't bleed in (and the extension's own nodes are excluded from captures):
 //
 //   1. A floating launcher toolbar (page / design system / figma / shot / images / element),
-//      led by the SaaSCodex brand mark. HIDDEN by default — turned on from
+//      led by the SplatStudio brand mark. HIDDEN by default — turned on from
 //      the popup; the preference is remembered. A grip handle on its leading
 //      edge drags it anywhere on the page, and the resting spot is remembered.
 //   2. A DevTools-style element picker: hover to highlight, click to capture
@@ -33,7 +33,7 @@
   // content script's isolated world, because we share the host page's DOM and
   // its CSP governs every DOM sink. That throw used to abort this whole script
   // right after the injection guard was set, leaving the page flagged but with
-  // no message listener: the popup then reported "SaaSCodex hasn't attached to
+  // no message listener: the popup then reported "SplatStudio hasn't attached to
   // this page yet" and neither a reload nor the popup's "Refresh page" could
   // recover it. DOMParser is NOT a Trusted Types sink, so parse the markup in a
   // detached document and move the nodes in. `<style>` lands in <head> and the
@@ -240,7 +240,7 @@
           <circle cx="2.5" cy="13" r="1.4"/><circle cx="7.5" cy="13" r="1.4"/>
         </svg>
       </div>
-      <a class="brand" href="https://saascodex.com" target="_blank" rel="noopener noreferrer" data-tip="${esc(t('toolbarHomeTip'))}" aria-label="${esc(t('toolbarHomeLabel'))}">
+      <a class="brand" href="https://splatstudio.app" target="_blank" rel="noopener noreferrer" data-tip="${esc(t('toolbarHomeTip'))}" aria-label="${esc(t('toolbarHomeLabel'))}">
         <svg viewBox="0 0 93 93" fill="#fff" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M46.38 17.5c15.85 0 28.7 12.85 28.7 28.7 0 15.85-12.85 28.7-28.7 28.7H21.5a3.82 3.82 0 0 1-3.82-3.82V46.19c0-15.85 12.85-28.7 28.7-28.7Zm0 5.74c-12.68 0-22.96 10.28-22.96 22.96 0 12.68 10.28 22.96 22.96 22.96 12.68 0 22.96-10.28 22.96-22.96 0-12.68-10.28-22.96-22.96-22.96Z"/>
           <path d="M44.59 59.66 35.84 36.64a.94.94 0 0 1 1.18-1.19l23.04 8.91c.95.37.69 1.78-.33 1.78H46.36v13.19c0 1.03-1.41 1.29-1.77.33Z"/>
@@ -824,7 +824,7 @@
         sourceTitle: document.title,
       });
     } catch (err) {
-      console.warn('[SaaSCodex] element capture failed', err);
+      console.warn('[SplatStudio] element capture failed', err);
       stopBusy();
       toast(t('extensionErrorReload'));
       return;
@@ -1499,7 +1499,7 @@
         <button class="badge" id="b" type="button" aria-label="${esc(t('saveImageToLibrary'))}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         </button>
-        <span class="tip">${esc(t('saveImageToSaaSCodex'))}</span>
+        <span class="tip">${esc(t('saveImageToSplatStudio'))}</span>
       </div>`);
     document.documentElement.appendChild(imgBadgeHost);
     imgBadgeBtn = sh.getElementById('b');

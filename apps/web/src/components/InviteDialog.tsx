@@ -16,8 +16,8 @@ import {
   normalizeWorkspaceInviteCreateErrorCode,
   type WorkspaceCollabContext,
   type WorkspaceInviteRole,
-} from '@saascodex/contracts';
-import { Button } from '@saascodex/components';
+} from '@splatstudio/contracts';
+import { Button } from '@splatstudio/components';
 import { Icon } from './Icon';
 import { useI18n } from '../i18n';
 import { workspaceInviteErrorMessageKey } from '../collab/invite-error-copy';

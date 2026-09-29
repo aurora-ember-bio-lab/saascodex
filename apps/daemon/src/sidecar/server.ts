@@ -15,7 +15,7 @@ import {
   type DesktopRenderSlidesResult,
   type DesktopStatusSnapshot,
   type MintImportTokenResult,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 
 import { startDaemonRuntime, type StartedDaemonRuntime } from "../daemon-startup.js";
 import {

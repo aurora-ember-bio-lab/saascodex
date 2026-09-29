@@ -2,7 +2,7 @@
 
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import type { ProjectDisplayStatus } from '@saascodex/contracts';
+import type { ProjectDisplayStatus } from '@splatstudio/contracts';
 
 import {
   hasCompletionNotice,

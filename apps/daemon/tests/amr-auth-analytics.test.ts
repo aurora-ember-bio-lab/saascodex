@@ -11,7 +11,7 @@
 //    `app_user_id`.
 
 import { describe, expect, it } from 'vitest';
-import { deriveConfigureGlobals } from '@saascodex/contracts/analytics';
+import { deriveConfigureGlobals } from '@splatstudio/contracts/analytics';
 import {
   readVelaLoginStatus,
   type VelaLoginStatus,

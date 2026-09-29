@@ -1,8 +1,8 @@
 import type {
-  SaaSCodexHostFailure,
-  SaaSCodexHostProjectImportResult,
-  SaaSCodexHostProjectReplaceWorkingDirResult,
-  SaaSCodexHostPickWorkingDirResult,
+  SplatStudioHostFailure,
+  SplatStudioHostProjectImportResult,
+  SplatStudioHostProjectReplaceWorkingDirResult,
+  SplatStudioHostPickWorkingDirResult,
 } from "./protocol.js";
 
 /**
@@ -19,7 +19,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 /** @internal Build a normalized host failure result. */
-function failure(reason: string, details?: unknown): SaaSCodexHostFailure {
+function failure(reason: string, details?: unknown): SplatStudioHostFailure {
   return {
     ...(details === undefined ? {} : { details }),
     ok: false,
@@ -32,7 +32,7 @@ function failure(reason: string, details?: unknown): SaaSCodexHostFailure {
  * host-owned renderer contract. The adapter may internally call daemon APIs,
  * but only project identifiers cross the host bridge.
  */
-export function normalizeSaaSCodexHostProjectImportResult(input: unknown): SaaSCodexHostProjectImportResult {
+export function normalizeSplatStudioHostProjectImportResult(input: unknown): SplatStudioHostProjectImportResult {
   if (!isRecord(input)) {
     return failure("desktop import returned an invalid response", input);
   }
@@ -72,9 +72,9 @@ export function normalizeSaaSCodexHostProjectImportResult(input: unknown): SaaSC
  * Converts a privileged host adapter's raw working-dir replace result into the
  * host-owned renderer contract.
  */
-export function normalizeSaaSCodexHostProjectReplaceWorkingDirResult(
+export function normalizeSplatStudioHostProjectReplaceWorkingDirResult(
   input: unknown,
-): SaaSCodexHostProjectReplaceWorkingDirResult {
+): SplatStudioHostProjectReplaceWorkingDirResult {
   if (!isRecord(input)) {
     return failure("desktop working-dir replace returned an invalid response", input);
   }
@@ -103,9 +103,9 @@ export function normalizeSaaSCodexHostProjectReplaceWorkingDirResult(
  * Converts a privileged host adapter's raw working-dir pick result into the
  * host-owned renderer contract (chosen path plus single-use token).
  */
-export function normalizeSaaSCodexHostPickWorkingDirResult(
+export function normalizeSplatStudioHostPickWorkingDirResult(
   input: unknown,
-): SaaSCodexHostPickWorkingDirResult {
+): SplatStudioHostPickWorkingDirResult {
   if (!isRecord(input)) {
     return failure("desktop working-dir pick returned an invalid response", input);
   }

@@ -1,4 +1,4 @@
-export interface SaaSCodexDiscordPresenceResponse {
+export interface SplatStudioDiscordPresenceResponse {
   inviteCode: string;
   inviteUrl: string;
   onlineCount: number;

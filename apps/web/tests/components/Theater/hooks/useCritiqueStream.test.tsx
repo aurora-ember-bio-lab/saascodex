@@ -13,7 +13,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { useCritiqueStream } from '../../../../src/components/Theater/hooks/useCritiqueStream';
 import type {

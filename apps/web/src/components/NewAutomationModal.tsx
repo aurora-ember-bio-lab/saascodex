@@ -12,7 +12,7 @@ import type {
   RoutineProjectTarget,
   RoutineSchedule,
   Weekday,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { Icon, type IconName } from './Icon';
 import type { SkillSummary } from '../types';

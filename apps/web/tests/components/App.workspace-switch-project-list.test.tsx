@@ -28,7 +28,7 @@
 // (a local switch must correct itself locally).
 
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { buildWorkspacePermissions } from '@saascodex/contracts';
+import { buildWorkspacePermissions } from '@splatstudio/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { App } from '../../src/App';

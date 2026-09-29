@@ -1,4 +1,4 @@
-# Contribuer à SaaSCodex
+# Contribuer à SplatStudio
 
 Merci d'envisager de contribuer. OD reste volontairement petit : l'essentiel
 de la valeur vit dans des **fichiers** (Skills, Design Systems, morceaux de
@@ -37,12 +37,12 @@ TL;DR pour contribuer :
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex
+cd splatstudio
 corepack enable           # sélectionne la version de pnpm définie par packageManager
 pnpm install
 pnpm tools-dev run web    # boucle daemon + web au premier plan
 pnpm typecheck            # tsc -b --noEmit
-pnpm --filter @saascodex/web build  # build du paquet web si nécessaire
+pnpm --filter @splatstudio/web build  # build du paquet web si nécessaire
 ```
 
 Node `~24` et pnpm `10.33.x` sont requis. `nvm` / `fnm` sont optionnels ;
@@ -54,7 +54,7 @@ pour les pièges de configuration les plus courants.
 
 ## Configuration Docker
 
-Exécutez SaaSCodex sans installer Node.js ou pnpm localement.
+Exécutez SplatStudio sans installer Node.js ou pnpm localement.
 
 ### Prérequis
 
@@ -64,7 +64,7 @@ Vérifiez que Docker Desktop et Compose v2 sont installés :
 docker compose version
 ```
 
-### Démarrer SaaSCodex
+### Démarrer SplatStudio
 
 Depuis la racine du dépôt, préparez le fichier d'environnement :
 
@@ -80,7 +80,7 @@ Dans `.env`, renseignez `OD_API_TOKEN=` avec le token généré, puis démarrez 
 docker compose up -d
 ```
 
-Ouvrez `http://127.0.0.1:7456`. Si le navigateur demande des identifiants, utilisez `saascodex` comme nom d'utilisateur et la valeur de `OD_API_TOKEN` comme mot de passe.
+Ouvrez `http://127.0.0.1:7456`. Si le navigateur demande des identifiants, utilisez `splatstudio` comme nom d'utilisateur et la valeur de `OD_API_TOKEN` comme mot de passe.
 
 ### Commandes courantes
 
@@ -104,10 +104,10 @@ docker compose up -d
 Ajustez ces valeurs dans `deploy/.env` en conservant votre `OD_API_TOKEN` :
 
 ```env
-SAASCODEX_PORT=7456
-SAASCODEX_MEM_LIMIT=384m
-SAASCODEX_ALLOWED_ORIGINS=https://yourdomain.com
-SAASCODEX_IMAGE=ghcr.io/nexu-io/od:latest
+SPLATSTUDIO_PORT=7456
+SPLATSTUDIO_MEM_LIMIT=384m
+SPLATSTUDIO_ALLOWED_ORIGINS=https://yourdomain.com
+SPLATSTUDIO_IMAGE=ghcr.io/aurora-ember-bio-lab/splatstudio:latest
 ```
 
 Les projets et la base de données sont persistés dans des volumes Docker. Pour les règles de stockage du daemon, consultez la section **Daemon data directory contract** du fichier [`AGENTS.md`](../../AGENTS.md#daemon-data-directory-contract) à la racine.
@@ -300,7 +300,7 @@ L'allemand utilise le vouvoiement formel `Sie`, car OD s'adresse à des créateu
 
 Les PR de localisation doivent traduire les éléments d'interface, la documentation principale et les métadonnées de galerie destinées uniquement à l'affichage dans `apps/web/src/i18n/content.ts`. Elles ne doivent pas traduire `skills/`, `design-systems/` ni les corps de prompts exécutés par les agents. Ces prompts sont des entrées de workflow ; conserver une langue source commune évite de multiplier leur validation par langue.
 
-Lors de l'ajout ou du renommage d'un skill, d'un système de design ou d'un modèle de prompt, mettez à jour les métadonnées d'affichage allemandes et lancez `pnpm --filter @saascodex/web test` : `content.test.ts` détecte les écarts de couverture en allemand. Les erreurs du daemon, les noms de fichiers exportés et les textes d'artefacts générés par les agents restent des limites connues, sauf si une PR les inclut explicitement.
+Lors de l'ajout ou du renommage d'un skill, d'un système de design ou d'un modèle de prompt, mettez à jour les métadonnées d'affichage allemandes et lancez `pnpm --filter @splatstudio/web test` : `content.test.ts` détecte les écarts de couverture en allemand. Les erreurs du daemon, les noms de fichiers exportés et les textes d'artefacts générés par les agents restent des limites connues, sauf si une PR les inclut explicitement.
 
 Pour les étapes détaillées d'ajout d'une locale (dictionnaire UI, README,
 language switcher, terminologie régionale), voir [`TRANSLATIONS.md`](../../TRANSLATIONS.md).

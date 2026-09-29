@@ -18,9 +18,9 @@ import {
   type LauncherPaths,
   type LauncherRuntimeDescriptor,
   type LauncherVersionPointer,
-} from "@saascodex/launcher-proto";
-import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@saascodex/release";
-import { spawnSidecar } from "@saascodex/sidecar";
+} from "@splatstudio/launcher-proto";
+import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@splatstudio/release";
+import { spawnSidecar } from "@splatstudio/sidecar";
 import {
   APP_KEYS,
   SIDECAR_ENV,
@@ -28,7 +28,7 @@ import {
   SIDECAR_SOURCES,
   type DesktopStatusSnapshot,
   type SidecarSource,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 
 import { holdParentMonitorExit } from "./parent-monitor-gate.js";
 

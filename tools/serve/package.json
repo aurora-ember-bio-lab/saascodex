@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/tools-serve",
+  "name": "@splatstudio/tools-serve",
   "version": "0.6.0",
   "private": true,
   "type": "module",
@@ -13,7 +13,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/release": "workspace:*",
+    "@splatstudio/release": "workspace:*",
     "cac": "6.7.14"
   },
   "devDependencies": {

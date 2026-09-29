@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
-import { resolveWindowsUninstallRegistryKey } from "@saascodex/sidecar-proto";
+import { resolveWindowsUninstallRegistryKey } from "@splatstudio/sidecar-proto";
 
 const execFileAsync = promisify(execFile);
 

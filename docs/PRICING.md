@@ -1,7 +1,7 @@
 # Pricing, subscriptions, and registration
 
 The public plan surface lives in [`marketing/`](../marketing) and is the analog
-of the upstream pricing page, rebuilt for **saascodex.com**.
+of the upstream pricing page, rebuilt for **splatstudio.app**.
 
 ## Pages
 
@@ -12,7 +12,7 @@ of the upstream pricing page, rebuilt for **saascodex.com**.
 | Landing | [`marketing/index.html`](../marketing/index.html) | Product intro |
 
 All plan references in the product (in-app upgrade gates, the go-plan campaign,
-the enterprise link) now point at `https://saascodex.com` — see the domain
+the enterprise link) now point at `https://splatstudio.app` — see the domain
 revision across the repo.
 
 ## Plans

@@ -5,7 +5,7 @@ import { join } from "node:path";
 import {
   LAUNCHER_SCHEMA_VERSION,
   resolveLauncherPaths,
-} from "@saascodex/launcher-proto";
+} from "@splatstudio/launcher-proto";
 import { describe, expect, it } from "vitest";
 
 import type { ToolPackConfig } from "@/config/index.js";

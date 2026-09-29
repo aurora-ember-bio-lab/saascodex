@@ -48,7 +48,7 @@ const PROMPT_TEMPLATES: PromptTemplateSummary[] = [
     category: 'product',
     model: 'gpt-image-2',
     aspect: '16:9',
-    source: { repo: 'saascodex/image-prompts', license: 'MIT' },
+    source: { repo: 'splatstudio/image-prompts', license: 'MIT' },
   },
   {
     id: 'video-reveal',
@@ -58,7 +58,7 @@ const PROMPT_TEMPLATES: PromptTemplateSummary[] = [
     category: 'product',
     model: 'doubao-seedance-2-0-260128',
     aspect: '16:9',
-    source: { repo: 'saascodex/video-prompts', license: 'MIT' },
+    source: { repo: 'splatstudio/video-prompts', license: 'MIT' },
   },
   {
     id: 'hyperframes-caption',

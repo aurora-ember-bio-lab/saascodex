@@ -74,7 +74,7 @@ export function buildReactComponentSrcdoc(
           // User-authored JSX runs only inside this sandboxed iframe. The parent omits
           // allow-same-origin, so runtime effects are confined to the preview document.
           (0, eval)(compiled);
-          var Component = window.__SaaSCodexComponent ||
+          var Component = window.__SplatStudioComponent ||
             (typeof App !== 'undefined' ? App : null) ||
             (typeof Component !== 'undefined' ? Component : null) ||
             (typeof Preview !== 'undefined' ? Preview : null);
@@ -95,7 +95,7 @@ export function prepareReactComponentSource(source: string): string {
   const withoutImports = transformImportDeclarations(source);
   const transformed = transformExports(withoutImports);
   return `${transformed.code}
-window.__SaaSCodexComponent = window.__SaaSCodexComponent || (${componentFallbackExpression(transformed.defaultName)});`;
+window.__SplatStudioComponent = window.__SplatStudioComponent || (${componentFallbackExpression(transformed.defaultName)});`;
 }
 
 function transformImportDeclarations(source: string): string {
@@ -149,14 +149,14 @@ function transformExports(source: string): { code: string; defaultName: string |
   code = code.replace(
     /export\s+default\s+function\s+([A-Za-z_$][\w$]*)?\s*\(/g,
     (_match, name: string | undefined) => {
-      defaultName = name || 'SaaSCodexComponent';
+      defaultName = name || 'SplatStudioComponent';
       return `function ${defaultName}(`;
     },
   );
   code = code.replace(
     /export\s+default\s+class\s+([A-Za-z_$][\w$]*)?\s*/g,
     (_match, name: string | undefined) => {
-      defaultName = name || 'SaaSCodexComponent';
+      defaultName = name || 'SplatStudioComponent';
       return `class ${defaultName} `;
     },
   );
@@ -168,8 +168,8 @@ function transformExports(source: string): { code: string; defaultName: string |
     },
   );
   code = code.replace(/export\s+default\s+/g, () => {
-    defaultName = 'SaaSCodexComponent';
-    return 'const SaaSCodexComponent = ';
+    defaultName = 'SplatStudioComponent';
+    return 'const SplatStudioComponent = ';
   });
   code = code.replace(
     /export\s+(const|let|var)\s+([A-Za-z_$][\w$]*)/g,

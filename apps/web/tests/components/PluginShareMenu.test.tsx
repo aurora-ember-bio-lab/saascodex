@@ -9,7 +9,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 
 import {
   buildPluginShareUrl,
@@ -126,15 +126,15 @@ describe('PluginShareMenu', () => {
       make({
         id: 'mp-plugin',
         sourceKind: 'github',
-        source: 'github:saascodex/plugins/mp-plugin',
+        source: 'github:splatstudio/plugins/mp-plugin',
         marketplaceId: 'official',
-        marketplaceEntryName: 'saascodex/mp-plugin',
+        marketplaceEntryName: 'splatstudio/mp-plugin',
       }),
     );
     openPopover();
     clickItem('Copy install command');
     await Promise.resolve();
-    expect(writes).toContain('od plugin install saascodex/mp-plugin');
+    expect(writes).toContain('od plugin install splatstudio/mp-plugin');
   });
 
   it('copies the github source string for github-installed plugins', async () => {
@@ -173,14 +173,14 @@ describe('PluginShareMenu', () => {
       id: 'badge-plugin',
       title: 'Badge Plugin',
       marketplaceId: 'official',
-      marketplaceEntryName: 'saascodex/badge-plugin',
+      marketplaceEntryName: 'splatstudio/badge-plugin',
     }));
     openPopover();
     clickItem('Copy README badge');
     await Promise.resolve();
     expect(writes.some((value) => (
       value.includes('Badge Plugin') &&
-      value.includes('https://saascodex.com/plugins/badge-plugin')
+      value.includes('https://splatstudio.app/plugins/badge-plugin')
     ))).toBe(true);
   });
 
@@ -225,7 +225,7 @@ describe('PluginShareMenu', () => {
         sourceKind: 'github',
         source: 'github:owner/repo',
         marketplaceId: 'official',
-        marketplaceEntryName: 'saascodex/zh-plugin',
+        marketplaceEntryName: 'splatstudio/zh-plugin',
         homepage: 'https://example.test/plugin-home',
       }),
       'zh-CN',
@@ -243,7 +243,7 @@ describe('PluginShareMenu', () => {
     expect(labels.some((label) => label.includes('Copy install command'))).toBe(false);
   });
 
-  it('points Open in marketplace at the public saascodex.com page for bundled plugins', () => {
+  it('points Open in marketplace at the public splatstudio.app page for bundled plugins', () => {
     renderMenu(make({ id: 'plain' }));
     openPopover();
     const items = Array.from(
@@ -256,19 +256,19 @@ describe('PluginShareMenu', () => {
       container.querySelectorAll<HTMLAnchorElement>('a.plugin-share-item'),
     ).find((link) => link.textContent?.includes('Open in marketplace'));
     // Bundled plugins have a public detail page, so the link is the public
-    // saascodex.com URL — not a local /marketplace path.
+    // splatstudio.app URL — not a local /marketplace path.
     expect(marketplaceLink?.getAttribute('href')).toBe(
-      'https://saascodex.com/plugins/plain/',
+      'https://splatstudio.app/plugins/plain/',
     );
   });
 
-  it('builds a public saascodex.com share link for bundled plugins', () => {
+  it('builds a public splatstudio.app share link for bundled plugins', () => {
     expect(buildPluginShareUrl(make({ id: 'simple-deck' }))).toBe(
-      'https://saascodex.com/plugins/simple-deck/',
+      'https://splatstudio.app/plugins/simple-deck/',
     );
   });
 
-  it('builds a public saascodex.com share link for community marketplace plugins', () => {
+  it('builds a public splatstudio.app share link for community marketplace plugins', () => {
     // Community manifest names carry a `community-` prefix, but the landing
     // page routes are keyed on the folder name via routeId=`community/<folder>`.
     // buildPluginShareUrl must use sourceMarketplaceEntryName so pluginDetailSlug
@@ -283,7 +283,7 @@ describe('PluginShareMenu', () => {
           marketplaceEntryName: 'community/registry-starter',
         }),
       ),
-    ).toBe('https://saascodex.com/plugins/registry-starter/');
+    ).toBe('https://splatstudio.app/plugins/registry-starter/');
   });
 
   it('copies a README badge for community marketplace plugins', async () => {
@@ -304,7 +304,7 @@ describe('PluginShareMenu', () => {
       writes.some(
         (value) =>
           value.includes('Community Registry Starter') &&
-          value.includes('https://saascodex.com/plugins/registry-starter/'),
+          value.includes('https://splatstudio.app/plugins/registry-starter/'),
       ),
     ).toBe(true);
   });
@@ -324,7 +324,7 @@ describe('PluginShareMenu', () => {
       container.querySelectorAll<HTMLAnchorElement>('a.plugin-share-item'),
     ).find((link) => link.textContent?.includes('Open in marketplace'));
     expect(marketplaceLink?.getAttribute('href')).toBe(
-      'https://saascodex.com/plugins/registry-starter/',
+      'https://splatstudio.app/plugins/registry-starter/',
     );
   });
 

@@ -23,7 +23,7 @@ import type {
   ChatCommentAttachment,
   ChatMessage,
 } from '../../types';
-import type { ChatSessionMode, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { ChatSessionMode, WorkspaceCollabContext } from '@splatstudio/contracts';
 
 // ---------------------------------------------------------------------------
 // useConversationChat — drives a secondary ChatPane bound to a single

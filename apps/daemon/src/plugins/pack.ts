@@ -8,7 +8,7 @@
 // would download.
 //
 // What we put in the archive:
-//   - saascodex.json (required; this is what the installer
+//   - splatstudio.json (required; this is what the installer
 //     resolves first)
 //   - SKILL.md / .claude-plugin/plugin.json when present
 //   - Any other plain files under the folder
@@ -30,7 +30,7 @@ import { promises as fsp } from 'node:fs';
 import { c as tarCreate } from 'tar';
 
 export interface PackPluginInput {
-  // Path to the plugin folder. Must contain saascodex.json.
+  // Path to the plugin folder. Must contain splatstudio.json.
   folder: string;
   // Absolute path of the output archive. Default:
   // `<folder>/../<folder-basename>-<version>.tgz` when the manifest
@@ -67,15 +67,15 @@ export class PackPluginError extends Error {
 export async function packPlugin(input: PackPluginInput): Promise<PackPluginResult> {
   const folder = path.resolve(input.folder);
 
-  // Confirm the folder shape — saascodex.json must exist + parse.
+  // Confirm the folder shape — splatstudio.json must exist + parse.
   let manifestRaw: string;
   try {
-    manifestRaw = await fsp.readFile(path.join(folder, 'saascodex.json'), 'utf8');
+    manifestRaw = await fsp.readFile(path.join(folder, 'splatstudio.json'), 'utf8');
   } catch (err) {
     if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
-      throw new PackPluginError(`folder ${folder} does not contain saascodex.json`);
+      throw new PackPluginError(`folder ${folder} does not contain splatstudio.json`);
     }
-    throw new PackPluginError(`failed to read saascodex.json: ${(err as Error).message}`);
+    throw new PackPluginError(`failed to read splatstudio.json: ${(err as Error).message}`);
   }
   let pluginId: string | undefined;
   let pluginVersion: string | undefined;
@@ -84,7 +84,7 @@ export async function packPlugin(input: PackPluginInput): Promise<PackPluginResu
     if (typeof parsed.name === 'string'    && parsed.name.length    > 0) pluginId      = parsed.name;
     if (typeof parsed.version === 'string' && parsed.version.length > 0) pluginVersion = parsed.version;
   } catch (err) {
-    throw new PackPluginError(`saascodex.json failed to parse as JSON: ${(err as Error).message}`);
+    throw new PackPluginError(`splatstudio.json failed to parse as JSON: ${(err as Error).message}`);
   }
 
   const folderBase = path.basename(folder);

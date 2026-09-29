@@ -3,8 +3,8 @@ import type { EvalContextV2 } from './observability/eval-context.js';
 //
 // This module is intentionally dependency-free (no `langfuse` SDK). It builds
 // Langfuse ingestion batches for completed runs and sends them either to the
-// official SaaSCodex telemetry relay or, for local smoke tests, directly to
-// Langfuse. Without SAASCODEX_TELEMETRY_RELAY_URL or LANGFUSE_PUBLIC_KEY /
+// official SplatStudio telemetry relay or, for local smoke tests, directly to
+// Langfuse. Without SPLATSTUDIO_TELEMETRY_RELAY_URL or LANGFUSE_PUBLIC_KEY /
 // LANGFUSE_SECRET_KEY in the env, every entry point becomes a no-op so that
 // dev runs and forks of this open-source repo do not accidentally report.
 //
@@ -29,10 +29,10 @@ import {
   type SafeDeliverableSyntaxTelemetryV1,
   type SafeRunProcessOutcomeV1,
   type SafeRunQualityV1,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import type { TelemetryPrefs } from './app-config.js';
-import { normalizeSaaSCodexTelemetryRelayUrl } from './integrations/telemetry-relay.js';
+import { normalizeSplatStudioTelemetryRelayUrl } from './integrations/telemetry-relay.js';
 import { readVelaControlApiContext } from './integrations/vela.js';
 import {
   deriveRunTelemetryExportExpectation,
@@ -313,7 +313,7 @@ export interface RuntimeInfo {
   osRelease?: string;
   /** CPU architecture (`os.arch()`, e.g. 'arm64' | 'x64'). */
   arch?: string;
-  /** SaaSCodex app version reported by the daemon. */
+  /** SplatStudio app version reported by the daemon. */
   appVersion?: string;
   /** Build channel (development / prerelease / beta / stable). */
   appChannel?: string;
@@ -462,17 +462,17 @@ export function readLangfuseConfig(
 export function readTelemetrySinkConfig(
   env: NodeJS.ProcessEnv = process.env,
 ): TelemetrySinkConfig | null {
-  const relayUrl = env.SAASCODEX_TELEMETRY_RELAY_URL?.trim();
+  const relayUrl = env.SPLATSTUDIO_TELEMETRY_RELAY_URL?.trim();
   if (relayUrl) {
     return {
       kind: 'relay',
-      relayUrl: normalizeSaaSCodexTelemetryRelayUrl(relayUrl),
+      relayUrl: normalizeSplatStudioTelemetryRelayUrl(relayUrl),
       timeoutMs: parsePositiveInt(
-        env.SAASCODEX_TELEMETRY_TIMEOUT_MS ?? env.LANGFUSE_TIMEOUT_MS,
+        env.SPLATSTUDIO_TELEMETRY_TIMEOUT_MS ?? env.LANGFUSE_TIMEOUT_MS,
         DEFAULT_FETCH_TIMEOUT_MS,
       ),
       retries: parseNonNegativeInt(
-        env.SAASCODEX_TELEMETRY_RETRIES ?? env.LANGFUSE_RETRIES,
+        env.SPLATSTUDIO_TELEMETRY_RETRIES ?? env.LANGFUSE_RETRIES,
         DEFAULT_FETCH_RETRIES,
       ),
     };
@@ -495,7 +495,7 @@ export function readTaskTelemetrySinkConfig(
 }
 
 function isVelaTelemetryEnabled(env: NodeJS.ProcessEnv): boolean {
-  const raw = env.SAASCODEX_VELA_TELEMETRY?.trim().toLowerCase();
+  const raw = env.SPLATSTUDIO_VELA_TELEMETRY?.trim().toLowerCase();
   return raw !== '0' && raw !== 'false' && raw !== 'off' && raw !== 'no';
 }
 
@@ -515,17 +515,17 @@ export function readRunTelemetrySinkConfig(
     if (context && controlKey) {
       return {
         kind: 'vela',
-        apiUrl: (context.apiUrl.trim() || 'https://amr-api.saascodex.com').replace(
+        apiUrl: (context.apiUrl.trim() || 'https://amr-api.splatstudio.app').replace(
           /\/+$/,
           '',
         ),
         controlKey,
         timeoutMs: parsePositiveInt(
-          env.SAASCODEX_TELEMETRY_TIMEOUT_MS ?? env.LANGFUSE_TIMEOUT_MS,
+          env.SPLATSTUDIO_TELEMETRY_TIMEOUT_MS ?? env.LANGFUSE_TIMEOUT_MS,
           DEFAULT_FETCH_TIMEOUT_MS,
         ),
         retries: parseNonNegativeInt(
-          env.SAASCODEX_TELEMETRY_RETRIES ?? env.LANGFUSE_RETRIES,
+          env.SPLATSTUDIO_TELEMETRY_RETRIES ?? env.LANGFUSE_RETRIES,
           DEFAULT_FETCH_RETRIES,
         ),
       };
@@ -630,7 +630,7 @@ function truncate(value: string | undefined, maxBytes: number): string | undefin
 }
 
 function buildTagList(ctx: ReportContext): string[] {
-  const tags = ['saascodex', `project:${ctx.projectId}`];
+  const tags = ['splatstudio', `project:${ctx.projectId}`];
   if (ctx.agentId) tags.push(`agent:${ctx.agentId}`);
   if (ctx.turn?.model) tags.push(`model:${ctx.turn.model}`);
   if (ctx.turn?.skillId) tags.push(`skill:${ctx.turn.skillId}`);
@@ -1869,7 +1869,7 @@ function stableRunIngestionEventId(
   if (typeof bodyId !== 'string' || !bodyId) return null;
   return `od-${createHash('sha256')
     .update(
-      `saascodex/langfuse-event/v1\n${deliveryPurpose}\n${item.type}\n${bodyId}`,
+      `splatstudio/langfuse-event/v1\n${deliveryPurpose}\n${item.type}\n${bodyId}`,
       'utf8',
     )
     .digest('hex')}`;
@@ -2187,7 +2187,7 @@ export function buildTracePayload(
       timestamp: nowIso,
       body: {
         id: traceId,
-        name: 'saascodex-turn',
+        name: 'splatstudio-turn',
         sessionId,
         userId: ctx.installationId ?? undefined,
         tags: buildTagList(ctx),
@@ -2728,7 +2728,7 @@ async function postVelaBatch(
       attemptCount += 1;
       opts.onAttempt?.();
       const response = await fetchImpl(
-        `${config.apiUrl}/api/v1/saascodex/telemetry`,
+        `${config.apiUrl}/api/v1/splatstudio/telemetry`,
         {
           method: 'POST',
           headers: {

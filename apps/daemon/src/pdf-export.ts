@@ -5,7 +5,7 @@ import type {
   DesktopExportArtifactImageFormat,
   DesktopExportArtifactInput,
   DesktopExportPdfInput,
-} from '@saascodex/sidecar-proto';
+} from '@splatstudio/sidecar-proto';
 
 import { readProjectFile } from './projects.js';
 

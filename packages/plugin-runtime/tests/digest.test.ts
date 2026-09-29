@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { manifestSourceDigest } from '../src/digest';
-import type { PluginManifest } from '@saascodex/contracts';
+import type { PluginManifest } from '@splatstudio/contracts';
 
 const baseManifest: PluginManifest = {
   name: 'sample-plugin',

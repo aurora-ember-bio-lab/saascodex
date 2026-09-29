@@ -20,7 +20,7 @@
 // needs to stay discoverable.
 
 import { useCallback, useEffect, useState } from 'react';
-import type { BrandMeta, BrandStatus, ProjectMetadata } from '@saascodex/contracts';
+import type { BrandMeta, BrandStatus, ProjectMetadata } from '@splatstudio/contracts';
 import { fetchBrands } from './brands';
 
 const POLL_INTERVAL_MS = 5000;

@@ -27,7 +27,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   CollabProvider,
   type CollabContextValue,

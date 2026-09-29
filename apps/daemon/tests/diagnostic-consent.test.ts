@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { expect, it } from 'vitest';
-import { buildAutomaticDiagnostics } from '@saascodex/diagnostics';
+import { buildAutomaticDiagnostics } from '@splatstudio/diagnostics';
 import { DiagnosticConsentFence } from '../src/services/diagnostic-consent.js';
 import { automaticDiagnosticsConsent, appConfigDir } from '../src/app-config.js';
 

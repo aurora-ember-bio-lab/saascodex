@@ -30,7 +30,7 @@ import type {
   PluginConnectorBinding,
   PluginConnectorRef,
   PluginManifest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export type ConnectorGateStatus = 'connected' | 'pending' | 'unavailable';
 

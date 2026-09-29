@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import type Database from 'better-sqlite3';
-import { PLUGIN_SHARE_ACTION_PLUGIN_IDS } from '@saascodex/contracts';
+import { PLUGIN_SHARE_ACTION_PLUGIN_IDS } from '@splatstudio/contracts';
 import { upsertMessage } from '../db.js';
 import { emittedRenderableQuestionForm } from '../question-form-detect.js';
 import { execGhBuffered } from '../services/login-shell.js';
@@ -82,14 +82,14 @@ export function renderPluginBriefTemplate(
 }
 
 export async function readProjectPluginManifest(folder: string): Promise<ProjectPluginManifest> {
-  const raw = await fs.promises.readFile(path.join(folder, 'saascodex.json'), 'utf8');
+  const raw = await fs.promises.readFile(path.join(folder, 'splatstudio.json'), 'utf8');
   const manifest = parseJsonObject(raw);
   const name = typeof manifest.name === 'string' && manifest.name.trim()
     ? manifest.name.trim()
     : path.basename(folder);
   if (/[/\\]/.test(name) || /^\.+$/.test(name)) {
     throw new Error(
-      `saascodex.json in ${folder}: name "${name}" must not contain path separators or consist only of dots`,
+      `splatstudio.json in ${folder}: name "${name}" must not contain path separators or consist only of dots`,
     );
   }
   return {
@@ -107,12 +107,12 @@ export function githubRepoNameFromPluginName(name: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9._-]+/g, '-')
     .replace(/(^[-._]+|[-._]+$)/g, '');
-  return slug || 'saascodex-plugin';
+  return slug || 'splatstudio-plugin';
 }
 
 export const PLUGIN_SHARE_ACTION_LABELS: Record<PluginShareAction, string> = {
   'publish-github': 'Publish to GitHub',
-  'contribute-saascodex': 'Contribute to SaaSCodex',
+  'contribute-splatstudio': 'Contribute to SplatStudio',
 };
 
 export const USER_PLUGIN_SOURCE_KINDS = new Set([
@@ -159,10 +159,10 @@ export function renderPluginSharePrompt({ action, sourcePlugin, stagedPath }: Pl
   const title = sourcePlugin.title || sourcePlugin.id;
   if (action === 'publish-github') {
     return [
-      `Publish the local SaaSCodex plugin "${title}" as a new public GitHub repository.`,
+      `Publish the local SplatStudio plugin "${title}" as a new public GitHub repository.`,
       '',
       `The plugin source files have been copied into this project at \`${stagedPath}\`.`,
-      'Use the local daemon share endpoint so the publish flow runs through SaaSCodex\'s validated GitHub path:',
+      'Use the local daemon share endpoint so the publish flow runs through SplatStudio\'s validated GitHub path:',
       '',
       '```bash',
       `curl -sS -X POST "$OD_DAEMON_URL/api/projects/$OD_PROJECT_ID/plugins/publish-github" \\`,
@@ -176,13 +176,13 @@ export function renderPluginSharePrompt({ action, sourcePlugin, stagedPath }: Pl
     ].join('\n');
   }
   return [
-    `Open a pull request to add the local SaaSCodex plugin "${title}" to the SaaSCodex repository.`,
+    `Open a pull request to add the local SplatStudio plugin "${title}" to the SplatStudio repository.`,
     '',
     `The plugin source files have been copied into this project at \`${stagedPath}\`.`,
-    'Use the local daemon share endpoint so the contribution flow runs through SaaSCodex\'s validated GitHub path:',
+    'Use the local daemon share endpoint so the contribution flow runs through SplatStudio\'s validated GitHub path:',
     '',
     '```bash',
-    `curl -sS -X POST "$OD_DAEMON_URL/api/projects/$OD_PROJECT_ID/plugins/contribute-saascodex" \\`,
+    `curl -sS -X POST "$OD_DAEMON_URL/api/projects/$OD_PROJECT_ID/plugins/contribute-splatstudio" \\`,
     `  -H 'content-type: application/json' \\`,
     `  -d '${JSON.stringify({ path: stagedPath })}'`,
     '```',
@@ -311,7 +311,7 @@ export function isPluginAuthoringRun(
 export async function hasGeneratedPluginArtifacts(projectRoot: string | null | undefined): Promise<boolean> {
   if (!projectRoot || typeof projectRoot !== 'string') return false;
   const required = [
-    path.join(projectRoot, 'generated-plugin', 'saascodex.json'),
+    path.join(projectRoot, 'generated-plugin', 'splatstudio.json'),
     path.join(projectRoot, 'generated-plugin', 'SKILL.md'),
   ];
   try {
@@ -421,7 +421,7 @@ export function upsertSkillPluginCandidateAssistantMessage(
   upsertMessage(db, run.conversationId, {
     id: messageId,
     role: 'assistant',
-    content: `SaaSCodex found reusable skill material that can become a plugin: ${candidate.title}`,
+    content: `SplatStudio found reusable skill material that can become a plugin: ${candidate.title}`,
     events: [{
       kind: 'plugin_candidate',
       candidateId: candidate.id,

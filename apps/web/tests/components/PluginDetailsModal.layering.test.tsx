@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { cleanup, render } from '@testing-library/react';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { PluginDetailsModal } from '../../src/components/PluginDetailsModal';

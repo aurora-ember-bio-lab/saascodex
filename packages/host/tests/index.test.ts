@@ -5,18 +5,18 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it, vi } from "vitest";
 
 import {
-  SAASCODEX_HOST_GLOBAL,
-  SAASCODEX_HOST_VERSION,
+  SPLATSTUDIO_HOST_GLOBAL,
+  SPLATSTUDIO_HOST_VERSION,
   clearHostBrowserData,
   checkHostUpdater,
-  detectSaaSCodexHostClientType,
+  detectSplatStudioHostClientType,
   getLatestHostPreviewNavigationFailure,
   getHostUpdaterStatus,
-  getSaaSCodexHost,
+  getSplatStudioHost,
   installHostUpdater,
-  isSaaSCodexHostAvailable,
-  isSaaSCodexHostBridge,
-  normalizeSaaSCodexHostProjectImportResult,
+  isSplatStudioHostAvailable,
+  isSplatStudioHostBridge,
+  normalizeSplatStudioHostProjectImportResult,
   openHostExternalUrl,
   pickAndImportHostProject,
   printHostPdf,
@@ -28,7 +28,7 @@ import {
   subscribeHostUpdater,
   subscribeHostPreviewNavigationFailure,
 } from "../src/index.js";
-import { createMockSaaSCodexHost, installMockSaaSCodexHost } from "../src/testing.js";
+import { createMockSplatStudioHost, installMockSplatStudioHost } from "../src/testing.js";
 
 const hostRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -41,7 +41,7 @@ function filesUnder(dir: string): string[] {
   });
 }
 
-describe("saascodex host contract", () => {
+describe("splatstudio host contract", () => {
   it("stays independent from daemon/web contracts", () => {
     const pkg = JSON.parse(readFileSync(join(hostRoot, "package.json"), "utf8")) as {
       dependencies?: Record<string, string>;
@@ -54,63 +54,63 @@ describe("saascodex host contract", () => {
       ...pkg.devDependencies,
       ...pkg.optionalDependencies,
       ...pkg.peerDependencies,
-    }).not.toHaveProperty("@saascodex/contracts");
+    }).not.toHaveProperty("@splatstudio/contracts");
 
     const offenders = filesUnder(join(hostRoot, "src")).filter((path) =>
-      readFileSync(path, "utf8").includes("@saascodex/contracts"),
+      readFileSync(path, "utf8").includes("@splatstudio/contracts"),
     );
     expect(offenders).toEqual([]);
   });
 
   it("recognizes the canonical bridge shape", () => {
-    const host = createMockSaaSCodexHost();
-    expect(isSaaSCodexHostBridge(host)).toBe(true);
-    expect(host.version).toBe(SAASCODEX_HOST_VERSION);
+    const host = createMockSplatStudioHost();
+    expect(isSplatStudioHostBridge(host)).toBe(true);
+    expect(host.version).toBe(SPLATSTUDIO_HOST_VERSION);
   });
 
   it("rejects legacy or incomplete bridge shapes", () => {
-    expect(isSaaSCodexHostBridge({ version: SAASCODEX_HOST_VERSION })).toBe(false);
-    expect(isSaaSCodexHostBridge({ ...createMockSaaSCodexHost(), version: 1 })).toBe(false);
-    expect(isSaaSCodexHostBridge({
-      ...createMockSaaSCodexHost(),
+    expect(isSplatStudioHostBridge({ version: SPLATSTUDIO_HOST_VERSION })).toBe(false);
+    expect(isSplatStudioHostBridge({ ...createMockSplatStudioHost(), version: 1 })).toBe(false);
+    expect(isSplatStudioHostBridge({
+      ...createMockSplatStudioHost(),
       browser: {},
     })).toBe(false);
-    expect(isSaaSCodexHostBridge({
-      ...createMockSaaSCodexHost(),
+    expect(isSplatStudioHostBridge({
+      ...createMockSplatStudioHost(),
       capture: {},
     })).toBe(false);
-    expect(isSaaSCodexHostBridge({
-      ...createMockSaaSCodexHost(),
+    expect(isSplatStudioHostBridge({
+      ...createMockSplatStudioHost(),
       shell: { openExternal: async () => ({ ok: true }) },
     })).toBe(false);
-    expect(isSaaSCodexHostBridge({
-      ...createMockSaaSCodexHost(),
-      updater: { status: async () => createMockSaaSCodexHost().updater.status() },
+    expect(isSplatStudioHostBridge({
+      ...createMockSplatStudioHost(),
+      updater: { status: async () => createMockSplatStudioHost().updater.status() },
     })).toBe(false);
-    const { "clear-cache": _clearCache, ...updaterWithoutClearCache } = createMockSaaSCodexHost().updater;
-    expect(isSaaSCodexHostBridge({
-      ...createMockSaaSCodexHost(),
+    const { "clear-cache": _clearCache, ...updaterWithoutClearCache } = createMockSplatStudioHost().updater;
+    expect(isSplatStudioHostBridge({
+      ...createMockSplatStudioHost(),
       updater: updaterWithoutClearCache,
     })).toBe(false);
   });
 
   it("reads the bridge through the package-owned global accessor", () => {
     const scope: Record<string, unknown> = {};
-    scope[SAASCODEX_HOST_GLOBAL] = createMockSaaSCodexHost();
-    expect(getSaaSCodexHost(scope)?.client.type).toBe("desktop");
-    expect(isSaaSCodexHostAvailable(scope)).toBe(true);
-    expect(detectSaaSCodexHostClientType(scope)).toBe("desktop");
+    scope[SPLATSTUDIO_HOST_GLOBAL] = createMockSplatStudioHost();
+    expect(getSplatStudioHost(scope)?.client.type).toBe("desktop");
+    expect(isSplatStudioHostAvailable(scope)).toBe(true);
+    expect(detectSplatStudioHostClientType(scope)).toBe("desktop");
   });
 
   it("falls back to web when no host is installed", () => {
-    expect(getSaaSCodexHost({})).toBeNull();
-    expect(isSaaSCodexHostAvailable({})).toBe(false);
-    expect(detectSaaSCodexHostClientType({})).toBe("web");
+    expect(getSplatStudioHost({})).toBeNull();
+    expect(isSplatStudioHostAvailable({})).toBe(false);
+    expect(detectSplatStudioHostClientType({})).toBe("web");
   });
 
   it("wraps host action throws into structured failures", async () => {
     const scope: Record<string, unknown> = {};
-    scope[SAASCODEX_HOST_GLOBAL] = createMockSaaSCodexHost({
+    scope[SPLATSTUDIO_HOST_GLOBAL] = createMockSplatStudioHost({
       shell: {
         openPath: vi.fn(async () => {
           throw new Error("failed");
@@ -125,7 +125,7 @@ describe("saascodex host contract", () => {
   });
 
   it("normalizes privileged project-import results into host-owned identifiers", () => {
-    const result = normalizeSaaSCodexHostProjectImportResult({
+    const result = normalizeSplatStudioHostProjectImportResult({
       ok: true,
       response: {
         project: {
@@ -148,7 +148,7 @@ describe("saascodex host contract", () => {
   });
 
   it("accepts imported folders with no detected entry file", () => {
-    const result = normalizeSaaSCodexHostProjectImportResult({
+    const result = normalizeSplatStudioHostProjectImportResult({
       ok: true,
       response: {
         project: {
@@ -171,11 +171,11 @@ describe("saascodex host contract", () => {
   });
 
   it("preserves canceled and structured failure project-import results", () => {
-    expect(normalizeSaaSCodexHostProjectImportResult({ canceled: true, ok: false })).toEqual({
+    expect(normalizeSplatStudioHostProjectImportResult({ canceled: true, ok: false })).toEqual({
       canceled: true,
       ok: false,
     });
-    expect(normalizeSaaSCodexHostProjectImportResult({
+    expect(normalizeSplatStudioHostProjectImportResult({
       ok: false,
       reason: "daemon returned HTTP 500",
       details: { code: "boom" },
@@ -187,7 +187,7 @@ describe("saascodex host contract", () => {
   });
 
   it("rejects malformed successful project-import results before they reach web callers", () => {
-    expect(normalizeSaaSCodexHostProjectImportResult({
+    expect(normalizeSplatStudioHostProjectImportResult({
       ok: true,
       response: {
         project: { id: "project-1" },
@@ -216,7 +216,7 @@ describe("saascodex host contract", () => {
     const print = vi.fn(async () => ({ ok: true as const }));
     const setVisible = vi.fn();
     const scope: Record<string, unknown> = {};
-    scope[SAASCODEX_HOST_GLOBAL] = createMockSaaSCodexHost({
+    scope[SPLATSTUDIO_HOST_GLOBAL] = createMockSplatStudioHost({
       browser: { clearData },
       shell: { openExternal, openPath },
       project: { pickAndImport },
@@ -271,7 +271,7 @@ describe("saascodex host contract", () => {
     const subscribeOpenDialog = vi.fn(() => unsubscribeOpenDialog);
     const setMenuLabels = vi.fn(async () => ({ ok: true as const }));
     const scope: Record<string, unknown> = {};
-    scope[SAASCODEX_HOST_GLOBAL] = createMockSaaSCodexHost({
+    scope[SPLATSTUDIO_HOST_GLOBAL] = createMockSplatStudioHost({
       updater: { check, install, quit, setMenuLabels, status: statusFn, subscribe, subscribeOpenDialog },
     });
 
@@ -301,7 +301,7 @@ describe("saascodex host contract", () => {
       downloading: "Downloading Update…",
       install: "Install Update…",
       installing: "Installing Update…",
-      restart: "Restart to Update SaaSCodex…",
+      restart: "Restart to Update SplatStudio…",
     }, scope)).resolves.toEqual({ ok: true });
     expect(statusFn).toHaveBeenCalledWith({ payload: { source: "mount" } });
     expect(check).toHaveBeenCalledWith({ payload: { source: "button" } });
@@ -324,7 +324,7 @@ describe("saascodex host contract", () => {
     const subscribeNavigationFailure = vi.fn(() => unsubscribe);
     const getLatestNavigationFailure = vi.fn(() => failure);
     const scope: Record<string, unknown> = {};
-    scope[SAASCODEX_HOST_GLOBAL] = createMockSaaSCodexHost({
+    scope[SPLATSTUDIO_HOST_GLOBAL] = createMockSplatStudioHost({
       preview: { getLatestNavigationFailure, subscribeNavigationFailure },
     });
     const listener = vi.fn();
@@ -339,7 +339,7 @@ describe("saascodex host contract", () => {
 
   it("wraps updater action throws into structured failures", async () => {
     const scope: Record<string, unknown> = {};
-    scope[SAASCODEX_HOST_GLOBAL] = createMockSaaSCodexHost({
+    scope[SPLATSTUDIO_HOST_GLOBAL] = createMockSplatStudioHost({
       updater: {
         check: vi.fn(async () => {
           throw new Error("updater failed");
@@ -355,9 +355,9 @@ describe("saascodex host contract", () => {
 
   it("installs and restores test hosts without exposing callers to the global key", () => {
     const scope: Record<string, unknown> = {};
-    const restore = installMockSaaSCodexHost({ scope });
-    expect(getSaaSCodexHost(scope)).not.toBeNull();
+    const restore = installMockSplatStudioHost({ scope });
+    expect(getSplatStudioHost(scope)).not.toBeNull();
     restore();
-    expect(getSaaSCodexHost(scope)).toBeNull();
+    expect(getSplatStudioHost(scope)).toBeNull();
   });
 });

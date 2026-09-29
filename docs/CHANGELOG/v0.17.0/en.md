@@ -1,19 +1,19 @@
 ---
-title: SaaSCodex 0.17.0
-description: Bring SaaSCodex into Codex as an editable design workspace, then refine the result directly in Studio.
+title: SplatStudio 0.17.0
+description: Bring SplatStudio into Codex as an editable design workspace, then refine the result directly in Studio.
 ---
 
-### 🌟 Codename: *SaaSCodex Plugin for Codex*
+### 🌟 Codename: *SplatStudio Plugin for Codex*
 
-🚀 **62 PRs · 23 contributors · 11 days** — **Codex now has its own design workspace.** Call `@saascodex` from a Codex conversation to turn ideas and briefs into real, editable design artifacts—then keep creating and refining them in SaaSCodex Studio without leaving the Codex workflow. 🚀
+🚀 **62 PRs · 23 contributors · 11 days** — **Codex now has its own design workspace.** Call `@splatstudio` from a Codex conversation to turn ideas and briefs into real, editable design artifacts—then keep creating and refining them in SplatStudio Studio without leaving the Codex workflow. 🚀
 
 ## 🔥 Highlights
 
-- 🚀 **SaaSCodex for Codex—from `@saascodex` to a real artifact.** Codex Desktop and CLI can now call SaaSCodex as a complete creative engine. Confirm a visual brief, choose SaaSCodex Cloud or a supported local runtime, and receive a real Preview or Studio result. The signed SaaSCodex runtime starts headlessly when needed, so there is no second app to keep open and no stack to wire together by hand. If Studio cannot load cleanly in an external host, Codex still delivers the stable preview immediately. (#6055, #6273, #6362)
+- 🚀 **SplatStudio for Codex—from `@splatstudio` to a real artifact.** Codex Desktop and CLI can now call SplatStudio as a complete creative engine. Confirm a visual brief, choose SplatStudio Cloud or a supported local runtime, and receive a real Preview or Studio result. The signed SplatStudio runtime starts headlessly when needed, so there is no second app to keep open and no stack to wire together by hand. If Studio cannot load cleanly in an external host, Codex still delivers the stable preview immediately. (#6055, #6273, #6362)
 
 - ✋ **Finish with your hands, not another prompt.** Small visual corrections used to send you back into the chat loop. Now select an element directly, move or resize it, edit text, change color and alignment, duplicate or delete it, and replace, crop, paste, or drop images. Undo and redo preserve the canvas instead of flashing through a reload. (#5890, #6098) Thanks @pftom.
 
-- ⚡ **Clear briefs start immediately.** SaaSCodex no longer turns every first prompt into an interview. When the request already contains enough direction, the agent gets to work; when a decision would materially change the result, it asks one focused question at the moment it matters. (#6223)
+- ⚡ **Clear briefs start immediately.** SplatStudio no longer turns every first prompt into an interview. When the request already contains enough direction, the agent gets to work; when a decision would materially change the result, it asks one focused question at the moment it matters. (#6223)
 
 - 🧰 **A stuck update is no longer a dead end.** Clear a broken update cache yourself from Settings, reinstall when an installed generation is known to be unsafe, and recover automatically when a downloaded payload crashes. The app rolls back to the last working version and heals on the next healthy update. (#6032, #6101) Thanks @PerishCode.
 
@@ -21,7 +21,7 @@ description: Bring SaaSCodex into Codex as an editable design workspace, then re
 
 - 🧩 **Fifty ways to give Codex real design taste.** The public Codex Design collection now brings together 50 curated, installable skills across interface design, visual systems, Figma-to-code, motion, image generation, and frontend craft—with provenance, practical guidance, and localized detail pages. (#5978) Thanks @joeylee12629-star.
 
-- 🎞️ **Codex Slides joins the SaaSCodex family.** Explore the complete prompt-to-deck workflow, scenario and style selection, outline shaping, editing, and export through the new Codex Slides product experience. (#6050) Thanks @joeylee12629-star.
+- 🎞️ **Codex Slides joins the SplatStudio family.** Explore the complete prompt-to-deck workflow, scenario and style selection, outline shaping, editing, and export through the new Codex Slides product experience. (#6050) Thanks @joeylee12629-star.
 
 ## ✨ Added
 
@@ -35,9 +35,9 @@ description: Bring SaaSCodex into Codex as an editable design workspace, then re
 
 - **GPT-5.5 Fast is ready when speed matters.** The new service tier is available as an explicit model choice. (#4287) Thanks @jaehanbyun.
 
-- **Raven joins one-click MCP setup.** SaaSCodex can generate the correct Raven configuration without making users translate another client's format. (#5969) Thanks @roian6.
+- **Raven joins one-click MCP setup.** SplatStudio can generate the correct Raven configuration without making users translate another client's format. (#5969) Thanks @roian6.
 
-- **Grok Build is easier to find on Windows.** SaaSCodex now discovers the official user installation automatically. (#5843) Thanks @thebtf.
+- **Grok Build is easier to find on Windows.** SplatStudio now discovers the official user installation automatically. (#5843) Thanks @thebtf.
 
 ### 🧩 Plugins & creative workflows
 
@@ -47,7 +47,7 @@ description: Bring SaaSCodex into Codex as an editable design workspace, then re
 
 ## 🔁 Changed
 
-- **BYOK stays local and usable.** Provider configuration remains in this device's SaaSCodex browser storage and is passed only to the active local run. Startup no longer attempts to migrate credentials into an OS profile, while SaaSCodex Cloud and Local Codex keep their existing behavior. (#6356)
+- **BYOK stays local and usable.** Provider configuration remains in this device's SplatStudio browser storage and is passed only to the active local run. Startup no longer attempts to migrate credentials into an OS profile, while SplatStudio Cloud and Local Codex keep their existing behavior. (#6356)
 
 - **Chat shows the work without reading like a terminal.** Execution disclosures are quieter, empty tool rows stay hidden, and real ACP tool activity is represented more faithfully. (#5667, #4621, #6057) Thanks @mrcfps, @thatditsyboy.
 
@@ -67,9 +67,9 @@ description: Bring SaaSCodex into Codex as an editable design workspace, then re
 
 ### 🧠 Agents & reliability
 
-- **AMR sign-in recovers from late failures.** If direct authentication exits before activation, SaaSCodex makes one bounded fallback attempt instead of leaving users on a spinner. Slow, completed, and canceled sign-ins never start a duplicate login. (#5986) Thanks @Siri-Ray.
+- **AMR sign-in recovers from late failures.** If direct authentication exits before activation, SplatStudio makes one bounded fallback attempt instead of leaving users on a spinner. Slow, completed, and canceled sign-ins never start a duplicate login. (#5986) Thanks @Siri-Ray.
 
-- **The packaged app recovers when its web surface exits.** SaaSCodex restarts the failed sidecar under a bounded policy and reconnects `od://` requests without requiring a full app relaunch. (#6364) Thanks @lefarcen.
+- **The packaged app recovers when its web surface exits.** SplatStudio restarts the failed sidecar under a bounded policy and reconnects `od://` requests without requiring a full app relaunch. (#6364) Thanks @lefarcen.
 
 - **Plugin-started Local Codex runs stay local.** They no longer re-enter the plugin recursively or switch into a Cloud login flow after the user explicitly chose Local Codex. (#6273)
 

@@ -19,7 +19,7 @@ experience more reliable—and easier to recover when something goes wrong.** �
   preview dismisses its viewport menu like clicking anywhere else. (#7336,
   #7358) Thanks @lefarcen.
 
-- 🧰 **A working agent no longer disappears behind a broken shim.** SaaSCodex
+- 🧰 **A working agent no longer disappears behind a broken shim.** SplatStudio
   keeps searching when an earlier executable on PATH is stale, leaves a real
   diagnostic and repair action when nothing can launch, and supports the
   DeepSeek Harness release line users actually receive. The one-line installer
@@ -27,14 +27,14 @@ experience more reliable—and easier to recover when something goes wrong.** �
   Thanks @lefarcen.
 
 - 🌙 **Kimi works again on 0.37 and newer.** Those releases stopped accepting the
-  stdio MCP transport that SaaSCodex attached to every session, turning nearly
-  every run into an opaque handshake error. SaaSCodex now sends only the
+  stdio MCP transport that SplatStudio attached to every session, turning nearly
+  every run into an opaque handshake error. SplatStudio now sends only the
   transports each Kimi build accepts, so a message produces a streamed reply
   again instead of failing before the work begins. (#7313) Thanks @lefarcen.
 
 - 🚪 **Relaunching the app recovers from a stale local engine.** A web sidecar
   left behind by a crash could hold the app's socket and make every later launch
-  quit at startup. SaaSCodex now reclaims that stale owner safely, and its
+  quit at startup. SplatStudio now reclaims that stale owner safely, and its
   daemon and web processes shut down with the desktop app instead of haunting
   the next launch. (#7279) Thanks @mrcfps.
 

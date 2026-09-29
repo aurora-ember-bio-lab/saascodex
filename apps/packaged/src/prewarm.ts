@@ -283,7 +283,7 @@ export async function prewarmPackagedFiles(
     const { files: done, bytes } = await prewarmFiles(files);
     const durationMs = Date.now() - startedAt;
     options.log?.(
-      `[saascodex packaged] prewarm complete files=${done}/${files.length} bytes=${bytes} durationMs=${durationMs}`,
+      `[splatstudio packaged] prewarm complete files=${done}/${files.length} bytes=${bytes} durationMs=${durationMs}`,
     );
     return { skipped: false, files: done, bytes, durationMs };
   } catch (error) {

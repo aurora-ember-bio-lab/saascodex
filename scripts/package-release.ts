@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Packages a SaaSCodex release artifact from already-built outputs.
+ * Packages a SplatStudio release artifact from already-built outputs.
  *
  * Produces, under `dist-release/`:
- *   - saascodex-<version>.tar.gz   runnable daemon bundle + web export + assets
+ *   - splatstudio-<version>.tar.gz   runnable daemon bundle + web export + assets
  *   - SHA256SUMS                   checksum of every artifact
  *
- * The release workflow builds first (`pnpm --filter @saascodex/web build` and
+ * The release workflow builds first (`pnpm --filter @splatstudio/web build` and
  * the daemon `deploy` bundle) and passes the bundle path via `--daemon-dir`.
  * Run locally with `pnpm package:release` after a build.
  *
@@ -28,16 +28,16 @@ function arg(name: string, fallback: string): string {
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')) as { version?: string };
 const version = arg('version', pkg.version ?? '0.0.0');
 
-// The daemon bundle is whatever `pnpm --filter @saascodex/daemon deploy`
+// The daemon bundle is whatever `pnpm --filter @splatstudio/daemon deploy`
 // produced; default to the workspace build output.
 const daemonDir = resolve(root, arg('daemon-dir', 'apps/daemon'));
 const outDir = resolve(root, arg('out-dir', 'dist-release'));
-const stageName = `saascodex-${version}`;
+const stageName = `splatstudio-${version}`;
 const stage = join(outDir, stageName);
 
 if (!existsSync(join(daemonDir, 'dist', 'cli.js'))) {
   console.error(`error: no daemon build at ${join(daemonDir, 'dist', 'cli.js')}`);
-  console.error('build first: pnpm --filter @saascodex/daemon build');
+  console.error('build first: pnpm --filter @splatstudio/daemon build');
   process.exit(1);
 }
 

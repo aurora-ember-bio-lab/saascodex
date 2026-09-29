@@ -1,4 +1,4 @@
-import type { CritiqueConfig, PanelEvent, PanelistRole, RoundDecision } from '@saascodex/contracts/critique';
+import type { CritiqueConfig, PanelEvent, PanelistRole, RoundDecision } from '@splatstudio/contracts/critique';
 
 /**
  * Per-round scores indexed by panelist role. Absent roles are undefined.

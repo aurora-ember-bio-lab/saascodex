@@ -5,8 +5,8 @@ import { fileURLToPath } from "node:url";
 import {
   APP_KEYS,
   type DaemonStatusSnapshot,
-} from "@saascodex/sidecar-proto";
-import { SidecarFactory } from "@saascodex/sidecar";
+} from "@splatstudio/sidecar-proto";
+import { SidecarFactory } from "@splatstudio/sidecar";
 
 export const DEFAULT_DAEMON_URL = "http://127.0.0.1:7456";
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
@@ -134,9 +134,9 @@ async function sourceToolsDevEntry(): Promise<string | null> {
       readFile(path.join(root, "tools/dev/package.json"), "utf8"),
     ]);
     if ((!git.isDirectory() && !git.isFile()) || !workspace.isFile() || !entryStat.isFile() || entryPath !== entry) return null;
-    if (JSON.parse(rootJson)?.name !== "saascodex" || JSON.parse(daemonJson)?.name !== "@saascodex/daemon") return null;
+    if (JSON.parse(rootJson)?.name !== "splatstudio" || JSON.parse(daemonJson)?.name !== "@splatstudio/daemon") return null;
     const tools = JSON.parse(toolsJson);
-    if (tools?.name !== "@saascodex/tools-dev" || tools?.bin?.["tools-dev"] !== "./bin/tools-dev.mjs") return null;
+    if (tools?.name !== "@splatstudio/tools-dev" || tools?.bin?.["tools-dev"] !== "./bin/tools-dev.mjs") return null;
     return entry;
   } catch {
     return null;

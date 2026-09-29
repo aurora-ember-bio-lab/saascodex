@@ -18,7 +18,7 @@
  * WHEN to use it and builds the URL.
  */
 
-import { buildProjectPoweredFileUrl, type ProjectPreviewIsolationResponse } from '@saascodex/contracts';
+import { buildProjectPoweredFileUrl, type ProjectPreviewIsolationResponse } from '@splatstudio/contracts';
 
 let isolationProbe: Promise<ProjectPreviewIsolationResponse | null> | null = null;
 

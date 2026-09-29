@@ -3,7 +3,7 @@ import {
   assertLauncherVersionFloorSatisfiable,
   resolveLauncherVersionFloor,
 } from "./launcher-version-floor.ts";
-import { releaseChannelDescriptor } from "@saascodex/release";
+import { releaseChannelDescriptor } from "@splatstudio/release";
 import { readFile } from "node:fs/promises";
 import { parseReleaseNotePublication, releaseNoteMetadataFromPublication } from "../release-note/publication.ts";
 

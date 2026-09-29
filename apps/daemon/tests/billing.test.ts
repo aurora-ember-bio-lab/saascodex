@@ -176,7 +176,7 @@ describe('stripeEventToPatch', () => {
       event('checkout.session.completed', {
         customer: 'cus_1',
         subscription: 'sub_1',
-        metadata: { saascodex_plan: 'studios' },
+        metadata: { splatstudio_plan: 'studios' },
         customer_details: { email: 'owner@studio.test' },
       }),
       ENV,
@@ -258,7 +258,7 @@ describe('billing store', () => {
   let dir: string;
 
   beforeEach(async () => {
-    dir = await mkdtemp(path.join(tmpdir(), 'saascodex-billing-'));
+    dir = await mkdtemp(path.join(tmpdir(), 'splatstudio-billing-'));
   });
 
   afterEach(async () => {

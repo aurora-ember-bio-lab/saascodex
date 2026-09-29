@@ -1,12 +1,12 @@
 /** @module agent-protocol/dsh-profile/types
- * Generation-1 wire contract for the SaaSCodex DeepSeek Harness profile.
+ * Generation-1 wire contract for the SplatStudio DeepSeek Harness profile.
  * The user's official `dsh` owns the runtime; this protocol is the thin stdio
- * seam exposed by the installed `saascodex` profile bundle.
+ * seam exposed by the installed `splatstudio` profile bundle.
  */
 
 export const DSH_PROFILE_PROTOCOL_VERSION = 1 as const;
-export const DSH_PROFILE_RUNTIME = 'saascodex' as const;
-export const DSH_PROFILE_NAME = 'saascodex' as const;
+export const DSH_PROFILE_RUNTIME = 'splatstudio' as const;
+export const DSH_PROFILE_NAME = 'splatstudio' as const;
 
 export type DshProfileCapabilities = {
   session_resume: true;
@@ -30,7 +30,7 @@ export type DshProfileModelCatalogEntry = {
 export type DshProfileModelsFrame = {
   v: 1;
   type: 'models';
-  runtime: 'saascodex';
+  runtime: 'splatstudio';
   models: DshProfileModelCatalogEntry[];
 };
 
@@ -59,7 +59,7 @@ export type DshProfileHostCommand =
 export type DshProfileProbeFrame = {
   v: 1;
   type: 'probe';
-  runtime: 'saascodex';
+  runtime: 'splatstudio';
   protocol_version: 1;
   plugin_version: string;
   capabilities: DshProfileCapabilities;
@@ -68,7 +68,7 @@ export type DshProfileProbeFrame = {
 export type DshProfileReadyFrame = {
   v: 1;
   type: 'ready';
-  runtime: 'saascodex';
+  runtime: 'splatstudio';
   protocol_version: 1;
   plugin_version: string;
   capabilities: DshProfileCapabilities;

@@ -20,7 +20,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { applyPlugin } from '../src/plugins/apply.js';
-import type { InstalledPluginRecord, PluginManifest, PluginPipeline } from '@saascodex/contracts';
+import type { InstalledPluginRecord, PluginManifest, PluginPipeline } from '@splatstudio/contracts';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 
@@ -108,9 +108,9 @@ describe('core quality-stage floor', () => {
   // them generate-only; gating on atom shape alone would wrongly rewrite
   // them to plan -> generate -> critique.
   it.each([
-    ['image', 'plugins/_official/examples/image-poster/saascodex.json'],
-    ['video', 'plugins/_official/examples/vfx-text-cursor/saascodex.json'],
-    ['audio', 'plugins/_official/examples/audio-jingle/saascodex.json'],
+    ['image', 'plugins/_official/examples/image-poster/splatstudio.json'],
+    ['video', 'plugins/_official/examples/vfx-text-cursor/splatstudio.json'],
+    ['audio', 'plugins/_official/examples/audio-jingle/splatstudio.json'],
   ])('leaves the bundled %s media template generate-only despite file-write/live-artifact atoms', (mode, relPath) => {
     const manifest = JSON.parse(
       readFileSync(path.join(REPO_ROOT, relPath), 'utf8'),
@@ -145,7 +145,7 @@ describe('core quality-stage floor', () => {
   it('repairs the real bundled web-prototype template (generate-only on disk)', () => {
     const manifest = JSON.parse(
       readFileSync(
-        path.join(REPO_ROOT, 'plugins/_official/examples/web-prototype/saascodex.json'),
+        path.join(REPO_ROOT, 'plugins/_official/examples/web-prototype/splatstudio.json'),
         'utf8',
       ),
     ) as PluginManifest;

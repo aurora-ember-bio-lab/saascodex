@@ -16,7 +16,7 @@ import { randomUUID } from 'node:crypto';
 import type Database from 'better-sqlite3';
 import { readPluginEnvKnobs } from '../app-config.js';
 import {
-  SAASCODEX_PLUGIN_SPEC_VERSION,
+  SPLATSTUDIO_PLUGIN_SPEC_VERSION,
   AppliedStrategyBindingV2Schema,
   type AppliedPluginSnapshot,
   type AppliedStrategyBindingV2,
@@ -27,8 +27,8 @@ import {
   type PluginConnectorRef,
   type PluginPipeline,
   type ResolvedContext,
-} from '@saascodex/contracts';
-import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
+} from '@splatstudio/contracts';
+import { strategyPackageHashFromDigests } from '@splatstudio/plugin-runtime';
 
 type SqliteDb = Database.Database;
 type DbRow = Record<string, unknown>;
@@ -104,7 +104,7 @@ export function createSnapshot(db: SqliteDb, input: CreateSnapshotInput): Applie
     input.conversationId ?? null,
     input.runId ?? null,
     input.pluginId,
-    input.pluginSpecVersion ?? SAASCODEX_PLUGIN_SPEC_VERSION,
+    input.pluginSpecVersion ?? SPLATSTUDIO_PLUGIN_SPEC_VERSION,
     input.pluginVersion,
     input.manifestSourceDigest,
     strategy ? JSON.stringify(strategy) : null,
@@ -371,7 +371,7 @@ function buildSnapshot(args: {
   const snapshot: AppliedPluginSnapshot = {
     snapshotId:           id,
     pluginId:             input.pluginId,
-    pluginSpecVersion:    input.pluginSpecVersion ?? SAASCODEX_PLUGIN_SPEC_VERSION,
+    pluginSpecVersion:    input.pluginSpecVersion ?? SPLATSTUDIO_PLUGIN_SPEC_VERSION,
     pluginVersion:        input.pluginVersion,
     manifestSourceDigest: input.manifestSourceDigest,
     ...(input.strategy ? { strategy: input.strategy } : {}),

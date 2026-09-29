@@ -4,7 +4,7 @@ import {
   parseInviteDeeplink,
   resolveWorkspaceInviteError,
   type InviteDeeplinkPayload,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 const PAYLOAD: InviteDeeplinkPayload = {
   workspaceId: 'ws-1',

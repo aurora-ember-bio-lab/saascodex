@@ -5,7 +5,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { createCollabRuntime } from '../src/collab/runtime.js';
 import type { WorkspaceContextProvider } from '../src/collab/workspace-context.js';
 import {

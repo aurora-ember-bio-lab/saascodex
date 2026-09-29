@@ -11,8 +11,8 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import type { LibraryAsset } from '@saascodex/contracts';
-import { Button, Input } from '@saascodex/components';
+import type { LibraryAsset } from '@splatstudio/contracts';
+import { Button, Input } from '@splatstudio/components';
 import { useT } from '../i18n';
 import { modalOverlay, modalContent } from '../motion';
 import { fetchLibraryAssets, libraryAssetRawUrl } from '../providers/registry';

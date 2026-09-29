@@ -8,7 +8,7 @@ import {
   type DeliverableSyntaxToolResponse,
   type DeliverableSyntaxValidationEvidence,
   type ProjectMetadata,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   checkDeliverableSyntax,

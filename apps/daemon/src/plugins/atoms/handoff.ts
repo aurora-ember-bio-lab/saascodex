@@ -18,7 +18,7 @@ import type {
   ArtifactExportTarget,
   ArtifactManifest,
   ArtifactProvenanceHandoffKind,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export interface RecordHandoffInput {
   manifest: ArtifactManifest;

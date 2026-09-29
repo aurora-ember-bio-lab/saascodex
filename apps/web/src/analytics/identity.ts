@@ -2,16 +2,16 @@
 // so it stays SSR-safe: every entry point guards window/localStorage access
 // and falls back to a deterministic-enough fake id under jsdom and Next.js
 // pre-render. The daemon mirrors these values via the x-od-analytics-*
-// headers (see @saascodex/contracts/analytics).
+// headers (see @splatstudio/contracts/analytics).
 
-import type { AnalyticsClientType } from '@saascodex/contracts/analytics';
-import { detectSaaSCodexHostClientType } from '@saascodex/host';
+import type { AnalyticsClientType } from '@splatstudio/contracts/analytics';
+import { detectSplatStudioHostClientType } from '@splatstudio/host';
 
-const ANONYMOUS_ID_KEY = 'saascodex:analytics.anonymous_id';
-const SESSION_ID_KEY = 'saascodex:analytics.session_id';
-const RUN_TURN_INDEX_KEY = 'saascodex:analytics.run_turn_index';
+const ANONYMOUS_ID_KEY = 'splatstudio:analytics.anonymous_id';
+const SESSION_ID_KEY = 'splatstudio:analytics.session_id';
+const RUN_TURN_INDEX_KEY = 'splatstudio:analytics.run_turn_index';
 // Per-project counter keys are this prefix + the project id (localStorage).
-const PROJECT_TURN_INDEX_KEY_PREFIX = 'saascodex:analytics.project_turn_index:';
+const PROJECT_TURN_INDEX_KEY_PREFIX = 'splatstudio:analytics.project_turn_index:';
 
 function randomUuid(): string {
   // Prefer the standard crypto.randomUUID — present in every modern browser
@@ -56,7 +56,7 @@ export function getSessionId(): string {
   }
 }
 
-const FIRST_SESSION_ID_KEY = 'saascodex:analytics.first_session_id';
+const FIRST_SESSION_ID_KEY = 'splatstudio:analytics.first_session_id';
 
 // Whether the current browser session is this install's FIRST analytics
 // session. The first analytics session's `getSessionId()` value is pinned in
@@ -147,12 +147,12 @@ export function claimProjectTurnIndex(
   }
 }
 
-// Desktop packaged builds install the SaaSCodex host bridge so the
+// Desktop packaged builds install the SplatStudio host bridge so the
 // same web bundle can distinguish desktop runs from browser visits.
 // Falls back to 'web' when the host bridge isn't present.
 export function detectClientType(): AnalyticsClientType {
   if (typeof window === 'undefined') return 'web';
-  return detectSaaSCodexHostClientType();
+  return detectSplatStudioHostClientType();
 }
 
 // Read the launch_source for app_launch. Best-effort: PerformanceNavigation

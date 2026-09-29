@@ -1,6 +1,6 @@
-# SaaSCodex brand assets
+# SplatStudio brand assets
 
-Logo, favicon, and brand tokens for **SaaSCodex** (`saascodex.com`, by
+Logo, favicon, and brand tokens for **SplatStudio** (`splatstudio.app`, by
 **Aurora Ember Cyber Bio Lab**).
 
 | File | Use |
@@ -30,7 +30,7 @@ monogram and a single **ember** dot (`#F5A524`) at the top-right.
 | Paper | `#F5F7F6` | Light surface |
 
 These mirror the design-system tokens in
-[`design-systems/saascodex/tokens.css`](../../design-systems/saascodex/tokens.css).
+[`design-systems/splatstudio/tokens.css`](../../design-systems/splatstudio/tokens.css).
 
 ## Typography
 

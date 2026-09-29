@@ -31,7 +31,7 @@ function fakePaths(root: string): PackagedNamespacePaths {
     installerObservationRoot: join(root, "data", "observations", "installer"),
     logsRoot: join(root, "logs"),
     namespaceRoot: root,
-    resourceRoot: join(root, "resources", "saascodex"),
+    resourceRoot: join(root, "resources", "splatstudio"),
     runtimeRoot: join(root, "runtime"),
     updateRoot: join(root, "updates"),
   };

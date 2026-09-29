@@ -3,7 +3,7 @@ import type {
   CollabCloudMemberDirectoryEntry,
   CollabMemberRole,
   CollabPresenceMember,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   runVelaCommand,
   velaWorkspaceCommandOptions,

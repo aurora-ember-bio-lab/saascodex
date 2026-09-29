@@ -4,8 +4,8 @@ import type {
   ProjectScenarioBinding,
   ProjectScenarioBindingProvenance,
   ProjectScenarioTaskProfile,
-} from '@saascodex/contracts';
-import { defaultScenarioTaskProfileForProjectMetadata } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { defaultScenarioTaskProfileForProjectMetadata } from '@splatstudio/contracts';
 
 type SqliteDb = Database.Database;
 

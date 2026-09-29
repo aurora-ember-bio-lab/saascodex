@@ -23,7 +23,7 @@ describe('resolveVelaConsoleOrigin', () => {
 
   it('uses the selected profile origin instead of the packaged profile origin', () => {
     const packagedEnv = {
-      SAASCODEX_AMR_PROFILE: 'test',
+      SPLATSTUDIO_AMR_PROFILE: 'test',
       OD_VELA_WEB_URL: 'https://test.example.invalid',
       OD_VELA_WEB_URLS: JSON.stringify({
         prod: 'https://prod.example.invalid',
@@ -33,27 +33,27 @@ describe('resolveVelaConsoleOrigin', () => {
     };
 
     expect(resolveVelaConsoleOrigin(packagedEnv, {
-      SAASCODEX_AMR_PROFILE: 'prod',
+      SPLATSTUDIO_AMR_PROFILE: 'prod',
     })).toBe('https://prod.example.invalid');
     expect(resolveVelaConsoleOrigin(packagedEnv, {
-      SAASCODEX_AMR_PROFILE: 'feature-test',
+      SPLATSTUDIO_AMR_PROFILE: 'feature-test',
     })).toBe('https://feature.example.invalid');
   });
 
   // The publicly named profiles resolve without any build injection, so their
   // literals in PUBLIC_ORIGINS are the shipped value. vela moved the test Cloud
-  // entry off `vela.powerformer.net` onto `saascodex.powerformer.net/cloud`
+  // entry off `vela.powerformer.net` onto `splatstudio.powerformer.net/cloud`
   // (vela #1922 prepare / #1929 finalize); that host maps `/cloud*` and `/amr*`
   // to the Web origin, and the legacy hostname is explicitly no longer a mapped
   // test route, so a stale value here sends every console link off-environment.
   it('resolves the public console origin for a runtime profile selection', () => {
-    expect(resolveVelaConsoleOrigin({}, { SAASCODEX_AMR_PROFILE: 'test' })).toBe(
-      'https://saascodex.powerformer.net/cloud',
+    expect(resolveVelaConsoleOrigin({}, { SPLATSTUDIO_AMR_PROFILE: 'test' })).toBe(
+      'https://splatstudio.powerformer.net/cloud',
     );
-    expect(resolveVelaConsoleOrigin({}, { SAASCODEX_AMR_PROFILE: 'prod' })).toBe(
-      'https://saascodex.com/cloud',
+    expect(resolveVelaConsoleOrigin({}, { SPLATSTUDIO_AMR_PROFILE: 'prod' })).toBe(
+      'https://splatstudio.app/cloud',
     );
-    expect(resolveVelaConsoleOrigin({}, { SAASCODEX_AMR_PROFILE: 'local' })).toBe(
+    expect(resolveVelaConsoleOrigin({}, { SPLATSTUDIO_AMR_PROFILE: 'local' })).toBe(
       'http://localhost:5173',
     );
   });
@@ -64,16 +64,16 @@ describe('resolveVelaConsoleOrigin', () => {
   // injection the runtime reports nothing rather than guessing a hostname.
   it('has no public origin for the internal feature-test profile', () => {
     expect(
-      resolveVelaConsoleOrigin({}, { SAASCODEX_AMR_PROFILE: 'feature-test' }),
+      resolveVelaConsoleOrigin({}, { SPLATSTUDIO_AMR_PROFILE: 'feature-test' }),
     ).toBeUndefined();
   });
 
   it('never reuses the packaged origin after switching to an unmapped profile', () => {
     expect(resolveVelaConsoleOrigin({
-      SAASCODEX_AMR_PROFILE: 'test',
+      SPLATSTUDIO_AMR_PROFILE: 'test',
       OD_VELA_WEB_URL: 'https://test.example.invalid',
     }, {
-      SAASCODEX_AMR_PROFILE: 'feature-test',
+      SPLATSTUDIO_AMR_PROFILE: 'feature-test',
     })).toBeUndefined();
   });
 });

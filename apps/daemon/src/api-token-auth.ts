@@ -1,7 +1,7 @@
 import { timingSafeEqual } from 'node:crypto';
 
-export const API_TOKEN_BASIC_USERNAME = 'saascodex';
-export const API_TOKEN_BASIC_CHALLENGE = 'Basic realm="SaaSCodex", charset="UTF-8"';
+export const API_TOKEN_BASIC_USERNAME = 'splatstudio';
+export const API_TOKEN_BASIC_CHALLENGE = 'Basic realm="SplatStudio", charset="UTF-8"';
 
 export function isTruthyEnvFlag(value: unknown): boolean {
   const normalized = String(value || '').trim().toLowerCase();

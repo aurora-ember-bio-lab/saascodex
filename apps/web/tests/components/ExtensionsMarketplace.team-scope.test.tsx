@@ -14,7 +14,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import React from 'react';
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import type { InstalledPluginRecord, SkillSummary } from '@saascodex/contracts';
+import type { InstalledPluginRecord, SkillSummary } from '@splatstudio/contracts';
 
 import { ExtensionsMarketplace } from '../../src/components/PluginsView';
 import { I18nProvider } from '../../src/i18n';

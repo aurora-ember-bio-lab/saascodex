@@ -14,7 +14,7 @@ const HTML = '<!doctype html><html><body><h1>GENERATED_SOURCE_SENTINEL</h1></bod
 const ARTIFACT = `<artifact identifier="demo" type="text/html" title="Demo">${HTML}</artifact>`;
 const FILE: ProjectFile = { name: 'demo.html', path: 'demo.html', size: HTML.length, mtime: 2000, kind: 'html', mime: 'text/html' };
 const PLUGIN_FILES: ProjectFile[] = [
-  { name: 'my-skill/saascodex.json', path: 'my-skill/saascodex.json', size: 120, mtime: 2000, kind: 'code', mime: 'application/json' },
+  { name: 'my-skill/splatstudio.json', path: 'my-skill/splatstudio.json', size: 120, mtime: 2000, kind: 'code', mime: 'application/json' },
   { name: 'my-skill/SKILL.md', path: 'my-skill/SKILL.md', size: 80, mtime: 2000, kind: 'text', mime: 'text/markdown' },
 ];
 
@@ -54,7 +54,7 @@ describe('explicitly hidden extra ChatPanel interfaces', () => {
     expectNeighbors(container);
     expect(within(container).queryByTestId('skill-plugin-candidate-candidate-1')).toBeNull();
     expect(container.textContent).not.toContain('REMOVED_PLUGIN_SUGGESTION');
-    expect(within(container).queryByRole('button', { name: 'Contribute to saascodex' })).toBeNull();
+    expect(within(container).queryByRole('button', { name: 'Contribute to splatstudio' })).toBeNull();
   });
 
   it('hides the settled plugin-folder action panel without losing its real produced files', () => {

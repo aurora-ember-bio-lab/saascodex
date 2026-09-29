@@ -42,15 +42,15 @@ async function runDiscovery(options: {
     await fs.writeFile(modulePath, compiledResolver);
     // Production dependencies are read through a link; no package manager is run.
     await fs.symlink(path.join(daemonRoot, "node_modules"), path.join(root, "node_modules"), "junction");
-    await fs.writeFile(path.join(root, "package.json"), JSON.stringify({ name: "saascodex", type: "module" }));
+    await fs.writeFile(path.join(root, "package.json"), JSON.stringify({ name: "splatstudio", type: "module" }));
     const devEntry = path.join(root, "tools/dev/bin/tools-dev.mjs");
     if (source) {
       await fs.mkdir(path.dirname(devEntry), { recursive: true });
       await fs.mkdir(path.join(root, ".git"));
       await fs.writeFile(path.join(root, "pnpm-workspace.yaml"), "packages:\n  - apps/*\n  - tools/*\n");
-      await fs.writeFile(path.join(root, "apps/daemon/package.json"), JSON.stringify({ name: "@saascodex/daemon" }));
+      await fs.writeFile(path.join(root, "apps/daemon/package.json"), JSON.stringify({ name: "@splatstudio/daemon" }));
       await fs.writeFile(path.join(root, "tools/dev/package.json"), JSON.stringify({
-        name: options.wrongIdentity ? "unrelated-tool" : "@saascodex/tools-dev",
+        name: options.wrongIdentity ? "unrelated-tool" : "@splatstudio/tools-dev",
         bin: { "tools-dev": "./bin/tools-dev.mjs" },
       }));
       await fs.writeFile(devEntry, options.devFailure ? "process.exit(1)" :

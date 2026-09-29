@@ -4,12 +4,12 @@ import { fileURLToPath } from "node:url";
 
 import {
   APP_KEYS,
-  SAASCODEX_SIDECAR_CONTRACT,
+  SPLATSTUDIO_SIDECAR_CONTRACT,
   SIDECAR_DEFAULTS,
   SIDECAR_SOURCES,
-} from "@saascodex/sidecar-proto";
-import { bootstrapSidecarProcess, readCurrentSidecarStamp } from "@saascodex/sidecar";
-import { releaseChannelFromNamespace } from "@saascodex/release";
+} from "@splatstudio/sidecar-proto";
+import { bootstrapSidecarProcess, readCurrentSidecarStamp } from "@splatstudio/sidecar";
+import { releaseChannelFromNamespace } from "@splatstudio/release";
 
 import {
   PACKAGED_NAMESPACE_ENV,
@@ -34,25 +34,25 @@ function resolveHeadlessNamespaceBaseRoot(): string {
     xdgDataHome != null && xdgDataHome.length > 0
       ? xdgDataHome
       : join(homedir(), ".local", "share");
-  return join(dataBase, "saascodex", "namespaces");
+  return join(dataBase, "splatstudio", "namespaces");
 }
 
 function resolveHeadlessAmrProfile(): PackagedConfig["amrProfile"] {
-  return resolvePackagedAmrProfile(process.env.SAASCODEX_AMR_PROFILE);
+  return resolvePackagedAmrProfile(process.env.SPLATSTUDIO_AMR_PROFILE);
 }
 
 function resolveHeadlessConfig(): PackagedConfig {
-  const namespace = SAASCODEX_SIDECAR_CONTRACT.normalizeNamespace(
+  const namespace = SPLATSTUDIO_SIDECAR_CONTRACT.normalizeNamespace(
     process.env[PACKAGED_NAMESPACE_ENV] ?? SIDECAR_DEFAULTS.namespace,
   );
   const namespaceBaseRoot = resolveHeadlessNamespaceBaseRoot();
 
   // OD_RESOURCE_ROOT may be set by a launcher script; otherwise default to a
-  // sibling saascodex/ directory relative to the node_modules that contain
+  // sibling splatstudio/ directory relative to the node_modules that contain
   // this file — the layout written by tools-pack linux headless-install.
   const resourceRoot =
     process.env.OD_RESOURCE_ROOT
-    ?? join(__dirname, "..", "..", "..", "saascodex");
+    ?? join(__dirname, "..", "..", "..", "splatstudio");
 
   return {
     amrProfile: resolveHeadlessAmrProfile(),
@@ -64,7 +64,7 @@ function resolveHeadlessConfig(): PackagedConfig {
     nodeCommand: null,
     resourceRoot,
     telemetryRelayUrl:
-      process.env.SAASCODEX_TELEMETRY_RELAY_URL?.trim() || null,
+      process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL?.trim() || null,
     updateMetadataUrl: process.env.OD_UPDATE_METADATA_URL?.trim() || null,
     posthogKey: process.env.POSTHOG_KEY?.trim() || null,
     posthogHost: process.env.POSTHOG_HOST?.trim() || null,
@@ -116,7 +116,7 @@ async function main(): Promise<void> {
 
 void main().catch((error: unknown) => {
   process.stderr.write(
-    `saascodex headless failed: ${
+    `splatstudio headless failed: ${
       error instanceof Error ? error.message : String(error)
     }\n`,
   );

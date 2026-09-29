@@ -3,7 +3,7 @@ import {
   isReleaseChannel,
   parseReleaseVersion,
   type ReleaseChannel,
-} from '@saascodex/release';
+} from '@splatstudio/release';
 
 export type PackagedUpdateChannel = ReleaseChannel;
 

@@ -2,7 +2,7 @@ import type {
   WorkspaceCollabContext,
   WorkspaceInvalidationEventName,
   WorkspaceInvalidationSsePayload,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   useEventStream,
   type EventStreamActiveReason,

@@ -1,7 +1,7 @@
 import { dirname } from "node:path";
 
-import { buildLauncherAfterQuitArgs, buildLauncherDelegatedArgs } from "@saascodex/launcher-proto";
-import { handoffCurrentSidecarGeneration } from "@saascodex/sidecar";
+import { buildLauncherAfterQuitArgs, buildLauncherDelegatedArgs } from "@splatstudio/launcher-proto";
+import { handoffCurrentSidecarGeneration } from "@splatstudio/sidecar";
 
 import {
   armPackagedLauncherRuntimeAttempt,

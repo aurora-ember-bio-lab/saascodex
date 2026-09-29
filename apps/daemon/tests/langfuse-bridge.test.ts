@@ -114,10 +114,10 @@ function bodyOf(
 }
 
 const TEST_VELA_TELEMETRY_URL =
-  'https://vela.example.test/api/v1/saascodex/telemetry';
+  'https://vela.example.test/api/v1/splatstudio/telemetry';
 
 function enableTestVelaTelemetry(): void {
-  vi.stubEnv('SAASCODEX_VELA_TELEMETRY', 'on');
+  vi.stubEnv('SPLATSTUDIO_VELA_TELEMETRY', 'on');
   vi.stubEnv('VELA_CONTROL_KEY', 'ck_test');
   vi.stubEnv('VELA_API_URL', 'https://vela.example.test');
 }
@@ -135,7 +135,7 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
   it('derives repaired value and accumulated checker timing from durable Run state', () => {
     expect(projectDeliverableSyntaxTelemetry(makeRun({
       deliverableSyntaxRepair: {
-        schema: 'saascodex.deliverable-syntax-repair/v1',
+        schema: 'splatstudio.deliverable-syntax-repair/v1',
         attempt: 2,
         maxAttempts: 3,
         checker: 'web-syntax@1',
@@ -143,7 +143,7 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
         mode: 'host_safe_fixer',
       },
       deliverableSyntaxValidation: {
-        schema: 'saascodex.deliverable-syntax-tool/v1',
+        schema: 'splatstudio.deliverable-syntax-tool/v1',
         status: 'pass',
         checker: 'web-syntax@1',
         candidateHash: 'content-free-not-exported',
@@ -157,7 +157,7 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
           committedRepairRules: ['insert_missing_closing_delimiter'],
         },
         metrics: {
-          schema: 'saascodex.deliverable-syntax-metrics/v1',
+          schema: 'splatstudio.deliverable-syntax-metrics/v1',
           checkCount: 3,
           checkerDurationMs: 16,
           repairableCheckCount: 2,
@@ -215,14 +215,14 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
     expect(projectDeliverableSyntaxTelemetry(makeRun({
       status: 'failed',
       deliverableSyntaxRepair: {
-        schema: 'saascodex.deliverable-syntax-repair/v1',
+        schema: 'splatstudio.deliverable-syntax-repair/v1',
         attempt: 3,
         maxAttempts: 3,
         checker: 'web-syntax@1',
         candidateHash: 'not-exported',
       },
       deliverableSyntaxValidation: {
-        schema: 'saascodex.deliverable-syntax-tool/v1',
+        schema: 'splatstudio.deliverable-syntax-tool/v1',
         status: 'repairable',
         checker: 'web-syntax@1',
         candidateHash: 'not-exported',
@@ -247,7 +247,7 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
   });
 
   const terminalEvidence = () => ({
-    schema: 'saascodex.deliverable-syntax-tool/v1' as const,
+    schema: 'splatstudio.deliverable-syntax-tool/v1' as const,
     status: 'pass' as const, checker: 'web-syntax@1' as const,
     candidateHash: 'private-hash', checkedFiles: ['/private/index.html'], diagnostics: [],
     source: 'run_finalizer' as const, checkedAt: 123,
@@ -257,7 +257,7 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
       committedRepairRules: ['normalize_mismatched_string_quote' as const],
     },
     metrics: {
-      schema: 'saascodex.deliverable-syntax-metrics/v1' as const,
+      schema: 'splatstudio.deliverable-syntax-metrics/v1' as const,
       checkCount: 2, checkerDurationMs: 10, repairableCheckCount: 1,
       initialDiagnosticCount: 1, latestDiagnosticCount: 0, repairExecutor: 'host_safe_fixer' as const,
     },
@@ -297,7 +297,7 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
     const { refusal: _unusedRefusal, ...finalization } = warningEvidence().finalization;
     const result = projectDeliverableSyntaxTelemetry({
       status: 'succeeded', deliverableSyntaxValidation: {
-        schema: 'saascodex.deliverable-syntax-tool/v1', status: 'incomplete',
+        schema: 'splatstudio.deliverable-syntax-tool/v1', status: 'incomplete',
         reason: 'checker_error', source: 'run_finalizer', checkedAt: 123,
         finalization: {
           ...finalization, initialStatus: 'incomplete',
@@ -543,7 +543,7 @@ describe('langfuse-bridge deliverable syntax telemetry', () => {
     })).toMatchObject({ blockedBrokenDeliveryCount: 1, recoveredDeliveryCount: 0 });
     expect(projectDeliverableSyntaxTelemetry({
       status: 'failed', deliverableSyntaxValidation: {
-        schema: 'saascodex.deliverable-syntax-tool/v1', status: 'incomplete',
+        schema: 'splatstudio.deliverable-syntax-tool/v1', status: 'incomplete',
         reason: 'process_tree_not_quiescent', source: 'run_finalizer', checkedAt: 123,
         finalization: { action: 'fail', reason: 'check_incomplete' },
       },
@@ -557,10 +557,10 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
   let objectRelayUrl: string | undefined;
 
   beforeEach(async () => {
-    telemetryRelayUrl = process.env.SAASCODEX_TELEMETRY_RELAY_URL;
-    objectRelayUrl = process.env.SAASCODEX_OBJECT_RELAY_URL;
-    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
-    delete process.env.SAASCODEX_OBJECT_RELAY_URL;
+    telemetryRelayUrl = process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
+    objectRelayUrl = process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
+    delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
+    delete process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
     dataDir = await mkdtemp(path.join(tmpdir(), 'od-bridge-'));
   });
 
@@ -618,10 +618,10 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
   });
 
   afterEach(async () => {
-    if (telemetryRelayUrl === undefined) delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
-    else process.env.SAASCODEX_TELEMETRY_RELAY_URL = telemetryRelayUrl;
-    if (objectRelayUrl === undefined) delete process.env.SAASCODEX_OBJECT_RELAY_URL;
-    else process.env.SAASCODEX_OBJECT_RELAY_URL = objectRelayUrl;
+    if (telemetryRelayUrl === undefined) delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
+    else process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = telemetryRelayUrl;
+    if (objectRelayUrl === undefined) delete process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
+    else process.env.SPLATSTUDIO_OBJECT_RELAY_URL = objectRelayUrl;
     await rm(dataDir, { recursive: true, force: true });
     vi.restoreAllMocks();
     vi.unstubAllEnvs();
@@ -634,8 +634,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
   it('still reports a legacy Run trace when the enabled object outbox has no objects', async () => {
     await writeAppCfg({ installationId: 'synthetic', telemetry: { metrics: true, content: true } });
     enableTestVelaTelemetry();
-    vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
+    vi.stubEnv('SPLATSTUDIO_OBJECT_OUTBOX_MODE', 'send');
+    vi.stubEnv('SPLATSTUDIO_TELEMETRY_RELAY_URL', 'https://telemetry.splatstudio.app/api/langfuse');
     const fetchSpy = vi.fn().mockResolvedValue(new Response('{}', { status: 202 }));
     const result = await reportRunCompletedFromDaemon({
       db: makeDbWithListMessages({ 'conv-1': [{ id: 'msg-1', role: 'assistant', content: 'done' }] }),
@@ -649,8 +649,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
   it('A-01/A-11 reads persisted delivery outcome and observe adds no network payload', async () => {
     vi.spyOn(Date, 'now').mockReturnValue(1_000_000);
     await writeAppCfg({ installationId: 'synthetic', telemetry: { metrics: true, content: true } });
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://synthetic.invalid/ingest');
-    vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'off');
+    vi.stubEnv('SPLATSTUDIO_TELEMETRY_RELAY_URL', 'https://synthetic.invalid/ingest');
+    vi.stubEnv('SPLATSTUDIO_OBJECT_OUTBOX_MODE', 'off');
     const run = makeRun();
     const db = makeDbWithListMessages({ 'conv-1': [
       { id: 'u1', role: 'user', content: 'synthetic' },
@@ -658,7 +658,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     ] });
     const batches: unknown[][] = [];
     for (const mode of ['off', 'observe', 'send']) {
-      vi.stubEnv('SAASCODEX_EVAL_CONTRACT_V2_MODE', mode);
+      vi.stubEnv('SPLATSTUDIO_EVAL_CONTRACT_V2_MODE', mode);
       const fetchSpy = vi.fn().mockResolvedValue(new Response('{}', { status: 202 }));
       await reportRunCompletedFromDaemon({ db, dataDir, run, fetchImpl: fetchSpy });
       expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -917,7 +917,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     // useful telemetry but varies between dev / CI environments — assert
     // its presence by prefix rather than pinning a value.
     expect(trace.tags).toEqual(
-      expect.arrayContaining(['saascodex', 'project:proj-1', 'agent:qoder']),
+      expect.arrayContaining(['splatstudio', 'project:proj-1', 'agent:qoder']),
     );
     expect((trace.tags as string[]).some((t) => t.startsWith('os:'))).toBe(true);
     expect(trace.metadata.eventsSummary.toolCalls).toBe(2);
@@ -1386,7 +1386,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     const priorNodeEnv = process.env.NODE_ENV;
     process.env.NODE_ENV = 'production';
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.saascodex.com/api/langfuse';
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = 'https://telemetry.splatstudio.app/api/langfuse';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1426,15 +1426,15 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
       } else {
         process.env.NODE_ENV = priorNodeEnv;
       }
-      delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
+      delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
       delete process.env.LANGFUSE_PUBLIC_KEY;
       delete process.env.LANGFUSE_SECRET_KEY;
     }
 
     expect(fetchSpy).toHaveBeenCalledTimes(4);
     expect(fetchSpy.mock.calls[0]![0]).toBe(TEST_VELA_TELEMETRY_URL);
-    expect(fetchSpy.mock.calls[1]![0]).toBe('https://telemetry.saascodex.com/api/objects/authorize');
-    expect(fetchSpy.mock.calls[2]![0]).toBe('https://telemetry.saascodex.com/api/objects/batch');
+    expect(fetchSpy.mock.calls[1]![0]).toBe('https://telemetry.splatstudio.app/api/objects/authorize');
+    expect(fetchSpy.mock.calls[2]![0]).toBe('https://telemetry.splatstudio.app/api/objects/batch');
     expect(fetchSpy.mock.calls[3]![0]).toBe(TEST_VELA_TELEMETRY_URL);
     const telemetryBody = fetchSpy.mock.calls[3]![1]!.body as string;
     expect(telemetryBody).not.toContain('private attachment body');
@@ -1458,8 +1458,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
   it.each([false, true])('Task takeover freezes and retries without rereading live files (offline=%s)', async (offline) => {
     await writeAppCfg({ installationId: 'install-uuid-1', telemetry: { metrics: true, content: true, artifactManifest: true } });
     enableTestVelaTelemetry();
-    vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
+    vi.stubEnv('SPLATSTUDIO_OBJECT_OUTBOX_MODE', 'send');
+    vi.stubEnv('SPLATSTUDIO_TELEMETRY_RELAY_URL', 'https://telemetry.splatstudio.app/api/langfuse');
     const projectDir = path.join(dataDir, 'projects', 'proj-1');
     await mkdir(projectDir, { recursive: true });
     const original = '<!doctype html><h1>frozen original</h1>';
@@ -1508,8 +1508,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
   it('does not attribute the visible Task result to a request Run that produced no files', async () => {
     await writeAppCfg({ installationId: 'install-uuid-1', telemetry: { metrics: true, content: true, artifactManifest: true } });
     enableTestVelaTelemetry();
-    vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
+    vi.stubEnv('SPLATSTUDIO_OBJECT_OUTBOX_MODE', 'send');
+    vi.stubEnv('SPLATSTUDIO_TELEMETRY_RELAY_URL', 'https://telemetry.splatstudio.app/api/langfuse');
     const fetchSpy = vi.fn();
     const quality = await buildSafeRunQualityProjectionFromDaemon({
       db: makeDbWithListMessages({ 'conv-1': [{ id: 'msg-1', role: 'assistant' as const, content: 'done', producedFiles: [{ name: 'index.html', kind: 'html', size: 42 }] }] }),
@@ -1521,7 +1521,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     expect(frozen?.sources).toHaveLength(1);
     expect(frozen?.sources[0]?.objectClass).toBe('input_text_snapshot');
     expect(JSON.parse(frozen!.sources[0]!.body!.toString())).toMatchObject({
-      schema: 'saascodex.run-evidence/v1', runId: 'run-id-1', taskTraceId: 'strategy-task:test',
+      schema: 'splatstudio.run-evidence/v1', runId: 'run-id-1', taskTraceId: 'strategy-task:test',
     });
     expect(fetchSpy).toHaveBeenCalled();
     for (const call of fetchSpy.mock.calls) {
@@ -1532,8 +1532,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
   it('checkpoints a successful artifact even when its sibling attachment is missing', async () => {
     await writeAppCfg({ installationId: 'install-uuid-1', telemetry: { metrics: true, content: true, artifactManifest: true } });
     enableTestVelaTelemetry();
-    vi.stubEnv('SAASCODEX_OBJECT_OUTBOX_MODE', 'send');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://telemetry.saascodex.com/api/langfuse');
+    vi.stubEnv('SPLATSTUDIO_OBJECT_OUTBOX_MODE', 'send');
+    vi.stubEnv('SPLATSTUDIO_TELEMETRY_RELAY_URL', 'https://telemetry.splatstudio.app/api/langfuse');
     const projectDir = path.join(dataDir, 'projects', 'proj-1');
     await mkdir(projectDir, { recursive: true });
     const original = '<!doctype html><h1>frozen original</h1>';
@@ -1638,7 +1638,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     });
 
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.saascodex.com/api/langfuse';
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = 'https://telemetry.splatstudio.app/api/langfuse';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1673,7 +1673,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         fetchImpl: fetchSpy as any,
       });
     } finally {
-      delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
+      delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
       delete process.env.LANGFUSE_PUBLIC_KEY;
       delete process.env.LANGFUSE_SECRET_KEY;
     }
@@ -1740,14 +1740,14 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     await writeFile(path.join(projectDir, 'index.html'), '<!doctype html><h1>artifact body</h1>');
     const fetchSpy = vi.fn().mockResolvedValue(new Response('{}', { status: 207 }));
 
-    const velaTelemetryEnabled = process.env.SAASCODEX_VELA_TELEMETRY;
+    const velaTelemetryEnabled = process.env.SPLATSTUDIO_VELA_TELEMETRY;
     const velaControlKey = process.env.VELA_CONTROL_KEY;
     const amrHome = process.env.AMR_HOME;
-    process.env.SAASCODEX_VELA_TELEMETRY = 'on';
+    process.env.SPLATSTUDIO_VELA_TELEMETRY = 'on';
     delete process.env.VELA_CONTROL_KEY;
     process.env.AMR_HOME = path.join(dataDir, 'signed-out-amr-home');
-    process.env.SAASCODEX_OBJECT_RELAY_URL =
-      'https://telemetry.saascodex.com/api/objects/batch';
+    process.env.SPLATSTUDIO_OBJECT_RELAY_URL =
+      'https://telemetry.splatstudio.app/api/objects/batch';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1768,13 +1768,13 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         fetchImpl: fetchSpy as any,
       });
     } finally {
-      if (velaTelemetryEnabled === undefined) delete process.env.SAASCODEX_VELA_TELEMETRY;
-      else process.env.SAASCODEX_VELA_TELEMETRY = velaTelemetryEnabled;
+      if (velaTelemetryEnabled === undefined) delete process.env.SPLATSTUDIO_VELA_TELEMETRY;
+      else process.env.SPLATSTUDIO_VELA_TELEMETRY = velaTelemetryEnabled;
       if (velaControlKey === undefined) delete process.env.VELA_CONTROL_KEY;
       else process.env.VELA_CONTROL_KEY = velaControlKey;
       if (amrHome === undefined) delete process.env.AMR_HOME;
       else process.env.AMR_HOME = amrHome;
-      delete process.env.SAASCODEX_OBJECT_RELAY_URL;
+      delete process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
       delete process.env.LANGFUSE_PUBLIC_KEY;
       delete process.env.LANGFUSE_SECRET_KEY;
     }
@@ -1799,16 +1799,16 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     await writeFile(path.join(projectDir, 'index.html'), '<!doctype html><h1>artifact body</h1>');
     const fetchSpy = vi.fn().mockResolvedValue(new Response('{}', { status: 207 }));
 
-    const velaTelemetryEnabled = process.env.SAASCODEX_VELA_TELEMETRY;
+    const velaTelemetryEnabled = process.env.SPLATSTUDIO_VELA_TELEMETRY;
     const velaControlKey = process.env.VELA_CONTROL_KEY;
     const amrHome = process.env.AMR_HOME;
-    process.env.SAASCODEX_VELA_TELEMETRY = 'on';
+    process.env.SPLATSTUDIO_VELA_TELEMETRY = 'on';
     delete process.env.VELA_CONTROL_KEY;
     process.env.AMR_HOME = path.join(dataDir, 'signed-out-relay-amr-home');
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL =
-      'https://telemetry.saascodex.com/api/langfuse';
-    process.env.SAASCODEX_OBJECT_RELAY_URL =
-      'https://telemetry.saascodex.com/api/objects/batch';
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL =
+      'https://telemetry.splatstudio.app/api/langfuse';
+    process.env.SPLATSTUDIO_OBJECT_RELAY_URL =
+      'https://telemetry.splatstudio.app/api/objects/batch';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -1829,21 +1829,21 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         fetchImpl: fetchSpy as any,
       });
     } finally {
-      if (velaTelemetryEnabled === undefined) delete process.env.SAASCODEX_VELA_TELEMETRY;
-      else process.env.SAASCODEX_VELA_TELEMETRY = velaTelemetryEnabled;
+      if (velaTelemetryEnabled === undefined) delete process.env.SPLATSTUDIO_VELA_TELEMETRY;
+      else process.env.SPLATSTUDIO_VELA_TELEMETRY = velaTelemetryEnabled;
       if (velaControlKey === undefined) delete process.env.VELA_CONTROL_KEY;
       else process.env.VELA_CONTROL_KEY = velaControlKey;
       if (amrHome === undefined) delete process.env.AMR_HOME;
       else process.env.AMR_HOME = amrHome;
-      delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
-      delete process.env.SAASCODEX_OBJECT_RELAY_URL;
+      delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
+      delete process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
       delete process.env.LANGFUSE_PUBLIC_KEY;
       delete process.env.LANGFUSE_SECRET_KEY;
     }
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy.mock.calls[0]![0]).toBe(
-      'https://telemetry.saascodex.com/api/langfuse',
+      'https://telemetry.splatstudio.app/api/langfuse',
     );
     expect(fetchSpy.mock.calls.some(([url]) => String(url).includes('/api/objects/')))
       .toBe(false);
@@ -1866,12 +1866,12 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
 
     const velaEnvelopes: any[] = [];
     const fetchSpy = vi.fn(async (url: string, init: RequestInit) => {
-      if (url === 'https://vela.example.test/api/v1/saascodex/telemetry') {
+      if (url === 'https://vela.example.test/api/v1/splatstudio/telemetry') {
         const envelope = JSON.parse(init.body as string);
         velaEnvelopes.push(envelope);
         return new Response(JSON.stringify({ ok: true }), { status: 202 });
       }
-      if (url === 'https://telemetry.saascodex.com/api/objects/authorize') {
+      if (url === 'https://telemetry.splatstudio.app/api/objects/authorize') {
         const parsed = JSON.parse(init.body as string) as {
           run_id: string;
           objects: Array<{ storage_ref: string }>;
@@ -1880,7 +1880,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         expect(parsed.objects[0]?.storage_ref).toContain('/runs/run-id-1/');
         return new Response(JSON.stringify({ upload_token: 'upload-token' }), { status: 200 });
       }
-      if (url === 'https://telemetry.saascodex.com/api/objects/batch') {
+      if (url === 'https://telemetry.splatstudio.app/api/objects/batch') {
         const parsed = JSON.parse(init.body as string) as {
           run_id: string;
           objects: Array<{ storage_ref: string; content_base64: string }>;
@@ -1899,14 +1899,14 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
       throw new Error(`unexpected telemetry request: ${url}`);
     });
 
-    const velaTelemetryEnabled = process.env.SAASCODEX_VELA_TELEMETRY;
+    const velaTelemetryEnabled = process.env.SPLATSTUDIO_VELA_TELEMETRY;
     const velaControlKey = process.env.VELA_CONTROL_KEY;
     const velaApiUrl = process.env.VELA_API_URL;
-    process.env.SAASCODEX_VELA_TELEMETRY = 'on';
+    process.env.SPLATSTUDIO_VELA_TELEMETRY = 'on';
     process.env.VELA_CONTROL_KEY = 'ck_test';
     process.env.VELA_API_URL = 'https://vela.example.test';
-    process.env.SAASCODEX_OBJECT_RELAY_URL =
-      'https://telemetry.saascodex.com/api/objects/batch';
+    process.env.SPLATSTUDIO_OBJECT_RELAY_URL =
+      'https://telemetry.splatstudio.app/api/objects/batch';
     try {
       await reportRunCompletedFromDaemon({
         db: makeDbWithListMessages({
@@ -1925,19 +1925,19 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         fetchImpl: fetchSpy as any,
       });
     } finally {
-      if (velaTelemetryEnabled === undefined) delete process.env.SAASCODEX_VELA_TELEMETRY;
-      else process.env.SAASCODEX_VELA_TELEMETRY = velaTelemetryEnabled;
+      if (velaTelemetryEnabled === undefined) delete process.env.SPLATSTUDIO_VELA_TELEMETRY;
+      else process.env.SPLATSTUDIO_VELA_TELEMETRY = velaTelemetryEnabled;
       if (velaControlKey === undefined) delete process.env.VELA_CONTROL_KEY;
       else process.env.VELA_CONTROL_KEY = velaControlKey;
       if (velaApiUrl === undefined) delete process.env.VELA_API_URL;
       else process.env.VELA_API_URL = velaApiUrl;
-      delete process.env.SAASCODEX_OBJECT_RELAY_URL;
+      delete process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
     }
 
     expect(fetchSpy).toHaveBeenCalledTimes(4);
     expect(velaEnvelopes).toHaveLength(2);
     expect(fetchSpy.mock.calls.map((call) => call[0])).not.toContain(
-      'https://telemetry.saascodex.com/api/langfuse',
+      'https://telemetry.splatstudio.app/api/langfuse',
     );
 
     const velaRegistrationEvent = velaEnvelopes[0].events.find(
@@ -2006,7 +2006,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     });
 
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_OBJECT_RELAY_URL = 'https://telemetry.saascodex.com/api/objects/batch';
+    process.env.SPLATSTUDIO_OBJECT_RELAY_URL = 'https://telemetry.splatstudio.app/api/objects/batch';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -2035,7 +2035,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         fetchImpl: fetchSpy as any,
       });
     } finally {
-      delete process.env.SAASCODEX_OBJECT_RELAY_URL;
+      delete process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
       delete process.env.LANGFUSE_PUBLIC_KEY;
       delete process.env.LANGFUSE_SECRET_KEY;
     }
@@ -2098,8 +2098,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     });
 
     enableTestVelaTelemetry();
-    process.env.SAASCODEX_OBJECT_RELAY_URL = 'https://telemetry.saascodex.com/api/objects/batch';
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = 'https://telemetry.saascodex.com/api/langfuse';
+    process.env.SPLATSTUDIO_OBJECT_RELAY_URL = 'https://telemetry.splatstudio.app/api/objects/batch';
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = 'https://telemetry.splatstudio.app/api/langfuse';
     process.env.LANGFUSE_PUBLIC_KEY = 'pk';
     process.env.LANGFUSE_SECRET_KEY = 'sk';
     try {
@@ -2125,8 +2125,8 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
         fetchImpl: fetchSpy as any,
       });
     } finally {
-      delete process.env.SAASCODEX_OBJECT_RELAY_URL;
-      delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
+      delete process.env.SPLATSTUDIO_OBJECT_RELAY_URL;
+      delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
       delete process.env.LANGFUSE_PUBLIC_KEY;
       delete process.env.LANGFUSE_SECRET_KEY;
     }
@@ -2780,7 +2780,7 @@ describe('langfuse-bridge.reportRunCompletedFromDaemon', () => {
     const generation = bodyOf(batch, 'generation-create', 'llm');
     expect(trace.input).toBe('design a coffee landing page');
     expect(generation.input).toMatchObject({
-      type: 'saascodex.prompt-stack',
+      type: 'splatstudio.prompt-stack',
       sections: [
         expect.objectContaining({
           kind: 'daemonSystemPrompt',

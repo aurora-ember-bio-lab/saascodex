@@ -12,9 +12,9 @@ import {
   type CSSProperties,
   type ReactNode,
 } from 'react';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import { createPortal } from 'react-dom';
-import type { DesignSystemEditClickProps, TrackingArtifactKind, TrackingProjectKind } from '@saascodex/contracts/analytics';
+import type { DesignSystemEditClickProps, TrackingArtifactKind, TrackingProjectKind } from '@splatstudio/contracts/analytics';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackFileManagerClick,
@@ -112,7 +112,7 @@ import {
   type LocalizedText,
   type WorkspaceCollabContext,
   type WorkspaceContextItem,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   notifyTeamProjectsChanged,
   TEAM_PROJECTS_CHANGED_EVENT,
@@ -637,16 +637,16 @@ const BLANK_PAGE_PRESETS: ProjectPagePreset[] = [
 
 const COMMUNITY_PAGE_PRESETS: ProjectPagePreset[] = [
   {
-    id: 'community-saascodex-landing',
+    id: 'community-splatstudio-landing',
     category: 'prototype',
-    title: pageText('SaaSCodex Landing', 'SaaSCodex 落地页', 'SaaSCodex 落地頁'),
+    title: pageText('SplatStudio Landing', 'SplatStudio 落地页', 'SplatStudio 落地頁'),
     description: pageText(
       'Editorial landing page with a strong hero, proof points, and product narrative.',
       '带强主视觉、信任证明和产品叙事的编辑风落地页。',
       '帶強主視覺、信任證明和產品敘事的編輯風落地頁。',
     ),
     icon: 'globe',
-    fileBaseName: 'saascodex-landing',
+    fileBaseName: 'splatstudio-landing',
     source: 'community',
     featured: true,
   },
@@ -1720,10 +1720,10 @@ export function FileWorkspace({
       });
     };
     load();
-    window.addEventListener('saascodex:plugins-changed', load);
+    window.addEventListener('splatstudio:plugins-changed', load);
     return () => {
       cancelled = true;
-      window.removeEventListener('saascodex:plugins-changed', load);
+      window.removeEventListener('splatstudio:plugins-changed', load);
     };
   }, [workspaceContext]);
 
@@ -4310,7 +4310,7 @@ export function FileWorkspace({
               onRequestBrowserUsePrompt={onRequestBrowserUsePrompt}
               onPageSnapshotToast={handleBrowserPageSnapshotToast}
               onRefreshFiles={refreshFilesWithoutResult}
-              onSaaSCodexFiles={() => setPersistedActive(DESIGN_FILES_TAB)}
+              onSplatStudioFiles={() => setPersistedActive(DESIGN_FILES_TAB)}
               onOpenFile={openFile}
               onPageInfoChange={(info) => updateBrowserTabInfo(browserTab.id, info)}
               onAddImageToChat={(attachment) => {
@@ -7078,7 +7078,7 @@ function initialPrototypePage(title: string, body = DEFAULT_PROTOTYPE_PAGE_BODY)
   <main>
     <section class="hero">
       <div>
-        <div class="eyebrow">SaaSCodex</div>
+        <div class="eyebrow">SplatStudio</div>
         <h1>${safeTitle}</h1>
         <p>${safeBody}</p>
       </div>
@@ -7220,7 +7220,7 @@ function initialSlidesPage(title: string, body = DEFAULT_SLIDES_PAGE_BODY): stri
   <div class="deck-shell">
     <main class="deck-stage" id="deck-stage">
       <section class="slide active cover" data-screen-label="01 Cover">
-        <div class="kicker">SaaSCodex deck</div>
+        <div class="kicker">SplatStudio deck</div>
         <h1>${safeTitle}</h1>
         <p class="body">${safeBody}</p>
         <div class="num">01</div>
@@ -7358,7 +7358,7 @@ function initialDocumentPage(title: string, body = DEFAULT_DOCUMENT_PAGE_BODY): 
 </head>
 <body>
   <article>
-    <div class="meta">SaaSCodex document</div>
+    <div class="meta">SplatStudio document</div>
     <h1>${safeTitle}</h1>
     <p>${safeBody}</p>
     <h2>Purpose</h2>

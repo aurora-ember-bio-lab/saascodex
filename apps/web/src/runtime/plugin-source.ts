@@ -17,7 +17,7 @@
  *    http(s) URLs become clickable) to keep `javascript:` /
  *    `data:` payloads in a manifest from rendering as live links.
  */
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 
 export interface PluginSourceLinks {
   /** Browseable URL for the install source, or null when the source
@@ -49,8 +49,8 @@ export interface PluginSourceLinks {
   contributeOnGithub: boolean;
 }
 
-const SAASCODEX_REPO_URL = 'https://github.com/nexu-io/open-design';
-const SAASCODEX_REPO_LABEL = 'nexu-io/open-design';
+const SPLATSTUDIO_REPO_URL = 'https://github.com/nexu-io/open-design';
+const SPLATSTUDIO_REPO_LABEL = 'nexu-io/open-design';
 
 const GITHUB_SOURCE_RE = /^github:([A-Za-z0-9._-]+)\/([A-Za-z0-9._-]+)(?:@([A-Za-z0-9._/-]+))?(?:\/(.+))?$/;
 const GITHUB_PROFILE_RE = /^https?:\/\/(?:www\.)?github\.com\/([A-Za-z0-9](?:[A-Za-z0-9-]{0,38}[A-Za-z0-9])?)(?:[\/?#].*)?$/;
@@ -127,8 +127,8 @@ export function derivePluginSourceLinks(
   const authorName = typeof author.name === 'string' && author.name.trim().length > 0
     ? author.name.trim()
     : null;
-  const authorProfileUrl = officialBundled ? SAASCODEX_REPO_URL : safeHttpUrl(author.url);
-  const homepageUrl = officialBundled ? SAASCODEX_REPO_URL : safeHttpUrl(homepageRaw);
+  const authorProfileUrl = officialBundled ? SPLATSTUDIO_REPO_URL : safeHttpUrl(author.url);
+  const homepageUrl = officialBundled ? SPLATSTUDIO_REPO_URL : safeHttpUrl(homepageRaw);
 
   // Source URL + label resolution. The github:owner/repo case wins
   // because we can produce a deep `tree/<ref>/<sub>` URL when the
@@ -172,8 +172,8 @@ export function derivePluginSourceLinks(
   } else if (record.sourceKind === 'marketplace') {
     sourceLabel = record.source;
   } else if (officialBundled) {
-    sourceUrl = SAASCODEX_REPO_URL;
-    sourceLabel = SAASCODEX_REPO_LABEL;
+    sourceUrl = SPLATSTUDIO_REPO_URL;
+    sourceLabel = SPLATSTUDIO_REPO_LABEL;
   } else {
     // user / project / local — the source string is a filesystem
     // path. Show just the basename for compactness; the
@@ -226,7 +226,7 @@ export function derivePluginSourceLinks(
 /**
  * Deterministic two-letter monogram for the avatar fallback. CamelCase
  * boundaries count as word breaks so single-token brand names like
- * "SaaSCodex" still yield a two-letter monogram ("OD").
+ * "SplatStudio" still yield a two-letter monogram ("OD").
  */
 export function authorInitials(name: string | null): string {
   if (!name) return '??';

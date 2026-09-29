@@ -23,7 +23,7 @@ import type {
   TeamProject,
   WorkspaceCollabContext,
   WorkspaceInvalidationSsePayload,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export interface WorkspaceInvalidationPollerDeps {
   /** Current workspace context (proxies Vela/B in prod). Gates team reads and

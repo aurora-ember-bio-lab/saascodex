@@ -1,14 +1,14 @@
 # Plugin ecosystem architecture
 
-SaaSCodex plugins are portable agent-skill folders: a `SKILL.md` plus an
-optional `saascodex.json` sidecar. The ecosystem splits into **three trust
+SplatStudio plugins are portable agent-skill folders: a `SKILL.md` plus an
+optional `splatstudio.json` sidecar. The ecosystem splits into **three trust
 tiers** plus a **commercial core** that gates the paid tier.
 
 ```
 plugins/
   _official/            first-party, bundled, preinstalled        (free)
   community/            community sources, install-on-demand      (free)
-  registry/{official,community,premium}/saascodex-marketplace.json
+  registry/{official,community,premium}/splatstudio-marketplace.json
 premium-ecosystem/
   premium_plugins/      licensed plugin sources                   (paid)
 commercial-core/        entitlement + license layer that gates premium
@@ -39,7 +39,7 @@ manifest and the entitlement gate.
 ```
 premium-ecosystem/premium_plugins/<vendor>/<plugin>/
   SKILL.md          # the portable skill (same contract as every plugin)
-  saascodex.json    # standard manifest (marketplace metadata)
+  splatstudio.json    # standard manifest (marketplace metadata)
   commercial.json   # first-party sidecar: price, plan, license scope
 ```
 
@@ -63,13 +63,13 @@ or a valid license entitles it.
 ## Adding a premium plugin
 
 1. Copy `premium-ecosystem/premium_plugins/_template/`.
-2. Fill `SKILL.md`, `saascodex.json`, `commercial.json`.
-3. Add an entry to `plugins/registry/premium/saascodex-marketplace.json`
+2. Fill `SKILL.md`, `splatstudio.json`, `commercial.json`.
+3. Add an entry to `plugins/registry/premium/splatstudio-marketplace.json`
    (`name`, `source`, `version` are required; a `commercial` block is allowed).
 4. Map the plugin id in `commercial-core/entitlements.json`.
 
 ## Related
 
 - Plugin spec kit: [`plugins/spec/`](../plugins/spec/)
-- Marketplace schema: `docs/schemas/saascodex.marketplace.v1.json`
+- Marketplace schema: `docs/schemas/splatstudio.marketplace.v1.json`
 - Product spec: [`plugins-spec.md`](./plugins-spec.md)

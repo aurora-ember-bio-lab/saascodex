@@ -1,21 +1,21 @@
-# SaaSCodex — DESIGN.md
+# SplatStudio — DESIGN.md
 
-> Product-level design contract for the SaaSCodex application.
+> Product-level design contract for the SplatStudio application.
 > Author: Aurora Ember Cyber Bio Lab.
-> Brand package: [`design-systems/saascodex/`](design-systems/saascodex/) — every render reads it.
+> Brand package: [`design-systems/splatstudio/`](design-systems/splatstudio/) — every render reads it.
 
-SaaSCodex is a local-first, agent-native design workspace: brief in,
+SplatStudio is a local-first, agent-native design workspace: brief in,
 artifacts out (prototypes, decks, dashboards, images, video). The app UI,
 the generated artifacts, and the marketing pages share one visual language.
 
 ## Brand
 
-- **Name:** SaaSCodex · **Author:** Aurora Ember Cyber Bio Lab
+- **Name:** SplatStudio · **Author:** Aurora Ember Cyber Bio Lab
 - **Voice:** precise, calm, technical but human. No hype adjectives, no
   exclamation marks in product copy, sentence case everywhere.
 - **House style:** dark-first aurora ink surfaces, single aurora-mint accent,
   ember warmth only for state. Full token contract in
-  `design-systems/saascodex/tokens.css`.
+  `design-systems/splatstudio/tokens.css`.
 
 ## Product surfaces
 
@@ -64,7 +64,7 @@ the generated artifacts, and the marketing pages share one visual language.
 
 ## Watermark & plan gating
 
-- Free-trial exports carry the SaaSCodex watermark (see `docs/BILLING.md`).
+- Free-trial exports carry the SplatStudio watermark (see `docs/BILLING.md`).
 - Watermarking is applied at export time, never at preview time, and is
   the only visual difference between Free and paid output.
 

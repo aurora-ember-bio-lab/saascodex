@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/sidecar",
+  "name": "@splatstudio/sidecar",
   "version": "0.23.1",
   "private": true,
   "type": "module",
@@ -20,7 +20,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/platform": "workspace:*"
+    "@splatstudio/platform": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "24.12.2",

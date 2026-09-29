@@ -16,7 +16,7 @@
 
 import path from 'node:path';
 import { promises as fsp } from 'node:fs';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 import { pickFirstLocalSkillPath } from './apply.js';
 import { skillBodyWithRootPreamble } from '../skills.js';
 

@@ -1,7 +1,7 @@
 import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   CollabMemberRole,
   WorkspaceBillingState,
@@ -10,7 +10,7 @@ import type {
   WorkspaceMemberStatus,
   WorkspaceProviderMode,
   WorkspaceType,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { resolveEffectiveVelaConsoleOrigin } from '../integrations/vela-console-origin.js';
 
 // The daemon's single B-integration point . Presence + sync need the
@@ -205,7 +205,7 @@ export function resolveWorkspaceSettingsUrl(
   // Workspace management outcomes without carrying user-entered values.
   const base = resolveEffectiveVelaConsoleOrigin(env, configuredEnv);
   const hasRuntimeProfile = Boolean(
-    configuredEnv.SAASCODEX_AMR_PROFILE?.trim() || configuredEnv.VELA_PROFILE?.trim(),
+    configuredEnv.SPLATSTUDIO_AMR_PROFILE?.trim() || configuredEnv.VELA_PROFILE?.trim(),
   );
   // A workspace payload can carry a console URL minted by the environment that
   // last served it. After an in-app profile switch that value is stale by

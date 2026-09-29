@@ -2,7 +2,7 @@ import type { Express, Request, Response } from 'express';
 import type {
   CollabPresenceMember,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { CollabRuntime } from '../collab/runtime.js';
 import type { PresenceMember } from '../collab/presence-tracker.js';
 import type {

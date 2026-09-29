@@ -11,7 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import type { ProjectMetadata } from '@saascodex/contracts';
+import type { ProjectMetadata } from '@splatstudio/contracts';
 
 import { resolveProjectDir, writeProjectFile } from '../projects.js';
 import { fontFaceCss, readFontManifest } from './fonts.js';

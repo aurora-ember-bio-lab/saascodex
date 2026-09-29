@@ -59,10 +59,10 @@ LangString OD_REMOVE_LOCAL_DATA_CHECKBOX 1065 "حذف داده‌های محلی
 
 !macro customUnWelcomePage
   !insertmacro MUI_UNPAGE_WELCOME
-  UninstPage custom un.SaaSCodexLocalDataPage un.SaaSCodexLocalDataPageLeave
+  UninstPage custom un.SplatStudioLocalDataPage un.SplatStudioLocalDataPageLeave
 !macroend
 
-Function SaaSCodexReadDownloadAttribution
+Function SplatStudioReadDownloadAttribution
   ClearErrors
   StrCpy $odDownloadAttributionUrl ""
   FileOpen $0 "$EXEPATH:Zone.Identifier" r
@@ -94,10 +94,10 @@ Function SaaSCodexReadDownloadAttribution
 FunctionEnd
 
 !macro customInstall
-  Call SaaSCodexReadDownloadAttribution
+  Call SplatStudioReadDownloadAttribution
 !macroend
 
-Function un.SaaSCodexLocalDataPage
+Function un.SplatStudioLocalDataPage
   StrCpy $odRemoveLocalData "1"
   StrCpy $odLocalDataRoot "${localDataRoot}"
   nsDialogs::Create 1018
@@ -114,7 +114,7 @@ Function un.SaaSCodexLocalDataPage
   nsDialogs::Show
 FunctionEnd
 
-Function un.SaaSCodexLocalDataPageLeave
+Function un.SplatStudioLocalDataPageLeave
   \${NSD_GetState} $odRemoveLocalDataCheckbox $0
   \${If} $0 == \${BST_CHECKED}
     StrCpy $odRemoveLocalData "1"

@@ -31,7 +31,7 @@ async function listArchiveEntries(tgz: string): Promise<string[]> {
 
 describe('packPlugin', () => {
   it('writes a .tgz containing every file in the folder', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({
+    await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify({
       name: 'my-plugin',
       version: '0.1.2',
       title: 'Test plugin',
@@ -49,17 +49,17 @@ describe('packPlugin', () => {
     expect(path.basename(result.outPath)).toBe('my-plugin-0.1.2.tgz');
     expect(path.dirname(result.outPath)).toBe(parent);
     expect(result.files.sort()).toEqual([
-      'SKILL.md', 'assets/logo.svg', 'saascodex.json',
+      'SKILL.md', 'assets/logo.svg', 'splatstudio.json',
     ]);
 
     const entries = await listArchiveEntries(result.outPath);
     expect(entries).toEqual([
-      'SKILL.md', 'assets/logo.svg', 'saascodex.json',
+      'SKILL.md', 'assets/logo.svg', 'splatstudio.json',
     ]);
   });
 
   it('skips node_modules / .git / dist + .DS_Store noise', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
+    await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
     for (const dir of ['node_modules', '.git', 'dist', 'build']) {
       await mkdir(path.join(folder, dir), { recursive: true });
       await writeFile(path.join(folder, dir, 'noise.txt'), 'x');
@@ -68,28 +68,28 @@ describe('packPlugin', () => {
 
     const result = await packPlugin({ folder });
     const entries = await listArchiveEntries(result.outPath);
-    expect(entries).toEqual(['saascodex.json']);
+    expect(entries).toEqual(['splatstudio.json']);
   });
 
   it('skips symlinks both at walk time and at filter time', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
+    await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
     await writeFile(path.join(folder, 'real.txt'), 'real');
     await symlink('real.txt', path.join(folder, 'link.txt'));
 
     const result = await packPlugin({ folder });
-    expect(result.files).toEqual(['saascodex.json', 'real.txt']);
+    expect(result.files).toEqual(['splatstudio.json', 'real.txt']);
     const entries = await listArchiveEntries(result.outPath);
-    expect(entries).toEqual(['saascodex.json', 'real.txt']);
+    expect(entries).toEqual(['splatstudio.json', 'real.txt']);
   });
 
   it('falls back to <basename>.tgz when the manifest has no version', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({ name: 'plain' }));
+    await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify({ name: 'plain' }));
     const result = await packPlugin({ folder });
     expect(path.basename(result.outPath)).toBe('my-plugin.tgz');
   });
 
   it('honours an explicit --out path', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
+    await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
     const out = path.join(parent, 'somewhere', 'my-plugin.tgz');
     await mkdir(path.dirname(out), { recursive: true });
     const result = await packPlugin({ folder, out });
@@ -97,7 +97,7 @@ describe('packPlugin', () => {
   });
 
   it('round-trips through tar.extract: archive contents match the source tree', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({ name: 'rt', version: '0.0.1' }));
+    await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify({ name: 'rt', version: '0.0.1' }));
     await writeFile(path.join(folder, 'SKILL.md'), '# RT\n');
     await mkdir(path.join(folder, 'assets'), { recursive: true });
     await writeFile(path.join(folder, 'assets', 'a.txt'), 'aaa');
@@ -107,28 +107,28 @@ describe('packPlugin', () => {
     await mkdir(dest, { recursive: true });
     await tarExtract({ file: result.outPath, cwd: dest });
 
-    expect((await readFile(path.join(dest, 'saascodex.json'), 'utf8')).includes('rt')).toBe(true);
+    expect((await readFile(path.join(dest, 'splatstudio.json'), 'utf8')).includes('rt')).toBe(true);
     expect(await readFile(path.join(dest, 'SKILL.md'), 'utf8')).toBe('# RT\n');
     expect(await readFile(path.join(dest, 'assets', 'a.txt'), 'utf8')).toBe('aaa');
   });
 
-  it('rejects a folder without saascodex.json', async () => {
+  it('rejects a folder without splatstudio.json', async () => {
     await writeFile(path.join(folder, 'SKILL.md'), '---\nname: p\n---\n');
     await expect(packPlugin({ folder })).rejects.toBeInstanceOf(PackPluginError);
   });
 
-  it('rejects a folder whose saascodex.json is malformed JSON', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), '{ broken');
+  it('rejects a folder whose splatstudio.json is malformed JSON', async () => {
+    await writeFile(path.join(folder, 'splatstudio.json'), '{ broken');
     await expect(packPlugin({ folder })).rejects.toBeInstanceOf(PackPluginError);
   });
 
   it('does not pack the output archive itself when --out lands inside the folder', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
+    await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify({ name: 'p', version: '0.0.1' }));
     await writeFile(path.join(folder, 'a.txt'), 'a');
     const out = path.join(folder, 'self.tgz');
     const result = await packPlugin({ folder, out });
-    expect(result.files).toEqual(['a.txt', 'saascodex.json']);
+    expect(result.files).toEqual(['a.txt', 'splatstudio.json']);
     const entries = await listArchiveEntries(result.outPath);
-    expect(entries).toEqual(['a.txt', 'saascodex.json']);
+    expect(entries).toEqual(['a.txt', 'splatstudio.json']);
   });
 });

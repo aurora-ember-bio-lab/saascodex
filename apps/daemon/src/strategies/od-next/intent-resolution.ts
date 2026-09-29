@@ -2,7 +2,7 @@ import {
   composeOdNextIntentResolutionTurnV1,
   OdNextIntentResolutionResultSchema,
   parseOdNextPromptBundleV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import type { StrategyTaskExecutionRecord } from '../task-store.js';
 import type { OdNextMachineProtocolResult } from './protocol.js';

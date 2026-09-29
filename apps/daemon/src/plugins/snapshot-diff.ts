@@ -14,7 +14,7 @@
 // values). The shape is intentionally identical so renderers reuse
 // the same +/-/~ glyph format.
 
-import type { AppliedPluginSnapshot } from '@saascodex/contracts';
+import type { AppliedPluginSnapshot } from '@splatstudio/contracts';
 
 export interface SnapshotDiffEntry {
   field:    string;

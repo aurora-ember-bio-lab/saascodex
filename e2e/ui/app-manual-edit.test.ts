@@ -12,7 +12,7 @@ import type { Page } from '@playwright/test';
 import { pathToFileURL } from 'node:url';
 import { T } from '@/timeouts';
 
-const STORAGE_KEY = 'saascodex:config';
+const STORAGE_KEY = 'splatstudio:config';
 test.describe.configure({ timeout: T.xlong });
 
 function artifactPreview(page: Page) {
@@ -708,12 +708,12 @@ test('[P1] first-loop onboarding completes once after a successful artifact expo
         enabled: true,
         env: 'e2e',
         key: 'phc_e2e',
-        host: 'https://analytics.saascodex.test',
+        host: 'https://analytics.splatstudio.test',
         installationId: 'e2e-installation',
       },
     });
   });
-  await page.route('https://analytics.saascodex.test/**', async (route) => {
+  await page.route('https://analytics.splatstudio.test/**', async (route) => {
     analyticsBodies.push(route.request().postData() ?? '');
     await route.fulfill({ status: 200, json: { status: 1 } });
   });
@@ -724,7 +724,7 @@ test('[P1] first-loop onboarding completes once after a successful artifact expo
   await page.addInitScript(
     ({ id }) => {
       window.sessionStorage.setItem(
-        `saascodex:first-loop-entry:${id}`,
+        `splatstudio:first-loop-entry:${id}`,
         JSON.stringify({
           source: 'home_recommendation',
           productType: 'prototype',
@@ -732,7 +732,7 @@ test('[P1] first-loop onboarding completes once after a successful artifact expo
         }),
       );
       window.sessionStorage.setItem(
-        `saascodex:first-loop-steps:${id}`,
+        `splatstudio:first-loop-steps:${id}`,
         JSON.stringify(['prompt_sent', 'generated', 'artifact_viewed']),
       );
     },
@@ -987,7 +987,7 @@ async function gotoEntryHome(page: Page) {
     await waitForLoadingToClear(page).catch(() => {});
     if (await page.getByTestId('home-hero').isVisible({ timeout: 3_000 }).catch(() => false)) break;
   }
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SplatStudio' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
     await expect(privacyDialog).toHaveCount(0);
@@ -1245,7 +1245,7 @@ async function openDesignFile(page: Page, fileName: string) {
 }
 
 async function waitForLoadingToClear(page: Page) {
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.long });
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: T.long });
 }
 
 async function expectFileSource(page: Page, projectId: string, fileName: string, snippets: string[]) {

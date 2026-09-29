@@ -7,7 +7,7 @@
 // the click targets are unchanged.
 
 import { act, cleanup, render, screen, within } from '@testing-library/react';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryNavRail, resetWorkspaceDirectoryCache } from '../../src/components/EntryNavRail';
@@ -17,8 +17,8 @@ import { I18nProvider } from '../../src/i18n';
 
 const SOCIAL_LINKS = [
   { href: 'https://discord.gg/mHAjSMV6gz', label: 'Join our Discord for free credits' },
-  { href: 'https://x.com/SaaSCodexHQ', label: 'Follow @SaaSCodexHQ for updates' },
-  { href: 'mailto:support@saascodex.com', label: 'Questions? Email our team' },
+  { href: 'https://x.com/SplatStudioHQ', label: 'Follow @SplatStudioHQ for updates' },
+  { href: 'mailto:support@splatstudio.app', label: 'Questions? Email our team' },
 ];
 
 function teamContext(): WorkspaceCollabContext {

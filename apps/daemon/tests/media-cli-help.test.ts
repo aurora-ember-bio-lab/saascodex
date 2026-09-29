@@ -38,7 +38,7 @@ async function runMedia(args: string[], env: NodeJS.ProcessEnv = {}) {
         OD_TOOL_TOKEN: '',
         OD_WORKSPACE_ID: '',
         OD_WORKSPACE_MEMBER_ID: '',
-        SAASCODEX_VELA_TELEMETRY: 'off',
+        SPLATSTUDIO_VELA_TELEMETRY: 'off',
         ...env,
       },
     });

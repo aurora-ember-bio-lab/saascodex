@@ -1,15 +1,15 @@
 {
   "id": "0.22.1",
-  "title": "The SaaSCodex Product Design Hackathon is here!",
-  "body": "Win up to $1,000 in tokens: Share your website, app, or product design built with SaaSCodex on X. The 10 entries with the most likes win prizes!\nRewards for the first 50 submissions: Join the SaaSCodex Discord or Feishu community and share your work. The first 50 participants each get $5 in tokens!\n40% better prototype designs: Upgrade to version 0.22.0 or later to experience SaaSCodex’s latest design improvements!",
-  "imageUrl": "https://whatsnew.saascodex.com/0.18.0.webp",
-  "linkUrl": "https://saascodex.com/opendesign-hackathon/",
+  "title": "The SplatStudio Product Design Hackathon is here!",
+  "body": "Win up to $1,000 in tokens: Share your website, app, or product design built with SplatStudio on X. The 10 entries with the most likes win prizes!\nRewards for the first 50 submissions: Join the SplatStudio Discord or Feishu community and share your work. The first 50 participants each get $5 in tokens!\n40% better prototype designs: Upgrade to version 0.22.0 or later to experience SplatStudio’s latest design improvements!",
+  "imageUrl": "https://whatsnew.splatstudio.app/0.18.0.webp",
+  "linkUrl": "https://splatstudio.app/opendesign-hackathon/",
   "ctaLabel": "Explore the Hackathon",
   "locales": {
     "zh-CN": {
-      "title": "SaaSCodex 产品设计黑客松来了！",
-      "body": "最高获价值 1000 美金 Token：分享用 SaaSCodex 做的网页/App/产品设计到 X，点赞 Top 10 均可获奖；\n前50位投稿都有奖：加入SaaSCodex Discord/飞书社群分享作品，前 50 名人人可得 $5 Token；\n原型设计效果提升 40%：升级 0.22.0 及以上版本，体验最新SaaSCodex设计效果！",
-      "linkUrl": "https://saascodex.com/zh/opendesign-hackathon/",
+      "title": "SplatStudio 产品设计黑客松来了！",
+      "body": "最高获价值 1000 美金 Token：分享用 SplatStudio 做的网页/App/产品设计到 X，点赞 Top 10 均可获奖；\n前50位投稿都有奖：加入SplatStudio Discord/飞书社群分享作品，前 50 名人人可得 $5 Token；\n原型设计效果提升 40%：升级 0.22.0 及以上版本，体验最新SplatStudio设计效果！",
+      "linkUrl": "https://splatstudio.app/zh/opendesign-hackathon/",
       "ctaLabel": "查看活动"
     }
   }

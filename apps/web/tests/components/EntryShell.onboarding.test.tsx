@@ -343,7 +343,7 @@ describe('EntryShell settings menu', () => {
           stale: false,
         });
       }
-      if (url.endsWith('/api/github/saascodex')) {
+      if (url.endsWith('/api/github/splatstudio')) {
         return jsonResponse({
           repo: 'nexu-io/open-design',
           stargazers_count: 56100,
@@ -509,7 +509,7 @@ describe('EntryShell project reopen request priority', () => {
             stale: false,
           });
         }
-        if (url.endsWith('/api/github/saascodex')) {
+        if (url.endsWith('/api/github/splatstudio')) {
           return jsonResponse({
             repo: 'nexu-io/open-design',
             stargazers_count: 0,
@@ -608,7 +608,7 @@ describe('EntryShell new project rail', () => {
             stale: false,
           });
         }
-        if (url.endsWith('/api/github/saascodex')) {
+        if (url.endsWith('/api/github/splatstudio')) {
           return jsonResponse({
             repo: 'nexu-io/open-design',
             stargazers_count: 0,
@@ -709,7 +709,7 @@ describe('EntryShell Home submit handoff', () => {
       if (url.endsWith('/api/plugins')) return jsonResponse({ plugins: [] });
       if (url.endsWith('/api/mcp/servers')) return jsonResponse({ servers: [] });
       if (url.endsWith('/api/community/discord')) return jsonResponse({ stale: true });
-      if (url.endsWith('/api/github/saascodex')) return jsonResponse({ stale: true });
+      if (url.endsWith('/api/github/splatstudio')) return jsonResponse({ stale: true });
       return jsonResponse({});
     }) as typeof fetch;
     let resolveCreate: (accepted: boolean) => void = () => undefined;
@@ -742,7 +742,7 @@ describe('EntryShell Home submit handoff', () => {
   });
 });
 
-describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
+describe('EntryShell onboarding SplatStudio AMR runtime', () => {
   it('gates Home on an authoritative signed-out Cloud session without clearing saved setup', async () => {
     globalThis.fetch = vi.fn(async () =>
       jsonResponse({ loggedIn: false, profile: 'prod', configPath: '/x', user: null }),
@@ -756,7 +756,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     const props = renderHome({ config, amrLoggedIn: false });
 
     expect(
-      await screen.findByRole('heading', { name: 'Welcome to SaaSCodex' }),
+      await screen.findByRole('heading', { name: 'Welcome to SplatStudio' }),
     ).toBeTruthy();
     expect(await screen.findByText('Free Credits')).toBeTruthy();
     expect(screen.getByLabelText('New users get free starter credits to try DeepSeek V4.1 Flash.')).toBeTruthy();
@@ -783,7 +783,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     expect(await screen.findByTestId('home-hero-input')).toBeTruthy();
     expect(window.location.pathname).toBe('/');
     expect(
-      screen.queryByRole('heading', { name: 'Welcome to SaaSCodex' }),
+      screen.queryByRole('heading', { name: 'Welcome to SplatStudio' }),
     ).toBeNull();
   });
 
@@ -805,7 +805,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     expect(
       await screen.findByRole('heading', { name: 'Choose your model source' }),
     ).toBeTruthy();
-    expect(screen.getByRole('radio', { name: /SaaSCodex Hosted/i })).toBeTruthy();
+    expect(screen.getByRole('radio', { name: /SplatStudio Hosted/i })).toBeTruthy();
     expect(screen.getByRole('radio', { name: /Local Agent/i })).toBeTruthy();
     expect(screen.getByRole('radio', { name: /Bring Your Own Key/i })).toBeTruthy();
     expect(screen.queryByRole('heading', { name: 'About you' })).toBeNull();
@@ -829,7 +829,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     fireEvent.click(
       await screen.findByRole('button', { name: /Continue \(signed in\)/i }),
     );
-    const hosted = await screen.findByRole('radio', { name: /SaaSCodex Hosted/i });
+    const hosted = await screen.findByRole('radio', { name: /SplatStudio Hosted/i });
     const local = screen.getByRole('radio', { name: /Local Agent/i });
     hosted.focus();
     fireEvent.keyDown(hosted, { key: 'ArrowDown' });
@@ -1498,7 +1498,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     ).toBe('true');
   });
 
-  it('does not auto-select SaaSCodex AMR when the AMR runtime is unavailable', async () => {
+  it('does not auto-select SplatStudio AMR when the AMR runtime is unavailable', async () => {
     globalThis.fetch = vi.fn(async () =>
       jsonResponse({ loggedIn: false, profile: 'prod', user: null, configPath: '/x' }),
     ) as typeof fetch;
@@ -1507,9 +1507,9 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
       onRefreshAgents: vi.fn(() => [cliAgent()]),
     });
 
-    expect(await screen.findByRole('heading', { name: 'Welcome to SaaSCodex' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'Welcome to SplatStudio' })).toBeTruthy();
     expect(await findCloudSignInButton()).toBeTruthy();
-    expect(screen.queryByRole('button', { name: /SaaSCodex AMR/i })).toBeNull();
+    expect(screen.queryByRole('button', { name: /SplatStudio AMR/i })).toBeNull();
 
     await waitFor(() => {
       expect(props.onAgentChange).not.toHaveBeenCalledWith('amr');
@@ -1523,16 +1523,16 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     expect(screen.queryByText('Sign in to continue')).toBeNull();
   });
 
-  it('shows SaaSCodex Cloud as the default connect surface when AMR is available', async () => {
+  it('shows SplatStudio Cloud as the default connect surface when AMR is available', async () => {
     globalThis.fetch = vi.fn(async () =>
       jsonResponse({ loggedIn: false, profile: 'prod', user: null, configPath: '/x' }),
     ) as typeof fetch;
     renderOnboarding();
 
-    expect(screen.getByRole('heading', { name: 'Welcome to SaaSCodex' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Welcome to SplatStudio' })).toBeTruthy();
     expect(await findCloudSignInButton()).toBeTruthy();
     // No runtime card, no AMR version text, no "Sign in to continue" CTA.
-    expect(screen.queryByRole('button', { name: /SaaSCodex AMR/i })).toBeNull();
+    expect(screen.queryByRole('button', { name: /SplatStudio AMR/i })).toBeNull();
     expect(screen.queryByText('AMR v0.1.0')).toBeNull();
     expect(screen.queryByRole('button', { name: /Sign in to continue/i })).toBeNull();
     expect(screen.queryByRole('link', { name: /Authorize AMR/i })).toBeNull();
@@ -1543,7 +1543,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     expect(
       (screen.getByRole('button', { name: /API Key/i }) as HTMLButtonElement).disabled,
     ).toBe(false);
-    expect(screen.queryByRole('button', { name: /SaaSCodex AMR/i })).toBeNull();
+    expect(screen.queryByRole('button', { name: /SplatStudio AMR/i })).toBeNull();
     expect(screen.queryByRole('link', { name: /Authorize AMR/i })).toBeNull();
     expect(screen.queryByText('Not signed in')).toBeNull();
     expect(screen.queryByRole('button', { name: /^Sign in$/i })).toBeNull();
@@ -1644,7 +1644,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     renderOnboarding({
       config: baseConfig({
         agentId: 'claude-code',
-        agentCliEnv: { 'claude-code': { SAASCODEX_TEST: '1' } },
+        agentCliEnv: { 'claude-code': { SPLATSTUDIO_TEST: '1' } },
         agentModels: { 'claude-code': { model: 'sonnet', reasoning: 'high' } },
       }),
       agents: [amrAgent(), cliAgent()],
@@ -1666,7 +1666,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
       agentId: 'claude-code',
       model: 'sonnet',
       reasoning: 'high',
-      agentCliEnv: { 'claude-code': { SAASCODEX_TEST: '1' } },
+      agentCliEnv: { 'claude-code': { SPLATSTUDIO_TEST: '1' } },
     });
   });
 
@@ -2036,7 +2036,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     // (the two other places a sign-in completes), which fire all three
     // workspace-refresh notifications. That gap left workspaceContext stale
     // until finishOnboarding fired it later, so Home's rail briefly rendered
-    // in its signed-out shape (still showing "Sign in to use SaaSCodex
+    // in its signed-out shape (still showing "Sign in to use SplatStudio
     // Cloud") right after a successful onboarding sign-in.
     const { WORKSPACE_CONTEXT_REFRESH_EVENT, WORKSPACE_BILLING_REFRESH_EVENT, TEAM_PROJECTS_CHANGED_EVENT } =
       await import('../../src/collab/useWorkspaceContext');
@@ -2133,7 +2133,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     });
   });
 
-  it('continues normally when SaaSCodex AMR is signed in', async () => {
+  it('continues normally when SplatStudio AMR is signed in', async () => {
     globalThis.fetch = vi.fn(async () =>
       jsonResponse({
         loggedIn: true,
@@ -2486,13 +2486,13 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
       onRefreshAgents: vi.fn(() => [cliAgent()]),
     });
 
-    expect(screen.getByRole('heading', { name: 'Welcome to SaaSCodex' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Welcome to SplatStudio' })).toBeTruthy();
     const primary = screen.getByRole('button', { name: /Loading/i });
     expect(primary).toBeTruthy();
     expect(primary.getAttribute('aria-busy')).toBe('true');
     expect((primary as HTMLButtonElement).disabled).toBe(true);
     expect(document.querySelector('.onboarding-view__card--skeleton')).toBeNull();
-    expect(screen.queryByRole('button', { name: /SaaSCodex AMR/i })).toBeNull();
+    expect(screen.queryByRole('button', { name: /SplatStudio AMR/i })).toBeNull();
     expect(
       (screen.getByRole('button', { name: /Local AI/i }) as HTMLButtonElement).disabled,
     ).toBe(false);
@@ -2508,7 +2508,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     renderOnboarding({ agentsLoading: false });
 
     expect(await findCloudSignInButton()).toBeTruthy();
-    expect(screen.queryByRole('button', { name: /SaaSCodex AMR/i })).toBeNull();
+    expect(screen.queryByRole('button', { name: /SplatStudio AMR/i })).toBeNull();
     expect(document.querySelector('.onboarding-view__card--skeleton')).toBeNull();
   });
 
@@ -2525,7 +2525,7 @@ describe('EntryShell onboarding SaaSCodex AMR runtime', () => {
     expect(
       await screen.findByRole('button', { name: /Sign in \/ Sign up/i }),
     ).toBeTruthy();
-    expect(screen.queryByRole('button', { name: /SaaSCodex AMR/i })).toBeNull();
+    expect(screen.queryByRole('button', { name: /SplatStudio AMR/i })).toBeNull();
     expect(document.querySelector('.onboarding-view__card--skeleton')).toBeNull();
   });
 

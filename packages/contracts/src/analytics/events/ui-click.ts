@@ -74,7 +74,7 @@ export interface ExecutionSettingsPopoverClickProps {
 }
 
 // Items inside the header gear settings popover (EntrySettingsMenu): the
-// interface-language select, the "Share SaaSCodex" social grid, the Discord /
+// interface-language select, the "Share SplatStudio" social grid, the Discord /
 // social follow links and the Settings → details entry. The same popover is
 // mounted both on the home header and the in-project artifact header, hence the
 // two-value page_name.
@@ -941,7 +941,7 @@ export interface QuestionsFormClickProps {
 }
 
 // Hosted-AMR nudge shown under a non-AMR agent's model/auth/quota failure.
-// `go_amr` is the link that opens https://saascodex.com/cloud/dashboard.
+// `go_amr` is the link that opens https://splatstudio.app/cloud/dashboard.
 export interface RunFailedToastClickProps {
   page_name: 'chat_panel';
   area: 'chat_panel';
@@ -1315,7 +1315,7 @@ export interface HandoffClickProps {
     | 'open_editor'
     // Copy the hand-off prompt for a specific CLI agent.
     | 'copy_cli_prompt'
-    // Open the SaaSCodex AMR website link.
+    // Open the SplatStudio AMR website link.
     | 'amr_website';
   // Bounded enum id of the editor / CLI target, present for `open_editor`,
   // `copy_cli_prompt`, and for `trigger` when it directly launches the

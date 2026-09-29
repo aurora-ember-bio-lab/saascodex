@@ -1,9 +1,9 @@
-import type { UpdateLifecycleObservation } from "@saascodex/desktop/main";
+import type { UpdateLifecycleObservation } from "@splatstudio/desktop/main";
 import { appendFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 
-import { stopProcesses, waitForProcessExit, type StopProcessesResult } from "@saascodex/platform";
-import { compareLauncherVersions, type LauncherAfterQuitRequest } from "@saascodex/launcher-proto";
+import { stopProcesses, waitForProcessExit, type StopProcessesResult } from "@splatstudio/platform";
+import { compareLauncherVersions, type LauncherAfterQuitRequest } from "@splatstudio/launcher-proto";
 import {
   APP_KEYS,
   SIDECAR_MESSAGES,
@@ -11,13 +11,13 @@ import {
   SIDECAR_SOURCES,
   type AppKey,
   type DesktopStatusSnapshot,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import {
   getSidecarStatus,
   invokeSidecar,
   stopSidecar,
   type SidecarStamp,
-} from "@saascodex/sidecar";
+} from "@splatstudio/sidecar";
 
 import type { PackagedNamespacePaths } from "./paths.js";
 
@@ -137,7 +137,7 @@ async function forceStopLingeringDesktop(
   const outcome = !gone ? "survived" : result.forcedPids.includes(pid) ? "sigkill" : "sigterm";
   const message = `force-stop ${context} pid=${pid} outcome=${outcome}`;
   await writeLauncherAfterQuitLog(paths, message);
-  if (!gone) logger.warn(`[saascodex launcher] ${message}`);
+  if (!gone) logger.warn(`[splatstudio launcher] ${message}`);
   return gone;
 }
 
@@ -163,7 +163,7 @@ async function restartExistingDesktop(
   } catch (error) {
     const message = `inspect-found-existing namespace=${input.namespace} shutdown=failed reason=${input.reason} error=${error instanceof Error ? error.message : String(error)}`;
     await writeLauncherAfterQuitLog(input.paths, message);
-    input.logger.warn(`[saascodex launcher] ${message}`);
+    input.logger.warn(`[splatstudio launcher] ${message}`);
     return false;
   }
 }
@@ -208,7 +208,7 @@ export async function waitForLauncherAfterQuit(
   // Force it off so the relaunched app binds cleanly instead of skewing.
   const message = `timed-out targetPid=${request.targetPid}; forcing stop`;
   await writeLauncherAfterQuitLog(paths, message);
-  logger.warn(`[saascodex launcher] ${message}`);
+  logger.warn(`[splatstudio launcher] ${message}`);
   const stopped = await forceStopLingeringDesktop(request.targetPid, "after-quit-timeout", paths, logger, stop);
   await report(stopped ? "forced" : "failed");
   return stopped;
@@ -247,7 +247,7 @@ export async function inspectExistingDesktopForLauncher(
     }
     const message = `inspect-unavailable namespace=${namespace} action=continue error=${lastError instanceof Error ? lastError.message : String(lastError)}`;
     await writeLauncherAfterQuitLog(options.paths, message);
-    logger.info?.(`[saascodex launcher] ${message}`);
+    logger.info?.(`[splatstudio launcher] ${message}`);
     return { action: "continue", reason: "inspect-failed" };
   }
   const { stamp: inspectedStamp, status } = ownerInspection.running;
@@ -359,7 +359,7 @@ export async function inspectExistingDesktopForLauncher(
   } catch (error) {
     const message = `inspect-found-existing namespace=${namespace} focus=failed error=${error instanceof Error ? error.message : String(error)}`;
     await writeLauncherAfterQuitLog(options.paths, message);
-    logger.warn(`[saascodex launcher] ${message}`);
+    logger.warn(`[splatstudio launcher] ${message}`);
     return { action: "exit", reason: "existing-focus-failed" };
   }
 }

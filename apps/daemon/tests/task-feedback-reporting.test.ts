@@ -25,9 +25,9 @@ const context = (): FeedbackReportContext & { traceId: string } => ({
 describe('Task-owned feedback', () => {
   beforeEach(() => {
     config.telemetry.content = true;
-    vi.stubEnv('SAASCODEX_TELEMETRY_RELAY_URL', 'https://relay.example/api/langfuse');
-    vi.stubEnv('SAASCODEX_TELEMETRY_RETRIES', '0');
-    vi.stubEnv('SAASCODEX_VELA_TELEMETRY', '1');
+    vi.stubEnv('SPLATSTUDIO_TELEMETRY_RELAY_URL', 'https://relay.example/api/langfuse');
+    vi.stubEnv('SPLATSTUDIO_TELEMETRY_RETRIES', '0');
+    vi.stubEnv('SPLATSTUDIO_VELA_TELEMETRY', '1');
     vi.stubEnv('VELA_CONTROL_KEY', 'synthetic-control-key');
     vi.stubEnv('VELA_API_URL', 'https://vela.example');
   });

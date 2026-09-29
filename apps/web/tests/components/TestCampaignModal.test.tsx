@@ -14,9 +14,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 type CampaignHostGlobal = typeof globalThis & {
 	__openDesignCampaignTestHost?: unknown;
 };
-vi.mock("@saascodex/host", () => ({
-	SAASCODEX_HOST_VERSION: 2,
-	getSaaSCodexHost: () =>
+vi.mock("@splatstudio/host", () => ({
+	SPLATSTUDIO_HOST_VERSION: 2,
+	getSplatStudioHost: () =>
 		(globalThis as CampaignHostGlobal).__openDesignCampaignTestHost,
 }));
 
@@ -31,7 +31,7 @@ import {
 	useTestRuntime,
 } from "../../src/components/TestCampaignModal";
 import * as touchpointComponent from "../../src/components/touchpoint-component";
-import { SaaSCodexTouchpointElement } from "../../src/components/touchpoint-component";
+import { SplatStudioTouchpointElement } from "../../src/components/touchpoint-component";
 
 const digest = (value: string) =>
 	`sha256:${createHash("sha256").update(value).digest("hex")}`;
@@ -266,7 +266,7 @@ describe("TestCampaignModal", () => {
 			dispose: vi.fn(),
 		} as never);
 		vi.spyOn(
-			SaaSCodexTouchpointElement.prototype,
+			SplatStudioTouchpointElement.prototype,
 			"mount",
 		).mockResolvedValue();
 		vi.stubGlobal("fetch", fetches());
@@ -284,18 +284,18 @@ describe("TestCampaignModal", () => {
 		trigger.remove();
 	});
 	it("SDK requestClose clears the active decision and disposes its custom element", async () => {
-		const { SaaSCodexTouchpointElement } = await import(
+		const { SplatStudioTouchpointElement } = await import(
 			"../../src/components/touchpoint-component"
 		);
 		let requestClose: (() => void) | undefined;
 		const mount = vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 			.mockImplementation(
 				async (_entry, _digest, _context, _resources, _actions, options) => {
 					requestClose = options?.requestClose;
 				},
 			);
-		const dispose = vi.spyOn(SaaSCodexTouchpointElement.prototype, "dispose");
+		const dispose = vi.spyOn(SplatStudioTouchpointElement.prototype, "dispose");
 		vi.stubGlobal("fetch", fetches());
 		render(<TestCampaignHarness authenticated />);
 		await screen.findByTestId("touchpoint-test-selector");
@@ -341,7 +341,7 @@ describe("TestCampaignModal host guards", () => {
 			resourceUrls: new Map(),
 			dispose: vi.fn(),
 		} as never);
-		vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockResolvedValue();
+		vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockResolvedValue();
 		const firstDecision = runtime() as TestDecision;
 		authorizeMount(firstDecision);
 		render(<ProductionCampaignModal authenticated sessionSubject={subject} />);
@@ -364,8 +364,8 @@ describe("TestCampaignModal host guards", () => {
 			resourceUrls: new Map(),
 			dispose: vi.fn(),
 		} as never);
-		vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(
-			async function (this: SaaSCodexTouchpointElement) {
+		vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(
+			async function (this: SplatStudioTouchpointElement) {
 				closeControl = document.createElement("button");
 				closeControl.dataset.touchpointClose = "true";
 				closeControl.disabled = true;
@@ -402,8 +402,8 @@ describe("TestCampaignModal host guards", () => {
 			resourceUrls: new Map(),
 			dispose: vi.fn(),
 		} as never);
-		vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(
-			async function (this: SaaSCodexTouchpointElement) {
+		vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(
+			async function (this: SplatStudioTouchpointElement) {
 				mountCount += 1;
 				if (mountCount === 1) {
 					await new Promise<never>((_, reject) => {
@@ -880,8 +880,8 @@ describe("Test campaign four-placement contract", () => {
 		});
 		vi.stubGlobal("fetch", fetchMock);
 		const mount = vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
-			.mockImplementation(async function (this: SaaSCodexTouchpointElement) {
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
+			.mockImplementation(async function (this: SplatStudioTouchpointElement) {
 				this.shadowRoot?.replaceChildren(
 					document.createTextNode("Verified campaign"),
 				);

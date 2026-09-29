@@ -1,9 +1,9 @@
 {
-  "name": "@saascodex/contracts",
+  "name": "@splatstudio/contracts",
   "version": "0.23.1",
   "private": true,
   "type": "module",
-  "description": "Shared pure TypeScript contracts for the SaaSCodex web/daemon boundary.",
+  "description": "Shared pure TypeScript contracts for the SplatStudio web/daemon boundary.",
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -109,7 +109,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/release": "workspace:*",
+    "@splatstudio/release": "workspace:*",
     "zod": "3.25.76"
   },
   "devDependencies": {

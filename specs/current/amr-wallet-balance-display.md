@@ -2,16 +2,16 @@
 
 ## Purpose
 
-SaaSCodex should show the signed-in AMR wallet balance inside the local
+SplatStudio should show the signed-in AMR wallet balance inside the local
 client so users can understand why AMR runs are available, low on balance, or
 blocked by AMR billing.
 
 This spec defines the first vertical slice. It intentionally keeps wallet
-truth in Vela/AMR and does not add a new SaaSCodex billing model.
+truth in Vela/AMR and does not add a new SplatStudio billing model.
 
 ## Problem Statement
 
-The SaaSCodex client can show that the user is signed in to AMR, but it does
+The SplatStudio client can show that the user is signed in to AMR, but it does
 not show the AMR wallet balance. Users discover balance issues only after a
 run fails or enters AMR Cloud Recovery.
 
@@ -21,7 +21,7 @@ costs:
 - Vela API exposes the wallet ledger balance from `credit_balances`.
 - Link owns the Redis projection used for model-call preflight and pending
   usage.
-- SaaSCodex daemon owns AMR local auth, CLI config, run preflight, and the
+- SplatStudio daemon owns AMR local auth, CLI config, run preflight, and the
   web/CLI surfaces.
 
 The accepted v1 tradeoff is to show the Vela API ledger balance and accept a
@@ -29,11 +29,11 @@ short inconsistency window while Link has pending usage in Redis.
 
 ## Goals
 
-- Show AMR wallet balance in SaaSCodex after the user signs in to AMR.
-- Keep SaaSCodex balance display sourced from Vela API, not from Link Redis.
+- Show AMR wallet balance in SplatStudio after the user signs in to AMR.
+- Keep SplatStudio balance display sourced from Vela API, not from Link Redis.
 - Avoid adding an API-to-Link read path for wallet display.
 - Avoid adding Redis to the Vela API service for this feature.
-- Avoid excess DB reads from the SaaSCodex client by adding daemon-side short
+- Avoid excess DB reads from the SplatStudio client by adding daemon-side short
   TTL caching and request coalescing.
 - Keep run authorization owned by Link `CreditGuard.Check()`.
 - Make UI copy clear that the displayed value is wallet balance, not a
@@ -44,33 +44,33 @@ short inconsistency window while Link has pending usage in Redis.
 
 - Do not show full subscription/package management in v1.
 - Do not show usage history, recharge history, billing summary, or checkout
-  controls inside SaaSCodex.
-- Do not read Link Redis from Vela API or SaaSCodex.
+  controls inside SplatStudio.
+- Do not read Link Redis from Vela API or SplatStudio.
 - Do not make UI balance a run admission decision.
 - Do not promise that the displayed balance already subtracts in-flight pending
   usage.
-- Do not add a new SaaSCodex billing database, wallet store, or persisted
+- Do not add a new SplatStudio billing database, wallet store, or persisted
   balance cache.
 - Do not allow runtime keys to read wallet balance unless Vela API explicitly
   chooses that as a separate security decision.
 
 ## Accepted Product Semantics
 
-SaaSCodex displays the AMR ledger wallet balance returned by Vela API.
+SplatStudio displays the AMR ledger wallet balance returned by Vela API.
 
 This balance may briefly differ from Link's runtime projection while one or
 more model requests are in flight. That inconsistency is acceptable for v1.
 
 Run start and model calls still rely on Link's runtime balance projection. If
 the displayed wallet balance appears positive but Link rejects a run for
-insufficient balance, SaaSCodex should show the existing insufficient-balance
+insufficient balance, SplatStudio should show the existing insufficient-balance
 or AMR Cloud Recovery surface.
 
 ## Existing Context
 
-### SaaSCodex
+### SplatStudio
 
-SaaSCodex currently exposes AMR login status through:
+SplatStudio currently exposes AMR login status through:
 
 ```http
 GET /api/integrations/vela/status
@@ -83,7 +83,7 @@ The web client calls this status endpoint from multiple surfaces, including
 Settings, Chat, EntryShell, and InlineModelSwitcher. Those surfaces must not
 each create independent wallet polling loops.
 
-SaaSCodex's AMR config shape already recognizes profile fields including
+SplatStudio's AMR config shape already recognizes profile fields including
 `controlKey` and `runtimeKey`. Current AMR Cloud Recovery uses `runtimeKey`
 for recovery endpoints. Wallet balance display should use the least-privileged
 key accepted by Vela API.
@@ -107,7 +107,7 @@ The current public response is:
 
 The route currently authenticates browser sessions. Other control-plane routes
 such as `/api/v1/me` accept control keys and reject runtime keys. Wallet
-balance display from SaaSCodex daemon requires the wallet balance route to
+balance display from SplatStudio daemon requires the wallet balance route to
 accept a control key or a narrow equivalent read-only credential path.
 
 Vela API currently has no Redis dependency, Redis client, or `REDIS_*` config.
@@ -123,11 +123,11 @@ Link owns Redis-backed runtime projection through `CreditGuard`:
 - `/internal/credits/projection` lets API correct or invalidate Link's
   projection after settlement or recharge.
 
-SaaSCodex balance display must not read those Redis keys.
+SplatStudio balance display must not read those Redis keys.
 
 ## Required Contract Changes
 
-### SaaSCodex Contracts
+### SplatStudio Contracts
 
 Add a shared account snapshot DTO in `packages/contracts`, for example:
 
@@ -159,7 +159,7 @@ make unavailable and stale states explicit. Do not represent unknown balance as
 
 ### Vela API External Dependency
 
-Extend `GET /api/v1/wallet/balance` so SaaSCodex daemon can call it with the
+Extend `GET /api/v1/wallet/balance` so SplatStudio daemon can call it with the
 AMR control key from the CLI device-login profile.
 
 Rules:
@@ -169,13 +169,13 @@ Rules:
 - Keep runtime-key bearer auth rejected for wallet reads unless separately
   approved.
 - Return the existing response shape unless Vela wants to add optional
-  metadata. SaaSCodex v1 can work with `balanceUsd` and `updatedAt`.
+  metadata. SplatStudio v1 can work with `balanceUsd` and `updatedAt`.
 
-This is an external dependency for the SaaSCodex workstream, not part of the
-SaaSCodex implementation slice. SaaSCodex must still handle the current
+This is an external dependency for the SplatStudio workstream, not part of the
+SplatStudio implementation slice. SplatStudio must still handle the current
 state where this endpoint returns unauthorized for daemon-held credentials.
 
-## SaaSCodex Daemon API
+## SplatStudio Daemon API
 
 Add a daemon route:
 
@@ -305,7 +305,7 @@ insufficient-balance and recovery UI handles the user-facing consequence.
 
 ## DB Load Strategy
 
-The main DB-load mitigation lives in SaaSCodex daemon:
+The main DB-load mitigation lives in SplatStudio daemon:
 
 - one balance endpoint for all web surfaces;
 - short TTL cache;
@@ -321,12 +321,12 @@ follow-up optimization, not v1 scope.
 
 Because v1 display does not read Link Redis:
 
-- Redis outages do not directly affect SaaSCodex wallet display.
+- Redis outages do not directly affect SplatStudio wallet display.
 - Redis outages may still affect Link run admission or model calls.
-- SaaSCodex should keep showing the wallet ledger balance if Vela API is
+- SplatStudio should keep showing the wallet ledger balance if Vela API is
   available, but should not infer that a run can start.
 
-If Link rejects a run because projection is unavailable, SaaSCodex should use
+If Link rejects a run because projection is unavailable, SplatStudio should use
 normal run failure/recovery handling and avoid converting the wallet display
 into a misleading success signal.
 
@@ -342,7 +342,7 @@ into a misleading success signal.
 
 ## Implementation Plan
 
-### Slice 1: SaaSCodex Contracts and Daemon Client
+### Slice 1: SplatStudio Contracts and Daemon Client
 
 - Add `AmrWalletSnapshot` contract type.
 - Extend Vela config helpers to expose a control-key API context without
@@ -378,7 +378,7 @@ External Vela API dependency:
 - `GET /api/v1/wallet/balance` rejects runtime-key bearer auth.
 - OpenAPI and shared schema remain compatible.
 
-SaaSCodex daemon:
+SplatStudio daemon:
 
 - wallet endpoint returns signed-out without upstream call.
 - missing control key returns unavailable, not zero balance.
@@ -388,7 +388,7 @@ SaaSCodex daemon:
 - cache TTL is honored and can be bypassed by refresh.
 - logout invalidates cached wallet snapshot.
 
-SaaSCodex web:
+SplatStudio web:
 
 - Settings AMR card shows balance for signed-in account.
 - Balance unavailable state does not hide AMR Console.
@@ -396,7 +396,7 @@ SaaSCodex web:
 - Components share one snapshot and do not start duplicate polling loops.
 - Existing AMR sign-in and model-list behavior remains intact.
 
-SaaSCodex CLI:
+SplatStudio CLI:
 
 - human status prints account and wallet balance.
 - `--json` prints the snapshot contract.
@@ -407,16 +407,16 @@ SaaSCodex CLI:
 Minimum local validation after implementation:
 
 ```sh
-# SaaSCodex
-pnpm --filter @saascodex/contracts typecheck
-pnpm --filter @saascodex/daemon test
-pnpm --filter @saascodex/web test
+# SplatStudio
+pnpm --filter @splatstudio/contracts typecheck
+pnpm --filter @splatstudio/daemon test
+pnpm --filter @splatstudio/web test
 pnpm guard
 pnpm typecheck
 ```
 
-Do not require Vela repository validation for the SaaSCodex-only workstream.
-If the external Vela dependency is not deployed yet, SaaSCodex validation
+Do not require Vela repository validation for the SplatStudio-only workstream.
+If the external Vela dependency is not deployed yet, SplatStudio validation
 should use mocked upstream responses and verify the unauthorized/unavailable
 states.
 

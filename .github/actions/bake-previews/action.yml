@@ -95,7 +95,7 @@ runs:
       shell: bash
       # Publishes to the repository-assets R2 bucket; the deployed daemon must
       # set OD_PLUGIN_PREVIEWS_BASE_URL to
-      # https://repo-assets.saascodex.com/plugin-previews so its bakedPreview
+      # https://repo-assets.splatstudio.app/plugin-previews so its bakedPreview
       # URLs point here (CLOUDFLARE_R2_REPOSITORY_ASSETS_PUBLIC_ORIGIN).
       env:
         AWS_ACCESS_KEY_ID: ${{ inputs.r2-access-key-id }}

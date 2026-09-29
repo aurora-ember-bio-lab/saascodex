@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { RoleWeights } from '@saascodex/contracts/critique';
+import type { RoleWeights } from '@splatstudio/contracts/critique';
 import { computeComposite, type RoleScores } from '../../src/critique/scoreboard.js';
 
 // Default weights mirror defaultCritiqueConfig() in packages/contracts/src/critique.ts:

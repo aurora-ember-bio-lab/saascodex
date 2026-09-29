@@ -20,7 +20,7 @@ import type {
   LibraryAssetKind,
   LibraryStorage,
   LibrarySourceKind,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   addLibraryAssetSource,
   findLibraryAssetByHash,

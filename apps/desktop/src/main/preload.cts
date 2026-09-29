@@ -1,37 +1,37 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 import type {
-  SaaSCodexHostBridge,
-  SaaSCodexHostActionResult,
-  SaaSCodexHostBrowserClearDataOptions,
-  SaaSCodexHostCaptureOptions,
-  SaaSCodexHostCaptureResult,
-  SaaSCodexHostFailure,
-  SaaSCodexHostProjectImportResult,
-  SaaSCodexHostProjectImportInit,
-  SaaSCodexHostProjectReplaceWorkingDirResult,
-  SaaSCodexHostPickWorkingDirResult,
-  SaaSCodexHostPreviewNavigationFailure,
-  SaaSCodexHostPreviewNavigationFailureListener,
-  SaaSCodexHostUpdaterActionOptions,
-  SaaSCodexHostUpdaterMenuLabels,
-  SaaSCodexHostUpdaterOpenDialogListener,
-  SaaSCodexHostUpdaterOpenDialogRequest,
-  SaaSCodexHostUpdaterStatusListener,
-  SaaSCodexHostUpdaterStatusSnapshot,
-} from '@saascodex/host';
+  SplatStudioHostBridge,
+  SplatStudioHostActionResult,
+  SplatStudioHostBrowserClearDataOptions,
+  SplatStudioHostCaptureOptions,
+  SplatStudioHostCaptureResult,
+  SplatStudioHostFailure,
+  SplatStudioHostProjectImportResult,
+  SplatStudioHostProjectImportInit,
+  SplatStudioHostProjectReplaceWorkingDirResult,
+  SplatStudioHostPickWorkingDirResult,
+  SplatStudioHostPreviewNavigationFailure,
+  SplatStudioHostPreviewNavigationFailureListener,
+  SplatStudioHostUpdaterActionOptions,
+  SplatStudioHostUpdaterMenuLabels,
+  SplatStudioHostUpdaterOpenDialogListener,
+  SplatStudioHostUpdaterOpenDialogRequest,
+  SplatStudioHostUpdaterStatusListener,
+  SplatStudioHostUpdaterStatusSnapshot,
+} from '@splatstudio/host';
 
-const SAASCODEX_HOST_GLOBAL: typeof import('@saascodex/host').SAASCODEX_HOST_GLOBAL = '__od__';
-const SAASCODEX_HOST_VERSION: typeof import('@saascodex/host').SAASCODEX_HOST_VERSION = 2;
+const SPLATSTUDIO_HOST_GLOBAL: typeof import('@splatstudio/host').SPLATSTUDIO_HOST_GLOBAL = '__od__';
+const SPLATSTUDIO_HOST_VERSION: typeof import('@splatstudio/host').SPLATSTUDIO_HOST_VERSION = 2;
 const UPDATER_STATUS_EVENT = 'od:update:status-changed';
 const UPDATER_OPEN_DIALOG_EVENT = 'od:update:open-dialog';
 const APP_CONFIG_CHANGED_IPC_CHANNEL = 'od:app-config-changed';
-const APP_CONFIG_CHANGED_EVENT = 'saascodex:app-config-changed';
+const APP_CONFIG_CHANGED_EVENT = 'splatstudio:app-config-changed';
 const PREVIEW_NAVIGATION_FAILURE_IPC_CHANNEL = 'od:preview-navigation-failed';
 
 // Mirror of the argv prefix used by main's `applyOsLocaleSwitch` and
 // runtime's `additionalArguments`. Duplicated literal on purpose: the
-// preload bundle must not pull in `@saascodex/desktop/main` (it
+// preload bundle must not pull in `@splatstudio/desktop/main` (it
 // transitively requires non-electron node modules that the sandboxed
 // preload can't load).
 const OS_LOCALE_ARG_PREFIX = '--od-os-locale=';
@@ -63,7 +63,7 @@ function reasonFromError(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-function failure(reason: string, details?: unknown): SaaSCodexHostFailure {
+function failure(reason: string, details?: unknown): SplatStudioHostFailure {
   return {
     ...(details === undefined ? {} : { details }),
     ok: false,
@@ -71,19 +71,19 @@ function failure(reason: string, details?: unknown): SaaSCodexHostFailure {
   };
 }
 
-function actionFailure(reason: string, details?: unknown): SaaSCodexHostActionResult {
+function actionFailure(reason: string, details?: unknown): SplatStudioHostActionResult {
   return failure(reason, details);
 }
 
-function importFailure(reason: string): SaaSCodexHostProjectImportResult {
+function importFailure(reason: string): SplatStudioHostProjectImportResult {
   return failure(reason);
 }
 
-function replaceWorkingDirFailure(reason: string): SaaSCodexHostProjectReplaceWorkingDirResult {
+function replaceWorkingDirFailure(reason: string): SplatStudioHostProjectReplaceWorkingDirResult {
   return failure(reason);
 }
 
-function normalizeProjectReplaceWorkingDirResult(input: unknown): SaaSCodexHostProjectReplaceWorkingDirResult {
+function normalizeProjectReplaceWorkingDirResult(input: unknown): SplatStudioHostProjectReplaceWorkingDirResult {
   if (!isRecord(input)) return failure('desktop working-dir replace returned an invalid response', input);
   if (input.ok !== true) {
     if (input.canceled === true) return { canceled: true, ok: false };
@@ -105,11 +105,11 @@ function normalizeProjectReplaceWorkingDirResult(input: unknown): SaaSCodexHostP
   return { baseDir, entryFile, ok: true };
 }
 
-function pickWorkingDirFailure(reason: string): SaaSCodexHostPickWorkingDirResult {
+function pickWorkingDirFailure(reason: string): SplatStudioHostPickWorkingDirResult {
   return failure(reason);
 }
 
-function normalizePickWorkingDirResult(input: unknown): SaaSCodexHostPickWorkingDirResult {
+function normalizePickWorkingDirResult(input: unknown): SplatStudioHostPickWorkingDirResult {
   if (!isRecord(input)) return failure('desktop working-dir pick returned an invalid response', input);
   if (input.ok !== true) {
     if (input.canceled === true) return { canceled: true, ok: false };
@@ -126,7 +126,7 @@ function normalizePickWorkingDirResult(input: unknown): SaaSCodexHostPickWorking
   return { baseDir, ok: true, token };
 }
 
-function normalizeProjectImportResult(input: unknown): SaaSCodexHostProjectImportResult {
+function normalizeProjectImportResult(input: unknown): SplatStudioHostProjectImportResult {
   if (!isRecord(input)) return failure('desktop import returned an invalid response', input);
   if (input.ok !== true) {
     if (input.canceled === true) return { canceled: true, ok: false };
@@ -182,23 +182,23 @@ type DesktopDiagnosticsExportResult =
 
 const project = {
   pickAndImport: (
-    init?: SaaSCodexHostProjectImportInit,
-  ): Promise<SaaSCodexHostProjectImportResult> =>
+    init?: SplatStudioHostProjectImportInit,
+  ): Promise<SplatStudioHostProjectImportResult> =>
     ipcRenderer.invoke('dialog:pick-and-import', init ?? null)
       .then(normalizeProjectImportResult)
       .catch((error: unknown) => importFailure(reasonFromError(error))),
-  pickAndReplaceWorkingDir: (projectId: string): Promise<SaaSCodexHostProjectReplaceWorkingDirResult> =>
+  pickAndReplaceWorkingDir: (projectId: string): Promise<SplatStudioHostProjectReplaceWorkingDirResult> =>
     ipcRenderer.invoke('dialog:pick-and-replace-working-dir', { projectId })
       .then(normalizeProjectReplaceWorkingDirResult)
       .catch((error: unknown) => replaceWorkingDirFailure(reasonFromError(error))),
-  pickWorkingDir: (): Promise<SaaSCodexHostPickWorkingDirResult> =>
+  pickWorkingDir: (): Promise<SplatStudioHostPickWorkingDirResult> =>
     ipcRenderer.invoke('dialog:pick-working-dir')
       .then(normalizePickWorkingDirResult)
       .catch((error: unknown) => pickWorkingDirFailure(reasonFromError(error))),
 };
 
 const shell = {
-  openExternal: async (url: string): Promise<SaaSCodexHostActionResult> => {
+  openExternal: async (url: string): Promise<SplatStudioHostActionResult> => {
     try {
       const opened = await ipcRenderer.invoke('shell:open-external', url);
       return opened === true
@@ -216,7 +216,7 @@ const shell = {
   // to be true (set by the HMAC-gated import flow), so renderer code
   // cannot ask the bridge to open arbitrary local paths even
   // indirectly through legacy or future project-creation routes.
-  openPath: async (projectId: string): Promise<SaaSCodexHostActionResult> => {
+  openPath: async (projectId: string): Promise<SplatStudioHostActionResult> => {
     try {
       const result = await ipcRenderer.invoke('shell:open-path', projectId);
       if (typeof result === 'string' && result.length > 0) return actionFailure(result);
@@ -228,7 +228,7 @@ const shell = {
 };
 
 const browser = {
-  clearData: async (options?: SaaSCodexHostBrowserClearDataOptions): Promise<SaaSCodexHostActionResult> => {
+  clearData: async (options?: SplatStudioHostBrowserClearDataOptions): Promise<SplatStudioHostActionResult> => {
     try {
       return await ipcRenderer.invoke('browser:clear-data', options ?? null);
     } catch (error) {
@@ -238,7 +238,7 @@ const browser = {
 };
 
 const capture = {
-  page: async (options?: SaaSCodexHostCaptureOptions): Promise<SaaSCodexHostCaptureResult> => {
+  page: async (options?: SplatStudioHostCaptureOptions): Promise<SplatStudioHostCaptureResult> => {
     try {
       return await ipcRenderer.invoke('od:capture-page', options ?? null);
     } catch (error) {
@@ -247,12 +247,12 @@ const capture = {
   },
 };
 
-let latestPreviewNavigationFailure: SaaSCodexHostPreviewNavigationFailure | null = null;
-const previewNavigationFailureListeners = new Set<SaaSCodexHostPreviewNavigationFailureListener>();
+let latestPreviewNavigationFailure: SplatStudioHostPreviewNavigationFailure | null = null;
+const previewNavigationFailureListeners = new Set<SplatStudioHostPreviewNavigationFailureListener>();
 
 ipcRenderer.on(PREVIEW_NAVIGATION_FAILURE_IPC_CHANNEL, (
   _event: unknown,
-  failure: SaaSCodexHostPreviewNavigationFailure,
+  failure: SplatStudioHostPreviewNavigationFailure,
 ): void => {
   if (
     failure == null
@@ -275,10 +275,10 @@ ipcRenderer.on(PREVIEW_NAVIGATION_FAILURE_IPC_CHANNEL, (
 });
 
 const preview = {
-  getLatestNavigationFailure: (): SaaSCodexHostPreviewNavigationFailure | null =>
+  getLatestNavigationFailure: (): SplatStudioHostPreviewNavigationFailure | null =>
     latestPreviewNavigationFailure,
   subscribeNavigationFailure: (
-    listener: SaaSCodexHostPreviewNavigationFailureListener,
+    listener: SplatStudioHostPreviewNavigationFailureListener,
   ): (() => void) => {
     previewNavigationFailureListeners.add(listener);
     return () => {
@@ -289,38 +289,38 @@ const preview = {
 
 function invokeUpdater(
   action: 'check' | 'clear-cache' | 'download' | 'install' | 'status',
-  options?: SaaSCodexHostUpdaterActionOptions,
-): Promise<SaaSCodexHostUpdaterStatusSnapshot> {
+  options?: SplatStudioHostUpdaterActionOptions,
+): Promise<SplatStudioHostUpdaterStatusSnapshot> {
   return ipcRenderer.invoke(`od:update:${action}`, options ?? null);
 }
 
 const updater = {
-  check: (options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot> =>
+  check: (options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot> =>
     invokeUpdater('check', options),
-  'clear-cache': (options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot> =>
+  'clear-cache': (options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot> =>
     invokeUpdater('clear-cache', options),
-  download: (options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot> =>
+  download: (options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot> =>
     invokeUpdater('download', options),
-  install: (options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot> =>
+  install: (options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot> =>
     invokeUpdater('install', options),
-  quit: async (options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostActionResult> => {
+  quit: async (options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostActionResult> => {
     try {
       return await ipcRenderer.invoke('od:update:quit', options ?? null);
     } catch (error) {
       return actionFailure(reasonFromError(error));
     }
   },
-  setMenuLabels: async (labels: SaaSCodexHostUpdaterMenuLabels): Promise<SaaSCodexHostActionResult> => {
+  setMenuLabels: async (labels: SplatStudioHostUpdaterMenuLabels): Promise<SplatStudioHostActionResult> => {
     try {
       return await ipcRenderer.invoke('od:update:set-menu-labels', labels);
     } catch (error) {
       return actionFailure(reasonFromError(error));
     }
   },
-  status: (options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot> =>
+  status: (options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot> =>
     invokeUpdater('status', options),
-  subscribe: (listener: SaaSCodexHostUpdaterStatusListener): (() => void) => {
-    const handler = (_event: unknown, status: SaaSCodexHostUpdaterStatusSnapshot): void => {
+  subscribe: (listener: SplatStudioHostUpdaterStatusListener): (() => void) => {
+    const handler = (_event: unknown, status: SplatStudioHostUpdaterStatusSnapshot): void => {
       listener(status);
     };
     ipcRenderer.on(UPDATER_STATUS_EVENT, handler);
@@ -328,8 +328,8 @@ const updater = {
       ipcRenderer.removeListener(UPDATER_STATUS_EVENT, handler);
     };
   },
-  subscribeOpenDialog: (listener: SaaSCodexHostUpdaterOpenDialogListener): (() => void) => {
-    const handler = (_event: unknown, request: SaaSCodexHostUpdaterOpenDialogRequest): void => {
+  subscribeOpenDialog: (listener: SplatStudioHostUpdaterOpenDialogListener): (() => void) => {
+    const handler = (_event: unknown, request: SplatStudioHostUpdaterOpenDialogRequest): void => {
       if (request == null || typeof request !== 'object' || typeof request.source !== 'string') return;
       listener({ source: request.source });
     };
@@ -347,7 +347,7 @@ ipcRenderer.on(APP_CONFIG_CHANGED_IPC_CHANNEL, () => {
 });
 
 const hostBridge = {
-  version: SAASCODEX_HOST_VERSION,
+  version: SPLATSTUDIO_HOST_VERSION,
   client: {
     type: 'desktop',
     platform: process.platform,
@@ -365,7 +365,7 @@ const hostBridge = {
   preview,
   project,
   pdf: {
-    print: async (html: string, nonce?: string, options?: PrintPdfOptions): Promise<SaaSCodexHostActionResult> => {
+    print: async (html: string, nonce?: string, options?: PrintPdfOptions): Promise<SplatStudioHostActionResult> => {
       try {
         await ipcRenderer.invoke('od:print-pdf', html, nonce, options ?? null);
         return { ok: true };
@@ -379,9 +379,9 @@ const hostBridge = {
       ipcRenderer.send('desktop-pet:set-visible', Boolean(visible)),
   },
   updater,
-} satisfies SaaSCodexHostBridge;
+} satisfies SplatStudioHostBridge;
 
-contextBridge.exposeInMainWorld(SAASCODEX_HOST_GLOBAL, hostBridge);
+contextBridge.exposeInMainWorld(SPLATSTUDIO_HOST_GLOBAL, hostBridge);
 
 contextBridge.exposeInMainWorld('openDesignDesktop', {
   exportDiagnostics: (): Promise<DesktopDiagnosticsExportResult> =>

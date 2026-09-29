@@ -1,4 +1,4 @@
-import type { SaaSCodexHostProjectImportResult } from '@saascodex/host';
+import type { SplatStudioHostProjectImportResult } from '@splatstudio/host';
 
 /**
  * Best-effort flattening of the `details` field that the
@@ -31,7 +31,7 @@ export function formatPickAndImportErrorDetails(details: unknown): string | unde
 }
 
 export function formatPickAndImportFailure(
-  result: SaaSCodexHostProjectImportResult,
+  result: SplatStudioHostProjectImportResult,
 ): { message: string; details?: string } {
   const reason = 'reason' in result && typeof result.reason === 'string'
     ? result.reason

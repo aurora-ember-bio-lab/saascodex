@@ -6,7 +6,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 const registryMocks = vi.hoisted(() => ({
   fetchProjectFileText: vi.fn(),

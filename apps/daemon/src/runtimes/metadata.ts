@@ -41,7 +41,7 @@ const AGENT_INSTALL_LINKS: Record<
   },
   kimi: {
     installUrl: 'https://github.com/MoonshotAI/kimi-cli',
-    docsUrl: 'https://www.kimi.com/code/docs/en/kimi-cli/guides/getting-started.html?aff=saascodex',
+    docsUrl: 'https://www.kimi.com/code/docs/en/kimi-cli/guides/getting-started.html?aff=splatstudio',
   },
   'cursor-agent': {
     installUrl: 'https://cursor.com/docs/cli/overview',

@@ -2,7 +2,7 @@
 
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { InstalledPluginRecord, PluginSourceKind, TrustTier } from '@saascodex/contracts';
+import type { InstalledPluginRecord, PluginSourceKind, TrustTier } from '@splatstudio/contracts';
 import { PluginsView } from '../../src/components/PluginsView';
 import {
   addPluginMarketplace,
@@ -85,7 +85,7 @@ function makePlugin(
   };
   if (sourceKind === 'bundled') {
     record.sourceMarketplaceId = 'official';
-    record.sourceMarketplaceEntryName = `saascodex/${id}`;
+    record.sourceMarketplaceEntryName = `splatstudio/${id}`;
     record.sourceMarketplaceEntryVersion = record.version;
     record.marketplaceTrust = 'official';
   }
@@ -112,7 +112,7 @@ beforeEach(() => {
   mockedListMarketplaces.mockResolvedValue([
     {
       id: 'catalog-1',
-      url: 'https://example.com/saascodex-marketplace.json',
+      url: 'https://example.com/splatstudio-marketplace.json',
       trust: 'official',
       manifest: {
         name: 'Example Catalog',
@@ -127,7 +127,7 @@ beforeEach(() => {
             tags: ['deck'],
           },
           {
-            name: 'saascodex/official-plugin',
+            name: 'splatstudio/official-plugin',
             title: 'Official Plugin',
             title_i18n: { 'zh-CN': '官方看板' },
             source: 'github:nexu-io/open-design@main/plugins/_official/examples/official-plugin',
@@ -245,14 +245,14 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'official',
-        url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
+        url: 'https://splatstudio.app/marketplace/splatstudio-marketplace.json',
         trust: 'official',
         manifest: {
-          name: 'SaaSCodex Official',
+          name: 'SplatStudio Official',
           version: '1.0.0',
           plugins: [
             {
-              name: 'saascodex/official-plugin',
+              name: 'splatstudio/official-plugin',
               title: 'Official Plugin',
               title_i18n: { 'zh-CN': '官方看板' },
               source: 'github:nexu-io/open-design@main/plugins/_official/examples/official-plugin',
@@ -277,7 +277,7 @@ describe('PluginsView', () => {
     expect(await screen.findByText('官方看板')).toBeTruthy();
     expect(screen.queryByText('Remote Plugin')).toBeNull();
 
-    fireEvent.click(screen.getByTestId('plugins-available-install-saascodex/official-plugin'));
+    fireEvent.click(screen.getByTestId('plugins-available-install-splatstudio/official-plugin'));
 
     expect(onUsePlugin).toHaveBeenCalledWith(expect.objectContaining({
       id: 'official-plugin',
@@ -291,14 +291,14 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'team-catalog',
-        url: 'https://team.example.com/saascodex-marketplace.json',
+        url: 'https://team.example.com/splatstudio-marketplace.json',
         trust: 'restricted',
         manifest: {
           name: 'Team Catalog',
           version: '1.0.0',
           plugins: [
             {
-              name: 'saascodex/official-plugin',
+              name: 'splatstudio/official-plugin',
               title: 'Team Official Plugin',
               source: 'github:team/official-plugin',
               version: '2.0.0',
@@ -315,7 +315,7 @@ describe('PluginsView', () => {
     fireEvent.click(await screen.findByTestId('plugins-tab-available'));
     expect(await screen.findByText('Team Official Plugin')).toBeTruthy();
 
-    const install = screen.getByTestId('plugins-available-install-saascodex/official-plugin');
+    const install = screen.getByTestId('plugins-available-install-splatstudio/official-plugin');
     expect(install.textContent).toBe('Use');
     fireEvent.click(install);
 
@@ -490,7 +490,7 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'official',
-        url: 'https://example.com/saascodex-marketplace.json',
+        url: 'https://example.com/splatstudio-marketplace.json',
         trust: 'official',
         manifest: {
           name: 'Official Registry',
@@ -560,7 +560,7 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'official',
-        url: 'https://example.com/saascodex-marketplace.json',
+        url: 'https://example.com/splatstudio-marketplace.json',
         trust: 'official',
         manifest: {
           name: 'Official Registry',
@@ -608,7 +608,7 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'catalog-1',
-        url: 'https://example.com/saascodex-marketplace.json',
+        url: 'https://example.com/splatstudio-marketplace.json',
         trust: 'official',
         manifest: {
           name: 'Example Catalog',
@@ -625,7 +625,7 @@ describe('PluginsView', () => {
       },
       {
         id: 'catalog-2',
-        url: 'https://team.example.com/saascodex-marketplace.json',
+        url: 'https://team.example.com/splatstudio-marketplace.json',
         trust: 'restricted',
         manifest: {
           name: 'Team Catalog',
@@ -675,7 +675,7 @@ describe('PluginsView', () => {
       'Marketplace Plugin',
     );
     marketplacePlugin.sourceMarketplaceId = 'official';
-    marketplacePlugin.sourceMarketplaceEntryName = 'saascodex/official-plugin';
+    marketplacePlugin.sourceMarketplaceEntryName = 'splatstudio/official-plugin';
     marketplacePlugin.sourceMarketplaceEntryVersion = '1.0.0';
     marketplacePlugin.marketplaceTrust = 'official';
     marketplacePlugin.manifest.od = { ...marketplacePlugin.manifest.od, hidden: true };
@@ -685,13 +685,13 @@ describe('PluginsView', () => {
     mockedListMarketplaces.mockResolvedValue([
       {
         id: 'official',
-        url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
+        url: 'https://splatstudio.app/marketplace/splatstudio-marketplace.json',
         trust: 'official',
         manifest: {
-          name: 'SaaSCodex Official',
+          name: 'SplatStudio Official',
           version: '0.1.0',
           plugins: [{
-            name: 'saascodex/official-plugin',
+            name: 'splatstudio/official-plugin',
             title: 'Official Plugin',
             source: 'github:nexu-io/open-design@main/plugins/_official/scenarios/official-plugin',
             version: '1.0.0',
@@ -719,7 +719,7 @@ describe('PluginsView', () => {
     render(<PluginsView />);
 
     const sourceUrl =
-      'https://raw.githubusercontent.com/nexu-io/open-design/main/plugins/registry/community/saascodex-marketplace.json';
+      'https://raw.githubusercontent.com/nexu-io/open-design/main/plugins/registry/community/splatstudio-marketplace.json';
     fireEvent.click(await screen.findByTestId('plugins-tab-sources'));
     fireEvent.change(screen.getByLabelText('Source URL'), {
       target: { value: sourceUrl },
@@ -763,7 +763,7 @@ describe('PluginsView', () => {
 
     fireEvent.click(await screen.findByTestId('plugins-import-button'));
     fireEvent.click(screen.getByRole('button', { name: /upload folder/i }));
-    const folderFile = new File(['{}'], 'saascodex.json', { type: 'application/json' });
+    const folderFile = new File(['{}'], 'splatstudio.json', { type: 'application/json' });
     fireEvent.change(screen.getByTestId('plugins-folder-input'), {
       target: { files: [folderFile] },
     });
@@ -781,14 +781,14 @@ describe('PluginsView', () => {
         'bundled',
         'bundled',
         'Publish Plugin to GitHub',
-        'Creates a public GitHub repository for a local SaaSCodex plugin using the GitHub CLI.',
+        'Creates a public GitHub repository for a local SplatStudio plugin using the GitHub CLI.',
       ),
       makePlugin(
-        'od-plugin-contribute-saascodex',
+        'od-plugin-contribute-splatstudio',
         'bundled',
         'bundled',
-        'Contribute Plugin to SaaSCodex',
-        'Opens a pull request that adds a local SaaSCodex plugin to the SaaSCodex community catalog.',
+        'Contribute Plugin to SplatStudio',
+        'Opens a pull request that adds a local SplatStudio plugin to the SplatStudio community catalog.',
       ),
     ]);
     const onCreatePluginShareProject = vi.fn(async (): Promise<PluginShareProjectOutcome> => ({

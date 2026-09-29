@@ -1,9 +1,9 @@
 {
-  "name": "@saascodex/closure",
+  "name": "@splatstudio/closure",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Independently distributable SaaSCodex Closure content.",
+  "description": "Independently distributable SplatStudio Closure content.",
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": ["dist"],
@@ -12,12 +12,12 @@
   },
   "scripts": {
     "build": "tsx ./esbuild.config.ts && tsc -p tsconfig.json --emitDeclarationOnly",
-    "pretest": "pnpm --filter @saascodex/standalone build",
+    "pretest": "pnpm --filter @splatstudio/standalone build",
     "test": "vitest run",
-    "pretypecheck": "pnpm --filter @saascodex/standalone build",
+    "pretypecheck": "pnpm --filter @splatstudio/standalone build",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
-  "dependencies": {"@saascodex/standalone": "workspace:*"},
+  "dependencies": {"@splatstudio/standalone": "workspace:*"},
   "devDependencies": {
     "@types/node": "24.12.2",
     "esbuild": "0.28.0",

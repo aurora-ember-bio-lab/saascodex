@@ -25,7 +25,7 @@ import {
 } from '../src/db.js';
 import { daemonAgentPayloadToPersistedAgentEvent } from '../src/runtimes/chat-run-messages.js';
 import { createChatRunService } from '../src/runtimes/runs.js';
-import { renderDoneMarker, stripDoneMarkers } from '@saascodex/contracts';
+import { renderDoneMarker, stripDoneMarkers } from '@splatstudio/contracts';
 
 function createRuns() {
   return createChatRunService({

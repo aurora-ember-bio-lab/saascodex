@@ -5,7 +5,7 @@ import {
   normalizeAgentObservationV1,
   type NormalizedAgentObservationV1,
   type StrategyInputStageV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   adaptClaudeChildToolRuntimeFactV1,

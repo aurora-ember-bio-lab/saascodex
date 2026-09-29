@@ -34,7 +34,7 @@ import type {
   ApplyResult,
   ContextItem,
   InstalledPluginRecord,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   applyPlugin,
   renderPluginBriefTemplate,

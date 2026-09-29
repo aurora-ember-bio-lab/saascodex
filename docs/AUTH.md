@@ -1,6 +1,6 @@
 # Authentication and tokens
 
-SaaSCodex has two auth surfaces: the **local daemon** (token/Basic, optimized
+SplatStudio has two auth surfaces: the **local daemon** (token/Basic, optimized
 for a single machine) and the **hosted control plane** (JWT sessions + API keys,
 backed by the Postgres schema in [DATABASE.md](./DATABASE.md)).
 
@@ -8,7 +8,7 @@ backed by the Postgres schema in [DATABASE.md](./DATABASE.md)).
 
 Implemented in `apps/daemon/src/api-token-auth.ts` and wired in
 `apps/daemon/src/server.ts` (the "API-token middleware"). It is **active only
-when `OD_API_TOKEN` is set** and `SAASCODEX_DISABLE_API_AUTH` is not `1`.
+when `OD_API_TOKEN` is set** and `SPLATSTUDIO_DISABLE_API_AUTH` is not `1`.
 
 Accepted credentials for `/api/*`:
 
@@ -31,7 +31,7 @@ Comparison is timing-safe (`timingSafeEqual`). Generate the token with
 `openssl rand -hex 32`.
 
 > Behind a reverse proxy that already authenticates every request, set
-> `SAASCODEX_DISABLE_API_AUTH=1`. Do **not** expose the daemon publicly with
+> `SPLATSTUDIO_DISABLE_API_AUTH=1`. Do **not** expose the daemon publicly with
 > auth disabled.
 
 ## Hosted control plane
@@ -104,7 +104,7 @@ after its trial lapses.
 - [ ] `JWT_SECRET` is a 32-byte random hex value, stored only in the platform's
       secret store
 - [ ] Auth is only disabled behind a proxy that authenticates everything
-- [ ] `SAASCODEX_ALLOWED_ORIGINS` lists exactly the web origins that should call
+- [ ] `SPLATSTUDIO_ALLOWED_ORIGINS` lists exactly the web origins that should call
       `/api`
 - [ ] Tokens and keys are hashed at rest; never logged in request traces
 - [ ] `DATABASE_URL` uses TLS (`sslmode=require`) outside local compose

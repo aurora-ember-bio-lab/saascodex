@@ -6,7 +6,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { SketchPreview } from '../../src/components/SketchPreview';
 import { fetchProjectFileText } from '../../src/providers/registry';

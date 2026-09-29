@@ -126,7 +126,7 @@ describe('server route inventory', () => {
       'POST /api/projects/:id/plugin-candidates/:candidateId/dismiss',
       'POST /api/projects/:id/plugin-candidates/:candidateId/draft',
       'POST /api/projects/:id/plugin-candidates/:candidateId/share-tasks',
-      'POST /api/projects/:id/plugins/contribute-saascodex',
+      'POST /api/projects/:id/plugins/contribute-splatstudio',
       'POST /api/projects/:id/plugins/share-tasks',
       'POST /api/plugins/share-tasks/:id/wait',
     ];
@@ -592,9 +592,9 @@ describe('static SPA fallback classification', () => {
 
 describe('daemon data dir resolver', () => {
   it('requires explicit OD_DATA_DIR in sandbox mode and resolves project-relative dirs', () => {
-    expect(() => resolveDataDir('', '/tmp/saascodex-test', { requireExplicit: true })).toThrow(
+    expect(() => resolveDataDir('', '/tmp/splatstudio-test', { requireExplicit: true })).toThrow(
       /OD_DATA_DIR is required/,
     );
-    expect(resolveDataDir('relative-data', '/tmp/saascodex-test')).toBe('/tmp/saascodex-test/relative-data');
+    expect(resolveDataDir('relative-data', '/tmp/splatstudio-test')).toBe('/tmp/splatstudio-test/relative-data');
   });
 });

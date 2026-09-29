@@ -457,7 +457,7 @@ export function attachCodexAppServerSession(
     'initialize',
     {
       clientInfo: {
-        name: 'saascodex',
+        name: 'splatstudio',
         title: 'Open Design',
         version: opts.clientVersion ?? '0.0.0',
       },

@@ -37,7 +37,7 @@ export function parseDshProfileModelsOutput(stdout: string): DshProfileModelCata
   if (
     frame.v !== 1 ||
     frame.type !== 'models' ||
-    frame.runtime !== 'saascodex' ||
+    frame.runtime !== 'splatstudio' ||
     !Array.isArray(frame.models)
   ) return null;
 

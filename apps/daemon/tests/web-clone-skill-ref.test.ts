@@ -18,7 +18,7 @@ const pluginManifestPath = path.join(
   '_official',
   'examples',
   'web-clone',
-  'saascodex.json',
+  'splatstudio.json',
 );
 
 describe('web-clone shared skill contract', () => {

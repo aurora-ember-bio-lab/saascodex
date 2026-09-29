@@ -1,9 +1,9 @@
 ---
 name: export-nextjs-handoff
-description: Use this plugin when the user wants an accepted SaaSCodex artifact converted into a Next.js App Router handoff with clean components, styles, assets, and implementation notes.
+description: Use this plugin when the user wants an accepted SplatStudio artifact converted into a Next.js App Router handoff with clean components, styles, assets, and implementation notes.
 license: MIT
 metadata:
-  author: saascodex-spec
+  author: splatstudio-spec
   version: "0.1.0"
 ---
 

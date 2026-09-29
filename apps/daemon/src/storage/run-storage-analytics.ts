@@ -7,7 +7,7 @@
 // only that group of fields. Nothing here can throw to the caller.
 
 import type Database from 'better-sqlite3';
-import type { RunFinishedProps } from '@saascodex/contracts/analytics';
+import type { RunFinishedProps } from '@splatstudio/contracts/analytics';
 
 type SqliteDb = Database.Database;
 

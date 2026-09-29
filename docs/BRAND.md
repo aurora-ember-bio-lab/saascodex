@@ -1,11 +1,11 @@
 # Brand
 
-**SaaSCodex** — local-first, full-stack design product.
+**SplatStudio** — local-first, full-stack design product.
 
 | | |
 |---|---|
-| Product | SaaSCodex |
-| Domain | **saascodex.com** |
+| Product | SplatStudio |
+| Domain | **splatstudio.app** |
 | Author / org | **Aurora Ember Cyber Bio Lab** |
 | Tagline | Ship interfaces with agent-grade craft |
 
@@ -22,7 +22,7 @@ The logo, glyph, favicon, and machine-readable color tokens live in
 The web app serves the favicon from `apps/web/public/favicon.svg` (wired in
 `apps/web/app/layout.tsx`), and the in-product design system packages the same
 palette in
-[`design-systems/saascodex/`](../design-systems/saascodex/) (`tokens.css`,
+[`design-systems/splatstudio/`](../design-systems/splatstudio/) (`tokens.css`,
 `DESIGN.md`, `components.html`).
 
 ## Palette

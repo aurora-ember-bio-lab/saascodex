@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Validates the SaaSCodex skill catalog (`skills/<name>/SKILL.md`).
+ * Validates the SplatStudio skill catalog (`skills/<name>/SKILL.md`).
  *
  * Hard requirements (fail the check):
  *   - every skill folder has a SKILL.md with YAML frontmatter;

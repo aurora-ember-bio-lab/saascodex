@@ -7,11 +7,11 @@ import type {
   TrackingRunLifecyclePhase,
   TrackingRunPhaseTimingStatus,
   TrackingRuntimeType,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   agentIdToTracking,
   byokProtocolToTracking,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import type { VelaLoginStatus } from './integrations/vela.js';
 
 const RUNTIME_TYPES: readonly TrackingRuntimeType[] = [

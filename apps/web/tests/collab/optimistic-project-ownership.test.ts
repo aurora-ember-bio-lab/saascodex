@@ -3,7 +3,7 @@ import type {
   TeamProject,
   WorkspaceCollabContext,
   WorkspaceProjectSummary,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   forgetOptimisticProjectOwnership,

@@ -14,7 +14,7 @@ import {
   CollabProvider,
   type CollabContextValue,
 } from '../../src/collab/collab-context';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 vi.mock('../../src/providers/registry', async () => {
   const actual = await vi.importActual<typeof import('../../src/providers/registry')>(

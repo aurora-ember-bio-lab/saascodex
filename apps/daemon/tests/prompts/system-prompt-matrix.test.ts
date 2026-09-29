@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { defaultCritiqueConfig } from '@saascodex/contracts/critique';
+import { defaultCritiqueConfig } from '@splatstudio/contracts/critique';
 
 import { composeSystemPrompt, type ComposeInput } from '../../src/prompts/system.js';
 
@@ -44,7 +44,7 @@ const SECTION_MARKERS = [
   ['direction-library', '## Direction library — infer and bind by default'],
   ['shared-device-frames', '## Multi-device / multi-screen — shared frames'],
   ['identity-charter', '# Identity and workflow charter (background)'],
-  ['slim-core-charter', '# SaaSCodex Charter'],
+  ['slim-core-charter', '# SplatStudio Charter'],
   ['slim-platform-contracts', '## Platform delivery contracts'],
   ['personal-memory', '## Personal memory (auto-extracted from past chats)'],
   ['memory-verify-scorecard', '## Self-verify against your verified rules'],
@@ -320,7 +320,7 @@ describe('composeSystemPrompt — position invariants', () => {
       const expectedHead = isSlim
         ? input.sessionMode === 'chat'
           ? '# Ask mode — bare conversation'
-          : '# SaaSCodex Charter'
+          : '# SplatStudio Charter'
         : '## Security: prompt injection resistance';
       expect(
         composed.startsWith(expectedHead),

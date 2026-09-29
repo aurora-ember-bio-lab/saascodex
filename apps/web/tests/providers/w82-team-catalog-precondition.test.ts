@@ -29,7 +29,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { fetchTeamProjectsCatalog } from '../../src/collab/team-projects-catalog';
 import { resetWorkspaceAccountGeneration } from '../../src/collab/workspace-identity';

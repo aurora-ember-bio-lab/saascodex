@@ -21,8 +21,8 @@ import {
   validateLauncherRuntimeDescriptor,
   type LauncherAttemptDescriptor,
   type LauncherTargetSelection,
-} from "@saascodex/launcher-proto";
-import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@saascodex/release";
+} from "@splatstudio/launcher-proto";
+import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@splatstudio/release";
 
 import type { PackagedConfig, PackagedWebOutputMode, RawPackagedConfig } from "./config.js";
 import type { PackagedNamespacePaths } from "./paths.js";
@@ -301,18 +301,18 @@ async function resolvePayloadConfig(
   const resourcesPath = manifest.platform === "darwin"
     ? join(versionPaths.versionRoot, manifest.entry.cwd, "Contents", "Resources")
     : join(versionPaths.versionRoot, manifest.payloadRoot, "resources");
-  const packagedConfigPath = join(resourcesPath, "saascodex-config.json");
+  const packagedConfigPath = join(resourcesPath, "splatstudio-config.json");
   if (!(await pathExists(packagedConfigPath))) return null;
   const raw = await readJsonFile<RawPackagedConfig>(packagedConfigPath);
   const webOutputMode = raw.webOutputMode === "standalone" || raw.webOutputMode === "server"
     ? raw.webOutputMode
     : config.webOutputMode;
   const resourceRoot = raw.resourceRoot == null || raw.resourceRoot.length === 0
-    ? join(resourcesPath, "saascodex")
+    ? join(resourcesPath, "splatstudio")
     : raw.resourceRoot;
   const relativeNodeCommand =
     raw.nodeCommandRelative == null || raw.nodeCommandRelative.length === 0
-      ? join("saascodex", "bin", process.platform === "win32" ? "node.exe" : "node")
+      ? join("splatstudio", "bin", process.platform === "win32" ? "node.exe" : "node")
       : raw.nodeCommandRelative;
   const nodeCommand = await resolveOptionalPayloadEntry(resourcesPath, relativeNodeCommand);
   const electronNodeCommand = manifest.platform === "win32"
@@ -322,7 +322,7 @@ async function resolvePayloadConfig(
     )
     : null;
   const rawWebStandaloneRoot = raw.webStandaloneRoot == null || raw.webStandaloneRoot.length === 0
-    ? webOutputMode === "standalone" ? join(resourcesPath, "saascodex-web-standalone") : null
+    ? webOutputMode === "standalone" ? join(resourcesPath, "splatstudio-web-standalone") : null
     : raw.webStandaloneRoot;
   const webStandaloneRoot = await resolveWindowsWebStandaloneRoot(
     versionPaths,

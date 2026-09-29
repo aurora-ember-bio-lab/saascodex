@@ -15,7 +15,7 @@ import { GenUISurfaceRenderer } from '../../src/components/GenUISurfaceRenderer'
 import type {
   GenUISurfaceSpec,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 afterEach(() => cleanup());
 

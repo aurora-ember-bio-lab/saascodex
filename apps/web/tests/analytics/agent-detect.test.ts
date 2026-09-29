@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { AgentInfo } from '@saascodex/contracts';
+import type { AgentInfo } from '@splatstudio/contracts';
 import {
   reportAgentDetectDiagnostics,
   resetAgentDetectDiagnosticReporting,

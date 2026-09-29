@@ -11,7 +11,7 @@
 import type Database from 'better-sqlite3';
 import type {
   GenUISurfaceSpec,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { randomUUID } from 'node:crypto';
 
 type SqliteDb = Database.Database;

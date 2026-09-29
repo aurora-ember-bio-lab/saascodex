@@ -32,7 +32,7 @@ import {
   successfulRunEventBody,
 } from '@/playwright/mock-factory';
 
-const STORAGE_KEY = 'saascodex:config';
+const STORAGE_KEY = 'splatstudio:config';
 test.describe.configure({ timeout: process.env.CI ? 90_000 : 60_000 });
 
 function artifactPreview(page: Page) {
@@ -1304,7 +1304,7 @@ test('[P0] retrying a failed run does not duplicate the original user message', 
   // G16 keeps Retry on Cloud failures; CLI failures switch runtime instead.
   // Keep this scenario about retry deduplication with an explicit Cloud owner.
   await routeAgents(page, [{
-    id: 'amr', name: 'SaaSCodex AMR', bin: 'vela', available: true,
+    id: 'amr', name: 'SplatStudio AMR', bin: 'vela', available: true,
     version: 'test', models: [{ id: 'glm-5', label: 'glm-5' }],
   }]);
   await page.route('**/api/app-config', async (route) => {
@@ -1963,7 +1963,7 @@ test('[P1] Browser Inspiration page_info action seeds Browser tab context into t
 
   const input = page.getByTestId('chat-composer-input');
   await expect(input).toContainText('@agent-browser');
-  await expect(input).toContainText('Use the selected SaaSCodex Browser tab as the bound target.');
+  await expect(input).toContainText('Use the selected SplatStudio Browser tab as the bound target.');
   await expect(input).toContainText('Operation: page_info');
   await expect(input).toContainText('- tab: Browser');
   await expect(input).toContainText('- url: about:blank');
@@ -2747,7 +2747,7 @@ async function createProjectNameOnly(
 async function gotoEntryHome(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await waitForLoadingToClear(page);
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SplatStudio' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
     await expect(privacyDialog).toHaveCount(0);
@@ -2809,7 +2809,7 @@ async function expectProjectsView(page: Page) {
 }
 
 async function waitForLoadingToClear(page: Page) {
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.long });
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: T.long });
 }
 
 async function getCurrentProjectContext(

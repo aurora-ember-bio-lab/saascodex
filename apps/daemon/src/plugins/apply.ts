@@ -18,7 +18,7 @@ import {
   resolveAppliedPipeline,
   resolveContext,
   type RegistryView,
-} from '@saascodex/plugin-runtime';
+} from '@splatstudio/plugin-runtime';
 import {
   renderPluginBlock,
   resolveLocalizedText,
@@ -33,7 +33,7 @@ import {
   type PluginManifest,
   type PluginProjectMetadataPatch,
   type TrustTier,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { resolveCapabilitiesGranted, requiredCapabilities } from './trust.js';
 import {
   deriveAutoOAuthPrompts,

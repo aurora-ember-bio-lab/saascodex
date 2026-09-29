@@ -2,7 +2,7 @@ import {
   releaseChannelFromNamespace,
   releaseChannelFromVersion,
   releaseInstallIdentity,
-} from "@saascodex/release";
+} from "@splatstudio/release";
 
 export { releaseAppVersionArgs } from "./packaged-release-version.js";
 

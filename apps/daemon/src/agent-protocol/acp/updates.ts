@@ -4,7 +4,7 @@
  * event-shape diagnostics. Depends on acp/types, acp/json, and the vela-errors
  * integration; consumed exclusively by acp/session.ts.
  */
-import { isTodoWriteToolName } from '@saascodex/contracts';
+import { isTodoWriteToolName } from '@splatstudio/contracts';
 import { createHash } from 'node:crypto';
 import type { JsonObject } from './types.js';
 import { asObject, acpValueKind, objectKeys, extractAcpUpdateText } from './json.js';
@@ -143,7 +143,7 @@ export function acpUpdateDiagnosticText(value: unknown, depth = 0): string[] {
   return parts;
 }
 /**
- * Promotes an AMR `retry` status update into a structured SaaSCodex error
+ * Promotes an AMR `retry` status update into a structured SplatStudio error
  * payload when the update's diagnostic text matches a known AMR account failure
  * pattern (e.g. quota exceeded, auth failure). Returns `null` when the update
  * is not a retry or does not match a known pattern.
@@ -171,7 +171,7 @@ export function promotedAmrRetryStatusPayload(update: JsonObject) {
 }
 /**
  * Scans a rolling tail of AMR stderr output for known retry/session-failure
- * signals and promotes a match to a structured SaaSCodex error payload.
+ * signals and promotes a match to a structured SplatStudio error payload.
  * Returns `null` when the chunk does not contain the expected markers or does
  * not match a known failure pattern.
  *

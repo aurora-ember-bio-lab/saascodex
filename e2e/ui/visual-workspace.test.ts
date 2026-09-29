@@ -128,7 +128,7 @@ test('[P2] captures the topbar execution switcher surface', async ({ page }) => 
   );
 });
 
-test('[P1] captures the topbar SaaSCodex model picker with no account surface', async ({ page }) => {
+test('[P1] captures the topbar SplatStudio model picker with no account surface', async ({ page }) => {
   test.setTimeout(60_000);
 
   await configureVisualPage(page, {
@@ -136,7 +136,7 @@ test('[P1] captures the topbar SaaSCodex model picker with no account surface', 
     config: {
       agentId: 'amr',
       agentModels: { amr: { model: 'deepseek-v4-flash', reasoning: 'default' } },
-      agentCliEnv: { amr: { SAASCODEX_AMR_PROFILE: 'test' } },
+      agentCliEnv: { amr: { SPLATSTUDIO_AMR_PROFILE: 'test' } },
     },
   });
   await mockSignedInVelaAccount(page);
@@ -156,7 +156,7 @@ test('[P1] captures the topbar SaaSCodex model picker with no account surface', 
   const popover = page.getByTestId('inline-model-switcher-popover');
   await expect(popover).toBeVisible();
   // InlineModelSwitcher refetches the AMR status whenever the popover opens
-  // with SaaSCodex installed, so a landed response proves the signed-in
+  // with SplatStudio installed, so a landed response proves the signed-in
   // render happened.
   await expect.poll(() => velaStatusRequests).toBeGreaterThan(requestsBeforeOpen);
 
@@ -166,7 +166,7 @@ test('[P1] captures the topbar SaaSCodex model picker with no account surface', 
   // 升级 entry all belong to the non-compact shape that the top bar stopped
   // mounting — account and billing surfaces live in the nav rail and Settings
   // now. Coverage did not disappear with the assertions: the live plan/balance/
-  // upgrade card is captured by visual-settings.test.ts's "settings SaaSCodex
+  // upgrade card is captured by visual-settings.test.ts's "settings SplatStudio
   // account balance" case in this same lane, and the `inline_amr_upgrade`
   // attribution URL by apps/web/tests/components/InlineModelSwitcher.test.tsx
   // ("routes inline upgrades through the signed-in AMR profile").
@@ -176,7 +176,7 @@ test('[P1] captures the topbar SaaSCodex model picker with no account surface', 
   await expect(popover.getByTestId('inline-model-switcher-account-upgrade')).toHaveCount(0);
   await expect(popover).not.toContainText('$247.51');
 
-  await captureVisual(page, 'visual-topbar-saascodex-model-picker');
+  await captureVisual(page, 'visual-topbar-splatstudio-model-picker');
 });
 
 test('[P2] captures the topbar local CLI model list surface', async ({ page }) => {
@@ -298,7 +298,7 @@ test('[P2] captures the avatar menu surface', async ({ page }) => {
   await captureVisualTarget(page, 'visual-avatar-menu-panel', menu);
 });
 
-test('[P1] Avatar menu stays a model picker for a signed-in SaaSCodex account', async ({ page }) => {
+test('[P1] Avatar menu stays a model picker for a signed-in SplatStudio account', async ({ page }) => {
   test.setTimeout(60_000);
 
   await configureVisualPage(page, {
@@ -307,7 +307,7 @@ test('[P1] Avatar menu stays a model picker for a signed-in SaaSCodex account', 
       mode: 'daemon',
       agentId: 'amr',
       agentModels: { amr: { model: 'deepseek-v4-flash', reasoning: 'default' } },
-      agentCliEnv: { amr: { SAASCODEX_AMR_PROFILE: 'test' } },
+      agentCliEnv: { amr: { SPLATSTUDIO_AMR_PROFILE: 'test' } },
     },
   });
   await mockSignedInVelaAccount(page);
@@ -324,17 +324,17 @@ test('[P1] Avatar menu stays a model picker for a signed-in SaaSCodex account', 
 
   const requestsBeforeOpen = velaStatusRequests;
   const menu = await prepareVisualAvatarMenu(page);
-  // AvatarMenu refetches the login status on open whenever SaaSCodex is
+  // AvatarMenu refetches the login status on open whenever SplatStudio is
   // installed, so a landed response means the signed-in render has happened.
   await expect.poll(() => velaStatusRequests).toBeGreaterThan(requestsBeforeOpen);
 
-  // 4e3161751 (#6156) deleted the SaaSCodex account row from this popover —
+  // 4e3161751 (#6156) deleted the SplatStudio account row from this popover —
   // plan badge, balance, wallet fallback, upgrade/console links — and retired
   // the nine Vitest suites that asserted it, recasting the survivor as
   // apps/web/tests/components/AvatarMenu.test.tsx's "never renders the account
   // row, plan badge or balance in the popover". This is that invariant at the
   // rendered-app layer. The signed-in account surface itself is captured by
-  // visual-settings.test.ts's "settings SaaSCodex account balance" case, and
+  // visual-settings.test.ts's "settings SplatStudio account balance" case, and
   // the `avatar_amr_upgrade` deep link — now reachable only by clicking a
   // plan-gated model row, which needs workspace billing permission this lane
   // does not fixture — by that same Vitest file's "routes a locked model only
@@ -342,14 +342,14 @@ test('[P1] Avatar menu stays a model picker for a signed-in SaaSCodex account', 
   await expect(menu.locator('[data-testid^="avatar-agent-option-"]')).toHaveCount(0);
   await expect(menu.locator('.avatar-amr-row')).toHaveCount(0);
   await expect(menu).not.toContainText('$247.51');
-  // What it does render for a signed-in SaaSCodex runtime: that runtime's
+  // What it does render for a signed-in SplatStudio runtime: that runtime's
   // model catalog, with the configured model marked active.
   const modelList = menu.getByTestId('avatar-model-list');
   await expect(modelList).toBeVisible();
   await expect(modelList.getByRole('radio', { name: /DeepSeek V4 Flash/i })).toBeVisible();
   await expect(modelList.locator('.avatar-model-option.is-active')).toHaveCount(1);
 
-  await captureVisual(page, 'visual-avatar-saascodex-model-picker');
+  await captureVisual(page, 'visual-avatar-splatstudio-model-picker');
 });
 
 test('[P2] captures the avatar reasoning selector surface', async ({ page }) => {

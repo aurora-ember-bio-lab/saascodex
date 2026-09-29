@@ -13,7 +13,7 @@
 
 import { isAbsolute, resolve } from "node:path";
 
-import { atomicCopyFile } from "@saascodex/platform";
+import { atomicCopyFile } from "@splatstudio/platform";
 
 import { MANAGED_DOWNLOAD_ERROR_CODES, ManagedDownloadError } from "./errors.js";
 import { hashFile, statFileSize } from "./fs-io.js";

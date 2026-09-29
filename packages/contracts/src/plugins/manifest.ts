@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
-// `saascodex.json` schema (v1). Mirrors docs/schemas/saascodex.plugin.v1.json
+// `splatstudio.json` schema (v1). Mirrors docs/schemas/splatstudio.plugin.v1.json
 // with one addition: this Zod schema is permissive on the top level so adapter
 // outputs (synthesized PluginManifest from SKILL.md frontmatter or claude
 // plugin.json) parse cleanly without losing forward-compatible fields.
 
-export const SAASCODEX_PLUGIN_SPEC_VERSION = '1.0.0';
+export const SPLATSTUDIO_PLUGIN_SPEC_VERSION = '1.0.0';
 
-export const SaaSCodexSpecVersionSchema = z.string().min(1);
+export const SplatStudioSpecVersionSchema = z.string().min(1);
 
 export const ReferenceSchema = z.object({
   ref:  z.string().optional(),
@@ -138,7 +138,7 @@ export type PluginConnectorRef = z.infer<typeof PluginConnectorRefSchema>;
 
 export const PluginManifestSchema = z.object({
   $schema:     z.string().optional(),
-  specVersion: SaaSCodexSpecVersionSchema.optional(),
+  specVersion: SplatStudioSpecVersionSchema.optional(),
   name:        z.string().min(1).regex(/^[a-z0-9][a-z0-9._-]*$/),
   title:       z.string().optional(),
   title_i18n:  LocalizedTextSchema.optional(),

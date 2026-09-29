@@ -7,7 +7,7 @@ import type {
   WorkspaceBillingSummary,
   WorkspaceTeamBillingPlanId,
   WorkspaceWalletBalance,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { runVelaCommand } from './vela-command.js';
 
 // A-lane billing 收口. Instead of the daemon holding billing credentials, it
@@ -591,7 +591,7 @@ const defaultRunVelaBilling = async (
     return await runVelaCommand(['billing', ...args], {
       configuredEnv: {
         ...configuredEnv,
-        VELA_INVOCATION_SOURCE: 'saascodex',
+        VELA_INVOCATION_SOURCE: 'splatstudio',
       },
       maxBuffer: 4 * 1024 * 1024,
       ...(args[0] === 'preflight' ? { timeoutMs: BILLING_PREFLIGHT_TIMEOUT_MS } : {}),

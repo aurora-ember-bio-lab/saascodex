@@ -99,9 +99,9 @@ describe('openDesignAmrTraceEnvForRun', () => {
     });
 
     expect(env).toMatchObject({
-      SAASCODEX_RUN_ID: 'run-a',
-      SAASCODEX_SESSION_ID: 'conversation-a',
-      SAASCODEX_WORKSPACE_ID: 'workspace-a',
+      SPLATSTUDIO_RUN_ID: 'run-a',
+      SPLATSTUDIO_SESSION_ID: 'conversation-a',
+      SPLATSTUDIO_WORKSPACE_ID: 'workspace-a',
     });
   });
 
@@ -119,7 +119,7 @@ describe('openDesignAmrTraceEnvForRun', () => {
       workspaceScope: pinRunWorkspaceScopeForProject(db, 'project-team-draft'),
     });
 
-    expect(env.SAASCODEX_WORKSPACE_ID).toBe('workspace-team');
+    expect(env.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-team');
   });
 
   it('passes a persisted Personal Workspace explicitly instead of treating it as unscoped', async () => {
@@ -136,7 +136,7 @@ describe('openDesignAmrTraceEnvForRun', () => {
       workspaceScope: pinRunWorkspaceScopeForProject(db, 'project-personal'),
     });
 
-    expect(env.SAASCODEX_WORKSPACE_ID).toBe('workspace-personal');
+    expect(env.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-personal');
   });
 
   it('spawns a truly unbound local project on the signed-in account wallet', async () => {
@@ -148,8 +148,8 @@ describe('openDesignAmrTraceEnvForRun', () => {
       projectId: 'project-legacy',
       workspaceScope: accountScopedRunWorkspaceScopeForProject('project-legacy'),
     });
-    expect(env.SAASCODEX_RUN_ID).toBe('run-legacy');
-    expect(env).not.toHaveProperty('SAASCODEX_WORKSPACE_ID');
+    expect(env.SPLATSTUDIO_RUN_ID).toBe('run-legacy');
+    expect(env).not.toHaveProperty('SPLATSTUDIO_WORKSPACE_ID');
   });
 
   it('does not infer account scope from a missing run proof', async () => {

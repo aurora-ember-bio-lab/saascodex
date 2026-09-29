@@ -1,13 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { HYPERFRAMES_VIDEO_MODEL } from '@saascodex/contracts';
+import { HYPERFRAMES_VIDEO_MODEL } from '@splatstudio/contracts';
 import type {
   ChatRunStatus,
   ProjectFile,
   ProjectFileKind,
   ProjectMetadata,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { listFiles, resolveProjectDir } from './projects.js';
 import { findTouchedLinkedPage } from './artifacts/linked-page-delivery.js';

@@ -1,5 +1,5 @@
 import type { Express } from 'express';
-import { type ChatSessionMode } from '@saascodex/contracts';
+import { type ChatSessionMode } from '@splatstudio/contracts';
 import { readAnalyticsContext } from '../../analytics.js';
 import { nextForkedConversationTitle } from '../../conversation-fork-title.js';
 import { backfillBrandExtractionTranscriptForProject } from '../../brands/index.js';

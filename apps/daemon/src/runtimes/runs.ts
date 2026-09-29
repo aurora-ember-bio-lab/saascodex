@@ -7,12 +7,12 @@ import {
   strategyTaskProvesDelivery,
   todoSnapshotHasUnfinishedWork,
   turnEndedByAskingUser,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   collectProcessTreePids,
   listProcessSnapshots,
   stopProcesses,
-} from '@saascodex/platform';
+} from '@splatstudio/platform';
 import { normalizeMediaExecutionPolicyForRun } from '../media/policy.js';
 import {
   normalizeRunToolBundleForRun,
@@ -20,7 +20,7 @@ import {
 } from '../run-tool-bundle.js';
 import { createRunLifecycleTracer } from '../run-lifecycle-tracer.js';
 import { projectWorkspaceProvenance } from '../workspace-contract.js';
-import { SAASCODEX_PLUGIN_ID } from '../mcp-observability.js';
+import { SPLATSTUDIO_PLUGIN_ID } from '../mcp-observability.js';
 import {
   scanRunEventsForUsageAnalytics,
   summarizeRunTimingAnalytics,
@@ -83,7 +83,7 @@ export function isLegacyHydratedRunWithoutAppliedSnapshot(run: object): boolean 
     && !Object.prototype.hasOwnProperty.call(run, 'appliedPluginSnapshotId');
 }
 
-const DIAGNOSTIC_SOURCE = 'saascodex-daemon';
+const DIAGNOSTIC_SOURCE = 'splatstudio-daemon';
 
 function availableDiagnostic(value, definition, complete = true, source = DIAGNOSTIC_SOURCE) {
   return {
@@ -452,7 +452,7 @@ function buildExecutionDiagnostics(run) {
 
   return {
     schemaVersion: 1,
-    collectorVersion: 'saascodex-execution-diagnostics-v2',
+    collectorVersion: 'splatstudio-execution-diagnostics-v2',
     collectedAt: run.updatedAt,
     eventStreamCompleteness: eventStreamComplete ? 'complete' : 'partial',
     timing: {
@@ -824,7 +824,7 @@ export function createChatRunService({
         }
         const pluginWorkflowId =
           state?.externalPluginAnalytics?.externalPluginId
-            === SAASCODEX_PLUGIN_ID
+            === SPLATSTUDIO_PLUGIN_ID
           && typeof state.externalPluginAnalytics.pluginWorkflowId === 'string'
             ? state.externalPluginAnalytics.pluginWorkflowId
             : null;
@@ -1009,11 +1009,11 @@ export function createChatRunService({
         meta.analyticsHints
         && typeof meta.analyticsHints === 'object'
         && !Array.isArray(meta.analyticsHints)
-        && meta.analyticsHints.externalPluginId === SAASCODEX_PLUGIN_ID
+        && meta.analyticsHints.externalPluginId === SPLATSTUDIO_PLUGIN_ID
           ? {
               entrySurface: meta.analyticsHints.entrySurface,
               hostProduct: meta.analyticsHints.hostProduct,
-              externalPluginId: SAASCODEX_PLUGIN_ID,
+              externalPluginId: SPLATSTUDIO_PLUGIN_ID,
               externalPluginVersion: meta.analyticsHints.externalPluginVersion,
               distributionMechanism:
                 meta.analyticsHints.distributionMechanism,
@@ -1121,7 +1121,7 @@ export function createChatRunService({
     indexRunProject(run.projectId, run.id);
     if (run.clientRequestId) runIdsByClientRequestId.set(run.clientRequestId, run.id);
     if (
-      run.externalPluginAnalytics?.externalPluginId === SAASCODEX_PLUGIN_ID
+      run.externalPluginAnalytics?.externalPluginId === SPLATSTUDIO_PLUGIN_ID
       && typeof run.externalPluginAnalytics.pluginWorkflowId === 'string'
     ) {
       runIdsByPluginWorkflowId.set(
@@ -2568,7 +2568,7 @@ export function createChatRunService({
       runIdsByClientRequestId.delete(run.clientRequestId);
     }
     const pluginWorkflowId =
-      run.externalPluginAnalytics?.externalPluginId === SAASCODEX_PLUGIN_ID
+      run.externalPluginAnalytics?.externalPluginId === SPLATSTUDIO_PLUGIN_ID
       && typeof run.externalPluginAnalytics.pluginWorkflowId === 'string'
         ? run.externalPluginAnalytics.pluginWorkflowId
         : null;

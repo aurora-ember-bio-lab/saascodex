@@ -17,7 +17,7 @@ import {
   type StrategyTaskProjectionV2,
   type ProjectMetadata as ContractProjectMetadata,
   type RunResultPackageResponse,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   buildRunCreatedV4Aliases,
   buildRunFinishedV4Aliases,
@@ -30,8 +30,8 @@ import {
   type TrackingDesignSystemEditSurface,
   type RunTaskLineageProps,
   type TrackingRunRecoveryActionType,
-} from '@saascodex/contracts/analytics';
-import type { OdNativeEvent } from '@saascodex/agui-adapter';
+} from '@splatstudio/contracts/analytics';
+import type { OdNativeEvent } from '@splatstudio/agui-adapter';
 import { newInsertId, readAnalyticsContext } from '../analytics.js';
 import type { AnalyticsContext } from '../analytics.js';
 import { spawnEnvForAgent } from '../agents.js';
@@ -76,7 +76,7 @@ import { parseMediaExecutionPolicyInput } from '../media/policy.js';
 import { isManagedProjectCwd } from '../mcp-config.js';
 import {
   normalizeExternalPluginRunAnalyticsHints,
-  SAASCODEX_PLUGIN_ID,
+  SPLATSTUDIO_PLUGIN_ID,
   resolvePluginGenerationSloWindowMs,
   validatePluginWorkflowId,
 } from '../mcp-observability.js';
@@ -889,8 +889,8 @@ function externalPluginAttributionMismatch(
       ? (incoming as Record<string, unknown>)
       : null;
   const existingIsPlugin =
-    existing?.externalPluginId === SAASCODEX_PLUGIN_ID;
-  const nextIsPlugin = next?.externalPluginId === SAASCODEX_PLUGIN_ID;
+    existing?.externalPluginId === SPLATSTUDIO_PLUGIN_ID;
+  const nextIsPlugin = next?.externalPluginId === SPLATSTUDIO_PLUGIN_ID;
   if (!existingIsPlugin && !nextIsPlugin) return false;
   if (!existingIsPlugin || !nextIsPlugin) return true;
   return EXTERNAL_PLUGIN_ANALYTICS_KEYS.some(
@@ -3115,7 +3115,7 @@ export function registerRunRoutes(app: Express, ctx: RegisterRunRoutesDeps) {
         res,
         409,
         'RUN_NOT_RECHARGE_RESUMABLE',
-        'Only a failed SaaSCodex Cloud run waiting for recharge can be resumed with the same request',
+        'Only a failed SplatStudio Cloud run waiting for recharge can be resumed with the same request',
       );
     }
     if (preparedRun.kind === 'assistant_claim_conflict') {
@@ -3330,7 +3330,7 @@ export function registerRunRoutes(app: Express, ctx: RegisterRunRoutesDeps) {
     const analytics =
       run?.externalPluginAnalytics
       && run.externalPluginAnalytics.externalPluginId
-        === SAASCODEX_PLUGIN_ID
+        === SPLATSTUDIO_PLUGIN_ID
         ? run.externalPluginAnalytics
         : null;
     if (!run || !analytics) {
@@ -3540,7 +3540,7 @@ export function registerRunRoutes(app: Express, ctx: RegisterRunRoutesDeps) {
       run,
       { mode: 'read', allowNavigationQuery: true },
     )) return;
-    const { encodeOdEventForAgui } = await import('@saascodex/agui-adapter');
+    const { encodeOdEventForAgui } = await import('@splatstudio/agui-adapter');
     const sse = createSseResponse(res);
     const lastEventId = Number(req.get('Last-Event-ID') || req.query.after || 0);
     const emitMapped = (record: RunEventRecord) => {

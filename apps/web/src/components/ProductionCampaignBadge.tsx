@@ -1,6 +1,6 @@
 import { useI18n } from "../i18n";
 import { useCallback, useEffect, useRef } from "react";
-import { getSaaSCodexHost } from "@saascodex/host";
+import { getSplatStudioHost } from "@splatstudio/host";
 import {
 	emitWebTouchpointDiagnostic,
 	ensureWebTouchpointElement,
@@ -8,7 +8,7 @@ import {
 	supportsWebTouchpointCapabilities,
 	verifyWebTouchpoint,
 	webTouchpointContext,
-	type SaaSCodexTouchpointElement,
+	type SplatStudioTouchpointElement,
 	type WebTouchpointContent,
 } from "./touchpoint-component";
 import {
@@ -48,7 +48,7 @@ export function canRenderProductionCampaignBadge(
 	authenticated: boolean,
 	sessionSubject: string | null,
 ) {
-	const host = getSaaSCodexHost();
+	const host = getSplatStudioHost();
 	return authenticated && Boolean(sessionSubject) && host?.client.type === "desktop";
 }
 
@@ -116,7 +116,7 @@ export function ProductionCampaignBadge({
 		let verified: Awaited<ReturnType<typeof verifyWebTouchpoint>> | undefined;
 		const element = document.createElement(
 			"opend-touchpoint",
-		) as SaaSCodexTouchpointElement;
+		) as SplatStudioTouchpointElement;
 		let elementDisposed = false;
 		let verifiedDisposed = false;
 		const disposeElement = () => {

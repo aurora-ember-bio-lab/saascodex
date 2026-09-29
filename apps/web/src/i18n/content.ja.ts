@@ -21,7 +21,7 @@ export const JA_SKILL_COPY: Record<string, { description?: string; examplePrompt
   },
   'agent-browser': {
     description:
-      'AI エージェント向けのブラウザ自動化 CLI。ページの遷移、フォーム入力、\nボタンのクリック、スクリーンショット取得、ページデータの抽出、選択された\nSaaSCodex ブラウザタブのコンテキスト読み取り、Web アプリのテスト、SaaSCodex\nプレビューのドッグフーディング、QA、バグ調査、アプリ品質のレビューなど、ブラウザの\n挙動を検査・テスト・自動化したい場合に使用します。ユーザーが外部ブラウジングを明示的に\n要求しない限り、ローカルの SaaSCodex プレビュー URL を優先します。',
+      'AI エージェント向けのブラウザ自動化 CLI。ページの遷移、フォーム入力、\nボタンのクリック、スクリーンショット取得、ページデータの抽出、選択された\nSplatStudio ブラウザタブのコンテキスト読み取り、Web アプリのテスト、SplatStudio\nプレビューのドッグフーディング、QA、バグ調査、アプリ品質のレビューなど、ブラウザの\n挙動を検査・テスト・自動化したい場合に使用します。ユーザーが外部ブラウジングを明示的に\n要求しない限り、ローカルの SplatStudio プレビュー URL を優先します。',
     examplePrompt:
       'AI エージェント向けのブラウザ自動化 CLI。',
   },
@@ -849,7 +849,7 @@ export const JA_SKILL_COPY: Record<string, { description?: string; examplePrompt
   },
   'ui-ux-pro-max': {
     description:
-      'カタログのみの UI/UX Pro Max エントリー。完全なアップストリームのテンプレート、データ、検索ワークフローは SaaSCodex には同梱されていません。',
+      'カタログのみの UI/UX Pro Max エントリー。完全なアップストリームのテンプレート、データ、検索ワークフローは SplatStudio には同梱されていません。',
     examplePrompt:
       'カタログのみの UI/UX Pro Max エントリー。',
   },

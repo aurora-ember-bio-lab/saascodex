@@ -28,7 +28,7 @@ function platform(
     key,
     label: PLATFORM_LABELS[key],
     build,
-    downloadUrl: build === "success" ? `${R2}/saascodex-0.21.1-prerelease.3-${key}` : "",
+    downloadUrl: build === "success" ? `${R2}/splatstudio-0.21.1-prerelease.3-${key}` : "",
     smoke: "skipped",
     timing: { startedAt: null, completedAt: null },
     ...overrides,
@@ -156,7 +156,7 @@ describe("prerelease progress card", () => {
     expect(texts(card).join("\n")).toContain("✅ macOS (Apple Silicon) · 已发布");
     expect(texts(card).join("\n")).toContain("⏳ Windows · 排队中");
     // Only the published platform gets a button; the others would 404.
-    expect(buttonUrls(card)).toEqual([`${R2}/saascodex-0.21.1-prerelease.3-mac_arm64`]);
+    expect(buttonUrls(card)).toEqual([`${R2}/splatstudio-0.21.1-prerelease.3-mac_arm64`]);
   });
 
   it("adds a row and a button as each further platform publishes", () => {
@@ -173,9 +173,9 @@ describe("prerelease progress card", () => {
     expect(later.header.template).toBe("green");
     expect(later.header.title?.content).toBe("🚀 Open Design Prerelease 0.21.1-prerelease.3");
     expect(buttonUrls(later)).toEqual([
-      `${R2}/saascodex-0.21.1-prerelease.3-mac_arm64`,
-      `${R2}/saascodex-0.21.1-prerelease.3-mac_x64`,
-      `${R2}/saascodex-0.21.1-prerelease.3-win_x64`,
+      `${R2}/splatstudio-0.21.1-prerelease.3-mac_arm64`,
+      `${R2}/splatstudio-0.21.1-prerelease.3-mac_x64`,
+      `${R2}/splatstudio-0.21.1-prerelease.3-win_x64`,
     ]);
     const platformBlock = texts(later).find((text) => text.startsWith("**平台产物**")) ?? "";
     expect(platformBlock.split("\n")).toHaveLength(4);

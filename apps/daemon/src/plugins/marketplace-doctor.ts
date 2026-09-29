@@ -1,5 +1,5 @@
-import type { MarketplaceManifest } from '@saascodex/contracts';
-import type { RegistryDoctorIssue, RegistryDoctorReport } from '@saascodex/registry-protocol';
+import type { MarketplaceManifest } from '@splatstudio/contracts';
+import type { RegistryDoctorIssue, RegistryDoctorReport } from '@splatstudio/registry-protocol';
 import { StaticRegistryBackend } from '../registry/static-backend.js';
 
 export interface MarketplaceDoctorInput {

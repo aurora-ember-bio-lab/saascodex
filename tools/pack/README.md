@@ -118,8 +118,8 @@ Build artifacts are namespace-scoped under `.tmp/tools-pack/out/linux/namespaces
 Local installs use XDG paths:
 
 - AppImage: `~/.local/bin/Open-Design.<namespace>.AppImage`
-- Menu entry: `~/.local/share/applications/saascodex-<namespace>.desktop`
-- Icon: `~/.local/share/icons/hicolor/512x512/apps/saascodex-<namespace>.png`
+- Menu entry: `~/.local/share/applications/splatstudio-<namespace>.desktop`
+- Icon: `~/.local/share/icons/hicolor/512x512/apps/splatstudio-<namespace>.png`
 
 The `<namespace>` suffix is unconditional so multiple developer namespaces can coexist on the same desktop. The `.desktop` file registers the `od://` scheme via `MimeType=x-scheme-handler/od;` and pre-sets `OD_PACKAGED_NAMESPACE` on the `Exec=` line so menu launches identify the correct namespace.
 
@@ -127,9 +127,9 @@ The `<namespace>` suffix is unconditional so multiple developer namespaces can c
 
 Headless mode targets environments without a display (WSL2, headless servers, CI) where Electron can't run. If you have a desktop, use the AppImage; if you're SSH'd into a machine or in WSL, use headless.
 
-`--headless` makes `install`, `start`, `stop`, `uninstall`, and `cleanup` operate on the headless entry (`@saascodex/packaged/dist/headless.mjs`) instead of the AppImage. Headless mode runs daemon + web without Electron.
+`--headless` makes `install`, `start`, `stop`, `uninstall`, and `cleanup` operate on the headless entry (`@splatstudio/packaged/dist/headless.mjs`) instead of the AppImage. Headless mode runs daemon + web without Electron.
 
-- `install --headless` writes a shell launcher at `~/.local/bin/saascodex-headless-<namespace>` that bakes in the namespace and resource paths. The launcher is self-contained, but the assembled app directory at those paths must remain in place — don't move it after install.
+- `install --headless` writes a shell launcher at `~/.local/bin/splatstudio-headless-<namespace>` that bakes in the namespace and resource paths. The launcher is self-contained, but the assembled app directory at those paths must remain in place — don't move it after install.
 - `start --headless` launches through the sidecar atomic and waits up to 95s for private status readiness.
 - `stop --headless` terminally stops the exact `mode=headless` argv stamp. The mode field keeps it disjoint from the AppImage desktop without identity files or public IPC paths.
 - `inspect --headless` returns status only. Eval and screenshot require AppImage mode because there is no Electron renderer in headless mode.

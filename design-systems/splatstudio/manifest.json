@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "od-design-system-project/v1",
+  "id": "splatstudio",
+  "name": "SplatStudio Aurora",
+  "category": "Starter",
+  "description": "Bundled SplatStudio brand system: deep aurora-ink surfaces, aurora-mint accent, ember warmth for state color. Dark-first, product-grade.",
+  "source": {
+    "type": "bundled",
+    "origin": "SplatStudio curated bundled fixture — Aurora Ember direction"
+  },
+  "files": {
+    "design": "DESIGN.md",
+    "tokens": "tokens.css"
+  },
+  "importMode": "normalized",
+  "craft": {
+    "applies": [],
+    "suggested": ["color", "accessibility-baseline"],
+    "exemptions": []
+  }
+}

@@ -2,9 +2,9 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
-import { composeOdNextStrategyBundleHeadV2, serializeOdNextPromptBundleV2, StrategyTaskProjectionV2Schema } from '@saascodex/contracts';
-import type { AppliedPluginSnapshot, SaaSCodexPlanContractV2 } from '@saascodex/contracts';
+import { strategyPackageHashFromDigests } from '@splatstudio/plugin-runtime';
+import { composeOdNextStrategyBundleHeadV2, serializeOdNextPromptBundleV2, StrategyTaskProjectionV2Schema } from '@splatstudio/contracts';
+import type { AppliedPluginSnapshot, SplatStudioPlanContractV2 } from '@splatstudio/contracts';
 import type Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -141,7 +141,7 @@ function strategyBinding() {
     { path: './assets/task-profiles/prototype.md', sha256: 'b'.repeat(64) },
   ];
   return {
-    schema: 'saascodex.applied-strategy/v2' as const,
+    schema: 'splatstudio.applied-strategy/v2' as const,
     id: 'od-next-strategy' as const,
     version: '2.0.0',
     packageHash: strategyPackageHashFromDigests(assetDigests),
@@ -178,10 +178,10 @@ function createStrategySnapshot(db: Database.Database): AppliedPluginSnapshot {
   });
 }
 
-function planContract(snapshot: AppliedPluginSnapshot): SaaSCodexPlanContractV2 {
+function planContract(snapshot: AppliedPluginSnapshot): SplatStudioPlanContractV2 {
   const strategy = snapshot.strategy!;
   return {
-    schema: 'saascodex.plan-contract/v2',
+    schema: 'splatstudio.plan-contract/v2',
     strategy: {
       id: 'od-next-strategy',
       version: strategy.version,
@@ -252,7 +252,7 @@ function runtimeState(input: {
   executionMode?: 'simple' | null;
 }) {
   return {
-    schema: 'saascodex.strategy-state/v2' as const,
+    schema: 'splatstudio.strategy-state/v2' as const,
     executionIntent: 'produce' as const,
     route: input.route ?? 'full_plan',
     inputStage: input.inputStage ?? 'request',
@@ -380,9 +380,9 @@ describe('OD Next planning coordinator', () => {
       const parsed = protocol([
         'The original plan is available in chat.',
         window === 'source-parser-defect'
-          ? `<saascodex-plan-contract>\n\`\`\`json\n${JSON.stringify(planContract(snapshot))}\n\`\`\`\n</saascodex-plan-contract>`
-          : block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', { ...runtimeState({ inputStage: task.inputStage, outcome: 'plan_ready', executionMode: 'simple' }), executionIntent: undefined }),
+          ? `<splatstudio-plan-contract>\n\`\`\`json\n${JSON.stringify(planContract(snapshot))}\n\`\`\`\n</splatstudio-plan-contract>`
+          : block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', { ...runtimeState({ inputStage: task.inputStage, outcome: 'plan_ready', executionMode: 'simple' }), executionIntent: undefined }),
       ].join('\n')).finish();
       const created: ReturnType<typeof runs.create>[] = [];
       const service = {
@@ -407,7 +407,7 @@ describe('OD Next planning coordinator', () => {
       resolution.status = 'running'; runs.persistState(resolution);
       upsertMessage(db, 'conversation-1', { id: 'startup-resolution-message', role: 'assistant', content: '', runId: resolution.id, runStatus: 'running', createdAt: 110 });
       startIntentResolution(db, task.taskExecutionId, resolution.id);
-      const reply = protocol(block('saascodex-runtime-state', {
+      const reply = protocol(block('splatstudio-runtime-state', {
         ...runtimeState({ inputStage: task.inputStage, outcome: window === 'produce-without-context' || window === 'consumed-produce-successor' ? 'plan_ready' : 'completed', executionMode: 'simple' }),
         executionIntent: window === 'produce-without-context' || window === 'consumed-produce-successor' ? 'produce' : 'plan_only',
       })).finish();
@@ -555,7 +555,7 @@ describe('OD Next planning coordinator', () => {
       runId: 'run-request',
       protocol: protocol([
         'Updated the existing header.',
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-runtime-state', runtimeState({
           route: 'direct_edit',
           outcome: 'completed',
           executionMode: 'simple',
@@ -585,7 +585,7 @@ describe('OD Next planning coordinator', () => {
     const awaiting = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         outcome: 'clarification_required',
       }))}`),
       updatedAt: 120,
@@ -616,7 +616,7 @@ describe('OD Next planning coordinator', () => {
     const repeated = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-clarification',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         inputStage: 'clarification',
         outcome: 'blocked',
       }))}`),
@@ -651,7 +651,7 @@ describe('OD Next planning coordinator', () => {
     finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         outcome: 'clarification_required',
       }))}`),
       updatedAt: 120,
@@ -673,8 +673,8 @@ describe('OD Next planning coordinator', () => {
       runId: 'run-clarification',
       protocol: protocol([
         'Direction settled; building next.',
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', runtimeState({
           inputStage: 'request', outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -705,7 +705,7 @@ describe('OD Next planning coordinator', () => {
       const question = '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>';
       const requested = finalizeStrategyPlanningTurn(db, {
         taskExecutionId: 'task-1', runId: 'run-request', updatedAt: 120,
-        protocol: protocol(`${question}\n${block('saascodex-runtime-state', {
+        protocol: protocol(`${question}\n${block('splatstudio-runtime-state', {
           ...runtimeState({ outcome: 'clarification_required' }), executionIntent,
         })}`),
         completionEvidence: measuredNoWriteEvidence(),
@@ -730,10 +730,10 @@ describe('OD Next planning coordinator', () => {
         taskExecutionId: 'task-1', runId: 'run-clarification', updatedAt: 140,
         protocol: protocol([
           'The plan is ready for review; the project files have not been changed.',
-          block('saascodex-plan-contract', plan),
+          block('splatstudio-plan-contract', plan),
           // Older providers omit intent and copy the request-stage example.
           // Neither omission may widen the intent already saved by the host.
-          block('saascodex-runtime-state', {
+          block('splatstudio-runtime-state', {
             ...runtimeState({ inputStage: 'request', outcome: 'plan_ready', executionMode: 'simple' }),
             executionIntent: undefined,
           }),
@@ -759,7 +759,7 @@ describe('OD Next planning coordinator', () => {
     const final = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-clarification',
-      protocol: protocol(`The answer contradicts the brief; nothing to plan.\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`The answer contradicts the brief; nothing to plan.\n${block('splatstudio-runtime-state', runtimeState({
         inputStage: 'request', outcome: 'blocked',
       }))}`),
       updatedAt: 140,
@@ -786,7 +786,7 @@ describe('OD Next planning coordinator', () => {
     const final = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-clarification',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         inputStage: 'request', outcome: 'clarification_required',
       }))}`),
       updatedAt: 140,
@@ -806,8 +806,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-1',
       runId: 'run-clarification',
       protocol: protocol([
-        block('saascodex-plan-contract', plan, true),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan, true),
+        block('splatstudio-runtime-state', runtimeState({
           inputStage: 'request', outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -841,8 +841,8 @@ describe('OD Next planning coordinator', () => {
       runId: 'run-request',
       protocol: protocol([
         'Planning complete.',
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -882,8 +882,8 @@ describe('OD Next planning coordinator', () => {
       runId: 'run-request',
       protocol: protocol([
         '策略判断信息充足，将直接进入生产。\n\n<question-form> 无需提出',
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -909,8 +909,8 @@ describe('OD Next planning coordinator', () => {
       runId: 'run-request',
       protocol: protocol([
         'Planning complete. <question-form>无需提出</question-form>',
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -936,7 +936,7 @@ describe('OD Next planning coordinator', () => {
       runId: 'run-request',
       protocol: protocol([
         '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>',
-        block('saascodex-runtime-state', runtimeState({ outcome: 'clarification_required' })),
+        block('splatstudio-runtime-state', runtimeState({ outcome: 'clarification_required' })),
       ].join('\n')),
       updatedAt: 120,
     });
@@ -972,7 +972,7 @@ describe('OD Next planning coordinator', () => {
         '{"questions":[{"id":"surface","label":"Surface?"}]}',
         '</question-form>',
         '</question-form>',
-        block('saascodex-runtime-state', runtimeState({ outcome: 'clarification_required' })),
+        block('splatstudio-runtime-state', runtimeState({ outcome: 'clarification_required' })),
       ].join('\n')),
       updatedAt: 120,
     });
@@ -995,8 +995,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-1',
       runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', plan, true),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan, true),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -1026,8 +1026,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-1',
       runId: 'run-repair',
       protocol: protocol([
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', runtimeState({
           inputStage: 'contract_repair',
           outcome: 'plan_ready',
           executionMode: 'simple',
@@ -1046,18 +1046,18 @@ describe('OD Next planning coordinator', () => {
     const cases = [
       {
         name: 'duplicate',
-        text: (plan: SaaSCodexPlanContractV2) => [
-          block('saascodex-plan-contract', plan),
-          block('saascodex-plan-contract', plan),
-          block('saascodex-runtime-state', runtimeState({ outcome: 'plan_ready', executionMode: 'simple' })),
+        text: (plan: SplatStudioPlanContractV2) => [
+          block('splatstudio-plan-contract', plan),
+          block('splatstudio-plan-contract', plan),
+          block('splatstudio-runtime-state', runtimeState({ outcome: 'plan_ready', executionMode: 'simple' })),
         ].join('\n'),
         reason: 'od_next_protocol_plan_contract_duplicate',
       },
       {
         name: 'unanchored',
         text: () => [
-          '<saascodex-plan-contract>\n{not-json}\n</saascodex-plan-contract>',
-          block('saascodex-runtime-state', runtimeState({ outcome: 'plan_ready', executionMode: 'simple' })),
+          '<splatstudio-plan-contract>\n{not-json}\n</splatstudio-plan-contract>',
+          block('splatstudio-runtime-state', runtimeState({ outcome: 'plan_ready', executionMode: 'simple' })),
         ].join('\n'),
         reason: 'od_next_protocol_plan_contract_invalid_json',
       },
@@ -1105,8 +1105,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-1',
       runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', original, true),
-        block('saascodex-runtime-state', runtimeState({ outcome: 'plan_ready', executionMode: 'simple' })),
+        block('splatstudio-plan-contract', original, true),
+        block('splatstudio-runtime-state', runtimeState({ outcome: 'plan_ready', executionMode: 'simple' })),
       ].join('\n')),
       repairRun: { runId: 'run-repair', sourceRunId: 'run-request' },
       executionPreflight: executionPassed,
@@ -1119,8 +1119,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-1',
       runId: 'run-repair',
       protocol: protocol([
-        block('saascodex-plan-contract', changed),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', changed),
+        block('splatstudio-runtime-state', runtimeState({
           inputStage: 'contract_repair', outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -1154,7 +1154,7 @@ describe('OD Next planning coordinator', () => {
     const drift = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-route-drift',
       runId: 'run-route-drift',
-      protocol: protocol(block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(block('splatstudio-runtime-state', runtimeState({
         route: 'direct_edit', outcome: 'completed', executionMode: 'simple',
       }))),
       completionEvidence: { physicalStatus: 'succeeded', deliverableValid: true },
@@ -1188,8 +1188,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-profile-drift',
       runId: 'run-profile-drift',
       protocol: protocol([
-        block('saascodex-plan-contract', mismatchedProfile),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', mismatchedProfile),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -1223,8 +1223,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-repair-tools',
       runId: 'run-repair-tools-request',
       protocol: protocol([
-        block('saascodex-plan-contract', plan, true),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan, true),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -1239,8 +1239,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-repair-tools',
       runId: 'run-repair-tools',
       protocol: protocol([
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', runtimeState({
           inputStage: 'contract_repair', outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -1258,7 +1258,7 @@ describe('OD Next planning coordinator', () => {
     const cases: Array<{
       name: string;
       reason: string;
-      mutate: (plan: SaaSCodexPlanContractV2) => void;
+      mutate: (plan: SplatStudioPlanContractV2) => void;
     }> = [
       {
         name: 'snapshot',
@@ -1311,8 +1311,8 @@ describe('OD Next planning coordinator', () => {
           taskExecutionId: taskId,
           runId,
           protocol: protocol([
-            block('saascodex-plan-contract', drifted, repairAnchor),
-            block('saascodex-runtime-state', runtimeState({
+            block('splatstudio-plan-contract', drifted, repairAnchor),
+            block('splatstudio-runtime-state', runtimeState({
               outcome: 'plan_ready', executionMode: 'simple',
             })),
           ].join('\n')),
@@ -1346,8 +1346,8 @@ describe('OD Next planning coordinator', () => {
       taskExecutionId: 'task-1',
       runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -1406,8 +1406,8 @@ describe('OD Next planning coordinator', () => {
     const planned = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -1466,7 +1466,7 @@ describe('OD Next planning coordinator', () => {
     });
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: task.taskExecutionId, runId: 'mode-file-run', updatedAt: 120,
-      protocol: protocol(`Updated ${sample.file}.\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`Updated ${sample.file}.\n${block('splatstudio-runtime-state', runtimeState({
         route: 'direct_edit', outcome: 'completed', executionMode: 'simple',
       }))}`),
       completionEvidence: { physicalStatus: 'succeeded', deliverableValid: delivery.valid, filesWritten: 1 },
@@ -1481,7 +1481,7 @@ describe('OD Next planning coordinator', () => {
     const question = '<question-form id="discovery">{"questions":[{"id":"goal","label":"Goal?"}]}</question-form>';
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request', updatedAt: 110,
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', {
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', {
         ...runtimeState({ outcome: 'clarification_required' }), executionIntent: 'plan_only',
       })}`),
       completionEvidence: { physicalStatus: 'succeeded', deliverableValid: false, filesWritten: 1 },
@@ -1560,8 +1560,8 @@ describe('OD Next planning coordinator', () => {
       plan.decisionSummary.keyConstraints = [...plan.taskProfile.constraints];
       const parsed = protocol([
         'The requested planning answer is complete.',
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', { ...runtimeState({ inputStage: 'clarification', outcome: 'completed', executionMode: 'simple' }), executionIntent: 'plan_only' }),
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', { ...runtimeState({ inputStage: 'clarification', outcome: 'completed', executionMode: 'simple' }), executionIntent: 'plan_only' }),
       ].join('\n')).finish();
       expect(parsed.issues).toEqual([]);
       let preparedCount = 0;
@@ -1607,7 +1607,7 @@ describe('OD Next planning coordinator', () => {
       const question = `<question-form id="discovery">${JSON.stringify({ questions: ['Audience', 'Goal', 'Scope', 'Constraints'].map(label => ({ id: label.toLowerCase(), type: 'text', label, required: true })) })}</question-form>`;
       // The provider resolves this explicit no-write request, independently
       // of the session mode. Mode alone does not forbid document/file work.
-      const intakeText = entry === 'question-only' ? question : `${question}\n${block('saascodex-runtime-state', {
+      const intakeText = entry === 'question-only' ? question : `${question}\n${block('splatstudio-runtime-state', {
         ...runtimeState({ outcome: 'clarification_required' }),
         executionIntent: providerIntent,
       })}`;
@@ -1628,9 +1628,9 @@ describe('OD Next planning coordinator', () => {
       const parsed = protocol([
         'The plan is ready for review; the project files have not been changed.',
         entry === 'source-parser-defect'
-          ? `<saascodex-plan-contract>\n\`\`\`json\n${JSON.stringify(plan)}\n\`\`\`\n</saascodex-plan-contract>`
-          : block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', { ...runtimeState({
+          ? `<splatstudio-plan-contract>\n\`\`\`json\n${JSON.stringify(plan)}\n\`\`\`\n</splatstudio-plan-contract>`
+          : block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', { ...runtimeState({
           inputStage: 'clarification', outcome: 'plan_ready', executionMode: 'simple',
         }), executionIntent: undefined }),
       ].join('\n')).finish();
@@ -1656,7 +1656,7 @@ describe('OD Next planning coordinator', () => {
         startIntentResolution(db, initial.taskExecutionId, 'intent-resolution-run');
         closeDatabase(); db = openDatabase(tempDir, { dataDir: tempDir });
         const task = getStrategyTaskExecution(db, initial.taskExecutionId)!;
-        const reply = protocol(block('saascodex-runtime-state', {
+        const reply = protocol(block('splatstudio-runtime-state', {
           ...runtimeState({ inputStage: 'clarification', outcome: produce ? 'plan_ready' : 'completed', executionMode: 'simple' }),
           executionIntent: produce ? 'produce' : 'plan_only',
         })).finish();
@@ -1718,7 +1718,7 @@ describe('OD Next planning coordinator', () => {
       const question = `<question-form id="discovery">${JSON.stringify({ questions: ['Audience', 'Goal', 'Scope', 'Constraints'].map(label => ({ id: label.toLowerCase(), type: 'text', label, required: true })) })}</question-form>`;
       // The provider resolves this explicit no-write request, independently
       // of the session mode. Mode alone does not forbid document/file work.
-      const intake = protocol(`${question}\n${block('saascodex-runtime-state', {
+      const intake = protocol(`${question}\n${block('splatstudio-runtime-state', {
         ...runtimeState({ outcome: 'clarification_required' }),
         executionIntent: 'plan_only',
       })}`);
@@ -1736,8 +1736,8 @@ describe('OD Next planning coordinator', () => {
       plan.decisionSummary.keyConstraints = [...plan.taskProfile.constraints];
       const parsed = protocol([
         'The plan is ready for review; the project files have not been changed.',
-        block('saascodex-plan-contract', plan),
-        block('saascodex-runtime-state', { ...runtimeState({
+        block('splatstudio-plan-contract', plan),
+        block('splatstudio-runtime-state', { ...runtimeState({
           inputStage: 'clarification', outcome: 'plan_ready', executionMode: 'simple',
         }), executionIntent: undefined }),
       ].join('\n')).finish();
@@ -1774,7 +1774,7 @@ describe('OD Next planning coordinator', () => {
   ] as const)('refuses a planning completion without its required evidence: $reason', (sample) => {
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request', updatedAt: 110,
-      protocol: protocol(`${sample.text}\n${block('saascodex-runtime-state', {
+      protocol: protocol(`${sample.text}\n${block('splatstudio-runtime-state', {
         ...runtimeState({ outcome: 'completed' }), executionIntent: 'plan_only',
       })}`),
       completionEvidence: { physicalStatus: sample.status, deliverableValid: false, filesWritten: sample.filesWritten },
@@ -1786,7 +1786,7 @@ describe('OD Next planning coordinator', () => {
   it('accepts a visible planning answer as a successful request without requiring a deliverable', () => {
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request', updatedAt: 110,
-      protocol: protocol(`A complete planning answer.\n${block('saascodex-runtime-state', {
+      protocol: protocol(`A complete planning answer.\n${block('splatstudio-runtime-state', {
         ...runtimeState({ outcome: 'completed' }), executionIntent: 'plan_only',
       })}`),
       completionEvidence: { physicalStatus: 'succeeded', deliverableValid: false, filesWritten: 0 },
@@ -1801,7 +1801,7 @@ describe('OD Next planning coordinator', () => {
     const question = '<question-form id="discovery">{"questions":[{"id":"goal","label":"Goal?"}]}</question-form>';
     const requested = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request', updatedAt: 110,
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', {
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', {
         ...runtimeState({ outcome: 'clarification_required' }), executionIntent: 'plan_only',
       })}`),
     });
@@ -1818,7 +1818,7 @@ describe('OD Next planning coordinator', () => {
     })).toThrow();
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-answer', updatedAt: 130,
-      protocol: protocol(block('saascodex-runtime-state', {
+      protocol: protocol(block('splatstudio-runtime-state', {
         ...runtimeState({ inputStage: 'clarification', outcome: 'plan_ready', executionMode: 'simple' }),
         executionIntent: 'produce',
       })),
@@ -1847,8 +1847,8 @@ describe('OD Next planning coordinator', () => {
       intake: intakePassed, updatedAt: 110,
     });
     const parsed = protocol([
-      block('saascodex-plan-contract', planContract(snapshot)),
-      block('saascodex-runtime-state', runtimeState({
+      block('splatstudio-plan-contract', planContract(snapshot)),
+      block('splatstudio-runtime-state', runtimeState({
         outcome: 'plan_ready', executionMode: 'simple',
       })),
     ].join('\n')).finish();
@@ -1903,8 +1903,8 @@ describe('OD Next planning coordinator', () => {
     const plan = planContract(snapshot);
     plan.runManifest.productionRoutes = ['unregistered-host-route'];
     const parsed = protocol([
-      block('saascodex-plan-contract', plan),
-      block('saascodex-runtime-state', runtimeState({
+      block('splatstudio-plan-contract', plan),
+      block('splatstudio-runtime-state', runtimeState({
         outcome: 'plan_ready', executionMode: 'simple',
       })),
     ].join('\n')).finish();
@@ -1943,8 +1943,8 @@ describe('OD Next planning coordinator', () => {
       intake: intakePassed, updatedAt: 110,
     });
     const parsed = protocol([
-      block('saascodex-plan-contract', planContract(snapshot)),
-      block('saascodex-runtime-state', runtimeState({
+      block('splatstudio-plan-contract', planContract(snapshot)),
+      block('splatstudio-runtime-state', runtimeState({
         outcome: 'plan_ready', executionMode: 'simple',
       })),
     ].join('\n')).finish();
@@ -1980,8 +1980,8 @@ describe('OD Next planning coordinator', () => {
     });
     const plan = planContract(snapshot);
     const parsed = protocol([
-      block('saascodex-plan-contract', plan, true),
-      block('saascodex-runtime-state', runtimeState({
+      block('splatstudio-plan-contract', plan, true),
+      block('splatstudio-runtime-state', runtimeState({
         outcome: 'plan_ready', executionMode: 'simple',
       })),
     ].join('\n')).finish();
@@ -2024,7 +2024,7 @@ describe('OD Next planning coordinator', () => {
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-request',
-      protocol: protocol(block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(block('splatstudio-runtime-state', runtimeState({
         route: 'direct_edit', outcome: 'completed', executionMode: 'simple',
       }))),
       completionEvidence: { physicalStatus: 'succeeded', deliverableValid: false },
@@ -2045,8 +2045,8 @@ describe('OD Next planning coordinator', () => {
     const planned = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -2077,8 +2077,8 @@ describe('OD Next planning coordinator', () => {
     const planned = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -2106,8 +2106,8 @@ describe('OD Next planning coordinator', () => {
     const planned = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -2136,7 +2136,7 @@ describe('OD Next planning coordinator', () => {
     const question = '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>';
     const waiting = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         outcome: 'clarification_required',
       }))}`),
       updatedAt: 120,
@@ -2172,7 +2172,7 @@ describe('OD Next planning coordinator', () => {
     const question = '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>';
     const waiting = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         outcome: 'clarification_required',
       }))}`),
       updatedAt: 120,
@@ -2184,7 +2184,7 @@ describe('OD Next planning coordinator', () => {
     const halted = 'Key requirements were skipped, so no runnable prototype plan can be formed. This task is blocked.';
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-clarification',
-      protocol: protocol(`${halted}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${halted}\n${block('splatstudio-runtime-state', runtimeState({
         inputStage: 'clarification', outcome: 'blocked',
       }))}`),
       updatedAt: 140,
@@ -2352,7 +2352,7 @@ ${question}`),
       const outcome = finalizeStrategyPlanningTurn(db, {
         taskExecutionId,
         runId: `run-declared-${index}`,
-        protocol: protocol(`答案正文。\n${block('saascodex-runtime-state', state)}`),
+        protocol: protocol(`答案正文。\n${block('splatstudio-runtime-state', state)}`),
         completionEvidence: { physicalStatus: 'succeeded', deliverableValid: false },
         updatedAt: 120,
       });
@@ -2434,7 +2434,7 @@ ${question}`),
     const declared = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-declared',
       runId: 'run-declared',
-      protocol: protocol(`做完了。\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`做完了。\n${block('splatstudio-runtime-state', runtimeState({
         route: 'direct_edit',
         outcome: 'completed',
         executionMode: 'simple',
@@ -2480,7 +2480,7 @@ ${question}`),
     finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         route: 'full_plan',
         outcome: 'clarification_required',
       }))}`),
@@ -2513,8 +2513,8 @@ ${question}`),
     const question = '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>';
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', {
-        schema: 'saascodex.strategy-state/v2',
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', {
+        schema: 'splatstudio.strategy-state/v2',
         route: 'full_plan',
         inputStage: 'request',
         outcome: 'clarification_required',
@@ -2562,7 +2562,7 @@ ${form('b')}`),
     const withPlan = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-plan-no-state', runId: 'run-plan-no-state',
       protocol: protocol(`${form('c')}
-${block('saascodex-plan-contract', planContract(snapshot))}`),
+${block('splatstudio-plan-contract', planContract(snapshot))}`),
       executionPreflight: executionPassed,
       updatedAt: 202,
     });
@@ -2588,7 +2588,7 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
     const question = '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>';
     finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         outcome: 'clarification_required',
       }))}`),
       updatedAt: 120,
@@ -2635,7 +2635,7 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
     const question = '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>';
     finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
-      protocol: protocol(`${question}\n${block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(`${question}\n${block('splatstudio-runtime-state', runtimeState({
         outcome: 'clarification_required',
       }))}`),
       updatedAt: 120,
@@ -2674,7 +2674,7 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
     const result = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-request',
-      protocol: protocol(block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(block('splatstudio-runtime-state', runtimeState({
         route: 'direct_edit', inputStage: 'request', outcome: 'completed',
         executionMode: 'simple',
       }))),
@@ -2733,8 +2733,8 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
     const planned = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -2766,8 +2766,8 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
     const planned = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1', runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -2827,8 +2827,8 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
       taskExecutionId: 'task-1',
       runId: 'run-request',
       protocol: protocol([
-        block('saascodex-plan-contract', planContract(snapshot)),
-        block('saascodex-runtime-state', runtimeState({
+        block('splatstudio-plan-contract', planContract(snapshot)),
+        block('splatstudio-runtime-state', runtimeState({
           outcome: 'plan_ready', executionMode: 'simple',
         })),
       ].join('\n')),
@@ -2849,7 +2849,7 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
     const drift = finalizeStrategyPlanningTurn(db, {
       taskExecutionId: 'task-1',
       runId: 'run-request',
-      protocol: protocol(block('saascodex-runtime-state', runtimeState({
+      protocol: protocol(block('splatstudio-runtime-state', runtimeState({
         route: 'direct_edit', inputStage: 'request', outcome: 'completed',
         executionMode: 'simple',
       }))),
@@ -2920,7 +2920,7 @@ ${block('saascodex-plan-contract', planContract(snapshot))}`),
       taskExecutionId: 'task-1', runId: 'run-request',
       protocol: protocol([
         '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>',
-        block('saascodex-runtime-state', runtimeState({ outcome: 'clarification_required' })),
+        block('splatstudio-runtime-state', runtimeState({ outcome: 'clarification_required' })),
       ].join('\n')),
       updatedAt: 120,
     });

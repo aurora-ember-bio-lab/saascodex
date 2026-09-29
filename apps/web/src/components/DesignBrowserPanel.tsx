@@ -12,9 +12,9 @@ import {
 import { createPortal, flushSync } from 'react-dom';
 import {
   clearHostBrowserData,
-  isSaaSCodexHostAvailable,
-} from '@saascodex/host';
-import type { TrackingReferenceBoardCategory } from '@saascodex/contracts/analytics';
+  isSplatStudioHostAvailable,
+} from '@splatstudio/host';
+import type { TrackingReferenceBoardCategory } from '@splatstudio/contracts/analytics';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackReferenceBoardClick,
@@ -275,7 +275,7 @@ interface DesignBrowserPanelProps {
   projectId: string;
   resolvedDir?: string | null;
   onOpenFile: (name: string) => void;
-  onSaaSCodexFiles?: () => void;
+  onSplatStudioFiles?: () => void;
   onRefreshFiles: () => Promise<void> | void;
   onPageInfoChange?: (info: BrowserPageInfo) => void;
   previewComments?: PreviewComment[];
@@ -299,7 +299,7 @@ export interface BrowserPageInfo {
 }
 
 const EMPTY_URL = 'about:blank';
-const DESIGN_BROWSER_PARTITION = 'persist:saascodex-design-browser';
+const DESIGN_BROWSER_PARTITION = 'persist:splatstudio-design-browser';
 const HISTORY_LIMIT = DESIGN_BROWSER_HISTORY_LIMIT;
 const HISTORY_SUGGESTION_LIMIT = 20;
 const EMPTY_PREVIEW_COMMENTS: PreviewComment[] = [];
@@ -727,7 +727,7 @@ export function browserUsePrompt(action: BrowserUseAction, context: BrowserUsePr
   return [
     '@agent-browser',
     '',
-    'Use the selected SaaSCodex Browser tab as the bound target.',
+    'Use the selected SplatStudio Browser tab as the bound target.',
     'Browser tab context:',
     `- tab: ${tabLabel}`,
     `- title: ${title}`,
@@ -918,7 +918,7 @@ export function DesignBrowserPanel({
   projectId,
   resolvedDir,
   onOpenFile,
-  onSaaSCodexFiles,
+  onSplatStudioFiles,
   onPageInfoChange,
   onRefreshFiles,
   previewComments = EMPTY_PREVIEW_COMMENTS,
@@ -933,7 +933,7 @@ export function DesignBrowserPanel({
 }: DesignBrowserPanelProps) {
   const t = useT();
   const { workspaceContext } = useProjectCollabContext();
-  const desktopHostAvailable = isSaaSCodexHostAvailable();
+  const desktopHostAvailable = isSplatStudioHostAvailable();
   const initialState = initialBrowserState(initialUrl, initialTitle);
   // `loadUrl` is the navigation target bound to the <webview>/<iframe> `src`.
   // It changes ONLY on user-initiated navigation. `currentUrl` is the committed
@@ -1947,13 +1947,13 @@ export function DesignBrowserPanel({
       if (options.openAfterSave !== false) onOpenFile(manifestFile);
       const message = t('designBrowser.status.pageSnapshotSaved');
       const elapsedSeconds = pageSnapshotRunElapsedSeconds(run);
-      const canSaaSCodexFiles = Boolean(onSaaSCodexFiles);
+      const canSplatStudioFiles = Boolean(onSplatStudioFiles);
       setStatusMessage({
         actionFileName: manifestFile,
-        actionLabel: canSaaSCodexFiles
+        actionLabel: canSplatStudioFiles
           ? t('designBrowser.status.viewDesignFiles')
           : t('workspace.designFiles'),
-        actionTarget: canSaaSCodexFiles ? 'design-files' : 'file',
+        actionTarget: canSplatStudioFiles ? 'design-files' : 'file',
         message,
         source: 'page-snapshot',
       });
@@ -2658,8 +2658,8 @@ export function DesignBrowserPanel({
               type="button"
               className="db-status-action"
               onClick={() => {
-                if (statusAction.actionTarget === 'design-files' && onSaaSCodexFiles) {
-                  onSaaSCodexFiles();
+                if (statusAction.actionTarget === 'design-files' && onSplatStudioFiles) {
+                  onSplatStudioFiles();
                 } else {
                   onOpenFile(statusAction.actionFileName ?? '');
                 }

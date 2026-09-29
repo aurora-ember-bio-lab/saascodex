@@ -4,7 +4,7 @@ import {
   type PublicFileManualRevokeRequiredData,
   type PublicProjectFilePublication,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export class PublicFilePublishError extends Error {
   constructor(

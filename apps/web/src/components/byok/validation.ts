@@ -1,4 +1,4 @@
-import { validateBaseUrl } from '@saascodex/contracts/api/connectionTest';
+import { validateBaseUrl } from '@splatstudio/contracts/api/connectionTest';
 import type { ApiProtocol, ProviderModelOption } from '../../types';
 
 export type ByokDraftField = 'api_key' | 'base_url' | 'model';

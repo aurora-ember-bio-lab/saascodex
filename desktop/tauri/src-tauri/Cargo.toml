@@ -1,7 +1,7 @@
 [package]
-name = "saascodex-desktop"
+name = "splatstudio-desktop"
 version = "0.23.1"
-description = "SaaSCodex desktop shell"
+description = "SplatStudio desktop shell"
 authors = ["Aurora Ember Cyber Bio Lab"]
 edition = "2021"
 

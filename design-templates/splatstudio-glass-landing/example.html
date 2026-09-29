@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glassmorphism landing - SplatStudio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss">
+    :root { --accent: #7c3aed; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .field {
+      background:
+        radial-gradient(60% 60% at 15% 10%, color-mix(in oklab, var(--g1), transparent 20%), transparent 60%),
+        radial-gradient(55% 55% at 85% 15%, color-mix(in oklab, var(--g2), transparent 25%), transparent 60%),
+        radial-gradient(70% 70% at 50% 100%, color-mix(in oklab, var(--g3), transparent 30%), transparent 65%),
+        #0b0a14;
+    }
+    .glass { @apply backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl; }
+    .glass-soft { @apply backdrop-blur-lg bg-white/5 border border-white/15 rounded-2xl; }
+    .accent-glow { box-shadow: 0 20px 60px color-mix(in oklab, var(--accent), transparent 55%); }
+    .chip[aria-pressed="true"] { outline: 2px solid #fff; outline-offset: 2px; }
+  </style>
+</head>
+<body class="min-h-screen text-white field transition-colors duration-500" style="--g1:#7c3aed;--g2:#db2777;--g3:#f59e0b">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-black">Skip to content</a>
+
+  <header class="sticky top-0 z-40 px-4 pt-4">
+    <nav class="glass mx-auto flex max-w-6xl items-center gap-6 px-5 py-3" aria-label="Primary">
+      <span class="text-lg font-bold tracking-tight">Lumen<span style="color:var(--accent)">.</span></span>
+      <div class="ml-4 hidden gap-6 text-sm text-white/70 md:flex">
+        <a class="hover:text-white" href="#features">Features</a>
+        <a class="hover:text-white" href="#themes">Themes</a>
+        <a class="hover:text-white" href="#pricing">Pricing</a>
+        <a class="hover:text-white" href="#docs">Docs</a>
+      </div>
+      <a href="#start" class="ml-auto rounded-xl px-4 py-2 text-sm font-semibold text-white accent-glow" style="background:var(--accent)">Start free</a>
+    </nav>
+  </header>
+
+  <main id="main" class="mx-auto max-w-6xl px-4">
+    <section class="grid items-center gap-10 py-20 md:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em]" style="color:color-mix(in oklab, var(--accent), white 35%)">Glass UI kit</p>
+        <h1 class="mt-4 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+          Interfaces that feel like light through glass
+        </h1>
+        <p class="mt-5 max-w-lg text-lg text-white/70">
+          Lumen ships frosted, layered surfaces with real depth — fifty glass components, four color variations, and a theme picker your users can customize.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#start" class="rounded-2xl px-6 py-3 font-semibold text-white accent-glow" style="background:var(--accent)">Start free trial</a>
+          <a href="#themes" class="glass-soft px-6 py-3 font-semibold text-white/90 hover:bg-white/10">Browse themes</a>
+        </div>
+        <p class="mt-4 text-sm text-white/55">No credit card · 50 components · 4 variations</p>
+      </div>
+
+      <div class="glass p-6" role="img" aria-label="Glass component preview">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-wider text-white/60">Workspace</p>
+            <p class="text-lg font-semibold">Component preview</p>
+          </div>
+          <span class="rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-semibold text-emerald-300">live</span>
+        </div>
+        <div class="mt-5 grid grid-cols-3 gap-3 text-center">
+          <div class="glass-soft p-4"><b class="block text-2xl">48</b><span class="text-xs text-white/60">Components</span></div>
+          <div class="glass-soft p-4"><b class="block text-2xl">4</b><span class="text-xs text-white/60">Variations</span></div>
+          <div class="glass-soft p-4"><b class="block text-2xl">12ms</b><span class="text-xs text-white/60">Render</span></div>
+        </div>
+        <div class="mt-4 h-24 rounded-xl border border-white/15 bg-gradient-to-br from-white/15 to-transparent"></div>
+        <div class="mt-4 flex gap-2">
+          <span class="h-8 w-8 rounded-lg" style="background:var(--accent)"></span>
+          <span class="h-8 w-8 rounded-lg bg-white/20"></span>
+          <span class="h-8 w-8 rounded-lg bg-white/10"></span>
+          <span class="h-8 w-8 rounded-lg border border-white/30"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="themes" class="py-14">
+      <div class="glass mx-auto max-w-3xl p-6 text-center">
+        <h2 class="text-2xl font-bold">Select a color variation</h2>
+        <p class="mt-2 text-white/70">The gradient field and accent swap together. Users can also pick a custom accent.</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3" role="group" aria-label="Color variations">
+          <button class="chip glass-soft px-4 py-2 text-sm font-semibold" data-g1="#7c3aed" data-g2="#db2777" data-g3="#f59e0b" data-accent="#7c3aed" aria-pressed="true">Aurora</button>
+          <button class="chip glass-soft px-4 py-2 text-sm font-semibold" data-g1="#0ea5e9" data-g2="#22d3ee" data-g3="#6366f1" data-accent="#0ea5e9" aria-pressed="false">Ocean</button>
+          <button class="chip glass-soft px-4 py-2 text-sm font-semibold" data-g1="#f43f5e" data-g2="#fb923c" data-g3="#facc15" data-accent="#f43f5e" aria-pressed="false">Ember</button>
+          <button class="chip glass-soft px-4 py-2 text-sm font-semibold" data-g1="#10b981" data-g2="#34d399" data-g3="#a3e635" data-accent="#10b981" aria-pressed="false">Forest</button>
+        </div>
+        <label class="mt-6 inline-flex items-center gap-3 text-sm text-white/70">
+          Custom accent
+          <input id="custom-accent" type="color" value="#7c3aed" class="h-9 w-14 cursor-pointer rounded-lg border border-white/30 bg-transparent" aria-label="Custom accent color" />
+        </label>
+      </div>
+    </section>
+
+    <section id="features" class="grid gap-4 py-14 md:grid-cols-3">
+      <article class="glass p-6">
+        <p class="text-xs font-semibold uppercase tracking-wider" style="color:color-mix(in oklab, var(--accent), white 30%)">Layer</p>
+        <h3 class="mt-2 text-lg font-semibold">True depth</h3>
+        <p class="mt-2 text-sm text-white/70">Every pane sits on a real gradient field, so the blur reads as glass instead of a flat rectangle.</p>
+      </article>
+      <article class="glass p-6">
+        <p class="text-xs font-semibold uppercase tracking-wider" style="color:color-mix(in oklab, var(--accent), white 30%)">Theme</p>
+        <h3 class="mt-2 text-lg font-semibold">Four variations</h3>
+        <p class="mt-2 text-sm text-white/70">Aurora, ocean, ember, and forest ship ready, each a gradient-plus-accent pair that stays in contrast.</p>
+      </article>
+      <article class="glass p-6">
+        <p class="text-xs font-semibold uppercase tracking-wider" style="color:color-mix(in oklab, var(--accent), white 30%)">Customize</p>
+        <h3 class="mt-2 text-lg font-semibold">Your accent</h3>
+        <p class="mt-2 text-sm text-white/70">A color input drives the accent token live, so teams can match their brand without a rebuild.</p>
+      </article>
+    </section>
+
+    <section class="py-14">
+      <blockquote class="glass mx-auto max-w-3xl p-8">
+        <p class="text-xl leading-relaxed">"We shipped a glass design system in a weekend. The theme picker alone cut our brand-review loop in half."</p>
+        <footer class="mt-5 text-sm text-white/60"><b class="text-white">Mara Lindqvist</b> · Head of Design, Northlight</footer>
+      </blockquote>
+    </section>
+
+    <section id="start" class="pb-20">
+      <div class="glass accent-glow p-10 text-center" style="background:color-mix(in oklab, var(--accent), transparent 82%)">
+        <h2 class="text-3xl font-bold">Build your glass interface today</h2>
+        <p class="mx-auto mt-3 max-w-xl text-white/70">Pick a variation, drop in your content, ship. Everything is Tailwind utilities and one glass recipe.</p>
+        <a href="#start" class="mt-6 inline-block rounded-2xl px-6 py-3 font-semibold text-white" style="background:var(--accent)">Start free trial</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mx-auto max-w-6xl px-4 pb-10 text-sm text-white/50">
+    <div class="glass-soft flex flex-wrap items-center justify-between gap-4 px-6 py-5">
+      <span>Lumen · glass design kit</span>
+      <span>Product · Company · Legal</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.chip[data-accent]'));
+      var custom = document.getElementById('custom-accent');
+      function apply(g1, g2, g3, accent, pressed) {
+        var b = document.body;
+        b.style.setProperty('--g1', g1);
+        b.style.setProperty('--g2', g2);
+        b.style.setProperty('--g3', g3);
+        b.style.setProperty('--accent', accent);
+        document.documentElement.style.setProperty('--accent', accent);
+        if (custom) custom.value = accent;
+        buttons.forEach(function (el) { el.setAttribute('aria-pressed', String(el === pressed)); });
+      }
+      buttons.forEach(function (el) {
+        el.addEventListener('click', function () {
+          apply(el.dataset.g1, el.dataset.g2, el.dataset.g3, el.dataset.accent, el);
+        });
+      });
+      if (custom) {
+        custom.addEventListener('input', function () {
+          document.body.style.setProperty('--accent', custom.value);
+          document.documentElement.style.setProperty('--accent', custom.value);
+          buttons.forEach(function (el) { el.setAttribute('aria-pressed', 'false'); });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

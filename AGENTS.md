@@ -22,7 +22,7 @@ This file is the single source of truth for agents entering this repository. Rea
 - `apps/daemon` is the local privileged daemon and `od` bin. It owns `/api/*`, agent spawning, skills, design systems, artifacts, and static serving.
 - `apps/desktop` is the Electron shell; it consumes web/daemon status through the sidecar client boundary.
 - `apps/packaged` is the thin packaged Electron runtime entry; it starts packaged sidecars and owns the `od://` entry glue only.
-- `apps/closure` owns the independently distributable SaaSCodex Closure content. It does not own acquisition, generation state, or shell policy.
+- `apps/closure` owns the independently distributable SplatStudio Closure content. It does not own acquisition, generation state, or shell policy.
 - `packages/contracts` is the pure TypeScript web/daemon app contract layer.
 - `packages/sidecar-proto` owns business DTOs and action names; `packages/sidecar` owns the complete business-agnostic sidecar client boundary and protocol implementation; `packages/platform` owns generic OS process primitives.
 - `packages/standalone` owns the shell-neutral exact metadata, verification, materialization, generation, and launcher contract.
@@ -118,7 +118,7 @@ Sanctioned exceptions:
 - `OD_LEGACY_DATA_DIR` is a migration source for legacy data import only. It is
   not an active daemon data root.
 - External tool homes such as `CODEX_HOME` are integration inputs, not daemon
-  data roots. The daemon must not describe them as SaaSCodex runtime data.
+  data roots. The daemon must not describe them as SplatStudio runtime data.
 - Agent/project-cwd skill staging aliases are not daemon data roots.
 - Manifest metadata keys and CSS identifiers are semantic namespaces, not
   filesystem path conventions.
@@ -227,7 +227,7 @@ confidence methodology in `specs/current/ci.md`.
 - `enable_smoke` and `enable_tests` also default to `true`, because neither costs the build anything any more — see "Prerelease validation runs outside the pipeline" below. `mac_sign_mode` (default `sign-only`) codesigns without the Apple notary round-trip; `notarize` is the pre-stable setting, since stable ships notarized. `win_x64_smoke_mode` still chooses how deep the Windows smoke goes, and applies only when `enable_smoke` is on.
 - **Signing is not optional for a prerelease that will be promoted.** `validateStablePrereleaseMetadata` requires `platforms.mac.signed == true` and `platforms.macIntel.signed == true`, so `mac_sign_mode: no` produces a prerelease that cannot become a stable release. Notarization has no metadata field and is therefore not checked — which is exactly why it, and not signing, is what the fast default drops.
 - **Automated tests do not gate prerelease delivery.** A prerelease exists so a person can install it and test it by hand; machine CI is a parallel opinion about the same commit rather than a valve on delivery, and a flaky suite must never cost the team a day's package. Do not reintroduce a test job into `build_*` or `publish`'s `needs`/`if`; if a check must genuinely block delivery, that is a channel-policy decision, not a workflow edit.
-- **Prerelease validation runs outside the pipeline.** `release-prerelease.yml` holds one repository-wide concurrency group (`saascodex-release-prerelease`, `cancel-in-progress: false`), so any job that outlives `publish` keeps that group held and stops the NEXT prerelease from *starting*. Making the test jobs advisory was therefore not enough — they still blocked the next build. The workflow now contains only `metadata → build_* → publish` plus two fire-and-forget dispatcher jobs, and the validation lives in three dispatched workflows with concurrency groups scoped to the origin run:
+- **Prerelease validation runs outside the pipeline.** `release-prerelease.yml` holds one repository-wide concurrency group (`splatstudio-release-prerelease`, `cancel-in-progress: false`), so any job that outlives `publish` keeps that group held and stops the NEXT prerelease from *starting*. Making the test jobs advisory was therefore not enough — they still blocked the next build. The workflow now contains only `metadata → build_* → publish` plus two fire-and-forget dispatcher jobs, and the validation lives in three dispatched workflows with concurrency groups scoped to the origin run:
   - `release-prerelease-tests.yml` — `functional_e2e`, `e2e_vitest`, `daemon_unit_tests`, `verify`, dispatched as soon as the build commit resolves.
   - `release-prerelease-smoke.yml` — the packaged mac/Windows smoke, dispatched after `publish`. It does **not** test a local build directory: `.github/scripts/release/smoke-artifacts.ts` reads the published version metadata, downloads the DMG / setup.exe a user would get, verifies its sha256 sidecar, and writes it to the one path `tools-pack <platform> install` reads. Linux keeps its in-job smoke, because the whole Linux lane is opt-in behind `vars.ENABLE_STABLE_LINUX` and is on nobody's critical path.
   - `release-prerelease-card.yml` — the progressive Feishu card.
@@ -253,15 +253,15 @@ confidence methodology in `specs/current/ci.md`.
 - Shared web/daemon app contracts belong in `packages/contracts`; that package must not depend on Next.js, Express, Node filesystem/process APIs, browser APIs, SQLite, daemon internals, or the sidecar control-plane protocol.
 - Sidecar process stamps must have exactly five fields: `channel`, `namespace`, `source`, `mode`, and `app`. IPC is private implementation detail and is never a stamp field.
 - Sidecar identity is argv-only. Do not create identity/state files derived from a stamp.
-- Orchestration layers (`tools-dev`, `tools-pack`, packaged launchers) must call `@saascodex/sidecar` client/atomic primitives; do not expose argv assembly, IPC paths, or process scans.
+- Orchestration layers (`tools-dev`, `tools-pack`, packaged launchers) must call `@splatstudio/sidecar` client/atomic primitives; do not expose argv assembly, IPC paths, or process scans.
 - Packaged runtime paths must be namespace-scoped and independent from daemon/web ports; ports are transient transport details only.
-- Default runtime files live under `<project-root>/.tmp/<source>/<namespace>/...`; private IPC endpoints are derived by `@saascodex/sidecar` from the five-field stamp and the current OS principal. POSIX endpoints use a principal-scoped, hashed directory under the OS temporary directory; callers must treat the concrete path as opaque.
+- Default runtime files live under `<project-root>/.tmp/<source>/<namespace>/...`; private IPC endpoints are derived by `@splatstudio/sidecar` from the five-field stamp and the current OS principal. POSIX endpoints use a principal-scoped, hashed directory under the OS temporary directory; callers must treat the concrete path as opaque.
 
 ## Capability exposure (UI/CLI dual-track)
 
 Every user-facing capability must be reachable through both the web UI **and** the `od` CLI (`apps/daemon/src/cli.ts`). Shipping a feature with only one of the two surfaces is a regression.
 
-- The CLI is the embeddability contract. External agents (hermes-agent, openclaw, custom Slack/Discord bots, packaged runtimes invoked from another shell) drive SaaSCodex through `od` subcommands — they do not render the web UI. If a capability is UI-only, it cannot be composed into those external agents.
+- The CLI is the embeddability contract. External agents (hermes-agent, openclaw, custom Slack/Discord bots, packaged runtimes invoked from another shell) drive SplatStudio through `od` subcommands — they do not render the web UI. If a capability is UI-only, it cannot be composed into those external agents.
 - Both surfaces must call the same `/api/*` endpoints; do not let the CLI talk to one shape and the UI to another. The daemon HTTP layer is the single source of truth, with `packages/contracts` carrying the shared DTOs.
 - The CLI form must support `--json` for machine-readable output and accept long-form prompts via `--prompt-file <path|->`, so jobs that pipe through `xargs`, `jq`, and `<heredoc` stay clean.
 - Adding a new capability is a three-step closure: HTTP endpoint in `apps/daemon/src/*-routes.ts` (with a contract type in `packages/contracts/src/api/`), UI surface in `apps/web/src/`, and `od <capability>` subcommand in `apps/daemon/src/cli.ts` registered through `SUBCOMMAND_MAP`. Land all three in the same PR; do not stage them across PRs.
@@ -296,7 +296,7 @@ Every user-facing capability must be reachable through both the web UI **and** t
 This repository no longer ships a maintainer PR-duty control plane. The former
 `pnpm tools-pr` workflow has moved to the standalone `PerishCode/duty` project
 so personal review-lane automation does not become product workspace
-maintenance surface. Do not recreate `tools/pr`, `@saascodex/tools-pr`, or a
+maintenance surface. Do not recreate `tools/pr`, `@splatstudio/tools-pr`, or a
 root `pnpm tools-pr` script without a new explicit maintainer decision.
 
 ## Prompt variants (two implementations, one switch)
@@ -349,15 +349,15 @@ Before changing any prompt text — in any of those locations — read `docs/pro
 - New component-owned UI styles should default to CSS Modules next to the component (`Component.module.css`) instead of expanding global stylesheets. This is preferred for isolated components, panels, menus, drawers, toolbars, cards, and form sections.
 - When touching an existing component with nearby global styles, prefer migrating that component's local selectors to a CSS Module as part of the change if it is small and testable. Do not mix a large mechanical move with behavior/styling changes in the same patch.
 - Keep global class names only for deliberate shared contracts: reusable primitives, theme hooks, third-party/content styling, cross-component layout, or selectors that rely on global cascade/specificity. Document any new global selector group with its owning feature.
-- CSS refactors must preserve cascade semantics. For mechanical splits, verify expanded import content/order matches the previous stylesheet; for CSS Module migrations, validate the affected UI path with `pnpm --filter @saascodex/web typecheck` and a focused build/test or visual check when practical.
+- CSS refactors must preserve cascade semantics. For mechanical splits, verify expanded import content/order matches the previous stylesheet; for CSS Module migrations, validate the affected UI path with `pnpm --filter @splatstudio/web typecheck` and a focused build/test or visual check when practical.
 
 ## Web component reuse
 
-- New `apps/web` UI should reuse shared primitives from `@saascodex/components` when one exists instead of styling plain HTML elements directly. For example, use `Button` for app buttons and `VisuallyHidden` for screen-reader-only text/status content.
+- New `apps/web` UI should reuse shared primitives from `@splatstudio/components` when one exists instead of styling plain HTML elements directly. For example, use `Button` for app buttons and `VisuallyHidden` for screen-reader-only text/status content.
 - Do not add new raw primitive classes such as `primary`, `primary-ghost`, `ghost`, `subtle`, `icon-btn`, or `sr-only` for new UI. Those classes are legacy compatibility surface for existing markup until it is migrated.
 - If a needed primitive is missing, prefer adding a small focused primitive to `packages/components` with colocated CSS Modules, then consume it from the app. Keep product-specific layout and workflow styling in the app, not in `packages/components`.
 - Keep semantic plain HTML when it is content markup or a specialized control that the shared package does not model yet; do not force a migration that would hide native behavior or make a custom widget harder to reason about.
-- `apps/web` transpiles `@saascodex/components` from source during dev, so component and CSS Module edits should work through the normal web dev loop without rebuilding the package.
+- `apps/web` transpiles `@splatstudio/components` from source during dev, so component and CSS Module edits should work through the normal web dev loop without rebuilding the package.
 
 ## i18n keys
 
@@ -414,7 +414,7 @@ pnpm tools-dev run web --daemon-port 17456 --web-port 17573
 pnpm tools-dev status --json
 pnpm tools-dev logs --json
 pnpm tools-dev inspect desktop status --json
-pnpm tools-dev inspect desktop screenshot --path /tmp/saascodex.png
+pnpm tools-dev inspect desktop screenshot --path /tmp/splatstudio.png
 pnpm tools-dev stop
 pnpm tools-dev check
 ```
@@ -425,15 +425,15 @@ pnpm typecheck
 ```
 
 ```bash
-pnpm --filter @saascodex/web typecheck
-pnpm --filter @saascodex/web test
-pnpm --filter @saascodex/web build
-pnpm --filter @saascodex/daemon test
-pnpm --filter @saascodex/daemon build
-pnpm --filter @saascodex/desktop build
-pnpm --filter @saascodex/tools-dev build
-pnpm --filter @saascodex/tools-pack build
-pnpm --filter @saascodex/tools-serve build
+pnpm --filter @splatstudio/web typecheck
+pnpm --filter @splatstudio/web test
+pnpm --filter @splatstudio/web build
+pnpm --filter @splatstudio/daemon test
+pnpm --filter @splatstudio/daemon build
+pnpm --filter @splatstudio/desktop build
+pnpm --filter @splatstudio/tools-dev build
+pnpm --filter @splatstudio/tools-pack build
+pnpm --filter @splatstudio/tools-serve build
 ```
 
 ```bash
@@ -464,7 +464,7 @@ Desktop queries runtime status through its sidecar client. The web URL comes fro
 
 ## How are sidecar-proto, sidecar, and platform split?
 
-`@saascodex/sidecar-proto` owns SaaSCodex business action names and DTO/status shapes. `@saascodex/sidecar` is the unique truth source for five-field argv stamps, private IPC, OS resources, process discovery, launch, invocation, and terminal lifecycle. `@saascodex/platform` provides generic OS process primitives beneath sidecar and must not leak those implementation details into apps or orchestrators.
+`@splatstudio/sidecar-proto` owns SplatStudio business action names and DTO/status shapes. `@splatstudio/sidecar` is the unique truth source for five-field argv stamps, private IPC, OS resources, process discovery, launch, invocation, and terminal lifecycle. `@splatstudio/platform` provides generic OS process primitives beneath sidecar and must not leak those implementation details into apps or orchestrators.
 
 ## When is `pnpm install` required?
 

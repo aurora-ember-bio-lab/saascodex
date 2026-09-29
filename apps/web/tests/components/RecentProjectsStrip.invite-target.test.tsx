@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const workspaceState = vi.hoisted(() => ({

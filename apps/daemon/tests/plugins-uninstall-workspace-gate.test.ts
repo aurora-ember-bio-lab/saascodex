@@ -61,7 +61,7 @@ async function seedPluginFolder(pluginId: string): Promise<string> {
   const folder = path.join(pluginsRoot, pluginId);
   await mkdir(folder, { recursive: true });
   await writeFile(
-    path.join(folder, 'saascodex.json'),
+    path.join(folder, 'splatstudio.json'),
     JSON.stringify({ name: pluginId, title: pluginId, version: '1.0.0' }),
   );
   const resolved = await resolvePluginFolder({

@@ -8,7 +8,7 @@
 // surface.
 
 import { describe, expect, it } from 'vitest';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 import { inferPluginPreview } from '../../src/components/plugins-home/preview';
 
 interface MakeArgs {

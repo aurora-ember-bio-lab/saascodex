@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 const packageCssImports = new Map([
-  ['@saascodex/components/styles.css', join(process.cwd(), '../../packages/components/src/styles.css')],
+  ['@splatstudio/components/styles.css', join(process.cwd(), '../../packages/components/src/styles.css')],
 ]);
 
 const CSS_IMPORT = /@import\s+(?:url\(([^)]+)\)|(['"])([^'"]+)\2);/g;

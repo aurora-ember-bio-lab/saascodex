@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { DESKTOP_UPDATE_CHANNELS, DESKTOP_UPDATE_STATES } from "@saascodex/sidecar-proto";
+import { DESKTOP_UPDATE_CHANNELS, DESKTOP_UPDATE_STATES } from "@splatstudio/sidecar-proto";
 
 import { createDesktopUpdaterScheduler } from "../../../src/main/updater/scheduler.js";
 
@@ -12,7 +12,7 @@ describe("desktop updater scheduler", () => {
     const payloadStatus = {
       arch: "arm64",
       artifact: {
-        name: "saascodex-1.0.1-mac-arm64-payload.zip",
+        name: "splatstudio-1.0.1-mac-arm64-payload.zip",
         platformKey: "mac",
         size: 1024,
         type: "payload",
@@ -26,7 +26,7 @@ describe("desktop updater scheduler", () => {
       },
       channel: DESKTOP_UPDATE_CHANNELS.BETA,
       currentVersion: "1.0.0",
-      downloadPath: "/tmp/saascodex-updates/payload.zip",
+      downloadPath: "/tmp/splatstudio-updates/payload.zip",
       enabled: true,
       mode: "package-launcher" as const,
       platform: "darwin",
@@ -39,7 +39,7 @@ describe("desktop updater scheduler", () => {
         activeVersion: "1.0.1",
         dryRun: false,
         openedAt: "2026-05-19T00:00:00.000Z",
-        path: "/tmp/saascodex-updates/payload.zip",
+        path: "/tmp/splatstudio-updates/payload.zip",
       },
     };
     const updater = {
@@ -102,7 +102,7 @@ describe("desktop updater scheduler", () => {
     const payloadStatus = {
       ...idleStatus,
       artifact: {
-        name: "saascodex-1.0.1-mac-arm64-payload.zip",
+        name: "splatstudio-1.0.1-mac-arm64-payload.zip",
         platformKey: "mac",
         size: 1024,
         type: "payload",
@@ -114,7 +114,7 @@ describe("desktop updater scheduler", () => {
         canOpenInstaller: false,
         requiresManualInstall: false,
       },
-      downloadPath: "/tmp/saascodex-updates/payload.zip",
+      downloadPath: "/tmp/splatstudio-updates/payload.zip",
       state: DESKTOP_UPDATE_STATES.DOWNLOADED,
     };
     const updater = {
@@ -177,7 +177,7 @@ describe("desktop updater scheduler", () => {
     const payloadStatus = {
       ...baseStatus,
       artifact: {
-        name: "saascodex-1.0.1-mac-arm64-payload.zip",
+        name: "splatstudio-1.0.1-mac-arm64-payload.zip",
         platformKey: "mac",
         size: 1024,
         type: "payload",
@@ -189,7 +189,7 @@ describe("desktop updater scheduler", () => {
         canOpenInstaller: false,
         requiresManualInstall: false,
       },
-      downloadPath: "/tmp/saascodex-updates/payload.zip",
+      downloadPath: "/tmp/splatstudio-updates/payload.zip",
       state: DESKTOP_UPDATE_STATES.DOWNLOADED,
     };
     const updater = {
@@ -262,7 +262,7 @@ describe("desktop updater scheduler", () => {
         checkInitialDelayMs: 5_000,
         checkIntervalMs: 15 * 60 * 1000,
         currentVersion: "1.0.0",
-        downloadRoot: "/tmp/saascodex-updates",
+        downloadRoot: "/tmp/splatstudio-updates",
         enabled: true,
         metadataUrl: "https://example.invalid/metadata.json",
         mode: "package-launcher" as const,

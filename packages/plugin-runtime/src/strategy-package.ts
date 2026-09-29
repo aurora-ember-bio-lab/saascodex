@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-const STRATEGY_PACKAGE_IDENTITY_SCHEMA = 'saascodex.strategy-package-identity/v1';
+const STRATEGY_PACKAGE_IDENTITY_SCHEMA = 'splatstudio.strategy-package-identity/v1';
 const SHA256_HEX = /^[a-f0-9]{64}$/;
 
 export interface StrategyPackageAssetInput {

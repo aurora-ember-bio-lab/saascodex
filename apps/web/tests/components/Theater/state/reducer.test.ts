@@ -9,7 +9,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import type { PanelEvent, PanelistRole } from '@saascodex/contracts/critique';
+import type { PanelEvent, PanelistRole } from '@splatstudio/contracts/critique';
 
 import {
   initialState,

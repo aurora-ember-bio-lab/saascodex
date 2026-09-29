@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type {
   WorkspaceBillingResponse,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { resetCoalescedGet } from '../src/lib/coalesced-get';
 import {
@@ -80,7 +80,7 @@ function billingInterestResponse(
   }
   const body = JSON.parse(String(init?.body)) as { generation: string };
   const clientId = decodeURIComponent(
-    new URL(url, 'http://saascodex.test').pathname.split('/').at(-1)!,
+    new URL(url, 'http://splatstudio.test').pathname.split('/').at(-1)!,
   );
   return new Response(JSON.stringify({
     clientId,
@@ -731,7 +731,7 @@ describe('useWorkspaceBilling explicit scope', () => {
         if (url.startsWith('/api/workspace/billing?')) {
           const workspaceId = new URL(
             url,
-            'http://saascodex.test',
+            'http://splatstudio.test',
           ).searchParams.get('workspaceId')!;
           const headers = new Headers(init?.headers);
           const clientId =
@@ -812,7 +812,7 @@ describe('useWorkspaceBilling explicit scope', () => {
               kind: 'interest',
               method: 'DELETE',
               generation:
-                new URL(url, 'http://saascodex.test').searchParams.get(
+                new URL(url, 'http://splatstudio.test').searchParams.get(
                   'generation',
                 ) ?? '',
             });
@@ -830,7 +830,7 @@ describe('useWorkspaceBilling explicit scope', () => {
             generation: body.generation,
           });
           const clientId = decodeURIComponent(
-            new URL(url, 'http://saascodex.test').pathname.split('/').at(-1)!,
+            new URL(url, 'http://splatstudio.test').pathname.split('/').at(-1)!,
           );
           return new Response(JSON.stringify({
             clientId,
@@ -970,7 +970,7 @@ describe('useWorkspaceBilling explicit scope', () => {
           });
         }
         if (url.startsWith('/api/workspace/billing?')) {
-          const workspaceId = new URL(url, 'http://saascodex.test').searchParams.get(
+          const workspaceId = new URL(url, 'http://splatstudio.test').searchParams.get(
             'workspaceId',
           );
           if (workspaceId === 'workspace-b') {
@@ -1452,7 +1452,7 @@ describe('useWorkspaceBilling explicit scope', () => {
             clientId: headers.get('x-od-workspace-runtime-client-id') ?? '',
             generation: headers.get('x-od-workspace-runtime-generation') ?? '',
           });
-          const parsed = new URL(url, 'http://saascodex.test');
+          const parsed = new URL(url, 'http://splatstudio.test');
           const workspaceId = parsed.searchParams.get('workspaceId');
           expect(parsed.searchParams.get('scope')).toBe('workspace');
           if (workspaceId === 'workspace-a') {
@@ -1829,7 +1829,7 @@ describe('useWorkspaceBilling explicit scope', () => {
         }
         if (url.startsWith('/api/workspace/billing?')) {
           billingCalls.push(url);
-          const workspaceId = new URL(url, 'http://saascodex.test').searchParams.get(
+          const workspaceId = new URL(url, 'http://splatstudio.test').searchParams.get(
             'workspaceId',
           );
           if (workspaceId === 'workspace-a' || workspaceId === 'workspace-b') {

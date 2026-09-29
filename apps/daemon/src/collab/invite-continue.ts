@@ -1,4 +1,4 @@
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { readVelaControlApiContext } from '../integrations/vela.js';
 import { mapVelaWorkspaceContext } from './vela-workspace-context.js';
 

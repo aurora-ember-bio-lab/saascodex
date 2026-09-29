@@ -121,17 +121,17 @@ describe('web-clone example-card tracking', () => {
     expect(screen.queryByTestId('home-hero-plugin-presets')).toBeNull();
     // No remix/duplicate affordance on the web-clone rail.
     expect(document.querySelector('[data-testid^="home-hero-plugin-preset-duplicate"]')).toBeNull();
-    // Site cards show the bare domain (e.g. saascodex.com), not the raw prompt line.
-    expect(textCards.some((c) => (c.textContent ?? '').includes('saascodex.com'))).toBe(true);
+    // Site cards show the bare domain (e.g. splatstudio.app), not the raw prompt line.
+    expect(textCards.some((c) => (c.textContent ?? '').includes('splatstudio.app'))).toBe(true);
     expect(textCards.every((c) => !(c.textContent ?? '').includes('https://'))).toBe(true);
     expect(document.querySelector('.home-hero__prompt-example--site')).not.toBeNull();
   });
 
   // Contract lock: the shipped Website-clone example set is intentionally
-  // narrowed to the first-party SaaSCodex site to avoid shipping third-party
+  // narrowed to the first-party SplatStudio site to avoid shipping third-party
   // brand copies. Assert the exact count + domain so the rail can't silently
   // drift back to the old multi-site set without updating this contract.
-  it('resolves exactly the contracted SaaSCodex Website-clone site card', async () => {
+  it('resolves exactly the contracted SplatStudio Website-clone site card', async () => {
     writeHomeGuideStage('done');
     stubPlugins();
     renderHome();
@@ -139,14 +139,14 @@ describe('web-clone example-card tracking', () => {
     await pickHomeTemplate('web-clone');
     const siteCards = await screen.findAllByTestId('home-hero-prompt-example');
     const domains = siteCards.map((c) => (c.textContent ?? '').trim());
-    expect(domains).toEqual(['saascodex.com']);
+    expect(domains).toEqual(['splatstudio.app']);
     // Every card must be the site variant (favicon tile + bare domain).
     expect(
       siteCards.every((c) => c.classList.contains('home-hero__prompt-example--site')),
     ).toBe(true);
   });
 
-  it('renders the contracted SaaSCodex site card with a local eager logo', async () => {
+  it('renders the contracted SplatStudio site card with a local eager logo', async () => {
     writeHomeGuideStage('done');
     stubPlugins();
     renderHome();
@@ -159,7 +159,7 @@ describe('web-clone example-card tracking', () => {
     expect(logo?.getAttribute('fetchpriority')).toBe('high');
   });
 
-  it('falls back when the local SaaSCodex site card logo cannot load', async () => {
+  it('falls back when the local SplatStudio site card logo cannot load', async () => {
     writeHomeGuideStage('done');
     stubPlugins();
     renderHome();
@@ -172,7 +172,7 @@ describe('web-clone example-card tracking', () => {
     fireEvent.error(localLogo!);
     const remoteFallback = siteCard.querySelector<HTMLImageElement>('.home-hero__site-badge img');
     expect(remoteFallback?.getAttribute('src')).toBe(
-      'https://www.google.com/s2/favicons?sz=128&domain=saascodex.com',
+      'https://www.google.com/s2/favicons?sz=128&domain=splatstudio.app',
     );
 
     fireEvent.error(remoteFallback!);

@@ -4,7 +4,7 @@ import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import { forwardRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { ChatMessage, ProjectMediaTask } from '@saascodex/contracts';
+import type { ChatMessage, ProjectMediaTask } from '@splatstudio/contracts';
 import { ChatPane } from '../../src/components/ChatPane';
 
 const registryMocks = vi.hoisted(() => ({

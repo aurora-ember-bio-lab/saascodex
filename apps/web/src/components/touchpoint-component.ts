@@ -8,7 +8,7 @@ import {
 	TouchpointModuleCache,
 	type TouchpointSdk,
 	TouchpointUpdateQueue,
-} from "@saascodex/contracts";
+} from "@splatstudio/contracts";
 
 export type WebTouchpointContent = {
 	id: string;
@@ -73,7 +73,7 @@ function isVisibleAndEnabled(element: Element): boolean {
 }
 
 export function hasWebTouchpointCloseControl(
-	element: SaaSCodexTouchpointElement,
+	element: SplatStudioTouchpointElement,
 ): boolean {
 	const root = element.shadowRoot;
 	if (!root || !isVisibleAndEnabled(element)) return false;
@@ -269,7 +269,7 @@ const TouchpointElementBase: typeof HTMLElement =
 		? (class {} as typeof HTMLElement)
 		: HTMLElement;
 
-export class SaaSCodexTouchpointElement extends TouchpointElementBase {
+export class SplatStudioTouchpointElement extends TouchpointElementBase {
 	private generation = 0;
 	private disposed = true;
 	private disposing?: Promise<void>;
@@ -552,11 +552,11 @@ export class SaaSCodexTouchpointElement extends TouchpointElementBase {
 	}
 }
 
-export function ensureWebTouchpointElement(): typeof SaaSCodexTouchpointElement {
+export function ensureWebTouchpointElement(): typeof SplatStudioTouchpointElement {
 	const current = customElements.get(ELEMENT_NAME);
-	if (current) return current as typeof SaaSCodexTouchpointElement;
-	customElements.define(ELEMENT_NAME, SaaSCodexTouchpointElement);
-	return SaaSCodexTouchpointElement;
+	if (current) return current as typeof SplatStudioTouchpointElement;
+	customElements.define(ELEMENT_NAME, SplatStudioTouchpointElement);
+	return SplatStudioTouchpointElement;
 }
 
 /** Resolves the verified placement locale without inventing unsupported locales. */

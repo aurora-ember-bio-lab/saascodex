@@ -13,12 +13,12 @@ import type {
   TrackingRunPolicyReason,
   TrackingRunRepairOwner,
   TrackingRunTerminalTrigger,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   AMR_CONTINUATION_ERROR_CODE,
   isMembershipConcurrencyLimitFailure,
   isModelWindowLimitFailure,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   classifyAmrAccountFailure,

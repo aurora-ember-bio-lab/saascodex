@@ -1,19 +1,19 @@
 ---
-title: SaaSCodex 0.18.0
-description: SaaSCodex 0.18.0 introduces Team Workspace—a shared home where design teams can share projects, review updates, comment in context, and reuse the same design systems, plugins, and skills. With the new SaaSCodex plugin for Codex, that collaborative workspace now extends directly into Codex.
+title: SplatStudio 0.18.0
+description: SplatStudio 0.18.0 introduces Team Workspace—a shared home where design teams can share projects, review updates, comment in context, and reuse the same design systems, plugins, and skills. With the new SplatStudio plugin for Codex, that collaborative workspace now extends directly into Codex.
 ---
 
 ### 🌟 Codename: *Design Team Workspace. Now in Codex.*
 
-🤝 **`115 PRs` · `22 contributors` · `2 days`** — SaaSCodex 0.18.0 introduces Team Workspace—a shared home where design teams can share projects, review updates, comment in context, and reuse the same design systems, plugins, and skills. With the new SaaSCodex plugin for Codex, that collaborative workspace now extends directly into Codex. 🚀
+🤝 **`115 PRs` · `22 contributors` · `2 days`** — SplatStudio 0.18.0 introduces Team Workspace—a shared home where design teams can share projects, review updates, comment in context, and reuse the same design systems, plugins, and skills. With the new SplatStudio plugin for Codex, that collaborative workspace now extends directly into Codex. 🚀
 
 ## 🔥 Highlights
 
-- 🤝 **Team workspaces — your team gets a home.** *Collaboration used to mean leaving SaaSCodex: export the file, paste the screenshot, chase the latest copy.* Now a **Team workspace** lives right next to your personal one. Create it, switch into it, and invite colleagues with a role through a seat-aware invite flow — everyone lands in the same place, signed in through one SaaSCodex Cloud account. (#6142, #6459)
+- 🤝 **Team workspaces — your team gets a home.** *Collaboration used to mean leaving SplatStudio: export the file, paste the screenshot, chase the latest copy.* Now a **Team workspace** lives right next to your personal one. Create it, switch into it, and invite colleagues with a role through a seat-aware invite flow — everyone lands in the same place, signed in through one SplatStudio Cloud account. (#6142, #6459)
 
-- 🚀 **SaaSCodex for Codex — in case you missed 0.17.0.** *The last release lived for exactly two days, so its headline rides again:* Codex Desktop and CLI can call SaaSCodex as a complete creative engine. Confirm a visual brief, choose SaaSCodex Cloud or a supported local runtime, and receive a real Preview or Studio result. The signed SaaSCodex runtime starts headlessly when needed, so there is no second app to keep open and no stack to wire together by hand. Upgrading from 0.16.x? This one is new to you too. (#6055, #6273, #6362 — shipped in [0.17.0](https://github.com/nexu-io/open-design/releases/tag/saascodex-v0.17.0))
+- 🚀 **SplatStudio for Codex — in case you missed 0.17.0.** *The last release lived for exactly two days, so its headline rides again:* Codex Desktop and CLI can call SplatStudio as a complete creative engine. Confirm a visual brief, choose SplatStudio Cloud or a supported local runtime, and receive a real Preview or Studio result. The signed SplatStudio runtime starts headlessly when needed, so there is no second app to keep open and no stack to wire together by hand. Upgrading from 0.16.x? This one is new to you too. (#6055, #6273, #6362 — shipped in [0.17.0](https://github.com/nexu-io/open-design/releases/tag/splatstudio-v0.17.0))
 
-- 🔌 **And Codex doesn't lose SaaSCodex anymore.** External MCP hosts — Codex and friends — used to go dark if SaaSCodex's local service came back on a different port after a restart. The connection now finds its way home on its own, so `@saascodex` keeps working across restarts without re-setup. (#6391)
+- 🔌 **And Codex doesn't lose SplatStudio anymore.** External MCP hosts — Codex and friends — used to go dark if SplatStudio's local service came back on a different port after a restart. The connection now finds its way home on its own, so `@splatstudio` keeps working across restarts without re-setup. (#6391)
 
 - 📁 **Shared projects that stay current on their own.** Move a project into the team space and every member gets a live read-only mirror: content auto-pulls as the owner works, presence avatars show who's looking, transfer progress is visible, and comments flow both ways — including from viewers in read-only mode. Nobody re-sends anything, and "is this the latest?" stops being a question. (#5281, #5283, #5395, #6294)
 
@@ -29,25 +29,25 @@ description: SaaSCodex 0.18.0 introduces Team Workspace—a shared home where de
 
 - 🕵️ **Clone Audit — know a clone is safe before you ship it.** The new community plugin inspects a cloned site the way a reviewer would: visual fidelity, leftover tracking scripts, source-brand and language residue, placeholders, and risky external dependencies — then hands you an evidence-based report with file-and-line receipts and a clear deployment verdict. (#5687) Thanks @bestthanapon.
 
-> 📥 **Download:** Tag `saascodex-v0.18.0`.
+> 📥 **Download:** Tag `splatstudio-v0.18.0`.
 >
 > | Platform | Architecture | Asset |
 > |---|---|---|
-> | macOS | Apple Silicon (arm64) | [saascodex-0.18.0-mac-arm64.dmg](https://github.com/nexu-io/open-design/releases/download/saascodex-v0.18.0/saascodex-0.18.0-mac-arm64.dmg) |
-> | macOS | Intel (x64) | [saascodex-0.18.0-mac-x64.dmg](https://github.com/nexu-io/open-design/releases/download/saascodex-v0.18.0/saascodex-0.18.0-mac-x64.dmg) |
-> | Windows | x64 | [saascodex-0.18.0-win-x64-setup.exe](https://github.com/nexu-io/open-design/releases/download/saascodex-v0.18.0/saascodex-0.18.0-win-x64-setup.exe) |
+> | macOS | Apple Silicon (arm64) | [splatstudio-0.18.0-mac-arm64.dmg](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-mac-arm64.dmg) |
+> | macOS | Intel (x64) | [splatstudio-0.18.0-mac-x64.dmg](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-mac-x64.dmg) |
+> | Windows | x64 | [splatstudio-0.18.0-win-x64-setup.exe](https://github.com/nexu-io/open-design/releases/download/splatstudio-v0.18.0/splatstudio-0.18.0-win-x64-setup.exe) |
 
 ## ✨ Added
 
 ### 🏠 Home, projects & landing
 
-- **The plugin catalog has a front door.** A dedicated landing page introduces SaaSCodex plugins to newcomers before they ever install the app. (#6241) Thanks @joeylee12629-star.
+- **The plugin catalog has a front door.** A dedicated landing page introduces SplatStudio plugins to newcomers before they ever install the app. (#6241) Thanks @joeylee12629-star.
 
 - **The Codex agent page now answers the question people actually ask.** Sharper positioning and content for anyone searching for a Codex UI. (#6200) Thanks @joeylee12629-star.
 
 ## 🔁 Changed
 
-- **SaaSCodex ships light-first.** The new workspace surfaces are tuned for the light appearance, so the theme setting is retired for now and every install returns to light. (#6168)
+- **SplatStudio ships light-first.** The new workspace surfaces are tuned for the light appearance, so the theme setting is retired for now and every install returns to light. (#6168)
 
 ## 🐛 Fixed
 

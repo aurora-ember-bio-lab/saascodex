@@ -7,7 +7,7 @@
 // instead of regressing back to alphabetical bundled noise.
 
 import { describe, expect, it } from 'vitest';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 import {
   pluginVisualScore,
   sortByVisualAppeal,
@@ -134,12 +134,12 @@ describe('sortByVisualAppeal', () => {
         },
       }),
       fixture({
-        id: 'example-saascodex-landing',
+        id: 'example-splatstudio-landing',
         od: { mode: 'prototype', preview: { type: 'html', entry: './index.html' } },
       }),
     ];
     const sorted = sortByVisualAppeal(records).map((r) => r.id);
-    expect(sorted[0]).toBe('example-saascodex-landing');
+    expect(sorted[0]).toBe('example-splatstudio-landing');
   });
 
   it('keeps numeric featured rank ahead of media bonuses', () => {

@@ -1,6 +1,6 @@
 // External MCP servers panel.
 //
-// SaaSCodex connects to the configured servers as a CLIENT and surfaces
+// SplatStudio connects to the configured servers as a CLIENT and surfaces
 // their tools to the underlying agent (Claude Code, Hermes, Kimi for v1).
 // This panel is the user-facing form; persistence flows through
 // `state/mcp.ts` -> daemon `/api/mcp/servers`.
@@ -13,13 +13,13 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackIntegrationsMcpTabClick,
   trackSettingsExternalMcpClick,
 } from '../analytics/events';
-import type { TrackingExternalMcpElement } from '@saascodex/contracts/analytics';
+import type { TrackingExternalMcpElement } from '@splatstudio/contracts/analytics';
 import {
   disconnectMcpOAuth,
   fetchMcpOAuthStatus,
@@ -223,7 +223,7 @@ const ID_PATTERN = /^[a-z0-9][a-z0-9_-]{0,63}$/i;
 
 // Picker grouping. Mirrors `McpTemplateCategory` in `packages/contracts`.
 // The order here is the *display* order in the picker — keep it intentional
-// so the most useful categories for SaaSCodex (visual generation, then
+// so the most useful categories for SplatStudio (visual generation, then
 // editing, then publishing surfaces) sit at the top.
 function categoryOrder(t: Translate): ReadonlyArray<{
   id: NonNullable<McpTemplate['category']>;
@@ -1175,7 +1175,7 @@ function McpOAuthControl({ serverId }: { serverId: string }) {
     window.addEventListener('message', onMessage);
     let bc: BroadcastChannel | null = null;
     if (typeof BroadcastChannel !== 'undefined') {
-      bc = new BroadcastChannel('saascodex-mcp-oauth');
+      bc = new BroadcastChannel('splatstudio-mcp-oauth');
       bc.onmessage = (ev) => onMessage(ev as MessageEvent);
     }
     return () => {

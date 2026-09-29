@@ -36,7 +36,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
-import type { ChatCommentAttachment } from '@saascodex/contracts';
+import type { ChatCommentAttachment } from '@splatstudio/contracts';
 
 import { I18nProvider } from '../../../src/i18n';
 import { QueuedSendStrip } from '../../../src/components/ChatPane';

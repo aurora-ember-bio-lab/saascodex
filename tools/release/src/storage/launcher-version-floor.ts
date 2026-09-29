@@ -1,5 +1,5 @@
-import { compareLauncherVersions } from "@saascodex/launcher-proto";
-import type { ReleaseChannel } from "@saascodex/release";
+import { compareLauncherVersions } from "@splatstudio/launcher-proto";
+import type { ReleaseChannel } from "@splatstudio/release";
 
 /**
  * Channel policy for the installer-reinstall floor published as

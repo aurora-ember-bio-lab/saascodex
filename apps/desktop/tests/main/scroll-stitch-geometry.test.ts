@@ -495,7 +495,7 @@ describe('deck capture DOM prep', () => {
 
 describe('readDomToPptxBundleFile', () => {
   test('reads the checked-in gzip bundle format directly', async () => {
-    const root = await mkdtemp(join(tmpdir(), 'saascodex-dom-to-pptx-'));
+    const root = await mkdtemp(join(tmpdir(), 'splatstudio-dom-to-pptx-'));
     try {
       const file = join(root, 'dom-to-pptx.bundle.js.gz');
       await writeFile(file, await gzipAsync('window.domToPptx = {};'));

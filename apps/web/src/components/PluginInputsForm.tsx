@@ -15,7 +15,7 @@
 //   - Default values pre-fill the field on mount.
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { InputFieldSpec } from '@saascodex/contracts';
+import type { InputFieldSpec } from '@splatstudio/contracts';
 import { useI18n } from '../i18n';
 import {
   localizePluginDisplayValue,

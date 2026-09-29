@@ -6,7 +6,7 @@ import {
   workspacePrincipalKey,
   type CollabMemberRole,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { workspaceIdentityCacheKey } from '../../src/collab/workspace-identity';
 

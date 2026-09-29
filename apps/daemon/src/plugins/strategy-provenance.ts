@@ -4,11 +4,11 @@ import {
   type AppliedStrategyBindingV2,
   type BundledStrategyDeclarationV2,
   type InstalledPluginRecord,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   normalizeStrategyAssetPath,
   strategyPackageHashFromDigests,
-} from '@saascodex/plugin-runtime';
+} from '@splatstudio/plugin-runtime';
 
 type StrategyProvenanceInput = Pick<InstalledPluginRecord, 'sourceKind' | 'manifest'>;
 
@@ -106,7 +106,7 @@ export function validateBundledStrategyActivationV2(
   }
 
   const expectedPaths = [
-    './saascodex.json',
+    './splatstudio.json',
     './SKILL.md',
     declaration.assets.core.path,
     declaration.assets.orchestration.path,

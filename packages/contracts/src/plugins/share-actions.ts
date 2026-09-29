@@ -2,14 +2,14 @@ import type { Project } from '../api/projects.js';
 
 export const PLUGIN_SHARE_ACTIONS = [
   'publish-github',
-  'contribute-saascodex',
+  'contribute-splatstudio',
 ] as const;
 
 export type PluginShareAction = (typeof PLUGIN_SHARE_ACTIONS)[number];
 
 export const PLUGIN_SHARE_ACTION_PLUGIN_IDS: Record<PluginShareAction, string> = {
   'publish-github': 'od-plugin-publish-github',
-  'contribute-saascodex': 'od-plugin-contribute-saascodex',
+  'contribute-splatstudio': 'od-plugin-contribute-splatstudio',
 };
 
 export interface CreatePluginShareProjectRequest {

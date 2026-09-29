@@ -7,7 +7,7 @@ import type {
   RoutineRun,
   RoutineSchedule,
   Weekday,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { Icon } from './Icon';
 import { navigate } from '../router';

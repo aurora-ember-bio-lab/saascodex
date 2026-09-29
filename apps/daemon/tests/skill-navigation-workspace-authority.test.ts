@@ -3,7 +3,7 @@ import type http from 'node:http';
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { afterEach, describe, expect, it } from 'vitest';
 import { registerStaticResourceRoutes } from '../src/routes/static-resource.js';
 

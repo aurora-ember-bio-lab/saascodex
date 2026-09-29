@@ -26,7 +26,7 @@
  * Callers must still reserve the slot so names stay aligned; that is the
  * caller's layout concern, not this component's.
  */
-import type { ProjectDisplayStatus } from '@saascodex/contracts';
+import type { ProjectDisplayStatus } from '@splatstudio/contracts';
 import { Icon } from './Icon';
 import { SiriOrb } from './SiriOrb';
 

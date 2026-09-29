@@ -3,7 +3,7 @@ import path from 'node:path';
 import type {
   InstalledPluginRecord,
   ProjectMetadata,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { load } from 'cheerio';
 import { ensureProject } from '../projects.js';
 
@@ -19,7 +19,7 @@ const EXCLUDED_DIR_NAMES = new Set([
 
 const EXCLUDED_FILE_NAMES = new Set([
   '.DS_Store',
-  'saascodex.json',
+  'splatstudio.json',
   'SKILL.md',
 ]);
 

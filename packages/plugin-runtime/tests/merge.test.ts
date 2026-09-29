@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { mergeManifests } from '../src/merge';
-import type { PluginManifest } from '@saascodex/contracts';
+import type { PluginManifest } from '@splatstudio/contracts';
 
 const adapter: PluginManifest = {
   name: 'plugin',

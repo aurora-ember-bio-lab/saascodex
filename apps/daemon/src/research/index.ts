@@ -2,7 +2,7 @@ import type {
   ResearchDepth,
   ResearchFindings,
   ResearchSource,
-} from '@saascodex/contracts/api/research';
+} from '@splatstudio/contracts/api/research';
 import { resolveProviderConfig } from '../media/config.js';
 import { tavilySearch, TavilyError } from './tavily.js';
 

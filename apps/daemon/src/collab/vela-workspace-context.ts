@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   CollabMemberRole,
   WorkspaceBillingState,
@@ -15,7 +15,7 @@ import type {
   WorkspaceProviderMode,
   WorkspaceSeatSummary,
   WorkspaceType,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   markVelaAuthorizationExpired,
   readVelaControlApiContext,

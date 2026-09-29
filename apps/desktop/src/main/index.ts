@@ -8,7 +8,7 @@ import { BrowserWindow, Menu, app, dialog, globalShortcut, shell, type MenuItemC
 
 import {
   APP_KEYS,
-  SAASCODEX_SIDECAR_CONTRACT,
+  SPLATSTUDIO_SIDECAR_CONTRACT,
   SIDECAR_MESSAGES,
   SIDECAR_MODES,
   isSidecarMode,
@@ -28,7 +28,7 @@ import {
   type RegisterDesktopAuthResult,
   type LegacySidecarRuntimeLayout,
   type WebStatusSnapshot,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import { dirname, join } from "node:path";
 
 import {
@@ -37,7 +37,7 @@ import {
   SidecarFactory,
   type SidecarClient,
   type SidecarRuntimeContext,
-} from "@saascodex/sidecar";
+} from "@splatstudio/sidecar";
 
 import { createDesktopRuntime, type DesktopRuntime } from "./runtime.js";
 import { dispatchInviteDeeplink, registerInviteDeeplink } from "./invite-deeplink.js";
@@ -104,7 +104,7 @@ export {
   type PickAndImportFolderResult,
 } from "./runtime.js";
 
-const AMR_PROFILE_ENV_KEY = "SAASCODEX_AMR_PROFILE";
+const AMR_PROFILE_ENV_KEY = "SPLATSTUDIO_AMR_PROFILE";
 const AMR_PROFILE_AGENT_ID = "amr";
 const AMR_ENVIRONMENT_PROFILES = ["prod", "test", "feature-test", "local"] as const;
 const APP_CONFIG_CHANGED_IPC_CHANNEL = "od:app-config-changed";
@@ -144,7 +144,7 @@ export function applyOsLocaleSwitch(electronApp: Electron.App): string {
 
 /**
  * Lift Chromium's hardcoded 6-connections-per-origin socket cap for the
- * loopback hosts every SaaSCodex renderer talks to (directly in dev,
+ * loopback hosts every SplatStudio renderer talks to (directly in dev,
  * through the od:// proxy's main-process net.fetch when packaged).
  *
  * Long-lived SSE streams pin pool slots, and once the pool saturates,
@@ -578,7 +578,7 @@ function installDesktopMenu(
           {
             label: "Contact Us",
             click() {
-              void shell.openExternal("https://x.com/SaaSCodexHQ");
+              void shell.openExternal("https://x.com/SplatStudioHQ");
             },
           },
           {
@@ -617,7 +617,7 @@ function installDesktopMenu(
   });
   const registered = globalShortcut.register(developMenuAccelerator, toggleDevelopMenu);
   if (!registered) {
-    console.warn("[saascodex desktop] develop menu shortcut unavailable", { accelerator: developMenuAccelerator });
+    console.warn("[splatstudio desktop] develop menu shortcut unavailable", { accelerator: developMenuAccelerator });
   }
   return {
     dispose() {
@@ -716,7 +716,7 @@ export async function runDesktopMain(
   const registered = await options.registerDesktopAuth(desktopAuthSecret);
   if (!registered) {
     console.warn(
-      "[saascodex desktop] initial import-token handshake with daemon did not complete; " +
+      "[splatstudio desktop] initial import-token handshake with daemon did not complete; " +
         "first folder-import attempt will lazily retry registration before failing",
     );
   }
@@ -744,13 +744,13 @@ export async function runDesktopMain(
   // reader never looks in. Keeping both sides on `resolveRuntimeNamespaceRoot`
   // co-locates renderer.log with the desktop log dir AND keeps it captured.
   const namespaceRoot = resolveRuntimeNamespaceRoot({
-    contract: SAASCODEX_SIDECAR_CONTRACT,
+    contract: SPLATSTUDIO_SIDECAR_CONTRACT,
     runtime,
     runtimeMode: SIDECAR_MODES.RUNTIME,
   });
   const desktopLogPath = resolveLogFilePath({
     app: APP_KEYS.DESKTOP,
-    contract: SAASCODEX_SIDECAR_CONTRACT,
+    contract: SPLATSTUDIO_SIDECAR_CONTRACT,
     runtimeRoot: namespaceRoot,
   });
   const rendererLogPath = join(dirname(desktopLogPath), "renderer.log");
@@ -840,7 +840,7 @@ export async function runDesktopMain(
     shutdownPromise ??= Promise.resolve().then(async () => {
       const startedAt = Date.now();
       let shutdownFailed = false;
-      console.info("[saascodex desktop] shutdown started");
+      console.info("[splatstudio desktop] shutdown started");
       updateScheduler?.stop("shutdown");
       await updater.recordLifecycle?.({ stage: "shutdown_started", outcome: "started" });
       // Stop the request-producing renderer before retiring its web/daemon
@@ -868,10 +868,10 @@ export async function runDesktopMain(
         shutdownFailed = true;
         console.error("desktop beforeShutdown failed", error);
       });
-      console.info("[saascodex desktop] shutdown sidecars settled", { durationMs: Date.now() - startedAt });
+      console.info("[splatstudio desktop] shutdown sidecars settled", { durationMs: Date.now() - startedAt });
       // Mark clean only after teardown; a stalled cleanup is not a clean exit.
       endDesktopSessionCleanly({ stateFilePath: sessionStatePath });
-      console.info("[saascodex desktop] shutdown completed", { durationMs: Date.now() - startedAt });
+      console.info("[splatstudio desktop] shutdown completed", { durationMs: Date.now() - startedAt });
       await updater.recordLifecycle?.({ stage: "shutdown_completed", outcome: shutdownFailed ? "failed" : "completed", duration_ms: Date.now() - startedAt, repeated_quit_count: shutdownRequestCount - 1 });
       shutdownComplete = true;
       app.quit();
@@ -890,7 +890,7 @@ export async function runDesktopMain(
       });
       const startedAt = Date.now();
       const input = "input" in request ? summarizeDesktopIpcInput(request.input) : null;
-      console.info("[saascodex desktop] sidecar action start", { input, type: request.type });
+      console.info("[splatstudio desktop] sidecar action start", { input, type: request.type });
       try {
         const activeDesktop = desktop;
         switch (request.type) {
@@ -928,14 +928,14 @@ export async function runDesktopMain(
             return await updater.handle((request.input as DesktopUpdateInput).action);
         }
       } catch (error) {
-        console.error("[saascodex desktop] sidecar action failed", {
+        console.error("[splatstudio desktop] sidecar action failed", {
           durationMs: Date.now() - startedAt,
           error: error instanceof Error ? error.message : String(error),
           type: request.type,
         });
         throw error;
       } finally {
-        console.info("[saascodex desktop] sidecar action end", {
+        console.info("[splatstudio desktop] sidecar action end", {
           durationMs: Date.now() - startedAt,
           type: request.type,
         });
@@ -955,7 +955,7 @@ export async function runDesktopMain(
   });
   disposeMenu = menuController.dispose;
 
-  console.info("[saascodex desktop] creating desktop runtime");
+  console.info("[splatstudio desktop] creating desktop runtime");
   desktop = await createDesktopRuntime({
     desktopAuthSecret,
     discoverUrl: options.discoverWebUrl,
@@ -989,7 +989,7 @@ export async function runDesktopMain(
     pendingUpdateDialogRequest = false;
     desktop.openUpdateDialog({ source: "mac-app-menu" });
   }
-  console.info("[saascodex desktop] desktop runtime created");
+  console.info("[splatstudio desktop] desktop runtime created");
   options.onDesktopReady?.({
     dispatchInviteDeeplink,
     show: () => {
@@ -1002,7 +1002,7 @@ export async function runDesktopMain(
   // it (best-effort; the events carry no user content). Each is dropped from the
   // queue only once the daemon acks it, so a failed report is retried next launch.
   if (previousUncleanSessions.length > 0) {
-    console.warn("[saascodex desktop] prior session(s) ended abnormally (no clean shutdown)", {
+    console.warn("[splatstudio desktop] prior session(s) ended abnormally (no clean shutdown)", {
       count: previousUncleanSessions.length,
     });
     void reportPriorDesktopUncleanExits({
@@ -1028,7 +1028,7 @@ export async function runDesktopMain(
     resolveDaemonBaseUrl: resolveDaemonBaseUrl(options),
     focus: () => focusDesktopForDeeplink(desktop),
     onCompleted: (outcome) => {
-      console.info("[saascodex desktop] invite deeplink continuation completed", outcome);
+      console.info("[splatstudio desktop] invite deeplink continuation completed", outcome);
     },
     protocolClientPath: options.inviteProtocolClientPath,
   });

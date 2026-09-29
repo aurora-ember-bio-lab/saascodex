@@ -21,8 +21,8 @@
 import { type CSSProperties, useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import type { LibraryAsset } from '@saascodex/contracts';
-import { Button } from '@saascodex/components';
+import type { LibraryAsset } from '@splatstudio/contracts';
+import { Button } from '@splatstudio/components';
 import { libraryAssetElementUrl, libraryAssetFigmaUrl, libraryAssetRawUrl } from '../providers/registry';
 import { modalOverlay, modalContent } from '../motion';
 import {

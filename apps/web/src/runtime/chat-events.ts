@@ -3,7 +3,7 @@ import type {
   RunFailureAction,
   RunFailureCategory,
   RunFailureDetail,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export interface RunFailureClassificationFields {
   failureCategory?: RunFailureCategory | null;

@@ -1,4 +1,4 @@
-import type { MarketplacePluginEntry } from '@saascodex/contracts';
+import type { MarketplacePluginEntry } from '@splatstudio/contracts';
 
 export interface ParsedPluginSpecifier {
   name: string;

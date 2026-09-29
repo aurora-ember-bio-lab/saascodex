@@ -1,12 +1,12 @@
-import * as platform from '@saascodex/platform';
+import * as platform from '@splatstudio/platform';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const { resolveSystemProxyEnvMock } = vi.hoisted(() => ({
   resolveSystemProxyEnvMock: vi.fn(() => ({})),
 }));
 
-vi.mock('@saascodex/platform', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@saascodex/platform')>()),
+vi.mock('@splatstudio/platform', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@splatstudio/platform')>()),
   resolveSystemProxyEnv: resolveSystemProxyEnvMock,
 }));
 

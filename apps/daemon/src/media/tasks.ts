@@ -1,5 +1,5 @@
 import type Database from 'better-sqlite3';
-import { MEDIA_FAILURE_NEXT_STEPS, type MediaFailureNextStep } from '@saascodex/contracts';
+import { MEDIA_FAILURE_NEXT_STEPS, type MediaFailureNextStep } from '@splatstudio/contracts';
 
 export type MediaTaskStatus =
   | 'queued'

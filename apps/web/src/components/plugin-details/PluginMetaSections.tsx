@@ -30,7 +30,7 @@ import type {
   McpServerSpec,
   PluginConnectorRef,
   PluginManifest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { Icon } from '../Icon';
 import { TrustBadge } from '../TrustBadge';
 import { authorInitials, derivePluginSourceLinks } from '../../runtime/plugin-source';

@@ -23,9 +23,9 @@
 // make every rocket click also toggle the account menu.
 
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
-import type { SaaSCodexHostUpdaterStatusSnapshot } from '@saascodex/host';
-import { installMockSaaSCodexHost } from '@saascodex/host/testing';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
+import type { SplatStudioHostUpdaterStatusSnapshot } from '@splatstudio/host';
+import { installMockSplatStudioHost } from '@splatstudio/host/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -62,7 +62,7 @@ function freeContext(): WorkspaceCollabContext {
   } as unknown as WorkspaceCollabContext;
 }
 
-function idleStatus(): SaaSCodexHostUpdaterStatusSnapshot {
+function idleStatus(): SplatStudioHostUpdaterStatusSnapshot {
   return {
     arch: 'arm64',
     capabilities: {
@@ -81,11 +81,11 @@ function idleStatus(): SaaSCodexHostUpdaterStatusSnapshot {
   };
 }
 
-function downloadedStatus(): SaaSCodexHostUpdaterStatusSnapshot {
+function downloadedStatus(): SplatStudioHostUpdaterStatusSnapshot {
   return {
     ...idleStatus(),
     availableVersion: '0.16.2-beta.146',
-    downloadPath: '/tmp/saascodex-updater/Open Design Beta.dmg',
+    downloadPath: '/tmp/splatstudio-updater/Open Design Beta.dmg',
     state: 'downloaded',
   };
 }
@@ -139,7 +139,7 @@ afterEach(() => {
 });
 
 async function renderWithDownloadedUpdate(context: WorkspaceCollabContext | null = teamContext()) {
-  restoreHost = installMockSaaSCodexHost({
+  restoreHost = installMockSplatStudioHost({
     host: { updater: { status: vi.fn(async () => downloadedStatus()) } },
   });
   const view = renderRail(context);
@@ -242,7 +242,7 @@ describe('updater rocket placement after the account avatar', () => {
   });
 
   it('leaves an empty slot at the end of the account row while no update is in flight', async () => {
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: { updater: { status: vi.fn(async () => idleStatus()) } },
     });
 
@@ -292,7 +292,7 @@ describe('updater rocket placement after the account avatar', () => {
   });
 
   it('keeps the signed-out top-right cluster absent while the updater is idle', async () => {
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: { updater: { status: vi.fn(async () => idleStatus()) } },
     });
 

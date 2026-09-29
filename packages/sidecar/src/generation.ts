@@ -1,12 +1,12 @@
 import { lstat, rm } from "node:fs/promises";
 import { createConnection } from "node:net";
 
-import type { ProcessSnapshot, StopProcessesOptions, StopProcessesResult } from "@saascodex/platform";
+import type { ProcessSnapshot, StopProcessesOptions, StopProcessesResult } from "@splatstudio/platform";
 import {
   captureProcessSnapshot,
   isProcessAlive,
   matchesStampedProcess,
-} from "@saascodex/platform";
+} from "@splatstudio/platform";
 
 import { type SidecarDescription, sidecarProtocol } from "./client.js";
 import { requestJsonIpc } from "./json-ipc.js";

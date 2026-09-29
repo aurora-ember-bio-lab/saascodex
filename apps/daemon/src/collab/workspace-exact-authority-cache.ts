@@ -1,4 +1,4 @@
-import type { WorkspaceDirectoryItem } from '@saascodex/contracts';
+import type { WorkspaceDirectoryItem } from '@splatstudio/contracts';
 
 export interface WorkspaceExactAuthorityCacheOptions {
   identity(): string;

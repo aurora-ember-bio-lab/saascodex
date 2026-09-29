@@ -4,7 +4,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { isSaaSCodexHostAvailable, pickHostWorkingDir } from '@saascodex/host';
+import { isSplatStudioHostAvailable, pickHostWorkingDir } from '@splatstudio/host';
 import {
   buildDesignSystemCreateSelection,
   defaultDesignSystemSelection,
@@ -13,11 +13,11 @@ import {
 import { openFolderDialog } from '../../src/providers/registry';
 import type { DesignSystemSummary, ProjectTemplate, SkillSummary } from '../../src/types';
 
-vi.mock('@saascodex/host', async () => {
-  const actual = await vi.importActual<typeof import('@saascodex/host')>('@saascodex/host');
+vi.mock('@splatstudio/host', async () => {
+  const actual = await vi.importActual<typeof import('@splatstudio/host')>('@splatstudio/host');
   return {
     ...actual,
-    isSaaSCodexHostAvailable: vi.fn(),
+    isSplatStudioHostAvailable: vi.fn(),
     pickHostWorkingDir: vi.fn(),
   };
 });
@@ -32,7 +32,7 @@ vi.mock('../../src/providers/registry', async () => {
   };
 });
 
-const mockedIsHostAvailable = vi.mocked(isSaaSCodexHostAvailable);
+const mockedIsHostAvailable = vi.mocked(isSplatStudioHostAvailable);
 const mockedPickHostWorkingDir = vi.mocked(pickHostWorkingDir);
 const mockedOpenFolderDialog = vi.mocked(openFolderDialog);
 

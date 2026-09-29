@@ -5,7 +5,7 @@ import { expandHomePrefix } from './home-expansion.js';
 import { isSafeId } from './projects.js';
 
 export const BUILT_IN_PROJECT_LOCATION_ID = 'default';
-export const PROJECT_MANIFEST_RELATIVE_PATH = path.join('.saascodex', 'project.json');
+export const PROJECT_MANIFEST_RELATIVE_PATH = path.join('.splatstudio', 'project.json');
 
 export interface ProjectLocation extends ProjectLocationPrefs {
   builtIn?: boolean;
@@ -24,7 +24,7 @@ export interface ProjectManifest {
 export function builtInProjectLocation(projectsDir: string): ProjectLocation {
   return {
     id: BUILT_IN_PROJECT_LOCATION_ID,
-    name: 'SaaSCodex projects',
+    name: 'SplatStudio projects',
     path: projectsDir,
     builtIn: true,
   };

@@ -7,8 +7,8 @@ import {
   type DesktopUpdateChannel,
   type DesktopUpdateMode,
   type SidecarSource,
-} from "@saascodex/sidecar-proto";
-import { isReleaseChannel, releaseChannelFromVersion } from "@saascodex/release";
+} from "@splatstudio/sidecar-proto";
+import { isReleaseChannel, releaseChannelFromVersion } from "@splatstudio/release";
 
 /**
  * @module updater-config
@@ -38,7 +38,7 @@ export const DESKTOP_UPDATE_ENV = Object.freeze({
   PLATFORM: "OD_UPDATE_PLATFORM",
 } as const);
 
-const DEFAULT_RELEASE_ORIGIN = "https://releases.saascodex.com";
+const DEFAULT_RELEASE_ORIGIN = "https://releases.splatstudio.app";
 const BETA_POLL_INTERVAL_MS = 15 * 60 * 1000;
 const STABLE_POLL_INTERVAL_MS = 6 * 60 * 60 * 1000;
 const DEFAULT_POLL_INITIAL_DELAY_MS = 5000;

@@ -1,4 +1,4 @@
-import { DIAGNOSTICS_EXPORT_PATH } from "@saascodex/diagnostics";
+import { DIAGNOSTICS_EXPORT_PATH } from "@splatstudio/diagnostics";
 
 export interface FetchDiagnosticsBundleDeps {
   /** Injectable fetch for tests; defaults to the global `fetch`. */

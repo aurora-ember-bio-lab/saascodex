@@ -17,15 +17,15 @@ describe('AMR account failure classification', () => {
   // navigates to.
   it('points the recharge link at the console dashboard, not a wallet page', () => {
     expect(DEFAULT_AMR_RECHARGE_URL).toBe(
-      'https://saascodex.com/cloud/dashboard?source=open_design',
+      'https://splatstudio.app/cloud/dashboard?source=open_design',
     );
   });
 
   it('uses the selected profile origin for recharge failures', () => {
     expect(classifyAmrAccountFailure('insufficient_balance', {
-      SAASCODEX_AMR_PROFILE: 'test',
+      SPLATSTUDIO_AMR_PROFILE: 'test',
     })?.actionUrl).toBe(
-      'https://saascodex.powerformer.net/cloud/dashboard?source=open_design',
+      'https://splatstudio.powerformer.net/cloud/dashboard?source=open_design',
     );
 
     vi.stubEnv('OD_VELA_WEB_URLS', JSON.stringify({
@@ -34,7 +34,7 @@ describe('AMR account failure classification', () => {
     }));
     try {
       expect(classifyAmrAccountFailure('insufficient_balance', {
-        SAASCODEX_AMR_PROFILE: 'feature-test',
+        SPLATSTUDIO_AMR_PROFILE: 'feature-test',
       })?.actionUrl).toBe(
         'https://feature.example.invalid/cloud/dashboard?source=open_design',
       );

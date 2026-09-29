@@ -9,7 +9,7 @@
  */
 import { useEffect, type ReactElement } from 'react';
 import { createPortal } from 'react-dom';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import { Icon } from '../Icon';
 import { useT } from '../../i18n';
 import { chatSeam } from './ChatRoot';

@@ -1,9 +1,9 @@
-name: saascodex
+name: splatstudio
 
 services:
-  saascodex:
-    container_name: saascodex
-    image: ${SAASCODEX_IMAGE:-ghcr.io/nexu-io/od:latest}
+  splatstudio:
+    container_name: splatstudio
+    image: ${SPLATSTUDIO_IMAGE:-ghcr.io/aurora-ember-bio-lab/splatstudio:latest}
     build:
       context: ..
       dockerfile: deploy/Dockerfile
@@ -12,15 +12,15 @@ services:
       NODE_ENV: production
       NODE_OPTIONS: ${NODE_OPTIONS:---max-old-space-size=192}
       OD_BIND_HOST: 0.0.0.0
-      OD_ALLOWED_ORIGINS: ${SAASCODEX_ALLOWED_ORIGINS:-}
+      OD_ALLOWED_ORIGINS: ${SPLATSTUDIO_ALLOWED_ORIGINS:-}
       OD_PORT: 7456
-      OD_WEB_PORT: ${SAASCODEX_PORT:-7456}
+      OD_WEB_PORT: ${SPLATSTUDIO_PORT:-7456}
       OD_API_TOKEN: ${OD_API_TOKEN:-}
-      OD_DISABLE_API_AUTH: ${SAASCODEX_DISABLE_API_AUTH:-}
+      OD_DISABLE_API_AUTH: ${SPLATSTUDIO_DISABLE_API_AUTH:-}
       OD_CODEX_SANDBOX: ${OD_CODEX_SANDBOX:-}
-      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/saascodex?sslmode=disable}
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/splatstudio?sslmode=disable}
     ports:
-      - "127.0.0.1:${SAASCODEX_PORT:-7456}:7456"
+      - "127.0.0.1:${SPLATSTUDIO_PORT:-7456}:7456"
     volumes:
       - open_design_data:/app/.od
     depends_on:
@@ -31,7 +31,7 @@ services:
       - /tmp
     security_opt:
       - no-new-privileges:true
-    mem_limit: ${SAASCODEX_MEM_LIMIT:-384m}
+    mem_limit: ${SPLATSTUDIO_MEM_LIMIT:-384m}
     pids_limit: 256
     healthcheck:
       test:
@@ -48,17 +48,17 @@ services:
 
   # Postgres 16 with pgvector (control-plane database; see docs/DATABASE.md).
   postgres:
-    container_name: saascodex-postgres
+    container_name: splatstudio-postgres
     image: pgvector/pgvector:pg16
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-saascodex}
+      POSTGRES_DB: ${POSTGRES_DB:-splatstudio}
     ports:
       - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
     volumes:
-      - saascodex_postgres_data:/var/lib/postgresql/data
+      - splatstudio_postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
       interval: 10s
@@ -70,7 +70,7 @@ services:
   #   docker compose run --rm atlas migrate hash --dir file://migrations
   #   docker compose run --rm atlas migrate lint --dir file://migrations --dev-url <url>
   atlas:
-    container_name: saascodex-atlas
+    container_name: splatstudio-atlas
     image: arigaio/atlas:latest
     volumes:
       - ../db:/work
@@ -79,7 +79,7 @@ services:
 
   # One-shot migration runner: applies pending migrations on `up`.
   migrate:
-    container_name: saascodex-migrate
+    container_name: splatstudio-migrate
     image: arigaio/atlas:latest
     depends_on:
       postgres:
@@ -94,10 +94,10 @@ services:
         "--dir",
         "file://migrations",
         "--url",
-        "postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-saascodex}?sslmode=disable"
+        "postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-splatstudio}?sslmode=disable"
       ]
     restart: "no"
 
 volumes:
   open_design_data:
-  saascodex_postgres_data:
+  splatstudio_postgres_data:

@@ -1,20 +1,20 @@
-# SaaSCodex's stdio profile surface over the official dsh-base composition.
+# SplatStudio's stdio profile surface over the official dsh-base composition.
 # The user's Harness installation owns credentials, settings, tools, sessions,
 # and provider adapters. This bundle adds only the OD protocol boundary.
 
 - id: system-prompt
   config:
     persona: >-
-      You are a coding and design agent running for SaaSCodex. Follow the
+      You are a coding and design agent running for SplatStudio. Follow the
       complete task and project context supplied in the current user message.
 
 - id: hmr
   disabled: true
 
 - insert:
-    - id: saascodex-startup
-      name: '@saascodex/dsh-runtime/startup'
+    - id: splatstudio-startup
+      name: '@splatstudio/dsh-runtime/startup'
 
-    - id: saascodex-runtime
-      name: '@saascodex/dsh-runtime'
+    - id: splatstudio-runtime
+      name: '@splatstudio/dsh-runtime'
       inject: [openDesignStartup]

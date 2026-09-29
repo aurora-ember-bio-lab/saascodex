@@ -5,7 +5,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { ComponentProps, ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -198,7 +198,7 @@ const mockedFetchPreviewComments = vi.mocked(fetchPreviewComments);
 const mockedFetchProjectFiles = vi.mocked(fetchProjectFiles);
 const mockedFetchBrands = vi.mocked(fetchBrands);
 
-/** AMR on a daemon runtime — 报告里的那套配置(Agent 为 SaaSCodex)。 */
+/** AMR on a daemon runtime — 报告里的那套配置(Agent 为 SplatStudio)。 */
 const config: AppConfig = {
   mode: 'daemon',
   apiProtocol: 'openai',

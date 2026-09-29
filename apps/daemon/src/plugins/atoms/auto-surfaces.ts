@@ -16,7 +16,7 @@
 import type {
   GenUISurfaceSpec,
   PluginPipeline,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export interface AutoAtomSurfaceContext {
   pipeline?: PluginPipeline | undefined;

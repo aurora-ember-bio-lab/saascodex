@@ -1,5 +1,5 @@
-import { agentIdToTracking } from '@saascodex/contracts/analytics';
-import type { AgentInfo } from '@saascodex/contracts';
+import { agentIdToTracking } from '@splatstudio/contracts/analytics';
+import type { AgentInfo } from '@splatstudio/contracts';
 import { trackAgentDetectDiagnostic, type Track } from './events';
 
 /**

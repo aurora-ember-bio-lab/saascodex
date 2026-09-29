@@ -23,8 +23,8 @@ interface ParsedOptions {
 const USAGE = `Usage:
   od artifacts create --name <path> --input <file> [--project <id-or-name>] [--manifest artifact.json] [--encoding utf8|base64] [--daemon-url <url>]
 
-Creates one normal SaaSCodex project artifact entry file through the local daemon.
-When --project is omitted, the active SaaSCodex project is used.
+Creates one normal SplatStudio project artifact entry file through the local daemon.
+When --project is omitted, the active SplatStudio project is used.
 Existing target paths are rejected.
 `;
 

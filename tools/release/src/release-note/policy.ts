@@ -1,6 +1,6 @@
 import { appendFileSync } from "node:fs";
 
-import type { ReleaseChannel } from "@saascodex/release";
+import type { ReleaseChannel } from "@splatstudio/release";
 
 import type { ReleaseNotePlan } from "./source.ts";
 

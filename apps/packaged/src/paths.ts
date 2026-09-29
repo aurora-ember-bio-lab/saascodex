@@ -1,7 +1,7 @@
 import { homedir } from "node:os";
 import { join, posix, win32 } from "node:path";
 
-import { APP_KEYS, normalizeNamespace } from "@saascodex/sidecar-proto";
+import { APP_KEYS, normalizeNamespace } from "@splatstudio/sidecar-proto";
 
 import type { PackagedConfig } from "./config.js";
 import { PackagedPathAccessError } from "./errors.js";
@@ -65,7 +65,7 @@ function resolvePackagedDataRoot(
           "",
           `Configured value: ${odDataDir}`,
           "",
-          "Set OD_DATA_DIR to an absolute path (for example, C:\\\\Users\\\\You\\\\SaaSCodex on Windows or /Users/you/SaaSCodex on macOS/Linux) and relaunch Open Design.",
+          "Set OD_DATA_DIR to an absolute path (for example, C:\\\\Users\\\\You\\\\SplatStudio on Windows or /Users/you/SplatStudio on macOS/Linux) and relaunch Open Design.",
         ].join("\n"),
         { title: "Open Design cannot start with this OD_DATA_DIR" },
       );

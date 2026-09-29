@@ -72,7 +72,7 @@ function authorizationArgs(credentials) {
 }
 
 async function submitNotarization(filePath, credentials) {
-  const useS3Acceleration = process.env.SAASCODEX_NOTARIZE_S3_ACCELERATION === "true";
+  const useS3Acceleration = process.env.SPLATSTUDIO_NOTARIZE_S3_ACCELERATION === "true";
   const result = await run("xcrun", [
     "notarytool",
     "submit",
@@ -106,7 +106,7 @@ async function stapleApp(appPath) {
 }
 
 async function notarizeApp(appPath, credentials) {
-  const tempDir = await mkdtemp(path.join(tmpdir(), "saascodex-notarize-"));
+  const tempDir = await mkdtemp(path.join(tmpdir(), "splatstudio-notarize-"));
   try {
     const filePath = path.join(tempDir, `${path.parse(appPath).name}.zip`);
     const zipResult = await run("ditto", ["-c", "-k", "--sequesterRsrc", "--keepParent", path.basename(appPath), filePath], {
@@ -164,8 +164,8 @@ module.exports = async function notarize(context) {
 
   const productFilename = context.packager.appInfo.productFilename;
   const appPath = path.join(context.appOutDir, `${productFilename}.app`);
-  const attempts = parsePositiveInteger(process.env.SAASCODEX_NOTARIZE_ATTEMPTS, DEFAULT_ATTEMPTS);
-  const retryDelayMs = parsePositiveInteger(process.env.SAASCODEX_NOTARIZE_RETRY_DELAY_MS, DEFAULT_RETRY_DELAY_MS);
+  const attempts = parsePositiveInteger(process.env.SPLATSTUDIO_NOTARIZE_ATTEMPTS, DEFAULT_ATTEMPTS);
+  const retryDelayMs = parsePositiveInteger(process.env.SPLATSTUDIO_NOTARIZE_RETRY_DELAY_MS, DEFAULT_RETRY_DELAY_MS);
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {

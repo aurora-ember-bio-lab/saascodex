@@ -3,7 +3,7 @@ import type {
   OdNextRolloutControlResponse,
   OdNextRolloutMode,
   TrackingLabsOptOutReason,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { trackLabsItemToggled } from '../analytics/events';
 import { useAnalytics } from '../analytics/provider';

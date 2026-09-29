@@ -16,14 +16,14 @@ import type {
   OnboardingCompletedProps,
   TrackingOnboardingFirstLoopStep,
   TrackingOnboardingProductType,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import type { OnboardingEntry } from './onboarding-entry';
 
 type Track = (event: string, properties: Record<string, unknown>) => void;
 
-const ENTRY_KEY = (projectId: string) => `saascodex:first-loop-entry:${projectId}`;
-const STEPS_KEY = (projectId: string) => `saascodex:first-loop-steps:${projectId}`;
-const DONE_KEY = (projectId: string) => `saascodex:first-loop-completed:${projectId}`;
+const ENTRY_KEY = (projectId: string) => `splatstudio:first-loop-entry:${projectId}`;
+const STEPS_KEY = (projectId: string) => `splatstudio:first-loop-steps:${projectId}`;
+const DONE_KEY = (projectId: string) => `splatstudio:first-loop-completed:${projectId}`;
 
 // Called once by the project view after it consumes the pending onboarding
 // entry: pins the entry for THIS project so later taps (e.g. the FileViewer

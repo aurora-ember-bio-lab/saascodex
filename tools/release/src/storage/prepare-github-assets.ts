@@ -1,7 +1,7 @@
 import { copyFileSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join, relative, resolve } from "node:path";
 import { optional, required, writeJson } from "./common.ts";
-import { releaseChannelDescriptor } from "@saascodex/release";
+import { releaseChannelDescriptor } from "@splatstudio/release";
 
 const releaseChannel = releaseChannelDescriptor(required("RELEASE_CHANNEL")).channel;
 const releaseVersion = required("RELEASE_VERSION");
@@ -46,16 +46,16 @@ function findRequiredAsset(files: string[], name: string): string {
 }
 
 const allowedNames = [
-  `saascodex-${releaseVersion}-mac-arm64.dmg`,
-  `saascodex-${releaseVersion}-mac-arm64.dmg.sha256`,
-  `saascodex-${releaseVersion}-mac-x64.dmg`,
-  `saascodex-${releaseVersion}-mac-x64.dmg.sha256`,
-  `saascodex-${releaseVersion}-win-x64-setup.exe`,
-  `saascodex-${releaseVersion}-win-x64-setup.exe.sha256`,
+  `splatstudio-${releaseVersion}-mac-arm64.dmg`,
+  `splatstudio-${releaseVersion}-mac-arm64.dmg.sha256`,
+  `splatstudio-${releaseVersion}-mac-x64.dmg`,
+  `splatstudio-${releaseVersion}-mac-x64.dmg.sha256`,
+  `splatstudio-${releaseVersion}-win-x64-setup.exe`,
+  `splatstudio-${releaseVersion}-win-x64-setup.exe.sha256`,
   ...(enableLinux
     ? [
-        `saascodex-${releaseVersion}-linux-x64.AppImage`,
-        `saascodex-${releaseVersion}-linux-x64.AppImage.sha256`,
+        `splatstudio-${releaseVersion}-linux-x64.AppImage`,
+        `splatstudio-${releaseVersion}-linux-x64.AppImage.sha256`,
       ]
     : []),
 ];

@@ -2,7 +2,7 @@ import type {
   CollabCloudMemberDirectoryEntry,
   CollabCloudMembersResponse,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   workspaceIdentityCacheKey,
   workspaceProjectHeaders,

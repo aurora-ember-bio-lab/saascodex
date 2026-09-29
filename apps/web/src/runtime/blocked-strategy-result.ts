@@ -1,4 +1,4 @@
-import type { ChatRunStatus, StrategyTaskProjectionV2 } from '@saascodex/contracts';
+import type { ChatRunStatus, StrategyTaskProjectionV2 } from '@splatstudio/contracts';
 
 /**
  * Whether a physical Run keeps its success on screen although the strategy

@@ -21,7 +21,7 @@ od plugin apply plugin-id --input artifact=prototype --input audience=founders -
 ## Files
 
 - `SKILL.md` - portable agent instructions.
-- `saascodex.json` - versioned SaaSCodex marketplace and apply metadata.
+- `splatstudio.json` - versioned SplatStudio marketplace and apply metadata.
 - `examples/` - sample output or fixture prompts.
 - `evals/` - repeatable quality checks.
 

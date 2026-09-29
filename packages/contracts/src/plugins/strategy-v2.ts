@@ -2,12 +2,12 @@ import { z } from 'zod';
 
 export const OD_NEXT_STRATEGY_ID = 'od-next-strategy' as const;
 export const OD_NEXT_PROMPT_RECIPE_ID = 'od-next-plan-build-v2' as const;
-export const OD_NEXT_APPLIED_STRATEGY_SCHEMA = 'saascodex.applied-strategy/v2' as const;
-export const OD_NEXT_PLAN_CONTRACT_SCHEMA = 'saascodex.plan-contract/v2' as const;
-export const OD_NEXT_RUNTIME_STATE_SCHEMA = 'saascodex.strategy-state/v2' as const;
-export const OD_NEXT_PLAN_CONTRACT_BLOCK = 'saascodex-plan-contract' as const;
-export const OD_NEXT_RUNTIME_STATE_BLOCK = 'saascodex-runtime-state' as const;
-export const OD_NEXT_BUNDLED_STRATEGY_SCHEMA = 'saascodex.bundled-strategy/v2' as const;
+export const OD_NEXT_APPLIED_STRATEGY_SCHEMA = 'splatstudio.applied-strategy/v2' as const;
+export const OD_NEXT_PLAN_CONTRACT_SCHEMA = 'splatstudio.plan-contract/v2' as const;
+export const OD_NEXT_RUNTIME_STATE_SCHEMA = 'splatstudio.strategy-state/v2' as const;
+export const OD_NEXT_PLAN_CONTRACT_BLOCK = 'splatstudio-plan-contract' as const;
+export const OD_NEXT_RUNTIME_STATE_BLOCK = 'splatstudio-runtime-state' as const;
+export const OD_NEXT_BUNDLED_STRATEGY_SCHEMA = 'splatstudio.bundled-strategy/v2' as const;
 
 /**
  * The reason a task carries when the agent itself declared the turn blocked and
@@ -421,7 +421,7 @@ const PlanContractStrategyIdentityV2Schema = z.object({
   snapshotId: z.string().min(1),
 }).strict();
 
-export const SaaSCodexPlanContractV2Schema = z.object({
+export const SplatStudioPlanContractV2Schema = z.object({
   schema: z.literal(OD_NEXT_PLAN_CONTRACT_SCHEMA),
   strategy: PlanContractStrategyIdentityV2Schema,
   taskProfile: ResolvedTaskProfileV2Schema,
@@ -446,7 +446,7 @@ export const SaaSCodexPlanContractV2Schema = z.object({
     openDecisions: z.array(z.string()),
   }).strict(),
 }).strict().superRefine(rejectForbiddenStrategySemantics);
-export type SaaSCodexPlanContractV2 = z.infer<typeof SaaSCodexPlanContractV2Schema>;
+export type SplatStudioPlanContractV2 = z.infer<typeof SplatStudioPlanContractV2Schema>;
 
 export const StrategyExecutionIntentV2Schema = z.enum(['produce', 'plan_only']);
 export type StrategyExecutionIntentV2 = z.infer<typeof StrategyExecutionIntentV2Schema>;

@@ -9,7 +9,7 @@ import {
   RuntimeCapabilityFixtureManifestV1Schema,
   type RuntimeCapabilityFixtureManifestV1,
   type RuntimeCapabilityRegistryEntryV1,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   CODEX_0_147_0_BEST_EFFORT_MANIFEST,
   CLAUDE_2_1_233_BEST_EFFORT_MANIFEST,

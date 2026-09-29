@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 // Legacy warning preferences never alter funding or authentication.
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { AmrWalletSnapshot } from '@saascodex/contracts';
+import type { AmrWalletSnapshot } from '@splatstudio/contracts';
 import { checkAmrBalanceGate } from '../../src/runtime/amr-balance-gate';
 import {
   fetchAmrWalletSnapshot,
@@ -20,7 +20,7 @@ const mockedFetchStatus = vi.mocked(fetchVelaLoginStatus);
  * 已经在真实用户机器上落盘的那条位。删读取方之后它只应该是一条死数据。
  * 这里写死字面量而不是 import 常量:常量本身也要被删。
  */
-const LEGACY_OPTOUT_KEY = 'saascodex:amr-low-balance-warn-optout:v1';
+const LEGACY_OPTOUT_KEY = 'splatstudio:amr-low-balance-warn-optout:v1';
 
 /** 那颗 opt-out 当年作用的那一段:高于硬拦线的一个小余额。 */
 const LOW_BALANCE = '1.20';

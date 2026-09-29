@@ -19,7 +19,7 @@
 // testable; `reflowBrandToMemory` is the thin side-effecting wrapper that
 // gates on the master memory switch and writes through `upsertMemoryEntry`.
 
-import type { Brand } from '@saascodex/contracts';
+import type { Brand } from '@splatstudio/contracts';
 
 import { readMemoryConfig, upsertMemoryEntry } from '../memory.js';
 

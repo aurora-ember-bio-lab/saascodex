@@ -20,7 +20,7 @@ import { zhCN } from './locales/zh-CN';
 import { fr } from './locales/fr';
 import { it } from './locales/it';
 import { no } from './locales/no';
-import { getSaaSCodexHost } from '@saascodex/host';
+import { getSplatStudioHost } from '@splatstudio/host';
 import { LOCALES, type Dict, type Locale } from './types';
 
 export { LOCALES, LOCALE_LABEL } from './types';
@@ -42,13 +42,13 @@ const DICTS: Record<Locale, Dict> = {
   'no': no,
 };
 
-const LS_KEY = 'saascodex:locale';
+const LS_KEY = 'splatstudio:locale';
 // Marker that says "the value in LS_KEY came from a deliberate user
 // action through setLocale, not from some auto-detection path". Only
 // values tagged this way win over the desktop host's injected OS
 // locale, so a stale auto-detected pick can't pin the app forever once
 // the user changes their system language.
-const LS_SOURCE_KEY = 'saascodex:locale-source';
+const LS_SOURCE_KEY = 'splatstudio:locale-source';
 const MANUAL_LOCALE_SOURCE = 'manual';
 
 export function resolveSystemLocale(languages: readonly string[]): Locale | null {
@@ -107,12 +107,12 @@ export function tForLanguageTag(
 // Read the OS locale the desktop host attached to its client descriptor.
 // Packaged desktop builds need this because Chromium otherwise reports
 // en-US through navigator.language regardless of the OS setting. We go
-// through `getSaaSCodexHost` rather than reading the bridge global by
+// through `getSplatStudioHost` rather than reading the bridge global by
 // name so the web/preload boundary stays single-source (see the
 // `host bridge boundary` guard test).
 function readDesktopHostOsLocale(): string | undefined {
   if (typeof window === 'undefined') return undefined;
-  const host = getSaaSCodexHost();
+  const host = getSplatStudioHost();
   const value = host?.client?.osLocale;
   return typeof value === 'string' && value.length > 0 ? value : undefined;
 }

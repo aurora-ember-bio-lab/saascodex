@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { Duplex } from 'node:stream';
 import express, { type Request, type Response } from 'express';
-import type { ChatMessage } from '@saascodex/contracts';
+import type { ChatMessage } from '@splatstudio/contracts';
 import { afterEach, beforeEach, expect, it } from 'vitest';
 import {
   closeDatabase, getConversation, getMessage, getProject, insertConversation,

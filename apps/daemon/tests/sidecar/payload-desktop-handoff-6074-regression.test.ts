@@ -6,13 +6,13 @@ import {
   LAUNCHER_SCHEMA_VERSION,
   resolveLauncherPaths,
   resolveLauncherVersionPaths,
-} from "@saascodex/launcher-proto";
+} from "@splatstudio/launcher-proto";
 import {
   APP_KEYS,
   SIDECAR_MESSAGES,
   SIDECAR_MODES,
   SIDECAR_SOURCES,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const startDaemonRuntime = vi.fn(async (_options?: unknown) => ({

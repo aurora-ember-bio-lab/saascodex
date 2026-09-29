@@ -1,4 +1,4 @@
-import type { ApiError } from '@saascodex/contracts';
+import type { ApiError } from '@splatstudio/contracts';
 
 export type Result<T, E = ApiError> =
   | { ok: true; value: T }

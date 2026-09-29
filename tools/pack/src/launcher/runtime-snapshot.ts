@@ -7,7 +7,7 @@ import {
   type LauncherDesktopHandoffDescriptor,
   type LauncherRuntimeDescriptor,
   type LauncherVersionPointer,
-} from "@saascodex/launcher-proto";
+} from "@splatstudio/launcher-proto";
 
 import type { ToolPackConfig } from "../config/index.js";
 import { resolveToolPackLauncherLayout } from "./layout.js";

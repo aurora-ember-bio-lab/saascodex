@@ -2,19 +2,19 @@ import { describe, expect, it } from 'vitest';
 
 import {
   buildSocialSharePayload,
-  SAASCODEX_GITHUB_REPO_URL,
+  SPLATSTUDIO_GITHUB_REPO_URL,
 } from '../src/api/social-share';
 
 describe('social-share contract', () => {
-  it('builds SaaSCodex repository share targets', () => {
+  it('builds SplatStudio repository share targets', () => {
     const payload = buildSocialSharePayload({
-      kind: 'saascodex-repo',
+      kind: 'splatstudio-repo',
       locale: 'zh-CN',
-      title: 'SaaSCodex GitHub',
-      text: '推荐 SaaSCodex',
+      title: 'SplatStudio GitHub',
+      text: '推荐 SplatStudio',
     });
 
-    expect(payload.url).toBe(SAASCODEX_GITHUB_REPO_URL);
+    expect(payload.url).toBe(SPLATSTUDIO_GITHUB_REPO_URL);
     expect(payload.locale).toBe('zh-CN');
     expect(payload.platforms.some((target) => target.platform === 'x' && target.shareUrl?.includes('twitter.com/intent/tweet'))).toBe(true);
     expect(payload.platforms.some((target) => target.platform === 'xiaohongshu' && target.mode === 'copy-open')).toBe(true);
@@ -24,16 +24,16 @@ describe('social-share contract', () => {
     const payload = buildSocialSharePayload({
       kind: 'project-html',
       locale: 'en',
-      url: 'https://example.com/saascodex-demo',
+      url: 'https://example.com/splatstudio-demo',
       title: 'Demo',
-      text: `Built with SaaSCodex. Repo: ${SAASCODEX_GITHUB_REPO_URL}`,
-      copyText: `Demo\nhttps://example.com/saascodex-demo\n${SAASCODEX_GITHUB_REPO_URL}`,
+      text: `Built with SplatStudio. Repo: ${SPLATSTUDIO_GITHUB_REPO_URL}`,
+      copyText: `Demo\nhttps://example.com/splatstudio-demo\n${SPLATSTUDIO_GITHUB_REPO_URL}`,
     });
 
-    expect(payload.url).toBe('https://example.com/saascodex-demo');
-    expect(payload.githubRepoUrl).toBe(SAASCODEX_GITHUB_REPO_URL);
-    expect(payload.copyText).toContain(SAASCODEX_GITHUB_REPO_URL);
+    expect(payload.url).toBe('https://example.com/splatstudio-demo');
+    expect(payload.githubRepoUrl).toBe(SPLATSTUDIO_GITHUB_REPO_URL);
+    expect(payload.copyText).toContain(SPLATSTUDIO_GITHUB_REPO_URL);
     expect(payload.platforms.find((target) => target.platform === 'telegram')?.shareUrl)
-      .toContain('https%3A%2F%2Fexample.com%2Fsaascodex-demo');
+      .toContain('https%3A%2F%2Fexample.com%2Fsplatstudio-demo');
   });
 });

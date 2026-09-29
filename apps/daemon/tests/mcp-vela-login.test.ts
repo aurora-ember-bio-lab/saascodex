@@ -53,7 +53,7 @@ describe('local MCP Vela login tools', () => {
             profile: 'default',
             user: null,
             configPath: '/local/private/vela.json',
-            activationUrl: 'https://amr-link.saascodex.com/activate',
+            activationUrl: 'https://amr-link.splatstudio.app/activate',
             userCode: 'ABCD-EFGH',
           }),
           { status: 200 },
@@ -77,7 +77,7 @@ describe('local MCP Vela login tools', () => {
         loginInFlight: true,
         profile: 'default',
         user: null,
-        activationUrl: 'https://amr-link.saascodex.com/activate',
+        activationUrl: 'https://amr-link.splatstudio.app/activate',
         userCode: 'ABCD-EFGH',
       },
     });
@@ -89,7 +89,7 @@ describe('local MCP Vela login tools', () => {
       'x-od-analytics-device-id': 'installation-1',
       'x-od-analytics-client-type': 'external_mcp',
       'x-od-analytics-entry-surface': 'external_mcp',
-      'x-od-analytics-external-plugin-id': 'saascodex',
+      'x-od-analytics-external-plugin-id': 'splatstudio',
       'x-od-analytics-external-plugin-version': '0.4.0',
       'x-od-analytics-distribution-mechanism': 'git_marketplace',
       'x-od-analytics-publisher-class': 'open_design_first_party',
@@ -127,7 +127,7 @@ describe('local MCP Vela login tools', () => {
         analyticsHeaders,
         pluginAttribution: {
           context: {
-            id: 'saascodex',
+            id: 'splatstudio',
             version: '0.4.0',
             distributionMechanism: 'git_marketplace',
             publisherClass: 'open_design_first_party',

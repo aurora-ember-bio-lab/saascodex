@@ -1,4 +1,4 @@
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import type { ChatMessage } from '../types';
 import { listMessages, ProjectMessageListError } from './projects';
 

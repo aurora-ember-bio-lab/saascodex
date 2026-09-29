@@ -1,4 +1,4 @@
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 
 interface PreviewLike {
   entry?: unknown;

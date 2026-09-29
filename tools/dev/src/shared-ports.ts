@@ -1,5 +1,5 @@
-import { allocatePort } from "@saascodex/sidecar";
-import { APP_KEYS } from "@saascodex/sidecar-proto";
+import { allocatePort } from "@splatstudio/sidecar";
+import { APP_KEYS } from "@splatstudio/sidecar-proto";
 
 import { parsePortOption, type ToolDevAppName, type ToolDevOptions } from "./config.js";
 

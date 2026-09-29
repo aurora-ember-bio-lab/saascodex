@@ -1,7 +1,7 @@
 import {
   workspacePrincipalKey,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { workspaceIdentityCacheKey } from '../collab/workspace-identity';
 import type { Project } from '../types';

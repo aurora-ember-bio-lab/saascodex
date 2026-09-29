@@ -9,7 +9,7 @@
 //
 // Anything more exotic (anchors, flow-style nested objects, multi-line
 // folded scalars) is out of scope; SKILL.md authors should add an
-// `saascodex.json` sidecar for richer metadata instead.
+// `splatstudio.json` sidecar for richer metadata instead.
 
 type FrontmatterScalar = string | number | boolean | null;
 export type FrontmatterValue = FrontmatterScalar | FrontmatterArray | FrontmatterObject;

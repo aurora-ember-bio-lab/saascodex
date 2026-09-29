@@ -14,8 +14,8 @@ import {
   normalizeUpstreamCode,
   parseApiFailureDetail,
   type ApiFailureDetail,
-} from '@saascodex/contracts';
-import type { TrackingFailureDetailProps } from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts';
+import type { TrackingFailureDetailProps } from '@splatstudio/contracts/analytics';
 
 export interface DaemonFailureFields {
   failure?: ApiFailureDetail;

@@ -29,7 +29,7 @@ import {
   canReachWorkspaceBillingEntrance,
   type WorkspaceBillingSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { isMaxPlanTier, resolvePlanTier } from '../collab/team-plan';
 

@@ -2,7 +2,7 @@
 
 ## Source Scope
 
-This package is an SaaSCodex curated integration based only on public, official Cloudflare sources. It does not vendor `@cloudflare/kumo`, Cloudflare logos, fonts, screenshots, or React components, and it does not imply endorsement or partnership.
+This package is an SplatStudio curated integration based only on public, official Cloudflare sources. It does not vendor `@cloudflare/kumo`, Cloudflare logos, fonts, screenshots, or React components, and it does not imply endorsement or partnership.
 
 ## Pinned Upstream Revision
 
@@ -26,4 +26,4 @@ This package is an SaaSCodex curated integration based only on public, official 
 
 ## Adaptation Boundary
 
-Direct upstream semantic values are recorded in `tokens.css` comments and explained in `DESIGN.md`. SaaSCodex's shared token schema requires additional layout slots that Kumo does not publish; those compatibility bindings are identified explicitly and should not be cited as Cloudflare specifications. The reference fixture is original SaaSCodex markup that demonstrates the normalized token contract rather than a copy of an upstream example.
+Direct upstream semantic values are recorded in `tokens.css` comments and explained in `DESIGN.md`. SplatStudio's shared token schema requires additional layout slots that Kumo does not publish; those compatibility bindings are identified explicitly and should not be cited as Cloudflare specifications. The reference fixture is original SplatStudio markup that demonstrates the normalized token contract rather than a copy of an upstream example.

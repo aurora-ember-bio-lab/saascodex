@@ -26,10 +26,10 @@ export async function evidenceStore(dataDir: string): Promise<TelemetryOutbox> {
         return Number.isSafeInteger(value) && value > 0 ? Math.min(value, maximum) : fallback;
       };
       const outbox = new TelemetryOutbox(filename, {
-        bytes: positive('SAASCODEX_OBJECT_OUTBOX_MAX_BYTES', 512 * 1024 * 1024, 2 * 1024 * 1024 * 1024),
-        jobs: positive('SAASCODEX_OBJECT_OUTBOX_MAX_JOBS', 10_000, 100_000),
-        attempts: positive('SAASCODEX_OBJECT_OUTBOX_MAX_ATTEMPTS', 8, 20),
-        ttlMs: positive('SAASCODEX_OBJECT_OUTBOX_TTL_MS', 7 * 24 * 3600_000, 90 * 24 * 3600_000),
+        bytes: positive('SPLATSTUDIO_OBJECT_OUTBOX_MAX_BYTES', 512 * 1024 * 1024, 2 * 1024 * 1024 * 1024),
+        jobs: positive('SPLATSTUDIO_OBJECT_OUTBOX_MAX_JOBS', 10_000, 100_000),
+        attempts: positive('SPLATSTUDIO_OBJECT_OUTBOX_MAX_ATTEMPTS', 8, 20),
+        ttlMs: positive('SPLATSTUDIO_OBJECT_OUTBOX_TTL_MS', 7 * 24 * 3600_000, 90 * 24 * 3600_000),
       });
       await chmod(filename, 0o600);
       return outbox;
@@ -181,7 +181,7 @@ export const taskObjectDeliveryEnabled = (mode: string | undefined): boolean => 
 export async function drainEvidence(dataDir: string, fetchImpl?: typeof fetch): Promise<void> {
   // Task content is part of ordinary consented telemetry. Keep an explicit
   // off/observe kill switch without requiring an acceptance-only enable flag.
-  if (!taskObjectDeliveryEnabled(process.env.SAASCODEX_OBJECT_OUTBOX_MODE)) return;
+  if (!taskObjectDeliveryEnabled(process.env.SPLATSTUDIO_OBJECT_OUTBOX_MODE)) return;
   const cfg = await readAppConfig(dataDir);
   if (cfg.telemetry?.metrics !== true || cfg.telemetry.content !== true) return;
   const sink = readRunTelemetrySinkConfig(process.env, agentCliEnvForAgent(cfg.agentCliEnv, 'amr'));

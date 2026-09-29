@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import type { ChatMessage, PersistedAgentEvent } from '@saascodex/contracts';
+import type { ChatMessage, PersistedAgentEvent } from '@splatstudio/contracts';
 import { AssistantMessage } from '../../../src/components/AssistantMessage';
 import { I18nProvider } from '../../../src/i18n';
 import { elideFileName } from '../../../src/runtime/chat/format';

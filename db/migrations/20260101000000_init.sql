@@ -1,4 +1,4 @@
--- SaaSCodex hosted control-plane schema (PostgreSQL + pgvector).
+-- SplatStudio hosted control-plane schema (PostgreSQL + pgvector).
 --
 -- The local daemon keeps its own SQLite store; this schema is the hosted
 -- control plane used by the web app and deployed daemon on Railway/Vercel.

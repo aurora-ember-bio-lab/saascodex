@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   OD_NEXT_BUNDLE_ECHO_GUARD_V2,
   serializeOdNextPromptBundleV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   composeChatAgentTextPayload,
   resolveOdNextRequestUserPrompt,
@@ -26,7 +26,7 @@ import {
 
 describe('OD Next exact Agent input map v1', () => {
   it('classifies every production contributor exactly once', () => {
-    expect(OD_NEXT_EXACT_INPUT_MAP_VERSION).toBe('saascodex.od-next-exact-input-map/v2');
+    expect(OD_NEXT_EXACT_INPUT_MAP_VERSION).toBe('splatstudio.od-next-exact-input-map/v2');
     expect(() => assertOdNextExactInputMapV1()).not.toThrow();
     expect(() => assertOdNextLegacyTextContributorCoverage(
       OD_NEXT_LEGACY_TEXT_CONTRIBUTOR_IDS_V1,
@@ -355,11 +355,11 @@ describe('chat Agent exact-text production choke point', () => {
         runtimeFacts: '{"inputRefs":["request"]}',
         taskType: 'prototype',
         attachments: '',
-        taskConfiguration: '{"schema":"saascodex.od-next-task-configuration/v1","taskType":"prototype"}',
+        taskConfiguration: '{"schema":"splatstudio.od-next-task-configuration/v1","taskType":"prototype"}',
         stableContext: 'stable context',
         priorTranscript: '## user\nprior request',
-        frozenSkillPackage: '{"schema":"saascodex.od-next-frozen-skill-package/v1","selectedSkills":[]}',
-        requestInputFacts: '{"schema":"saascodex.od-next-request-input-facts/v1","attachments":[]}',
+        frozenSkillPackage: '{"schema":"splatstudio.od-next-frozen-skill-package/v1","selectedSkills":[]}',
+        requestInputFacts: '{"schema":"splatstudio.od-next-request-input-facts/v1","attachments":[]}',
         userSelectedSkills: null,
       },
       strategyInputStage: 'request',
@@ -380,8 +380,8 @@ describe('chat Agent exact-text production choke point', () => {
     expect(exactText).not.toContain('# Instructions');
     expect(exactText).not.toContain('/Users/private/customer-a');
     expect(exactText).not.toContain('/private/tmp/secret-assets');
-    expect(exactText).toContain('saascodex.od-next-task-configuration/v1');
-    expect(exactText).toContain('saascodex.od-next-request-input-facts/v1');
+    expect(exactText).toContain('splatstudio.od-next-task-configuration/v1');
+    expect(exactText).toContain('splatstudio.od-next-request-input-facts/v1');
     expect(exactText).toContain('<core_strategy>');
     expect(exactText).toContain('<recipe_identity ');
     expect(exactText).not.toContain('\n\n---\n\n');
@@ -461,7 +461,7 @@ describe('canonical OD Next Bundle root witness', () => {
   it('accepts one canonical v2 tree and rejects v1, appended, or malformed roots', () => {
     const exactText = canonicalV2();
     expect(exactText).toMatch(/^<open_design_prompt_bundle/);
-    expect(exactText).toContain('saascodex.od-next-prompt-bundle/v2');
+    expect(exactText).toContain('splatstudio.od-next-prompt-bundle/v2');
     expect(() => assertSingleOdNextPromptBundleRoot(exactText)).not.toThrow();
     expect(() => assertSingleOdNextPromptBundleRoot(
       '<open_design_prompt_bundle version="1">\ncontent\n</open_design_prompt_bundle>',

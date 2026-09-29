@@ -19,7 +19,7 @@ import type { AppConfig, Project } from '../../src/types';
 import type {
   WorkspaceCollabContext,
   WorkspaceDirectoryItem,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   fetchComposioConfigFromDaemon,
   fetchDaemonConfig,

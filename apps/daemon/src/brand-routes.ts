@@ -45,7 +45,7 @@ import {
   startBrandExtraction,
 } from './brands/index.js';
 import { patchMeta } from './brands/store.js';
-import type { BrandDetailResponse, BrandMeta, BrandSummary } from '@saascodex/contracts';
+import type { BrandDetailResponse, BrandMeta, BrandSummary } from '@splatstudio/contracts';
 
 export interface BrandRoutesDeps {
   /** `<dataDir>/brands` — root of all brand directories. */

@@ -3,11 +3,11 @@ import { expect } from '@playwright/test';
 import type {
   WorkspaceCollabContext,
   WorkspaceDirectoryItem,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { dismissWhatsNewPopup, ensureRailOpen } from './rail.js';
 import { T } from '@/timeouts';
 
-export const STORAGE_KEY = 'saascodex:config';
+export const STORAGE_KEY = 'splatstudio:config';
 export const OPEN_SETTINGS_LABEL = /Open settings|打开设置|開啟設定|Account & settings/i;
 
 type MockAmrWalletOptions = {
@@ -212,12 +212,12 @@ export async function mockAmrPersonalWorkspace(
 }
 
 export async function waitForLoadingToClear(page: Page) {
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.long }).catch(() => {});
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: T.long }).catch(() => {});
 }
 
 export async function dismissPrivacyDialog(page: Page) {
   const privacySurface = page
-    .getByRole('region', { name: /Help us improve SaaSCodex/i })
+    .getByRole('region', { name: /Help us improve SplatStudio/i })
     .or(page.locator('.privacy-consent-banner'))
     .first();
   await privacySurface.waitFor({ state: 'visible', timeout: 1_000 }).catch(() => {});

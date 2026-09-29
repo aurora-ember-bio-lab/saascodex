@@ -1,4 +1,4 @@
-import type { ProjectFile } from '@saascodex/contracts';
+import type { ProjectFile } from '@splatstudio/contracts';
 import { createProjectArtifactFile } from '../artifacts/create.js';
 import {
   listFiles as defaultListFiles,

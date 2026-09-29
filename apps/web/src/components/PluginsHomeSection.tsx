@@ -14,12 +14,12 @@
 // override live in `./plugins-home/usePluginFacets.ts`. This file
 // owns layout only.
 
-import { Button, Input } from '@saascodex/components';
+import { Button, Input } from '@splatstudio/components';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type {
   InstalledPluginRecord,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { useI18n, useT } from '../i18n';
 import type { PluginShareAction } from '../state/projects';
 import { Icon } from './Icon';

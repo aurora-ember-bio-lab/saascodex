@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const SAVED_PLUGIN_IDS_KEY = 'saascodex:saved-plugin-ids';
-const SAVED_PLUGIN_IDS_EVENT = 'saascodex:saved-plugin-ids-changed';
+const SAVED_PLUGIN_IDS_KEY = 'splatstudio:saved-plugin-ids';
+const SAVED_PLUGIN_IDS_EVENT = 'splatstudio:saved-plugin-ids-changed';
 
 type SavedPluginIdsEvent = CustomEvent<{ ids: string[] }>;
 

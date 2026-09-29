@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { setHostPetVisible } from '@saascodex/host';
+import { setHostPetVisible } from '@splatstudio/host';
 import { RUNS_CHANGED_EVENT, listProjectRuns } from '../../providers/daemon';
 import { loadConfig } from '../../state/config';
 import { listProjects } from '../../state/projects';

@@ -5,7 +5,7 @@ import {
   type NormalizedAgentObservationV1,
   type RuntimeObservationEvidenceLevelV1,
   type StrategyInputStageV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   buildSafeChildPromptTelemetry,
   type SafeChildPromptInput,

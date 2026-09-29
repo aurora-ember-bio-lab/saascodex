@@ -14,12 +14,12 @@ import {
   releaseNamespace,
   type ReleaseBaseVersionTuple,
   type ReleaseChannel,
-} from "@saascodex/release";
+} from "@splatstudio/release";
 
 const execFile = promisify(execFileCallback);
 
 const stableReleaseBranchPattern = /^release\/v(\d+\.\d+\.\d+)$/;
-const stableTagPattern = /^saascodex-v(\d+\.\d+\.\d+)$/;
+const stableTagPattern = /^splatstudio-v(\d+\.\d+\.\d+)$/;
 
 type GitHubRelease = {
   draft?: boolean;
@@ -64,23 +64,23 @@ function fail(message: string): never {
 }
 
 function log(message: string): void {
-  const prefix = process.env.SAASCODEX_RELEASE_CHANNEL === "prerelease" ? "release-prerelease" : "release-stable";
+  const prefix = process.env.SPLATSTUDIO_RELEASE_CHANNEL === "prerelease" ? "release-prerelease" : "release-stable";
   console.log(`[${prefix}] ${message}`);
 }
 
 async function execGh(args: string[]): Promise<{ stdout: string }> {
-  const nodeScript = process.env.SAASCODEX_GH_NODE_SCRIPT;
+  const nodeScript = process.env.SPLATSTUDIO_GH_NODE_SCRIPT;
   if (nodeScript != null && nodeScript.length > 0) {
     return execFile(process.execPath, [nodeScript, ...args]);
   }
-  return execFile(process.env.SAASCODEX_GH_BIN ?? "gh", args);
+  return execFile(process.env.SPLATSTUDIO_GH_BIN ?? "gh", args);
 }
 
 function parseChannel(value: string | undefined): ReleaseChannel {
   const channel = value == null || value.length === 0 ? "stable" : value;
   const descriptor = releaseChannelDescriptor(channel);
   if (descriptor.channel !== "stable" && descriptor.channel !== "prerelease") {
-    fail(`SAASCODEX_RELEASE_CHANNEL must be stable or prerelease; got ${channel}`);
+    fail(`SPLATSTUDIO_RELEASE_CHANNEL must be stable or prerelease; got ${channel}`);
   }
   return descriptor.channel;
 }
@@ -89,7 +89,7 @@ function parseStableDryRunMode(value: string | undefined): StableDryRunMode {
   if (value == null || value.length === 0 || value === "false") return "";
   if (value === "true" || value === "metadata") return "metadata";
   if (value === "prepublish") return "prepublish";
-  fail("SAASCODEX_RELEASE_DRY_RUN must be metadata, prepublish, true, or false");
+  fail("SPLATSTUDIO_RELEASE_DRY_RUN must be metadata, prepublish, true, or false");
 }
 
 function parseBaseVersionInput(value: string | undefined, sourceName: string): ParsedStableVersion | null {
@@ -119,12 +119,12 @@ function parseReleaseBranchVersion(branch: string): ParsedStableVersion | null {
 
 function resolvePrereleaseBaseVersion(branch: string, inputValue: string | undefined): ParsedStableVersion {
   const branchVersion = parseReleaseBranchVersion(branch);
-  const inputVersion = parseBaseVersionInput(inputValue, "SAASCODEX_STABLE_VERSION");
+  const inputVersion = parseBaseVersionInput(inputValue, "SPLATSTUDIO_STABLE_VERSION");
 
   if (branchVersion != null) {
     if (inputVersion != null && inputVersion.value !== branchVersion.value) {
       fail(
-        `SAASCODEX_STABLE_VERSION ${inputVersion.value} must match release branch version ${branchVersion.value} when both are provided`,
+        `SPLATSTUDIO_STABLE_VERSION ${inputVersion.value} must match release branch version ${branchVersion.value} when both are provided`,
       );
     }
     return branchVersion;
@@ -132,7 +132,7 @@ function resolvePrereleaseBaseVersion(branch: string, inputValue: string | undef
 
   if (inputVersion != null) return inputVersion;
 
-  fail("release-prerelease requires either a release/vX.Y.Z branch or SAASCODEX_STABLE_VERSION");
+  fail("release-prerelease requires either a release/vX.Y.Z branch or SPLATSTUDIO_STABLE_VERSION");
 }
 
 function resolveStableBaseVersion(branch: string): ParsedStableVersion {
@@ -342,10 +342,10 @@ async function validateStablePrereleaseMetadata(options: {
 
   const prereleaseVersionInput = options.prereleaseVersionInput?.trim() ?? "";
   if (prereleaseVersionInput.length === 0) {
-    fail("SAASCODEX_STABLE_PRERELEASE_VERSION is required when channel=stable; pass the exact validated prerelease version");
+    fail("SPLATSTUDIO_STABLE_PRERELEASE_VERSION is required when channel=stable; pass the exact validated prerelease version");
   }
 
-  const prerelease = parsePrereleaseVersion(prereleaseVersionInput, "SAASCODEX_STABLE_PRERELEASE_VERSION");
+  const prerelease = parsePrereleaseVersion(prereleaseVersionInput, "SPLATSTUDIO_STABLE_PRERELEASE_VERSION");
   if (prerelease.baseVersion !== options.packagedVersion) {
     fail(
       `stable channel prerelease gate requires base version ${options.packagedVersion}; got ${prerelease.prereleaseVersion}`,
@@ -353,9 +353,9 @@ async function validateStablePrereleaseMetadata(options: {
   }
 
   const publicOrigin = trimTrailingSlash(
-    options.publicOrigin ?? fail("SAASCODEX_RELEASES_PUBLIC_ORIGIN is required when channel=stable"),
+    options.publicOrigin ?? fail("SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN is required when channel=stable"),
   );
-  validateHttpsUrl(publicOrigin, "SAASCODEX_RELEASES_PUBLIC_ORIGIN");
+  validateHttpsUrl(publicOrigin, "SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN");
 
   const expectedVersionPrefix = `prerelease/versions/${prerelease.prereleaseVersion}`;
   const expectedVersionUrl = `${publicOrigin}/${expectedVersionPrefix}`;
@@ -545,8 +545,8 @@ function setOutput(name: string, value: string): void {
 }
 
 const repository = process.env.GITHUB_REPOSITORY ?? fail("GITHUB_REPOSITORY is required");
-const channel = parseChannel(process.env.SAASCODEX_RELEASE_CHANNEL);
-const stableDryRunMode = channel === "stable" ? parseStableDryRunMode(process.env.SAASCODEX_RELEASE_DRY_RUN) : "";
+const channel = parseChannel(process.env.SPLATSTUDIO_RELEASE_CHANNEL);
+const stableDryRunMode = channel === "stable" ? parseStableDryRunMode(process.env.SPLATSTUDIO_RELEASE_DRY_RUN) : "";
 const dryRun = stableDryRunMode.length > 0;
 const runPrepublishJobs = channel !== "stable" || stableDryRunMode === "prepublish" || stableDryRunMode === "";
 const publishSideEffectsEnabled = channel !== "stable" || stableDryRunMode === "";
@@ -557,7 +557,7 @@ const branch = process.env.GITHUB_REF_NAME ?? "";
 const stableBaseVersion =
   channel === "stable"
     ? resolveStableBaseVersion(branch)
-    : resolvePrereleaseBaseVersion(branch, process.env.SAASCODEX_STABLE_VERSION);
+    : resolvePrereleaseBaseVersion(branch, process.env.SPLATSTUDIO_STABLE_VERSION);
 const packagedParsed = stableBaseVersion.parsed;
 if (stableBaseVersion.value !== packagedVersion) {
   fail(
@@ -566,7 +566,7 @@ if (stableBaseVersion.value !== packagedVersion) {
 }
 
 const releases = await fetchReleases(repository);
-const versionTag = `saascodex-v${packagedVersion}`;
+const versionTag = `splatstudio-v${packagedVersion}`;
 
 let latestStable: ParsedStableVersion | null = null;
 for (const release of releases) {
@@ -594,11 +594,11 @@ let prereleaseNumber = "";
 let stateSource = channel === "prerelease" ? "R2 metadata.json" : "GitHub Releases";
 
 if (channel === "prerelease") {
-  const metadataUrl = process.env.SAASCODEX_PRERELEASE_METADATA_URL;
+  const metadataUrl = process.env.SPLATSTUDIO_PRERELEASE_METADATA_URL;
   if (metadataUrl == null || metadataUrl.length === 0) {
-    fail("SAASCODEX_PRERELEASE_METADATA_URL is required for prerelease channel");
+    fail("SPLATSTUDIO_PRERELEASE_METADATA_URL is required for prerelease channel");
   }
-  validateHttpsUrl(metadataUrl, "SAASCODEX_PRERELEASE_METADATA_URL");
+  validateHttpsUrl(metadataUrl, "SPLATSTUDIO_PRERELEASE_METADATA_URL");
 
   let nextPrereleaseNumber = 1;
   let latestPrerelease: ParsedPrereleaseVersion | null = null;
@@ -638,8 +638,8 @@ if (channel === "prerelease") {
     branch: `release/v${stableBaseVersion.value}`,
     commit,
     packagedVersion,
-    prereleaseVersionInput: process.env.SAASCODEX_STABLE_PRERELEASE_VERSION,
-    publicOrigin: process.env.SAASCODEX_RELEASES_PUBLIC_ORIGIN,
+    prereleaseVersionInput: process.env.SPLATSTUDIO_STABLE_PRERELEASE_VERSION,
+    publicOrigin: process.env.SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN,
     repository,
   });
   stateSource = `R2 prerelease metadata ${stablePrerelease.prereleaseVersion}`;

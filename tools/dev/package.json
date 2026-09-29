@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/tools-dev",
+  "name": "@splatstudio/tools-dev",
   "version": "0.23.1",
   "private": true,
   "type": "module",
@@ -13,9 +13,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/platform": "workspace:*",
-    "@saascodex/sidecar": "workspace:*",
-    "@saascodex/sidecar-proto": "workspace:*",
+    "@splatstudio/platform": "workspace:*",
+    "@splatstudio/sidecar": "workspace:*",
+    "@splatstudio/sidecar-proto": "workspace:*",
     "cac": "6.7.14"
   },
   "devDependencies": {

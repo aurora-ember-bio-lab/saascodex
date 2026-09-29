@@ -29,7 +29,7 @@ import type {
   PluginConnectorBinding,
   ProjectScenarioBindingProvenance,
   ProjectScenarioTaskProfile,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   applyPlugin,
   InternalBundledStrategyApplyError,
@@ -50,7 +50,7 @@ import { getManifestContextCraft } from './context-craft.js';
 import {
   type ConnectorProbe,
 } from './connector-gate.js';
-import type { RegistryView } from '@saascodex/plugin-runtime';
+import type { RegistryView } from '@splatstudio/plugin-runtime';
 import {
   createBundledStrategyBindingV2,
   StrategyPackageIdentityError,

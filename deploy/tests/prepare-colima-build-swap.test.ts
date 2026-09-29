@@ -337,7 +337,7 @@ test("cleanup removes the default and legacy swap paths", async () => {
 
   assert.equal(result.code, 0);
   assert.equal(result.state.SWAPOFF_TARGETS, "/swapfile-colima-build");
-  assert.equal(result.state.RM_TARGETS, "/swapfile-colima-build:/swapfile-saascodex-build");
+  assert.equal(result.state.RM_TARGETS, "/swapfile-colima-build:/swapfile-splatstudio-build");
 });
 
 test("cleanup refuses custom swap paths unless force is enabled", async () => {
@@ -361,7 +361,7 @@ test("cleanup removes custom swap paths when force is enabled", async () => {
 
   assert.equal(result.code, 0);
   assert.equal(result.state.SWAPOFF_TARGETS, "/custom-swapfile");
-  assert.equal(result.state.RM_TARGETS, "/custom-swapfile:/swapfile-saascodex-build");
+  assert.equal(result.state.RM_TARGETS, "/custom-swapfile:/swapfile-splatstudio-build");
 });
 
 test("invalid swap size overrides fail before checking Colima", async () => {

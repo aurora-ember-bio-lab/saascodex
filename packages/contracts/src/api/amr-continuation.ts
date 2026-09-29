@@ -1,5 +1,5 @@
 /** ACP extension. A cursor continues persisted work; it never authorizes prompt replay. */
-export const AMR_CONTINUATION_CAPABILITY = 'com.saascodex.nativeSessionContinue';
+export const AMR_CONTINUATION_CAPABILITY = 'com.splatstudio.nativeSessionContinue';
 export const AMR_CONTINUATION_ERROR_CODE = 'OPENCODE_COMPACTION_CONTINUATION_INCOMPLETE';
 
 export interface AmrContinuationCursor {

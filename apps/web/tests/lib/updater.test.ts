@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { SaaSCodexHostUpdaterStatusSnapshot } from '@saascodex/host';
-import { installMockSaaSCodexHost } from '@saascodex/host/testing';
+import type { SplatStudioHostUpdaterStatusSnapshot } from '@splatstudio/host';
+import { installMockSplatStudioHost } from '@splatstudio/host/testing';
 
 import {
   checkForUpdaterUpdate,
@@ -15,7 +15,7 @@ import {
   syncUpdaterMenuLabels,
 } from '../../src/lib/updater';
 
-function downloadedStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {}): SaaSCodexHostUpdaterStatusSnapshot {
+function downloadedStatus(overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {}): SplatStudioHostUpdaterStatusSnapshot {
   return {
     arch: 'arm64',
     artifact: {
@@ -33,7 +33,7 @@ function downloadedStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot>
     },
     channel: 'beta',
     currentVersion: '1.2.3-beta.3',
-    downloadPath: '/tmp/saascodex-updater/Open Design Beta.dmg',
+    downloadPath: '/tmp/splatstudio-updater/Open Design Beta.dmg',
     enabled: true,
     mode: 'package-launcher',
     platform: 'darwin',
@@ -43,13 +43,13 @@ function downloadedStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot>
   };
 }
 
-function payloadDownloadedStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {}): SaaSCodexHostUpdaterStatusSnapshot {
+function payloadDownloadedStatus(overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {}): SplatStudioHostUpdaterStatusSnapshot {
   return downloadedStatus({
     artifact: {
-      name: 'saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+      name: 'splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
       platformKey: 'mac',
       type: 'payload',
-      url: 'https://fixture.test/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+      url: 'https://fixture.test/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
     },
     capabilities: {
       canApplyInPlace: true,
@@ -57,7 +57,7 @@ function payloadDownloadedStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSn
       canOpenInstaller: false,
       requiresManualInstall: false,
     },
-    downloadPath: '/tmp/saascodex-updater/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+    downloadPath: '/tmp/splatstudio-updater/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
     ...overrides,
   });
 }
@@ -200,7 +200,7 @@ describe('web updater model', () => {
         installResult: {
           dryRun: true,
           openedAt: '2026-05-19T00:00:00.000Z',
-          path: '/tmp/saascodex-updater/Open Design Beta.dmg',
+          path: '/tmp/splatstudio-updater/Open Design Beta.dmg',
         },
       }),
       { hostAvailable: true },
@@ -223,11 +223,11 @@ describe('web updater model', () => {
       installResult: {
         dryRun: true,
         openedAt: '2026-05-19T00:00:00.000Z',
-        path: status.downloadPath ?? '/tmp/saascodex-updater/Open Design Beta.dmg',
+        path: status.downloadPath ?? '/tmp/splatstudio-updater/Open Design Beta.dmg',
       },
     }));
     const quit = vi.fn(async () => ({ ok: true as const }));
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         updater: {
           check,
@@ -273,7 +273,7 @@ describe('web updater model', () => {
       openDialog = listener;
       return vi.fn();
     });
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: { updater: { setMenuLabels, subscribeOpenDialog } },
     });
 
@@ -289,7 +289,7 @@ describe('web updater model', () => {
       downloading: 'Downloading Update…',
       install: 'Install Update…',
       installing: 'Installing Update…',
-      restart: 'Restart to Update SaaSCodex…',
+      restart: 'Restart to Update SplatStudio…',
     };
     await expect(syncUpdaterMenuLabels(labels)).resolves.toEqual({ ok: true });
     expect(setMenuLabels).toHaveBeenCalledWith(labels);

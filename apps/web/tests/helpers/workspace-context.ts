@@ -2,7 +2,7 @@ import type {
   WorkspaceCollabContext,
   WorkspaceDirectoryItem,
   WorkspaceDirectoryResponse,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 /**
  * A complete `WorkspaceCollabContext` whose workspace + member identity the

@@ -95,8 +95,8 @@ let styleEl: HTMLStyleElement;
 
 beforeEach(() => {
   window.localStorage.clear();
-  window.localStorage.setItem('saascodex:locale', 'zh-CN');
-  window.localStorage.setItem('saascodex:locale-source', 'manual');
+  window.localStorage.setItem('splatstudio:locale', 'zh-CN');
+  window.localStorage.setItem('splatstudio:locale-source', 'manual');
   styleEl = document.createElement('style');
   styleEl.textContent = `${seamCss}\n${dialogCss}`;
   document.head.appendChild(styleEl);

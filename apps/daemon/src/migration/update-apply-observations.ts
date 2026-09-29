@@ -1,4 +1,4 @@
-import { UPDATE_LIFECYCLE_STAGES, parseUpdateLifecycleObservation, type UpdateLifecycleObservedProps } from '@saascodex/contracts/analytics';
+import { UPDATE_LIFECYCLE_STAGES, parseUpdateLifecycleObservation, type UpdateLifecycleObservedProps } from '@splatstudio/contracts/analytics';
 import { readdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
@@ -7,12 +7,12 @@ import type {
   TrackingUpdateApplyReason,
   TrackingUpdateApplyResult,
   UpdateApplyObservedProps,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   isReleaseChannel,
   releaseChannelFromVersion,
   type ReleaseChannel,
-} from '@saascodex/release';
+} from '@splatstudio/release';
 
 import type { AnalyticsContext, AnalyticsService } from '../analytics.js';
 import { readPosthogConfig } from '../analytics.js';
@@ -297,7 +297,7 @@ export async function observePendingInstallerApplyAttempts(
           insertId,
         });
       } catch (error) {
-        options.logger?.warn?.('[saascodex updater] failed to submit update apply observation', error);
+        options.logger?.warn?.('[splatstudio updater] failed to submit update apply observation', error);
         next.delivery = { eventName: 'update_apply_observed', status: 'failed', updatedAt: observedAt };
       }
     }

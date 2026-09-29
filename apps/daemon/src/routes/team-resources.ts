@@ -5,7 +5,7 @@ import {
   createApiErrorResponse,
   TeamResourceCopyForbiddenError,
   type TeamResourceState,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   TeamResourceKind,
   TeamResourceKey,

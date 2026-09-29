@@ -55,7 +55,7 @@ function renderActions(
     onDownload: vi.fn(),
     onToolboxAction: vi.fn(),
     onPickSkill: vi.fn(),
-    onShareToSaaSCodex: vi.fn(),
+    onShareToSplatStudio: vi.fn(),
   };
   const ui = (
     <NextStepActions
@@ -64,7 +64,7 @@ function renderActions(
       onDownload={handlers.onDownload}
       onToolboxAction={handlers.onToolboxAction}
       onPickSkill={handlers.onPickSkill}
-      onShareToSaaSCodex={handlers.onShareToSaaSCodex}
+      onShareToSplatStudio={handlers.onShareToSplatStudio}
       skills={[
         skill('creative-director', 'Creative Director'),
         skill('emilkowalski-motion', 'Emil Kowalski Motion', 'animation-motion'),
@@ -477,7 +477,7 @@ describe('NextStepActions', () => {
     fireEvent.mouseEnter(screen.getByTestId('next-step-toolbox-more'));
     fireEvent.mouseEnter(screen.getByTestId('next-step-more-share'));
     fireEvent.click(screen.getByTestId('next-step-share-contribute'));
-    expect(h.onShareToSaaSCodex).toHaveBeenCalledTimes(1);
+    expect(h.onShareToSplatStudio).toHaveBeenCalledTimes(1);
   });
 
   it('hides the More row when nothing behind it is wired', () => {
@@ -485,7 +485,7 @@ describe('NextStepActions', () => {
       onToolboxAction: undefined,
       onShare: undefined,
       onDownload: undefined,
-      onShareToSaaSCodex: undefined,
+      onShareToSplatStudio: undefined,
       onCreateDesignSystem: undefined,
     });
     expect(screen.queryByTestId('next-step-toolbox-more')).toBeNull();

@@ -8,7 +8,7 @@ Implementation branch: `codex/manual-edit-mode`.
 
 ## Goal
 
-Migrate the accepted manual edit-mode prototype into the production SaaSCodex web app.
+Migrate the accepted manual edit-mode prototype into the production SplatStudio web app.
 
 The product boundary is fixed:
 
@@ -41,9 +41,9 @@ The product boundary is fixed:
 ## Verification Commands
 
 ```bash
-pnpm --filter @saascodex/web typecheck
-pnpm --filter @saascodex/web test
-pnpm --filter @saascodex/e2e test:ui -- --grep "manual edit"
+pnpm --filter @splatstudio/web typecheck
+pnpm --filter @splatstudio/web test
+pnpm --filter @splatstudio/e2e test:ui -- --grep "manual edit"
 pnpm typecheck
 pnpm test
 pnpm check:residual-js

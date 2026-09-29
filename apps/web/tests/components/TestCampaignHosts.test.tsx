@@ -11,9 +11,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { I18nProvider, useI18n } from "../../src/i18n";
 type HostGlobal = typeof globalThis & { __cmsTestHost?: unknown };
-vi.mock("@saascodex/host", () => ({
-	SAASCODEX_HOST_VERSION: 2,
-	getSaaSCodexHost: () => (globalThis as HostGlobal).__cmsTestHost,
+vi.mock("@splatstudio/host", () => ({
+	SPLATSTUDIO_HOST_VERSION: 2,
+	getSplatStudioHost: () => (globalThis as HostGlobal).__cmsTestHost,
 }));
 
 import { ProductionCampaignBadge } from "../../src/components/ProductionCampaignBadge";
@@ -27,7 +27,7 @@ import {
 	type TestRuntimeSession,
 } from "../../src/components/TestCampaignModal";
 import * as touchpointComponent from "../../src/components/touchpoint-component";
-import { SaaSCodexTouchpointElement } from "../../src/components/touchpoint-component";
+import { SplatStudioTouchpointElement } from "../../src/components/touchpoint-component";
 
 const placements = [
 	"opend.home.account-badge",
@@ -150,8 +150,8 @@ describe("Test decisions at the existing host touchpoints", () => {
 			dispose: vi.fn(),
 		} as never);
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
-			.mockImplementation(async function (this: SaaSCodexTouchpointElement) {
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
+			.mockImplementation(async function (this: SplatStudioTouchpointElement) {
 				this.shadowRoot?.replaceChildren(
 					document.createTextNode("Test host content"),
 				);
@@ -265,13 +265,13 @@ describe("Test decisions at the existing host touchpoints", () => {
 			expect(nodes()).toHaveLength(4);
 			expect(requested).toContain("deployment-a");
 			const originals = nodes();
-			const mounts = vi.mocked(SaaSCodexTouchpointElement.prototype.mount).mock
+			const mounts = vi.mocked(SplatStudioTouchpointElement.prototype.mount).mock
 				.calls.length;
 			await tick();
 			expect(nodes()).toHaveLength(4);
 			for (const [index, node] of nodes().entries())
 				expect(node).toBe(originals[index]);
-			expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(
+			expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(
 				mounts,
 			);
 			catalog = ["deployment-b"];
@@ -371,9 +371,9 @@ describe("Test decisions at the existing host touchpoints", () => {
 			}),
 		);
 		vi
-			.mocked(SaaSCodexTouchpointElement.prototype.mount)
+			.mocked(SplatStudioTouchpointElement.prototype.mount)
 			.mockImplementation(async function (
-				this: SaaSCodexTouchpointElement,
+				this: SplatStudioTouchpointElement,
 				_url,
 				_digest,
 				hostContext,
@@ -465,9 +465,9 @@ describe("Test decisions at the existing host touchpoints", () => {
 		let hold = false;
 		let close: (() => void) | undefined;
 		vi
-			.mocked(SaaSCodexTouchpointElement.prototype.mount)
+			.mocked(SplatStudioTouchpointElement.prototype.mount)
 			.mockImplementation(async function (
-				this: SaaSCodexTouchpointElement,
+				this: SplatStudioTouchpointElement,
 				_url,
 				_digest,
 				_context,
@@ -740,7 +740,7 @@ describe("Test decisions at the existing host touchpoints", () => {
 			expect(report.hostCompatibility).toMatchObject({
 				version: 1,
 				snapshotHash: session.deployment.snapshotHash,
-				hostFamily: "saascodex-desktop",
+				hostFamily: "splatstudio-desktop",
 				platform: "desktop",
 				hostRelease: `sha256:${"a".repeat(64)}`,
 				runtime: {

@@ -30,8 +30,8 @@ od:
 
 # Hatch Pet
 
-> **SaaSCodex integration.** This is the unmodified Codex `hatch-pet` skill,
-> vendored under `skills/hatch-pet/` so any SaaSCodex agent can run it. After
+> **SplatStudio integration.** This is the unmodified Codex `hatch-pet` skill,
+> vendored under `skills/hatch-pet/` so any SplatStudio agent can run it. After
 > the skill finishes packaging, the resulting `spritesheet.webp` (under
 > `${CODEX_HOME:-$HOME/.codex}/pets/<pet-name>/`) can be imported into the
 > floating pet companion via **Settings → General → Pets → Import Codex sprite**. The

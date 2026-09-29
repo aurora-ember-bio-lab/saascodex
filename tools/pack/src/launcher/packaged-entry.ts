@@ -1,6 +1,6 @@
 /** This catch must work before any application dependency can be imported. */
 export function renderPackagedMainEntry(usePrebundle: boolean): string {
-  const entry = usePrebundle ? "./prebundled/packaged-main.mjs" : "@saascodex/packaged";
+  const entry = usePrebundle ? "./prebundled/packaged-main.mjs" : "@splatstudio/packaged";
   return `import(${JSON.stringify(entry)}).catch((error) => {
   console.error("packaged entry failed", error);
   const missingModule = error && ["ERR_MODULE_NOT_FOUND", "MODULE_NOT_FOUND"].includes(error.code);

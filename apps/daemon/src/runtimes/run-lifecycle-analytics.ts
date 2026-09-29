@@ -1,4 +1,4 @@
-import { projectKindFromMetadataToTracking } from '@saascodex/contracts/analytics';
+import { projectKindFromMetadataToTracking } from '@splatstudio/contracts/analytics';
 import {
   countDesignSystemPreviewModules,
   countNewArtifacts,

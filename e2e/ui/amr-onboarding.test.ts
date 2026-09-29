@@ -99,7 +99,7 @@ test('[P0] @critical onboarding lets AMR Cloud sign in and complete setup after 
   // Login success lands on the model-source chooser. Hosted is recommended
   // and selected by default; accepting it completes the streamlined flow.
   await expectModelSourceChooser(page);
-  await continueWithModelSource(page, /SaaSCodex Hosted/i);
+  await continueWithModelSource(page, /SplatStudio Hosted/i);
   await expectOnboardingFinished(page);
   await pollStoredConfig(page).toMatchObject({
     agentId: 'amr',
@@ -500,7 +500,7 @@ test('[P0] @critical onboarding signed-in AMR path finishes setup with the AMR r
   await expect(primary).toHaveText(/Continue \(signed in\)|继续（已登录）/i);
   await clickCloudPrimary(page);
   await expectModelSourceChooser(page);
-  await continueWithModelSource(page, /SaaSCodex Hosted/i);
+  await continueWithModelSource(page, /SplatStudio Hosted/i);
   await expectOnboardingFinished(page);
   await pollStoredConfig(page).toMatchObject({
     agentId: 'amr',
@@ -527,7 +527,7 @@ test('[P0] onboarding AMR runtime selection carries into the first Home run requ
 
   await clickCloudPrimary(page);
   await expectModelSourceChooser(page);
-  await continueWithModelSource(page, /SaaSCodex Hosted/i);
+  await continueWithModelSource(page, /SplatStudio Hosted/i);
   await expectOnboardingFinished(page);
 
   const runBodies: Array<Record<string, unknown>> = [];
@@ -574,7 +574,7 @@ test('[P0] completed BYOK setup stays usable while the unrelated Cloud session i
   await expect(page).toHaveURL(/\/$/);
   await expect(page.getByTestId('home-hero-input')).toBeVisible();
   await expect(page.getByRole('heading', { name: /Choose your model source|选择模型来源/i })).toHaveCount(0);
-  // PRODUCT INVARIANT: Cloud identity gates SaaSCodex Cloud execution only.
+  // PRODUCT INVARIANT: Cloud identity gates SplatStudio Cloud execution only.
   // A configured BYOK runtime neither redirects to onboarding nor starts a
   // passive Cloud login merely because the independent AMR status is signed out.
   await expect.poll(() => page.evaluate(() => window.__amrOnboardingLoginCalls ?? 0)).toBe(0);
@@ -1451,10 +1451,10 @@ async function gotoOnboarding(page: Page) {
   await waitForLoadingToClear(page);
   await dismissPrivacyDialog(page);
   // The runtime-picker "Choose a runtime" heading was removed. The Connect
-  // step now opens on a centered SaaSCodex Cloud sign-in landing whose
+  // step now opens on a centered SplatStudio Cloud sign-in landing whose
   // heading is the stable marker that onboarding has rendered.
   await expect(
-    page.getByRole('heading', { name: /Welcome to SaaSCodex|欢迎使用 SaaSCodex/i }),
+    page.getByRole('heading', { name: /Welcome to SplatStudio|欢迎使用 SplatStudio/i }),
   ).toBeVisible();
 }
 
@@ -1475,7 +1475,7 @@ async function clickCloudPrimary(page: Page) {
 // The connect landing heading — the stable "we're still on the cloud sign-in
 // landing" marker that replaced the old "Choose a runtime" heading.
 function connectLandingHeading(page: Page): Locator {
-  return page.getByRole('heading', { name: /Welcome to SaaSCodex|欢迎使用 SaaSCodex/i });
+  return page.getByRole('heading', { name: /Welcome to SplatStudio|欢迎使用 SplatStudio/i });
 }
 
 async function expectModelSourceChooser(page: Page) {

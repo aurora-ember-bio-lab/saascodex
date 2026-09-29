@@ -35,7 +35,7 @@ import {
 // `<od-title>` marker stripper, the fabricated-role-marker safety guard
 // (#3247), and — when the OD Next strategy is running the turn — the machine
 // protocol, which withholds any text that might still turn out to be a
-// reserved `<saascodex-…>` block.
+// reserved `<splatstudio-…>` block.
 //
 // These tests drive the REAL wiring (`startServer` + a fake opencode CLI) and
 // read the two fields off the real PostHog `run_finished` payload, because the
@@ -142,7 +142,7 @@ describe('first_visible_output is stamped at emission, not at first token', () =
 
   // The OD Next machine protocol is a THIRD thing that can withhold visible
   // bytes, and unlike the other two it can hold them past the end of the
-  // stream: text that might still turn out to be a reserved `<saascodex-…>`
+  // stream: text that might still turn out to be a reserved `<splatstudio-…>`
   // block is only released when `finish()` proves it was prose, at child
   // close. That release does not go through the daemon's ordinary emission
   // choke point — it persists and broadcasts the tail directly — so the mark
@@ -156,13 +156,13 @@ describe('first_visible_output is stamped at emission, not at first token', () =
     // block is suppressed by design (it is protocol, not prose) and the only
     // remaining text is `<o` — a prefix of a reserved opening tag, which the
     // protocol must hold because the next chunk could complete
-    // `<saascodex-plan-contract`. The next chunk never comes, so `finish()`
+    // `<splatstudio-plan-contract`. The next chunk never comes, so `finish()`
     // is what finally rules it out and releases it.
     const bin = await writeFakeOpencode(binDir, 'opencode-strategy-tail', `
   emit({ type: 'text', part: { type: 'text', text: [
-    '<saascodex-runtime-state>',
+    '<splatstudio-runtime-state>',
     '{"schemaVersion":2}',
-    '</saascodex-runtime-state>',
+    '</splatstudio-runtime-state>',
   ].join('\\n') + '<o' } });
   setTimeout(finishTurn, ${WITHHOLD_MS});`);
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   eventsHaveAuthenticatedDoneConclusion,
   type PersistedAgentEvent,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 const KEY = 'a7f3c91ed2b40561';
 

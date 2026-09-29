@@ -86,7 +86,7 @@
 | 可续跑 | `ChatPane.tsx:1480–1483 canResumeFailedRun`;契约字段 `ChatSseEndPayload.resumable`(`packages/contracts/src/sse/chat.ts:95`) |
 | 失败分类(daemon 侧) | `apps/daemon/src/run-failure-classification.ts`(`classifyRunFailure:1038`、`isResumableFailure:610`);写到终帧 `apps/daemon/src/runtimes/runs.ts:524/1135/1214` |
 | 样式 | 全局:`apps/web/src/styles/chat.css` — `.run-error__details:965`、`.run-error__diagnostic:987`、`.chat-error-action:1098`、`.chat-error-retry:1114`、`.amr-card__*:1179–1210`;卡壳是 CSS Module `UserActionCard.module.css` |
-| **联系支持** | **没有任何实现**。全仓仅有 `EntryNavRail.tsx:101` 的 `mailto:support@saascodex.com`(账号菜单里一枚小图标)与 `EntryHelpMenu.tsx:31` 的 `DISCORD_URL`。`apps/web/src` 里**搜不到飞书 / feishu / lark** |
+| **联系支持** | **没有任何实现**。全仓仅有 `EntryNavRail.tsx:101` 的 `mailto:support@splatstudio.app`(账号菜单里一枚小图标)与 `EntryHelpMenu.tsx:31` 的 `DISCORD_URL`。`apps/web/src` 里**搜不到飞书 / feishu / lark** |
 | **导出日志** | chat 里**没有**。只有剪贴板复制诊断串;真正的导出是 `ExportDiagnosticsButton.tsx`,只挂在 `SettingsDialog.tsx:64` |
 | 能否单挂做对照 | **不能整块单挂**。它绑死在 5123 行的 `ChatPane` 上(`onRetry` / `onResumeRun` / `onSwitchToAmrAndRetry` / `onLaunchAntigravityOauth` / AMR 登录 pill 的真实轮询)。陈列页只能用 `UserActionCard` + 纯函数 `resolveRunFailureUi` 重搭 |
 
@@ -326,7 +326,7 @@ CSS 3105 注释解释了为什么白底不红底:「红底又和下面那三个�
 
 **差在哪**
 - ~~**〔形态〕两张卡 → 一张卡。** 把 `AmrGuidance` 的主 CTA 收进报错卡的 primary 位。~~ **已做**(OPEND-2772 / T68,红测 `apps/web/tests/components/chat/opend-2772-one-card-one-cta.test.tsx`)。
-- **〔样式〕文案逐字替换**:现有 `chat.amrCard.switchTitle/switchBody/switchCta` 换成稿子原文。⚠️ **没做,而且是有意不做**:产品 2026-09-07 逐字「我没让你改文案吧?」。合并后主 CTA 仍念产品那句 `chat.amrCard.switchCta`「切换到 SaaSCodex Cloud 并重试」,不是稿子的「切换到 Cloud」;`switchTitle` / `switchBody` / 三枚 chip 随卡一起下线。
+- **〔样式〕文案逐字替换**:现有 `chat.amrCard.switchTitle/switchBody/switchCta` 换成稿子原文。⚠️ **没做,而且是有意不做**:产品 2026-09-07 逐字「我没让你改文案吧?」。合并后主 CTA 仍念产品那句 `chat.amrCard.switchCta`「切换到 SplatStudio Cloud 并重试」,不是稿子的「切换到 Cloud」;`switchTitle` / `switchBody` / 三枚 chip 随卡一起下线。
 - **〔数据〕做得到** —— `showSwitchCard` 已经在算,`onSwitchToAmrAndRetry` 已经接线。
 - **⚠ 但这一格的文案对不上最大的真实场景。** 稿子写的是「需要云端算力」;而 `error-ux-design.md` 的 **S08 供应商额度用完(每月 23,333 次、9,220 台设备、环比 ↑55%、P0 第一大类,今天一个按钮都没有)** 才是这张卡最该承接的内容,它的文案是「{供应商} 的额度用完了 —— 这是你在 {供应商} 那边的额度,重试不会恢复」。**卡面能复用,文案要产品给第二套。**
 
@@ -345,7 +345,7 @@ cmp-ops 把设计意图写死了:「开一个【全局弹窗】,不是在报错�
 **现在**
 **没有任何实现。**
 - 无支持弹窗 / 对话框 / 卡内链接;`contactSupport` / `supportUrl` 在 `apps/web/src/components` 零命中。
-- 只有 `EntryNavRail.tsx:101` `mailto:support@saascodex.com`(账号菜单社交行里一枚图标,:1051–1061)与 `EntryHelpMenu.tsx:31` `DISCORD_URL = 'https://discord.gg/mHAjSMV6gz'`。
+- 只有 `EntryNavRail.tsx:101` `mailto:support@splatstudio.app`(账号菜单社交行里一枚图标,:1051–1061)与 `EntryHelpMenu.tsx:31` `DISCORD_URL = 'https://discord.gg/mHAjSMV6gz'`。
 - **飞书 / feishu / lark 在 `apps/web/src` 里一个字都没有。**
 
 **差在哪**

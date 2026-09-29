@@ -1,6 +1,6 @@
 # Atelier Zero — Image Generation Prompt Pack
 
-This pack is consumed by the `saascodex-landing` skill. Every page-level
+This pack is consumed by the `splatstudio-landing` skill. Every page-level
 image is rendered with `gpt-image-fal` (preferred) or `gpt-image-azure`.
 
 The pack has three layers:
@@ -247,4 +247,4 @@ If `gpt-image-fal` is unavailable, the same prompts work with
 
 ## Provenance
 
-Formalized by SaaSCodex from candidate fac45c04-0d8e-4cc8-ba38-7ccb32fde405.
+Formalized by SplatStudio from candidate fac45c04-0d8e-4cc8-ba38-7ccb32fde405.

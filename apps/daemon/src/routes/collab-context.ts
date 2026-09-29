@@ -25,8 +25,8 @@ import type {
   WorkspaceInviteRole,
   WorkspaceInvalidationSsePayload,
   WorkspaceTeamProjectsResponse,
-} from '@saascodex/contracts';
-import { workspaceSeatCapacityState } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { workspaceSeatCapacityState } from '@splatstudio/contracts';
 import {
   parseWorkspaceCollabContext,
   type WorkspaceContextProvider,

@@ -1,4 +1,4 @@
-import { Dialog, DialogFooter, DialogTitle } from '@saascodex/components';
+import { Dialog, DialogFooter, DialogTitle } from '@splatstudio/components';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { Dispatch, FormEvent, SetStateAction } from 'react';
 import { useT } from '../i18n';

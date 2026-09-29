@@ -159,7 +159,7 @@ async function pickPrototypeScene(scene: string) {
   });
   await waitFor(() => {
     expect(screen.getByTestId('home-hero-template-trigger').textContent).toContain('Prototype');
-    expect(JSON.parse(window.localStorage.getItem('saascodex:home-composer:chip') ?? '{}'))
+    expect(JSON.parse(window.localStorage.getItem('splatstudio:home-composer:chip') ?? '{}'))
       .toMatchObject({ chipId: 'prototype', prototypeSubtypeId: scene });
   });
 }

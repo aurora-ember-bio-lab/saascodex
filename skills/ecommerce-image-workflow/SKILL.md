@@ -169,7 +169,7 @@ Then add slot-specific instructions:
 
 ### Step 4 - Dispatch through the media contract
 
-Use the unified SaaSCodex media dispatcher. Do not call provider APIs or
+Use the unified SplatStudio media dispatcher. Do not call provider APIs or
 custom model commands directly.
 
 For each slot, run the standard generate/wait loop:

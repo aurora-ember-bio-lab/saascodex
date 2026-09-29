@@ -6,7 +6,7 @@ import type {
   AutomationProposalStatus,
   CreateAutomationEvolutionProposalRequest,
   MemoryType,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   deleteMemoryEntry,

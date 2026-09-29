@@ -7,7 +7,7 @@ import {
   type DeliverableSyntaxSafeFixRefusal,
   type DeliverableSyntaxFinalization,
   type DeliverableSyntaxSafeFixRule,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { performance } from 'node:perf_hooks';
 
 import { checkDeliverableSyntax } from './deliverable-syntax.js';

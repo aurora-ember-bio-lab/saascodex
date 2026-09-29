@@ -1,9 +1,9 @@
-import type { RunTerminalLifecycleStatus } from '@saascodex/contracts';
+import type { RunTerminalLifecycleStatus } from '@splatstudio/contracts';
 import type {
   TrackingRunCancelOrigin,
   TrackingRunTerminalIntegrity,
   TrackingRunTerminalTrigger,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import type { AnalyticsCaptureResult } from '../analytics.js';
 
 export const RUN_TERMINAL_LIFECYCLE_VERSION =

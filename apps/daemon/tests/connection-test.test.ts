@@ -9,14 +9,14 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { Socks5ProxyAgent } from 'undici';
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
-import * as platform from '@saascodex/platform';
+import * as platform from '@splatstudio/platform';
 
 const { resolveSystemProxyEnvMock } = vi.hoisted(() => ({
   resolveSystemProxyEnvMock: vi.fn(() => ({})),
 }));
 
-vi.mock('@saascodex/platform', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@saascodex/platform')>()),
+vi.mock('@splatstudio/platform', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@splatstudio/platform')>()),
   resolveSystemProxyEnv: resolveSystemProxyEnvMock,
 }));
 
@@ -2489,7 +2489,7 @@ describe('POST /api/test/connection agent mode', () => {
           agentId: 'amr',
           agentCliEnv: {
             amr: {
-              SAASCODEX_AMR_PROFILE: 'local',
+              SPLATSTUDIO_AMR_PROFILE: 'local',
             },
           },
         });
@@ -2715,8 +2715,8 @@ describe('POST /api/test/connection agent mode', () => {
 
   it('resolves the AMR connection-test scope from the merged launch env', async () => {
     rememberLiveModels('amr', [{ id: 'local-env-model', label: 'local-env-model' }], 'local');
-    const previousProfile = process.env.SAASCODEX_AMR_PROFILE;
-    process.env.SAASCODEX_AMR_PROFILE = 'local';
+    const previousProfile = process.env.SPLATSTUDIO_AMR_PROFILE;
+    process.env.SPLATSTUDIO_AMR_PROFILE = 'local';
 
     try {
       await withFakeAgent(
@@ -2741,8 +2741,8 @@ describe('POST /api/test/connection agent mode', () => {
         },
       );
     } finally {
-      if (previousProfile === undefined) delete process.env.SAASCODEX_AMR_PROFILE;
-      else process.env.SAASCODEX_AMR_PROFILE = previousProfile;
+      if (previousProfile === undefined) delete process.env.SPLATSTUDIO_AMR_PROFILE;
+      else process.env.SPLATSTUDIO_AMR_PROFILE = previousProfile;
     }
   });
 
@@ -2968,7 +2968,7 @@ console.log(JSON.stringify({ type: 'item.completed', item: { type: 'agent_messag
 setImmediate(() => process.exit(0));
 `,
         async () => {
-          // These keys come from the process environment, not SaaSCodex
+          // These keys come from the process environment, not SplatStudio
           // BYOK/agentCliEnv. Preserve them so local CLI API-key auth works.
           const res = await realFetch(`${baseUrl}/api/test/connection`, {
             method: 'POST',

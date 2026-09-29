@@ -163,7 +163,7 @@ describe('materializeOdNextDeviceFrames', () => {
     // only thing wrong with it is that `leftover.html` is not a name this
     // materializer can ever stage, so it must not become a deletion target.
     const forged = `${JSON.stringify({
-      schema: 'saascodex.od-next-device-frames/v1',
+      schema: 'splatstudio.od-next-device-frames/v1',
       files: { 'leftover.html': createHash('sha256').update(unrelated, 'utf8').digest('hex') },
     }, null, 2)}\n`;
     await writeFile(path.join(cwd, '.od-frames', OD_NEXT_DEVICE_FRAME_MANIFEST), forged);

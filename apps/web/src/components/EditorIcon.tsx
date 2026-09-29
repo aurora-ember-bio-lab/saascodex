@@ -4,7 +4,7 @@
 // colors, and rounding are preserved. Only generic destinations without brand
 // artwork (Explorer / File Manager) keep a drawn glyph.
 
-import type { HostEditorId } from '@saascodex/contracts';
+import type { HostEditorId } from '@splatstudio/contracts';
 
 interface Props {
   editorId: HostEditorId | string;

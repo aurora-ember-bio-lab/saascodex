@@ -10,11 +10,11 @@ import type {
   WorkspaceDirectoryItem,
   WorkspaceDirectoryResponse,
   WorkspaceInvalidationSsePayload,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { coalescedGet, forceCoalescedGet } from '../lib/coalesced-get';
 import { BackoffController, type BackoffOptions } from '../lib/backoff';
 import {
@@ -102,7 +102,7 @@ export function workspaceResourceReadContext(
 }
 
 /**
- * Whether an SaaSCodex Cloud (AMR) run has a cloud identity that could pay
+ * Whether an SplatStudio Cloud (AMR) run has a cloud identity that could pay
  * for it.
  *
  * AMR bills the caller's OWN wallet — their current workspace. The only state
@@ -684,7 +684,7 @@ export function useWorkspaceContext(): WorkspaceContextState {
    * hand keeps showing it, which is what stops the rail flashing signed-out.
    *
    * Without it, signing in during onboarding left the bottom-left "sign in to
-   * SaaSCodex Cloud" callout on screen for the whole (vela-backed,
+   * SplatStudio Cloud" callout on screen for the whole (vela-backed,
    * up-to-seconds) re-read, because `loading` had already settled to false on
    * the earlier signed-out read and only `context !== null` gates the callout
    * (#140). It also forces the coalescing entry, whose whole premise — that

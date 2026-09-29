@@ -7,7 +7,7 @@ import {
   buildWorkspaceSeatSummary,
   type CollabCloudComment,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   closeDatabase,
   deleteConversationAndRepairTeamCommentAnchor,

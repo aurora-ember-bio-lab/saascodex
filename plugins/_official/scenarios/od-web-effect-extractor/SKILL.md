@@ -1,6 +1,6 @@
 ---
 name: od-web-effect-extractor
-description: Extract visual effects, animation systems, Canvas/WebGL/Shader behavior, and interaction details from a reference website, then rebuild them as an editable SaaSCodex web artifact.
+description: Extract visual effects, animation systems, Canvas/WebGL/Shader behavior, and interaction details from a reference website, then rebuild them as an editable SplatStudio web artifact.
 od:
   scenario: web-effect-extraction
   mode: scenario
@@ -8,13 +8,13 @@ od:
 
 # Web Effect Extractor
 
-Use this plugin when the user gives a website URL and asks SaaSCodex to recreate, remix, or learn from its visual effects. It is especially useful for hero backgrounds, WebGL scenes, Canvas animations, shader effects, cursor trails, scroll-driven motion, animated typography, and interaction patterns that are hard to understand from screenshots alone.
+Use this plugin when the user gives a website URL and asks SplatStudio to recreate, remix, or learn from its visual effects. It is especially useful for hero backgrounds, WebGL scenes, Canvas animations, shader effects, cursor trails, scroll-driven motion, animated typography, and interaction patterns that are hard to understand from screenshots alone.
 
-This workflow is inspired by the MIT-licensed `web-shader-extractor` skill from `lixiaolin94/skills`, adapted for SaaSCodex's website recreation and editable artifact workflow.
+This workflow is inspired by the MIT-licensed `web-shader-extractor` skill from `lixiaolin94/skills`, adapted for SplatStudio's website recreation and editable artifact workflow.
 
 ## Scope
 
-The goal is to produce a faithful, editable SaaSCodex artifact that preserves the reference site's visual effect and interaction logic while replacing private content, trademarks, tracking code, and nonessential app logic.
+The goal is to produce a faithful, editable SplatStudio artifact that preserves the reference site's visual effect and interaction logic while replacing private content, trademarks, tracking code, and nonessential app logic.
 
 Extract only what is needed to understand and recreate the visual behavior:
 
@@ -75,7 +75,7 @@ Turn the raw capture into a compact visual model:
 
 Prefer evidence over guesses. If an effect cannot be observed directly, mark it as an inference.
 
-### 4. Rebuild In SaaSCodex
+### 4. Rebuild In SplatStudio
 
 Create a standalone web artifact that can be inspected and edited.
 

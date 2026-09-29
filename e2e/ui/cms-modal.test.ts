@@ -249,7 +249,7 @@ async function installProductionFixture(
 
 async function gotoModal(page: Page) {
 	await page.goto("/", { waitUntil: "domcontentloaded" });
-	await expect(page.getByText("Loading SaaSCodex…")).toHaveCount(0, {
+	await expect(page.getByText("Loading SplatStudio…")).toHaveCount(0, {
 		timeout: T.long,
 	});
 	await expect(page.getByRole("dialog", { name: "Campaign" })).toBeVisible({

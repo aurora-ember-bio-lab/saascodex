@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { SocialSharePlatform, SocialShareResponse } from '@saascodex/contracts';
+import type { SocialSharePlatform, SocialShareResponse } from '@splatstudio/contracts';
 import { useT } from '../i18n';
 import { copyToClipboard } from '../lib/copy-to-clipboard';
 import { RemixIcon } from './RemixIcon';

@@ -13,8 +13,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import type { FigmaImportResult, WorkspaceCollabContext } from '@saascodex/contracts';
-import { Button } from '@saascodex/components';
+import type { FigmaImportResult, WorkspaceCollabContext } from '@splatstudio/contracts';
+import { Button } from '@splatstudio/components';
 import { Icon } from './Icon';
 import { modalOverlay, modalContent } from '../motion';
 import { importProjectFigma } from '../providers/registry';

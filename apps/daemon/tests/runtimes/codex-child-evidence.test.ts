@@ -11,7 +11,7 @@ import {
   evaluateRuntimeFixtureCaseV1,
   normalizeAgentObservationV1,
   type NormalizedAgentObservationV1,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { collectCodexChildEvidence } from '../../src/runtimes/codex-child-evidence.js';
@@ -429,7 +429,7 @@ describe('collectCodexChildEvidence', () => {
     ])).toMatchObject({ outcome: 'passed' });
     expect(serialized).not.toContain(secretPrompt);
     expect(serialized).not.toContain(home);
-    expect(serialized).toContain('saascodex.child-injected-prompt');
+    expect(serialized).toContain('splatstudio.child-injected-prompt');
     expect(serialized).toContain('Inspect');
     expect(serialized).toContain('[REDACTED:path]');
     expect(serialized).toContain('[REDACTED:sk_key]');

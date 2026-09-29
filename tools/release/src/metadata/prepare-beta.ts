@@ -10,11 +10,11 @@ import {
   parseCountedReleaseVersion,
   parseReleaseBaseVersion,
   type ReleaseBaseVersionTuple,
-} from "@saascodex/release";
+} from "@splatstudio/release";
 
 const execFile = promisify(execFileCallback);
 
-const stableTagPattern = /^saascodex-v(\d+\.\d+\.\d+)$/;
+const stableTagPattern = /^splatstudio-v(\d+\.\d+\.\d+)$/;
 
 type ParsedStableVersion = {
   parsed: ReleaseBaseVersionTuple;
@@ -276,12 +276,12 @@ function readBooleanEnv(name: string): boolean {
 
 const packagedVersion = await readPackagedVersion();
 const packagedParsed = parseReleaseBaseVersion(packagedVersion) ?? fail(`invalid packaged version: ${packagedVersion}`);
-const force = readBooleanEnv("SAASCODEX_RELEASE_FORCE") || readBooleanEnv("RELEASE_FORCE");
+const force = readBooleanEnv("SPLATSTUDIO_RELEASE_FORCE") || readBooleanEnv("RELEASE_FORCE");
 
 let latestStable: ParsedStableVersion | null = null;
-const stableMetadataUrl = process.env.SAASCODEX_STABLE_METADATA_URL;
+const stableMetadataUrl = process.env.SPLATSTUDIO_STABLE_METADATA_URL;
 if (stableMetadataUrl != null && stableMetadataUrl.length > 0) {
-  validateHttpsUrl(stableMetadataUrl, "SAASCODEX_STABLE_METADATA_URL");
+  validateHttpsUrl(stableMetadataUrl, "SPLATSTUDIO_STABLE_METADATA_URL");
   const stableMetadataJson = await fetchOptionalHttpsText(stableMetadataUrl);
   if (stableMetadataJson == null) {
     fail(`stable metadata.json was not found: ${stableMetadataUrl}`);
@@ -289,7 +289,7 @@ if (stableMetadataUrl != null && stableMetadataUrl.length > 0) {
   latestStable = parseStableMetadataJson(stableMetadataJson);
   console.log(`[release-beta] stable metadata.json version: ${latestStable.value}`);
 } else {
-  const tags = await fetchGitTags("saascodex-v*");
+  const tags = await fetchGitTags("splatstudio-v*");
   for (const tag of tags) {
     const stableVersion = extractStableVersionFromTag(tag);
     if (stableVersion == null) continue;
@@ -309,11 +309,11 @@ if (latestStable != null && compareReleaseBaseVersions(packagedParsed, latestSta
   );
 }
 
-const metadataUrl = process.env.SAASCODEX_BETA_METADATA_URL;
+const metadataUrl = process.env.SPLATSTUDIO_BETA_METADATA_URL;
 if (metadataUrl == null || metadataUrl.length === 0) {
-  fail("SAASCODEX_BETA_METADATA_URL is required");
+  fail("SPLATSTUDIO_BETA_METADATA_URL is required");
 }
-validateHttpsUrl(metadataUrl, "SAASCODEX_BETA_METADATA_URL");
+validateHttpsUrl(metadataUrl, "SPLATSTUDIO_BETA_METADATA_URL");
 
 let betaNumber = 1;
 let latestBeta: ParsedBetaVersion | null = null;

@@ -3,10 +3,10 @@ import { join, resolve } from "node:path";
 
 import { resolveToolPackConfig, WORKSPACE_ROOT } from "@/config/index.js";
 
-const savedTelemetryRelayUrl = process.env.SAASCODEX_TELEMETRY_RELAY_URL;
+const savedTelemetryRelayUrl = process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
 const savedPosthogKey = process.env.POSTHOG_KEY;
 const savedPosthogHost = process.env.POSTHOG_HOST;
-const savedAmrProfile = process.env.SAASCODEX_AMR_PROFILE;
+const savedAmrProfile = process.env.SPLATSTUDIO_AMR_PROFILE;
 const savedVelaWebUrl = process.env.OD_VELA_WEB_URL;
 const savedVelaWebUrlProd = process.env.OD_VELA_WEB_URL_PROD;
 const savedVelaWebUrlTest = process.env.OD_VELA_WEB_URL_TEST;
@@ -25,9 +25,9 @@ afterEach(() => {
   if (savedVelaWebUrlFeatureTest == null) delete process.env.OD_VELA_WEB_URL_FEATURE_TEST;
   else process.env.OD_VELA_WEB_URL_FEATURE_TEST = savedVelaWebUrlFeatureTest;
   if (savedTelemetryRelayUrl == null) {
-    delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
+    delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
   } else {
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = savedTelemetryRelayUrl;
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = savedTelemetryRelayUrl;
   }
   if (savedPosthogKey == null) {
     delete process.env.POSTHOG_KEY;
@@ -40,23 +40,23 @@ afterEach(() => {
     process.env.POSTHOG_HOST = savedPosthogHost;
   }
   if (savedAmrProfile == null) {
-    delete process.env.SAASCODEX_AMR_PROFILE;
+    delete process.env.SPLATSTUDIO_AMR_PROFILE;
   } else {
-    process.env.SAASCODEX_AMR_PROFILE = savedAmrProfile;
+    process.env.SPLATSTUDIO_AMR_PROFILE = savedAmrProfile;
   }
 });
 
 describe("resolveToolPackConfig AMR profile", () => {
-  it("bakes SAASCODEX_AMR_PROFILE into packaged config when set at build time", () => {
-    process.env.SAASCODEX_AMR_PROFILE = "feature-test";
+  it("bakes SPLATSTUDIO_AMR_PROFILE into packaged config when set at build time", () => {
+    process.env.SPLATSTUDIO_AMR_PROFILE = "feature-test";
     const config = resolveToolPackConfig("mac", { namespace: "amr-profile-test" });
     expect(config.amrProfile).toBe("feature-test");
   });
 
   it("rejects unsupported AMR profiles before packaging", () => {
-    process.env.SAASCODEX_AMR_PROFILE = "staging";
+    process.env.SPLATSTUDIO_AMR_PROFILE = "staging";
     expect(() => resolveToolPackConfig("mac")).toThrow(
-      /SAASCODEX_AMR_PROFILE must be prod, test, feature-test, or local/,
+      /SPLATSTUDIO_AMR_PROFILE must be prod, test, feature-test, or local/,
     );
   });
 });
@@ -134,23 +134,23 @@ describe("resolveToolPackConfig namespace defaults", () => {
 });
 
 describe("resolveToolPackConfig telemetry relay", () => {
-  it("reads and normalizes SAASCODEX_TELEMETRY_RELAY_URL for packaged config", () => {
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = "https://telemetry.saascodex.com/api/langfuse//";
+  it("reads and normalizes SPLATSTUDIO_TELEMETRY_RELAY_URL for packaged config", () => {
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = "https://telemetry.splatstudio.app/api/langfuse//";
     const config = resolveToolPackConfig("mac", { namespace: "telemetry-test" });
-    expect(config.telemetryRelayUrl).toBe("https://telemetry.saascodex.com/api/langfuse");
+    expect(config.telemetryRelayUrl).toBe("https://telemetry.splatstudio.app/api/langfuse");
   });
 
   it("rejects invalid telemetry relay URLs", () => {
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = "not-a-url";
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = "not-a-url";
     expect(() => resolveToolPackConfig("mac")).toThrow(
-      /SAASCODEX_TELEMETRY_RELAY_URL must be an absolute https URL/,
+      /SPLATSTUDIO_TELEMETRY_RELAY_URL must be an absolute https URL/,
     );
   });
 
   it("rejects plaintext telemetry relay URLs for packaged config", () => {
-    process.env.SAASCODEX_TELEMETRY_RELAY_URL = "http://telemetry.saascodex.com/api/langfuse";
+    process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL = "http://telemetry.splatstudio.app/api/langfuse";
     expect(() => resolveToolPackConfig("mac")).toThrow(
-      /SAASCODEX_TELEMETRY_RELAY_URL must use https/,
+      /SPLATSTUDIO_TELEMETRY_RELAY_URL must use https/,
     );
   });
 });
@@ -196,7 +196,7 @@ describe("resolveToolPackConfig PostHog analytics", () => {
 // The vela web origin of an internal (non-public) environment must never be a
 // literal in this public repository. It is injected at packaging time from a CI
 // secret keyed by AMR profile, exactly like POSTHOG_KEY, and flows on into
-// saascodex-config.json -> the packaged daemon spawn env (OD_VELA_WEB_URL).
+// splatstudio-config.json -> the packaged daemon spawn env (OD_VELA_WEB_URL).
 describe("resolveToolPackConfig vela web origin", () => {
   it("bakes every supplied profile origin for runtime environment switching", () => {
     process.env.OD_VELA_WEB_URL_PROD = "https://prod.example.invalid";

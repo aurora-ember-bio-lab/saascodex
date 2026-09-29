@@ -13,7 +13,7 @@ import {
   type RuntimeCapabilityRegistryEntryV1,
   type RuntimeCapabilitySnapshotSourceV1,
   type RuntimeObservationEvidenceLevelV1,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import type { RuntimeCapabilityMap } from './types.js';
 

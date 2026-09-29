@@ -6,9 +6,9 @@ import type {
   AnalyticsEntrySurface,
   AnalyticsHostProduct,
   AnalyticsPublisherClass,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
-export const SAASCODEX_PLUGIN_ID = 'saascodex';
+export const SPLATSTUDIO_PLUGIN_ID = 'splatstudio';
 export const PLUGIN_TELEMETRY_SCHEMA_VERSION = 3;
 const MIN_PLUGIN_GENERATION_SLO_WINDOW_MS = 5 * 60 * 1000;
 const DEFAULT_PLUGIN_GENERATION_SLO_WINDOW_MS = 45 * 60 * 1000;
@@ -16,7 +16,7 @@ const MAX_PLUGIN_GENERATION_SLO_WINDOW_MS = 24 * 60 * 60 * 1000;
 const PLUGIN_GENERATION_TERMINAL_BUFFER_MS = 60 * 1000;
 
 export interface ExternalPluginContext {
-  id: typeof SAASCODEX_PLUGIN_ID;
+  id: typeof SPLATSTUDIO_PLUGIN_ID;
   version: string;
   distributionMechanism: AnalyticsDistributionMechanism;
   publisherClass: AnalyticsPublisherClass;
@@ -25,7 +25,7 @@ export interface ExternalPluginContext {
 export interface ExternalPluginRunAnalyticsHints {
   entrySurface: AnalyticsEntrySurface;
   hostProduct: AnalyticsHostProduct;
-  externalPluginId: typeof SAASCODEX_PLUGIN_ID;
+  externalPluginId: typeof SPLATSTUDIO_PLUGIN_ID;
   externalPluginVersion: string;
   distributionMechanism: AnalyticsDistributionMechanism;
   publisherClass: AnalyticsPublisherClass;
@@ -112,9 +112,9 @@ export function validateExternalPluginContext(
   if (extra.length > 0) {
     throw pluginContractError(`unsupported externalPluginContext field: ${extra[0]}`);
   }
-  if (input.id !== SAASCODEX_PLUGIN_ID) {
+  if (input.id !== SPLATSTUDIO_PLUGIN_ID) {
     throw pluginContractError(
-      `id must be ${SAASCODEX_PLUGIN_ID}`,
+      `id must be ${SPLATSTUDIO_PLUGIN_ID}`,
     );
   }
   if (
@@ -139,7 +139,7 @@ export function validateExternalPluginContext(
     throw pluginContractError('publisherClass is invalid');
   }
   return {
-    id: SAASCODEX_PLUGIN_ID,
+    id: SPLATSTUDIO_PLUGIN_ID,
     version: input.version,
     distributionMechanism:
       input.distributionMechanism as AnalyticsDistributionMechanism,

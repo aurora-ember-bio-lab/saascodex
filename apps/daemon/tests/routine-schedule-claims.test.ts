@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { setTimeout as sleep } from 'node:timers/promises';
 import Database from 'better-sqlite3';
-import type { InstalledPluginRecord, PluginManifest } from '@saascodex/contracts';
+import type { InstalledPluginRecord, PluginManifest } from '@splatstudio/contracts';
 
 import {
   closeDatabase,

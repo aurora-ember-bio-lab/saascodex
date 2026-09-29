@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { captureProcessSnapshot, collectProcessTreePids, isProcessAlive, waitForProcessExit } from "@saascodex/platform";
+import { captureProcessSnapshot, collectProcessTreePids, isProcessAlive, waitForProcessExit } from "@splatstudio/platform";
 import {
   normalizeSidecarStamp,
   allocatePort,
@@ -46,10 +46,10 @@ const stamp: SidecarStamp = {
 };
 
 function installCurrentProcess(stampValue: SidecarStamp, resources = {
-  dataRoot: "/tmp/saascodex-test-data",
+  dataRoot: "/tmp/splatstudio-test-data",
   ownerPid: null,
   port: 0,
-  runtimeRoot: "/tmp/saascodex-test-runtime",
+  runtimeRoot: "/tmp/splatstudio-test-runtime",
 }): void {
   process.argv = [process.execPath, "/tmp/sidecar-entry.js"];
   process.env.OD_SIDECAR_SUPERVISED_CONTEXT = JSON.stringify({
@@ -152,7 +152,7 @@ describe("sidecar generation process trees", () => {
 
   it("keeps a nested stamped resource alive when its ancestor generation stops", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/nested-sidecar.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-sidecar-nested-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-sidecar-nested-"));
     const readyPath = join(root, "ready.json");
     const parentStamp = { ...stamp, app: "daemon", namespace: `nested-parent-${process.pid}` };
     const childStamp = { ...parentStamp, app: "desktop" };
@@ -206,10 +206,10 @@ describe("sidecar generation process trees", () => {
 describe("normalized sidecar client", () => {
   it("is the only layer that receives OS resources and implements IPC/lifecycle", async () => {
     installCurrentProcess(stamp, {
-      dataRoot: "/tmp/saascodex-data",
+      dataRoot: "/tmp/splatstudio-data",
       ownerPid: null,
       port: 4173,
-      runtimeRoot: "/tmp/saascodex-runtime",
+      runtimeRoot: "/tmp/splatstudio-runtime",
     });
     const events: string[] = [];
     let inheritedDuringStart: Record<string, string> | null = null;
@@ -239,11 +239,11 @@ describe("normalized sidecar client", () => {
 
     expect(SidecarFactory.inheritedEnvironment()).toEqual({});
     expect(client.resources).toEqual({
-      dataRoot: "/tmp/saascodex-data",
+      dataRoot: "/tmp/splatstudio-data",
       ownerPid: null,
       pid: process.pid,
       port: 4173,
-      runtimeRoot: "/tmp/saascodex-runtime",
+      runtimeRoot: "/tmp/splatstudio-runtime",
     });
     await client.start();
     const inheritedEnv = SidecarFactory.inheritedEnvironment();
@@ -264,7 +264,7 @@ describe("normalized sidecar client", () => {
 
   it("hands off the supervised child without creating a second generation root", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/handoff-entry.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-sidecar-handoff-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-sidecar-handoff-"));
     const handoffStamp = { ...stamp, app: "desktop", namespace: `handoff-${process.pid}` };
     const spawned = await spawnSidecar({
       args: ["--import", "tsx", fixture],
@@ -379,10 +379,10 @@ describe("server-side atomic operations", () => {
       args: [fixture],
       command: process.execPath,
       resources: {
-        dataRoot: "/tmp/saascodex-launcher-role",
+        dataRoot: "/tmp/splatstudio-launcher-role",
         ownerPid: null,
         port: 0,
-        runtimeRoot: "/tmp/saascodex-launcher-role-runtime",
+        runtimeRoot: "/tmp/splatstudio-launcher-role-runtime",
       },
       stamp: launcherStamp,
     });
@@ -399,7 +399,7 @@ describe("server-side atomic operations", () => {
 
   it("retries a clean launcher exit until one ready generation is stable", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/converging-launcher.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-converging-launcher-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-converging-launcher-"));
     const attemptPath = join(root, "attempt.txt");
     const launchStamp = { ...stamp, namespace: `launcher-convergence-${process.pid}` };
     await writeFile(attemptPath, "0");
@@ -428,7 +428,7 @@ describe("server-side atomic operations", () => {
 
   it.each(["runtime", "headless"] as const)("converges a tools-pack %s launch on an existing packaged-source owner", async (mode) => {
     const fixture = fileURLToPath(new URL("./fixtures/converging-launcher.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-cross-source-convergence-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-cross-source-convergence-"));
     const ownerAttemptPath = join(root, "owner-attempt.txt");
     const launcherAttemptPath = join(root, "launcher-attempt.txt");
     const requestedStamp = {
@@ -467,7 +467,7 @@ describe("server-side atomic operations", () => {
 
   it("retries a launcher generation retired by a competing lifecycle operation", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/converging-launcher.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-contended-launcher-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-contended-launcher-"));
     const attemptPath = join(root, "attempt.txt");
     const launchStamp = { ...stamp, namespace: `launcher-contention-${process.pid}` };
     await writeFile(attemptPath, "0");
@@ -500,7 +500,7 @@ describe("server-side atomic operations", () => {
 
   it("quick-fails a non-retriable launcher error", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/converging-launcher.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-rejected-launcher-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-rejected-launcher-"));
     const attemptPath = join(root, "attempt.txt");
     const launchStamp = { ...stamp, namespace: `launcher-rejected-${process.pid}` };
     await writeFile(attemptPath, "0");
@@ -535,10 +535,10 @@ describe("server-side atomic operations", () => {
     const restartStamp = { ...stamp, namespace: `restart-port-${process.pid}` };
     const port = (await allocatePort()).port;
     const resources = {
-      dataRoot: "/tmp/saascodex-restart",
+      dataRoot: "/tmp/splatstudio-restart",
       ownerPid: null,
       port,
-      runtimeRoot: "/tmp/saascodex-restart-runtime",
+      runtimeRoot: "/tmp/splatstudio-restart-runtime",
     };
     const first = await launchSidecar({ args: ["--import", "tsx", fixture], command: process.execPath, resources, stamp: restartStamp });
 
@@ -572,10 +572,10 @@ describe("server-side atomic operations", () => {
     const fixture = fileURLToPath(new URL("./fixtures/managed-child.ts", import.meta.url));
     const restartStamp = { ...stamp, namespace: `restart-concurrent-${process.pid}` };
     const resources = {
-      dataRoot: "/tmp/saascodex-restart-concurrent",
+      dataRoot: "/tmp/splatstudio-restart-concurrent",
       ownerPid: null,
       port: 0,
-      runtimeRoot: "/tmp/saascodex-restart-concurrent-runtime",
+      runtimeRoot: "/tmp/splatstudio-restart-concurrent-runtime",
     };
 
     try {
@@ -603,16 +603,16 @@ describe("server-side atomic operations", () => {
     const daemonStamp = { ...stamp, namespace: `td06-a-${process.pid}` };
     const adjacentStamp = { ...stamp, namespace: `td06-b-${process.pid}` };
     const resources = {
-      dataRoot: "/tmp/saascodex-td06-a",
+      dataRoot: "/tmp/splatstudio-td06-a",
       ownerPid: null,
       port: 0,
-      runtimeRoot: "/tmp/saascodex-td06-a-runtime",
+      runtimeRoot: "/tmp/splatstudio-td06-a-runtime",
     };
     const adjacentResources = {
-      dataRoot: "/tmp/saascodex-td06-b",
+      dataRoot: "/tmp/splatstudio-td06-b",
       ownerPid: null,
       port: adjacentDaemonPort,
-      runtimeRoot: "/tmp/saascodex-td06-b-runtime",
+      runtimeRoot: "/tmp/splatstudio-td06-b-runtime",
     };
     const daemon = await launchSidecar({
       args: ["--import", "tsx", fixture],
@@ -689,10 +689,10 @@ describe("server-side atomic operations", () => {
       args: ["--import", "tsx", fixture],
       command: process.execPath,
       resources: {
-        dataRoot: "/tmp/saascodex-restart-override",
+        dataRoot: "/tmp/splatstudio-restart-override",
         ownerPid: null,
         port: firstPort,
-        runtimeRoot: "/tmp/saascodex-restart-override-runtime",
+        runtimeRoot: "/tmp/splatstudio-restart-override-runtime",
       },
       stamp: restartStamp,
     };
@@ -731,7 +731,7 @@ describe("server-side atomic operations", () => {
 
   it("does not leak a parent client capability into an independently stamped sidecar", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/stamped-child.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-sidecar-env-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-sidecar-env-"));
     const capturePath = join(root, "env.json");
     const childStamp = { ...stamp, namespace: `env-${process.pid}` };
     try {
@@ -740,11 +740,11 @@ describe("server-side atomic operations", () => {
         command: process.execPath,
         env: {
           ...process.env,
-          OD_SIDECAR_CLIENT_ENDPOINT: "/tmp/saascodex/ipc/parent.sock",
+          OD_SIDECAR_CLIENT_ENDPOINT: "/tmp/splatstudio/ipc/parent.sock",
           OD_SIDECAR_RESOURCES: JSON.stringify({ dataRoot: "/wrong" }),
           OD_TEST_SIDECAR_ENV_CAPTURE: capturePath,
         },
-        resources: { dataRoot: "/tmp/saascodex-child", ownerPid: null, port: 0, runtimeRoot: "/tmp/saascodex-child-runtime" },
+        resources: { dataRoot: "/tmp/splatstudio-child", ownerPid: null, port: 0, runtimeRoot: "/tmp/splatstudio-child-runtime" },
         stamp: childStamp,
       });
       let captured: { argv: string[]; endpoint: string | null; resources: string | null } | null = null;
@@ -770,13 +770,13 @@ describe("server-side atomic operations", () => {
     await launchSidecar({
       args: [fixture],
       command: process.execPath,
-      resources: { dataRoot: "/tmp/saascodex-stable", ownerPid: null, port: 0, runtimeRoot: "/tmp/saascodex-stable-runtime" },
+      resources: { dataRoot: "/tmp/splatstudio-stable", ownerPid: null, port: 0, runtimeRoot: "/tmp/splatstudio-stable-runtime" },
       stamp: stable,
     });
     await launchSidecar({
       args: [fixture],
       command: process.execPath,
-      resources: { dataRoot: "/tmp/saascodex-beta", ownerPid: null, port: 0, runtimeRoot: "/tmp/saascodex-beta-runtime" },
+      resources: { dataRoot: "/tmp/splatstudio-beta", ownerPid: null, port: 0, runtimeRoot: "/tmp/splatstudio-beta-runtime" },
       stamp: beta,
     });
 
@@ -805,7 +805,7 @@ describe("server-side atomic operations", () => {
       args: [fixture],
       command: process.execPath,
       env: { ...process.env, OD_TEST_STALE_ENDPOINT: endpoint },
-      resources: { dataRoot: "/tmp/saascodex-stale", ownerPid: null, port: 0, runtimeRoot: "/tmp/saascodex-stale-runtime" },
+      resources: { dataRoot: "/tmp/splatstudio-stale", ownerPid: null, port: 0, runtimeRoot: "/tmp/splatstudio-stale-runtime" },
       stamp: staleStamp,
     });
 
@@ -824,7 +824,7 @@ describe("server-side atomic operations", () => {
   it("sends SIGTERM before waiting when graceful IPC is not accepted", async () => {
     if (process.platform === "win32") return;
     const fixture = fileURLToPath(new URL("./fixtures/term-responsive-sidecar.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-sidecar-term-fallback-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-sidecar-term-fallback-"));
     const termStamp = { ...stamp, app: "web", namespace: `term-fallback-${process.pid}` };
     const endpoint = resolvePrivateIpcPath(termStamp);
     const marker = join(root, "term.marker");
@@ -861,10 +861,10 @@ describe("server-side atomic operations", () => {
       command: process.execPath,
       env: { ...process.env, OD_TEST_STALE_ENDPOINT: endpoint },
       resources: {
-        dataRoot: "/tmp/saascodex-owned-endpoint",
+        dataRoot: "/tmp/splatstudio-owned-endpoint",
         ownerPid: null,
         port: 0,
-        runtimeRoot: "/tmp/saascodex-owned-endpoint-runtime",
+        runtimeRoot: "/tmp/splatstudio-owned-endpoint-runtime",
       },
       stamp: ownedStamp,
     });
@@ -892,7 +892,7 @@ describe("server-side atomic operations", () => {
       args: [fixture],
       command: process.execPath,
       env: { ...process.env, OD_TEST_STALE_ENDPOINT: endpoint },
-      resources: { dataRoot: "/tmp/saascodex-stale-only", ownerPid: null, port: 0, runtimeRoot: "/tmp/saascodex-stale-only-runtime" },
+      resources: { dataRoot: "/tmp/splatstudio-stale-only", ownerPid: null, port: 0, runtimeRoot: "/tmp/splatstudio-stale-only-runtime" },
       stamp: staleStamp,
     });
 
@@ -926,7 +926,7 @@ describe("server-side atomic operations", () => {
       args: [fixture],
       command: process.execPath,
       env: { ...process.env, OD_TEST_STALE_ENDPOINT: endpoint },
-      resources: { dataRoot: "/tmp/saascodex-owner-death", ownerPid: owner.pid, port: 0, runtimeRoot: "/tmp/saascodex-owner-death-runtime" },
+      resources: { dataRoot: "/tmp/splatstudio-owner-death", ownerPid: owner.pid, port: 0, runtimeRoot: "/tmp/splatstudio-owner-death-runtime" },
       stamp: ownerStamp,
     });
     let generationPids: number[] = [];
@@ -953,7 +953,7 @@ describe("server-side atomic operations", () => {
 
   it("stops an ownerless target after it requests a visible argv rewrite", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/renamed-child.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-owner-renamed-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-owner-renamed-"));
     const readyPath = join(root, "ready.json");
     const owner = spawn(process.execPath, ["-e", "setInterval(() => {}, 1000)"], { stdio: "ignore" });
     if (owner.pid == null) throw new Error("owner fixture has no pid");
@@ -1004,7 +1004,7 @@ describe("server-side atomic operations", () => {
     "bounds retirement of a frozen runtime with rewritten argv",
     async () => {
       const fixture = fileURLToPath(new URL("./fixtures/managed-child.ts", import.meta.url));
-      const root = await mkdtemp(join(tmpdir(), "saascodex-sidecar-frozen-"));
+      const root = await mkdtemp(join(tmpdir(), "splatstudio-sidecar-frozen-"));
       const frozenStamp = { ...stamp, app: "web", namespace: `frozen-runtime-${process.pid}` };
       const spawned = await spawnSidecar({
         args: ["--import", "tsx", fixture],
@@ -1057,7 +1057,7 @@ describe("server-side atomic operations", () => {
 
   it("quick-fails a managed target when its supervisor disappears", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/managed-child.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-supervisor-death-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-supervisor-death-"));
     const supervisedStamp = { ...stamp, namespace: `supervisor-death-${process.pid}` };
     const spawned = await spawnSidecar({
       args: ["--import", "tsx", fixture],
@@ -1099,7 +1099,7 @@ describe("server-side atomic operations", () => {
 
   it("retires fenced descendants when an ownerless target exits on SIGTERM", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/orphaning-sidecar.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-owner-orphan-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-owner-orphan-"));
     const readyPath = join(root, "ready.json");
     const owner = spawn(process.execPath, ["-e", "setInterval(() => {}, 1000)"], { stdio: "ignore" });
     if (owner.pid == null) throw new Error("owner fixture has no pid");
@@ -1143,10 +1143,10 @@ describe("server-side atomic operations", () => {
       args: [fixture],
       command: process.execPath,
       resources: {
-        dataRoot: "/tmp/saascodex-orphan-retirement",
+        dataRoot: "/tmp/splatstudio-orphan-retirement",
         ownerPid: null,
         port: 0,
-        runtimeRoot: "/tmp/saascodex-orphan-retirement-runtime",
+        runtimeRoot: "/tmp/splatstudio-orphan-retirement-runtime",
       },
       stamp: orphanStamp,
     });
@@ -1185,10 +1185,10 @@ describe("server-side atomic operations", () => {
     const fixture = fileURLToPath(new URL("./fixtures/stamped-child.ts", import.meta.url));
     const replacementStamp = { ...stamp, namespace: `replacement-${process.pid}` };
     const resources = {
-      dataRoot: "/tmp/saascodex-replacement",
+      dataRoot: "/tmp/splatstudio-replacement",
       ownerPid: null,
       port: 0,
-      runtimeRoot: "/tmp/saascodex-replacement-runtime",
+      runtimeRoot: "/tmp/splatstudio-replacement-runtime",
     };
     const old = await spawnSidecar({ args: [fixture], command: process.execPath, resources, stamp: replacementStamp });
     const oldPid = old.process.pid;
@@ -1221,10 +1221,10 @@ describe("server-side atomic operations", () => {
     const fixture = fileURLToPath(new URL("./fixtures/stamped-child.ts", import.meta.url));
     const ambiguousStamp = { ...stamp, namespace: `ambiguous-${process.pid}` };
     const resources = {
-      dataRoot: "/tmp/saascodex-ambiguous",
+      dataRoot: "/tmp/splatstudio-ambiguous",
       ownerPid: null,
       port: 0,
-      runtimeRoot: "/tmp/saascodex-ambiguous-runtime",
+      runtimeRoot: "/tmp/splatstudio-ambiguous-runtime",
     };
     const first = await spawnSidecar({ args: [fixture], command: process.execPath, resources, stamp: ambiguousStamp });
     const second = await spawnSidecar({ args: [fixture], command: process.execPath, resources, stamp: ambiguousStamp });
@@ -1262,10 +1262,10 @@ describe("server-side atomic operations", () => {
     const fixture = fileURLToPath(new URL("./fixtures/stamped-child.ts", import.meta.url));
     const namespace = `resource-set-${process.pid}`;
     const resources = {
-      dataRoot: "/tmp/saascodex-resource-set",
+      dataRoot: "/tmp/splatstudio-resource-set",
       ownerPid: null,
       port: 0,
-      runtimeRoot: "/tmp/saascodex-resource-set-runtime",
+      runtimeRoot: "/tmp/splatstudio-resource-set-runtime",
     };
     const daemonStamp = { ...stamp, namespace };
     const webStamp = { ...stamp, app: "web", namespace };
@@ -1297,10 +1297,10 @@ describe("server-side atomic operations", () => {
     const fixture = fileURLToPath(new URL("./fixtures/stamped-child.ts", import.meta.url));
     const transientStamp = { ...stamp, namespace: `transient-root-${process.pid}` };
     const resources = {
-      dataRoot: "/tmp/saascodex-transient-root",
+      dataRoot: "/tmp/splatstudio-transient-root",
       ownerPid: null,
       port: 0,
-      runtimeRoot: "/tmp/saascodex-transient-root-runtime",
+      runtimeRoot: "/tmp/splatstudio-transient-root-runtime",
     };
     const first = await spawnSidecar({ args: [fixture], command: process.execPath, resources, stamp: transientStamp });
     const second = await spawnSidecar({ args: [fixture], command: process.execPath, resources, stamp: transientStamp });
@@ -1328,7 +1328,7 @@ describe("server-side atomic operations", () => {
 
   it("stops its spawned generation after the process hides its argv stamp", async () => {
     const fixture = fileURLToPath(new URL("./fixtures/renamed-child.ts", import.meta.url));
-    const root = await mkdtemp(join(tmpdir(), "saascodex-sidecar-renamed-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-sidecar-renamed-"));
     const readyPath = join(root, "ready");
     const renamedStamp = { ...stamp, namespace: `renamed-${process.pid}` };
     const resources = {

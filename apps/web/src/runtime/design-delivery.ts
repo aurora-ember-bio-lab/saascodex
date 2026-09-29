@@ -1,4 +1,4 @@
-import type { ChatSessionMode } from '@saascodex/contracts';
+import type { ChatSessionMode } from '@splatstudio/contracts';
 import {
   containsQuestionFormAsk,
   containsUnrenderableQuestionForm,

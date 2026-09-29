@@ -7,9 +7,9 @@ if errorlevel 1 (
   exit /b 1
 )
 
-set "OD_DSH_PS1=%TEMP%\saascodex-install-dsh-%RANDOM%-%RANDOM%.ps1"
+set "OD_DSH_PS1=%TEMP%\splatstudio-install-dsh-%RANDOM%-%RANDOM%.ps1"
 rem Immutable R2 publication rewrites this landing URL to the colocated versioned PS1.
-powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -UseBasicParsing 'https://saascodex.com/install-dsh.ps1?version=1' -OutFile $env:OD_DSH_PS1"
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -UseBasicParsing 'https://splatstudio.app/install-dsh.ps1?version=1' -OutFile $env:OD_DSH_PS1"
 if errorlevel 1 (
   echo DeepSeek Harness installer: could not download install-dsh.ps1. 1>&2
   exit /b 1

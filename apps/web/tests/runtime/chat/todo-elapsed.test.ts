@@ -7,7 +7,7 @@
  * 于是那一档永远是 null,秒数一个都不出。
  */
 import { describe, expect, it } from 'vitest';
-import type { PersistedAgentEvent } from '@saascodex/contracts';
+import type { PersistedAgentEvent } from '@splatstudio/contracts';
 import { buildTurnBlocks } from '../../../src/runtime/chat/build-turn-blocks';
 import type { ExecutionShell } from '../../../src/runtime/chat/contract';
 

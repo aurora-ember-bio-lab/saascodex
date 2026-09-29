@@ -4,8 +4,8 @@ import { useT } from '../../i18n';
 import type { Dict } from '../../i18n/types';
 import { Icon, type IconName } from '../Icon';
 import type { ProjectFile, ProjectFileKind } from '../../types';
-import type { WorkspaceContextItem } from '@saascodex/contracts';
-import type { TabLauncherClickProps } from '@saascodex/contracts/analytics';
+import type { WorkspaceContextItem } from '@splatstudio/contracts';
+import type { TabLauncherClickProps } from '@splatstudio/contracts/analytics';
 import type { LauncherAction, LauncherContext } from './tab-launcher';
 import styles from './TabLauncherMenu.module.css';
 

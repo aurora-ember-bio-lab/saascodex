@@ -2,7 +2,7 @@ import type {
   DeliverableSyntaxMetrics,
   DeliverableSyntaxRepairState,
   ProjectMetadata,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { resolveProjectDir } from '../projects.js';
 import {

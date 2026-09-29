@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import type { ChatSessionMode } from '@saascodex/contracts';
-import { MAX_NEXT_STEP_SUGGESTIONS } from '@saascodex/contracts';
+import type { ChatSessionMode } from '@splatstudio/contracts';
+import { MAX_NEXT_STEP_SUGGESTIONS } from '@splatstudio/contracts';
 import { useI18n } from '../i18n';
 import { localizeSkillDescription, localizeSkillName } from '../i18n/content';
 import type { Dict } from '../i18n/types';
@@ -219,9 +219,9 @@ interface Props {
   // MCP/plugins/connectors/files; this next-step flyout keeps the same shape
   // while using the resource data already owned by the chat pane.
   skills?: SkillSummary[];
-  // Contribute the artifact to the SaaSCodex community gallery.
-  onShareToSaaSCodex?: () => void;
-  shareToSaaSCodexBusy?: boolean;
+  // Contribute the artifact to the SplatStudio community gallery.
+  onShareToSplatStudio?: () => void;
+  shareToSplatStudioBusy?: boolean;
   /**
    * This turn's follow-up suggestions, written by the agent about what it just
    * built and parsed out of its `<od-next key="…">` marker by the daemon.
@@ -350,8 +350,8 @@ export function NextStepActions({
   createDesignSystemBusy = false,
   onPickSkill,
   skills = [],
-  onShareToSaaSCodex,
-  shareToSaaSCodexBusy = false,
+  onShareToSplatStudio,
+  shareToSplatStudioBusy = false,
   suggestions,
   onSuggestion,
   variant = 'default',
@@ -516,11 +516,11 @@ export function NextStepActions({
   }, [closeAll, fileName, onDownload, track]);
 
   const handleContribute = useCallback(() => {
-    if (!onShareToSaaSCodex || shareToSaaSCodexBusy) return;
+    if (!onShareToSplatStudio || shareToSplatStudioBusy) return;
     track('share_to_open_design');
-    onShareToSaaSCodex();
+    onShareToSplatStudio();
     closeAll();
-  }, [closeAll, onShareToSaaSCodex, shareToSaaSCodexBusy, track]);
+  }, [closeAll, onShareToSplatStudio, shareToSplatStudioBusy, track]);
 
   const handleToolboxAction = useCallback(
     (id: DesignToolboxActionId) => {
@@ -678,7 +678,7 @@ export function NextStepActions({
   // Share group is available whenever any of its three actions can fire.
   const canShare = !!(fileName && onShare);
   const canDownload = !!(fileName && onDownload);
-  const canContribute = !!onShareToSaaSCodex;
+  const canContribute = !!onShareToSplatStudio;
   const hasShareGroup = canShare || canDownload || canContribute;
   const showCreateDesignSystem = (
     variant === 'default' ||
@@ -1085,13 +1085,13 @@ export function NextStepActions({
                   type="button"
                   className={styles.flyoutRow}
                   data-testid="next-step-share-contribute"
-                  disabled={shareToSaaSCodexBusy}
+                  disabled={shareToSplatStudioBusy}
                   onClick={handleContribute}
                 >
                   <Icon
-                    name={shareToSaaSCodexBusy ? 'spinner' : 'globe'}
+                    name={shareToSplatStudioBusy ? 'spinner' : 'globe'}
                     size={14}
-                    className={shareToSaaSCodexBusy ? 'icon-spin' : styles.toolboxRowIcon}
+                    className={shareToSplatStudioBusy ? 'icon-spin' : styles.toolboxRowIcon}
                   />
                   <span className={styles.toolboxRowTitle}>{t('nextStep.contribute')}</span>
                 </button>

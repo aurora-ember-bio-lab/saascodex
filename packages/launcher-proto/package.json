@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/launcher-proto",
+  "name": "@splatstudio/launcher-proto",
   "version": "0.23.1",
   "private": true,
   "type": "module",
@@ -20,8 +20,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/release": "workspace:*",
-    "@saascodex/sidecar-proto": "workspace:*"
+    "@splatstudio/release": "workspace:*",
+    "@splatstudio/sidecar-proto": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "24.12.2",

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { BackoffController } from '../lib/backoff';
 import {
   WORKSPACE_CONTEXT_REFRESH_EVENT,

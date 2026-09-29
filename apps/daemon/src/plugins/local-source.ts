@@ -1,5 +1,5 @@
 import type Database from 'better-sqlite3';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 import {
   readTeamResourceMaterialization,
   teamResourceMaterializationDir,

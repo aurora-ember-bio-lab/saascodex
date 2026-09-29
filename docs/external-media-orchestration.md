@@ -1,44 +1,44 @@
 # External Media Orchestration
 
-This note describes how an external service can use SaaSCodex as a creative
-runtime while keeping media provider governance outside SaaSCodex.
+This note describes how an external service can use SplatStudio as a creative
+runtime while keeping media provider governance outside SplatStudio.
 
-SaaSCodex contributes project context, skills, design systems, previews,
+SplatStudio contributes project context, skills, design systems, previews,
 artifact structure, and design-aware prompt composition. The external service
 owns caller auth, admission, templates, fanout, retries, accounting, webhooks,
 provider credentials, budgets, model routing, and provider rate limits.
 
 ## Boundary
 
-Run-scoped `mediaExecution` controls only SaaSCodex-owned media generation.
+Run-scoped `mediaExecution` controls only SplatStudio-owned media generation.
 It applies to:
 
 - token-gated `/api/tools/media/generate`
 - in-run `od media generate` when `OD_TOOL_TOKEN` is present
-- SaaSCodex's Codex image generation prompt override
-- SaaSCodex's media generation prompt contract
+- SplatStudio's Codex image generation prompt override
+- SplatStudio's media generation prompt contract
 
 It intentionally does not apply to external MCP media tools. If a run receives
 MCP tools from an external service, that service owns the provider policy for
 those tools.
 
-SaaSCodex should not grow a generic provider router, provider account pool,
+SplatStudio should not grow a generic provider router, provider account pool,
 global media budget system, or external executor API unless there is a separate
 owner decision for that product surface.
 
 ## Recommended Composition
 
-Use HTTP/SSE between the external service and SaaSCodex. Avoid shelling out to
+Use HTTP/SSE between the external service and SplatStudio. Avoid shelling out to
 `od` from the external service unless the integration specifically needs the CLI
 contract.
 
 1. The external service authenticates the caller and decides provider policy.
-2. The external service creates or selects an SaaSCodex project.
+2. The external service creates or selects an SplatStudio project.
 3. The external service starts a run with `mediaExecution` set to the desired
-   SaaSCodex-owned media policy.
+   SplatStudio-owned media policy.
 4. The run includes skills and MCP tools that describe the external media
    workflow.
-5. SaaSCodex handles design/runtime work. External MCP media tools handle
+5. SplatStudio handles design/runtime work. External MCP media tools handle
    provider execution when the external service permits it.
 6. The external service stores final provider outputs in the project through
    normal artifact or file APIs, or asks the agent to place returned assets in
@@ -58,7 +58,7 @@ For runs where the external service owns all provider execution, start with:
 }
 ```
 
-For runs where SaaSCodex may use only a narrow part of its own media path,
+For runs where SplatStudio may use only a narrow part of its own media path,
 use allowlists:
 
 ```json
@@ -81,9 +81,9 @@ Example `SKILL.md` fragment:
 ```md
 # Media Campaign Skill
 
-Use SaaSCodex project context, design-system guidance, and artifact previews
+Use SplatStudio project context, design-system guidance, and artifact previews
 to plan the campaign. When media bytes are needed, use the configured external
-media MCP tools. Do not call SaaSCodex-owned media generation unless the run
+media MCP tools. Do not call SplatStudio-owned media generation unless the run
 policy explicitly permits it.
 
 For every generated asset, write a short project note that records:
@@ -101,7 +101,7 @@ authority for provider execution and fulfillment rules.
 ## MCP Tool Pattern
 
 MCP is the preferred way to expose external media execution to an agent run
-without making SaaSCodex own provider auth or budgets.
+without making SplatStudio own provider auth or budgets.
 
 A media MCP server can expose tools such as:
 
@@ -114,10 +114,10 @@ A media MCP server can expose tools such as:
   completed media
 
 These names are illustrative. The stable contract belongs to the MCP server and
-the external service, not to SaaSCodex core.
+the external service, not to SplatStudio core.
 
 The MCP server should receive its own credentials from the external service or
-from its deployment environment. SaaSCodex should only see the MCP tool
+from its deployment environment. SplatStudio should only see the MCP tool
 surface made available to the run.
 
 ## Artifact Handoff
@@ -126,20 +126,20 @@ Prefer one of these handoff shapes:
 
 - The MCP tool returns a downloadable URL and the agent writes or imports the
   asset into the project.
-- The external service uploads the fulfilled asset through an SaaSCodex
+- The external service uploads the fulfilled asset through an SplatStudio
   project file/artifact API after provider completion.
 - The MCP tool returns metadata that the agent records in a project manifest or
   handoff note, while the external service keeps the provider artifact as the
   source of truth.
 
 Avoid storing provider credentials, account ids, budget ids, or retry policy in
-SaaSCodex project files. Project artifacts should describe creative output,
+SplatStudio project files. Project artifacts should describe creative output,
 not provider-account governance.
 
 ## Legacy Media Endpoint Caveat
 
 `POST /api/projects/:id/media/generate` predates run-scoped media policy. It is
-still available for normal SaaSCodex media generation outside the in-run tool
+still available for normal SplatStudio media generation outside the in-run tool
 path. The accepted v1 policy closes the cooperative in-run CLI path by routing
 `od media generate` through `/api/tools/media/generate` when `OD_TOOL_TOKEN` is
 present.
@@ -160,11 +160,11 @@ on the non-sandbox compatibility behavior.
 
 This composition pattern does not add:
 
-- `request-only` run mode in SaaSCodex core
-- SaaSCodex media request persistence for external provider work
-- a generic HTTP executor provider inside SaaSCodex
-- provider credentials or account pools in SaaSCodex
-- SaaSCodex-owned provider budgets, retries, or global media limits
+- `request-only` run mode in SplatStudio core
+- SplatStudio media request persistence for external provider work
+- a generic HTTP executor provider inside SplatStudio
+- provider credentials or account pools in SplatStudio
+- SplatStudio-owned provider budgets, retries, or global media limits
 - MCP tool routing based on `mediaExecution.allowedSurfaces` or
   `mediaExecution.allowedModels`
 

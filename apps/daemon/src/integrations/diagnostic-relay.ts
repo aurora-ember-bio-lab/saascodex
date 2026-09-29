@@ -1,18 +1,18 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { AutomaticDiagnosticManifest } from '@saascodex/diagnostics';
-import { normalizeSaaSCodexTelemetryRelayUrl } from './telemetry-relay.js';
+import type { AutomaticDiagnosticManifest } from '@splatstudio/diagnostics';
+import { normalizeSplatStudioTelemetryRelayUrl } from './telemetry-relay.js';
 
 export interface DiagnosticDevice { device_id: string; device_token: string }
 export class DiagnosticRelayError extends Error {
   constructor(readonly code: string, readonly retryAfterMs = 0, readonly permanent = false) { super(code); }
 }
 export function diagnosticRelayUrl(env: NodeJS.ProcessEnv): string | null {
-  const raw = env.SAASCODEX_OBJECT_RELAY_URL?.trim() || env.SAASCODEX_TELEMETRY_RELAY_URL?.trim();
+  const raw = env.SPLATSTUDIO_OBJECT_RELAY_URL?.trim() || env.SPLATSTUDIO_TELEMETRY_RELAY_URL?.trim();
   if (!raw) return null;
   try {
-    const url = new URL(normalizeSaaSCodexTelemetryRelayUrl(raw));
+    const url = new URL(normalizeSplatStudioTelemetryRelayUrl(raw));
     if (url.protocol !== 'https:' && !(url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname))) return null;
     if (!/^\/api\/(langfuse|objects\/batch)\/?$/.test(url.pathname) || url.username || url.password || url.search) return null;
     return url.origin;

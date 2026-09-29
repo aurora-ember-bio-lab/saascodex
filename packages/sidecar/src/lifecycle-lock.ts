@@ -50,7 +50,7 @@ function resolveWindowsLifecycleLockPath(stampInputs: readonly SidecarStamp[]): 
     .sort()
     .join("\n---\n");
   const digest = createHash("sha256").update(`${principal}\n${resourceSet}`).digest("hex").slice(0, 32);
-  return `\\\\.\\pipe\\saascodex-sidecar-lifecycle-${digest}`;
+  return `\\\\.\\pipe\\splatstudio-sidecar-lifecycle-${digest}`;
 }
 
 async function tryListen(path: string): Promise<Server | null> {

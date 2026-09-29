@@ -1,5 +1,5 @@
 import { cac } from "cac";
-import type { ReleaseChannel } from "@saascodex/release";
+import type { ReleaseChannel } from "@splatstudio/release";
 
 import {
   DEFAULT_COLLAB_CLOUD_PORT,

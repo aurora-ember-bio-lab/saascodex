@@ -70,7 +70,7 @@ export async function collectWinSizeReport(
   const copiedStandaloneNodeModulesRoot = join(copiedStandaloneRoot, "node_modules");
   const copiedStandaloneWebNodeModulesRoot = join(copiedStandaloneRoot, "apps", "web", "node_modules");
   const electronLocalesRoot = join(unpackedRoot, "locales");
-  const rootWebPackageRoot = join(appNodeModulesRoot, "@saascodex", "web");
+  const rootWebPackageRoot = join(appNodeModulesRoot, "@splatstudio", "web");
   return {
     builder: {
       asar: ELECTRON_BUILDER_ASAR,
@@ -90,7 +90,7 @@ export async function collectWinSizeReport(
     installerBytes: await sizeExistingFileBytes(paths.setupPath),
     outputRootBytes: namespaceSizeIndex.sizePathBytes(config.roots.output.namespaceRoot),
     portableZipBytes: await sizeExistingFileBytes(paths.setupZipPath),
-    resourceRootBytes: sizeIndex.sizePathBytes(join(appResourcesRoot, "saascodex")),
+    resourceRootBytes: sizeIndex.sizePathBytes(join(appResourcesRoot, "splatstudio")),
     runtimeNamespaceRoot: config.roots.runtime.namespaceRoot,
     topLevel: {
       appResourcesBytes: sizeIndex.sizePathBytes(join(appResourcesRoot, "app")),

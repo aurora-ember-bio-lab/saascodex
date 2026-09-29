@@ -1,4 +1,4 @@
-import type { MarketplaceManifest, MarketplacePluginEntry } from '@saascodex/contracts';
+import type { MarketplaceManifest, MarketplacePluginEntry } from '@splatstudio/contracts';
 import type {
   RegistryBackend,
   RegistryDoctorReport,
@@ -7,11 +7,11 @@ import type {
   RegistrySearchResult,
   RegistryTrust,
   ResolvedRegistryEntry,
-} from '@saascodex/registry-protocol';
+} from '@splatstudio/registry-protocol';
 import {
   RegistryEntrySchema,
   RegistrySearchQuerySchema,
-} from '@saascodex/registry-protocol';
+} from '@splatstudio/registry-protocol';
 import {
   parsePluginSpecifier,
   resolveMarketplaceEntryVersion,

@@ -2,7 +2,7 @@ import type { Express, Request, Response } from 'express';
 import type {
   TestRuntimeAcceptanceRequest,
   TestRuntimeContextRequest,
-} from '@saascodex/contracts/api/touchpointTestRuntime';
+} from '@splatstudio/contracts/api/touchpointTestRuntime';
 import { createHash, randomUUID } from 'node:crypto';
 import dns from 'node:dns';
 import http from 'node:http';
@@ -72,12 +72,12 @@ import {
   touchpointStatusIsTransient,
   TOUCHPOINT_OFFLINE_REPLAY_HEADER,
   type TouchpointOfflineReplayReason,
-} from '@saascodex/contracts/api/touchpointOffline';
+} from '@splatstudio/contracts/api/touchpointOffline';
 
 const AMR_API_PROXY_PREFIX = '/api/integrations/vela/api-proxy';
 const VELA_MESSAGE_CENTER_PREFIX = '/api/integrations/vela/message-center';
 const VELA_PUBLIC_MESSAGE_CENTER_PREFIX = '/api/integrations/vela/message-center-public';
-const AMR_API_UPSTREAM_ORIGIN = 'https://amr-api.saascodex.com';
+const AMR_API_UPSTREAM_ORIGIN = 'https://amr-api.splatstudio.app';
 const PROXY_HOP_BY_HOP_HEADERS = new Set([
   'connection',
   'keep-alive',
@@ -235,11 +235,11 @@ function pluginLoginCorrelationEnv(input: {
     const pluginWorkflowId = validatePluginWorkflowId(body.pluginWorkflowId);
     return {
       OD_INSTALLATION_ID: analyticsContext.deviceId,
-      SAASCODEX_PLUGIN_WORKFLOW_ID: pluginWorkflowId,
-      SAASCODEX_EXTERNAL_PLUGIN_ID: context.id,
-      SAASCODEX_EXTERNAL_PLUGIN_VERSION: context.version,
-      SAASCODEX_DISTRIBUTION_MECHANISM: context.distributionMechanism,
-      SAASCODEX_PUBLISHER_CLASS: context.publisherClass,
+      SPLATSTUDIO_PLUGIN_WORKFLOW_ID: pluginWorkflowId,
+      SPLATSTUDIO_EXTERNAL_PLUGIN_ID: context.id,
+      SPLATSTUDIO_EXTERNAL_PLUGIN_VERSION: context.version,
+      SPLATSTUDIO_DISTRIBUTION_MECHANISM: context.distributionMechanism,
+      SPLATSTUDIO_PUBLISHER_CLASS: context.publisherClass,
     };
   } catch {
     // Login must remain functional when analytics metadata is absent or
@@ -1136,7 +1136,7 @@ export function registerVelaRoutes(app: Express, deps: RegisterVelaRoutesDeps): 
         // Local end-to-end runs may keep their login/Test origin while
         // exercising a separately owned publish-side API. Never forward a
         // stored credential to an arbitrary remote origin through this knob.
-        const localPublishOrigin = env.SAASCODEX_CMS_PRODUCTION_API_URL?.trim();
+        const localPublishOrigin = env.SPLATSTUDIO_CMS_PRODUCTION_API_URL?.trim();
         if (localPublishOrigin) {
           const target = new URL(localPublishOrigin);
           const login = new URL(context.apiUrl);
@@ -1259,9 +1259,9 @@ export function registerVelaRoutes(app: Express, deps: RegisterVelaRoutesDeps): 
       }
       // Start device authorization over a direct connection first. The
       // daemon-local IPv4 proxy (added in #4210 for hosts whose direct
-      // amr-api.saascodex.com edge path is broken, #3726) re-originates the
+      // amr-api.splatstudio.app edge path is broken, #3726) re-originates the
       // request through the daemon. Behind a corporate transparent proxy that
-      // hijacks amr-api.saascodex.com onto an internal gateway (e.g.
+      // hijacks amr-api.splatstudio.app onto an internal gateway (e.g.
       // 飞连/CorpLink → 30.x), that extra hop makes the upstream lose the
       // client IP and reject device authorization with
       // "502: Invalid IP address: undefined", even though the direct path

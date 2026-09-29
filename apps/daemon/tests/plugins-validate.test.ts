@@ -22,7 +22,7 @@ afterEach(async () => {
 });
 
 async function writeManifest(body: Record<string, unknown>) {
-  await writeFile(path.join(folder, 'saascodex.json'), JSON.stringify(body, null, 2));
+  await writeFile(path.join(folder, 'splatstudio.json'), JSON.stringify(body, null, 2));
 }
 
 async function writeSkill(body: string) {
@@ -50,11 +50,11 @@ describe('validatePluginFolder', () => {
     expect(result.resolveErrors.length).toBeGreaterThan(0);
   });
 
-  it('rejects malformed saascodex.json with a parse error', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), '{ this is not json');
+  it('rejects malformed splatstudio.json with a parse error', async () => {
+    await writeFile(path.join(folder, 'splatstudio.json'), '{ this is not json');
     const result = await validatePluginFolder({ folder });
     expect(result.ok).toBe(false);
-    expect(result.resolveErrors.some((e) => e.includes('saascodex.json'))).toBe(true);
+    expect(result.resolveErrors.some((e) => e.includes('splatstudio.json'))).toBe(true);
   });
 
   it('flags an unknown atom id in od.pipeline', async () => {
@@ -126,7 +126,7 @@ describe('validatePluginFolder', () => {
   });
 
   it('flattenValidationDiagnostics merges resolve + doctor diagnostics in order', async () => {
-    await writeFile(path.join(folder, 'saascodex.json'), '{ broken');
+    await writeFile(path.join(folder, 'splatstudio.json'), '{ broken');
     const result = await validatePluginFolder({ folder });
     const flat = flattenValidationDiagnostics(result);
     // Resolve errors come first.

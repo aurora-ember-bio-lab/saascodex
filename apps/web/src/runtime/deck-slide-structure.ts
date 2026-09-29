@@ -1,7 +1,7 @@
 import {
   DECK_LEGACY_SCREEN_SLIDE_SELECTOR,
   legacyDeckScreenNumber,
-} from '@saascodex/contracts/runtime/deck-stage-fallback';
+} from '@splatstudio/contracts/runtime/deck-stage-fallback';
 
 const VOID_ELEMENTS = new Set([
   'area',

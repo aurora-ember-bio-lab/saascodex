@@ -18,14 +18,14 @@ import {
   type Dispatch,
   type SetStateAction,
 } from 'react';
-import type { AmrWalletSnapshot } from '@saascodex/contracts';
-import { VisuallyHidden } from '@saascodex/components';
+import type { AmrWalletSnapshot } from '@splatstudio/contracts';
+import { VisuallyHidden } from '@splatstudio/components';
 import { useT } from '../i18n';
 import {
   agentIdToTracking,
   byokProtocolToTracking,
   modelIdForTracking,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { useAnalytics } from '../analytics/provider';
 import {
   amrHandoffDeviceId,
@@ -79,7 +79,7 @@ import {
   isAmrSessionAuthenticated,
   notifyAmrLoginStatusChanged,
 } from './amrLoginPolling';
-import { orderAgentsWithSaaSCodexFirst } from './agentOrdering';
+import { orderAgentsWithSplatStudioFirst } from './agentOrdering';
 import { anchorSelectionInView } from './pickerSelectionAnchor';
 import {
   agentModelIsSelectable,
@@ -139,7 +139,7 @@ const API_PROTOCOL_TABS: Array<{ id: ApiProtocol; title: string }> = [
   { id: 'aihubmix', title: 'AIHubMix' },
 ];
 
-const AMR_REMINDER_SEEN_KEY = 'saascodex:inline-amr-cli-reminder-seen:v2';
+const AMR_REMINDER_SEEN_KEY = 'splatstudio:inline-amr-cli-reminder-seen:v2';
 let amrReminderSeenFallback = false;
 
 function readAmrReminderSeen(): boolean {
@@ -167,11 +167,11 @@ function markAmrReminderSeen(): void {
 }
 
 function displayAgentName(agent: Pick<AgentInfo, 'id' | 'name'>): string {
-  return agent.id === 'amr' ? 'SaaSCodex' : agent.name;
+  return agent.id === 'amr' ? 'SplatStudio' : agent.name;
 }
 
 function displayAgentChipName(agent: Pick<AgentInfo, 'id' | 'name'>): string {
-  return agent.id === 'amr' ? 'SaaSCodex' : displayAgentName(agent);
+  return agent.id === 'amr' ? 'SplatStudio' : displayAgentName(agent);
 }
 
 export function InlineModelSwitcher({
@@ -677,7 +677,7 @@ export function InlineModelSwitcher({
 
   const installedAgents = useMemo(
     () =>
-      orderAgentsWithSaaSCodexFirst(
+      orderAgentsWithSplatStudioFirst(
         agents.filter((a) => a.available && isVisibleLocalCliAgent(a)),
       ),
     [agents],
@@ -869,7 +869,7 @@ export function InlineModelSwitcher({
     window.open(
       attributedAmrUrl(
         amrPlansUrlForProfile(
-          amrStatus?.profile ?? config.agentCliEnv?.amr?.SAASCODEX_AMR_PROFILE,
+          amrStatus?.profile ?? config.agentCliEnv?.amr?.SPLATSTUDIO_AMR_PROFILE,
         ),
         attribution,
         deviceId,
@@ -881,7 +881,7 @@ export function InlineModelSwitcher({
     amrStatus?.profile,
     analytics.track,
     campaignNeedsUpgrade,
-    config.agentCliEnv?.amr?.SAASCODEX_AMR_PROFILE,
+    config.agentCliEnv?.amr?.SPLATSTUDIO_AMR_PROFILE,
     config.installationId,
     config.telemetry?.metrics,
   ]);
@@ -1589,7 +1589,7 @@ export function InlineModelSwitcher({
                     type="button"
                     role="radio"
                     aria-checked={config.agentId === 'amr'}
-                    aria-label={`SaaSCodex ${amrInlineStatus}`}
+                    aria-label={`SplatStudio ${amrInlineStatus}`}
                     className="inline-switcher__account-id inline-switcher__account-select"
                     data-testid="inline-model-switcher-agent-amr"
                     title={amrLoginPending ? amrPendingHoverLabel : undefined}
@@ -1608,7 +1608,7 @@ export function InlineModelSwitcher({
                     <span className="inline-switcher__account-text">
                       <span className="inline-switcher__account-name-row">
                         <span className="inline-switcher__account-name">
-                          SaaSCodex
+                          SplatStudio
                         </span>
                         {amrLoggedIn ? (
                           <PlanBadge plan={amrPlanLabel} size="md" />
@@ -1655,7 +1655,7 @@ export function InlineModelSwitcher({
                             attributedAmrUrl(
                               amrPlansUrlForProfile(
                                 amrStatus?.profile ??
-                                  config.agentCliEnv?.amr?.SAASCODEX_AMR_PROFILE,
+                                  config.agentCliEnv?.amr?.SPLATSTUDIO_AMR_PROFILE,
                               ),
                               attribution,
                               deviceId,

@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { Button, Dialog } from '@saascodex/components';
+import { Button, Dialog } from '@splatstudio/components';
 import { useI18n } from '../i18n';
 import { fetchWhatsNew, openExternalUrl } from '../providers/registry';
 import {

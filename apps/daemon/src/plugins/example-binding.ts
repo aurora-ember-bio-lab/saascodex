@@ -3,7 +3,7 @@ import { constants as fsConstants } from 'node:fs';
 import { open } from 'node:fs/promises';
 import path from 'node:path';
 
-import type { ProjectExampleBinding, ProjectMetadata } from '@saascodex/contracts';
+import type { ProjectExampleBinding, ProjectMetadata } from '@splatstudio/contracts';
 
 /**
  * Upper bound for the example manifest the daemon digests at bind time.
@@ -25,7 +25,7 @@ export class InvalidProjectExampleBindingError extends Error {
  * Digest the SKILL.md the example card would contribute as a user-selected
  * Skill.
  *
- * SKILL.md — not `saascodex.json` — is deliberately the pinned artifact:
+ * SKILL.md — not `splatstudio.json` — is deliberately the pinned artifact:
  * these are the exact bytes `captureFrozenSkillPackageFromSources` will read
  * at run start, so the recorded digest is the one that can actually be
  * reproduced there. An example with no SKILL.md has nothing to carry into

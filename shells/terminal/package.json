@@ -1,20 +1,20 @@
 {
-  "name": "@saascodex/terminal",
+  "name": "@splatstudio/terminal",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "description": "Native POSIX sh and PowerShell carrier for Standalone exact distributions.",
   "files": ["contract", "node-lock.json", "ps1", "runtime", "sh", "version"],
   "scripts": {
-    "pretest": "pnpm --filter @saascodex/platform build && pnpm --filter @saascodex/sidecar build && pnpm --filter @saascodex/standalone build && pnpm --filter @saascodex/closure build",
+    "pretest": "pnpm --filter @splatstudio/platform build && pnpm --filter @splatstudio/sidecar build && pnpm --filter @splatstudio/standalone build && pnpm --filter @splatstudio/closure build",
     "test": "vitest run",
-    "pretypecheck": "pnpm --filter @saascodex/standalone build",
+    "pretypecheck": "pnpm --filter @splatstudio/standalone build",
     "typecheck": "tsc -p tsconfig.tests.json --noEmit"
   },
   "devDependencies": {
-    "@saascodex/platform": "workspace:*",
-    "@saascodex/sidecar": "workspace:*",
-    "@saascodex/standalone": "workspace:*",
+    "@splatstudio/platform": "workspace:*",
+    "@splatstudio/sidecar": "workspace:*",
+    "@splatstudio/standalone": "workspace:*",
     "@types/node": "24.12.2",
     "typescript": "6.0.3",
     "vitest": "4.1.6"

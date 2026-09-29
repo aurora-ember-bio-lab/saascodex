@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { InputFieldSpec } from '@saascodex/contracts';
+import type { InputFieldSpec } from '@splatstudio/contracts';
 import {
   missingRequiredInputs,
   pluginInputsAreValid,

@@ -1,7 +1,7 @@
-import type { PluginManifest } from '@saascodex/contracts';
+import type { PluginManifest } from '@splatstudio/contracts';
 
-// Merge a sidecar `saascodex.json` PluginManifest with one or more adapter
-// outputs. `saascodex.json` always wins (spec §5.4); adapter values fill
+// Merge a sidecar `splatstudio.json` PluginManifest with one or more adapter
+// outputs. `splatstudio.json` always wins (spec §5.4); adapter values fill
 // gaps so a plugin that ships only SKILL.md still reaches a fully-formed
 // manifest. Foreign content lands in `compat.*` lists rather than being
 // dropped.

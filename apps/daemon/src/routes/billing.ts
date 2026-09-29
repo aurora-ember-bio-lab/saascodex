@@ -1,4 +1,4 @@
-// SaaSCodex billing routes: plan catalog, subscription state, Stripe
+// SplatStudio billing routes: plan catalog, subscription state, Stripe
 // Checkout, Customer Portal, and webhook ingestion.
 //
 // The webhook endpoint is mounted behind `express.raw` (registered in
@@ -88,7 +88,7 @@ export function stripeEventToPatch(
   if (event.type === 'checkout.session.completed') {
     const customer = typeof obj.customer === 'string' ? obj.customer : null;
     const subscription = typeof obj.subscription === 'string' ? obj.subscription : null;
-    const metaPlan = (obj.metadata as Record<string, string> | undefined)?.saascodex_plan;
+    const metaPlan = (obj.metadata as Record<string, string> | undefined)?.splatstudio_plan;
     const plan: PlanId | null = isPlanId(metaPlan) ? metaPlan : null;
     const details = obj.customer_details as { email?: unknown } | undefined;
     const email =

@@ -1,8 +1,8 @@
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
-import { Dialog, DialogDescription, DialogFooter, DialogTitle } from "@saascodex/components";
-import type { WorkspaceCollabContext } from "@saascodex/contracts";
-import { projectKindFromMetadataToTracking } from "@saascodex/contracts/analytics";
+import { Dialog, DialogDescription, DialogFooter, DialogTitle } from "@splatstudio/components";
+import type { WorkspaceCollabContext } from "@splatstudio/contracts";
+import { projectKindFromMetadataToTracking } from "@splatstudio/contracts/analytics";
 import { useAnalytics } from "../analytics/provider";
 import {
   trackPageView,

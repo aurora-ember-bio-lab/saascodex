@@ -14,7 +14,7 @@ import {
   type PromptBoundaryEvidenceV1,
   type SafeDeliverableSyntaxTelemetryV1,
   type StrategyInputStageV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type Database from 'better-sqlite3';
 import type { EvalContextV2 } from './eval-context.js';
 
@@ -152,7 +152,7 @@ function distinctRuntimeVersions(
 
 export interface StrategyTaskObservationAggregateV1 {
   traceProjection?: ReturnType<typeof projectTaskTrace>;
-  schema: 'saascodex.strategy-task-observation/v1';
+  schema: 'splatstudio.strategy-task-observation/v1';
   root: StrategyTaskObservationRootV1;
   observations: NormalizedAgentObservationV1[];
   coverage: TaskObservationCoverageV1;
@@ -162,8 +162,8 @@ export interface StrategyTaskObservationAggregateV1 {
 }
 
 export const TASK_OBSERVATION_SCHEMA_CAPABILITY_V1 = {
-  schema: 'saascodex.task-observation-schema-capability/v1',
-  aggregateSchema: 'saascodex.strategy-task-observation/v1',
+  schema: 'splatstudio.task-observation-schema-capability/v1',
+  aggregateSchema: 'splatstudio.strategy-task-observation/v1',
   normalizedObservationSchema: NORMALIZED_AGENT_OBSERVATION_V1_SCHEMA,
   safeRunQualitySchema: SAFE_RUN_QUALITY_V1_SCHEMA,
   safeQualityFields: [
@@ -229,7 +229,7 @@ export function strategyTaskRunObservationId(
 
 function stableLegacyEventId(type: string, bodyId: string): string {
   return `od-${createHash('sha256')
-    .update(`saascodex/task-observation-legacy/v1\n${type}\n${bodyId}`, 'utf8')
+    .update(`splatstudio/task-observation-legacy/v1\n${type}\n${bodyId}`, 'utf8')
     .digest('hex')}`;
 }
 
@@ -656,7 +656,7 @@ export function aggregateStrategyTaskObservations(input: {
   });
 
   return {
-    schema: 'saascodex.strategy-task-observation/v1',
+    schema: 'splatstudio.strategy-task-observation/v1',
     root: {
       observationId: rootObservationId,
       taskExecutionId: input.task.taskExecutionId,
@@ -1100,7 +1100,7 @@ export function buildLegacyTaskObservationPayload(
   pushEvent('trace-create', {
     ...(aggregate.traceProjection ? { input: aggregate.traceProjection.input, output: aggregate.traceProjection.output } : {}),
     id: traceId,
-    name: 'saascodex-strategy-task',
+    name: 'splatstudio-strategy-task',
     sessionId: aggregate.root.conversationId,
     userId: context?.installationId ?? undefined,
     release: context?.appVersion,

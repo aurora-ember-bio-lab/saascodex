@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ProjectView } from '../../src/components/ProjectView';
 import { streamViaDaemon } from '../../src/providers/daemon';
-import { buildWorkspacePermissions, buildWorkspaceSeatSummary, type WorkspaceCollabContext } from '@saascodex/contracts';
+import { buildWorkspacePermissions, buildWorkspaceSeatSummary, type WorkspaceCollabContext } from '@splatstudio/contracts';
 import { I18nProvider } from '../../src/i18n';
 import { createProject, listMessages } from '../../src/state/projects';
 import type { AppConfig, ChatMessage, Project, ProjectFile } from '../../src/types';

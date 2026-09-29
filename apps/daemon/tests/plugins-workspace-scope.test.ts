@@ -38,7 +38,7 @@ import {
   workspaceTeamPluginBindingAllowsRead,
   workspaceTeamPluginBindingResourceId,
 } from '../src/plugins/registry.js';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 
 let tempDir: string;
 

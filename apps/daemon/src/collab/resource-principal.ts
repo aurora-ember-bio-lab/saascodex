@@ -1,7 +1,7 @@
 import {
   workspaceContextHasTeamIdentity,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 /**
  * Workspace identity used to scope collaboration state. Authentication is

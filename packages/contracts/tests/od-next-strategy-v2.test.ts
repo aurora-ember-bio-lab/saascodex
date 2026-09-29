@@ -8,7 +8,7 @@ import {
   OD_NEXT_APPLIED_STRATEGY_SCHEMA,
   OD_NEXT_PLAN_CONTRACT_SCHEMA,
   OD_NEXT_RUNTIME_STATE_SCHEMA,
-  SaaSCodexPlanContractV2Schema,
+  SplatStudioPlanContractV2Schema,
   PluginManifestSchema,
   ResolvedTaskProfileV2Schema,
   StrategyRuntimeStateV2Schema,
@@ -154,7 +154,7 @@ describe('OD Next V2 bundled declaration and applied identity', () => {
       od: {
         kind: 'scenario',
         strategy: {
-          schema: 'saascodex.bundled-strategy/v2',
+          schema: 'splatstudio.bundled-strategy/v2',
           id: 'od-next-strategy',
           promptRecipe: 'od-next-plan-build-v2',
           assets: {
@@ -221,7 +221,7 @@ describe('OD Next V2 planning contracts', () => {
     expect(ResolvedTaskProfileV2Schema.parse(taskProfile()).taskType).toBe('prototype');
     expect(FullPlanV2Schema.parse(simplePlan()).buildPackages).toEqual([]);
     expect(FullPlanV2Schema.parse(complexPlan()).buildPackages).toHaveLength(2);
-    expect(SaaSCodexPlanContractV2Schema.parse(planContract()).schema).toBe(
+    expect(SplatStudioPlanContractV2Schema.parse(planContract()).schema).toBe(
       OD_NEXT_PLAN_CONTRACT_SCHEMA,
     );
   });
@@ -270,7 +270,7 @@ describe('OD Next V2 planning contracts', () => {
         decisions: { nested: { [key]: value } },
       },
     }))).toThrow(/does not allow post-Build field/);
-    expect(() => SaaSCodexPlanContractV2Schema.parse({
+    expect(() => SplatStudioPlanContractV2Schema.parse({
       ...planContract(),
       [key]: value,
     })).toThrow();
@@ -496,7 +496,7 @@ describe('OD Next V2 capability, Child, and task projection contracts', () => {
 
 describe('task profile resources', () => {
   const profile = (resources: unknown) => ({
-    schema: 'saascodex.bundled-strategy/v2',
+    schema: 'splatstudio.bundled-strategy/v2',
     id: 'od-next-strategy',
     promptRecipe: 'od-next-plan-build-v2',
     assets: {

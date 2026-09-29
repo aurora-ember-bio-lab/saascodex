@@ -1,4 +1,4 @@
-import type { ProjectMetadata } from '@saascodex/contracts';
+import type { ProjectMetadata } from '@splatstudio/contracts';
 
 /**
  * The catalogue partition a run may resolve Skill-like entries from.

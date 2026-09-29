@@ -28,7 +28,7 @@ import {
   type TeamProject,
   type WorkspaceCollabContext,
   type WorkspaceTeamProjectsResponse,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { coalescedGet, forceCoalescedGet } from '../lib/coalesced-get';
 import {

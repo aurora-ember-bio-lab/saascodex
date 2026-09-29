@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { teamConsoleUrl, workspaceUpgradeUrl } from '../../src/components/EntryNavRail';
 import { setRuntimeAmrConsoleOrigin } from '../../src/runtime/amr-guidance';
-import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@splatstudio/contracts';
 
 // Stand-in for an internal deployment's console origin — the real hostnames are
 // injected at build time and reported by the daemon, never literals in source.
@@ -14,7 +14,7 @@ const RUNTIME_CONSOLE_ORIGIN = 'https://vela.example.invalid';
  * the ruling put the upgrade entries back on the console.
  */
 const PROD_CONSOLE_PLAN_URL =
-  'https://saascodex.com/cloud/dashboard?source=open_design&billing=plan';
+  'https://splatstudio.app/cloud/dashboard?source=open_design&billing=plan';
 
 afterEach(() => {
   setRuntimeAmrConsoleOrigin(null);

@@ -1,4 +1,4 @@
-import type { ChatRunStatusResponse } from '@saascodex/contracts';
+import type { ChatRunStatusResponse } from '@splatstudio/contracts';
 import type { Project } from '../../types';
 import type { PetRecentTaskSummary, PetTaskCenter, PetTaskSummary } from './PetOverlay';
 

@@ -14,7 +14,7 @@
 import {
   parsePreviewObservabilityMessage,
   type PreviewObservabilityMessage,
-} from '@saascodex/contracts/runtime/preview-observability';
+} from '@splatstudio/contracts/runtime/preview-observability';
 import { reportSafetyEvent } from '../analytics/error-tracking';
 import { scrubFilePath } from '../analytics/scrub';
 

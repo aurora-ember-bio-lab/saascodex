@@ -13,7 +13,7 @@
 // canSendTo) that only make sense for a project; this module owns the part
 // that generalizes cleanly: reading the caller's workspace identity off
 // headers, and deciding whether a caller may mutate a bound resource row.
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import type { Response } from 'express';
 
 export type WorkspaceResourceContext = {
@@ -66,7 +66,7 @@ type RequestAuthorityCacheEntry = {
   promise: Promise<WorkspaceRequestAuthorityResult>;
 };
 
-const REQUEST_AUTHORITY_CACHE = Symbol('saascodex.workspace-request-authority');
+const REQUEST_AUTHORITY_CACHE = Symbol('splatstudio.workspace-request-authority');
 
 /**
  * One mutation request can pass through more than one independent resource
@@ -910,7 +910,7 @@ export async function enforceVerifiedWorkspaceResourceRead(
  * Headerless is the `od` CLI's normal shape, not an anomaly: nothing in
  * `apps/daemon/src/cli.ts` attaches `x-od-workspace-*` outside `od workspace …`,
  * and `AGENTS.md` makes the CLI the embeddability contract that external agents
- * drive SaaSCodex through. This branch used to answer 401 for ANY bound
+ * drive SplatStudio through. This branch used to answer 401 for ANY bound
  * resource, which was survivable only while headerless creates left projects
  * unbound. Once every created project got a workspace home (#6201), the two
  * rules combined into a project its own creator could not touch:

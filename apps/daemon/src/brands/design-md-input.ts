@@ -1,4 +1,4 @@
-import type { Brand, BrandColor, BrandColorRole, BrandFontSpec } from '@saascodex/contracts';
+import type { Brand, BrandColor, BrandColorRole, BrandFontSpec } from '@splatstudio/contracts';
 
 import { luminance, normalizeHex, saturation } from './seed.js';
 import { validateBrand } from './validate.js';

@@ -4,7 +4,7 @@
  *
  * 这条测试存在的理由是一个具体的事故形状:`amrPlansUrlForProfile(_profile)` 的
  * 参数曾经带下划线前缀、刻意不用,于是 test / local / feature-test 的包**一律**跳
- * 生产 `https://saascodex.com/pricing/` —— 而那一页选中套餐会带着 plan + interval
+ * 生产 `https://splatstudio.app/pricing/` —— 而那一页选中套餐会带着 plan + interval
  * 回生产 Vela 直接结账。所以这里钉的不只是「链接对不对」,而是
  * **两个 profile 必须解析到不同的 origin**:只要还有人把 profile 参数忽略掉,
  * 下面那条 origin 对比就会红。
@@ -35,7 +35,7 @@ describe('升级按钮的落点:console 的套餐页', () => {
 
   it('test profile 落在 test console,不再落在生产 Pricing', () => {
     expect(amrPlansUrlForProfile('test')).toBe(
-      'https://saascodex.powerformer.net/cloud/dashboard?source=open_design&billing=plan',
+      'https://splatstudio.powerformer.net/cloud/dashboard?source=open_design&billing=plan',
     );
   });
 

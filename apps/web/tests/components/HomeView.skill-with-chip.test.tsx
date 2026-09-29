@@ -4,7 +4,7 @@ import { pickHomeTemplate } from '../helpers/home-template-picker';
 import { act } from 'react';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { SkillSummary } from '@saascodex/contracts';
+import type { SkillSummary } from '@splatstudio/contracts';
 
 vi.mock('../../src/components/home-hero/PlaceholderCarousel', () => ({
   PlaceholderCarousel: () => null,
@@ -180,7 +180,7 @@ async function pickPrototypeScene(scene: string) {
   });
   await waitFor(() => {
     expect(screen.getByTestId('home-hero-template-trigger').textContent).toContain('Prototype');
-    expect(JSON.parse(window.localStorage.getItem('saascodex:home-composer:chip') ?? '{}'))
+    expect(JSON.parse(window.localStorage.getItem('splatstudio:home-composer:chip') ?? '{}'))
       .toMatchObject({ chipId: 'prototype', prototypeSubtypeId: scene });
   });
 }

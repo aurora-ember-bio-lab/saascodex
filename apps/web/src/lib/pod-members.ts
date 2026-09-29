@@ -1,4 +1,4 @@
-import type { PreviewCommentMember } from '@saascodex/contracts';
+import type { PreviewCommentMember } from '@splatstudio/contracts';
 import type { PreviewCommentSnapshot } from '../comments';
 
 export function removePodMember(

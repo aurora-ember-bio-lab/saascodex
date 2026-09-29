@@ -1,5 +1,5 @@
 import type { AmrBalanceGateScope } from '../runtime/amr-balance-gate';
-import type { AmrWalletSnapshot } from '@saascodex/contracts';
+import type { AmrWalletSnapshot } from '@splatstudio/contracts';
 
 import { AmrBalanceDialog } from './AmrBalanceDialog';
 import { AmrOwnerTopUpDialog } from './chat/AmrOwnerTopUpDialog';

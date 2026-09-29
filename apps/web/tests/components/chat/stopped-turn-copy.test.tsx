@@ -18,7 +18,7 @@
  */
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { cleanup, render } from '@testing-library/react';
-import type { PersistedAgentEvent } from '@saascodex/contracts';
+import type { PersistedAgentEvent } from '@splatstudio/contracts';
 import { AssistantMessage } from '../../../src/components/AssistantMessage';
 import type { ChatMessage } from '../../../src/types';
 

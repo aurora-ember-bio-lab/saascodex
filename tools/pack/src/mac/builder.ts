@@ -116,13 +116,13 @@ export async function runElectronBuilder(
     executableName: identity.executableName,
     extraMetadata: {
       main: "./main.cjs",
-      name: "saascodex-packaged-app",
+      name: "splatstudio-packaged-app",
       productName: identity.productName,
       version: packageVersion,
     },
     extraResources: [
-      { from: paths.resourceRoot, to: "saascodex" },
-      { from: paths.packagedConfigPath, to: "saascodex-config.json" },
+      { from: paths.resourceRoot, to: "splatstudio" },
+      { from: paths.packagedConfigPath, to: "splatstudio-config.json" },
       // Vendored dom-to-pptx browser bundle for editable PPTX export. The desktop
       // main reads it from process.resourcesPath at runtime.
       domToPptxBundleResource(config),
@@ -159,7 +159,7 @@ export async function runElectronBuilder(
     publish: [
       {
         provider: "generic",
-        url: "https://updates.invalid/saascodex",
+        url: "https://updates.invalid/splatstudio",
       },
     ],
   };

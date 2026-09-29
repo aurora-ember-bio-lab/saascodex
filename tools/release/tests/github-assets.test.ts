@@ -30,21 +30,21 @@ describe("stable GitHub Release asset plan", () => {
 
     try {
       const allowed = [
-        `saascodex-${version}-mac-arm64.dmg`,
-        `saascodex-${version}-mac-arm64.dmg.sha256`,
-        `saascodex-${version}-mac-x64.dmg`,
-        `saascodex-${version}-mac-x64.dmg.sha256`,
-        `saascodex-${version}-win-x64-setup.exe`,
-        `saascodex-${version}-win-x64-setup.exe.sha256`,
+        `splatstudio-${version}-mac-arm64.dmg`,
+        `splatstudio-${version}-mac-arm64.dmg.sha256`,
+        `splatstudio-${version}-mac-x64.dmg`,
+        `splatstudio-${version}-mac-x64.dmg.sha256`,
+        `splatstudio-${version}-win-x64-setup.exe`,
+        `splatstudio-${version}-win-x64-setup.exe.sha256`,
       ];
       for (const name of allowed) {
         await writeAsset(source, name.includes("win") ? "win" : name.includes("x64") ? "mac-intel" : "mac", name);
       }
       for (const name of [
-        `saascodex-${version}-mac-arm64-payload.zip`,
-        `saascodex-${version}-mac-x64.zip`,
-        `saascodex-${version}-win-x64-payload.7z`,
-        `saascodex-${version}-win-x64-portable.zip`,
+        `splatstudio-${version}-mac-arm64-payload.zip`,
+        `splatstudio-${version}-mac-x64.zip`,
+        `splatstudio-${version}-win-x64-payload.7z`,
+        `splatstudio-${version}-win-x64-portable.zip`,
         "latest.yml",
         "latest-mac.yml",
       ]) {

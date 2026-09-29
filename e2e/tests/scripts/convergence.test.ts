@@ -205,7 +205,7 @@ describe("workload convergence", () => {
       intents: { fixture: { installProfile: "workspace", requestedTargets: ["packages/release"] } },
     }));
     writeFileSync(path.join(fixture.root, "packages/release/package.json"), JSON.stringify({
-      name: "@saascodex/release",
+      name: "@splatstudio/release",
     }));
     execFileSync("git", ["add", "."], { cwd: fixture.root });
 

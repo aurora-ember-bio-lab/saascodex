@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { ChatMessage, ProjectFile } from '@saascodex/contracts';
+import type { ChatMessage, ProjectFile } from '@splatstudio/contracts';
 
 import { foldStrategyTaskTurns } from '../../src/components/ChatPane';
 

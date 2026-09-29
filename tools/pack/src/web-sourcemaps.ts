@@ -40,13 +40,13 @@ import { existsSync } from "node:fs";
 import { readdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 
-import { createPackageManagerInvocation } from "@saascodex/platform";
+import { createPackageManagerInvocation } from "@splatstudio/platform";
 
 import type { ToolPackConfig } from "./config/index.js";
 import { execFileAsync } from "./mac/commands.js";
 
 const POSTHOG_CLI_VERSION = "0.7.11";
-const RELEASE_NAME = "saascodex-web";
+const RELEASE_NAME = "splatstudio-web";
 
 export interface WebSourcemapOptions {
   /**

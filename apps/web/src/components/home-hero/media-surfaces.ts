@@ -1,4 +1,4 @@
-import type { InputFieldSpec, ProjectKind } from '@saascodex/contracts';
+import type { InputFieldSpec, ProjectKind } from '@splatstudio/contracts';
 import type { AudioKind, ProjectMetadata, PromptTemplateSummary } from '../../types';
 import {
   AUDIO_DURATIONS_SEC,

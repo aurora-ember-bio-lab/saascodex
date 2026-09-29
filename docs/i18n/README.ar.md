@@ -1,23 +1,23 @@
 <div dir="rtl">
 
-<h1 align="center">SaaSCodex: البديل مفتوح المصدر لـ Claude Design</h1>
+<h1 align="center">SplatStudio: البديل مفتوح المصدر لـ Claude Design</h1>
 
-> ⚡ **[‏SaaSCodex Cloud — خدمة النماذج الرسمية.](https://saascodex.com/zh/pricing/)** شحنة واحدة لاستخدام نماذج الوكلاء والصور داخل SaaSCodex: ‏GPT وClaude وDeepSeek للوكلاء؛ وGPT Image 2.0 وSeedream 5.0 Pro وNano Banana 2.0 للصور.
+> ⚡ **[‏SplatStudio Cloud — خدمة النماذج الرسمية.](https://splatstudio.app/zh/pricing/)** شحنة واحدة لاستخدام نماذج الوكلاء والصور داخل SplatStudio: ‏GPT وClaude وDeepSeek للوكلاء؛ وGPT Image 2.0 وSeedream 5.0 Pro وNano Banana 2.0 للصور.
 >
-> 🚀 **[أصبح DeepSeek V4 Flash وV4 Pro متاحين الآن.](https://saascodex.com/zh/pricing/)** استخدم ذكاءً من الطراز الأول للنماذج الأولية والعروض التقديمية وأنظمة التصميم ومهام الوكلاء اليومية. يمكن لأعضاء SaaSCodex استخدام النموذجين بلا حدود لمدة أسبوعين مباشرة داخل التطبيق.
+> 🚀 **[أصبح DeepSeek V4 Flash وV4 Pro متاحين الآن.](https://splatstudio.app/zh/pricing/)** استخدم ذكاءً من الطراز الأول للنماذج الأولية والعروض التقديمية وأنظمة التصميم ومهام الوكلاء اليومية. يمكن لأعضاء SplatStudio استخدام النموذجين بلا حدود لمدة أسبوعين مباشرة داخل التطبيق.
 >
-> 🧩 **[أصبح DeepSeek Harness مدعومًا الآن.](https://saascodex.com/zh/agents/deepseek-harness-design/)** صِل Agent Harness الرسمي `dsh` من DeepSeek بـ SaaSCodex كبيئة تشغيل أصلية، مع التفكير المنظم واستدعاءات الأدوات واكتشاف النماذج والإلغاء واستئناف الجلسات. تبقى الملفات الناتجة ضمن سير عمل SaaSCodex للمعاينة الحية والتسليم.
+> 🧩 **[أصبح DeepSeek Harness مدعومًا الآن.](https://splatstudio.app/zh/agents/deepseek-harness-design/)** صِل Agent Harness الرسمي `dsh` من DeepSeek بـ SplatStudio كبيئة تشغيل أصلية، مع التفكير المنظم واستدعاءات الأدوات واكتشاف النماذج والإلغاء واستئناف الجلسات. تبقى الملفات الناتجة ضمن سير عمل SplatStudio للمعاينة الحية والتسليم.
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/hero.png" alt="SplatStudio hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://saascodex.com/">الموقع</a> ·
-  <a href="https://saascodex.com/">التنزيل</a> ·
-  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://splatstudio.app/">الموقع</a> ·
+  <a href="https://splatstudio.app/">التنزيل</a> ·
+  <a href="https://splatstudio.app/cloud/">SplatStudio Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
-  <a href="https://x.com/SaaSCodexHQ">تابع ‎@SaaSCodexHQ</a>
+  <a href="https://x.com/SplatStudioHQ">تابع ‎@SplatStudioHQ</a>
 </p>
 
 <p align="center">
@@ -31,11 +31,11 @@
 
 ---
 
-## ما هو SaaSCodex
+## ما هو SplatStudio
 
 🎨 **البديل مفتوح المصدر القائم على الجهاز المحلي أولًا لـ Claude Design.** &nbsp;🖥️ **تطبيق سطح مكتب أصلي لنظامي macOS وWindows.** &nbsp;⚡ **أكثر من 100 مهارة وظيفية + كتالوج منفصل لقوالب التصيير** · ✨ **151 حزمة نظام تصميم** · 📦 **277 إضافة جاهزة للاستخدام.** &nbsp;🖼️ يولّد **نماذج أولية للويب · سطح المكتب · الجوال**، و**لوحات معلومات / مخرجات حية**، و**عروضًا تقديمية**، و**صورًا**، و**فيديو**، إضافة إلى رسوميات حركية بـ **HyperFrames**. 🔒 معاينة iframe معزولة · تصدير بصيغ HTML / PDF / PPTX / MP4. &nbsp;🤖 **يعمل على 25 ملف CLI تنفيذيًا محليًا متميزًا**، أو أي نقطة نهاية متوافقة مع OpenAI عبر BYOK.
 
-‏SaaSCodex يحوّل الحلقة إلى **نظام ملفات من المهارات الوظيفية وقوالب التصيير وأنظمة التصميم والإضافات** يستطيع الوكلاء قراءته والكتابة عليه وإعادة مزجه.
+‏SplatStudio يحوّل الحلقة إلى **نظام ملفات من المهارات الوظيفية وقوالب التصيير وأنظمة التصميم والإضافات** يستطيع الوكلاء قراءته والكتابة عليه وإعادة مزجه.
 
 كما أنه **بديل Figma لعصر الوكلاء** — فبدلًا من تحريك البكسلات على لوحة رسم، يسلّم مخرجات من صفحة واحدة بـ CSS حقيقي وخطوط حقيقية ومكونات حقيقية، تُصدَّر مباشرة إلى HTML / PDF / PPTX / MP4 — مصاغة مسبقًا وفق نظام التصميم لديك، وقابلة للتشغيل مباشرة داخل الوكيل الذي تستخدمه كل يوم.
 
@@ -44,7 +44,7 @@
 
 ## جولة في المنتج
 
-نظرة سريعة على سير العمل الأساسي في SaaSCodex. ابدأ بموجز من **الصفحة الرئيسية**، واستكشف المهارات القابلة لإعادة الاستخدام في **الإضافات**، وحوّل مراجع العلامة التجارية إلى **نظام تصميم**. ثم ادخل إلى **الاستوديو** في أي مشروع لإنشاء النماذج الأولية والعروض التقديمية وتطبيقات الجوال والصور والمستندات وHyperFrames وتحسينها في مكان واحد.
+نظرة سريعة على سير العمل الأساسي في SplatStudio. ابدأ بموجز من **الصفحة الرئيسية**، واستكشف المهارات القابلة لإعادة الاستخدام في **الإضافات**، وحوّل مراجع العلامة التجارية إلى **نظام تصميم**. ثم ادخل إلى **الاستوديو** في أي مشروع لإنشاء النماذج الأولية والعروض التقديمية وتطبيقات الجوال والصور والمستندات وHyperFrames وتحسينها في مكان واحد.
 
 ### الصفحات الأساسية
 
@@ -110,7 +110,7 @@
 
 ## توافق المنصات
 
-> يُشحَن SaaSCodex على هيئة **مهارات وواجهة CLI وخادم MCP** تستهلكها وكلاء البرمجة السائدة بشكل أصلي. بمجرد تثبيت OD، يربط أمر واحد `od mcp install <agent>` خادم MCP في إعدادات ذلك الوكيل، فتستدعي الأدوات نفسها من داخل أي وكيل.
+> يُشحَن SplatStudio على هيئة **مهارات وواجهة CLI وخادم MCP** تستهلكها وكلاء البرمجة السائدة بشكل أصلي. بمجرد تثبيت OD، يربط أمر واحد `od mcp install <agent>` خادم MCP في إعدادات ذلك الوكيل، فتستدعي الأدوات نفسها من داخل أي وكيل.
 
 | وكيل البرمجة / المنصة &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | الحالة &nbsp;&nbsp; | تثبيت خادم MCP بأمر واحد &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 |---|:---:|---|
@@ -135,7 +135,7 @@
 `od mcp install <agent> --print` لمعاينة تجريبية دون تنفيذ · `--uninstall` للإزالة · القائمة الكاملة عبر `od mcp install --help`.
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SplatStudio supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **لا توجد واجهة CLI مثبَّتة؟** يمنحك وكيل BYOK على `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` الحلقة نفسها (دون إنشاء عملية) — الصق `baseUrl` + `apiKey` + `model`، مع دعم OpenAI وAnthropic وAzure OpenAI وGoogle Gemini وOllama وLM Studio وvLLM، أو أي نقطة نهاية متوافقة مع OpenAI. تمنع حماية SSRF لكل هدف عناوين IP الداخلية / link-local / CGNAT عند حافة الـ daemon.
@@ -225,7 +225,7 @@
 
 ### 5 · الفيديو وHyperFrames — رسوميات حركية أصيلة للوكلاء
 
-**[HyperFrames][hyperframes]** هو إطار عمل الفيديو مفتوح المصدر والأصيل للوكلاء من HeyGen، مدمج كمواطن من الدرجة الأولى في SaaSCodex. يكتب الوكيل HTML + CSS + GSAP، وتصيّره HyperFrames إلى ملف MP4 حتمي عبر Chrome بدون واجهة + FFmpeg. اقرنه بـ **Seedance 2.0** لتحويل النص إلى فيديو / الصورة إلى فيديو السينمائي، و**Veo 3 / Sora 2 / Kling 2** للنماذج المُوجَّهة المتنوعة، و**Suno v5 / Lyria 2** لطبقة الصوت.
+**[HyperFrames][hyperframes]** هو إطار عمل الفيديو مفتوح المصدر والأصيل للوكلاء من HeyGen، مدمج كمواطن من الدرجة الأولى في SplatStudio. يكتب الوكيل HTML + CSS + GSAP، وتصيّره HyperFrames إلى ملف MP4 حتمي عبر Chrome بدون واجهة + FFmpeg. اقرنه بـ **Seedance 2.0** لتحويل النص إلى فيديو / الصورة إلى فيديو السينمائي، و**Veo 3 / Sora 2 / Kling 2** للنماذج المُوجَّهة المتنوعة، و**Suno v5 / Lyria 2** لطبقة الصوت.
 
 <table>
 <tr>
@@ -248,11 +248,11 @@
 
 ---
 
-## لماذا SaaSCodex
+## لماذا SplatStudio
 
 > **في أبريل 2026، أطلقت Anthropic Claude Design — وهي المرة الأولى التي يتوقف فيها نموذج لغوي كبير عن كتابة النثر ويبدأ في تسليم مخرجات تصميم مباشرة.** انتشر بسرعة كبيرة. لكنه ظل مغلق المصدر، مدفوعًا فقط، سحابيًا فقط، مقيَّدًا بنموذج Anthropic ومهارات Anthropic وسطح Anthropic. لا دفع، ولا استضافة ذاتية، ولا نشر على Vercel، ولا إمكانية تبديل بوكيلك الخاص.
 
-‏SaaSCodex (OD) هو البديل مفتوح المصدر. الحلقة نفسها، والنموذج الذهني نفسه القائم على المخرجات أولًا، دون أي تقييد:
+‏SplatStudio (OD) هو البديل مفتوح المصدر. الحلقة نفسها، والنموذج الذهني نفسه القائم على المخرجات أولًا، دون أي تقييد:
 
 - 🤖 **أصيل للوكلاء، محايد تجاه النموذج.** نحن لا نشحن وكيلًا. أدوات `claude` / `codex` / `cursor-agent` / `copilot` / `hermes` / `kimi` الموجودة أصلًا في `PATH` لديك هي محرك التصميم. بدّلها بنقرة واحدة.
 - 🧠 **بجودة العلامة التجارية افتراضيًا.** تقرأ كل عملية تصيير `DESIGN.md` من الحزمة النشطة بوصفه عقد العلامة الأساسي. يُشحَن مع المستودع 151 حزمة نظام تصميم؛ قد تقتصر الحزم القديمة على `DESIGN.md`، بينما يمكن للأحدث إضافة `manifest.json` و`tokens.css` والمكوّنات والأصول وبيانات المصدر. أسقِط مجلدًا، فيعثر عليه المُنتقي.
@@ -263,7 +263,7 @@
 
 ### مقارنة
 
-| | Claude Design | Figma | Lovable / v0 / Bolt | **SaaSCodex** |
+| | Claude Design | Figma | Lovable / v0 / Bolt | **SplatStudio** |
 |---|---|---|---|---|
 | مفتوح المصدر | ❌ | ❌ | ❌ | **✅ Apache-2.0** |
 | استضافة ذاتية / سطح مكتب | ❌ | ❌ | ❌ | **✅ macOS + Windows + Docker** |
@@ -280,17 +280,17 @@
 
 ### 🖥️ تنزيل تطبيق سطح المكتب (موصى به — بلا إعداد)
 
-أسرع طريقة لاستخدام SaaSCodex. لا Node، ولا pnpm، ولا استنساخ.
+أسرع طريقة لاستخدام SplatStudio. لا Node، ولا pnpm، ولا استنساخ.
 
-- **macOS** (Apple Silicon · Intel x64) ← [**saascodex.com**](https://saascodex.com/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) ← [**saascodex.com**](https://saascodex.com/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) ← [**splatstudio.app**](https://splatstudio.app/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) ← [**splatstudio.app**](https://splatstudio.app/) أو [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage، مسار اختياري) ← [إصدارات GitHub](https://github.com/nexu-io/open-design/releases)
 
 بعد التثبيت: يكتشف التطبيق تلقائيًا كل واجهة CLI لوكلاء البرمجة في `PATH` لديك، ويحمّل أكثر من 100 مهارة وظيفية وكتالوج قوالب التصيير المنفصل و151 حزمة نظام تصميم، ويتيح لك كتابة موجز في واجهة الدخول.
 
 ### 🤖 التثبيت داخل وكيل البرمجة لديك (دون واجهة مستخدم)
 
-يمكنك استخدام SaaSCodex دون فتح الواجهة الرسومية أبدًا — استدعِه كمهارة أو إضافة أو خادم MCP داخل Claude Code وCodex وCursor وCopilot وOpenClaw وAntigravity وHermes وKimi والمزيد.
+يمكنك استخدام SplatStudio دون فتح الواجهة الرسومية أبدًا — استدعِه كمهارة أو إضافة أو خادم MCP داخل Claude Code وCodex وCursor وCopilot وOpenClaw وAntigravity وHermes وKimi والمزيد.
 
 ```bash
 # One-line install into the agent you're using:
@@ -302,16 +302,16 @@ od mcp install <agent>
 ثم، داخل الوكيل:
 
 ```
-> Use saascodex to generate a landing page with the Linear design system
+> Use splatstudio to generate a landing page with the Linear design system
 ```
 
-في تشغيل CLI محلي مدعوم بنظام الملفات، يركّب الوكيل المهارة الوظيفية أو قالب التصميم المختار مع `DESIGN.md` ويكتب ملفات المشروع الأساسية ليعاينها SaaSCodex. أما تشغيل BYOK/API بلا أدوات ملفات فيُرجع كتلة `<artifact>` كاملة واحدة.
+في تشغيل CLI محلي مدعوم بنظام الملفات، يركّب الوكيل المهارة الوظيفية أو قالب التصميم المختار مع `DESIGN.md` ويكتب ملفات المشروع الأساسية ليعاينها SplatStudio. أما تشغيل BYOK/API بلا أدوات ملفات فيُرجع كتلة `<artifact>` كاملة واحدة.
 
 ### 🐳 التشغيل باستخدام Docker
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex/deploy
+cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
 docker compose up -d
@@ -320,15 +320,15 @@ docker compose up -d
 
 ### 🚀 النشر على Sealos
 
-[![Deploy on Sealos](https://sealos.io/Deploy-on-Sealos.svg)](https://sealos.io/products/app-store/saascodex/)
+[![Deploy on Sealos](https://sealos.io/Deploy-on-Sealos.svg)](https://sealos.io/products/app-store/splatstudio/)
 
-يشغّل قالب Sealos App Store صورة Docker المنشورة لـ SaaSCodex مع تخزين دائم لمساحة العمل وBasic Auth على الوكيل العام. لعمليات نشر Docker العامة أو المشتركة المخصصة، اتبع إرشادات الوكيل العكسي و`SAASCODEX_ALLOWED_ORIGINS` في [`deploy/README.md`](../../deploy/README.md#local-compose).
+يشغّل قالب Sealos App Store صورة Docker المنشورة لـ SplatStudio مع تخزين دائم لمساحة العمل وBasic Auth على الوكيل العام. لعمليات نشر Docker العامة أو المشتركة المخصصة، اتبع إرشادات الوكيل العكسي و`SPLATSTUDIO_ALLOWED_ORIGINS` في [`deploy/README.md`](../../deploy/README.md#local-compose).
 
 ### 🧑‍💻 التشغيل من المصدر
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex
+cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
 ```
@@ -345,13 +345,13 @@ pnpm tools-dev run web
 2. **يثبّت مصمم (أو الوكيل) الاتجاه.** لا علامة تجارية؟ اختر من 5 اتجاهات منسّقة. لديك علامة تجارية؟ أسقِط لقطة شاشة / رابطًا ← يربط الوكيل GitHub، ويستورد Figma، ويصوغ ملف `DESIGN.md` قابلًا لإعادة الاستخدام.
 3. **ينشئ الوكيل أول تسليم.** تشغيلات CLI ذات نظام الملفات تكتب الملفات الأساسية؛ وتشغيلات BYOK/API بلا أدوات ملفات تُرجع كتلة `<artifact>` كاملة.
 4. **سلّم إلى الهندسة.** المخرَج هو HTML/CSS حقيقي — أسقِطه في Cursor أو Codex أو Claude Code لمواصلة البناء كشفرة. أو صدّر PPTX / PDF / MP4 مباشرة إلى التسويق.
-5. **يصبح SaaSCodex أذكى كلما استخدمته.** تتراكم لقطات شاشتك وخطوطك ولوحات ألوانك ومخرجاتك المؤكَّدة كقيم افتراضية للجلسة التالية. عمل معاد أقل، وانحراف أقل.
+5. **يصبح SplatStudio أذكى كلما استخدمته.** تتراكم لقطات شاشتك وخطوطك ولوحات ألوانك ومخرجاتك المؤكَّدة كقيم افتراضية للجلسة التالية. عمل معاد أقل، وانحراف أقل.
 
 ---
 
-## استخدام SaaSCodex من وكيل البرمجة لديك
+## استخدام SplatStudio من وكيل البرمجة لديك
 
-يشحن SaaSCodex **خادم MCP عبر stdio** و**سكربتات تثبيت** لكل وكيل. يستطيع أي وكيل متوافق مع MCP في مستودع آخر قراءة الملفات من مشاريع SaaSCodex المحلية لديك مباشرة — رموز CSS، ومكونات JSX، وHTML الدخول — كواجهة API مهيكلة قابلة للاستعلام بالاسم. يرى الوكيل دائمًا الملف الحي، لا تصديرًا قديمًا.
+يشحن SplatStudio **خادم MCP عبر stdio** و**سكربتات تثبيت** لكل وكيل. يستطيع أي وكيل متوافق مع MCP في مستودع آخر قراءة الملفات من مشاريع SplatStudio المحلية لديك مباشرة — رموز CSS، ومكونات JSX، وHTML الدخول — كواجهة API مهيكلة قابلة للاستعلام بالاسم. يرى الوكيل دائمًا الملف الحي، لا تصديرًا قديمًا.
 
 ```bash
 # One-line install (16+ CLIs supported):
@@ -367,7 +367,7 @@ od skills list --json
 
 **لماذا MCP؟** تصدير ملف مضغوط وإعادة إرفاقه في كل دورة يكسر الانسياب. يكشف MCP مصدر التصميم مباشرة — فيرى الوكيل دائمًا الملف الحي.
 
-**بالنسبة لوكيل يبدأ من الصفر،** يضع المثبِّت `~/.config/<agent>/saascodex.json` (أو ما يكافئه على المنصة) إضافة إلى مقتطف MCP جاهز للصق. يحصل Cursor على رابط عميق بنقرة واحدة؛ ويحصل Claude Code على سطر `claude mcp add-json` واحد؛ ويحصل كل وكيل آخر على JSON بالمخطط الذي تتوقعه إعداداته. سير العمل الكامل لكل وكيل ← **Settings → MCP server** في تطبيق سطح المكتب، أو [`docs/agent-adapters.md`](../../docs/agent-adapters.md).
+**بالنسبة لوكيل يبدأ من الصفر،** يضع المثبِّت `~/.config/<agent>/splatstudio.json` (أو ما يكافئه على المنصة) إضافة إلى مقتطف MCP جاهز للصق. يحصل Cursor على رابط عميق بنقرة واحدة؛ ويحصل Claude Code على سطر `claude mcp add-json` واحد؛ ويحصل كل وكيل آخر على JSON بالمخطط الذي تتوقعه إعداداته. سير العمل الكامل لكل وكيل ← **Settings → MCP server** في تطبيق سطح المكتب، أو [`docs/agent-adapters.md`](../../docs/agent-adapters.md).
 
 **نموذج الأمان.** للقراءة فقط افتراضيًا، ويرتبط الـ daemon بـ `127.0.0.1`، ويُمنع SSRF عند حافة الوكيل. يتطلب الكشف على الشبكة المحلية تعيين `OD_BIND_HOST` صريح إضافة إلى `OD_ALLOWED_ORIGINS`. تبقى بيانات اعتماد الموصِّلات ومسارات معاينة المخرجات الحية على loopback فقط أيًا كان.
 
@@ -441,7 +441,7 @@ od skills list --json
 
 ## الإضافات
 
-**277 إضافة رسمية و183 مثالًا قابلًا لإعادة المزج** في [`plugins/_official/`](../../plugins/_official/). كل إدخال مجلد قابل للنقل يرتكز على `saascodex.json` وحمولة نوعه: `SKILL.md` لسير العمل، أو `template.json` لقوالب الوسائط، أو `DESIGN.md` لأنظمة التصميم.
+**277 إضافة رسمية و183 مثالًا قابلًا لإعادة المزج** في [`plugins/_official/`](../../plugins/_official/). كل إدخال مجلد قابل للنقل يرتكز على `splatstudio.json` وحمولة نوعه: `SKILL.md` لسير العمل، أو `template.json` لقوالب الوسائط، أو `DESIGN.md` لأنظمة التصميم.
 
 | الفئة | العدد | المحتويات |
 |---|---|---|
@@ -483,11 +483,11 @@ od plugin uninstall od-default       # uninstall
 
 ### بناء إضافة
 
-تتطلب إضافة SaaSCodex ملف `saascodex.json` وحمولة نوعها. تتضمن المهارات والسيناريوهات أيضًا `SKILL.md`؛ وتستخدم الأنواع الأخرى حمولتها الخاصة:
+تتطلب إضافة SplatStudio ملف `splatstudio.json` وحمولة نوعها. تتضمن المهارات والسيناريوهات أيضًا `SKILL.md`؛ وتستخدم الأنواع الأخرى حمولتها الخاصة:
 
 ```
 my-plugin/
-├── saascodex.json    ← required: marketplace metadata + inputs + pipeline + capabilities
+├── splatstudio.json    ← required: marketplace metadata + inputs + pipeline + capabilities
 ├── SKILL.md            ← required for agent-skill/scenario entries; omit for other plugin types
 ├── README.md           ← optional: usage, install, registry links
 ├── preview/            ← optional: index.html / poster.png (strongly recommended for visual plugins)
@@ -501,15 +501,15 @@ my-plugin/
 ```bash
 od plugin scaffold --id my-plugin --title "My Plugin"   # generate the skeleton
 od plugin validate ./my-plugin                          # check manifest / file layout
-pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
+pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 ```
 
 مجموعة الحقول الكاملة وعقد وقت التشغيل ← [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md)؛ تطوير إضافة بوكيل برمجة ← [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md)؛ قوالب دنيا جاهزة للصق ← [`plugins/spec/examples/`](../../plugins/spec/examples/).
 
 ### المساهمة بإضافة
 
-1. أسقِط مجلد الإضافة في [`plugins/community/`](../../plugins/community/) (الإضافات الخارجية)، أو — لشحنها مجمَّعة مع SaaSCodex — في المستوى المطابق ضمن [`plugins/_official/`](../../plugins/_official/).
-2. اجتز التحقق: `od plugin validate` و`pnpm guard` و`pnpm --filter @saascodex/plugin-runtime typecheck`.
+1. أسقِط مجلد الإضافة في [`plugins/community/`](../../plugins/community/) (الإضافات الخارجية)، أو — لشحنها مجمَّعة مع SplatStudio — في المستوى المطابق ضمن [`plugins/_official/`](../../plugins/_official/).
+2. اجتز التحقق: `od plugin validate` و`pnpm guard` و`pnpm --filter @splatstudio/plugin-runtime typecheck`.
 3. املأ الـ PR باستخدام القالب في [`plugins/spec/CONTRIBUTING.md`](../../plugins/spec/CONTRIBUTING.md) (المعرّف، الإصدار، المسار، الوضع، القدرات، أمثلة التشغيل؛ أرفِق لقطة شاشة / معاينة للإضافات البصرية).
 4. للنشر على سجل خارجي (skills.sh / ClawHub / GitHub مستقل) ← [`plugins/spec/PUBLISHING-REGISTRIES.md`](../../plugins/spec/PUBLISHING-REGISTRIES.md).
 
@@ -571,7 +571,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 - [x] بروتوكول جانبي + سطح مكتب Electron + أتمتة IPC
 - [x] واجهة API لفحص المخرجات + بوابة نقد ذاتي بخمسة أبعاد قبل الإصدار
 - [x] **0.8.0** — بنية تحتية لسوق الإضافات (261 إضافة رسمية، مواصفة البيان، سكربتات تثبيت لكل وكيل)
-- [x] **0.9.0** — SaaSCodex Cloud (Model Router الرسمي مدمج في التطبيق: بلا إعداد، تسجيل دخول بنقرة واحدة)
+- [x] **0.9.0** — SplatStudio Cloud (Model Router الرسمي مدمج في التطبيق: بلا إعداد، تسجيل دخول بنقرة واحدة)
 - [x] إصدارات Electron مجمَّعة — macOS (Apple Silicon + Intel) + Windows (x64) + Linux AppImage (مسار اختياري)
 - [ ] تعديلات جراحية في وضع التعليق — مشحونة جزئيًا؛ الترقيع المستهدف الموثوق قيد التنفيذ
 - [ ] تجربة استخدام لوحة تعديلات يصدرها الذكاء الاصطناعي — لم تُنفَّذ بعد
@@ -589,7 +589,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 أناس حقيقيون خلف كل قناة.
 
 - 💬 **Discord** — دردشة يومية، مشاركة الإضافات، أسئلة ← [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
-- 🐦 **X / Twitter** — ملاحظات الإصدارات، المعالم، ما وراء الكواليس ← [**@SaaSCodexHQ**](https://x.com/SaaSCodexHQ)
+- 🐦 **X / Twitter** — ملاحظات الإصدارات، المعالم، ما وراء الكواليس ← [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
 - 🗣️ **GitHub Discussions** — أسئلة وأجوبة معمّقة، RFCs، "اعرض عملك" ← [**Discussions**](https://github.com/nexu-io/open-design/discussions)
 - 🐛 **GitHub Issues** — تقارير الأخطاء، طلبات الميزات ← [**Issues**](https://github.com/nexu-io/open-design/issues)
 
@@ -599,7 +599,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 
 ## المساهمة
 
-يظل SaaSCodex يتحرك لأن المساهمين — مصممين ومهندسين ومؤلفي موجّهات — يواصلون الحضور. الكثير من أكثر المهارات وأنظمة التصميم والإضافات استخدامًا كتبها أشخاص خارج الفريق الأساسي.
+يظل SplatStudio يتحرك لأن المساهمين — مصممين ومهندسين ومؤلفي موجّهات — يواصلون الحضور. الكثير من أكثر المهارات وأنظمة التصميم والإضافات استخدامًا كتبها أشخاص خارج الفريق الأساسي.
 
 ### 🎯 من أين تبدأ (أقصى أثر، أقل تغيير)
 
@@ -607,7 +607,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 |---|---|---|
 | **مهارة** جديدة | أسقِط مجلدًا يحوي `SKILL.md` + `assets/` + `references/` | [`skills/`](../../skills/) · المواصفة في [`docs/skills-protocol.md`](../../docs/skills-protocol.md) |
 | **نظام تصميم** جديد | أسقِط حزمة تتمحور حول `DESIGN.md`، وأضف `manifest.json` أو `tokens.css` أو المكوّنات أو الأصول أو بيانات المصدر عند الحاجة | [`design-systems/<brand>/`](../../design-systems/) |
-| **إضافة** جديدة | أسقِط `saascodex.json` + حمولة النوع ضمن مجلد فئة | [`plugins/community/`](../../plugins/community/) · المواصفة في [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · دليل تطوير الوكيل في [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
+| **إضافة** جديدة | أسقِط `splatstudio.json` + حمولة النوع ضمن مجلد فئة | [`plugins/community/`](../../plugins/community/) · المواصفة في [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · دليل تطوير الوكيل في [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | دعم **واجهة CLI** جديدة لوكيل برمجة | تعريف runtime + تسجيل؛ parser فقط لتنسيق جديد | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
 | إصلاح خطأ أو تحسين الواجهة | تصفّح تصنيف [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues ←](https://github.com/nexu-io/open-design/issues) |
 | ترجمة الوثائق | حدّث ملفات `README.<lang>.md` | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
@@ -619,7 +619,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 ```bash
 # 1. Boot locally
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex && corepack enable && pnpm install
+cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
 # 2. Find a good-first-issue and assign yourself
@@ -628,7 +628,7 @@ gh issue develop <number>   # create a branch and worktree
 
 # 3. Make the change, run the checks
 pnpm guard && pnpm typecheck
-pnpm --filter @saascodex/<package> test
+pnpm --filter @splatstudio/<package> test
 
 # 4. Open the PR
 gh pr create --fill
@@ -636,9 +636,9 @@ gh pr create --fill
 
 سير المساهمة الكامل الصديق للوكلاء، وأسلوب الشفرة، ومستوى الـ PR ← [`CONTRIBUTING.md`](../../CONTRIBUTING.md) ([Deutsch](CONTRIBUTING.de.md) · [Français](CONTRIBUTING.fr.md) · [简体中文](CONTRIBUTING.zh-CN.md) · [日本語](CONTRIBUTING.ja-JP.md) · [Português](CONTRIBUTING.pt-BR.md)).
 
-### 🏅 برنامج SaaSCodex Fellow
+### 🏅 برنامج SplatStudio Fellow
 
-نوظّف **SaaSCodex Fellows** حول العالم — يشكّل الزملاء المنتج جنبًا إلى جنب مع الفريق الأساسي، ويمثّلون SaaSCodex رسميًا في منطقتهم، وينمّون المجتمع محليًا، مدعومين بدعم مموَّل ($1,000 / MR)، ورصيد LLM مجاني، ومسار مراجعة مباشر. التفاصيل ← [`MAINTAINERS.md`](../../MAINTAINERS.md) والإعلان على [Discord](https://discord.gg/mHAjSMV6gz).
+نوظّف **SplatStudio Fellows** حول العالم — يشكّل الزملاء المنتج جنبًا إلى جنب مع الفريق الأساسي، ويمثّلون SplatStudio رسميًا في منطقتهم، وينمّون المجتمع محليًا، مدعومين بدعم مموَّل ($1,000 / MR)، ورصيد LLM مجاني، ومسار مراجعة مباشر. التفاصيل ← [`MAINTAINERS.md`](../../MAINTAINERS.md) والإعلان على [Discord](https://discord.gg/mHAjSMV6gz).
 
 ---
 
@@ -672,7 +672,7 @@ gh pr create --fill
 شكرًا لكل من شارك — شفرة، وثائق، ملاحظات، مشكلة دقيقة، مهارة جديدة، نظام تصميم جديد.
 
 <a href="https://github.com/nexu-io/open-design/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SaaSCodex contributors" />
+  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
 ---
@@ -680,7 +680,7 @@ gh pr create --fill
 ## نشاط المستودع
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
+  <img alt="SplatStudio — repository metrics" src="https://repo-assets.splatstudio.app/resources/images/github-metrics.svg" />
 </picture>
 
 يُعاد توليد ملف SVG أعلاه يوميًا بواسطة [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) باستخدام [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -690,7 +690,7 @@ gh pr create --fill
 ## امنحنا نجمة
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 إن وفّر عليك هذا ثلاثين دقيقة، فامنحه ★. النجوم لا تدفع الإيجار — لكنها تخبر المصمم والوكيل والمساهم التالي بأن هذه التجربة تستحق اهتمامهم. نقرة واحدة، وثلاث ثوانٍ، وإشارة حقيقية.
@@ -699,7 +699,7 @@ gh pr create --fill
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&theme=dark&cache_bust=2026-08-04" />
     <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
-    <img alt="SaaSCodex star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
+    <img alt="SplatStudio star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
   </picture>
 </a>
 
@@ -717,7 +717,7 @@ gh pr create --fill
 | [`multica-ai/multica`](https://github.com/multica-ai/multica) | بنية الـ daemon + المحوّل — اكتشاف الوكلاء بمسح PATH، الـ daemon المحلي بصفته العملية المميَّزة الوحيدة. |
 | [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md) | المصدر التاريخي لمخطط `DESIGN.md` الأصلي ذي الأقسام التسعة و70 نظامًا مشتقًا من المصدر؛ ويمكن للحزم الحالية توسيع هذا الأساس. |
 | [`bergside/awesome-design-skills`](https://github.com/bergside/awesome-design-skills) | مصدر مهارات التصميم الـ 57 المضافة ضمن `design-systems/`. |
-| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | إطار الرسوميات الحركية HTML→MP4، مدمج بصفته `hyperframes-html` من الدرجة الأولى في SaaSCodex. |
+| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | إطار الرسوميات الحركية HTML→MP4، مدمج بصفته `hyperframes-html` من الدرجة الأولى في SplatStudio. |
 | [Claude Code skills][skill] | اصطلاح `SKILL.md` الذي نعتمده حرفيًا. |
 
 النَّسَب التفصيلي ← [`docs/references.md`](../../docs/references.md).

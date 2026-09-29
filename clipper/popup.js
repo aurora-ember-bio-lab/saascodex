@@ -1,6 +1,6 @@
-// SaaSCodex web clipper popup. Thin UI over the service worker message API.
+// SplatStudio web clipper popup. Thin UI over the service worker message API.
 //
-// Zero-config: no pairing. The popup just probes whether SaaSCodex is running
+// Zero-config: no pairing. The popup just probes whether SplatStudio is running
 // and lets you capture. The daemon URL lives under "Advanced" for the rare case
 // you ran the daemon on a non-default port.
 
@@ -136,7 +136,7 @@ function render(connected) {
   status.dataset.paired = connected ? 'true' : 'false';
   $('hint').hidden = connected;
   // Capture stays available even when disconnected; the buttons surface a clear
-  // "SaaSCodex not running" message instead of being hidden, so it never feels broken.
+  // "SplatStudio not running" message instead of being hidden, so it never feels broken.
 }
 
 function renderToolbar(visible) {

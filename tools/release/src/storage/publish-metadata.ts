@@ -21,7 +21,7 @@ import {
   releaseChannelDescriptor,
   releaseMetadataVersionFields,
   type CountedReleaseChannel,
-} from "@saascodex/release";
+} from "@splatstudio/release";
 import {
   parseReleaseNotePublication,
   releaseNoteMetadataFromPublication,

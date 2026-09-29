@@ -8,11 +8,11 @@
 // a collapsed disclosure.
 
 import { useEffect, useState, type ReactNode } from 'react';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import type {
   InstalledPluginRecord,
   PluginConnectorRef,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   applyPlugin,
   resolvedWorkspaceContextForWrite,
@@ -283,7 +283,7 @@ export function PluginDetailView(props: Props) {
   const sourceLinks = derivePluginSourceLinks(plugin);
   const official = isOfficialPlugin(plugin);
   const author = official
-    ? '@SaaSCodex'
+    ? '@SplatStudio'
     : (sourceLinks.authorName || sourceLinks.sourceLabel);
   const badge = official
     ? t('pluginDetail.officialBadge')

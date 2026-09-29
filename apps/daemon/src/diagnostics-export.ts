@@ -12,18 +12,18 @@ import {
   DIAGNOSTICS_FILENAME_PREFIX,
   diagnosticsFileName,
   type LogSource,
-} from '@saascodex/diagnostics';
+} from '@splatstudio/diagnostics';
 import {
   APP_KEYS,
-  SAASCODEX_SIDECAR_CONTRACT,
+  SPLATSTUDIO_SIDECAR_CONTRACT,
   SIDECAR_MODES,
   type LegacySidecarRuntimeLayout,
-} from '@saascodex/sidecar-proto';
+} from '@splatstudio/sidecar-proto';
 import {
   resolveLogFilePath,
   resolveRuntimeNamespaceRoot,
   type SidecarRuntimeContext,
-} from '@saascodex/sidecar';
+} from '@splatstudio/sidecar';
 
 import { readCurrentAppVersionInfo } from './app-version.js';
 import {
@@ -103,7 +103,7 @@ export interface DiagnosticsHandlerOptions {
   projectRoot: string;
   /** Directory containing per-run event logs at <runsDir>/<runId>/events.jsonl. */
   runsDir?: string | null;
-  /** SaaSCodex data dir (OD_DATA_DIR), used to locate the AMR OpenCode home. */
+  /** SplatStudio data dir (OD_DATA_DIR), used to locate the AMR OpenCode home. */
   dataDir?: string | null;
   automaticUploadStatus?: () => Record<string, unknown>;
 }
@@ -161,13 +161,13 @@ export function resolveDaemonPreviousLogPath(
   if (runtime == null) return null;
   try {
     const namespaceRoot = resolveRuntimeNamespaceRoot({
-      contract: SAASCODEX_SIDECAR_CONTRACT,
+      contract: SPLATSTUDIO_SIDECAR_CONTRACT,
       runtime,
       runtimeMode: SIDECAR_MODES.RUNTIME,
     });
     const latest = resolveLogFilePath({
       app: APP_KEYS.DAEMON,
-      contract: SAASCODEX_SIDECAR_CONTRACT,
+      contract: SPLATSTUDIO_SIDECAR_CONTRACT,
       runtimeRoot: namespaceRoot,
     });
     return `${dirname(latest)}/previous.log`;
@@ -185,7 +185,7 @@ async function buildSidecarLogSources(
   // accounts for that (a plain `resolveNamespaceRoot` here resolved every
   // daemon/web log to an ENOENT phantom path and captured none of them).
   const namespaceRoot = resolveRuntimeNamespaceRoot({
-    contract: SAASCODEX_SIDECAR_CONTRACT,
+    contract: SPLATSTUDIO_SIDECAR_CONTRACT,
     runtime,
     runtimeMode: SIDECAR_MODES.RUNTIME,
   });
@@ -194,7 +194,7 @@ async function buildSidecarLogSources(
   for (const app of apps) {
     const absolutePath = resolveLogFilePath({
       app,
-      contract: SAASCODEX_SIDECAR_CONTRACT,
+      contract: SPLATSTUDIO_SIDECAR_CONTRACT,
       runtimeRoot: namespaceRoot,
     });
     sources.push({
@@ -252,13 +252,13 @@ async function buildSidecarLogSources(
 function resolveDesktopCrashDumpsDir(runtime: SidecarRuntimeContext<LegacySidecarRuntimeLayout> | null): string | null {
   if (runtime == null) return null;
   const namespaceRoot = resolveRuntimeNamespaceRoot({
-    contract: SAASCODEX_SIDECAR_CONTRACT,
+    contract: SPLATSTUDIO_SIDECAR_CONTRACT,
     runtime,
     runtimeMode: SIDECAR_MODES.RUNTIME,
   });
   const desktopLog = resolveLogFilePath({
     app: APP_KEYS.DESKTOP,
-    contract: SAASCODEX_SIDECAR_CONTRACT,
+    contract: SPLATSTUDIO_SIDECAR_CONTRACT,
     runtimeRoot: namespaceRoot,
   });
   return join(dirname(desktopLog), 'crashes');
@@ -342,7 +342,7 @@ export function createDiagnosticsExportHandler(options: DiagnosticsHandlerOption
       const result = await buildDiagnosticsZip({
         context: {
           app: {
-            name: 'saascodex',
+            name: 'splatstudio',
             version: versionInfo?.version,
             channel: versionInfo?.channel,
             packaged: versionInfo?.packaged,
@@ -417,11 +417,11 @@ export function createDiagnosticsExportHandler(options: DiagnosticsHandlerOption
         },
         redaction: { username },
         crashReports: {
-          // Restrict to SaaSCodex's own process names. A generic "Electron"
+          // Restrict to SplatStudio's own process names. A generic "Electron"
           // substring would sweep up crash reports from any other Electron
           // app on the host (VS Code, Slack, …) and leak unrelated user data
           // into the support bundle.
-          matchSubstrings: ['Open Design', 'saascodex'],
+          matchSubstrings: ['Open Design', 'splatstudio'],
           withinDays: 7,
           maxReports: 10,
           homeDir: home,

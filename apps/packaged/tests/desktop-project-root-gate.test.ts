@@ -24,7 +24,7 @@ import {
   fetchResolvedProjectDir,
   isOpenPathAllowedForProject,
   signDesktopImportToken,
-} from "@saascodex/desktop/main";
+} from "@splatstudio/desktop/main";
 
 let tempRoot = "";
 

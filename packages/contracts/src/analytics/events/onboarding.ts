@@ -54,7 +54,7 @@ export type TrackingOnboardingStepName =
   | 'brand_extract'
   | 'generation';
 
-// How the user chose to connect to a model provider: SaaSCodex Hosted,
+// How the user chose to connect to a model provider: SplatStudio Hosted,
 // a local coding agent, or a user-supplied model key. `none` stamps click
 // events fired before any runtime was picked.
 // Onboarding's runtime pick is the same closed set as the global

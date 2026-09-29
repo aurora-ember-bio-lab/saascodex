@@ -21,7 +21,7 @@ import type {
   LibraryTask,
   LibraryTaskError,
   LibraryTaskStatus,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 type SqliteDb = Database.Database;
 

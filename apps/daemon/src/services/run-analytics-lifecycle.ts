@@ -27,7 +27,7 @@ import {
   type TrackingDesignSystemKind,
   type TrackingDesignSystemSource,
   type TrackingRunRecoveryActionType,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { spawnEnvForAgent } from '../agents.js';
 import { newInsertId, normalizeAnalyticsCaptureResult } from '../analytics.js';
 import type { AnalyticsCaptureResult, AnalyticsContext } from '../analytics.js';
@@ -86,7 +86,7 @@ import {
   runPreviewModuleCountForRun,
 } from '../runtimes/run-lifecycle-analytics.js';
 import { odNextRolloutAnalyticsProperties } from '../strategies/od-next/rollout-analytics.js';
-import type { AppliedPluginSnapshot } from '@saascodex/contracts';
+import type { AppliedPluginSnapshot } from '@splatstudio/contracts';
 import type { OdNextRolloutDecision } from '../strategies/od-next/rollout.js';
 import {
   runTouchedArtifactPaths,

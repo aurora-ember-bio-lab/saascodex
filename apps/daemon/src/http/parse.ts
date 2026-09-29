@@ -1,5 +1,5 @@
 import type { Request } from 'express';
-import { createApiError, type ApiError } from '@saascodex/contracts';
+import { createApiError, type ApiError } from '@splatstudio/contracts';
 import type { RouteInputContext } from './types.js';
 
 export function rawInput(req: Request): RouteInputContext {

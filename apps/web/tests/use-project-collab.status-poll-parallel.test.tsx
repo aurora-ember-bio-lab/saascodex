@@ -11,7 +11,7 @@ import {
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
   type WorkspaceLifecycleState,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useProjectCollab } from '../src/collab/useProjectCollab';
 

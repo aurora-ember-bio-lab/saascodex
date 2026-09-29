@@ -9,7 +9,7 @@
 // The label beside a wordmark must name the SAME tier the wordmark draws.
 
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@splatstudio/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryNavRail, resetWorkspaceDirectoryCache } from '../../src/components/EntryNavRail';

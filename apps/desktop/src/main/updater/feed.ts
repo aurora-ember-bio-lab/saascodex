@@ -7,7 +7,7 @@ import {
   compareLauncherVersions,
   validateLauncherRuntimeDescriptor,
   type LauncherRuntimeDescriptor,
-} from "@saascodex/launcher-proto";
+} from "@splatstudio/launcher-proto";
 import {
   DESKTOP_UPDATE_CHANNELS,
   DESKTOP_UPDATE_MODES,
@@ -18,7 +18,7 @@ import {
   type DesktopUpdateErrorSnapshot,
   type DesktopUpdateReinstallSnapshot,
   type DesktopUpdateState,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 
 import { isDesktopUpdateChannel, type DesktopUpdaterConfig } from "./config.js";
 import type { ResolvedChecksumSnapshot, UpdateReleaseRef } from "./store.js";
@@ -67,7 +67,7 @@ export function extensionForArtifact(name: string | undefined, type: string): st
 export function artifactFileName(candidate: UpdateCandidate): string {
   const ext = extensionForArtifact(candidate.artifact.name, candidate.artifact.type ?? "artifact");
   return [
-    "saascodex",
+    "splatstudio",
     sanitizePathSegment(candidate.version),
     sanitizePathSegment(candidate.platformKey),
     sanitizePathSegment(candidate.arch),
@@ -320,7 +320,7 @@ export function controlLauncherVersionUrl(metadata: Record<string, unknown>): st
  * distinct from `config.currentVersion`: after a payload update the running
  * version is the payload's, while the installed outer bundle on disk stays at
  * its install-time version and is the thing an installer reinstall replaces.
- * The outer bundle's own `saascodex-config.json` is the only fleet-wide
+ * The outer bundle's own `splatstudio-config.json` is the only fleet-wide
  * source (every packaged generation ships it), anchored by the launcher
  * launch path from `install.json`. Returns null when unreadable.
  */
@@ -329,8 +329,8 @@ export async function resolveInstalledOuterVersion(config: DesktopUpdaterConfig)
   if (config.launcherLaunchPath == null) return null;
   const outerConfigPath =
     config.platform === "darwin"
-      ? join(config.launcherLaunchPath, "Contents", "Resources", "saascodex-config.json")
-      : join(dirname(config.launcherLaunchPath), "resources", "saascodex-config.json");
+      ? join(config.launcherLaunchPath, "Contents", "Resources", "splatstudio-config.json")
+      : join(dirname(config.launcherLaunchPath), "resources", "splatstudio-config.json");
   try {
     const raw: unknown = JSON.parse(await readFile(outerConfigPath, "utf8"));
     if (!isRecord(raw)) return null;

@@ -32,7 +32,7 @@ import { describe, expect, it } from 'vitest';
 import {
   composeOdNextStrategyContinuationV2,
   composeOdNextStrategyStableRequestContextV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { composeChatUserRequestForAgent } from '../src/server.js';
 import { composeChatAgentTextPayload } from '../src/runtimes/chat-prompt-inputs.js';

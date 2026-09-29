@@ -11,7 +11,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { RecentProjectsStrip } from '../../src/components/RecentProjectsStrip';
 import type { Project } from '../../src/types';
-import type { WorkspaceProjectSummary } from '@saascodex/contracts';
+import type { WorkspaceProjectSummary } from '@splatstudio/contracts';
 
 const movedTeamProject: WorkspaceProjectSummary = {
   id: 'project-1',

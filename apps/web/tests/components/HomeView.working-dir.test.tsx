@@ -8,14 +8,14 @@ vi.mock('../../src/components/home-hero/PlaceholderCarousel', () => ({
 }));
 
 import { HomeView } from '../../src/components/HomeView';
-import { isSaaSCodexHostAvailable, pickHostWorkingDir } from '@saascodex/host';
+import { isSplatStudioHostAvailable, pickHostWorkingDir } from '@splatstudio/host';
 import { openFolderDialog } from '../../src/providers/registry';
 
-vi.mock('@saascodex/host', async () => {
-  const actual = await vi.importActual<typeof import('@saascodex/host')>('@saascodex/host');
+vi.mock('@splatstudio/host', async () => {
+  const actual = await vi.importActual<typeof import('@splatstudio/host')>('@splatstudio/host');
   return {
     ...actual,
-    isSaaSCodexHostAvailable: vi.fn(),
+    isSplatStudioHostAvailable: vi.fn(),
     pickHostWorkingDir: vi.fn(),
   };
 });
@@ -31,7 +31,7 @@ vi.mock('../../src/providers/registry', async () => {
   };
 });
 
-const mockedIsHostAvailable = vi.mocked(isSaaSCodexHostAvailable);
+const mockedIsHostAvailable = vi.mocked(isSplatStudioHostAvailable);
 const mockedPickHostWorkingDir = vi.mocked(pickHostWorkingDir);
 const mockedOpenFolderDialog = vi.mocked(openFolderDialog);
 

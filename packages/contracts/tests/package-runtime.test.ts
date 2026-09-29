@@ -20,7 +20,7 @@ function packagePath(target: string): string {
   return join(packageRoot, target.replace(/^\.\//, ''));
 }
 
-describe('@saascodex/contracts package runtime shape', () => {
+describe('@splatstudio/contracts package runtime shape', () => {
   it('exports built JavaScript instead of TypeScript source files', () => {
     const pkg = readPackageJson();
 
@@ -67,14 +67,14 @@ describe('@saascodex/contracts package runtime shape', () => {
   });
 
   it('makes runtime exports importable through package exports', async () => {
-    const contracts = await import('@saascodex/contracts');
-    const amrWallet = await import('@saascodex/contracts/api/amrWallet');
-    const connectionTest = await import('@saascodex/contracts/api/connectionTest');
-    const research = await import('@saascodex/contracts/api/research');
-    const handoff = await import('@saascodex/contracts/api/handoff');
-    const critique = await import('@saascodex/contracts/critique');
-    const deckStageFallback = await import('@saascodex/contracts/runtime/deck-stage-fallback');
-    const deckProtocol = await import('@saascodex/contracts/runtime/deck-protocol');
+    const contracts = await import('@splatstudio/contracts');
+    const amrWallet = await import('@splatstudio/contracts/api/amrWallet');
+    const connectionTest = await import('@splatstudio/contracts/api/connectionTest');
+    const research = await import('@splatstudio/contracts/api/research');
+    const handoff = await import('@splatstudio/contracts/api/handoff');
+    const critique = await import('@splatstudio/contracts/critique');
+    const deckStageFallback = await import('@splatstudio/contracts/runtime/deck-stage-fallback');
+    const deckProtocol = await import('@splatstudio/contracts/runtime/deck-protocol');
 
     expect(contracts.composeSystemPrompt).toEqual(expect.any(Function));
     expect(contracts.exampleHealthResponse).toEqual({ ok: true, service: 'daemon' });

@@ -1,6 +1,6 @@
-# 发布 SaaSCodex 插件
+# 发布 SplatStudio 插件
 
-SaaSCodex registry v1 复用 GitHub 作为后端。CLI 是 canonical workflow；
+SplatStudio registry v1 复用 GitHub 作为后端。CLI 是 canonical workflow；
 产品 UI 和 agent 创建流程只是包装这些命令。
 
 ## 1. 创建
@@ -9,7 +9,7 @@ SaaSCodex registry v1 复用 GitHub 作为后端。CLI 是 canonical workflow；
 od plugin scaffold --id vendor/plugin-name --title "Plugin name" --out ./plugins/community
 ```
 
-公开 registry ID 必须是 `vendor/plugin-name`。生成的 `saascodex.json`
+公开 registry ID 必须是 `vendor/plugin-name`。生成的 `splatstudio.json`
 需要包含 `plugin.repo`，指向插件的源码仓库或源码子目录。
 
 ## 2. 校验和打包
@@ -20,7 +20,7 @@ od plugin pack ./plugins/community/plugin-name --out ./dist
 ```
 
 registry 接受任何能通过 validate 和 pack 的插件。源码仓库不需要特殊结构，
-只需要 `SKILL.md` 和 `saascodex.json`。
+只需要 `SKILL.md` 和 `splatstudio.json`。
 
 ## 3. 登录
 
@@ -29,18 +29,18 @@ od plugin login
 od plugin whoami --json
 ```
 
-这两个命令包装 GitHub CLI。token 留在 `gh`，SaaSCodex 不保存 GitHub
+这两个命令包装 GitHub CLI。token 留在 `gh`，SplatStudio 不保存 GitHub
 凭据。
 
 ## 4. 发布
 
 ```bash
-od plugin publish vendor/plugin-name --to saascodex --repo https://github.com/vendor/plugin-name
+od plugin publish vendor/plugin-name --to splatstudio --repo https://github.com/vendor/plugin-name
 ```
 
 v1 会打开 GitHub registry review flow。发布 payload 包含插件 ID、版本、
 源码仓库、能力摘要、包 digest 和 registry entry path。合并之后，CI 重新生成
-`saascodex-marketplace.json`。
+`splatstudio-marketplace.json`。
 
 ## 5. 从 registry 安装
 

@@ -9,7 +9,7 @@ Führen Sie das vollständige Produkt lokal aus.
 - **Node.js:** `~24` (Node 24.x). Das Repository erzwingt dies über `package.json#engines`.
 - **pnpm:** `10.33.x`. Das Repository pinnt `pnpm@10.33.2` über `packageManager`; verwenden Sie Corepack, damit automatisch die gepinnte Version gewählt wird.
 - **OS:** macOS, Linux und WSL2 sind die primären Pfade. Windows nativ sollte für die meisten Abläufe funktionieren, WSL2 ist aber die sicherere Basis.
-- **Optionale lokale Agent-CLI:** SaaSCodex unterstützt eine Registry lokaler Runtimes, darunter Claude Code, Codex, Devin for Terminal, OpenCode, Cursor Agent, Qwen, Qoder CLI, GitHub Copilot CLI und weitere. Die aktuelle Liste steht in [`apps/daemon/src/runtimes/registry.ts`](../../apps/daemon/src/runtimes/registry.ts). Wenn keine installiert ist, verwenden Sie eine in den Einstellungen konfigurierte BYOK-Runtime.
+- **Optionale lokale Agent-CLI:** SplatStudio unterstützt eine Registry lokaler Runtimes, darunter Claude Code, Codex, Devin for Terminal, OpenCode, Cursor Agent, Qwen, Qoder CLI, GitHub Copilot CLI und weitere. Die aktuelle Liste steht in [`apps/daemon/src/runtimes/registry.ts`](../../apps/daemon/src/runtimes/registry.ts). Wenn keine installiert ist, verwenden Sie eine in den Einstellungen konfigurierte BYOK-Runtime.
 
 `nvm` / `fnm` sind optionale Komfortwerkzeuge, keine Voraussetzung für das Projektsetup. Wenn Sie eines davon verwenden, installieren/selektieren Sie Node 24 vor pnpm:
 
@@ -63,8 +63,8 @@ pnpm tools-dev status          # verwaltete Runtimes prüfen
 pnpm tools-dev logs            # daemon/web/desktop logs anzeigen
 pnpm tools-dev check           # status + aktuelle logs + gängige Diagnosen
 pnpm tools-dev stop            # verwaltete Runtimes stoppen
-pnpm --filter @saascodex/daemon build  # apps/daemon/dist/cli.js für `od` bauen
-pnpm --filter @saascodex/web build     # Web-Paket bei Bedarf bauen
+pnpm --filter @splatstudio/daemon build  # apps/daemon/dist/cli.js für `od` bauen
+pnpm --filter @splatstudio/web build     # Web-Paket bei Bedarf bauen
 pnpm typecheck                 # Workspace-Typecheck
 ```
 
@@ -74,7 +74,7 @@ Während lokaler Entwicklung startet `tools-dev` zuerst den daemon, übergibt de
 
 ## Docker-Setup
 
-Führen Sie SaaSCodex in einer vollständig containerisierten Umgebung aus, ohne Node.js oder pnpm lokal zu installieren.
+Führen Sie SplatStudio in einer vollständig containerisierten Umgebung aus, ohne Node.js oder pnpm lokal zu installieren.
 
 ### Voraussetzungen
 
@@ -89,7 +89,7 @@ docker compose version
 
 ---
 
-## SaaSCodex starten
+## SplatStudio starten
 
 Gehen Sie vom Repository-Stammverzeichnis aus wie folgt vor:
 
@@ -171,16 +171,16 @@ Bearbeiten Sie `deploy/.env`, um Ihr eigenes Token festzulegen und andere Werte 
 
 ```env
 # Auf dem Host exponierter Port
-SAASCODEX_PORT=7456
+SPLATSTUDIO_PORT=7456
 
 # Container-Speicherlimit
-SAASCODEX_MEM_LIMIT=384m
+SPLATSTUDIO_MEM_LIMIT=384m
 
 # Erlaubte CORS-Ursprünge
-SAASCODEX_ALLOWED_ORIGINS=https://yourdomain.com
+SPLATSTUDIO_ALLOWED_ORIGINS=https://yourdomain.com
 
 # Docker-Image-Tag
-SAASCODEX_IMAGE=ghcr.io/nexu-io/od:latest
+SPLATSTUDIO_IMAGE=ghcr.io/aurora-ember-bio-lab/splatstudio:latest
 
 # Erforderliches API-Token für die Daemon-Sicherheit
 # Erzeugen Sie eines mit: openssl rand -hex 32
@@ -217,13 +217,13 @@ Image-, Video-, Audio- und HyperFrames-Skills rufen die lokale `od` CLI über Um
 Wenn Mediengenerierung mit `OD_BIN: parameter not set`, fehlendem `apps/daemon/dist/cli.js` oder `failed to reach daemon at http://127.0.0.1:0` fehlschlägt, bauen Sie die daemon-CLI neu und starten Sie die verwaltete Runtime neu:
 
 ```bash
-pnpm --filter @saascodex/daemon build
+pnpm --filter @splatstudio/daemon build
 pnpm tools-dev restart --daemon-port 7457 --web-port 5175
 ls -la apps/daemon/dist/cli.js
 curl -s http://127.0.0.1:7457/api/health
 ```
 
-Öffnen Sie danach das Projekt erneut aus der SaaSCodex App, statt eine alte Terminal-Agent-Session fortzusetzen. Ein vom daemon gestarteter Agent sollte Werte wie diese sehen:
+Öffnen Sie danach das Projekt erneut aus der SplatStudio App, statt eine alte Terminal-Agent-Session fortzusetzen. Ein vom daemon gestarteter Agent sollte Werte wie diese sehen:
 
 ```bash
 echo "OD_BIN=$OD_BIN"
@@ -282,7 +282,7 @@ Wechseln Sie Skill oder Designsystem in der oberen Leiste, nutzt die nächste An
 ## Dateistruktur
 
 ```
-saascodex/
+splatstudio/
 ├── apps/
 │   ├── daemon/                # Node/Express — spawns local agents + serves APIs
 │   │   └── src/
@@ -310,7 +310,7 @@ saascodex/
 │   └── desktop/               # Electron runtime, launched/inspected by tools-dev
 ├── packages/
 │   ├── contracts/             # shared web/daemon app contracts
-│   ├── sidecar-proto/         # SaaSCodex sidecar protocol contract
+│   ├── sidecar-proto/         # SplatStudio sidecar protocol contract
 │   ├── sidecar/               # generic sidecar runtime primitives
 │   └── platform/              # generic process/platform primitives
 ├── tools/dev/                 # `pnpm tools-dev` lifecycle and inspect CLI
@@ -328,8 +328,8 @@ saascodex/
 
 - **"no agents found on PATH"** — installieren Sie eine der in [`apps/daemon/src/runtimes/registry.ts`](../../apps/daemon/src/runtimes/registry.ts) registrierten lokalen Runtimes, stellen Sie sicher, dass der daemon deren Executable findet, und verwenden Sie danach **Rescan** unter **Models & providers → Local CLI**. Alternativ konfigurieren Sie in den Einstellungen eine BYOK-Runtime.
 - **daemon 500 on /api/chat** — prüfen Sie das daemon-Terminal und den stderr-Auszug; meist hat die CLI ihre Argumente abgelehnt. Unterschiedliche CLIs haben unterschiedliche argv-Formen; prüfen Sie die passende Definition unter `apps/daemon/src/runtimes/defs/`, falls Sie nachjustieren müssen.
-- **media generation says `OD_BIN` is missing or daemon URL is `:0`** — führen Sie die Media Dispatcher Checks oben aus. Setzen Sie keine alte CLI-Session fort; öffnen Sie das Projekt aus der SaaSCodex App neu, damit der daemon frische `OD_*` Variablen injiziert.
-- **Codex lädt zu viel Plugin-Kontext** — starten Sie SaaSCodex mit `OD_CODEX_DISABLE_PLUGINS=1 pnpm tools-dev`, damit vom daemon gestartete Codex-Prozesse mit `--disable plugins` laufen.
+- **media generation says `OD_BIN` is missing or daemon URL is `:0`** — führen Sie die Media Dispatcher Checks oben aus. Setzen Sie keine alte CLI-Session fort; öffnen Sie das Projekt aus der SplatStudio App neu, damit der daemon frische `OD_*` Variablen injiziert.
+- **Codex lädt zu viel Plugin-Kontext** — starten Sie SplatStudio mit `OD_CODEX_DISABLE_PLUGINS=1 pnpm tools-dev`, damit vom daemon gestartete Codex-Prozesse mit `--disable plugins` laufen.
 - **artifact never renders** — bestimmen Sie zuerst das Übergabeprofil. Prüfen Sie bei einer dateisystemfähigen lokalen Runtime, ob der Agent eine darstellbare Projektdatei angelegt hat und Datei-Events den daemon erreicht haben; Quelltext gehört dort nicht in `<artifact>`. Prüfen Sie bei Plain-/Text-only- oder BYOK-Läufen auf genau einen vollständigen `<artifact>`-Block und suchen Sie im daemon-Log die erste fehlgeschlagene Grenze.
 
 ## Bezug zur Vision

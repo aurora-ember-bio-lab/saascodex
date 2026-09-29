@@ -1,8 +1,8 @@
-# SaaSCodex Manual Edit Mode Requirements
+# SplatStudio Manual Edit Mode Requirements
 
 ## Purpose
 
-This document records the accepted manual edit-mode model from `apps/edit-mode-demo` so it can be migrated into the main SaaSCodex web app.
+This document records the accepted manual edit-mode model from `apps/edit-mode-demo` so it can be migrated into the main SplatStudio web app.
 
 The key product decision is:
 
@@ -95,7 +95,7 @@ Purpose: live artifact preview.
 Required behavior:
 
 - Render artifact in sandboxed iframe.
-- Preserve SaaSCodex's existing preview model.
+- Preserve SplatStudio's existing preview model.
 - In edit mode, selectable elements show subtle outlines.
 - Hovered/selectable elements should feel discoverable without overwhelming the artifact.
 - Center toolbar includes:
@@ -411,7 +411,7 @@ The accepted design direction:
   - left layers
   - center canvas
   - right properties modal
-- SaaSCodex-specific mode rail:
+- SplatStudio-specific mode rail:
   - Preview
   - Edit
   - Comment AI
@@ -443,7 +443,7 @@ Likely production destinations:
 - `apps/web/src/components/FileViewer.tsx`
 - `apps/web/src/index.css`
 
-Existing SaaSCodex integration points:
+Existing SplatStudio integration points:
 
 - `FileViewer` already owns preview iframe and mode toolbar.
 - Existing comment mode already injects a preview bridge.

@@ -1,4 +1,4 @@
-import type { AppliedPluginSnapshot, ChatSessionMode } from '@saascodex/contracts';
+import type { AppliedPluginSnapshot, ChatSessionMode } from '@splatstudio/contracts';
 
 /**
  * An applied snapshot carries `strategy` only when the daemon bound an internal

@@ -1,6 +1,6 @@
 # Dependency triage
 
-Baseline scan of the SaaSCodex dependency tree, captured 2026-09-28 with
+Baseline scan of the SplatStudio dependency tree, captured 2026-09-28 with
 `pnpm audit` (and corroborated by Dependabot on the GitHub repo).
 
 ## Remediation applied (2026-09-28)
@@ -79,7 +79,7 @@ Dependency families with the most advisories: `@xmldom/xmldom` (23), `next`
 ## Remediation plan
 
 1. **`next` → ≥16.3.3** (clears both criticals + the Next highs). One bump in
-   `apps/web/package.json`, then `pnpm install`, `pnpm --filter @saascodex/web
+   `apps/web/package.json`, then `pnpm install`, `pnpm --filter @splatstudio/web
    typecheck`, web build, and the web test suite.
 2. **Direct runtime deps**: `multer`, `sharp`, `postcss`, `js-yaml`, `nanoid`,
    `lodash-es`, `vite`, `protobufjs`.

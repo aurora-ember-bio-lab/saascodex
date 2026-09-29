@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { ChatRunStatusResponse, StrategyTaskProjectionV2 } from '@saascodex/contracts';
+import type { ChatRunStatusResponse, StrategyTaskProjectionV2 } from '@splatstudio/contracts';
 import {
   resolveQuestionFormStrategyTaskExecutionId,
   strategyBlockedMessageFields,

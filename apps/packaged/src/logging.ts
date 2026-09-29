@@ -1,6 +1,6 @@
 import { appendFileSync } from "node:fs";
 
-import type { SidecarStamp } from "@saascodex/sidecar";
+import type { SidecarStamp } from "@splatstudio/sidecar";
 
 import type { PackagedNamespacePaths } from "./paths.js";
 

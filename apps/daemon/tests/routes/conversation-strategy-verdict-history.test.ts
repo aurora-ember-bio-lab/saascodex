@@ -4,8 +4,8 @@ import type { AddressInfo } from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
 
-import type { AppliedPluginSnapshot, ChatMessage, SaaSCodexPlanContractV2 } from '@saascodex/contracts';
-import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
+import type { AppliedPluginSnapshot, ChatMessage, SplatStudioPlanContractV2 } from '@splatstudio/contracts';
+import { strategyPackageHashFromDigests } from '@splatstudio/plugin-runtime';
 import express, { type Response } from 'express';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
@@ -67,7 +67,7 @@ function seedTaskAndMessage(
     pluginVersion: '2.0.0',
     manifestSourceDigest: 'history-fixture-manifest',
     strategy: {
-      schema: 'saascodex.applied-strategy/v2',
+      schema: 'splatstudio.applied-strategy/v2',
       id: 'od-next-strategy',
       version: '2.0.0',
       packageHash: strategyPackageHashFromDigests(assetDigests),
@@ -135,10 +135,10 @@ function seedTaskAndMessage(
   return { snapshot, task };
 }
 
-function planContract(snapshot: AppliedPluginSnapshot): SaaSCodexPlanContractV2 {
+function planContract(snapshot: AppliedPluginSnapshot): SplatStudioPlanContractV2 {
   const strategy = snapshot.strategy!;
   return {
-    schema: 'saascodex.plan-contract/v2',
+    schema: 'splatstudio.plan-contract/v2',
     strategy: {
       id: 'od-next-strategy',
       version: strategy.version,

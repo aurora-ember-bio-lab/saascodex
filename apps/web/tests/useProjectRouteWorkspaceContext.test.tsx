@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { act, cleanup, render, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import {
   projectResourceReadsCanStart,
   useProjectRouteWorkspaceContext,

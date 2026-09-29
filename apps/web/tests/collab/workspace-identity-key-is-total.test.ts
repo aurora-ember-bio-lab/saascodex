@@ -17,7 +17,7 @@
 // distinct cache partition — never an exception.
 
 import { describe, expect, it } from 'vitest';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 import {
   beginWorkspaceScopedRead,

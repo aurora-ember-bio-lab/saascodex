@@ -40,7 +40,7 @@ export async function seedPackagedAppConfig(config: ToolPackConfig): Promise<voi
 }
 
 export async function writeLaunchPackagedConfig(config: ToolPackConfig, appPath: string): Promise<string> {
-  const embeddedConfigPath = join(appPath, "Contents", "Resources", "saascodex-config.json");
+  const embeddedConfigPath = join(appPath, "Contents", "Resources", "splatstudio-config.json");
   const raw = (await pathExists(embeddedConfigPath))
     ? JSON.parse(await readFile(embeddedConfigPath, "utf8")) as unknown
     : {};
@@ -48,7 +48,7 @@ export async function writeLaunchPackagedConfig(config: ToolPackConfig, appPath:
     throw new Error(`packaged launch config source must be a JSON object: ${embeddedConfigPath}`);
   }
 
-  const launchConfigPath = join(config.roots.runtime.namespaceRoot, "runtime", "saascodex-config.json");
+  const launchConfigPath = join(config.roots.runtime.namespaceRoot, "runtime", "splatstudio-config.json");
   await mkdir(dirname(launchConfigPath), { recursive: true });
   await writeFile(
     launchConfigPath,

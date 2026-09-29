@@ -1,7 +1,7 @@
 import { readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { AutomaticDiagnosticSource, LogSource } from '@saascodex/diagnostics';
+import type { AutomaticDiagnosticSource, LogSource } from '@splatstudio/diagnostics';
 
 interface Offset { size: number; ino: number; birthtime: number }
 interface ConsentState { enabled: boolean; since: number; offsets: Record<string, Offset> }

@@ -8,7 +8,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { createCollabRuntime, type CollabRuntime } from '../src/collab/runtime.js';
 import {
   createSqlitePublicFilePublicationStore,

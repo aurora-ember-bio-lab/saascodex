@@ -10,7 +10,7 @@
 
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 
 import { PluginDetailsModal } from '../../src/components/PluginDetailsModal';
 import { PluginMetaSections } from '../../src/components/plugin-details/PluginMetaSections';
@@ -430,7 +430,7 @@ describe('PluginDetailsModal common metadata coverage', () => {
     expect(html).not.toContain('plugin-meta-sections__heading');
   });
 
-  it('routes official plugin author and source links to the SaaSCodex repo', () => {
+  it('routes official plugin author and source links to the SplatStudio repo', () => {
     const html = render(
       pluginWithMeta({
         id: 'official-link-meta',

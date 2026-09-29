@@ -38,8 +38,8 @@ corepack pnpm tools-pack verify-runtime \
   --json
 ```
 
-The command reads `saascodex-config.json`, then executes only the Vela and
-OpenCode paths below `saascodex/bin`. Missing companions, paths escaping the
+The command reads `splatstudio-config.json`, then executes only the Vela and
+OpenCode paths below `splatstudio/bin`. Missing companions, paths escaping the
 package, version/platform mismatches and binaries changing during verification
 fail the command. No PATH fallback is used. Expected binary versions must come
 from the reviewed Vela package pin and its published runtime provenance and
@@ -53,7 +53,7 @@ The normal E2E suite resolves the exact optional dependency owned by
 `tools/pack/package.json`, without using a developer PATH binary:
 
 ```sh
-corepack pnpm --filter @saascodex/e2e test tests/amr/vela-contract.test.ts
+corepack pnpm --filter @splatstudio/e2e test tests/amr/vela-contract.test.ts
 ```
 
 Both `ci.yml`'s `e2e_vitest` lane and `release-prerelease-tests.yml` already run
@@ -85,7 +85,7 @@ fact. Both the outstanding Write and completed-Write/missing-terminal scenarios
 must remain unsuccessful and must submit only one prompt.
 
 `--require-continuation` requires the negotiated
-`com.saascodex.nativeSessionContinue` v1 capability and structured
+`com.splatstudio.nativeSessionContinue` v1 capability and structured
 `OPENCODE_COMPACTION_CONTINUATION_INCOMPLETE` error, with explicit committed-tool
 evidence. It starts a fresh Vela process, loads the same durable session ID and
 uses `_session/continue` with the original cursor. There must be no new session
@@ -97,10 +97,10 @@ cancellation/attempt-limit policy.
 
 ## Verified baseline, 2026-09-09
 
-Host: macOS Darwin 24.6.0, arm64, Node 24.16.0. SaaSCodex test source baseline:
+Host: macOS Darwin 24.6.0, arm64, Node 24.16.0. SplatStudio test source baseline:
 `d54f5cf07d35261dce3c8c2e7fc187c6cc9efb86`.
 
-The immutable [0.22.1-prerelease.13 macOS manifest](https://releases.saascodex.com/prerelease/versions/0.22.1-prerelease.13/platforms/mac_arm64.json)
+The immutable [0.22.1-prerelease.13 macOS manifest](https://releases.splatstudio.app/prerelease/versions/0.22.1-prerelease.13/platforms/mac_arm64.json)
 identifies app commit `ee76e93c75c5235bbb7a3464e832cff987d80c91`. Its downloaded
 payload passed the published archive checksum. Selected executables were
 extracted from that verified payload; the full app was not installed/launched.
@@ -137,13 +137,13 @@ The fork tag and self-reported `--version` string are separate identifiers.
   the measured commit above. The seven-scenario result remains tied to that
   measured binary, rather than claiming a new combined-package validation.
   The host cancellation notification companion is
-  [SaaSCodex #7959](https://github.com/nexu-io/open-design/pull/7959), commit
+  [SplatStudio #7959](https://github.com/nexu-io/open-design/pull/7959), commit
   `65fa5dced1`; it has not been included in this PR's combined-package acceptance.
 - [Vela PR #1952](https://github.com/powerformer/vela/pull/1952), commit
   `1acdf79feaf88837763eb3afeb291421603ab76f`: locally built `0.0.1-test`, SHA-256
   `487a9cb1882aa0cc9badb170a51ecf7a86f14c40e0de19694ac57e665cf95cc1`, passed
   all eight continuation-profile scenarios. Related production changes are
-  [SaaSCodex #7958](https://github.com/nexu-io/open-design/pull/7958) and
+  [SplatStudio #7958](https://github.com/nexu-io/open-design/pull/7958) and
   [OpenCode #16](https://github.com/powerformer/opencode/pull/16). This is still
   an unpublished, separate candidate; a combined version needs verification.
 

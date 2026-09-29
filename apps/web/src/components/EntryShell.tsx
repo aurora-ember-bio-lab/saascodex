@@ -32,8 +32,8 @@ import {
   type RunContextSelection,
   type ProjectScenarioTaskProfile,
   type WorkspaceProjectSummary,
-} from '@saascodex/contracts';
-import type { SaaSCodexHostProjectImportSuccess } from '@saascodex/host';
+} from '@splatstudio/contracts';
+import type { SplatStudioHostProjectImportSuccess } from '@splatstudio/host';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackHomeNavClick,
@@ -69,8 +69,8 @@ import type {
   TrackingOnboardingCompletionResult,
   TrackingOnboardingCompletionType,
   TrackingCliProviderId,
-} from '@saascodex/contracts/analytics';
-import { agentIdToTracking } from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
+import { agentIdToTracking } from '@splatstudio/contracts/analytics';
 import { useI18n, useT } from '../i18n';
 import { navigate, useRoute } from '../router';
 import type {
@@ -139,7 +139,7 @@ import {
 import type { OnboardingEntry } from '../onboarding/onboarding-entry';
 import type { PluginUseAction } from './plugins-home/useActions';
 import { Icon } from './Icon';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import {
   defaultAgentModelId,
   effectiveAgentModelChoice,
@@ -265,7 +265,7 @@ function writeStoredRailOpen(open: boolean): void {
   }
 }
 
-const ONBOARDING_DROPDOWN_OPEN_EVENT = 'saascodex:onboarding-dropdown-open';
+const ONBOARDING_DROPDOWN_OPEN_EVENT = 'splatstudio:onboarding-dropdown-open';
 
 // Agent and provider validation share one shape: idle until an attempt starts,
 // then keyed by the inputs that attempt is proving, so a result that no longer
@@ -283,7 +283,7 @@ type OnboardingRuntimeTestState =
 // `display` based on `--compact-topbar` breakpoint (900px).
 
 // Default scenario plugin for each project kind/intent. The mapping
-// lives in `@saascodex/contracts` so the daemon's `/api/projects`
+// lives in `@splatstudio/contracts` so the daemon's `/api/projects`
 // and `/api/runs` fallbacks resolve to the same plugin id when no
 // `pluginId` is on the request body — plan §3.3 of
 // `specs/current/plugin-driven-flow-plan.md`.
@@ -497,7 +497,7 @@ interface Props {
   // During a transient Cloud outage it prevents the rail from presenting a
   // still-signed-in user as signed out.
   amrLoggedIn?: boolean | null;
-  amrSessionState?: import('@saascodex/contracts').AmrSessionState;
+  amrSessionState?: import('@splatstudio/contracts').AmrSessionState;
   /**
    * vela login-status account/user plan (ACCOUNT-scoped). Used for personal
    * workspaces so a confirmed free account is not stuck as campaign audience
@@ -545,7 +545,7 @@ interface Props {
     file: File,
   ) => Promise<ImportClaudeDesignOutcome | void> | ImportClaudeDesignOutcome | void;
   onImportFolder?: (baseDir: string) => Promise<void> | void;
-  onImportFolderResponse?: (response: SaaSCodexHostProjectImportSuccess) => Promise<void> | void;
+  onImportFolderResponse?: (response: SplatStudioHostProjectImportSuccess) => Promise<void> | void;
   onOpenProject: (
     id: string,
     fileName?: string,
@@ -566,7 +566,7 @@ interface Props {
   // First-run onboarding intentionally stops after model-source setup.
   // Guided design-system creation stays reachable from the standalone
   // `design-system-create` route and the Design Systems tab.
-  onSaaSCodexSystem?: (id: string) => void;
+  onSplatStudioSystem?: (id: string) => void;
   onDesignSystemsRefresh?: () => Promise<void> | void;
   onPersistComposioKey: (composio: AppConfig['composio']) => Promise<void> | void;
   onOpenSettings: (section?: EntrySettingsSection) => void;
@@ -674,7 +674,7 @@ export function EntryShell({
   onTeamProjectContentReady,
   onChangeDefaultDesignSystem,
   onCreateDesignSystem,
-  onSaaSCodexSystem,
+  onSplatStudioSystem,
   onDesignSystemsRefresh,
   onPersistComposioKey,
   onOpenSettings,
@@ -706,12 +706,12 @@ export function EntryShell({
   const railWorkspaceContext = accountFooterState === 'sign-in'
     ? null
     : workspaceContext;
-  const usesSaaSCodexCloud = config.mode === 'daemon' && config.agentId === 'amr';
-  const amrProfile = config.agentCliEnv?.amr?.SAASCODEX_AMR_PROFILE ?? null;
+  const usesSplatStudioCloud = config.mode === 'daemon' && config.agentId === 'amr';
+  const amrProfile = config.agentCliEnv?.amr?.SPLATSTUDIO_AMR_PROFILE ?? null;
   const amrAuthRequired =
     workspaceContextState.failure === 'reauth-required'
     || (
-      usesSaaSCodexCloud
+      usesSplatStudioCloud
       && requiresAmrReauthentication(amrSessionState, workspaceContextState.failure)
     );
   useEffect(() => {
@@ -719,10 +719,10 @@ export function EntryShell({
     // status and a definitive credential rejection return to the existing
     // Cloud identity gate. Passive reauthentication preserves the saved model
     // source and Home's locally persisted, not-yet-sent draft.
-    const selectedCloudIdentityRejected = usesSaaSCodexCloud && amrLoggedIn === false;
+    const selectedCloudIdentityRejected = usesSplatStudioCloud && amrLoggedIn === false;
     if ((!selectedCloudIdentityRejected && !amrAuthRequired) || view === 'onboarding') return;
     navigate({ kind: 'home', view: 'onboarding' }, { replace: true });
-  }, [amrAuthRequired, amrLoggedIn, usesSaaSCodexCloud, view]);
+  }, [amrAuthRequired, amrLoggedIn, usesSplatStudioCloud, view]);
   let accountFooterNotice: ReactNode = null;
   if (accountFooterState === 'syncing') {
     accountFooterNotice = <RailAccountSyncTip />;
@@ -1445,7 +1445,7 @@ export function EntryShell({
     // after this line may rely on this instance's state or DOM. App owns the
     // hand-off and the way back.
     const handoff = onBeginProjectCreation(createInput);
-    // SaaSCodex Cloud pre-run balance gate: hard blocks (empty wallet or
+    // SplatStudio Cloud pre-run balance gate: hard blocks (empty wallet or
     // signed out) fire BEFORE the project is created — the dialog now sits over
     // the pending frame, and a dismiss rolls the hand-off back to Home with the
     // composer draft intact. In-project sends are gated separately in
@@ -1658,7 +1658,7 @@ export function EntryShell({
    * Onboarding is where a signed-out user signs IN, so the workspace context
    * the shell resolved before it is stale by definition. Without this the rail
    * came back in its signed-out shape — no workspace switcher, no 草稿 / 全部项目
-   * / Workspace 设置, and the "sign in to SaaSCodex Cloud" callout still in
+   * / Workspace 设置, and the "sign in to SplatStudio Cloud" callout still in
    * the bottom-left corner (#140) — until a focus or the 30s poll happened to
    * re-read it. `CloudSignInTip` fires the same three after its own sign-in.
    *
@@ -1951,7 +1951,7 @@ export function EntryShell({
                     selectedId={defaultDesignSystemId}
                     onSelect={onChangeDefaultDesignSystem}
                     onCreate={onCreateDesignSystem}
-                    onOpenSystem={onSaaSCodexSystem}
+                    onOpenSystem={onSplatStudioSystem}
                     onSystemsRefresh={onDesignSystemsRefresh}
                   />
                 </div>
@@ -1964,7 +1964,7 @@ export function EntryShell({
                     selectedId={defaultDesignSystemId}
                     onSelect={onChangeDefaultDesignSystem}
                     onCreate={onCreateDesignSystem}
-                    onOpenSystem={onSaaSCodexSystem}
+                    onOpenSystem={onSplatStudioSystem}
                     onSystemsRefresh={onDesignSystemsRefresh}
                   />
                 </div>
@@ -3260,7 +3260,7 @@ function OnboardingView({
         // Onboarding may sit on this step for a while before finishOnboarding
         // fires refreshWorkspaceSurfacesAfterOnboarding() — without firing
         // these here too, Home's rail can render in its stale signed-out
-        // shape (still showing the "sign in to SaaSCodex Cloud" callout)
+        // shape (still showing the "sign in to SplatStudio Cloud" callout)
         // for however long that gap lasts. Mirrors CloudSignInTip's own
         // finishSignedIn().
         notifyWorkspaceContextRefresh();
@@ -3784,7 +3784,7 @@ function OnboardingView({
           <footer className="onboarding-cloud__footer">
             <LanguageMenu placement="up" align="start" />
             <span>
-              © {new Date().getFullYear()} SaaSCodex · {t('settings.onboardingCloudRights')}
+              © {new Date().getFullYear()} SplatStudio · {t('settings.onboardingCloudRights')}
             </span>
           </footer>
         </div>
@@ -3912,7 +3912,7 @@ function OnboardingView({
           <footer className="onboarding-cloud__footer">
             <LanguageMenu placement="up" align="start" />
             <span>
-              © {new Date().getFullYear()} SaaSCodex ·{' '}
+              © {new Date().getFullYear()} SplatStudio ·{' '}
               {t('settings.onboardingCloudRights')}
             </span>
           </footer>

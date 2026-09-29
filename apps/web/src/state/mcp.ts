@@ -11,7 +11,7 @@ import type {
   McpServersResponse,
   McpTemplate,
   StartMcpOAuthResponse,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export type {
   McpOAuthStatusResponse,

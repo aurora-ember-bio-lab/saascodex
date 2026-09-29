@@ -1,4 +1,4 @@
-export const SAASCODEX_BRIEF_ARTIFACT_TYPES = [
+export const SPLATSTUDIO_BRIEF_ARTIFACT_TYPES = [
   'website',
   'product-prototype',
   'presentation',
@@ -9,17 +9,17 @@ export const SAASCODEX_BRIEF_ARTIFACT_TYPES = [
   'design-system',
 ] as const;
 
-export type SaaSCodexBriefArtifactType =
-  (typeof SAASCODEX_BRIEF_ARTIFACT_TYPES)[number];
+export type SplatStudioBriefArtifactType =
+  (typeof SPLATSTUDIO_BRIEF_ARTIFACT_TYPES)[number];
 
-export interface SaaSCodexBriefOption {
+export interface SplatStudioBriefOption {
   /** Stable, unlocalized value submitted by Desktop and CLI hosts. */
   id: string;
   label: string;
   description: string;
 }
 
-export interface SaaSCodexBriefQuestion {
+export interface SplatStudioBriefQuestion {
   /** Stable, artifact-qualified decision id. */
   id: string;
   label: string;
@@ -28,23 +28,23 @@ export interface SaaSCodexBriefQuestion {
   required: true;
   allowCustom: false;
   defaultOptionId: string;
-  options: readonly SaaSCodexBriefOption[];
+  options: readonly SplatStudioBriefOption[];
 }
 
-export type SaaSCodexBriefAnswers = Readonly<Record<string, readonly string[]>>;
+export type SplatStudioBriefAnswers = Readonly<Record<string, readonly string[]>>;
 
-export interface SaaSCodexBriefDecision {
-  artifactType: SaaSCodexBriefArtifactType;
-  decisionSource: 'saascodex-shared-brief-v1';
-  questions: readonly SaaSCodexBriefQuestion[];
-  answers: SaaSCodexBriefAnswers;
+export interface SplatStudioBriefDecision {
+  artifactType: SplatStudioBriefArtifactType;
+  decisionSource: 'splatstudio-shared-brief-v1';
+  questions: readonly SplatStudioBriefQuestion[];
+  answers: SplatStudioBriefAnswers;
   summary: string;
   complete: boolean;
 }
 
-export interface CollectSaaSCodexBriefInput {
-  artifactType: SaaSCodexBriefArtifactType;
-  previousArtifactType?: SaaSCodexBriefArtifactType;
+export interface CollectSplatStudioBriefInput {
+  artifactType: SplatStudioBriefArtifactType;
+  previousArtifactType?: SplatStudioBriefArtifactType;
   knownAnswers?: Readonly<Record<string, unknown>>;
   /**
    * Explicit "use recommended defaults" path. This is the deterministic
@@ -53,11 +53,11 @@ export interface CollectSaaSCodexBriefInput {
   skip?: boolean;
 }
 
-export type SaaSCodexBriefCatalog = Readonly<
-  Record<SaaSCodexBriefArtifactType, readonly SaaSCodexBriefQuestion[]>
+export type SplatStudioBriefCatalog = Readonly<
+  Record<SplatStudioBriefArtifactType, readonly SplatStudioBriefQuestion[]>
 >;
 
-function option(id: string, label: string, description: string): SaaSCodexBriefOption {
+function option(id: string, label: string, description: string): SplatStudioBriefOption {
   return { id, label, description };
 }
 
@@ -66,8 +66,8 @@ function question(
   label: string,
   description: string,
   defaultOptionId: string,
-  options: readonly SaaSCodexBriefOption[],
-): SaaSCodexBriefQuestion {
+  options: readonly SplatStudioBriefOption[],
+): SplatStudioBriefQuestion {
   return {
     id,
     label,
@@ -81,7 +81,7 @@ function question(
 }
 
 function freezeBriefCatalog<
-  T extends Record<string, readonly SaaSCodexBriefQuestion[]>,
+  T extends Record<string, readonly SplatStudioBriefQuestion[]>,
 >(catalog: T): T {
   for (const questions of Object.values(catalog)) {
     for (const item of questions) {
@@ -95,12 +95,12 @@ function freezeBriefCatalog<
 }
 
 /**
- * Canonical V1 decision catalog shared by the local SaaSCodex MCP, Codex
+ * Canonical V1 decision catalog shared by the local SplatStudio MCP, Codex
  * Desktop widget, and structured CLI representation. Visible copy may be
  * localized later, but ids, ordering, defaults, and skip behavior are product
  * protocol.
  */
-export const openDesignBriefCatalog: SaaSCodexBriefCatalog = freezeBriefCatalog({
+export const openDesignBriefCatalog: SplatStudioBriefCatalog = freezeBriefCatalog({
   website: [
     question(
       'website.goal',
@@ -383,8 +383,8 @@ export const openDesignBriefCatalog: SaaSCodexBriefCatalog = freezeBriefCatalog(
   ],
 });
 
-export function validateSaaSCodexBriefCatalog(
-  catalog: SaaSCodexBriefCatalog,
+export function validateSplatStudioBriefCatalog(
+  catalog: SplatStudioBriefCatalog,
 ): void {
   for (const [artifactType, questions] of Object.entries(catalog)) {
     if (questions.length > 5) {
@@ -413,10 +413,10 @@ export function validateSaaSCodexBriefCatalog(
   }
 }
 
-validateSaaSCodexBriefCatalog(openDesignBriefCatalog);
+validateSplatStudioBriefCatalog(openDesignBriefCatalog);
 
 function normalizedAnswer(
-  question: SaaSCodexBriefQuestion,
+  question: SplatStudioBriefQuestion,
   value: unknown,
 ): readonly string[] | null {
   const answer = typeof value === 'string'
@@ -431,8 +431,8 @@ function normalizedAnswer(
 }
 
 function answerSummary(
-  artifactType: SaaSCodexBriefArtifactType,
-  answers: SaaSCodexBriefAnswers,
+  artifactType: SplatStudioBriefArtifactType,
+  answers: SplatStudioBriefAnswers,
 ): string {
   const lines = openDesignBriefCatalog[artifactType]
     .map((item) => {
@@ -444,9 +444,9 @@ function answerSummary(
   return lines.length > 0 ? lines.join('\n') : 'No Brief decisions have been confirmed yet.';
 }
 
-export function collectSaaSCodexBrief(
-  input: CollectSaaSCodexBriefInput,
-): SaaSCodexBriefDecision {
+export function collectSplatStudioBrief(
+  input: CollectSplatStudioBriefInput,
+): SplatStudioBriefDecision {
   const definitions = openDesignBriefCatalog[input.artifactType];
   const source = input.knownAnswers ?? {};
   const answers: Record<string, readonly string[]> = {};
@@ -466,7 +466,7 @@ export function collectSaaSCodexBrief(
   const immutableAnswers = Object.freeze({ ...answers });
   return Object.freeze({
     artifactType: input.artifactType,
-    decisionSource: 'saascodex-shared-brief-v1',
+    decisionSource: 'splatstudio-shared-brief-v1',
     questions: Object.freeze([...questions]),
     answers: immutableAnswers,
     summary: answerSummary(input.artifactType, immutableAnswers),
@@ -474,19 +474,19 @@ export function collectSaaSCodexBrief(
   });
 }
 
-export function summarizeSaaSCodexBrief(
-  artifactType: SaaSCodexBriefArtifactType,
-  answers: SaaSCodexBriefAnswers,
+export function summarizeSplatStudioBrief(
+  artifactType: SplatStudioBriefArtifactType,
+  answers: SplatStudioBriefAnswers,
 ): string {
   return answerSummary(artifactType, answers);
 }
 
-export function formatSaaSCodexBriefForCli(
-  brief: SaaSCodexBriefDecision,
+export function formatSplatStudioBriefForCli(
+  brief: SplatStudioBriefDecision,
   displayArtifactType: string = brief.artifactType,
 ): string {
   const lines = [
-    'SaaSCodex brief',
+    'SplatStudio brief',
     `Artifact: ${displayArtifactType}`,
   ];
   if (brief.questions.length > 0) {

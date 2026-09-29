@@ -12,7 +12,7 @@ import {
   type DesktopEvalResult,
   type DesktopScreenshotResult,
   type DesktopStatusSnapshot,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import {
   convergeSidecarLaunch,
   findSidecarProcesses,
@@ -20,8 +20,8 @@ import {
   invokeSidecar,
   stopSidecars,
   type SidecarStamp,
-} from "@saascodex/sidecar";
-import { createPackageManagerInvocation, readLogTail } from "@saascodex/platform";
+} from "@splatstudio/sidecar";
+import { createPackageManagerInvocation, readLogTail } from "@splatstudio/platform";
 
 import type { ToolPackConfig } from "./config/index.js";
 import {
@@ -50,23 +50,23 @@ const CONTAINER_NODE_VERSION = "24.14.1";
 const CONTAINER_TOOLS_PACK_CLI_PATH = "tools/pack/bin/tools-pack.mjs";
 
 export const INTERNAL_PACKAGES = [
-  { directory: "packages/release", name: "@saascodex/release" },
-  { directory: "packages/components", name: "@saascodex/components" },
-  { directory: "packages/contracts", name: "@saascodex/contracts" },
-  { directory: "packages/registry-protocol", name: "@saascodex/registry-protocol" },
-  { directory: "packages/sidecar-proto", name: "@saascodex/sidecar-proto" },
-  { directory: "packages/launcher-proto", name: "@saascodex/launcher-proto" },
-  { directory: "packages/platform", name: "@saascodex/platform" },
-  { directory: "packages/sidecar", name: "@saascodex/sidecar" },
-  { directory: "packages/download", name: "@saascodex/download" },
-  { directory: "packages/host", name: "@saascodex/host" },
-  { directory: "packages/agui-adapter", name: "@saascodex/agui-adapter" },
-  { directory: "packages/plugin-runtime", name: "@saascodex/plugin-runtime" },
-  { directory: "packages/diagnostics", name: "@saascodex/diagnostics" },
-  { directory: "apps/daemon", name: "@saascodex/daemon" },
-  { directory: "apps/web", name: "@saascodex/web" },
-  { directory: "apps/desktop", name: "@saascodex/desktop" },
-  { directory: "apps/packaged", name: "@saascodex/packaged" },
+  { directory: "packages/release", name: "@splatstudio/release" },
+  { directory: "packages/components", name: "@splatstudio/components" },
+  { directory: "packages/contracts", name: "@splatstudio/contracts" },
+  { directory: "packages/registry-protocol", name: "@splatstudio/registry-protocol" },
+  { directory: "packages/sidecar-proto", name: "@splatstudio/sidecar-proto" },
+  { directory: "packages/launcher-proto", name: "@splatstudio/launcher-proto" },
+  { directory: "packages/platform", name: "@splatstudio/platform" },
+  { directory: "packages/sidecar", name: "@splatstudio/sidecar" },
+  { directory: "packages/download", name: "@splatstudio/download" },
+  { directory: "packages/host", name: "@splatstudio/host" },
+  { directory: "packages/agui-adapter", name: "@splatstudio/agui-adapter" },
+  { directory: "packages/plugin-runtime", name: "@splatstudio/plugin-runtime" },
+  { directory: "packages/diagnostics", name: "@splatstudio/diagnostics" },
+  { directory: "apps/daemon", name: "@splatstudio/daemon" },
+  { directory: "apps/web", name: "@splatstudio/web" },
+  { directory: "apps/desktop", name: "@splatstudio/desktop" },
+  { directory: "apps/packaged", name: "@splatstudio/packaged" },
 ] as const;
 
 export function sanitizeNamespace(value: string): string {
@@ -134,7 +134,7 @@ export function buildDockerArgs(
   //
   // Shell-interpolation safety for the inner `bash -lc` command:
   //   - config.namespace is sanitized at config-time by resolveNamespace() in
-  //     @saascodex/sidecar-proto (restricted to namespace charset)
+  //     @splatstudio/sidecar-proto (restricted to namespace charset)
   //   - config.to is enum-validated by resolveToolPackBuildOutput() in config.ts
   //     to one of "all" | "appimage" | "dir"
   //   - config.portable is a boolean
@@ -221,9 +221,9 @@ export function buildDockerArgs(
     `${PRODUCTION_INSTALL_PNPM_BIN_ENV}=${CONTAINER_PNPM_PATH}`,
   ];
   if (config.telemetryRelayUrl != null) {
-    dockerArgs.push("-e", `SAASCODEX_TELEMETRY_RELAY_URL=${config.telemetryRelayUrl}`);
+    dockerArgs.push("-e", `SPLATSTUDIO_TELEMETRY_RELAY_URL=${config.telemetryRelayUrl}`);
   }
-  const velaBinHost = process.env.SAASCODEX_VELA_CLI_BIN?.trim();
+  const velaBinHost = process.env.SPLATSTUDIO_VELA_CLI_BIN?.trim();
   if (velaBinHost) {
     // The container only mounts /project, /tools-pack and cache/home dirs by
     // default, so a Vela CLI living outside those (a host path like
@@ -235,10 +235,10 @@ export function buildDockerArgs(
     const velaBinBase = basename(velaBinHost);
     const containerVelaDir = "/opt/vela-cli";
     dockerArgs.push("-v", `${hostVelaDir}:${containerVelaDir}:ro`);
-    dockerArgs.push("-e", `SAASCODEX_VELA_CLI_BIN=${containerVelaDir}/${velaBinBase}`);
+    dockerArgs.push("-e", `SPLATSTUDIO_VELA_CLI_BIN=${containerVelaDir}/${velaBinBase}`);
   }
   if (config.amrProfile != null) {
-    dockerArgs.push("-e", `SAASCODEX_AMR_PROFILE=${config.amrProfile}`);
+    dockerArgs.push("-e", `SPLATSTUDIO_AMR_PROFILE=${config.amrProfile}`);
   }
   // The vela web origin is resolved on the host (from the build-time secret)
   // but the packaged config is written inside the container, so the containerized
@@ -271,7 +271,7 @@ export function renderDesktopTemplate(template: string, values: DesktopTemplateV
 }
 
 export function renderLinuxPackagedMainEntry(): string {
-  return 'import("@saascodex/packaged").catch((error) => {\n  console.error("packaged entry failed", error);\n  process.exit(1);\n});\n';
+  return 'import("@splatstudio/packaged").catch((error) => {\n  console.error("packaged entry failed", error);\n  process.exit(1);\n});\n';
 }
 
 export function renderLinuxAppImageAppRun(): string {
@@ -377,11 +377,11 @@ function appImageInstallName(namespace: string): string {
 }
 
 function desktopFileName(namespace: string): string {
-  return `saascodex-${sanitizeNamespace(namespace)}.desktop`;
+  return `splatstudio-${sanitizeNamespace(namespace)}.desktop`;
 }
 
 function iconFileName(namespace: string): string {
-  return `saascodex-${sanitizeNamespace(namespace)}.png`;
+  return `splatstudio-${sanitizeNamespace(namespace)}.png`;
 }
 
 function resolveLinuxPaths(config: ToolPackConfig): LinuxPaths {
@@ -408,8 +408,8 @@ function resolveLinuxPaths(config: ToolPackConfig): LinuxPaths {
       "apps",
       iconFileName(config.namespace),
     ),
-    packagedConfigPath: join(namespaceRoot, "saascodex-config.json"),
-    resourceRoot: join(namespaceRoot, "resources", "saascodex"),
+    packagedConfigPath: join(namespaceRoot, "splatstudio-config.json"),
+    resourceRoot: join(namespaceRoot, "resources", "splatstudio"),
     tarballsRoot: join(namespaceRoot, "tarballs"),
   };
 }
@@ -533,7 +533,7 @@ async function writeAssembledApp(
   const version = await readPackagedVersion(config);
   const packageVersion = electronBuilderVersionForAppVersion(version);
   const packageJson = {
-    name: "saascodex-packaged",
+    name: "splatstudio-packaged",
     version: packageVersion,
     private: true,
     main: "main.cjs",
@@ -556,7 +556,7 @@ async function writeAssembledApp(
         ...(config.amrProfile == null ? {} : { amrProfile: config.amrProfile }),
         appVersion: version,
         namespace: config.namespace,
-        nodeCommandRelative: "saascodex/bin/node",
+        nodeCommandRelative: "splatstudio/bin/node",
         ...(config.telemetryRelayUrl == null ? {} : { telemetryRelayUrl: config.telemetryRelayUrl }),
         ...(config.posthogKey == null ? {} : { posthogKey: config.posthogKey }),
         ...(config.posthogHost == null ? {} : { posthogHost: config.posthogHost }),
@@ -588,7 +588,7 @@ async function writeLinuxBuilderConfig(config: ToolPackConfig, paths: LinuxPaths
   const packageVersion = electronBuilderVersionForAppVersion(packagedVersion);
 
   const builderConfig: Record<string, unknown> = {
-    appId: "io.saascodex.desktop",
+    appId: "io.splatstudio.desktop",
     artifactName: `${PRODUCT_NAME}-${namespaceToken}.\${ext}`,
     asar: false,
     buildDependenciesFromSource: false,
@@ -605,14 +605,14 @@ async function writeLinuxBuilderConfig(config: ToolPackConfig, paths: LinuxPaths
     executableName: PRODUCT_NAME,
     extraMetadata: {
       main: "./main.cjs",
-      name: "saascodex-packaged-app",
+      name: "splatstudio-packaged-app",
       productName: PRODUCT_NAME,
       version: packageVersion,
       ...(config.portable ? {} : { odToolsPackRuntimeRoot: config.roots.runtime.namespaceBaseRoot }),
     },
     extraResources: [
-      { from: paths.resourceRoot, to: "saascodex" },
-      { from: paths.packagedConfigPath, to: "saascodex-config.json" },
+      { from: paths.resourceRoot, to: "splatstudio" },
+      { from: paths.packagedConfigPath, to: "splatstudio-config.json" },
       // Vendored dom-to-pptx browser bundle for editable PPTX export (read from
       // process.resourcesPath by the desktop main at runtime).
       domToPptxBundleResource(config),
@@ -816,7 +816,7 @@ export async function installPackedLinuxApp(config: ToolPackConfig): Promise<Lin
   const rendered = renderDesktopTemplate(template, {
     namespace: sanitizeNamespace(config.namespace),
     execPath: paths.installAppImagePath,
-    iconName: `saascodex-${sanitizeNamespace(config.namespace)}`,
+    iconName: `splatstudio-${sanitizeNamespace(config.namespace)}`,
   });
   const tmpDesktopPath = `${paths.installDesktopFilePath}.tmp`;
   await writeFile(tmpDesktopPath, rendered, "utf8");
@@ -1150,12 +1150,12 @@ export type LinuxCleanupResult = {
 
 // Paths resolved relative to the assembled app written during `tools-pack linux build`.
 // The headless entry lives at:
-//   <assembledAppRoot>/node_modules/@saascodex/packaged/dist/headless.mjs
+//   <assembledAppRoot>/node_modules/@splatstudio/packaged/dist/headless.mjs
 // The bundled Node binary lives at:
-//   <namespaceRoot>/resources/saascodex/bin/node  (populated by copyResourceTree)
+//   <namespaceRoot>/resources/splatstudio/bin/node  (populated by copyResourceTree)
 
 function resolveHeadlessEntryPath(paths: LinuxPaths): string {
-  return join(paths.assembledAppRoot, "node_modules", "@saascodex", "packaged", "dist", "headless.mjs");
+  return join(paths.assembledAppRoot, "node_modules", "@splatstudio", "packaged", "dist", "headless.mjs");
 }
 
 function resolveHeadlessBundledNodePath(paths: LinuxPaths): string {
@@ -1163,7 +1163,7 @@ function resolveHeadlessBundledNodePath(paths: LinuxPaths): string {
 }
 
 function headlessLauncherPath(config: ToolPackConfig): string {
-  return join(homedir(), ".local", "bin", `saascodex-headless-${sanitizeNamespace(config.namespace)}`);
+  return join(homedir(), ".local", "bin", `splatstudio-headless-${sanitizeNamespace(config.namespace)}`);
 }
 
 function headlessLogPath(config: ToolPackConfig): string {

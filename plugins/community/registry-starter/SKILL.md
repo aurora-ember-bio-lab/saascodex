@@ -1,6 +1,6 @@
 ---
 name: community-registry-starter
-description: A small community registry starter plugin used to verify SaaSCodex marketplace install flows.
+description: A small community registry starter plugin used to verify SplatStudio marketplace install flows.
 ---
 
 # Community Registry Starter

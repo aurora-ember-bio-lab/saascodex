@@ -62,9 +62,9 @@ describe('POST /api/plugins/:id/doctor', () => {
     const folder = path.join(pluginRoot, pluginId);
     await mkdir(folder, { recursive: true });
     await writeFile(
-      path.join(folder, 'saascodex.json'),
+      path.join(folder, 'splatstudio.json'),
       JSON.stringify({
-        $schema: 'https://saascodex.com/schemas/plugin.v1.json',
+        $schema: 'https://splatstudio.app/schemas/plugin.v1.json',
         name: pluginId,
         title: 'Missing Connector Fixture',
         version: '1.0.0',

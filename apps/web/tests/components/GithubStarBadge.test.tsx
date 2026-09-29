@@ -2,7 +2,7 @@
 
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { SaaSCodexGithubRepoResponse } from '@saascodex/contracts';
+import type { SplatStudioGithubRepoResponse } from '@splatstudio/contracts';
 
 const originalFetch = globalThis.fetch;
 
@@ -25,7 +25,7 @@ describe('GithubStarBadge', () => {
     expect(screen.getByText('40K+')).toBeTruthy();
     await waitFor(() =>
       expect(globalThis.fetch).toHaveBeenCalledWith(
-        '/api/github/saascodex',
+        '/api/github/splatstudio',
         expect.objectContaining({ signal: expect.any(AbortSignal) }),
       ),
     );
@@ -104,7 +104,7 @@ describe('GithubStarBadge', () => {
         stargazers_count: 42137,
         fetchedAt: Date.parse('2026-05-22T00:00:00.000Z'),
         stale: false,
-      } satisfies SaaSCodexGithubRepoResponse),
+      } satisfies SplatStudioGithubRepoResponse),
     } satisfies Partial<Response>) as typeof fetch;
     const { GithubStarBadge } = await import('../../src/components/GithubStarBadge');
 

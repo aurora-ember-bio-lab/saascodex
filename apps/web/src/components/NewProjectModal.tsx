@@ -9,8 +9,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import type { ConnectorDetail } from '@saascodex/contracts';
-import type { SaaSCodexHostProjectImportSuccess } from '@saascodex/host';
+import type { ConnectorDetail } from '@splatstudio/contracts';
+import type { SplatStudioHostProjectImportSuccess } from '@splatstudio/host';
 import { modalOverlay, modalContent } from '../motion';
 import { useT } from '../i18n';
 import type {
@@ -46,7 +46,7 @@ interface Props {
     file: File,
   ) => Promise<ImportClaudeDesignOutcome | void> | ImportClaudeDesignOutcome | void;
   onImportFolder?: (baseDir: string) => Promise<void> | void;
-  onImportFolderResponse?: (response: SaaSCodexHostProjectImportSuccess) => Promise<void> | void;
+  onImportFolderResponse?: (response: SplatStudioHostProjectImportSuccess) => Promise<void> | void;
   onOpenConnectorsTab?: () => void;
   onClose: () => void;
   initialTab?: CreateTab;

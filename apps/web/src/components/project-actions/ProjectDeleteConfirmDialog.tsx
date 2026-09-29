@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { Dialog, DialogDescription, DialogFooter, DialogTitle } from '@saascodex/components';
+import { Dialog, DialogDescription, DialogFooter, DialogTitle } from '@splatstudio/components';
 
 import { useT } from '../../i18n';
 

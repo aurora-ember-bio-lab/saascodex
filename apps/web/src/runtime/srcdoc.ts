@@ -22,25 +22,25 @@ import {
   DECK_SLIDE_SELECTOR,
   DECK_STRUCTURED_SLIDE_SELECTOR,
   injectDeckStageFallback,
-} from '@saascodex/contracts/runtime/deck-stage-fallback';
+} from '@splatstudio/contracts/runtime/deck-stage-fallback';
 import {
   DECK_PROTOCOL_VERSION,
   DECK_READY_MESSAGE_TYPE,
-} from '@saascodex/contracts/runtime/deck-protocol';
+} from '@splatstudio/contracts/runtime/deck-protocol';
 import {
   buildPreviewBaseHrefBridge,
   buildPreviewObservabilityBridge,
-} from '@saascodex/contracts/runtime/preview-observability';
+} from '@splatstudio/contracts/runtime/preview-observability';
 import {
   PREVIEW_RUNTIME_STATE_LIMITS,
   PREVIEW_RUNTIME_STATE_VERSION,
-} from '@saascodex/contracts/runtime/preview-runtime-state';
+} from '@splatstudio/contracts/runtime/preview-runtime-state';
 import {
   PREVIEW_REDIRECT_GUARD_MAX_HOPS,
   PREVIEW_REDIRECT_GUARD_SELF_REFRESH_MIN_DELAY_MS,
   PREVIEW_REDIRECT_GUARD_WINDOW_MS,
   PREVIEW_REDIRECT_LOOP_MESSAGE,
-} from '@saascodex/contracts/runtime/preview-guards';
+} from '@splatstudio/contracts/runtime/preview-guards';
 
 import {
   endOfTag,
@@ -48,14 +48,14 @@ import {
   findRealTagEnd,
   findRealTagOffset,
   HTML_TAG_PATTERNS,
-} from '@saascodex/contracts/runtime/html-injection-points';
+} from '@splatstudio/contracts/runtime/html-injection-points';
 
 export {
   PREVIEW_REDIRECT_GUARD_MAX_HOPS,
   PREVIEW_REDIRECT_GUARD_SELF_REFRESH_MIN_DELAY_MS,
   PREVIEW_REDIRECT_GUARD_WINDOW_MS,
   PREVIEW_REDIRECT_LOOP_MESSAGE,
-} from '@saascodex/contracts/runtime/preview-guards';
+} from '@splatstudio/contracts/runtime/preview-guards';
 
 import {
   buildManualEditBridge,
@@ -1326,7 +1326,7 @@ function serializeHtmlDocument(doc: Document): string {
  * Auto-annotate structural HTML elements that lack `data-od-id` or
  * `data-screen-label` so that the selection bridge (Picker / Pods /
  * Tweaks) can target them. This fixes imported designs whose HTML was
- * generated outside of SaaSCodex and therefore carries no OD-specific
+ * generated outside of SplatStudio and therefore carries no OD-specific
  * annotations.
  */
 function annotateMissingOdIds(doc: string): string {

@@ -1,6 +1,6 @@
 import type { randomUUID } from 'node:crypto';
 
-export type PluginShareAction = 'publish-github' | 'contribute-saascodex';
+export type PluginShareAction = 'publish-github' | 'contribute-splatstudio';
 
 export interface PluginShareTask {
   id: string;
@@ -74,11 +74,11 @@ function pluginShareActionToCli(action: PluginShareAction) {
     };
   }
   return {
-    argv: ['plugin', 'saascodex-pr'],
-    title: 'SaaSCodex PR',
-    command: 'od plugin saascodex-pr',
-    successMessage: 'Opened SaaSCodex PR flow.',
-    failureCode: 'saascodex-pr-failed',
+    argv: ['plugin', 'splatstudio-pr'],
+    title: 'SplatStudio PR',
+    command: 'od plugin splatstudio-pr',
+    successMessage: 'Opened SplatStudio PR flow.',
+    failureCode: 'splatstudio-pr-failed',
   };
 }
 
@@ -92,7 +92,7 @@ function pluginShareProgressPlan(action: PluginShareAction) {
     ];
   }
   return [
-    'Ensure the SaaSCodex fork exists',
+    'Ensure the SplatStudio fork exists',
     'Clone the fork and prepare a branch',
     'Copy the plugin into plugins/community',
     'Push the branch and open the PR form',
@@ -194,7 +194,7 @@ export function createPluginShareTaskStore(deps: CreatePluginShareTaskStoreDeps)
     task.status = 'done';
     task.result = {
       message: url
-        ? (action === 'publish-github' ? `Published plugin to ${url}.` : `Opened SaaSCodex PR flow at ${url}.`)
+        ? (action === 'publish-github' ? `Published plugin to ${url}.` : `Opened SplatStudio PR flow at ${url}.`)
         : share.successMessage,
       ...(url ? { url } : {}),
       log: stepLog,

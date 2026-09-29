@@ -15,7 +15,7 @@
 // than fixed to show a real value.
 
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
-import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@splatstudio/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryNavRail, resetWorkspaceDirectoryCache } from '../../src/components/EntryNavRail';
@@ -187,7 +187,7 @@ describe('account menu billing card — workspace-aware upgrade routing', () => 
       expect(openSpy).toHaveBeenCalledTimes(1);
       const target = new URL(String(openSpy.mock.calls[0]![0]));
       expect(`${target.origin}${target.pathname}`).toBe(
-        'https://saascodex.com/cloud/dashboard',
+        'https://splatstudio.app/cloud/dashboard',
       );
       expect(target.searchParams.get('billing')).toBe('plan');
     },
@@ -231,7 +231,7 @@ describe('account menu billing card — 积分 row opens the web console (#62)',
       expect(openSpy).toHaveBeenCalledTimes(1);
       const [url, target, features] = openSpy.mock.calls[0]!;
       const destination = new URL(String(url));
-      expect(destination.origin).toBe('https://saascodex.com');
+      expect(destination.origin).toBe('https://splatstudio.app');
       expect(destination.pathname).toBe('/cloud/dashboard');
       expect(destination.searchParams.get('workspaceId')).toBe('ws-new');
       expect(target).toBe('_blank');

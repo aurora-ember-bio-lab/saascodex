@@ -1,6 +1,6 @@
 name: desktop
 
-# Builds SaaSCodex desktop installers with Tauri v2 and attaches them to the
+# Builds SplatStudio desktop installers with Tauri v2 and attaches them to the
 # release for a `v*` tag. Docs: desktop/tauri/README.md, docs/RELEASING.md
 on:
   push:
@@ -49,7 +49,7 @@ jobs:
         with:
           projectPath: desktop/tauri
           tagName: ${{ github.ref_name }}
-          releaseName: 'SaaSCodex ${{ github.ref_name }}'
+          releaseName: 'SplatStudio ${{ github.ref_name }}'
           releaseBody: 'Desktop installers (Windows NSIS/MSI, macOS .dmg, Linux AppImage/.deb) built from the tag.'
           releaseDraft: true
           prerelease: false

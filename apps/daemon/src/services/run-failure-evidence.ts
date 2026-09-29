@@ -1,7 +1,7 @@
 import type {
   TrackingRunAdmissionPhase,
   TrackingRunPolicyReason,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import type {
   RunEventForFailureClassification,
   RunFailureClassification,

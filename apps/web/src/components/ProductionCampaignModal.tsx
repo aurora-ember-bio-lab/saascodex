@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n";
-import { getSaaSCodexHost } from "@saascodex/host";
+import { getSplatStudioHost } from "@splatstudio/host";
 import { openExternalUrl } from "../providers/registry";
 import {
 	touchpointStaticActionsMatch,
@@ -15,7 +15,7 @@ import {
 	trapWebTouchpointModalFocus,
 	verifyWebTouchpoint,
 	webTouchpointContext,
-	type SaaSCodexTouchpointElement,
+	type SplatStudioTouchpointElement,
 	type WebTouchpointContent,
 } from "./touchpoint-component";
 import {
@@ -269,7 +269,7 @@ export function ProductionCampaignModal({
 	const elementRef = useRef<HTMLDivElement | null>(null);
 	const modalRef = useRef<HTMLDivElement | null>(null);
 	const restoreFocus = useRef<HTMLElement | null>(null);
-	const productionEnabled = !testRuntime && authenticated && !!sessionSubject && getSaaSCodexHost()?.client.type === "desktop";
+	const productionEnabled = !testRuntime && authenticated && !!sessionSubject && getSplatStudioHost()?.client.type === "desktop";
 	const load = useCallback(
 		async (signal: AbortSignal, active: AuthorizedDecision | null): Promise<TouchpointLifecycleLoad<AuthorizedDecision>> => {
 			if (!locale || !sessionSubject) return { kind: "clear" };
@@ -397,7 +397,7 @@ export function ProductionCampaignModal({
 		let verified: Awaited<ReturnType<typeof verifyWebTouchpoint>> | undefined;
 		const element = document.createElement(
 			"opend-touchpoint",
-		) as SaaSCodexTouchpointElement;
+		) as SplatStudioTouchpointElement;
 		let visibleFrame: number | undefined;
 		let mounted = false;
 		let recorded = false;

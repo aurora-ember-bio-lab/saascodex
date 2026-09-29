@@ -1,25 +1,25 @@
 import {
-  SAASCODEX_HOST_UPDATER_STATES,
+  SPLATSTUDIO_HOST_UPDATER_STATES,
   checkHostUpdater,
   clearHostUpdaterCache,
   downloadHostUpdater,
   getHostUpdaterStatus,
   installHostUpdater,
-  isSaaSCodexHostAvailable,
+  isSplatStudioHostAvailable,
   quitHostAfterUpdaterInstallerOpen,
   setHostUpdaterMenuLabels,
   subscribeHostUpdater,
   subscribeHostUpdaterOpenDialog,
-  type SaaSCodexHostActionResult,
-  type SaaSCodexHostFailure,
-  type SaaSCodexHostUpdaterActionOptions,
-  type SaaSCodexHostUpdaterMenuLabels,
-  type SaaSCodexHostUpdaterOpenDialogListener,
-  type SaaSCodexHostUpdaterReinstallSnapshot,
-  type SaaSCodexHostUpdaterResult,
-  type SaaSCodexHostUpdaterStatusListener,
-  type SaaSCodexHostUpdaterStatusSnapshot,
-} from '@saascodex/host';
+  type SplatStudioHostActionResult,
+  type SplatStudioHostFailure,
+  type SplatStudioHostUpdaterActionOptions,
+  type SplatStudioHostUpdaterMenuLabels,
+  type SplatStudioHostUpdaterOpenDialogListener,
+  type SplatStudioHostUpdaterReinstallSnapshot,
+  type SplatStudioHostUpdaterResult,
+  type SplatStudioHostUpdaterStatusListener,
+  type SplatStudioHostUpdaterStatusSnapshot,
+} from '@splatstudio/host';
 
 export type UpdaterEnvironment = 'desktop' | 'web';
 
@@ -30,8 +30,8 @@ export type UpdaterDownloadProgress = {
 };
 
 export type UpdaterActionResult =
-  | { ok: true; model: UpdaterModel; status: SaaSCodexHostUpdaterStatusSnapshot }
-  | SaaSCodexHostFailure;
+  | { ok: true; model: UpdaterModel; status: SplatStudioHostUpdaterStatusSnapshot }
+  | SplatStudioHostFailure;
 
 export type UpdaterRestartSafety =
   | { activeRunCount: number; state: 'blocked' }
@@ -59,16 +59,16 @@ export type UpdaterModel = {
    * outdated installed outer package). UI copy priority: `reinstall.url`
    * jump link > default i18n reinstall copy.
    */
-  reinstall: SaaSCodexHostUpdaterReinstallSnapshot | null;
+  reinstall: SplatStudioHostUpdaterReinstallSnapshot | null;
   requiresManualInstall: boolean;
   upToDate: boolean;
   shouldShowControl: boolean;
   shouldPrompt: boolean;
-  status: SaaSCodexHostUpdaterStatusSnapshot | null;
+  status: SplatStudioHostUpdaterStatusSnapshot | null;
   supported: boolean;
 };
 
-function modelFromHostResult(result: SaaSCodexHostUpdaterResult): UpdaterActionResult {
+function modelFromHostResult(result: SplatStudioHostUpdaterResult): UpdaterActionResult {
   if (!result.ok) return result;
   return {
     ok: true,
@@ -83,10 +83,10 @@ function clampPercent(value: number): number {
 }
 
 function downloadProgressFromStatus(
-  status: SaaSCodexHostUpdaterStatusSnapshot | null,
+  status: SplatStudioHostUpdaterStatusSnapshot | null,
 ): UpdaterDownloadProgress | null {
   if (status == null) return null;
-  if (status.state !== SAASCODEX_HOST_UPDATER_STATES.DOWNLOADING) return null;
+  if (status.state !== SPLATSTUDIO_HOST_UPDATER_STATES.DOWNLOADING) return null;
   const sourceProgress = status.incoming?.progress ?? status.progress;
 
   const receivedBytes = Math.max(0, sourceProgress?.receivedBytes ?? 0);
@@ -103,16 +103,16 @@ function downloadProgressFromStatus(
 }
 
 export function deriveUpdaterModel(
-  status: SaaSCodexHostUpdaterStatusSnapshot | null,
+  status: SplatStudioHostUpdaterStatusSnapshot | null,
   options: { hostAvailable?: boolean } = {},
 ): UpdaterModel {
-  const hostAvailable = options.hostAvailable ?? isSaaSCodexHostAvailable();
+  const hostAvailable = options.hostAvailable ?? isSplatStudioHostAvailable();
   const environment: UpdaterEnvironment = hostAvailable ? 'desktop' : 'web';
   const state = status?.state;
   const busy =
-    state === SAASCODEX_HOST_UPDATER_STATES.CHECKING ||
-    state === SAASCODEX_HOST_UPDATER_STATES.DOWNLOADING ||
-    state === SAASCODEX_HOST_UPDATER_STATES.INSTALLING;
+    state === SPLATSTUDIO_HOST_UPDATER_STATES.CHECKING ||
+    state === SPLATSTUDIO_HOST_UPDATER_STATES.DOWNLOADING ||
+    state === SPLATSTUDIO_HOST_UPDATER_STATES.INSTALLING;
   const canOpenInstaller = Boolean(
     hostAvailable &&
     status?.enabled &&
@@ -127,7 +127,7 @@ export function deriveUpdaterModel(
   );
   const canInstallUpdate = canOpenInstaller || canApplyInPlace;
   const hasDownloadedInstaller = Boolean(
-    state === SAASCODEX_HOST_UPDATER_STATES.DOWNLOADED &&
+    state === SPLATSTUDIO_HOST_UPDATER_STATES.DOWNLOADED &&
     status?.downloadPath,
   );
   const installerOpened = status?.installResult != null;
@@ -136,7 +136,7 @@ export function deriveUpdaterModel(
   const availableVersion = status?.availableVersion ?? null;
   const currentVersion = status?.currentVersion ?? null;
   const downloadProgress = downloadProgressFromStatus(status);
-  const upToDate = state === SAASCODEX_HOST_UPDATER_STATES.NOT_AVAILABLE;
+  const upToDate = state === SPLATSTUDIO_HOST_UPDATER_STATES.NOT_AVAILABLE;
   const promptKey =
     status == null || availableVersion == null
       ? null
@@ -175,48 +175,48 @@ export function deriveUpdaterModel(
   };
 }
 
-export async function readUpdaterStatus(options?: SaaSCodexHostUpdaterActionOptions): Promise<UpdaterActionResult> {
+export async function readUpdaterStatus(options?: SplatStudioHostUpdaterActionOptions): Promise<UpdaterActionResult> {
   return modelFromHostResult(await getHostUpdaterStatus(options));
 }
 
-export async function checkForUpdaterUpdate(options?: SaaSCodexHostUpdaterActionOptions): Promise<UpdaterActionResult> {
+export async function checkForUpdaterUpdate(options?: SplatStudioHostUpdaterActionOptions): Promise<UpdaterActionResult> {
   return modelFromHostResult(await checkHostUpdater(options));
 }
 
-export async function downloadUpdaterUpdate(options?: SaaSCodexHostUpdaterActionOptions): Promise<UpdaterActionResult> {
+export async function downloadUpdaterUpdate(options?: SplatStudioHostUpdaterActionOptions): Promise<UpdaterActionResult> {
   return modelFromHostResult(await downloadHostUpdater(options));
 }
 
-export async function openUpdaterInstaller(options?: SaaSCodexHostUpdaterActionOptions): Promise<UpdaterActionResult> {
+export async function openUpdaterInstaller(options?: SplatStudioHostUpdaterActionOptions): Promise<UpdaterActionResult> {
   return modelFromHostResult(await installHostUpdater(options));
 }
 
-export async function clearUpdaterCache(options?: SaaSCodexHostUpdaterActionOptions): Promise<UpdaterActionResult> {
+export async function clearUpdaterCache(options?: SplatStudioHostUpdaterActionOptions): Promise<UpdaterActionResult> {
   return modelFromHostResult(await clearHostUpdaterCache(options));
 }
 
 export async function quitAfterUpdaterInstallerOpen(
-  options?: SaaSCodexHostUpdaterActionOptions,
-): Promise<SaaSCodexHostActionResult> {
+  options?: SplatStudioHostUpdaterActionOptions,
+): Promise<SplatStudioHostActionResult> {
   return await quitHostAfterUpdaterInstallerOpen(options);
 }
 
-export function subscribeToUpdaterStatus(listener: SaaSCodexHostUpdaterStatusListener): () => void {
+export function subscribeToUpdaterStatus(listener: SplatStudioHostUpdaterStatusListener): () => void {
   return subscribeHostUpdater(listener);
 }
 
-export function subscribeToUpdaterOpenDialog(listener: SaaSCodexHostUpdaterOpenDialogListener): () => void {
+export function subscribeToUpdaterOpenDialog(listener: SplatStudioHostUpdaterOpenDialogListener): () => void {
   return subscribeHostUpdaterOpenDialog(listener);
 }
 
 export async function syncUpdaterMenuLabels(
-  labels: SaaSCodexHostUpdaterMenuLabels,
-): Promise<SaaSCodexHostActionResult> {
+  labels: SplatStudioHostUpdaterMenuLabels,
+): Promise<SplatStudioHostActionResult> {
   return await setHostUpdaterMenuLabels(labels);
 }
 
 export function restartSafetyFromUpdaterStatus(
-  status: SaaSCodexHostUpdaterStatusSnapshot | null,
+  status: SplatStudioHostUpdaterStatusSnapshot | null,
 ): UpdaterRestartSafety | null {
   const code = status?.error?.code;
   if (code !== 'active-runs-blocked' && code !== 'active-runs-unknown') return null;
@@ -231,7 +231,7 @@ export function restartSafetyFromUpdaterStatus(
   return { activeRunCount: null, state: 'unknown' };
 }
 
-export function restartSafetyFromActionResult(result: SaaSCodexHostActionResult): UpdaterRestartSafety | null {
+export function restartSafetyFromActionResult(result: SplatStudioHostActionResult): UpdaterRestartSafety | null {
   if (result.ok || (result.reason !== 'active-runs-blocked' && result.reason !== 'active-runs-unknown')) {
     return null;
   }

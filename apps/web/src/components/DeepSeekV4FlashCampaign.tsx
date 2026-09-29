@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Button, Dialog } from '@saascodex/components';
+import { Button, Dialog } from '@splatstudio/components';
 import {
   DEEPSEEK_V4_FLASH_CAMPAIGN as campaign,
   formatDeepSeekV4FlashCampaignCountdown,
@@ -102,7 +102,7 @@ function CampaignProviderMark({
 function hasSeenCampaign(campaignId: string): boolean {
   if (typeof window === 'undefined') return true;
   try {
-    return window.localStorage.getItem(`saascodex:campaign-seen:${campaignId}`) === '1';
+    return window.localStorage.getItem(`splatstudio:campaign-seen:${campaignId}`) === '1';
   } catch {
     // Fail closed: when the store is unreadable (private mode, disabled
     // localStorage) `markCampaignSeen` cannot persist either, so answering
@@ -114,7 +114,7 @@ function hasSeenCampaign(campaignId: string): boolean {
 
 function markCampaignSeen(campaignId: string): void {
   try {
-    window.localStorage.setItem(`saascodex:campaign-seen:${campaignId}`, '1');
+    window.localStorage.setItem(`splatstudio:campaign-seen:${campaignId}`, '1');
   } catch {
     // Campaign frequency control is advisory; storage failures must not block Home.
   }

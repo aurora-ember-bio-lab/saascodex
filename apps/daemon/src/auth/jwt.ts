@@ -64,5 +64,5 @@ export function verifyJwt(
 
 /** Hash a token for at-rest storage (sessions.token_hash). */
 export function hashToken(token: string): string {
-  return createHmac('sha256', 'saascodex-session').update(token).digest('hex');
+  return createHmac('sha256', 'splatstudio-session').update(token).digest('hex');
 }

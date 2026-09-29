@@ -1,9 +1,9 @@
 import type { ChildProcess } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import type Database from 'better-sqlite3';
-import type { CritiqueConfig, PanelEvent } from '@saascodex/contracts/critique';
-import { panelEventToSse } from '@saascodex/contracts/critique';
-import type { CritiqueSseEvent } from '@saascodex/contracts/critique';
+import type { CritiqueConfig, PanelEvent } from '@splatstudio/contracts/critique';
+import { panelEventToSse } from '@splatstudio/contracts/critique';
+import type { CritiqueSseEvent } from '@splatstudio/contracts/critique';
 import { parseCritiqueStream, type ShipArtifactPayload } from './parser.js';
 import {
   ArtifactEmptyError,
@@ -41,7 +41,7 @@ import {
 } from '../metrics/index.js';
 import { logCritique } from '../logging/critique.js';
 
-const tracer = trace.getTracer('@saascodex/daemon/critique');
+const tracer = trace.getTracer('@splatstudio/daemon/critique');
 
 /**
  * Tolerance used when comparing the agent-supplied composite attribute on

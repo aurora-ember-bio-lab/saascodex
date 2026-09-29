@@ -1,4 +1,4 @@
-import type { ApiError, ApiErrorCode, ApiErrorResponse } from '@saascodex/contracts';
+import type { ApiError, ApiErrorCode, ApiErrorResponse } from '@splatstudio/contracts';
 import type { Response } from 'express';
 
 import { recordApiFailure } from './api-failure-journal.js';

@@ -33,20 +33,20 @@ export const WIN_PREBUNDLE_RUNTIME_DEPENDENCIES = {
 } as const;
 
 export const WIN_STANDALONE_PREBUNDLE_EXCLUDED_INTERNAL_PACKAGES = [
-  "@saascodex/daemon",
-  "@saascodex/desktop",
-  "@saascodex/launcher-proto",
-  "@saascodex/packaged",
-  "@saascodex/sidecar-proto",
-  "@saascodex/web",
+  "@splatstudio/daemon",
+  "@splatstudio/desktop",
+  "@splatstudio/launcher-proto",
+  "@splatstudio/packaged",
+  "@splatstudio/sidecar-proto",
+  "@splatstudio/web",
 ] as const;
 
 export const WIN_PREBUNDLE_POLICIES = {
   packagedMain: {
-    externals: ["@saascodex/sidecar", "electron"],
+    externals: ["@splatstudio/sidecar", "electron"],
     forbiddenInputs: [
       "/apps/web/",
-      "/node_modules/@saascodex/web/",
+      "/node_modules/@splatstudio/web/",
       "/node_modules/next/",
       "/node_modules/openai/",
       "/node_modules/react/",
@@ -55,9 +55,9 @@ export const WIN_PREBUNDLE_POLICIES = {
     label: "packaged main",
   },
   daemonCli: {
-    externals: ["@ffmpeg-installer/ffmpeg", "@saascodex/sidecar", "better-sqlite3", "blake3-wasm", "hyperframes", "node-pty"],
+    externals: ["@ffmpeg-installer/ffmpeg", "@splatstudio/sidecar", "better-sqlite3", "blake3-wasm", "hyperframes", "node-pty"],
     forbiddenInputs: [
-      "/node_modules/@saascodex/daemon/",
+      "/node_modules/@splatstudio/daemon/",
       "/node_modules/@ffmpeg-installer/ffmpeg/",
       "/node_modules/better-sqlite3/",
       "/node_modules/blake3-wasm/",
@@ -72,9 +72,9 @@ export const WIN_PREBUNDLE_POLICIES = {
     label: "daemon cli",
   },
   daemonSidecar: {
-    externals: ["@ffmpeg-installer/ffmpeg", "@saascodex/sidecar", "better-sqlite3", "blake3-wasm", "hyperframes", "node-pty"],
+    externals: ["@ffmpeg-installer/ffmpeg", "@splatstudio/sidecar", "better-sqlite3", "blake3-wasm", "hyperframes", "node-pty"],
     forbiddenInputs: [
-      "/node_modules/@saascodex/daemon/",
+      "/node_modules/@splatstudio/daemon/",
       "/node_modules/@ffmpeg-installer/ffmpeg/",
       "/node_modules/better-sqlite3/",
       "/node_modules/blake3-wasm/",
@@ -89,7 +89,7 @@ export const WIN_PREBUNDLE_POLICIES = {
     label: "daemon sidecar",
   },
   webSidecar: {
-    externals: ["@saascodex/sidecar"],
+    externals: ["@splatstudio/sidecar"],
     forbiddenInputs: [
       "/node_modules/next/",
       "/node_modules/openai/",

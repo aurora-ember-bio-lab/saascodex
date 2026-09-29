@@ -44,7 +44,7 @@ import {
   type ReactElement,
 } from 'react';
 import { createPortal } from 'react-dom';
-import type { ChatSessionMode } from '@saascodex/contracts';
+import type { ChatSessionMode } from '@splatstudio/contracts';
 import { useT } from '../i18n';
 import { Icon } from './Icon';
 

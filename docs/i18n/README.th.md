@@ -1,19 +1,19 @@
-<h1 align="center">SaaSCodex: ทางเลือกโอเพนซอร์สแทน Claude Design</h1>
+<h1 align="center">SplatStudio: ทางเลือกโอเพนซอร์สแทน Claude Design</h1>
 
-> ⚡ **[SaaSCodex Cloud — บริการโมเดลอย่างเป็นทางการ.](https://saascodex.com/zh/pricing/)** เติมเงินครั้งเดียวเพื่อใช้ทั้งโมเดล Agent และโมเดลภาพใน SaaSCodex: GPT, Claude และ DeepSeek สำหรับ Agent; GPT Image 2.0, Seedream 5.0 Pro และ Nano Banana 2.0 สำหรับภาพ
+> ⚡ **[SplatStudio Cloud — บริการโมเดลอย่างเป็นทางการ.](https://splatstudio.app/zh/pricing/)** เติมเงินครั้งเดียวเพื่อใช้ทั้งโมเดล Agent และโมเดลภาพใน SplatStudio: GPT, Claude และ DeepSeek สำหรับ Agent; GPT Image 2.0, Seedream 5.0 Pro และ Nano Banana 2.0 สำหรับภาพ
 >
-> 🚀 **[DeepSeek V4 Flash และ V4 Pro พร้อมใช้งานแล้ว.](https://saascodex.com/zh/pricing/)** ใช้ความสามารถระดับสูงกับ prototype, deck, design system และงาน Agent ประจำวัน สมาชิก SaaSCodex ใช้ทั้งสองโมเดลแบบไม่จำกัดได้สองสัปดาห์ภายในแอป
+> 🚀 **[DeepSeek V4 Flash และ V4 Pro พร้อมใช้งานแล้ว.](https://splatstudio.app/zh/pricing/)** ใช้ความสามารถระดับสูงกับ prototype, deck, design system และงาน Agent ประจำวัน สมาชิก SplatStudio ใช้ทั้งสองโมเดลแบบไม่จำกัดได้สองสัปดาห์ภายในแอป
 >
-> 🧩 **[รองรับ DeepSeek Harness แล้ว.](https://saascodex.com/zh/agents/deepseek-harness-design/)** เชื่อมต่อ `dsh` Agent Harness อย่างเป็นทางการของ DeepSeek เป็น runtime แบบ native ใน SaaSCodex พร้อม structured thinking, tool calls, model discovery, cancellation และ session resume ไฟล์ที่สร้างยังอยู่ใน workflow ของ SaaSCodex เพื่อ live preview และส่งมอบ
+> 🧩 **[รองรับ DeepSeek Harness แล้ว.](https://splatstudio.app/zh/agents/deepseek-harness-design/)** เชื่อมต่อ `dsh` Agent Harness อย่างเป็นทางการของ DeepSeek เป็น runtime แบบ native ใน SplatStudio พร้อม structured thinking, tool calls, model discovery, cancellation และ session resume ไฟล์ที่สร้างยังอยู่ใน workflow ของ SplatStudio เพื่อ live preview และส่งมอบ
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/hero.png" alt="SplatStudio hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://saascodex.com/">เว็บไซต์</a> ·
-  <a href="https://saascodex.com/">ดาวน์โหลด</a> ·
-  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://splatstudio.app/">เว็บไซต์</a> ·
+  <a href="https://splatstudio.app/">ดาวน์โหลด</a> ·
+  <a href="https://splatstudio.app/cloud/">SplatStudio Cloud</a> ·
   <a href="https://discord.gg/qhbcCH8Am4">Discord</a> ·
   <a href="https://x.com/nexudotio">ติดตาม @nexudotio</a>
 </p>
@@ -29,11 +29,11 @@
 
 ---
 
-## SaaSCodex คืออะไร
+## SplatStudio คืออะไร
 
 🎨 **ทางเลือก Claude Design แบบ local-first และโอเพนซอร์ส.** &nbsp;🖥️ **แอป desktop native สำหรับ macOS และ Windows.** &nbsp;⚡ **functional skills 100+ รายการ + rendering-template catalog แยกต่างหาก** · ✨ **design-system packages ระดับแบรนด์ 151 ชุด** · 📦 **plugin พร้อมใช้ 277 ตัว.** &nbsp;🖼️ สร้าง **prototype สำหรับ web · desktop · mobile**, **live dashboard / artifact**, **deck**, **image**, **video** และ motion graphics ด้วย **HyperFrames**. 🔒 preview ผ่าน sandboxed iframe · export เป็น HTML / PDF / PPTX / MP4. &nbsp;🤖 **รันบน Claude Code · OpenClaw · Codex · Cursor · OpenCode · Qwen · Copilot · Amp · Hermes · Kimi · Antigravity และ local CLI executable ที่ไม่ซ้ำกัน 25 ตัว**, หรือ endpoint ที่เข้ากันได้กับ OpenAI ผ่าน BYOK.
 
-SaaSCodex คือสิ่งที่เกิดขึ้นเมื่อ loop แบบ **agent-native** ที่ Anthropic เปิดตัวกับ Claude Design — ค้นหา brief, ล็อก direction, stream artifact, critique, deliver — เลิกเป็นระบบปิด แล้วกลายเป็น **filesystem ของ functional skills, rendering design templates, design systems และ plugins** ที่ coding agent บน laptop ของคุณอ่าน เขียน และ remix ได้. CLI ของคุณกลายเป็น design engine, laptop ของคุณกลายเป็น studio, และ `DESIGN.md` ของทีมกลายเป็น brand contract.
+SplatStudio คือสิ่งที่เกิดขึ้นเมื่อ loop แบบ **agent-native** ที่ Anthropic เปิดตัวกับ Claude Design — ค้นหา brief, ล็อก direction, stream artifact, critique, deliver — เลิกเป็นระบบปิด แล้วกลายเป็น **filesystem ของ functional skills, rendering design templates, design systems และ plugins** ที่ coding agent บน laptop ของคุณอ่าน เขียน และ remix ได้. CLI ของคุณกลายเป็น design engine, laptop ของคุณกลายเป็น studio, และ `DESIGN.md` ของทีมกลายเป็น brand contract.
 
 มันยังเป็น **ทางเลือกแทน Figma สำหรับยุค agent** ด้วย แทนที่จะขยับ pixel บน canvas ระบบจะส่งมอบ artifact หน้าเดียวที่เป็น CSS จริง, font จริง, component จริง และ export ตรงเป็น HTML / PDF / PPTX / MP4 โดยถูก shape ด้วย design system ของคุณแล้ว และรันได้ใน agent ที่คุณใช้ทุกวัน.
 
@@ -42,7 +42,7 @@ SaaSCodex คือสิ่งที่เกิดขึ้นเมื่อ 
 
 ## ทัวร์ผลิตภัณฑ์
 
-ดู workflow หลักของ SaaSCodex แบบรวดเร็ว เริ่มที่ **Home** ด้วย brief, ค้นหา skill ที่นำกลับมาใช้ซ้ำได้ใน **Plugins** และเปลี่ยนข้อมูลอ้างอิงแบรนด์ให้เป็น **Design System** จากนั้นเข้า **Studio** ของ project เพื่อสร้างและปรับปรุง prototype, deck, mobile app, image, document และ HyperFrame ได้ในที่เดียว
+ดู workflow หลักของ SplatStudio แบบรวดเร็ว เริ่มที่ **Home** ด้วย brief, ค้นหา skill ที่นำกลับมาใช้ซ้ำได้ใน **Plugins** และเปลี่ยนข้อมูลอ้างอิงแบรนด์ให้เป็น **Design System** จากนั้นเข้า **Studio** ของ project เพื่อสร้างและปรับปรุง prototype, deck, mobile app, image, document และ HyperFrame ได้ในที่เดียว
 
 ### หน้าหลัก
 
@@ -108,7 +108,7 @@ SaaSCodex คือสิ่งที่เกิดขึ้นเมื่อ 
 
 ## ความเข้ากันได้ของแพลตฟอร์ม
 
-> SaaSCodex มาพร้อม **skills, CLI และ MCP server** ที่ coding agent กระแสหลักใช้งานได้แบบ native. เมื่อติดตั้ง OD แล้ว คำสั่งเดียว `od mcp install <agent>` จะเชื่อม MCP server เข้ากับ config ของ agent นั้น และคุณเรียกใช้ tools เดียวกันจากใน agent ใดก็ได้.
+> SplatStudio มาพร้อม **skills, CLI และ MCP server** ที่ coding agent กระแสหลักใช้งานได้แบบ native. เมื่อติดตั้ง OD แล้ว คำสั่งเดียว `od mcp install <agent>` จะเชื่อม MCP server เข้ากับ config ของ agent นั้น และคุณเรียกใช้ tools เดียวกันจากใน agent ใดก็ได้.
 
 | Coding agent / platform &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Status &nbsp;&nbsp; | One-line MCP server install &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 |---|:---:|---|
@@ -133,7 +133,7 @@ SaaSCodex คือสิ่งที่เกิดขึ้นเมื่อ 
 ใช้ `od mcp install <agent> --print` เพื่อ preview แบบ dry-run · ใช้ `--uninstall` เพื่อลบ · ดูรายการเต็มด้วย `od mcp install --help`.
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="CLI coding-agent 25 ตัวที่ SaaSCodex รองรับ — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/coding-agents.png" alt="CLI coding-agent 25 ตัวที่ SplatStudio รองรับ — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **ยังไม่มี CLI ติดตั้ง?** BYOK proxy ที่ `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` ให้ loop แบบเดียวกัน (ไม่ต้อง spawn process) — วาง `baseUrl` + `apiKey` + `model` ได้เลย พร้อมรองรับ OpenAI, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM หรือ endpoint ที่เข้ากันได้กับ OpenAI. การป้องกัน SSRF ต่อ target จะบล็อก internal IPs / link-local / CGNAT ที่ daemon edge.
@@ -223,7 +223,7 @@ Live dashboard, decision room, KPI wall — artifact หน้าเดียว
 
 ### 5 · Video & HyperFrames — motion graphics แบบ agent-native
 
-**[HyperFrames][hyperframes]** คือ framework วิดีโอแบบโอเพนซอร์สและ agent-native ของ HeyGen ซึ่งผสานเป็น first-class citizen ใน SaaSCodex. Agent เขียน HTML + CSS + GSAP แล้ว HyperFrames render เป็น MP4 ที่ deterministic ผ่าน headless Chrome + FFmpeg. ใช้คู่กับ **Seedance 2.0** สำหรับ cinematic t2v / i2v, **Veo 3 / Sora 2 / Kling 2** สำหรับ routed model variants และ **Suno v5 / Lyria 2** สำหรับ audio layer.
+**[HyperFrames][hyperframes]** คือ framework วิดีโอแบบโอเพนซอร์สและ agent-native ของ HeyGen ซึ่งผสานเป็น first-class citizen ใน SplatStudio. Agent เขียน HTML + CSS + GSAP แล้ว HyperFrames render เป็น MP4 ที่ deterministic ผ่าน headless Chrome + FFmpeg. ใช้คู่กับ **Seedance 2.0** สำหรับ cinematic t2v / i2v, **Veo 3 / Sora 2 / Kling 2** สำหรับ routed model variants และ **Suno v5 / Lyria 2** สำหรับ audio layer.
 
 <table>
 <tr>
@@ -246,11 +246,11 @@ Live dashboard, decision room, KPI wall — artifact หน้าเดียว
 
 ---
 
-## ทำไมต้อง SaaSCodex
+## ทำไมต้อง SplatStudio
 
 > **ในเดือนเมษายน 2026, Anthropic เปิดตัว Claude Design — ครั้งแรกที่ LLM หยุดแค่เขียนข้อความ และเริ่มส่งมอบ design artifacts โดยตรง.** มัน viral มาก แต่ยังเป็น closed-source, paid-only, cloud-only, ผูกกับโมเดลของ Anthropic, skills ของ Anthropic และ surface ของ Anthropic. ไม่มี checkout, ไม่มี self-host, ไม่มี Vercel deploy, ไม่มีการสลับ agent ของคุณเอง.
 
-SaaSCodex (OD) คือทางเลือกโอเพนซอร์ส. Loop เดียวกัน, mental model แบบ artifact-first เดียวกัน, แต่ไม่มี lock-in:
+SplatStudio (OD) คือทางเลือกโอเพนซอร์ส. Loop เดียวกัน, mental model แบบ artifact-first เดียวกัน, แต่ไม่มี lock-in:
 
 - 🤖 **Agent-native, model-agnostic.** เราไม่ได้ ship agent. `claude` / `codex` / `cursor-agent` / `copilot` / `hermes` / `kimi` ที่มีอยู่แล้วบน `PATH` ของคุณคือ design engine. สลับได้ในคลิกเดียว.
 - 🧠 **Brand-grade เป็นค่าเริ่มต้น.** ทุก render อ่าน `DESIGN.md` ของ package ที่ active เป็น brand contract หลัก. Repo ship design-system packages 151 ชุด; package รุ่นเก่าอาจมีแค่ `DESIGN.md` ส่วน package รุ่นใหม่เพิ่ม `manifest.json`, `tokens.css`, components, assets และ provenance ได้. วาง folder เข้าไป picker ก็หาเจอ.
@@ -261,7 +261,7 @@ SaaSCodex (OD) คือทางเลือกโอเพนซอร์ส. 
 
 ### เปรียบเทียบ
 
-| | Claude Design | Figma | Lovable / v0 / Bolt | **SaaSCodex** |
+| | Claude Design | Figma | Lovable / v0 / Bolt | **SplatStudio** |
 |---|---|---|---|---|
 | Open source | ❌ | ❌ | ❌ | **✅ Apache-2.0** |
 | Self-host / desktop | ❌ | ❌ | ❌ | **✅ macOS + Windows + Docker** |
@@ -278,21 +278,21 @@ SaaSCodex (OD) คือทางเลือกโอเพนซอร์ส. 
 
 ### 🖥️ ดาวน์โหลด desktop app (แนะนำ — ไม่ต้องตั้งค่า)
 
-วิธีที่เร็วที่สุดในการใช้ SaaSCodex. ไม่ต้องมี Node, ไม่ต้องมี pnpm, ไม่ต้อง clone.
+วิธีที่เร็วที่สุดในการใช้ SplatStudio. ไม่ต้องมี Node, ไม่ต้องมี pnpm, ไม่ต้อง clone.
 
-- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/) หรือ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux** (AppImage, optional lane) → [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 หลังติดตั้ง: แอปจะ auto-detect coding-agent CLI ทุกตัวบน `PATH`, โหลด functional skills 100+ รายการ, rendering-template catalog ที่แยกต่างหาก และ design-system packages 151 ชุด แล้วให้คุณพิมพ์ brief ใน entry view ได้ทันที.
 
 ### 🤖 ติดตั้งเข้า coding agent ของคุณ (ไม่ใช้ UI)
 
-คุณใช้ SaaSCodex ได้โดยไม่ต้องเปิด GUI เลย — เรียกใช้เป็น skill, plugin หรือ MCP server ใน Claude Code, Codex, Cursor, Copilot, OpenClaw, Antigravity, Hermes, Kimi และอื่น ๆ.
+คุณใช้ SplatStudio ได้โดยไม่ต้องเปิด GUI เลย — เรียกใช้เป็น skill, plugin หรือ MCP server ใน Claude Code, Codex, Cursor, Copilot, OpenClaw, Antigravity, Hermes, Kimi และอื่น ๆ.
 
 ```bash
 # One-line install into the agent you're using:
-curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
+curl -fsSL https://splatstudio.app/install.sh | sh -s <agent>
 # <agent> = claude | codex | reasonix | raven | cursor | copilot | openclaw | antigravity
 #         | pi | vibe | hermes | cline | kimi | kiro | trae | opencode
 ```
@@ -300,29 +300,29 @@ curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
 จากนั้นใน agent:
 
 ```
-> Use saascodex to generate a landing page with the Linear design system
+> Use splatstudio to generate a landing page with the Linear design system
 ```
 
-ใน local CLI run ที่มี filesystem, agent จะ compose functional skill หรือ design template ที่เลือกกับ `DESIGN.md`, เขียน canonical project files และ SaaSCodex preview ไฟล์เหล่านั้น. BYOK/plain-API run ที่ไม่มี filesystem tools จะคืน `<artifact>` block ที่สมบูรณ์หนึ่งก้อนแทน.
+ใน local CLI run ที่มี filesystem, agent จะ compose functional skill หรือ design template ที่เลือกกับ `DESIGN.md`, เขียน canonical project files และ SplatStudio preview ไฟล์เหล่านั้น. BYOK/plain-API run ที่ไม่มี filesystem tools จะคืน `<artifact>` block ที่สมบูรณ์หนึ่งก้อนแทน.
 
 ### 🐳 รันด้วย Docker
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex/deploy
+cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
 docker compose up -d
 # open http://127.0.0.1:7456
 ```
 
-หากเบราว์เซอร์ขอข้อมูลเข้าสู่ระบบ ให้ใช้ `saascodex` เป็นชื่อผู้ใช้ และใช้ค่า `OD_API_TOKEN` จาก `deploy/.env` เป็นรหัสผ่าน ทราฟฟิกผ่าน Docker bridge จะยังมีการยืนยันตัวตนโดยไม่ต้องเปิด host networking
+หากเบราว์เซอร์ขอข้อมูลเข้าสู่ระบบ ให้ใช้ `splatstudio` เป็นชื่อผู้ใช้ และใช้ค่า `OD_API_TOKEN` จาก `deploy/.env` เป็นรหัสผ่าน ทราฟฟิกผ่าน Docker bridge จะยังมีการยืนยันตัวตนโดยไม่ต้องเปิด host networking
 
 ### 🧑‍💻 รันจาก source
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex
+cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
 ```
@@ -339,17 +339,17 @@ Node `~24`, pnpm `10.33.x`. ผู้ใช้ Windows ดู [`docs/windows-tro
 2. **Designer (หรือ agent) ล็อก direction.** ยังไม่มี brand? เลือกจาก 5 direction ที่ curate ไว้. มี brand แล้ว? วาง screenshot / URL → agent เชื่อม GitHub, import Figma และ codify เป็น `DESIGN.md` ที่ reusable.
 3. **Agent สร้าง deliverable แรก.** Plugin + functional skill หรือ design template + `DESIGN.md` ถูก bind แล้ว. CLI run ที่มี filesystem เขียน canonical project files และ preview ตามไฟล์; BYOK/plain-API run ที่ไม่มี file tools คืน `<artifact>` block ที่สมบูรณ์หนึ่งก้อน.
 4. **ส่งต่อให้ engineering.** Artifact คือ HTML/CSS จริง — วางเข้า Cursor, Codex หรือ Claude Code เพื่อ build ต่อเป็น code. หรือ export PPTX / PDF / MP4 ตรงไป marketing.
-5. **SaaSCodex ฉลาดขึ้นเมื่อคุณใช้มัน.** Screenshot, font, palette และ artifact ที่ confirm แล้วจะสะสมเป็น default สำหรับ session ถัดไป. งานซ้ำน้อยลง, drift น้อยลง.
+5. **SplatStudio ฉลาดขึ้นเมื่อคุณใช้มัน.** Screenshot, font, palette และ artifact ที่ confirm แล้วจะสะสมเป็น default สำหรับ session ถัดไป. งานซ้ำน้อยลง, drift น้อยลง.
 
 ---
 
-## ใช้ SaaSCodex จาก coding agent ของคุณ
+## ใช้ SplatStudio จาก coding agent ของคุณ
 
-SaaSCodex ship **stdio MCP server** และ **install scripts** สำหรับแต่ละ agent. Agent ที่รองรับ MCP ใน repo อื่นสามารถอ่านไฟล์จาก project SaaSCodex local ของคุณได้โดยตรง — tokens CSS, JSX components, entry HTML — ในรูปแบบ structured API ที่ query ตามชื่อได้. Agent เห็นไฟล์ live เสมอ ไม่ใช่ stale export.
+SplatStudio ship **stdio MCP server** และ **install scripts** สำหรับแต่ละ agent. Agent ที่รองรับ MCP ใน repo อื่นสามารถอ่านไฟล์จาก project SplatStudio local ของคุณได้โดยตรง — tokens CSS, JSX components, entry HTML — ในรูปแบบ structured API ที่ query ตามชื่อได้. Agent เห็นไฟล์ live เสมอ ไม่ใช่ stale export.
 
 ```bash
 # One-line install (รองรับ 16+ CLIs):
-curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
+curl -fsSL https://splatstudio.app/install.sh | sh -s <agent>
 
 # Then the agent can:
 od project list --json
@@ -361,7 +361,7 @@ od skills list --json
 
 **ทำไมต้อง MCP?** การ export แล้ว attach zip ใหม่ทุก iteration ทำให้ flow สะดุด. MCP เปิด source ของ design โดยตรง — agent เห็นไฟล์ live เสมอ.
 
-**สำหรับ agent ที่เริ่มจากศูนย์,** installer จะวาง `~/.config/<agent>/saascodex.json` (หรือ path ตาม platform) พร้อม MCP snippet สำหรับ copy-paste. Cursor ได้ deeplink แบบ one-click; Claude Code ได้ one-liner `claude mcp add-json`; agent อื่นได้ JSON ตาม schema config ของตัวเอง. Flow ต่อ agent แบบเต็ม → **Settings → MCP server** ใน desktop app หรือ [`docs/agent-adapters.md`](../../docs/agent-adapters.md).
+**สำหรับ agent ที่เริ่มจากศูนย์,** installer จะวาง `~/.config/<agent>/splatstudio.json` (หรือ path ตาม platform) พร้อม MCP snippet สำหรับ copy-paste. Cursor ได้ deeplink แบบ one-click; Claude Code ได้ one-liner `claude mcp add-json`; agent อื่นได้ JSON ตาม schema config ของตัวเอง. Flow ต่อ agent แบบเต็ม → **Settings → MCP server** ใน desktop app หรือ [`docs/agent-adapters.md`](../../docs/agent-adapters.md).
 
 **Security model.** ค่าเริ่มต้นเป็น read-only, daemon bind กับ `127.0.0.1`, และ SSRF ถูกบล็อกที่ proxy edge. การเปิดให้ LAN ต้องตั้ง `OD_BIND_HOST` พร้อม `OD_ALLOWED_ORIGINS` อย่างชัดเจน. Connector credentials และ live-artifact preview routes ยังเป็น loopback-only เสมอ.
 
@@ -435,7 +435,7 @@ Re-import library ผ่าน [`scripts/sync-design-systems.ts`](../../scripts/
 
 ## Plugins
 
-**Official plugins 277 ตัวและ remixable reference examples 183 รายการ** อยู่ใน [`plugins/_official/`](../../plugins/_official/). แต่ละ entry เป็น portable plugin directory ที่ยึด `saascodex.json` เป็นหลัก พร้อม payload ตาม type เช่น `SKILL.md` สำหรับ agent workflow, `template.json` สำหรับ media template หรือ `DESIGN.md` สำหรับ design-system entry. ไปที่ category ได้ทันที:
+**Official plugins 277 ตัวและ remixable reference examples 183 รายการ** อยู่ใน [`plugins/_official/`](../../plugins/_official/). แต่ละ entry เป็น portable plugin directory ที่ยึด `splatstudio.json` เป็นหลัก พร้อม payload ตาม type เช่น `SKILL.md` สำหรับ agent workflow, `template.json` สำหรับ media template หรือ `DESIGN.md` สำหรับ design-system entry. ไปที่ category ได้ทันที:
 
 | Category | Count | Contents |
 |---|---|---|
@@ -477,33 +477,33 @@ od plugin uninstall od-default       # uninstall
 
 ### การสร้าง plugin
 
-SaaSCodex plugin ต้องมี `saascodex.json` พร้อม payload ที่ type นั้นกำหนด. Workflow skill หรือ scenario มี `SKILL.md` เพิ่ม; manifest-only template และ design-system entry ใช้ payload ของตัวเอง:
+SplatStudio plugin ต้องมี `splatstudio.json` พร้อม payload ที่ type นั้นกำหนด. Workflow skill หรือ scenario มี `SKILL.md` เพิ่ม; manifest-only template และ design-system entry ใช้ payload ของตัวเอง:
 
 ```
 my-plugin/
-├── saascodex.json    ← required: marketplace metadata + inputs + pipeline + capabilities
+├── splatstudio.json    ← required: marketplace metadata + inputs + pipeline + capabilities
 ├── SKILL.md            ← required for agent-skill/scenario entries; omit for other plugin types
 ├── README.md           ← optional: usage, install, registry links
 ├── preview/            ← optional: index.html / poster.png (strongly recommended for visual plugins)
 └── examples/           ← optional: concrete use cases
 ```
 
-Field หลักของ `saascodex.json`: `specVersion` (ปัจจุบัน `1.0.0`), `name` (stable ID), `version` (semver), optional `compat.agentSkills[].path` (ชี้ไป `./SKILL.md` เมื่อ entry expose Agent Skill), `od.kind` (`skill` / `scenario` / `atom` / `bundle`), `od.taskKind` (`new-generation` / `figma-migration` / `code-migration` / `tune-collab`), `od.mode` (output surface เช่น `prototype` / `deck` / `live-artifact` / `image` / `video` / `hyperframes` / `audio` / `design-system` / `scenario`), `od.capabilities[]` (**ประกาศเท่าที่จำเป็นขั้นต่ำ** — restricted install ให้แค่ `prompt:inject` โดย default), `od.inputs[]` (parameter ตอน apply).
+Field หลักของ `splatstudio.json`: `specVersion` (ปัจจุบัน `1.0.0`), `name` (stable ID), `version` (semver), optional `compat.agentSkills[].path` (ชี้ไป `./SKILL.md` เมื่อ entry expose Agent Skill), `od.kind` (`skill` / `scenario` / `atom` / `bundle`), `od.taskKind` (`new-generation` / `figma-migration` / `code-migration` / `tune-collab`), `od.mode` (output surface เช่น `prototype` / `deck` / `live-artifact` / `image` / `video` / `hyperframes` / `audio` / `design-system` / `scenario`), `od.capabilities[]` (**ประกาศเท่าที่จำเป็นขั้นต่ำ** — restricted install ให้แค่ `prompt:inject` โดย default), `od.inputs[]` (parameter ตอน apply).
 
 Scaffold + validate ในเครื่อง:
 
 ```bash
 od plugin scaffold --id my-plugin --title "My Plugin"   # generate the skeleton
 od plugin validate ./my-plugin                          # check manifest / file layout
-pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
+pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 ```
 
 Field set และ runtime contract เต็ม → [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md); พัฒนา plugin ด้วย coding agent → [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md); template ขั้นต่ำแบบ copy-paste → [`plugins/spec/examples/`](../../plugins/spec/examples/).
 
 ### การ contribute plugin
 
-1. วาง plugin folder ใน [`plugins/community/`](../../plugins/community/) (third-party plugins), หรือ — ถ้าจะ ship bundled กับ SaaSCodex — วางใน tier ที่ตรงกันของ [`plugins/_official/`](../../plugins/_official/).
-2. ผ่าน validation: `od plugin validate`, `pnpm guard`, `pnpm --filter @saascodex/plugin-runtime typecheck`.
+1. วาง plugin folder ใน [`plugins/community/`](../../plugins/community/) (third-party plugins), หรือ — ถ้าจะ ship bundled กับ SplatStudio — วางใน tier ที่ตรงกันของ [`plugins/_official/`](../../plugins/_official/).
+2. ผ่าน validation: `od plugin validate`, `pnpm guard`, `pnpm --filter @splatstudio/plugin-runtime typecheck`.
 3. กรอก PR ด้วย template ใน [`plugins/spec/CONTRIBUTING.md`](../../plugins/spec/CONTRIBUTING.md) (ID, version, lane, mode, capabilities, trigger examples; แนบ screenshot / preview สำหรับ visual plugins).
 4. ถ้าจะ publish ไป registry ภายนอก (skills.sh / ClawHub / standalone GitHub) → [`plugins/spec/PUBLISHING-REGISTRIES.md`](../../plugins/spec/PUBLISHING-REGISTRIES.md).
 
@@ -566,7 +566,7 @@ Architecture เต็ม → [`docs/architecture.md`](../../docs/architecture.m
 - [x] Sidecar protocol + Electron desktop + IPC automation
 - [x] Artifact lint API + 5-dim self-critique pre-emit gate
 - [x] **0.8.0** — plugin marketplace infrastructure (official plugins 261 ตัว, manifest spec, per-agent install scripts)
-- [x] **0.9.0** — SaaSCodex Cloud (official Model Router ในตัวแอป: zero config, one-click sign-in)
+- [x] **0.9.0** — SplatStudio Cloud (official Model Router ในตัวแอป: zero config, one-click sign-in)
 - [x] Packaged Electron builds — macOS (Apple Silicon + Intel) + Windows (x64) + Linux AppImage (optional lane)
 - [ ] Comment-mode surgical edits — ship บางส่วนแล้ว; reliable targeted patching กำลังทำอยู่
 - [ ] AI-emitted tweaks panel UX — ยังไม่ implement
@@ -594,7 +594,7 @@ Label [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3A
 
 ## Contributing
 
-SaaSCodex เดินหน้าได้เพราะ contributors — designers, engineers, prompt authors — กลับมา contribute อย่างต่อเนื่อง. Skills, design systems และ plugins ที่ถูกใช้มากที่สุดหลายตัวเขียนโดยคนนอก core team.
+SplatStudio เดินหน้าได้เพราะ contributors — designers, engineers, prompt authors — กลับมา contribute อย่างต่อเนื่อง. Skills, design systems และ plugins ที่ถูกใช้มากที่สุดหลายตัวเขียนโดยคนนอก core team.
 
 ### 🎯 เริ่มตรงไหนดี (impact สูง, change น้อย)
 
@@ -602,7 +602,7 @@ SaaSCodex เดินหน้าได้เพราะ contributors — desi
 |---|---|---|
 | **skill** ใหม่ | วาง folder ที่มี `SKILL.md` + `assets/` + `references/` | [`skills/`](../../skills/) · spec ใน [`docs/skills-protocol.md`](../../docs/skills-protocol.md) |
 | **design system** ใหม่ | วาง package ที่มี `DESIGN.md` เป็นแกน และเพิ่ม `manifest.json`, `tokens.css`, components, assets หรือ provenance ตามต้องการ | [`design-systems/<brand>/`](../../design-systems/) |
-| **plugin** ใหม่ | วาง `saascodex.json` + payload เฉพาะประเภทใน category folder | [`plugins/community/`](../../plugins/community/) · spec ใน [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · agent dev guide ใน [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
+| **plugin** ใหม่ | วาง `splatstudio.json` + payload เฉพาะประเภทใน category folder | [`plugins/community/`](../../plugins/community/) · spec ใน [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · agent dev guide ใน [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | รองรับ **coding-agent CLI** ใหม่ | Runtime definition + registry entry; เพิ่ม parser เฉพาะ wire format ใหม่ | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
 | แก้ bug หรือ polish UI | ดู label [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) | [Issues →](https://github.com/nexu-io/open-design/issues) |
 | แปล docs | อัปเดตไฟล์ `README.<lang>.md` | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
@@ -614,7 +614,7 @@ SaaSCodex เดินหน้าได้เพราะ contributors — desi
 ```bash
 # 1. Boot locally
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex && corepack enable && pnpm install
+cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
 # 2. Find a good-first-issue and assign yourself
@@ -623,7 +623,7 @@ gh issue develop <number>   # create a branch and worktree
 
 # 3. Make the change, run the checks
 pnpm guard && pnpm typecheck
-pnpm --filter @saascodex/<package> test
+pnpm --filter @splatstudio/<package> test
 
 # 4. Open the PR
 gh pr create --fill
@@ -631,9 +631,9 @@ gh pr create --fill
 
 Contribution flow สำหรับ agent, code style และ PR bar แบบเต็ม → [`CONTRIBUTING.th.md`](CONTRIBUTING.th.md) ([Deutsch](CONTRIBUTING.de.md) · [Français](CONTRIBUTING.fr.md) · [简体中文](CONTRIBUTING.zh-CN.md) · [日本語](CONTRIBUTING.ja-JP.md) · [한국어](CONTRIBUTING.ko.md) · [Português](CONTRIBUTING.pt-BR.md)).
 
-### 🏅 SaaSCodex Fellow program
+### 🏅 SplatStudio Fellow program
 
-เรากำลังรับสมัคร **SaaSCodex Fellows** ทั่วโลก — Fellows ร่วม shape ผลิตภัณฑ์กับ core team, เป็นตัวแทน SaaSCodex อย่างเป็นทางการในภูมิภาคของตน และขยาย community local โดยมี funded support ($1,000 / MR), LLM credits ฟรี และ direct review track. รายละเอียด → [`MAINTAINERS.th.md`](MAINTAINERS.th.md) และประกาศใน [Discord](https://discord.gg/qhbcCH8Am4).
+เรากำลังรับสมัคร **SplatStudio Fellows** ทั่วโลก — Fellows ร่วม shape ผลิตภัณฑ์กับ core team, เป็นตัวแทน SplatStudio อย่างเป็นทางการในภูมิภาคของตน และขยาย community local โดยมี funded support ($1,000 / MR), LLM credits ฟรี และ direct review track. รายละเอียด → [`MAINTAINERS.th.md`](MAINTAINERS.th.md) และประกาศใน [Discord](https://discord.gg/qhbcCH8Am4).
 
 ---
 
@@ -674,7 +674,7 @@ Contribution flow สำหรับ agent, code style และ PR bar แบ�
 ขอบคุณทุกคนที่มีส่วนร่วม — code, docs, feedback, issue ที่คม, skill ใหม่, design system ใหม่.
 
 <a href="https://github.com/nexu-io/open-design/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SaaSCodex contributors" />
+  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
 ---
@@ -682,7 +682,7 @@ Contribution flow สำหรับ agent, code style และ PR bar แบ�
 ## Repository activity
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
+  <img alt="SplatStudio — repository metrics" src="https://repo-assets.splatstudio.app/resources/images/github-metrics.svg" />
 </picture>
 
 SVG ด้านบน regenerate ทุกวันโดย [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) ด้วย [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -692,7 +692,7 @@ SVG ด้านบน regenerate ทุกวันโดย [`.github/workflow
 ## Star us
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex บน GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio บน GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 ถ้าสิ่งนี้ช่วยคุณประหยัดเวลาได้สามสิบนาที กด ★ ให้เราได้เลย. Stars ไม่ได้จ่ายค่าเช่า — แต่มันบอก designer, agent และ contributor คนถัดไปว่าการทดลองนี้ควรค่าแก่ความสนใจ. คลิกเดียว, สามวินาที, เป็นสัญญาณจริง.
@@ -701,7 +701,7 @@ SVG ด้านบน regenerate ทุกวันโดย [`.github/workflow
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&theme=dark&cache_bust=2026-08-04" />
     <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
-    <img alt="SaaSCodex star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
+    <img alt="SplatStudio star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
   </picture>
 </a>
 
@@ -719,7 +719,7 @@ SVG ด้านบน regenerate ทุกวันโดย [`.github/workflow
 | [`multica-ai/multica`](https://github.com/multica-ai/multica) | สถาปัตยกรรม daemon + adapter — PATH-scan agent detection, local daemon เป็น privileged process เพียงตัวเดียว. |
 | [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md) | แหล่งที่มาในอดีตของ schema `DESIGN.md` 9 section รุ่นแรกและ systems ที่ derive จาก upstream 70 ชุด; package ปัจจุบันขยาย baseline นี้ได้. |
 | [`bergside/awesome-design-skills`](https://github.com/bergside/awesome-design-skills) | แหล่งที่มาของ design skills 57 ชุดที่เพิ่มไว้ใต้ `design-systems/`. |
-| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | Framework motion-graphics HTML→MP4 ที่ integrate เป็น `hyperframes-html` แบบ first-class ใน SaaSCodex. |
+| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | Framework motion-graphics HTML→MP4 ที่ integrate เป็น `hyperframes-html` แบบ first-class ใน SplatStudio. |
 | [Claude Code skills][skill] | Convention `SKILL.md` ที่เรารับมาใช้ตรง ๆ. |
 
 Provenance แบบละเอียด → [`docs/references.md`](../../docs/references.md).

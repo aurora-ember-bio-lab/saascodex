@@ -4,7 +4,7 @@ import path from 'node:path';
 import { EventEmitter } from 'node:events';
 import express, { type Request, type Response } from 'express';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
-import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
+import { strategyPackageHashFromDigests } from '@splatstudio/plugin-runtime';
 import { closeDatabase, openDatabase, insertProject } from '../src/db.js';
 import { createSnapshot } from '../src/plugins/snapshots.js';
 import { listInstalledPlugins } from '../src/plugins/registry.js';
@@ -69,7 +69,7 @@ describe('POST /api/chat internal strategy authority without a listening server'
       const snapshot = createSnapshot(db, {
         projectId: 'project', conversationId: 'conversation', pluginId: 'od-next-strategy', pluginVersion: '2.0.0',
         manifestSourceDigest: 'strategy-manifest',
-        strategy: { schema: 'saascodex.applied-strategy/v2', id: 'od-next-strategy', version: '2.0.0',
+        strategy: { schema: 'splatstudio.applied-strategy/v2', id: 'od-next-strategy', version: '2.0.0',
           packageHash: strategyPackageHashFromDigests(assetDigests), assetDigests,
           selectedTaskProfile: { taskType: 'prototype', version: '2.0.0', path: './assets/task-profiles/prototype.md', sha256: 'b'.repeat(64) },
           taskProfileVersions: ['2.0.0'], promptRecipe: 'od-next-plan-build-v2' },

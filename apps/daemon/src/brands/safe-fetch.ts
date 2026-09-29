@@ -32,7 +32,7 @@ import { Agent } from 'undici';
 import {
   isBlockedExternalApiHostname,
   isLoopbackApiHost,
-} from '@saascodex/contracts/api/connectionTest';
+} from '@splatstudio/contracts/api/connectionTest';
 
 function isNonPublicHost(host: string): boolean {
   const h = host.toLowerCase();

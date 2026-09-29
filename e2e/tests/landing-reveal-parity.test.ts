@@ -13,9 +13,9 @@ async function readRepoFile(relativePath: string): Promise<string> {
 describe('landing reveal progressive-enhancement parity', () => {
   it('[P1] keeps generator inputs and the canonical example fail-open', async () => {
     const [stylesSource, composerSource, exampleSource] = await Promise.all([
-      readRepoFile('design-templates/saascodex-landing/styles.css'),
-      readRepoFile('design-templates/saascodex-landing/scripts/compose.ts'),
-      readRepoFile('design-templates/saascodex-landing/example.html'),
+      readRepoFile('design-templates/splatstudio-landing/styles.css'),
+      readRepoFile('design-templates/splatstudio-landing/scripts/compose.ts'),
+      readRepoFile('design-templates/splatstudio-landing/example.html'),
     ]);
 
     for (const source of [stylesSource, exampleSource]) {

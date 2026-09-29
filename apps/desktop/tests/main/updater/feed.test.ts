@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { SIDECAR_SOURCES } from "@saascodex/sidecar-proto";
+import { SIDECAR_SOURCES } from "@splatstudio/sidecar-proto";
 import { describe, expect, it } from "vitest";
 
 import { resolveDesktopUpdaterConfig } from "../../../src/main/updater/config.js";
@@ -19,7 +19,7 @@ describe("desktop updater feed", () => {
     try {
       const appRoot = join(root, "Open Design.app");
       await mkdir(join(appRoot, "Contents", "Resources"), { recursive: true });
-      await writeFile(join(appRoot, "Contents", "Resources", "saascodex-config.json"), '{"appVersion":"0.7.0"}\n');
+      await writeFile(join(appRoot, "Contents", "Resources", "splatstudio-config.json"), '{"appVersion":"0.7.0"}\n');
       const macConfig = resolveDesktopUpdaterConfig({
         env: {},
         launcherLaunchPath: appRoot,
@@ -31,7 +31,7 @@ describe("desktop updater feed", () => {
       const winExe = join(root, "win-install", "Open Design Beta.exe");
       await mkdir(join(root, "win-install", "resources"), { recursive: true });
       await writeFile(winExe, "");
-      await writeFile(join(root, "win-install", "resources", "saascodex-config.json"), '{"appVersion":"0.8.0-beta.2"}\n');
+      await writeFile(join(root, "win-install", "resources", "splatstudio-config.json"), '{"appVersion":"0.8.0-beta.2"}\n');
       const winConfig = resolveDesktopUpdaterConfig({
         env: {},
         launcherLaunchPath: winExe,
@@ -43,7 +43,7 @@ describe("desktop updater feed", () => {
       const malformedExe = join(root, "broken-install", "Open Design.exe");
       await mkdir(join(root, "broken-install", "resources"), { recursive: true });
       await writeFile(malformedExe, "");
-      await writeFile(join(root, "broken-install", "resources", "saascodex-config.json"), "not json\n");
+      await writeFile(join(root, "broken-install", "resources", "splatstudio-config.json"), "not json\n");
       const malformedConfig = resolveDesktopUpdaterConfig({
         env: {},
         launcherLaunchPath: malformedExe,

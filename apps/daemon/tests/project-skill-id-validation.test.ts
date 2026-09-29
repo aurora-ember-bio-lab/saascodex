@@ -60,12 +60,12 @@ describe('project skillId validation', () => {
       const resp = await createProject({
         id,
         name: 'Bundled skill',
-        skillId: 'saascodex-landing',
+        skillId: 'splatstudio-landing',
       });
       expect(resp.status).toBe(200);
       projectsToClean.push(id);
       const body = (await resp.json()) as { project: { skillId: string } };
-      expect(body.project.skillId).toBe('saascodex-landing');
+      expect(body.project.skillId).toBe('splatstudio-landing');
     });
 
     it('accepts a design-template id (source-of-truth = listAllSkillLikeEntries)', async () => {
@@ -81,7 +81,7 @@ describe('project skillId validation', () => {
       expect(body.project.skillId).toBe('dashboard');
     });
 
-    it('canonicalizes an aliased skill id (editorial-collage → saascodex-landing)', async () => {
+    it('canonicalizes an aliased skill id (editorial-collage → splatstudio-landing)', async () => {
       const id = uniqueId('p');
       const resp = await createProject({
         id,
@@ -91,7 +91,7 @@ describe('project skillId validation', () => {
       expect(resp.status).toBe(200);
       projectsToClean.push(id);
       const body = (await resp.json()) as { project: { skillId: string } };
-      expect(body.project.skillId).toBe('saascodex-landing');
+      expect(body.project.skillId).toBe('splatstudio-landing');
     });
 
     it('normalizes empty string skillId to null', async () => {
@@ -175,12 +175,12 @@ describe('project skillId validation', () => {
       const resp = await patchProject(id, { skillId: 'editorial-collage' });
       expect(resp.status).toBe(200);
       const body = (await resp.json()) as { project: { skillId: string } };
-      expect(body.project.skillId).toBe('saascodex-landing');
+      expect(body.project.skillId).toBe('splatstudio-landing');
     });
 
     it('normalizes empty-string skillId on patch to null', async () => {
       const id = uniqueId('p');
-      await createProject({ id, name: 'Patch empty', skillId: 'saascodex-landing' });
+      await createProject({ id, name: 'Patch empty', skillId: 'splatstudio-landing' });
       projectsToClean.push(id);
       const resp = await patchProject(id, { skillId: '' });
       expect(resp.status).toBe(200);
@@ -190,7 +190,7 @@ describe('project skillId validation', () => {
 
     it('treats null skillId on patch as unset', async () => {
       const id = uniqueId('p');
-      await createProject({ id, name: 'Patch null', skillId: 'saascodex-landing' });
+      await createProject({ id, name: 'Patch null', skillId: 'splatstudio-landing' });
       projectsToClean.push(id);
       const resp = await patchProject(id, { skillId: null });
       expect(resp.status).toBe(200);
@@ -200,12 +200,12 @@ describe('project skillId validation', () => {
 
     it('leaves skillId untouched when the field is omitted from patch', async () => {
       const id = uniqueId('p');
-      await createProject({ id, name: 'Patch omit', skillId: 'saascodex-landing' });
+      await createProject({ id, name: 'Patch omit', skillId: 'splatstudio-landing' });
       projectsToClean.push(id);
       const resp = await patchProject(id, { name: 'Renamed' });
       expect(resp.status).toBe(200);
       const body = (await resp.json()) as { project: { skillId: string; name: string } };
-      expect(body.project.skillId).toBe('saascodex-landing');
+      expect(body.project.skillId).toBe('splatstudio-landing');
       expect(body.project.name).toBe('Renamed');
     });
 

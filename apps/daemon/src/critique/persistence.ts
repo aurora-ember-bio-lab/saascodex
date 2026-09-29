@@ -4,12 +4,12 @@ import {
   type CritiquePersistedStatus,
   type CritiqueRoundSummary,
   type CritiqueRunStatus,
-} from '@saascodex/contracts/critique';
+} from '@splatstudio/contracts/critique';
 
 /**
  * Re-export the public contract types and enumeration so existing
  * daemon-side imports (`./persistence.js`) keep working unchanged. The
- * canonical definitions live in `@saascodex/contracts/critique` so the
+ * canonical definitions live in `@splatstudio/contracts/critique` so the
  * web layer can consume the same shapes and the same display order
  * through the rerun / history endpoints (AGENTS.md requirement that
  * shared API DTOs live in packages/contracts).

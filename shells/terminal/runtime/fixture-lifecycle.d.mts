@@ -6,11 +6,11 @@ import type {
   LifecycleStatus,
   StandaloneLifecycleTransitionPort,
   StandaloneGenerationBinding,
-} from "@saascodex/standalone";
+} from "@splatstudio/standalone";
 
 export class FileFixtureLifecyclePort implements LifecyclePort, StandaloneLifecycleTransitionPort {
   constructor(root: string, options: {
-    algebra: typeof import("@saascodex/standalone").SHARED_LIFECYCLE_ALGEBRA;
+    algebra: typeof import("@splatstudio/standalone").SHARED_LIFECYCLE_ALGEBRA;
     heartbeatIntervalMs?: number;
     leaseDurationMs?: number;
     transitionLeaseDurationMs?: number;

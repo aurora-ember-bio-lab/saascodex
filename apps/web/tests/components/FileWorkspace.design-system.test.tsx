@@ -9,7 +9,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { FileWorkspace } from '../../src/components/FileWorkspace';
 import {

@@ -10,7 +10,7 @@ import type {
   Project,
   ProjectDetailResponse,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export interface ProjectDetailState {
   project: Project | null;

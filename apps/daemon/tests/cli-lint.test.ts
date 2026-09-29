@@ -17,7 +17,7 @@ import { dirname, join, resolve as pathResolve } from 'node:path';
 import { promisify } from 'node:util';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-import type { ArtifactLintFinding } from '@saascodex/contracts';
+import type { ArtifactLintFinding } from '@splatstudio/contracts';
 
 const execFileP = promisify(execFile);
 const __dirname = dirname(fileURLToPath(import.meta.url));

@@ -5,7 +5,7 @@ import type {
   DesktopStatusSnapshot,
   DesktopUpdateResult,
   WebStatusSnapshot,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import type { ToolPackLauncherRuntimeSnapshot } from "../launcher/runtime-snapshot.js";
 import type { ToolPackUpdateCacheLifecycleSnapshot } from "../updates/cache-lifecycle-snapshot.js";
 import type { CacheReport } from "../cache/index.js";
@@ -40,7 +40,7 @@ export type ElectronBuilderDirCacheMetadata = {
 };
 
 export type ResourceTreeCacheMetadata = {
-  resourceName: "saascodex";
+  resourceName: "splatstudio";
 };
 
 export type WinBuiltAppManifest = {

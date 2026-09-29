@@ -6,12 +6,12 @@
 // the renderer.
 
 import { useEffect, useState } from 'react';
-import type { SaaSCodexGithubRepoResponse } from '@saascodex/contracts';
+import type { SplatStudioGithubRepoResponse } from '@splatstudio/contracts';
 
-const API = '/api/github/saascodex';
+const API = '/api/github/splatstudio';
 const REPO = 'https://github.com/nexu-io/open-design';
-const LS_KEY = 'saascodex:gh-stars';
-const FAILURE_LS_KEY = 'saascodex:gh-stars:last-failure';
+const LS_KEY = 'splatstudio:gh-stars';
+const FAILURE_LS_KEY = 'splatstudio:gh-stars:last-failure';
 export const GITHUB_STARS_FALLBACK_LABEL = '40K+';
 
 // One-hour soft cache — long enough to dodge GitHub's 60/hr
@@ -128,7 +128,7 @@ export function useGithubStars(): number | null {
           rememberFetchFailure();
           return;
         }
-        const data = (await res.json()) as Partial<SaaSCodexGithubRepoResponse>;
+        const data = (await res.json()) as Partial<SplatStudioGithubRepoResponse>;
         if (typeof data.stargazers_count !== 'number') {
           rememberFetchFailure();
           return;

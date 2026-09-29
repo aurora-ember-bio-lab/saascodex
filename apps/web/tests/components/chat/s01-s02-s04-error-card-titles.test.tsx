@@ -166,12 +166,12 @@ describe('报错卡标题 · S01 / S02 / S04', () => {
     expect(s02).not.toBe(s04);
     /*
      * 「两句不一样」单独一条**照不出合并回去**:S02 那句带 `{agent}` 插值,
-     * AMR 的 agent 名恰好是 `SaaSCodex`,所以哪怕两格共用一个键,渲染出来
-     * 也是「Claude 尚未登录」对「SaaSCodex 尚未登录」—— 仍然不相等。
-     * 判据要钉在 S04 说的**是不是产品那句**:`SaaSCodex`(无空格)是 agent
+     * AMR 的 agent 名恰好是 `SplatStudio`,所以哪怕两格共用一个键,渲染出来
+     * 也是「Claude 尚未登录」对「SplatStudio 尚未登录」—— 仍然不相等。
+     * 判据要钉在 S04 说的**是不是产品那句**:`SplatStudio`(无空格)是 agent
      * 标签,`Open Design`(有空格)才是产品名。
      */
-    expect(s04).not.toContain('SaaSCodex');
+    expect(s04).not.toContain('SplatStudio');
   });
 
   /*
@@ -193,9 +193,9 @@ describe('报错卡标题 · S01 / S02 / S04', () => {
       .toBe('请先完成 Antigravity 的登录，再重新尝试。');
     const card = screen.getByTestId('chat-run-error-card');
     expect(within(card).getAllByRole('button').map((button) => button.textContent?.trim()))
-      .toEqual(['联系我们', '导出日志', '切换到 SaaSCodex Cloud']);
+      .toEqual(['联系我们', '导出日志', '切换到 SplatStudio Cloud']);
     expect(within(card).queryByRole('button', { name: '在终端中登录' })).toBeNull();
-    fireEvent.click(within(card).getByRole('button', { name: '切换到 SaaSCodex Cloud' }));
+    fireEvent.click(within(card).getByRole('button', { name: '切换到 SplatStudio Cloud' }));
     expect(onSwitchToAmrAndRetry).toHaveBeenCalledOnce();
     expect(onSwitchToAmrAndRetry).toHaveBeenCalledWith(expect.objectContaining({
       id: 'msg-failed', agentId: 'antigravity', runId: 'run-failed',

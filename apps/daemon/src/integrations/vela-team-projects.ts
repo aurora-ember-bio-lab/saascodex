@@ -1,4 +1,4 @@
-import type { ProjectSyncState } from '@saascodex/contracts';
+import type { ProjectSyncState } from '@splatstudio/contracts';
 import type { ResourceHubPrincipal } from '../collab/resource-principal.js';
 
 export type VelaTeamProjectSyncState =

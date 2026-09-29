@@ -1,8 +1,8 @@
 import { performance } from 'node:perf_hooks';
 import type Database from 'better-sqlite3';
-import type { PersistedAgentEvent } from '@saascodex/contracts';
-import { MAX_ARTIFACT_FOCUS_SHOW, MAX_NEXT_STEP_SUGGESTIONS } from '@saascodex/contracts';
-import type { RunFinishedProps } from '@saascodex/contracts/analytics';
+import type { PersistedAgentEvent } from '@splatstudio/contracts';
+import { MAX_ARTIFACT_FOCUS_SHOW, MAX_NEXT_STEP_SUGGESTIONS } from '@splatstudio/contracts';
+import type { RunFinishedProps } from '@splatstudio/contracts/analytics';
 import {
   appendMessageAgentEvents,
   clearMessageAgentEventBatches,

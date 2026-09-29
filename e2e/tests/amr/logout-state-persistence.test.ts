@@ -15,7 +15,7 @@ describe('AMR logout state persistence', () => {
     const suite = await createSmokeSuite('amr-logout-state-persistence');
     const homeDir = join(suite.scratchDir, 'home-logout-state');
 
-    await suite.with.env({ HOME: homeDir, SAASCODEX_AMR_PROFILE: 'local' }, async () => {
+    await suite.with.env({ HOME: homeDir, SPLATSTUDIO_AMR_PROFILE: 'local' }, async () => {
       await suite.with.toolsDev(async ({ webUrl }) => {
         const successVelaBin = await writeFakeVelaBin(join(suite.scratchDir, 'fake-vela-logout-success'), {
           assistantText: 'AMR logout persistence success',
@@ -34,7 +34,7 @@ describe('AMR logout state persistence', () => {
           agentCliEnv: {
             amr: {
               VELA_BIN: successVelaBin,
-              SAASCODEX_AMR_PROFILE: 'local',
+              SPLATSTUDIO_AMR_PROFILE: 'local',
               ...suite.amr.runtimeEnv(),
             },
           },
@@ -64,7 +64,7 @@ describe('AMR logout state persistence', () => {
           agentCliEnv: {
             amr: {
               VELA_BIN: strictVelaBin,
-              SAASCODEX_AMR_PROFILE: 'local',
+              SPLATSTUDIO_AMR_PROFILE: 'local',
             },
           },
         });

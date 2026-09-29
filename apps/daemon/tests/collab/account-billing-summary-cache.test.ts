@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { WorkspaceBillingSummary } from '@saascodex/contracts';
+import type { WorkspaceBillingSummary } from '@splatstudio/contracts';
 
 import { createAccountBillingSummaryCache } from '../../src/collab/account-billing-summary-cache.js';
 

@@ -13,7 +13,7 @@ import {
 } from '../../src/components/ProjectSearchModal';
 import { I18nProvider } from '../../src/i18n';
 import type { Project } from '../../src/types';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 afterEach(() => cleanup());
 

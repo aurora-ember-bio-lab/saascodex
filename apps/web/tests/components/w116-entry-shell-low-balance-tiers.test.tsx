@@ -26,7 +26,7 @@ import {
   buildWorkspaceSeatSummary,
   type AmrWalletSnapshot,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryShellWithGateHost } from '../helpers/entry-shell-gate-host';
@@ -95,7 +95,7 @@ function personalContext(): WorkspaceCollabContext {
 function amrAgent(): AgentInfo {
   return {
     id: 'amr',
-    name: 'SaaSCodex AMR',
+    name: 'SplatStudio AMR',
     bin: 'amr',
     available: true,
     models: [{ id: 'glm-5', label: 'GLM 5' }],
@@ -211,7 +211,7 @@ describe('T53 / T66 · 首页非硬拦档一律静默放行', () => {
       if (url.endsWith('/api/plugins')) return jsonResponse({ plugins: [] });
       if (url.endsWith('/api/mcp/servers')) return jsonResponse({ servers: [] });
       if (url.endsWith('/api/community/discord')) return jsonResponse({ stale: true });
-      if (url.endsWith('/api/github/saascodex')) return jsonResponse({ stale: true });
+      if (url.endsWith('/api/github/splatstudio')) return jsonResponse({ stale: true });
       return jsonResponse({});
     }) as typeof fetch;
   });

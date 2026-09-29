@@ -13,11 +13,11 @@
 import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const { getSaaSCodexHostMock, verifiedDispose } = vi.hoisted(() => ({
-	getSaaSCodexHostMock: vi.fn(),
+const { getSplatStudioHostMock, verifiedDispose } = vi.hoisted(() => ({
+	getSplatStudioHostMock: vi.fn(),
 	verifiedDispose: vi.fn(),
 }));
-vi.mock("@saascodex/host", () => ({ getSaaSCodexHost: getSaaSCodexHostMock }));
+vi.mock("@splatstudio/host", () => ({ getSplatStudioHost: getSplatStudioHostMock }));
 vi.mock("../../src/providers/registry", () => ({ openExternalUrl: vi.fn(async () => true) }));
 vi.mock("../../src/components/HoverTouchpointOverlay", () => ({
 	HoverTouchpointOverlay: (props: { entry?: { id?: string } }) => (
@@ -42,7 +42,7 @@ vi.mock("../../src/components/touchpoint-component", async (importOriginal) => (
 import { ProductionCampaignBadge } from "../../src/components/ProductionCampaignBadge";
 import { ProductionCampaignHover } from "../../src/components/ProductionCampaignHover";
 import { ProductionCampaignModal } from "../../src/components/ProductionCampaignModal";
-import { SaaSCodexTouchpointElement } from "../../src/components/touchpoint-component";
+import { SplatStudioTouchpointElement } from "../../src/components/touchpoint-component";
 import { SERVER_FAULT_HEARTBEAT_MS } from "../../src/components/touchpoint-lifecycle";
 
 const T0 = "2030-01-01T00:00:00.000Z";
@@ -139,18 +139,18 @@ const router = (bodies: Record<string, unknown>) =>
 beforeEach(() => {
 	vi.useFakeTimers({ shouldAdvanceTime: true });
 	vi.setSystemTime(new Date(T0));
-	getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
-	vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (
-		this: SaaSCodexTouchpointElement,
+	getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+	vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(async function (
+		this: SplatStudioTouchpointElement,
 	) {
 		this.shadowRoot?.replaceChildren(document.createTextNode("campaign"));
 	});
-	vi.spyOn(SaaSCodexTouchpointElement.prototype, "dispose").mockResolvedValue();
+	vi.spyOn(SplatStudioTouchpointElement.prototype, "dispose").mockResolvedValue();
 	localStorage.clear();
 });
 afterEach(() => {
 	cleanup();
-	getSaaSCodexHostMock.mockReset();
+	getSplatStudioHostMock.mockReset();
 	verifiedDispose.mockClear();
 	vi.unstubAllGlobals();
 	vi.restoreAllMocks();

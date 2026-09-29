@@ -1,4 +1,4 @@
-// Map an SaaSCodex native event onto the AG-UI canonical wire shape.
+// Map an SplatStudio native event onto the AG-UI canonical wire shape.
 //
 // The OD native union covers more than AG-UI cares about (e.g. internal
 // daemon-control events). We project only what an external AG-UI client
@@ -8,7 +8,7 @@
 import type {
   GenUISurfaceEvent,
   PluginPipelineStageEvent,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   AGUIAgentMessageEvent,
   AGUIEvent,

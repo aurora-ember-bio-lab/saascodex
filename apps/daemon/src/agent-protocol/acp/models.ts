@@ -218,7 +218,7 @@ export async function detectAcpModels({
   cwd = process.cwd(),
   env = process.env,
   timeoutMs = DEFAULT_TIMEOUT_MS,
-  clientName = 'saascodex-detect',
+  clientName = 'splatstudio-detect',
   clientVersion = 'runtime-adapter',
   defaultModelOption = { id: 'default', label: 'Default (CLI config)' },
 }: DetectAcpModelsOptions): Promise<ModelOption[]> {

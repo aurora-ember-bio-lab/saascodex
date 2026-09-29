@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, waitFor, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { OdCard } from '@saascodex/contracts';
+import type { OdCard } from '@splatstudio/contracts';
 import { AssistantMessage } from '../../../src/components/AssistantMessage';
 import { I18nProvider } from '../../../src/i18n';
 import { listMessages } from '../../../src/state/projects';

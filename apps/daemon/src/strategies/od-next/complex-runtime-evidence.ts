@@ -1,8 +1,8 @@
 import {
   OdNextRuntimeCapabilitySnapshotV1Schema,
-  type SaaSCodexPlanContractV2,
+  type SplatStudioPlanContractV2,
   type StrategyInputStageV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { buildStructuredMainRunObservationV1 } from '../../observability/main-run-observation.js';
 import { adaptRuntimeChildObservationsV1 } from '../../observability/runtime-child-observations.js';
@@ -20,7 +20,7 @@ interface ComplexRunEvidenceInput {
   stage: StrategyInputStageV2;
   agentId: string;
   capabilitySnapshot: unknown;
-  plan: SaaSCodexPlanContractV2;
+  plan: SplatStudioPlanContractV2;
   run: {
     status: string;
     createdAt: number;

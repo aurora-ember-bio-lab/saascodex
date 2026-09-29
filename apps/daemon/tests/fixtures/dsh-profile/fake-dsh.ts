@@ -34,7 +34,7 @@ if (args.includes('--version')) {
   process.exit(0);
 }
 
-if (profile !== 'saascodex') fail('profile unavailable');
+if (profile !== 'splatstudio') fail('profile unavailable');
 
 if (args.includes('--probe')) {
   if (mode === 'missing-profile') fail('profile unavailable');

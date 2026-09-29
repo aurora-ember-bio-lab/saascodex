@@ -2,7 +2,7 @@ import {
   releaseChannelFromNamespace,
   releaseChannelFromVersion,
   releaseInstallIdentity,
-} from "@saascodex/release";
+} from "@splatstudio/release";
 
 const DEFAULT_WINDOW_TITLE = "Open Design";
 

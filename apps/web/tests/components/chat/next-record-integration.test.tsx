@@ -13,7 +13,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { ReactElement } from 'react';
-import type { ChatMessage, PersistedAgentEvent } from '@saascodex/contracts';
+import type { ChatMessage, PersistedAgentEvent } from '@splatstudio/contracts';
 import { I18nProvider } from '../../../src/i18n';
 import { AssistantMessage } from '../../../src/components/AssistantMessage';
 

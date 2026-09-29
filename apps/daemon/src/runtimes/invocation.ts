@@ -1,7 +1,7 @@
 import { execFile } from 'node:child_process';
 import os from 'node:os';
 import { promisify } from 'node:util';
-import { createCommandInvocation } from '@saascodex/platform';
+import { createCommandInvocation } from '@splatstudio/platform';
 import type { RuntimeExecOptions } from './types.js';
 
 const execFileP = promisify(execFile);

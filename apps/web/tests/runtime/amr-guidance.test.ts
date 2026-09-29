@@ -29,11 +29,11 @@ describe('amrRechargeUrlForProfile', () => {
   // entry this module builds therefore targets `/dashboard`, not `/wallet`.
   it('targets the console dashboard on every AMR profile', () => {
     expect(DEFAULT_AMR_RECHARGE_URL).toBe(
-      'https://saascodex.com/cloud/dashboard?source=open_design',
+      'https://splatstudio.app/cloud/dashboard?source=open_design',
     );
     expect(amrRechargeUrlForProfile('prod')).toBe(DEFAULT_AMR_RECHARGE_URL);
     expect(amrRechargeUrlForProfile('test')).toBe(
-      'https://saascodex.powerformer.net/cloud/dashboard?source=open_design',
+      'https://splatstudio.powerformer.net/cloud/dashboard?source=open_design',
     );
     expect(amrRechargeUrlForProfile('local')).toBe(
       'http://localhost:5173/dashboard?source=open_design',
@@ -507,7 +507,7 @@ describe('resolveRunFailureUi', () => {
     });
   });
 
-  // PRD "需要登录" — non-AMR agents. SaaSCodex can't sign in for them (their
+  // PRD "需要登录" — non-AMR agents. SplatStudio can't sign in for them (their
   // login lives in the user's own terminal), so the card shows the {agent}
   // sign-in copy, a plain Retry primary, and promotes AMR via the switch card.
   it('shows sign-in copy + retry + AMR promotion for non-AMR AGENT_AUTH_REQUIRED / UNAUTHORIZED', () => {

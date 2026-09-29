@@ -41,9 +41,9 @@ interface MessageCenterPage {
 
 const ACCOUNT_PROXY = '/api/integrations/vela/message-center';
 const ANONYMOUS_PROXY = '/api/integrations/vela/message-center-public';
-const LEGACY_WINDOW_KEY = 'saascodex.message-center.anonymous-started-at.v1';
-const MESSAGES_KEY = 'saascodex.message-center.anonymous-messages.v1';
-const READ_KEY = 'saascodex.message-center.anonymous-read-ids.v1';
+const LEGACY_WINDOW_KEY = 'splatstudio.message-center.anonymous-started-at.v1';
+const MESSAGES_KEY = 'splatstudio.message-center.anonymous-messages.v1';
+const READ_KEY = 'splatstudio.message-center.anonymous-read-ids.v1';
 /* Archived ids are LOCAL for signed-in users too: the vela message model
    carries a single state field (`readAt`) and there is no archive endpoint, so
    this store is the whole truth. Deliberately outside the anonymous mirror
@@ -51,7 +51,7 @@ const READ_KEY = 'saascodex.message-center.anonymous-read-ids.v1';
    over, and an archive the user made must survive the hand-off (it would also
    have to survive it once a server field exists). Not synced across devices;
    that needs the backend field. */
-const ARCHIVED_KEY = 'saascodex.message-center.archived-ids.v1';
+const ARCHIVED_KEY = 'splatstudio.message-center.archived-ids.v1';
 const MAX_MESSAGE_CENTER_PAGES = 20;
 
 export function readAnonymousMessages(storage: Storage): MessageCenterMessage[] {

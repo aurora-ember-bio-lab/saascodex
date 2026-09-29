@@ -10,7 +10,7 @@ import type {
   ObjectManifestCompleteness,
 } from './langfuse-trace.js';
 import { INPUT_MAX_BYTES } from './langfuse-trace.js';
-import { normalizeSaaSCodexTelemetryRelayUrl } from './integrations/telemetry-relay.js';
+import { normalizeSplatStudioTelemetryRelayUrl } from './integrations/telemetry-relay.js';
 import { mimeFor, readProjectFile, resolveProjectFilePath } from './projects.js';
 
 const OBJECT_RELAY_MARKER_HEADER = 'X-Open-Design-Telemetry';
@@ -146,11 +146,11 @@ function storageRef(projectId: string, runId: string, objectClass: ObjectClass, 
 }
 
 function inferRelayUrl(env: NodeJS.ProcessEnv): string | null {
-  const explicit = env.SAASCODEX_OBJECT_RELAY_URL?.trim();
-  if (explicit) return normalizeSaaSCodexTelemetryRelayUrl(explicit);
-  const rawTelemetryRelayUrl = env.SAASCODEX_TELEMETRY_RELAY_URL?.trim();
+  const explicit = env.SPLATSTUDIO_OBJECT_RELAY_URL?.trim();
+  if (explicit) return normalizeSplatStudioTelemetryRelayUrl(explicit);
+  const rawTelemetryRelayUrl = env.SPLATSTUDIO_TELEMETRY_RELAY_URL?.trim();
   if (!rawTelemetryRelayUrl) return null;
-  const telemetryRelayUrl = normalizeSaaSCodexTelemetryRelayUrl(rawTelemetryRelayUrl);
+  const telemetryRelayUrl = normalizeSplatStudioTelemetryRelayUrl(rawTelemetryRelayUrl);
   try {
     const url = new URL(telemetryRelayUrl);
     if (!/\/api\/langfuse\/?$/u.test(url.pathname)) return null;
@@ -187,15 +187,15 @@ function readRelayConfig(env: NodeJS.ProcessEnv): ObjectRelayConfig | null {
     authorizeUrl: inferAuthorizeUrl(url),
     uploadsEnabled: true,
     timeoutMs: parsePositiveInt(
-      env.SAASCODEX_OBJECT_RELAY_TIMEOUT_MS ?? env.SAASCODEX_TELEMETRY_TIMEOUT_MS,
+      env.SPLATSTUDIO_OBJECT_RELAY_TIMEOUT_MS ?? env.SPLATSTUDIO_TELEMETRY_TIMEOUT_MS,
       10_000,
     ),
     objectMaxBytes: parsePositiveInt(
-      env.SAASCODEX_OBJECT_MAX_BYTES,
+      env.SPLATSTUDIO_OBJECT_MAX_BYTES,
       DEFAULT_OBJECT_MAX_BYTES,
     ),
     objectBatchMaxBytes: parsePositiveInt(
-      env.SAASCODEX_OBJECT_BATCH_MAX_BYTES ?? env.TRACE_OBJECT_BATCH_MAX_BYTES,
+      env.SPLATSTUDIO_OBJECT_BATCH_MAX_BYTES ?? env.TRACE_OBJECT_BATCH_MAX_BYTES,
       DEFAULT_OBJECT_BATCH_MAX_BYTES,
     ),
   };

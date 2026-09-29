@@ -9,7 +9,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render as rtlRender, screen } from '@testing-library/react';
 import type { ReactElement } from 'react';
-import type { PersistedAgentEvent } from '@saascodex/contracts';
+import type { PersistedAgentEvent } from '@splatstudio/contracts';
 import { I18nProvider } from '../../../src/i18n';
 import { ExecutionShell } from '../../../src/components/chat/ExecutionShell';
 import { buildTurnBlocks } from '../../../src/runtime/chat/build-turn-blocks';

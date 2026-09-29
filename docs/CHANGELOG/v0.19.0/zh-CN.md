@@ -1,16 +1,16 @@
 ---
-title: SaaSCodex 0.19.0 — Image Generation, Unlocked
-description: 用 SaaSCodex 订阅把想法变成图片：直接使用 Seedream 5.0 Pro、GPT Image 2.0 和 Nano Banana 2.0 生成图像。
+title: SplatStudio 0.19.0 — Image Generation, Unlocked
+description: 用 SplatStudio 订阅把想法变成图片：直接使用 Seedream 5.0 Pro、GPT Image 2.0 和 Nano Banana 2.0 生成图像。
 ---
 
 ### 🌟 Codename: *Image Generation, Unlocked*
 
-🖼️ **用 SaaSCodex 订阅把想法变成图片：直接使用 Seedream 5.0 Pro、GPT Image 2.0
+🖼️ **用 SplatStudio 订阅把想法变成图片：直接使用 Seedream 5.0 Pro、GPT Image 2.0
 和 Nano Banana 2.0 生成图像。**
 
 ## 🔥 亮点
 
-- 🎨 **订阅内直接使用三款主力图片模型。** 通过 SaaSCodex Cloud，可以直接使用
+- 🎨 **订阅内直接使用三款主力图片模型。** 通过 SplatStudio Cloud，可以直接使用
   Seedream 5.0 Pro、GPT Image 2.0 和 Nano Banana 2.0 生成或编辑图片。只要所选模型
   公开了对应能力，Agent 就能传入多张参考图，并明确指定宽高比、分辨率和质量档位。
   任务开始前会先校验参数，生成过程中持续显示进度，输出路径由 daemon 统一管理；
@@ -89,5 +89,5 @@ description: 用 SaaSCodex 订阅把想法变成图片：直接使用 Seedream 5
 
 ## ⬆️ 升级说明
 
-稳定版发布后，可通过应用内正常更新流程升级到 SaaSCodex 0.19.0，也可以下载安装包。
+稳定版发布后，可通过应用内正常更新流程升级到 SplatStudio 0.19.0，也可以下载安装包。
 本次发布没有额外的手动操作说明。

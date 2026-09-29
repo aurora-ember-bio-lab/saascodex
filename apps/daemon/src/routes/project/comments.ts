@@ -2,8 +2,8 @@ import type { Express, Request } from 'express';
 import type {
   PreviewComment,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
-import { projectKindFromMetadataToTrackingOrLegacyDefault } from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts';
+import { projectKindFromMetadataToTrackingOrLegacyDefault } from '@splatstudio/contracts/analytics';
 import type { RouteDeps } from '../../server-context.js';
 import type { BoundWorkspaceResourceMutationGate } from '../../collab/workspace-resource-mutation.js';
 import { getProject, isProjectCommentAnchorConversationId } from '../../db.js';

@@ -3,7 +3,7 @@ import {
   ATTRIBUTION_CLAIM_PATH,
   type AttributionClaimResponse,
   type AttributionClaimSource,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { AnalyticsService } from '../analytics.js';
 import type { AppConfigPrefs } from '../app-config.js';
 import {
@@ -13,7 +13,7 @@ import {
   type PendingAttribution,
 } from '../installation.js';
 
-const DEFAULT_ATTRIBUTION_LEDGER_URL = 'https://download.saascodex.com/api/attribution';
+const DEFAULT_ATTRIBUTION_LEDGER_URL = 'https://download.splatstudio.app/api/attribution';
 
 type ReadAppConfig = (dataDir: string) => Promise<AppConfigPrefs>;
 
@@ -331,7 +331,7 @@ function trustedFirstPartyUrl(value: string): URL | null {
   try {
     const url = new URL(value);
     if (url.protocol !== 'https:') return null;
-    return ['saascodex.com', 'www.saascodex.com', 'staging.saascodex.com'].includes(url.hostname)
+    return ['splatstudio.app', 'www.splatstudio.app', 'staging.splatstudio.app'].includes(url.hostname)
       ? url
       : null;
   } catch {

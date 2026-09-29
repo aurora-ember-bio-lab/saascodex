@@ -14,7 +14,7 @@ import {
   isReleaseChannel,
 } from "../src/index.js";
 
-describe("@saascodex/release", () => {
+describe("@splatstudio/release", () => {
   it("formats and parses counted release versions", () => {
     expect(formatReleaseVersion("prerelease", "1.2.3", 4)).toBe("1.2.3-prerelease.4");
     expect(parseReleaseVersion("1.2.3-prerelease.4", "prerelease")).toEqual({
@@ -49,7 +49,7 @@ describe("@saascodex/release", () => {
   it("centralizes release identity and namespace derivation", () => {
     expect(releaseChannelDescriptor("prerelease").productName).toBe("Open Design Prerelease");
     expect(releaseInstallIdentity("prerelease")).toEqual({
-      appId: "io.saascodex.desktop.prerelease",
+      appId: "io.splatstudio.desktop.prerelease",
       executableName: "Open Design Prerelease",
       productName: "Open Design Prerelease",
     });
@@ -57,7 +57,7 @@ describe("@saascodex/release", () => {
     expect(releaseNamespace("prerelease", "win")).toBe("release-prerelease-win");
     expect(releaseNamespace("prerelease", "macIntel")).toBe("release-prerelease-intel");
     expect(releaseChannelDescriptor("qa2")).toMatchObject({
-      appId: "io.saascodex.desktop.qa2",
+      appId: "io.splatstudio.desktop.qa2",
       channel: "qa2",
       productName: "Open Design Qa2",
       storagePrefix: "qa2",
@@ -78,7 +78,7 @@ describe("@saascodex/release", () => {
     expect(releaseChannelFromVersion("1.2.3-beta-internal.1")).toBe("beta");
     expect(releaseChannelFromVersion("1.2.3-prerelease.1")).toBe("prerelease");
     expect(releaseChannelFromNamespace("release-preview-linux")).toBe("preview");
-    expect(releaseChannelFromNamespace("saascodex")).toBe("stable");
+    expect(releaseChannelFromNamespace("splatstudio")).toBe("stable");
     expect(releaseChannelFromNamespace("beta-local-flow")).toBeNull();
     expect(releaseChannelFromNamespace("release-local")).toBeNull();
   });

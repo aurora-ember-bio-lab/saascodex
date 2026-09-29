@@ -1,8 +1,8 @@
 import {
-  SAASCODEX_PLUGIN_SPEC_VERSION,
+  SPLATSTUDIO_PLUGIN_SPEC_VERSION,
   PluginManifestSchema,
   type PluginManifest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export interface ManifestParseSuccess {
   ok: true;
@@ -18,7 +18,7 @@ export interface ManifestParseFailure {
 
 export type ManifestParseResult = ManifestParseSuccess | ManifestParseFailure;
 
-// Read raw `saascodex.json` text into a typed PluginManifest. The Zod
+// Read raw `splatstudio.json` text into a typed PluginManifest. The Zod
 // schema is permissive (passthrough), so unknown forward-compatible fields
 // survive parse without complaint. Warnings carry adapter hints — e.g. a
 // claude-plugin sidecar that declared an unmappable capability.
@@ -30,7 +30,7 @@ export function parseManifest(raw: string): ManifestParseResult {
     return {
       ok: false,
       warnings: [],
-      errors: [`saascodex.json is not valid JSON: ${(err as Error).message}`],
+      errors: [`splatstudio.json is not valid JSON: ${(err as Error).message}`],
     };
   }
   return parseManifestObject(json);
@@ -48,7 +48,7 @@ export function parseManifestObject(value: unknown): ManifestParseResult {
   return {
     ok: true,
     manifest: {
-      specVersion: SAASCODEX_PLUGIN_SPEC_VERSION,
+      specVersion: SPLATSTUDIO_PLUGIN_SPEC_VERSION,
       ...result.data,
     },
     warnings: [],

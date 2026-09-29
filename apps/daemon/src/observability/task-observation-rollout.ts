@@ -10,7 +10,7 @@ import {
   NormalizedAgentObservationV1Schema,
   type ChildEvidenceCoverageV1,
   type OdNextRolloutDecision,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type Database from 'better-sqlite3';
 
 import type { TelemetryPrefs } from '../app-config.js';
@@ -484,7 +484,7 @@ async function taskAggregate(
   },
   sendObjects = false,
 ): Promise<StrategyTaskObservationAggregateV1> {
-  const evaluationMode = evidenceMode((options.env ?? process.env).SAASCODEX_EVAL_CONTRACT_V2_MODE);
+  const evaluationMode = evidenceMode((options.env ?? process.env).SPLATSTUDIO_EVAL_CONTRACT_V2_MODE);
   const evaluations = new Map<string, EvalContextV2>();
   const traceProjections = new Map<string, TaskRunTraceProjection>();
   const observationGroups = await Promise.all(task.runs.map(async (mapping) => {
@@ -1207,7 +1207,7 @@ export function createTaskObservationRolloutService(
                 reason: 'task_rollout_context_missing',
               }
             : TASK_OBSERVATION_SCHEMA_CAPABILITY_V1.schema
-                !== 'saascodex.task-observation-schema-capability/v1'
+                !== 'splatstudio.task-observation-schema-capability/v1'
               ? {
                   status: 'compatibility' as const,
                   reason: 'schema_capability_missing',

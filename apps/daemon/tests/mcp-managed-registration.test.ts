@@ -1,4 +1,4 @@
-import { MCP_BOOTSTRAP_CONTRACT } from '@saascodex/sidecar-proto';
+import { MCP_BOOTSTRAP_CONTRACT } from '@splatstudio/sidecar-proto';
 import { describe, expect, it } from 'vitest';
 
 import { parseManagedMcpDiscovery } from '../src/mcp-bootstrap.js';

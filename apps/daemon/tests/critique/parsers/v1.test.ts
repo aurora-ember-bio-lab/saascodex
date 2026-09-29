@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { PanelEvent } from '@saascodex/contracts/critique';
+import type { PanelEvent } from '@splatstudio/contracts/critique';
 import {
   parseV1,
   extractArtifactBlock,

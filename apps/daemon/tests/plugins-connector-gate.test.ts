@@ -19,7 +19,7 @@ import {
   type ConnectorCatalogEntry,
   type ConnectorProbe,
 } from '../src/plugins/connector-gate.js';
-import type { PluginManifest } from '@saascodex/contracts';
+import type { PluginManifest } from '@splatstudio/contracts';
 
 const buildProbe = (entries: ConnectorCatalogEntry[]): ConnectorProbe => ({
   get(id) { return entries.find((e) => e.id === id); },

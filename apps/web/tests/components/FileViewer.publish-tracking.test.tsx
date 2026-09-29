@@ -15,7 +15,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { FileViewer } from '../../src/components/FileViewer';
 import {
@@ -129,7 +129,7 @@ function stubFetch(
         const body =
           publishBody ??
           (publishStatus === 200
-            ? { url: 'https://saascodex.com/p/slug-1', slug: 'slug-1', fileName: 'index.html' }
+            ? { url: 'https://splatstudio.app/p/slug-1', slug: 'slug-1', fileName: 'index.html' }
             : { error: { message: 'WORKSPACE_IDENTITY_REQUIRED' } });
         return new Response(JSON.stringify(body), { status: publishStatus });
       }
@@ -348,7 +348,7 @@ describe('publish flow analytics', () => {
               await publishGate;
               return new Response(
                 JSON.stringify({
-                  url: 'https://saascodex.com/p/slug-1',
+                  url: 'https://splatstudio.app/p/slug-1',
                   slug: 'slug-1',
                   fileName: 'index.html',
                 }),

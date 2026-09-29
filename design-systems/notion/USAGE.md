@@ -1,6 +1,6 @@
 # Notion Usage
 
-Design System 2.0 package guide for SaaSCodex agents and reviewers.
+Design System 2.0 package guide for SplatStudio agents and reviewers.
 
 ## Read Order
 

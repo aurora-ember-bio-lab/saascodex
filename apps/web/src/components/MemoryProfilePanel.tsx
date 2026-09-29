@@ -8,9 +8,9 @@
 //   - PUT  /api/memory/user_profile  → body assembled as `- <Label>: <value>`
 //     lines; the daemon renders that as a key/value block in the prompt.
 import { useCallback, useEffect, useState } from 'react';
-import { Button } from '@saascodex/components';
-import { PROFILE_MEMORY_ID } from '@saascodex/contracts';
-import type { MemoryEntry } from '@saascodex/contracts';
+import { Button } from '@splatstudio/components';
+import { PROFILE_MEMORY_ID } from '@splatstudio/contracts';
+import type { MemoryEntry } from '@splatstudio/contracts';
 import { Icon } from './Icon';
 import { useT } from '../i18n';
 import type { Dict } from '../i18n/types';

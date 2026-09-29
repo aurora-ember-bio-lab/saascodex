@@ -1,6 +1,6 @@
 import { spawn, type SpawnOptionsWithoutStdio } from "node:child_process";
 
-import { createPackageManagerInvocation } from "@saascodex/platform";
+import { createPackageManagerInvocation } from "@splatstudio/platform";
 
 import type { ToolPackConfig } from "../config/index.js";
 
@@ -73,5 +73,5 @@ export async function runNpmInstall(appRoot: string): Promise<void> {
 }
 
 export async function runEsbuild(config: ToolPackConfig, args: string[]): Promise<void> {
-  await runPnpm(config, ["--filter", "@saascodex/packaged", "exec", "esbuild", ...args]);
+  await runPnpm(config, ["--filter", "@splatstudio/packaged", "exec", "esbuild", ...args]);
 }

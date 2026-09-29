@@ -16,10 +16,10 @@ import { runLiveArtifactsToolCli } from './tools-live-artifacts-cli.js';
 import { runDeliverableSyntaxToolCli } from './tools-deliverable-syntax-cli.js';
 import { splitResearchSubcommand } from './research/cli-args.js';
 import { resolveDaemonUrl } from './daemon-url.js';
-import { SidecarFactory } from '@saascodex/sidecar';
-import { APP_KEYS, SIDECAR_MESSAGES } from '@saascodex/sidecar-proto';
-import { EXPORT_FORMATS, EXPORT_IMAGE_FORMATS, mediaFailureNextStep } from '@saascodex/contracts';
-import type { ArtifactLintFinding, LintArtifactCliResultEnvelope, LintArtifactResponse, LintFailOn } from '@saascodex/contracts';
+import { SidecarFactory } from '@splatstudio/sidecar';
+import { APP_KEYS, SIDECAR_MESSAGES } from '@splatstudio/sidecar-proto';
+import { EXPORT_FORMATS, EXPORT_IMAGE_FORMATS, mediaFailureNextStep } from '@splatstudio/contracts';
+import type { ArtifactLintFinding, LintArtifactCliResultEnvelope, LintArtifactResponse, LintFailOn } from '@splatstudio/contracts';
 import { buildExportCliRequestBody, buildExportCliResultEnvelope, resolveExportCliDeckMode } from './export-cli-request.js';
 import { exportRoutePath } from './export-cli-routing.js';
 import {
@@ -115,8 +115,8 @@ const MCP_INSTALL_STRING_FLAGS = new Set([
   'daemon-url',
   'name',
 ]);
-const MCP_INSTALL_CLI_PROBE_FLAG = 'saascodex-cli-probe';
-const MCP_INSTALL_CLI_PROBE_TOKEN = 'saascodex-cli:mcp-install:v1';
+const MCP_INSTALL_CLI_PROBE_FLAG = 'splatstudio-cli-probe';
+const MCP_INSTALL_CLI_PROBE_TOKEN = 'splatstudio-cli:mcp-install:v1';
 const MCP_INSTALL_BOOLEAN_FLAGS = new Set([
   'help',
   'h',
@@ -285,7 +285,7 @@ const DEPLOY_STRING_FLAGS = new Set([
 const DEPLOY_BOOLEAN_FLAGS = new Set(['help', 'h', 'json']);
 // `od automation …` mirrors the Automations tab. Same surface, same
 // /api/routines store. The CLI form is the embeddability contract:
-// external agents (hermes-agent, openclaw, etc.) can drive SaaSCodex
+// external agents (hermes-agent, openclaw, etc.) can drive SplatStudio
 // automations headlessly without going through the web UI.
 const AUTOMATION_STRING_FLAGS = new Set([
   'daemon-url', 'name', 'prompt', 'prompt-file', 'schedule', 'target',
@@ -519,9 +519,9 @@ async function runStrategy(args) {
 function printAgentHelp() {
   console.log(`Usage: od agent setup deepseek-harness [options]
 
-Install or repair SaaSCodex's bundled connection component in the user's
+Install or repair SplatStudio's bundled connection component in the user's
 official DeepSeek Harness installation. The dsh CLI itself is not installed
-or upgraded by SaaSCodex.
+or upgraded by SplatStudio.
 
 Options:
   --json                  Print a machine-readable result.
@@ -990,8 +990,8 @@ function printRootHelp() {
       Discover, install, and apply plugins through the local daemon.
   od plugin publish-repo <folder>
       Create/update the author's GitHub repo for a local plugin folder.
-  od plugin saascodex-pr <folder>
-      Push a community-catalog branch and open the SaaSCodex PR form.
+  od plugin splatstudio-pr <folder>
+      Push a community-catalog branch and open the SplatStudio PR form.
 
   od automation <list|get|create|update|run|runs|pause|resume|delete> [args]
       Drive the Automations surface headlessly. Same store as the UI's
@@ -1005,13 +1005,13 @@ function printRootHelp() {
 
   od amr <login|status> [args]
       Start Vela browser sign-in or inspect the current Vela account through
-      the local SaaSCodex daemon.
+      the local SplatStudio daemon.
 
   od memory tree <list|view|edit|move> [args]
       Inspect and edit the memory tree that is injected into agent prompts.
 
-  od share <saascodex|url> [options]
-      Build localized social-share targets for the SaaSCodex repo or a
+  od share <splatstudio|url> [options]
+      Build localized social-share targets for the SplatStudio repo or a
       deployed project URL. Use --json for scripted integrations.
 
   od ui <list|show|respond|revoke|prefill> [args]
@@ -1051,9 +1051,9 @@ function printRootHelp() {
 
   od mcp [--daemon-url <url>]
       Run a stdio MCP server that proxies project tool calls to a
-      running SaaSCodex daemon. Wire it into a coding agent
+      running SplatStudio daemon. Wire it into a coding agent
       (Claude Code, Cursor, VS Code, Zed, Windsurf) in another repo
-      to pull files from a local SaaSCodex project and create
+      to pull files from a local SplatStudio project and create
       project-scoped artifacts without exporting a zip.
 
 Options:
@@ -1084,7 +1084,7 @@ async function runAmr(args) {
   od amr status [--refresh] [--json]
 
 Options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --refresh            Bypass the daemon's short wallet display cache.
   --json               Emit raw JSON.`);
     process.exit(sub === 'help' || args.includes('--help') || args.includes('-h') ? 0 : 2);
@@ -1633,7 +1633,7 @@ Options:
   --limit <n>           Positive integer page size (default: 100).
   --cursor <token>      Forward a server pagination cursor for list.
   --json                Emit raw JSON for scripts and external agents.
-  --daemon-url <url>    SaaSCodex daemon HTTP base.`);
+  --daemon-url <url>    SplatStudio daemon HTTP base.`);
 }
 
 function messageCenterApiLocale(locale) {
@@ -1719,7 +1719,7 @@ function printResearchHelp() {
   console.log(`Usage:
   od research search --query <text> [--max-sources 5] [--daemon-url <url>]
 
-Runs Tavily-backed shallow research through the local SaaSCodex daemon.
+Runs Tavily-backed shallow research through the local SplatStudio daemon.
 Output is JSON only on stdout:
   { "query": "...", "summary": "...", "sources": [...], "provider": "tavily", "depth": "shallow", "fetchedAt": 0 }
 
@@ -2143,7 +2143,7 @@ function surfaceFetchError(err, daemonUrl) {
     console.error(
       'hint: outbound connect was denied by a sandbox. If you launched ' +
         'this command from a code agent, check the agent\'s sandbox / ' +
-        'network policy. The SaaSCodex daemon itself is unaffected - it can be ' +
+        'network policy. The SplatStudio daemon itself is unaffected - it can be ' +
         'reached from a regular shell.',
     );
   }
@@ -2267,11 +2267,11 @@ Common options:
   --prompt-file <path|->     Read the prompt from a file, or - for stdin (for long-form prompts).
   --output <filename>       File to write under the project. Auto-named if omitted.
   --aspect 1:1|16:9|9:16|4:3|3:4
-  --quality <tier>          SaaSCodex Cloud images only: published quality tier
+  --quality <tier>          SplatStudio Cloud images only: published quality tier
                             (gpt-image-2 accepts low|medium|high). Omit to let the
                             model's own default tier decide — tiers are priced
                             differently, so this is a billing choice.
-  --resolution <res>        SaaSCodex Cloud images only: published output resolution
+  --resolution <res>        SplatStudio Cloud images only: published output resolution
                             (e.g. 1K, 2K). Must name a resolution the model publishes
                             for --aspect. Omit to use the model's default profile.
   --length <seconds>        Video length.
@@ -2367,13 +2367,13 @@ function printMcpHelp() {
   console.log(`Usage: od mcp [--daemon-url <url>]
 
 Run a stdio MCP (Model Context Protocol) server that proxies project
-tool calls to a running SaaSCodex daemon. Wire it into a coding agent
-in another repo so the agent can pull files from a local SaaSCodex
+tool calls to a running SplatStudio daemon. Wire it into a coding agent
+in another repo so the agent can pull files from a local SplatStudio
 project and create project-scoped artifacts without exporting a zip
 every iteration.
 
 Options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base URL. Resolution
+  --daemon-url <url>   SplatStudio daemon HTTP base URL. Resolution
                        order: this flag, OD_DAEMON_URL, inherited sidecar status,
                        then http://127.0.0.1:7456. Each new MCP spawn
                        discovers the live daemon URL at startup, so
@@ -2385,7 +2385,7 @@ Options:
                        MCP server re-discovers the registered runtime
                        before calls and safely retries reads when the
                        daemon changes ports, so an existing task can
-                       survive an SaaSCodex restart.
+                       survive an SplatStudio restart.
 
 Environment:
   OD_MCP_STDIO_IDLE_EXIT_MS
@@ -2396,7 +2396,7 @@ Environment:
                        the MCP client disconnects.
 
 Tools exposed:
-  list_projects                  list every SaaSCodex project
+  list_projects                  list every SplatStudio project
   get_active_context             what project/file the user has open right now
   get_artifact([project, entry]) bundle: entry file + every referenced sibling
   get_project([project])         single project metadata
@@ -2407,13 +2407,13 @@ Tools exposed:
 
 When project is omitted, get_artifact / get_project / get_file /
 search_files / list_files / create_artifact default to the project the
-user has open in SaaSCodex; get_artifact and get_file additionally
+user has open in SplatStudio; get_artifact and get_file additionally
 default to the active file. The response stamps usedActiveContext so
 callers can see which project/file got resolved.
 
 For the copy-paste, per-client snippet (with absolute paths resolved
 for your machine, plus a one-click deeplink for Cursor), open Settings
-→ MCP server in the SaaSCodex app. The daemon must be running locally
+→ MCP server in the SplatStudio app. The daemon must be running locally
 for tool calls to succeed.
 
 To register this server into a coding agent's own config automatically:
@@ -2508,7 +2508,7 @@ async function runMcpInstall(args) {
 
   const uninstall = Boolean(flags.uninstall || flags.remove);
   const dryRun = Boolean(flags.print || flags['dry-run']);
-  const serverName = flags.name || 'saascodex';
+  const serverName = flags.name || 'splatstudio';
 
   const os = await import('node:os');
   const spec = await resolveMcpLaunchSpec(flags);
@@ -2653,16 +2653,16 @@ async function runMcpInstall(args) {
 function printMcpInstallHelp() {
   console.log(`Usage: od mcp install <agent> [options]
 
-Register SaaSCodex's stdio MCP server into a coding agent's own config.
+Register SplatStudio's stdio MCP server into a coding agent's own config.
 
 Agents:
   ${AGENT_SLUGS.join(' ')}
 
 Options:
-  --uninstall, --remove   Remove the SaaSCodex MCP server instead.
+  --uninstall, --remove   Remove the SplatStudio MCP server instead.
   --print, --dry-run      Show what would change; write nothing.
   --json                  Machine-readable result (dry runs include launchSpec).
-  --name <name>           MCP server name in the agent config (default: saascodex).
+  --name <name>           MCP server name in the agent config (default: splatstudio).
   --daemon-url <url>      Daemon URL used to resolve the launch command.
 
 The launch command is resolved from the running daemon's
@@ -2782,7 +2782,7 @@ async function runPlugin(args) {
     case 'export':   return runPluginExport(rest);
     case 'publish':  return runPluginPublish(rest);
     case 'publish-repo': return runPluginPublishRepo(rest);
-    case 'saascodex-pr': return runPluginSaaSCodexPr(rest);
+    case 'splatstudio-pr': return runPluginSplatStudioPr(rest);
     case 'yank':     return runPluginYank(rest);
     default:
       console.error(`unknown subcommand: od plugin ${sub}`);
@@ -2793,7 +2793,7 @@ async function runPlugin(args) {
 
 // Phase 4 / spec §14.1 — `od plugin scaffold` interactive starter.
 //
-// Side-effect: writes a SKILL.md + saascodex.json starter under
+// Side-effect: writes a SKILL.md + splatstudio.json starter under
 // `<targetDir>/<id>/`. Default targetDir is process.cwd() so a code
 // agent can drop the scaffold into the current repo root.
 async function runPluginScaffold(rest) {
@@ -2810,7 +2810,7 @@ async function runPluginScaffold(rest) {
                      [--mode <mode>] [--scenario <scenario>]
                      [--out <dir>] [--with-claude-plugin]
 
-Writes <out|cwd>/<id>/{SKILL.md,saascodex.json,README.md}.`);
+Writes <out|cwd>/<id>/{SKILL.md,splatstudio.json,README.md}.`);
     process.exit(rest.length === 0 ? 2 : 0);
   }
   const id = typeof flags.id === 'string' && flags.id.length > 0
@@ -2976,7 +2976,7 @@ rejection at install).
 Exit codes:
   0  archive written
   2  CLI usage error
-  4  pack-time error (missing saascodex.json, invalid JSON, etc)`);
+  4  pack-time error (missing splatstudio.json, invalid JSON, etc)`);
     process.exit(rest.length === 0 ? 2 : 0);
   }
   const folder = rest[0];
@@ -3033,7 +3033,7 @@ async function runPluginLogin(rest) {
     console.log(`Usage:
   od plugin login [--host github.com]
 
-Wraps GitHub CLI auth for SaaSCodex registry publishing. The token stays in gh.`);
+Wraps GitHub CLI auth for SplatStudio registry publishing. The token stays in gh.`);
     return;
   }
   const host = typeof flags.host === 'string' ? flags.host : 'github.com';
@@ -3055,7 +3055,7 @@ async function runPluginWhoami(rest) {
     console.log(`Usage:
   od plugin whoami [--host github.com] [--json]
 
-Shows the GitHub account gh will use for SaaSCodex registry publishing.`);
+Shows the GitHub account gh will use for SplatStudio registry publishing.`);
     return;
   }
   const host = typeof flags.host === 'string' ? flags.host : 'github.com';
@@ -3249,7 +3249,7 @@ async function runMarketplace(args) {
                                                               Update the marketplace trust tier.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base (default OD_DAEMON_URL, inherited sidecar discovery, or http://127.0.0.1:7456).
+  --daemon-url <url>   SplatStudio daemon HTTP base (default OD_DAEMON_URL, inherited sidecar discovery, or http://127.0.0.1:7456).
   --json               Emit raw JSON (suitable for scripts).`);
     process.exit(args.length === 0 ? 2 : 0);
   }
@@ -3396,7 +3396,7 @@ Common options:
         console.error('[marketplace login] GitHub CLI is required. Install gh from https://cli.github.com/ and retry.');
         process.exit(1);
       }
-      console.log(`[marketplace login] authenticating gh for ${host}. Tokens stay in gh, not SaaSCodex.`);
+      console.log(`[marketplace login] authenticating gh for ${host}. Tokens stay in gh, not SplatStudio.`);
       const result = await spawnPassthrough('gh', ['auth', 'login', '--hostname', host, '--web']);
       process.exit(result.code ?? 0);
     }
@@ -3957,7 +3957,7 @@ function resolveCliEntryVersion(entry, range) {
 
 // Plan §3.MM1 — `od plugin manifest <id>`. Prints just the parsed
 // manifest JSON, no wrapper. Useful for plugin authors who want to
-// compare the daemon's view to their on-disk saascodex.json
+// compare the daemon's view to their on-disk splatstudio.json
 // without scrolling past the registry record fields (sourceKind /
 // fsPath / installedAt etc).
 async function runPluginManifest(rest) {
@@ -5043,9 +5043,9 @@ async function runPluginPublish(rest) {
   });
   if (rest.length === 0 || flags.help || flags.h) {
     console.log(`Usage:
-  od plugin publish <pluginId> --to saascodex|anthropics-skills|awesome-agent-skills|clawhub|skills-sh
+  od plugin publish <pluginId> --to splatstudio|anthropics-skills|awesome-agent-skills|clawhub|skills-sh
                     [--repo <github-url>] [--snapshot-id <id>] [--open] [--json]
-  od plugin publish <pluginId> --to marketplace-json --catalog ./saascodex-marketplace.json --repo <github-url>
+  od plugin publish <pluginId> --to marketplace-json --catalog ./splatstudio-marketplace.json --repo <github-url>
 
 The CLI prints the catalog's submission URL + a pre-filled PR body.
 Pass --open to auto-launch the system browser. Use --snapshot-id to
@@ -5062,7 +5062,7 @@ publish from a frozen run snapshot rather than the live installed copy.`);
     process.exit(2);
   }
   if (!target) {
-    console.error('--to <catalog> is required (one of: saascodex, anthropics-skills, awesome-agent-skills, clawhub, skills-sh)');
+    console.error('--to <catalog> is required (one of: splatstudio, anthropics-skills, awesome-agent-skills, clawhub, skills-sh)');
     process.exit(2);
   }
   const base = (await pluginDaemonUrl(flags)).replace(/\/$/, '');
@@ -5182,7 +5182,7 @@ GitHub API as a last resort. It never publishes to placeholder owners.`);
     import('node:os'),
   ]);
   const absFolder = resolve(process.cwd(), folder);
-  const manifestPath = resolve(absFolder, 'saascodex.json');
+  const manifestPath = resolve(absFolder, 'splatstudio.json');
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
   const host = typeof flags.host === 'string' ? flags.host : 'github.com';
   const target = await resolvePluginGithubTarget({ host, owner: flags.owner, manifest, purpose: 'publish-repo' });
@@ -5316,14 +5316,14 @@ GitHub API as a last resort. It never publishes to placeholder owners.`);
   });
 }
 
-async function runPluginSaaSCodexPr(rest) {
+async function runPluginSplatStudioPr(rest) {
   const flags = parseFlags(rest, {
     string: new Set(['host', 'owner']),
     boolean: new Set(['help', 'h', 'json', 'dry-run']),
   });
   if (rest.length === 0 || flags.help || flags.h) {
     console.log(`Usage:
-  od plugin saascodex-pr <folder> [--host github.com] [--owner github-login-or-fork-owner] [--dry-run] [--json]
+  od plugin splatstudio-pr <folder> [--host github.com] [--owner github-login-or-fork-owner] [--dry-run] [--json]
 
 Copies a local plugin folder into plugins/community/<name>/ on the author's
 fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`);
@@ -5331,7 +5331,7 @@ fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`
   }
   const folder = rest.find((a) => !a.startsWith('-') && a !== flags.host && a !== flags.owner);
   if (!folder) {
-    console.error('Usage: od plugin saascodex-pr <folder>');
+    console.error('Usage: od plugin splatstudio-pr <folder>');
     process.exit(2);
   }
   const [{ resolve, join }, fsp, os] = await Promise.all([
@@ -5340,19 +5340,19 @@ fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`
     import('node:os'),
   ]);
   const absFolder = resolve(process.cwd(), folder);
-  const manifestPath = resolve(absFolder, 'saascodex.json');
+  const manifestPath = resolve(absFolder, 'splatstudio.json');
   const manifest = JSON.parse(await fsp.readFile(manifestPath, 'utf8'));
   const host = typeof flags.host === 'string' ? flags.host : 'github.com';
-  const target = await resolvePluginGithubTarget({ host, owner: flags.owner, manifest, purpose: 'saascodex-pr' });
+  const target = await resolvePluginGithubTarget({ host, owner: flags.owner, manifest, purpose: 'splatstudio-pr' });
   const name = String(manifest.name ?? '').trim();
   if (!name) {
-    console.error('[saascodex-pr] manifest.name is required');
+    console.error('[splatstudio-pr] manifest.name is required');
     process.exit(2);
   }
   const title = String(manifest.title ?? name).trim();
   const branch = `plugin/${name}-${Math.floor(Date.now() / 1000)}`;
-  const tmpRoot = await fsp.mkdtemp(join(os.tmpdir(), 'od-saascodex-pr-'));
-  const checkout = join(tmpRoot, 'saascodex');
+  const tmpRoot = await fsp.mkdtemp(join(os.tmpdir(), 'od-splatstudio-pr-'));
+  const checkout = join(tmpRoot, 'splatstudio');
   const steps = [];
   const run = async (label, command, args, opts = {}) => {
     steps.push({ label, command: [command, ...args].join(' ') });
@@ -5366,7 +5366,7 @@ fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`
     if (!result.ok && !opts.tolerate?.(result)) {
       emitPluginWorkflowResult(flags, {
         ok: false,
-        action: 'saascodex-pr',
+        action: 'splatstudio-pr',
         folder: absFolder,
         login: target.login,
         owner: target.owner,
@@ -5391,7 +5391,7 @@ fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`
     '--branch', 'main',
     '--filter=blob:none',
     '--sparse',
-    `https://github.com/${target.owner}/saascodex.git`,
+    `https://github.com/${target.owner}/splatstudio.git`,
     checkout,
   ], { timeout: 240_000 });
   await run('sparse checkout', 'git', ['sparse-checkout', 'set', 'plugins/community'], { cwd: checkout });
@@ -5420,10 +5420,10 @@ fork of nexu-io/open-design, pushes a branch, and opens the PR form with --web.`
     '--body', body,
     '--web',
   ], { cwd: checkout });
-  const prUrl = extractFirstUrl(pr.stdout || pr.stderr) ?? `https://github.com/${target.owner}/saascodex/pull/new/${branch}`;
+  const prUrl = extractFirstUrl(pr.stdout || pr.stderr) ?? `https://github.com/${target.owner}/splatstudio/pull/new/${branch}`;
   emitPluginWorkflowResult(flags, {
     ok: true,
-    action: 'saascodex-pr',
+    action: 'splatstudio-pr',
     folder: absFolder,
     login: target.login,
     owner: target.owner,
@@ -5519,12 +5519,12 @@ async function resolvePluginGithubTarget({ host = 'github.com', owner, manifest,
     console.error(`[plugin github] could not resolve the GitHub owner for ${purpose}.`);
     if (apiError?.stderr || apiError?.stdout) console.error(apiError.stderr || apiError.stdout);
     if (apiError && isGhApiRateLimit(apiError)) {
-      const ownerHint = purpose === 'saascodex-pr' ? '<github-login-or-fork-owner>' : '<github-login-or-org>';
+      const ownerHint = purpose === 'splatstudio-pr' ? '<github-login-or-fork-owner>' : '<github-login-or-org>';
       console.error(`GitHub API is rate limited. Re-run with --owner ${ownerHint}, or authenticate/refresh gh and retry.`);
     } else {
       console.error('Run: gh auth refresh -h github.com -s repo,workflow');
       console.error('Or:  gh auth login -h github.com -s repo,workflow');
-      console.error(purpose === 'saascodex-pr'
+      console.error(purpose === 'splatstudio-pr'
         ? 'If the fork owner differs from your auth login, pass --owner <github-login-or-fork-owner>.'
         : 'If this is an org-owned plugin, pass --owner <github-org>.');
     }
@@ -5614,7 +5614,7 @@ function parseGithubRepoUrl(raw) {
 }
 
 function isPlaceholderRepoOwner(owner) {
-  return /^(saascodex-user|<vendor>|vendor|example-user|your-org|your-username|owner|user|username)$/i.test(String(owner ?? '').trim());
+  return /^(splatstudio-user|<vendor>|vendor|example-user|your-org|your-username|owner|user|username)$/i.test(String(owner ?? '').trim());
 }
 
 function isRepoNotFound(result) {
@@ -5653,9 +5653,9 @@ function emitPluginWorkflowResult(flags, payload) {
     if (payload.manifestRewritten) console.log('[publish-repo] manifest repo fields were normalized before publishing.');
     return;
   }
-  if (payload.action === 'saascodex-pr') {
-    if (payload.ownerSource) console.log(`[saascodex-pr] owner resolved from ${payload.ownerSource}: ${payload.owner}`);
-    if (payload.apiRateLimited) console.log('[saascodex-pr] GitHub API was rate limited; continued with the locally resolved owner.');
+  if (payload.action === 'splatstudio-pr') {
+    if (payload.ownerSource) console.log(`[splatstudio-pr] owner resolved from ${payload.ownerSource}: ${payload.owner}`);
+    if (payload.apiRateLimited) console.log('[splatstudio-pr] GitHub API was rate limited; continued with the locally resolved owner.');
     console.log(`Open this URL and click Create to file the PR: ${payload.prUrl}`);
     return;
   }
@@ -5678,7 +5678,7 @@ async function runPluginYank(rest) {
   });
   if (rest.length === 0 || flags.help || flags.h) {
     console.log(`Usage:
-  od plugin yank <vendor/plugin-name>@<version> --reason "<why>" [--to saascodex] [--json]
+  od plugin yank <vendor/plugin-name>@<version> --reason "<why>" [--to splatstudio] [--json]
 
 Yanking never deletes metadata or bytes. It opens the registry review flow that
 marks a version unresolvable for new installs while preserving lockfile replay.`);
@@ -5695,9 +5695,9 @@ marks a version unresolvable for new installs while preserving lockfile replay.`
     console.error('--reason is required for yanking');
     process.exit(2);
   }
-  const target = flags.to ?? 'saascodex';
-  if (target !== 'saascodex') {
-    console.error('Only --to saascodex is supported in this v1 GitHub-backed yank flow.');
+  const target = flags.to ?? 'splatstudio';
+  if (target !== 'splatstudio') {
+    console.error('Only --to splatstudio is supported in this v1 GitHub-backed yank flow.');
     process.exit(2);
   }
   const title = `Yank ${parsed.name}@${parsed.range}`;
@@ -5721,7 +5721,7 @@ marks a version unresolvable for new installs while preserving lockfile replay.`
   ].join('\n');
   const params = new URLSearchParams({ title, body });
   const payload = {
-    catalog: 'saascodex',
+    catalog: 'splatstudio',
     name: parsed.name,
     version: parsed.range,
     reason,
@@ -6145,7 +6145,7 @@ function printUiHelp() {
                                                      Pre-answer a surface so the run never broadcasts it.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base (default OD_DAEMON_URL, inherited sidecar discovery, or http://127.0.0.1:7456).
+  --daemon-url <url>   SplatStudio daemon HTTP base (default OD_DAEMON_URL, inherited sidecar discovery, or http://127.0.0.1:7456).
   --workspace <id>     Explicit Workspace id for a bound project or run.
   --workspace-member <id>
                        Explicit Workspace member id for a bound project or run.
@@ -6195,15 +6195,15 @@ function printPluginHelp() {
                                           List persisted skill-to-plugin candidates.
   od plugin publish-repo <folder>         Create/update the author's public
                                           GitHub repo for a plugin folder.
-  od plugin saascodex-pr <folder>       Push a community-catalog branch and
+  od plugin splatstudio-pr <folder>       Push a community-catalog branch and
                                           open the nexu-io/open-design PR form.
-  od plugin publish <folder> --to saascodex|anthropics-skills|awesome-agent-skills|clawhub|skills-sh
+  od plugin publish <folder> --to splatstudio|anthropics-skills|awesome-agent-skills|clawhub|skills-sh
                                           Prepare a registry submission link.
   od plugin login [--host github.com]      Authenticate registry publishing via gh.
   od plugin whoami [--host github.com]     Show the gh account used for publishing.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base (default OD_DAEMON_URL, inherited sidecar discovery, or http://127.0.0.1:7456).
+  --daemon-url <url>   SplatStudio daemon HTTP base (default OD_DAEMON_URL, inherited sidecar discovery, or http://127.0.0.1:7456).
   --json               Emit raw JSON (suitable for scripts) instead of human-readable output.
 
 Installs support local folders, github:owner/repo refs, HTTPS .tgz archives,
@@ -6216,7 +6216,7 @@ and bare marketplace names resolved through configured registry sources.`);
 // Plan §6 Phase 1 follow-up + Phase 2C: thin CLI wrappers over the
 // existing daemon HTTP endpoints (POST /api/projects, POST /api/runs,
 // GET /api/projects/:id/files, …). The §12.5 walkthrough relies on
-// these so a code agent can drive SaaSCodex end-to-end without
+// these so a code agent can drive SplatStudio end-to-end without
 // hitting `/api/*` directly. Spec §11.7 invariant: every UI feature is
 // reachable via the CLI; we wrap rather than duplicate.
 // ---------------------------------------------------------------------------
@@ -6227,7 +6227,7 @@ async function projectDaemonUrl(flags) {
 
 function printShareUsage() {
   console.log(`Usage:
-  od share saascodex [--locale <locale>] [--platform <id>] [--json]
+  od share splatstudio [--locale <locale>] [--platform <id>] [--json]
   od share url --url <https-url> [--title <title>] [--text <text>]
                [--copy-text <text>] [--locale <locale>] [--platform <id>] [--json]
 
@@ -6235,7 +6235,7 @@ Platforms:
   x, linkedin, facebook, reddit, telegram, whatsapp, weibo, line, instagram, xiaohongshu
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --json               Emit raw JSON.`);
 }
 
@@ -6249,7 +6249,7 @@ async function runShare(args) {
     process.exit(args.length === 0 ? 2 : 0);
   }
 
-  const sub = args[0] && !args[0].startsWith('-') ? args[0] : 'saascodex';
+  const sub = args[0] && !args[0].startsWith('-') ? args[0] : 'splatstudio';
   const rest = sub === args[0] ? args.slice(1) : args;
   const flags = parseFlags(rest, {
     string: SHARE_STRING_FLAGS,
@@ -6268,14 +6268,14 @@ async function runShare(args) {
         locale: flags.locale,
       }
     : {
-        kind: 'saascodex-repo',
+        kind: 'splatstudio-repo',
         title: flags.title,
         text: flags.text,
         copyText: flags['copy-text'],
         locale: flags.locale,
       };
 
-  if (sub !== 'saascodex' && sub !== 'url') {
+  if (sub !== 'splatstudio' && sub !== 'url') {
     console.error(`unknown share target: ${sub}`);
     printShareUsage();
     process.exit(2);
@@ -6332,7 +6332,7 @@ Flags:
   --notes "<text>"     Design brief folded into the reshape prompt.
   --build              After import, start a run that builds the webpage.
   --prompt / --prompt-file   Override the build prompt (file or - for stdin).
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --workspace <id>     Explicit Workspace id for the bound project.
   --workspace-member <id>
                        Explicit Workspace member id for the bound project.
@@ -7036,7 +7036,7 @@ async function runProject(args) {
                     Write a snapshot's exact historical bytes to a local file.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --workspace <id>     Exact Workspace for bound project requests.
   --workspace-member <id>
                        Exact caller membership for bound project requests.
@@ -7510,7 +7510,7 @@ async function runWorkspace(args) {
   od workspace billing [--workspace-type personal|team --workspace <id>] [--model <id>] [--json]
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --member <id>        Workspace member id for route-level authorization.
   --role <role>        Workspace role: owner, admin, or member.
   --workspace-type <t> personal or team. A team share is refused in a personal
@@ -7812,7 +7812,7 @@ async function runRun(args) {
                                             provenance without applying them.
 
 Common options:
-  --daemon-url <url>         SaaSCodex daemon HTTP base.
+  --daemon-url <url>         SplatStudio daemon HTTP base.
   --workspace <id>           Explicit Workspace id for a bound project.
   --workspace-member <id>    Explicit Workspace member id for a bound project.
   --json                     Emit raw JSON.`);
@@ -8206,7 +8206,7 @@ async function runShell(args) {
                                   working directory and attach to it.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --json               Print the created terminal session as JSON and exit
                        (does not attach).`);
     process.exit(args.length === 0 ? 2 : 0);
@@ -8348,7 +8348,7 @@ async function runFiles(args) {
                                                Restore a saved HTML as a new current version.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --workspace <id>     Exact Workspace for bound project requests.
   --workspace-member <id>
                        Exact caller membership for bound project requests.
@@ -8751,7 +8751,7 @@ async function runTemplates(args) {
   od templates delete <id>                          Delete a saved template by id.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --json               Emit raw JSON.`);
     process.exit(args.length === 0 ? 2 : 0);
   }
@@ -8909,7 +8909,7 @@ async function runConversation(args) {
   od conversation info <conversationId>      Print one conversation.
 
 Common options:
-  --daemon-url <url>         SaaSCodex daemon HTTP base.
+  --daemon-url <url>         SplatStudio daemon HTTP base.
   --workspace <id>           Explicit Workspace id for a bound project.
   --workspace-member <id>    Explicit Workspace member id for a bound project.
   --json                     Emit raw JSON.`);
@@ -9017,7 +9017,7 @@ async function runChat(args) {
                                            message.
 
 Common options:
-  --daemon-url <url>         SaaSCodex daemon HTTP base.
+  --daemon-url <url>         SplatStudio daemon HTTP base.
   --workspace <id>           Explicit Workspace id for the bound project.
   --workspace-member <id>    Explicit Workspace member id for the bound project.
   --json                     Emit raw JSON.`);
@@ -9109,7 +9109,7 @@ async function runDaemon(args) {
   od daemon db     vacuum                 Run SQLite VACUUM to reclaim space after deletes.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --headless           No browser auto-open; aliased --no-open.
   --serve-web          Serve the web UI over the existing port (no electron).
   --json               Emit raw JSON.`);
@@ -9320,7 +9320,7 @@ async function runAtoms(args) {
   od atoms info <id>        Print metadata + the bundled SKILL.md body.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --json               Emit raw JSON.`);
     process.exit(args.length === 0 ? 2 : 0);
   }
@@ -9877,7 +9877,7 @@ async function runDesignSystemImportLocal(args) {
   od design-systems import-local <path> [--name <name>] [--import-mode <mode>] [--craft <slugs>] [--json] [--daemon-url <url>]
   od design-systems import-local --path <path> [--name <name>] [--json]
 
-Imports a local project directory as an editable SaaSCodex design system.
+Imports a local project directory as an editable SplatStudio design system.
 
   <path>                 Local project directory to scan.
   --path <path>          Path alternative for scripts that prefer named flags.
@@ -9908,7 +9908,7 @@ async function runDesignSystemImportGithub(args) {
   od design-systems import-github <url> [--branch <branch>] [--name <name>] [--import-mode <mode>] [--craft <slugs>] [--json] [--daemon-url <url>]
   od design-systems import-github --url <url> [--branch <branch>] [--json]
 
-Imports a public GitHub repository as an editable SaaSCodex design system.
+Imports a public GitHub repository as an editable SplatStudio design system.
 
   <url>                  Repository root URL, e.g. https://github.com/acme/design-kit.
   --url <url>            URL alternative for scripts that prefer named flags.
@@ -10021,7 +10021,7 @@ async function runDesignSystemImportShadcn(args) {
     console.log(`Usage:
   od design-systems import-shadcn <reference> [--name <name>] [--import-mode <mode>] [--craft <slugs>] [--json] [--daemon-url <url>]
 
-Imports a shadcn registry item as an SaaSCodex design system.
+Imports a shadcn registry item as an SplatStudio design system.
 
   <reference>            "<owner>/<repo>/<item>" (e.g. shadcn/ui/theme-zinc)
                          or an https URL to a registry-item JSON document.
@@ -10104,7 +10104,7 @@ into a zip. The bundle is the same one Settings → About → Export
 diagnostics produces.
 
   <path>                 Where to write the zip. Defaults to
-                         ./saascodex-diagnostics-<timestamp>.zip in the
+                         ./splatstudio-diagnostics-<timestamp>.zip in the
                          current working directory. Alias: --output <path>.
   --json                 Print {path, sizeBytes} on stdout instead of a
                          human-readable summary. The file is still written
@@ -10125,7 +10125,7 @@ diagnostics produces.
   const base = (await libraryDaemonUrl(flags)).replace(/\/$/, '');
 
   const { DIAGNOSTICS_EXPORT_PATH, DIAGNOSTICS_FILENAME_PREFIX, diagnosticsFileName } =
-    await import('@saascodex/diagnostics');
+    await import('@splatstudio/diagnostics');
   const fs = await import('node:fs/promises');
   const path = await import('node:path');
 
@@ -10201,7 +10201,7 @@ async function runWhatsNew(args) {
   if (!resp.ok) return structuredHttpFailure(resp);
   const data = await resp.json();
   if (flags.json) return process.stdout.write(JSON.stringify(data, null, 2) + '\n');
-  console.log(`SaaSCodex ${data?.version ?? 'unknown'}`);
+  console.log(`SplatStudio ${data?.version ?? 'unknown'}`);
   if (data?.content != null) {
     console.log(`\n${data.content.title}\n${data.content.body}`);
     if (data.content.linkUrl) console.log(`\nDetails: ${data.content.linkUrl}`);
@@ -10352,7 +10352,7 @@ async function runConfig(args) {
   od config unset <key>               Remove a top-level key.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.
+  --daemon-url <url>   SplatStudio daemon HTTP base.
   --json               Emit raw JSON.`);
     process.exit(args.length === 0 ? 2 : 0);
   }
@@ -10519,7 +10519,7 @@ function printMemoryHelp() {
       profile/rewrite/verify hooks; --extraction maps to chatExtractionEnabled.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.`);
+  --daemon-url <url>   SplatStudio daemon HTTP base.`);
 }
 
 function memoryPositionals(values) {
@@ -11447,7 +11447,7 @@ Output:
   can drive the full automation lifecycle headlessly.
 
 Common options:
-  --daemon-url <url>   SaaSCodex daemon HTTP base.`);
+  --daemon-url <url>   SplatStudio daemon HTTP base.`);
 }
 
 async function runAutomation(args) {
@@ -12066,7 +12066,7 @@ Options:
   --workspace <id>                          Explicit Workspace id for a bound project.
   --workspace-member <id>                   Explicit Workspace member id for a bound project.
   --json                                    Emit raw JSON response.
-  --daemon-url <url>                        SaaSCodex daemon HTTP base.`);
+  --daemon-url <url>                        SplatStudio daemon HTTP base.`);
     return;
   }
 

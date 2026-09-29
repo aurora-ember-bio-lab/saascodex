@@ -23,7 +23,7 @@ without code churn.
 | `TheaterDegraded.tsx` | Single chip surface for runs the orchestrator could not score. `useId()` for the heading id so multiple chips on one page do not collide. |
 | `TheaterCollapsed.tsx` | Post-run summary: shipped, interrupted, failed. The interrupted branch uses `interruptedSummary`, not `shippedSummary`. |
 | `TheaterTranscript.tsx` | Read-only replay surface bound to `useCritiqueReplay`. |
-| `hooks/useCritiqueTheaterEnabled.ts` | Reads the Settings toggle from `saascodex:config` localStorage and stays in sync with cross-tab `storage` events plus the same-tab `saascodex:critique-theater-toggle` CustomEvent. Pairs with the `setCritiqueTheaterEnabled` setter so a Settings save reflects in every mounted hook without a reload. |
+| `hooks/useCritiqueTheaterEnabled.ts` | Reads the Settings toggle from `splatstudio:config` localStorage and stays in sync with cross-tab `storage` events plus the same-tab `splatstudio:critique-theater-toggle` CustomEvent. Pairs with the `setCritiqueTheaterEnabled` setter so a Settings save reflects in every mounted hook without a reload. |
 | `index.ts` | Public barrel. Exports the mount, the four surface components plus the `InterruptButton`, the three hooks (`useCritiqueStream`, `useCritiqueReplay`, `useCritiqueTheaterEnabled`), the imperative setter (`setCritiqueTheaterEnabled`), and the reducer-derived contract types. Everything else stays internal. |
 
 ## Invariants
@@ -77,10 +77,10 @@ without code churn.
    all 19 files under `apps/web/src/i18n/locales/`. The locale files
    carry complete dictionaries rather than inheriting missing keys from
    English.
-3. Run `pnpm --filter @saascodex/web exec vitest run tests/components/Theater`
+3. Run `pnpm --filter @splatstudio/web exec vitest run tests/components/Theater`
    before pushing. The suite has 100+ cases pinning the reducer
    shape, SSE validation, host lifecycle, and component renders.
-4. Visual regression: run `pnpm --filter @saascodex/e2e test:ui:extended`
+4. Visual regression: run `pnpm --filter @splatstudio/e2e test:ui:extended`
    with `--update-snapshots` after any CSS change in
    `apps/web/src/styles/viewer/theater.css`'s `.theater-*` block.
 

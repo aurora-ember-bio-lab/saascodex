@@ -6,7 +6,7 @@ import type {
   StrategyInputStageV2,
   StrategyRouteV2,
   StrategyTaskTypeV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import type {
   ObservationAvailabilityCountsV1,
@@ -14,7 +14,7 @@ import type {
   TaskObservationExportContextV1,
 } from './task-observation-aggregation.js';
 
-export const TASK_ANALYTICS_REPORT_SCHEMA = 'saascodex.task-analytics-report/v1' as const;
+export const TASK_ANALYTICS_REPORT_SCHEMA = 'splatstudio.task-analytics-report/v1' as const;
 
 export type TaskAnalyticsBucketV1 = StrategyTaskTypeV2 | 'unknown';
 

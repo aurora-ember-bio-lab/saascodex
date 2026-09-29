@@ -162,7 +162,7 @@ export async function readDefaultMailtoHandlerBundleId(
 }
 
 // The address a first-party mailto is addressed to, for the "copied to your
-// clipboard" fallback. `mailto:support@saascodex.com?subject=…` → the
+// clipboard" fallback. `mailto:support@splatstudio.app?subject=…` → the
 // support address; anything unparseable yields null and the caller skips the
 // notice rather than copying garbage.
 export function mailtoAddress(url: string): string | null {
@@ -243,7 +243,7 @@ const defaultDeps: OpenFirstPartyMailtoDeps = {
     const notice = noMailClientNotice(address, app.getLocale());
     const options = {
       type: "info" as const,
-      title: "SaaSCodex",
+      title: "SplatStudio",
       message: notice.message,
       detail: notice.detail,
       buttons: [notice.button],

@@ -4,31 +4,31 @@ Status: active product and protocol contract
 
 Date: 2026-08-14
 
-The selected architecture is not an SaaSCodex-packaged SDK carrier. It uses
-the user's official `dsh` installation plus an SaaSCodex profile bundle.
+The selected architecture is not an SplatStudio-packaged SDK carrier. It uses
+the user's official `dsh` installation plus an SplatStudio profile bundle.
 
 ## 1. Product outcome
 
-SaaSCodex integrates DeepSeek Harness like Claude Code or Codex: the user
-installs and owns the official coding-agent CLI, while SaaSCodex detects and
+SplatStudio integrates DeepSeek Harness like Claude Code or Codex: the user
+installs and owns the official coding-agent CLI, while SplatStudio detects and
 launches it.
 
 The desired user experience is:
 
 1. The user installs the official `@deepseek-ai/dsh` package.
-2. SaaSCodex installs or detects an OD-specific profile named `saascodex`.
+2. SplatStudio installs or detects an OD-specific profile named `splatstudio`.
 3. The user selects **DeepSeek Harness** from the normal coding-agent picker.
 4. Harness creates files in the selected OD project; OD detects, previews, and
    delivers those files through its existing artifact path.
 5. A later OD turn starts a new process, resumes the same Harness session, and
    modifies the existing artifact without replaying the whole transcript.
 
-The stable SaaSCodex runtime identity is:
+The stable SplatStudio runtime identity is:
 
 - runtime id: `deepseek-harness`
 - display name: `DeepSeek Harness`
 - executable: user-installed `dsh`, overridable through `DSH_BIN`
-- profile: `saascodex`
+- profile: `splatstudio`
 - stream format: `dsh-profile-jsonl`
 - protocol generation: `1`
 
@@ -44,17 +44,17 @@ This adapter remains distinct from the existing `deepseek` TUI adapter.
 - the Harness home and managed credential document;
 - native session record formats and interrupted-tail recovery.
 
-### SaaSCodex owns
+### SplatStudio owns
 
 - daemon discovery and launch of the user's `dsh`;
-- the `saascodex` profile bundle and its versioned stdio contract;
+- the `splatstudio` profile bundle and its versioned stdio contract;
 - mapping OD conversations to stable Harness session ids;
 - mapping Harness events into OD chat/tool/artifact events;
 - run cancellation and platform process-tree cleanup;
 - product guidance, profile compatibility checks, and explicit one-click
   profile installation or repair.
 
-### SaaSCodex explicitly does not own
+### SplatStudio explicitly does not own
 
 - a copy of `dsh`, Node, or the Harness dependency closure;
 - a fork of the Harness agent loop or session format;
@@ -64,9 +64,9 @@ This adapter remains distinct from the existing `deepseek` TUI adapter.
 
 This boundary avoids the approximately 174 MB experimental single-executable
 carrier and avoids turning Windows runtime construction, signing, and updates
-into an SaaSCodex responsibility.
+into an SplatStudio responsibility.
 
-## 3. Why an SaaSCodex profile bundle is needed
+## 3. Why an SplatStudio profile bundle is needed
 
 Official Harness profiles are supported composition points under the Harness
 home. A bundle is an installable npm package that contributes a Cordis patch
@@ -77,9 +77,9 @@ Conceptually:
 
 ```text
 user-installed official dsh
-  └── profile: saascodex
+  └── profile: splatstudio
        ├── official Harness base, agent loop, tools, provider, persistence
-       └── @saascodex/dsh-runtime
+       └── @splatstudio/dsh-runtime
             ├── versioned stdio entry point
             ├── cold-resume bridge
             ├── structured event projection
@@ -103,12 +103,12 @@ control contract OD needs.
 The profile bundle is installed into the user's official Harness installation:
 
 ```text
-dsh plugin --profile saascodex add <pinned OD bundle package>
+dsh plugin --profile splatstudio add <pinned OD bundle package>
 ```
 
-The source lives in the SaaSCodex repository so the host types, fake runtime,
+The source lives in the SplatStudio repository so the host types, fake runtime,
 profile implementation, and protocol fixtures change atomically. Its package
-identity is `@saascodex/dsh-runtime`, but end-user setup does not require a
+identity is `@splatstudio/dsh-runtime`, but end-user setup does not require a
 public registry release: each packaged OD build carries an exact packed
 tarball plus a SHA-256 manifest. This couples the host and profile protocol
 versions and avoids an unbounded `latest` install.
@@ -121,7 +121,7 @@ setup-required label. Selecting it opens a confirmation dialog. Only after the
 user confirms does OD invoke:
 
 ```text
-dsh plugin --profile saascodex add <embedded pinned tarball>
+dsh plugin --profile splatstudio add <embedded pinned tarball>
 ```
 
 OD verifies the tarball hash before invocation, rescans the profile, selects
@@ -142,7 +142,7 @@ A bare `dsh` binary is not enough. OD advertises DeepSeek Harness as runnable
 only when both checks succeed:
 
 1. `dsh --version` produces a usable identity.
-2. `dsh --profile saascodex --probe` emits a compatible probe frame and exits
+2. `dsh --profile splatstudio --probe` emits a compatible probe frame and exits
    successfully.
 
 The probe frame is one JSON line:
@@ -151,7 +151,7 @@ The probe frame is one JSON line:
 {
   "v": 1,
   "type": "probe",
-  "runtime": "saascodex",
+  "runtime": "splatstudio",
   "protocol_version": 1,
   "plugin_version": "<version>",
   "capabilities": {
@@ -182,7 +182,7 @@ server and does not pretend that the stock server supports resume.
 OD launches:
 
 ```text
-dsh --profile saascodex --stdio
+dsh --profile splatstudio --stdio
 ```
 
 Every non-empty stdout line is exactly one protocol frame. Diagnostics go to
@@ -254,7 +254,7 @@ run starts one short-lived `dsh` process.
 
 ```text
 first run
-  spawn dsh --profile saascodex --stdio
+  spawn dsh --profile splatstudio --stdio
   validate ready
   execute with bootstrap context + current user turn
   receive new session id
@@ -310,7 +310,7 @@ and delivery paths remain authoritative.
 
 OD must not replace `DSH_HOME` to isolate a run. That home is the user's
 official Harness installation boundary and contains the installed
-`saascodex` profile, Harness-managed credentials, and native session history.
+`splatstudio` profile, Harness-managed credentials, and native session history.
 OD treats that history as external-tool state and never parses or edits it. OD
 persists only the opaque session id plus compatibility metadata in its own
 database under the daemon's resolved `RUNTIME_DATA_DIR`; clients cannot choose
@@ -325,7 +325,7 @@ The initial product proof is intentionally artifact-oriented:
 
 ## 9. Event normalization
 
-| Profile frame | SaaSCodex event |
+| Profile frame | SplatStudio event |
 | --- | --- |
 | `thinking` | `thinking_start`, then `thinking_delta` |
 | `text` | `text_delta` |
@@ -454,4 +454,4 @@ The complete design is ready when:
   credential delegation, and cancellation pass shared fixtures;
 - macOS, Linux, and Windows pass process-tree and two-process resume smoke;
 - a credentialed two-turn artifact flow succeeds without committing secrets;
-- no Harness runtime is bundled into SaaSCodex.
+- no Harness runtime is bundled into SplatStudio.

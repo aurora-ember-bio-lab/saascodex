@@ -1,7 +1,7 @@
 import type {
   FinalizeAnthropicRequest,
   FinalizeProviderProtocol,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { effectiveMaxTokens } from '../state/maxTokens';
 import type { ApiProtocol, AppConfig } from '../types';

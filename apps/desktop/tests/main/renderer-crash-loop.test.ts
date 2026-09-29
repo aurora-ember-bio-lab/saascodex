@@ -137,7 +137,7 @@ describe("renderer crash-loop breaker wiring", () => {
     expect(runtimeSource).toContain("openExternal");
     expect(runtimeSource).toContain("window.openDesignDesktop");
     expect(runtimeSource).toContain("exportDiagnostics");
-    expect(runtimeSource).toContain("support@saascodex.com");
+    expect(runtimeSource).toContain("support@splatstudio.app");
     expect(runtimeSource).toContain("buildCrashMailtoUrl");
     // Report body prefilled with the version/OS/exit code a triager needs.
     expect(runtimeSource).toContain("buildCrashReportUrl");
@@ -147,8 +147,8 @@ describe("renderer crash-loop breaker wiring", () => {
 
 describe("isSupportMailtoUrl", () => {
   test("allows a mailto to the support address carrying only subject/body", () => {
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com")).toBe(true);
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com?subject=Crash&body=hi")).toBe(true);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app")).toBe(true);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app?subject=Crash&body=hi")).toBe(true);
     // Address comparison is case-insensitive.
     expect(isSupportMailtoUrl("mailto:Support@Open-Design.AI")).toBe(true);
   });
@@ -156,7 +156,7 @@ describe("isSupportMailtoUrl", () => {
   test("rejects any other address or scheme so widening open-external can't be abused", () => {
     expect(isSupportMailtoUrl("mailto:attacker@evil.com")).toBe(false);
     expect(isSupportMailtoUrl("mailto:support@evil.com")).toBe(false);
-    expect(isSupportMailtoUrl("https://saascodex.com")).toBe(false);
+    expect(isSupportMailtoUrl("https://splatstudio.app")).toBe(false);
     expect(isSupportMailtoUrl("javascript:alert(1)")).toBe(false);
     expect(isSupportMailtoUrl("file:///etc/passwd")).toBe(false);
     expect(isSupportMailtoUrl("not a url")).toBe(false);
@@ -165,19 +165,19 @@ describe("isSupportMailtoUrl", () => {
   test("rejects extra recipients/headers smuggled through the query (to/cc/bcc/unknown)", () => {
     // The address alone passes pathname, so the query must be validated too or a
     // compromised renderer could add recipients through the open-external bridge.
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com?bcc=attacker@example.com")).toBe(false);
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com?cc=attacker@example.com")).toBe(false);
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com?to=attacker@example.com")).toBe(false);
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com?subject=x&bcc=attacker@example.com")).toBe(false);
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com?whatever=1")).toBe(false);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app?bcc=attacker@example.com")).toBe(false);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app?cc=attacker@example.com")).toBe(false);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app?to=attacker@example.com")).toBe(false);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app?subject=x&bcc=attacker@example.com")).toBe(false);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app?whatever=1")).toBe(false);
   });
 
   test("rejects a CR/LF-injected subject/body that could smuggle a mail header", () => {
     // %0D%0A decodes to CRLF; a "Bcc:" line after it would add a recipient.
     expect(
-      isSupportMailtoUrl("mailto:support@saascodex.com?subject=ok%0D%0ABcc:attacker@example.com"),
+      isSupportMailtoUrl("mailto:support@splatstudio.app?subject=ok%0D%0ABcc:attacker@example.com"),
     ).toBe(false);
-    expect(isSupportMailtoUrl("mailto:support@saascodex.com?body=line1%0Aline2")).toBe(false);
+    expect(isSupportMailtoUrl("mailto:support@splatstudio.app?body=line1%0Aline2")).toBe(false);
   });
 });
 
@@ -190,7 +190,7 @@ describe("isFirstPartyMailtoUrl", () => {
     expect(isFirstPartyMailtoUrl("mailto:contact@open.design?subject=Hi&body=there")).toBe(true);
     expect(isFirstPartyMailtoUrl("mailto:Contact@Open.Design")).toBe(true);
     // The crash screen's support address stays covered.
-    expect(isFirstPartyMailtoUrl("mailto:support@saascodex.com")).toBe(true);
+    expect(isFirstPartyMailtoUrl("mailto:support@splatstudio.app")).toBe(true);
   });
 
   test("keeps the support predicate narrow so the open-external bridge does not widen", () => {
@@ -207,7 +207,7 @@ describe("isFirstPartyMailtoUrl", () => {
     expect(
       isFirstPartyMailtoUrl("mailto:contact@open.design?subject=ok%0D%0ABcc:attacker@example.com"),
     ).toBe(false);
-    expect(isFirstPartyMailtoUrl("https://saascodex.com")).toBe(false);
+    expect(isFirstPartyMailtoUrl("https://splatstudio.app")).toBe(false);
     expect(isFirstPartyMailtoUrl("javascript:alert(1)")).toBe(false);
     expect(isFirstPartyMailtoUrl("not a url")).toBe(false);
   });

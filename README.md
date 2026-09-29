@@ -1,21 +1,21 @@
-<h1 align="center">SaaSCodex: The open-source Claude Design alternative</h1>
+<h1 align="center">SplatStudio: The open-source Claude Design alternative</h1>
 
-> ⚡ **[SaaSCodex Cloud — the official model service.](https://saascodex.com/zh/pricing/)** One recharge to use both agent and image models inside SaaSCodex: GPT, Claude, and DeepSeek for agents; GPT Image 2.0, Seedream 5.0 Pro, and Nano Banana 2.0 for images.
+> ⚡ **[SplatStudio Cloud — the official model service.](https://splatstudio.app/zh/pricing/)** One recharge to use both agent and image models inside SplatStudio: GPT, Claude, and DeepSeek for agents; GPT Image 2.0, Seedream 5.0 Pro, and Nano Banana 2.0 for images.
 >
-> 🚀 **[DeepSeek V4 Flash and V4 Pro are now available.](https://saascodex.com/zh/pricing/)** Put top-tier intelligence to work across prototypes, decks, design systems, and everyday agent tasks. SaaSCodex members can use both models without limits for two weeks, directly inside the app.
+> 🚀 **[DeepSeek V4 Flash and V4 Pro are now available.](https://splatstudio.app/zh/pricing/)** Put top-tier intelligence to work across prototypes, decks, design systems, and everyday agent tasks. SplatStudio members can use both models without limits for two weeks, directly inside the app.
 >
-> 🧩 **[DeepSeek Harness is now supported.](https://saascodex.com/zh/agents/deepseek-harness-design/)** Connect DeepSeek's official `dsh` agent harness to SaaSCodex as a native runtime, with structured thinking, tool calls, model discovery, cancellation, and session resume. Generated files stay in the SaaSCodex workflow for live preview and delivery.
+> 🧩 **[DeepSeek Harness is now supported.](https://splatstudio.app/zh/agents/deepseek-harness-design/)** Connect DeepSeek's official `dsh` agent harness to SplatStudio as a native runtime, with structured thinking, tool calls, model discovery, cancellation, and session resume. Generated files stay in the SplatStudio workflow for live preview and delivery.
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner — the headline &quot;The open-source Claude Design alternative&quot; over a classical scene of columns and robed figures on a digital-code backdrop, with stat cards for design systems, plugins, coding agents, and media providers" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/hero.png" alt="SplatStudio hero banner — the headline &quot;The open-source Claude Design alternative&quot; over a classical scene of columns and robed figures on a digital-code backdrop, with stat cards for design systems, plugins, coding agents, and media providers" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_website">Website</a> ·
-  <a href="https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download">Download</a> ·
-  <a href="https://saascodex.com/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SaaSCodex Cloud</a> ·
+  <a href="https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_website">Website</a> ·
+  <a href="https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_download">Download</a> ·
+  <a href="https://splatstudio.app/cloud/?utm_source=github&utm_medium=referral&utm_content=readme_cloud">SplatStudio Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
-  <a href="https://x.com/SaaSCodexHQ">Follow @SaaSCodexHQ</a>
+  <a href="https://x.com/SplatStudioHQ">Follow @SplatStudioHQ</a>
 </p>
 
 <p align="center">
@@ -29,11 +29,11 @@
 
 ---
 
-## What is SaaSCodex
+## What is SplatStudio
 
 🎨 **The open-source Claude Design alternative.** &nbsp;🖥️ **Local-first native desktop app for macOS and Windows.** &nbsp;⚡ **Composable skills, brand-grade `DESIGN.md` design systems, and ready-to-use plugins.** &nbsp;🖼️ Generates **web · desktop · mobile prototypes**, **live dashboards / artifacts**, **decks**, **images**, **video**, plus **HyperFrames** motion graphics. 🔒 Sandboxed iframe preview · HTML / PDF / PPTX / MP4 export. &nbsp;🤖 **Runs on DeepSeek Harness (`dsh`) · Claude Code · OpenClaw · Codex · Cursor · OpenCode · Qwen · Copilot · Amp · Hermes · Kimi · Antigravity and 26 distinct local CLI executables**, or any OpenAI-compatible endpoint via BYOK.
 
-SaaSCodex is what you get when the **agent-native** loop Anthropic shipped with Claude Design — discover the brief, lock the direction, stream the artifact, critique, deliver — stops being closed and becomes a **filesystem of functional skills, rendering design templates, design systems, and plugins** that the coding agents already on your laptop can read, write, and remix. Your CLI becomes the design engine, your laptop becomes the studio, and your team's `DESIGN.md` becomes the brand contract.
+SplatStudio is what you get when the **agent-native** loop Anthropic shipped with Claude Design — discover the brief, lock the direction, stream the artifact, critique, deliver — stops being closed and becomes a **filesystem of functional skills, rendering design templates, design systems, and plugins** that the coding agents already on your laptop can read, write, and remix. Your CLI becomes the design engine, your laptop becomes the studio, and your team's `DESIGN.md` becomes the brand contract.
 
 It's also the **Figma alternative for the agent era** — instead of pushing pixels on a canvas, it delivers single-page artifacts in real CSS, real fonts, real components, exported straight to HTML / PDF / PPTX / MP4 — already shaped by your design system, already runnable inside the agent you use every day.
 
@@ -42,14 +42,14 @@ It's also the **Figma alternative for the agent era** — instead of pushing pix
 
 ## Product tour
 
-A quick look at the core SaaSCodex workflow. Start from **Home** with a brief, explore reusable skills in **Plugins**, and turn brand references into a **Design System**. Then enter a project's **Studio** to create and refine prototypes, decks, mobile apps, images, documents, and HyperFrames in one place.
+A quick look at the core SplatStudio workflow. Start from **Home** with a brief, explore reusable skills in **Plugins**, and turn brand references into a **Design System**. Then enter a project's **Studio** to create and refine prototypes, decks, mobile apps, images, documents, and HyperFrames in one place.
 
 ### Core pages
 
 <table>
 <tr>
 <td valign="top">
-<img src="docs/screenshots/product-tour/home.png" alt="SaaSCodex Home page with artifact types, brief composer, model picker, and examples" /><br/>
+<img src="docs/screenshots/product-tour/home.png" alt="SplatStudio Home page with artifact types, brief composer, model picker, and examples" /><br/>
 <sub><b>Home</b> — choose an artifact type, enter a brief, and set the design system, working directory, and model before you start.</sub>
 </td>
 </tr>
@@ -58,11 +58,11 @@ A quick look at the core SaaSCodex workflow. Start from **Home** with a brief, e
 <table>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/plugins.png" alt="SaaSCodex Plugins page showing the official skills catalog" /><br/>
+<img src="docs/screenshots/product-tour/plugins.png" alt="SplatStudio Plugins page showing the official skills catalog" /><br/>
 <sub><b>Plugins</b> — browse official skills by category, search the catalog, and launch a workflow with <code>Try it</code>.</sub>
 </td>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/design-system.png" alt="Shopify design system preview inside SaaSCodex Studio" /><br/>
+<img src="docs/screenshots/product-tour/design-system.png" alt="Shopify design system preview inside SplatStudio Studio" /><br/>
 <sub><b>Design System</b> — extract and refine a brand's visual language, preview the result, and create with it in the same workspace.</sub>
 </td>
 </tr>
@@ -75,31 +75,31 @@ Inside a project's Studio, the conversation, generated files, and live preview s
 <table>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/studio-prototype.png" alt="Web prototype preview in SaaSCodex Studio" /><br/>
+<img src="docs/screenshots/product-tour/studio-prototype.png" alt="Web prototype preview in SplatStudio Studio" /><br/>
 <sub><b>Prototype</b> — generate or reconstruct web experiences, inspect the rendered page, and iterate with the agent in place.</sub>
 </td>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/studio-deck.png" alt="Multi-slide deck preview in SaaSCodex Studio" /><br/>
+<img src="docs/screenshots/product-tour/studio-deck.png" alt="Multi-slide deck preview in SplatStudio Studio" /><br/>
 <sub><b>Deck</b> — create multi-slide presentations, review thumbnails and speaker notes, and export when ready.</sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/studio-mobile-app.png" alt="Mobile app artifact preview in SaaSCodex Studio" /><br/>
+<img src="docs/screenshots/product-tour/studio-mobile-app.png" alt="Mobile app artifact preview in SplatStudio Studio" /><br/>
 <sub><b>Mobile app</b> — generate and polish mobile interfaces in a device preview, with the conversation, output files, and next-step actions beside it.</sub>
 </td>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/studio-image.png" alt="Generated image preview in SaaSCodex Studio" /><br/>
+<img src="docs/screenshots/product-tour/studio-image.png" alt="Generated image preview in SplatStudio Studio" /><br/>
 <sub><b>Image</b> — generate visual assets from the project conversation, preview the result at full size, then download or open it.</sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/studio-document.png" alt="Multi-page document preview in SaaSCodex Studio" /><br/>
+<img src="docs/screenshots/product-tour/studio-document.png" alt="Multi-page document preview in SplatStudio Studio" /><br/>
 <sub><b>Document</b> — create polished, multi-page guides and editorial documents, inspect the rendered layout, and export or share when ready.</sub>
 </td>
 <td width="50%" valign="top">
-<img src="docs/screenshots/product-tour/studio-hyperframe.png" alt="HyperFrame motion graphic preview in SaaSCodex Studio" /><br/>
+<img src="docs/screenshots/product-tour/studio-hyperframe.png" alt="HyperFrame motion graphic preview in SplatStudio Studio" /><br/>
 <sub><b>HyperFrame</b> — build code-driven motion graphics, preview the animation inside Studio, and export the finished video.</sub>
 </td>
 </tr>
@@ -109,7 +109,7 @@ Inside a project's Studio, the conversation, generated files, and live preview s
 
 ## Platform Compatibility
 
-> SaaSCodex connects to mainstream coding agents in two ways: **skills, CLI, and MCP** for agents that consume OD, plus **native runtime adapters** for agents that OD launches directly. DeepSeek Harness is a first-class native runtime through the official `dsh` CLI, with structured streaming, model discovery, cancellation, and session resume.
+> SplatStudio connects to mainstream coding agents in two ways: **skills, CLI, and MCP** for agents that consume OD, plus **native runtime adapters** for agents that OD launches directly. DeepSeek Harness is a first-class native runtime through the official `dsh` CLI, with structured streaming, model discovery, cancellation, and session resume.
 
 | Coding agent / platform &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Status &nbsp;&nbsp; | Quick setup &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 |---|:---:|---|
@@ -133,12 +133,12 @@ Inside a project's Studio, the conversation, generated files, and live preview s
 | [Mistral Vibe CLI](https://github.com/mistralai/mistral-vibe) | ✅ Supported | `od mcp install vibe` |
 | [Hermes Agent](https://github.com/nousresearch/hermes-agent) | ✅ Supported | `od mcp install hermes` |
 
-For DeepSeek Harness, install the official `dsh` CLI first, then select it in SaaSCodex or run `od agent setup deepseek-harness` to install/repair OD's connection component. For MCP integrations: `od mcp install <agent> --print` for a dry-run preview · `--uninstall` to remove · full list with `od mcp install --help`.
+For DeepSeek Harness, install the official `dsh` CLI first, then select it in SplatStudio or run `od agent setup deepseek-harness` to install/repair OD's connection component. For MCP integrations: `od mcp install <agent> --print` for a dry-run preview · `--uninstall` to remove · full list with `od mcp install --help`.
 
 ¹ Automatic MCP configuration for Claude Desktop is currently supported on macOS and Windows only.
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 26 coding-agent CLIs SaaSCodex supports — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/coding-agents.png" alt="The 26 coding-agent CLIs SplatStudio supports — DeepSeek Harness · Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **No CLI installed?** The BYOK proxy at `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` gives you the same loop (no process spawn) — paste `baseUrl` + `apiKey` + `model`, with presets for OpenAI, Atlas Cloud, Anthropic, Azure OpenAI, Google Gemini, Ollama, LM Studio, vLLM, or any OpenAI-compatible endpoint. Atlas Cloud uses `https://api.atlascloud.ai/v1` with your own key and OpenAI-compatible model ids such as `qwen/qwen3.5-flash`. Per-target SSRF protection blocks internal IPs / link-local / CGNAT at the daemon edge.
@@ -228,7 +228,7 @@ Every deck exports to **HTML** (single file, inlined assets), **PDF** (browser p
 
 ### 5 · Video & HyperFrames — agent-native motion graphics
 
-**[HyperFrames][hyperframes]** is HeyGen's open-source, agent-native video framework, integrated as a first-class citizen in SaaSCodex. The agent writes HTML + CSS + GSAP, and HyperFrames renders it to a deterministic MP4 via headless Chrome + FFmpeg. Pair it with **Seedance 2.0** for cinematic t2v / i2v, **Veo 3 / Sora 2 / Kling 2** for routed model variants, and **Suno v5 / Lyria 2** for the audio layer.
+**[HyperFrames][hyperframes]** is HeyGen's open-source, agent-native video framework, integrated as a first-class citizen in SplatStudio. The agent writes HTML + CSS + GSAP, and HyperFrames renders it to a deterministic MP4 via headless Chrome + FFmpeg. Pair it with **Seedance 2.0** for cinematic t2v / i2v, **Veo 3 / Sora 2 / Kling 2** for routed model variants, and **Suno v5 / Lyria 2** for the audio layer.
 
 <table>
 <tr>
@@ -251,22 +251,22 @@ Every deck exports to **HTML** (single file, inlined assets), **PDF** (browser p
 
 ---
 
-## Why SaaSCodex
+## Why SplatStudio
 
 > **In April 2026, Anthropic released Claude Design — the first time an LLM stopped writing prose and started delivering design artifacts directly.** It went viral. But it stayed closed-source, paid-only, cloud-only, locked to Anthropic's model, Anthropic's skills, Anthropic's surface. No checkout, no self-host, no Vercel deploy, no swap-in-your-own-agent.
 
-SaaSCodex (OD) is the open-source alternative. Same loop, same artifact-first mental model, none of the lock-in:
+SplatStudio (OD) is the open-source alternative. Same loop, same artifact-first mental model, none of the lock-in:
 
 - 🤖 **Agent-native, model-agnostic.** We don't ship an agent. The `claude` / `codex` / `cursor-agent` / `copilot` / `hermes` / `kimi` already on your `PATH` are the design engine. Swap with one click.
 - 🧠 **Brand-grade by default.** Every render reads the active package's `DESIGN.md` as the core brand contract. 151 design-system packages ship with the repo; legacy packages may be `DESIGN.md`-only, while newer packages can add `manifest.json`, `tokens.css`, components, assets, and provenance. Drop a folder in, the picker finds it.
-- 🖥️ **Local-first, BYOK at every layer.** Native desktop apps for macOS (Apple Silicon + Intel) and Windows (x64). Linux desktop users can currently run SaaSCodex [from source](#-run-from-source); the latest official release does not include a prebuilt Linux artifact. Product analytics and session replay are consent-gated; scrubbed safety and reliability telemetry is always on. Before describing daemon data paths, contributors and operators MUST read `AGENTS.md` → **Daemon data directory contract**. This README MUST NOT restate it.
+- 🖥️ **Local-first, BYOK at every layer.** Native desktop apps for macOS (Apple Silicon + Intel) and Windows (x64). Linux desktop users can currently run SplatStudio [from source](#-run-from-source); the latest official release does not include a prebuilt Linux artifact. Product analytics and session replay are consent-gated; scrubbed safety and reliability telemetry is always on. Before describing daemon data paths, contributors and operators MUST read `AGENTS.md` → **Daemon data directory contract**. This README MUST NOT restate it.
 - 🌍 **Composable on four planes.** **Plugins** carry runnable workflows · functional **skills** carry agent behavior · **design templates** carry rendering blueprints · **design systems** carry the brand. All four use portable, versionable directories that anyone can author and publish.
 - 🔁 **Refresh an existing codebase.** Hand a `git` repo + `DESIGN.md` to the agent and it refactors your real components to the brand spec. Dedicated plugins migrate Figma / Pencil workflows into React / Next.js / Vue code.
 - 🔒 **Privacy by conviction.** Everything runs where your data lives — your laptop, your team's server, your Vercel project. When the network is needed, the BYOK proxy is SSRF-guarded.
 
 ### Comparison
 
-| | Claude Design | Figma | Lovable / v0 / Bolt | **SaaSCodex** |
+| | Claude Design | Figma | Lovable / v0 / Bolt | **SplatStudio** |
 |---|---|---|---|---|
 | Open source | ❌ | ❌ | ❌ | **✅ Apache-2.0** |
 | Self-host / desktop | ❌ | ❌ | ❌ | **✅ macOS + Windows + Docker + Vercel web** |
@@ -283,17 +283,17 @@ SaaSCodex (OD) is the open-source alternative. Same loop, same artifact-first me
 
 ### 🖥️ Download the desktop app (recommended — zero config)
 
-The fastest way to use SaaSCodex. No Node, no pnpm, no clone.
+The fastest way to use SplatStudio. No Node, no pnpm, no clone.
 
-- **macOS** (Apple Silicon · Intel x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows** (x64) → [**saascodex.com**](https://saascodex.com/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Linux** → No prebuilt Linux artifact is currently published in the official releases. For now, [run SaaSCodex from source](#-run-from-source); Linux release work is tracked in [#4368](https://github.com/nexu-io/open-design/issues/4368).
+- **macOS** (Apple Silicon · Intel x64) → [**splatstudio.app**](https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_download_macos) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows** (x64) → [**splatstudio.app**](https://splatstudio.app/?utm_source=github&utm_medium=referral&utm_content=readme_download_windows) or [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Linux** → No prebuilt Linux artifact is currently published in the official releases. For now, [run SplatStudio from source](#-run-from-source); Linux release work is tracked in [#4368](https://github.com/nexu-io/open-design/issues/4368).
 
 After install: the app auto-detects every coding-agent CLI on your `PATH`, loads 100+ functional skills, the separate rendering-template catalog, and 151 design systems, and lets you type a brief in the entry view.
 
 ### 🤖 Install into your coding agent (no UI)
 
-You can use SaaSCodex without ever opening the GUI — call it as a skill, plugin, or MCP server inside Claude Code, Codex, Cursor, Copilot, OpenClaw, Antigravity, Hermes, Kimi, and more.
+You can use SplatStudio without ever opening the GUI — call it as a skill, plugin, or MCP server inside Claude Code, Codex, Cursor, Copilot, OpenClaw, Antigravity, Hermes, Kimi, and more.
 
 If you installed the macOS desktop app via the DMG or Homebrew cask, your shell
 may still resolve `od` to Apple's built-in `/usr/bin/od` octal-dump utility. In
@@ -309,7 +309,7 @@ od mcp install <agent>
 #         | trae | opencode
 
 # Hosted equivalent for curl-based setup:
-curl -fsSL https://saascodex.com/install.sh | sh -s <agent>
+curl -fsSL https://splatstudio.app/install.sh | sh -s <agent>
 ```
 
 `install.sh` is a thin shell wrapper around `od mcp install`; it exists so the
@@ -317,45 +317,45 @@ hosted URL returns shell instead of the landing-page HTML fallback and fails
 fast if your shell resolves a non-Open-Design `od` binary.
 
 > **macOS / WSL2 users:** `/usr/bin/od` is a system octal-dump command and can
-> shadow SaaSCodex's `od` command. Desktop-app users should prefer the
+> shadow SplatStudio's `od` command. Desktop-app users should prefer the
 > **Settings → MCP server** snippet; WSL2 users should follow the
 > [`WSL2 setup guide`](docs/wsl-setup.md) first.
 
 Then, inside the agent:
 
 ```
-> Use saascodex to generate a landing page with the Linear design system
+> Use splatstudio to generate a landing page with the Linear design system
 ```
 
-In a filesystem-backed local CLI run, the agent composes the selected functional skill or design template with your `DESIGN.md`, writes the canonical project files, and SaaSCodex previews those files. A BYOK/plain-API run without filesystem tools instead returns one complete `<artifact>` block.
+In a filesystem-backed local CLI run, the agent composes the selected functional skill or design template with your `DESIGN.md`, writes the canonical project files, and SplatStudio previews those files. A BYOK/plain-API run without filesystem tools instead returns one complete `<artifact>` block.
 
 ### 🐳 Run with Docker
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex/deploy
+cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
 docker compose up -d
 # open http://127.0.0.1:7456
 ```
 
-If the browser asks for credentials, use `saascodex` as the username and the
+If the browser asks for credentials, use `splatstudio` as the username and the
 `OD_API_TOKEN` value from `deploy/.env` as the password. This keeps Docker bridge
 traffic authenticated without requiring host networking. API clients can keep
 using `Authorization: Bearer <OD_API_TOKEN>`.
 
 ### 🚀 Deploy on Sealos
 
-[![Deploy on Sealos](https://sealos.io/Deploy-on-Sealos.svg)](https://sealos.io/products/app-store/saascodex/)
+[![Deploy on Sealos](https://sealos.io/Deploy-on-Sealos.svg)](https://sealos.io/products/app-store/splatstudio/)
 
-The Sealos App Store template runs the published SaaSCodex Docker image with persistent workspace storage and Basic Auth on the public proxy. For custom public or shared Docker deployments, follow the reverse-proxy and `SAASCODEX_ALLOWED_ORIGINS` guidance in [`deploy/README.md`](deploy/README.md#local-compose).
+The Sealos App Store template runs the published SplatStudio Docker image with persistent workspace storage and Basic Auth on the public proxy. For custom public or shared Docker deployments, follow the reverse-proxy and `SPLATSTUDIO_ALLOWED_ORIGINS` guidance in [`deploy/README.md`](deploy/README.md#local-compose).
 
 ### 🧑‍💻 Run from source
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex
+cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
 ```
@@ -372,13 +372,13 @@ Node `~24`, pnpm `10.33.x`. WSL2 users, see [`docs/wsl-setup.md`](docs/wsl-setup
 2. **A designer (or the agent) locks the direction.** No brand? Pick from 5 curated directions. Have a brand? Drop a screenshot / URL → the agent connects GitHub, imports Figma, and codifies a reusable `DESIGN.md`.
 3. **The agent creates the first deliverable.** Plugin + functional skill or design template + `DESIGN.md` are bound. Filesystem-backed CLI runs write canonical project files and the preview follows them; BYOK/plain-API runs without file tools return one complete `<artifact>` block.
 4. **Hand off to engineering.** The artifact is real HTML/CSS — drop it into Cursor, Codex, or Claude Code to keep building as code. Or export PPTX / PDF / MP4 straight to marketing.
-5. **SaaSCodex gets smarter as you use it.** Your screenshots, fonts, palettes, and confirmed artifacts accumulate as defaults for the next session. Less rework, less drift.
+5. **SplatStudio gets smarter as you use it.** Your screenshots, fonts, palettes, and confirmed artifacts accumulate as defaults for the next session. Less rework, less drift.
 
 ---
 
-## Use SaaSCodex from your coding agent
+## Use SplatStudio from your coding agent
 
-SaaSCodex ships a **stdio MCP server** and per-agent **install scripts**. Any MCP-compatible agent in another repo can read files from your local SaaSCodex projects directly — tokens CSS, JSX components, entry HTML — as a structured API queryable by name. The agent always sees the live file, not a stale export.
+SplatStudio ships a **stdio MCP server** and per-agent **install scripts**. Any MCP-compatible agent in another repo can read files from your local SplatStudio projects directly — tokens CSS, JSX components, entry HTML — as a structured API queryable by name. The agent always sees the live file, not a stale export.
 
 ```bash
 # One-line install (16+ CLIs supported):
@@ -394,7 +394,7 @@ od skills list --json
 
 **Why MCP?** Exporting and re-attaching a zip every iteration breaks flow. MCP exposes the design source directly — the agent always sees the live file.
 
-**For an agent starting from scratch,** the installer places `~/.config/<agent>/saascodex.json` (or the platform equivalent) plus a copy-paste MCP snippet. Cursor gets a one-click deeplink; Claude Code gets a `claude mcp add-json` one-liner; every other agent gets JSON in the schema its config expects. On macOS desktop installs, prefer that Settings snippet over typing bare `od mcp install <agent>` in Terminal, because `/usr/bin/od` may win on PATH. Full per-agent flow → **Settings → MCP server** in the desktop app, or [`docs/agent-adapters.md`](docs/agent-adapters.md).
+**For an agent starting from scratch,** the installer places `~/.config/<agent>/splatstudio.json` (or the platform equivalent) plus a copy-paste MCP snippet. Cursor gets a one-click deeplink; Claude Code gets a `claude mcp add-json` one-liner; every other agent gets JSON in the schema its config expects. On macOS desktop installs, prefer that Settings snippet over typing bare `od mcp install <agent>` in Terminal, because `/usr/bin/od` may win on PATH. Full per-agent flow → **Settings → MCP server** in the desktop app, or [`docs/agent-adapters.md`](docs/agent-adapters.md).
 
 **Security model.** Read-only by default, the daemon binds to `127.0.0.1`, and SSRF is blocked at the proxy edge. LAN exposure requires an explicit `OD_BIND_HOST` plus `OD_ALLOWED_ORIGINS`. Connector credentials and live-artifact preview routes stay loopback-only regardless.
 
@@ -470,7 +470,7 @@ Re-import the library via [`scripts/sync-design-systems.ts`](scripts/sync-design
 
 ## Plugins
 
-**277 official plugins plus 183 remixable reference examples** live in [`plugins/_official/`](plugins/_official/). Each entry is a portable plugin directory anchored by `saascodex.json` plus the payload required by its type: for example `SKILL.md` for agent workflows, `template.json` for media templates, or `DESIGN.md` for design-system entries. Jump straight to a category:
+**277 official plugins plus 183 remixable reference examples** live in [`plugins/_official/`](plugins/_official/). Each entry is a portable plugin directory anchored by `splatstudio.json` plus the payload required by its type: for example `SKILL.md` for agent workflows, `template.json` for media templates, or `DESIGN.md` for design-system entries. Jump straight to a category:
 
 | Category | Count | Contents |
 |---|---|---|
@@ -512,33 +512,33 @@ Every command supports `--json`, so you can pipe it through `jq` / `xargs` into 
 
 ### Building a plugin
 
-An SaaSCodex plugin requires `saascodex.json` plus the payload required by its type. A workflow skill or scenario also includes `SKILL.md`; manifest-only template and design-system entries use their own payloads instead:
+An SplatStudio plugin requires `splatstudio.json` plus the payload required by its type. A workflow skill or scenario also includes `SKILL.md`; manifest-only template and design-system entries use their own payloads instead:
 
 ```
 my-plugin/
-├── saascodex.json    ← required: marketplace metadata + inputs + pipeline + capabilities
+├── splatstudio.json    ← required: marketplace metadata + inputs + pipeline + capabilities
 ├── SKILL.md            ← required for agent-skill/scenario entries; omitted for other plugin types
 ├── README.md           ← optional: usage, install, registry links
 ├── preview/            ← optional: index.html / poster.png (strongly recommended for visual plugins)
 └── examples/           ← optional: concrete use cases
 ```
 
-Core `saascodex.json` fields: `specVersion` (currently `1.0.0`), `name` (stable ID), `version` (semver), optional `compat.agentSkills[].path` (points at `./SKILL.md` when the entry exposes an Agent Skill), `od.kind` (`skill` / `scenario` / `atom` / `bundle`), `od.taskKind` (`new-generation` / `figma-migration` / `code-migration` / `tune-collab`), `od.mode` (the output surface, e.g. `prototype` / `deck` / `live-artifact` / `image` / `video` / `hyperframes` / `audio` / `design-system` / `scenario`), `od.capabilities[]` (**declare the minimum** — a restricted install grants only `prompt:inject` by default), `od.inputs[]` (apply-time parameters).
+Core `splatstudio.json` fields: `specVersion` (currently `1.0.0`), `name` (stable ID), `version` (semver), optional `compat.agentSkills[].path` (points at `./SKILL.md` when the entry exposes an Agent Skill), `od.kind` (`skill` / `scenario` / `atom` / `bundle`), `od.taskKind` (`new-generation` / `figma-migration` / `code-migration` / `tune-collab`), `od.mode` (the output surface, e.g. `prototype` / `deck` / `live-artifact` / `image` / `video` / `hyperframes` / `audio` / `design-system` / `scenario`), `od.capabilities[]` (**declare the minimum** — a restricted install grants only `prompt:inject` by default), `od.inputs[]` (apply-time parameters).
 
 Scaffold + validate locally:
 
 ```bash
 od plugin scaffold --id my-plugin --title "My Plugin"   # generate the skeleton
 od plugin validate ./my-plugin                          # check manifest / file layout
-pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
+pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 ```
 
 Full field set and runtime contract → [`plugins/spec/SPEC.md`](plugins/spec/SPEC.md); developing a plugin with a coding agent → [`plugins/spec/AGENT-DEVELOPMENT.md`](plugins/spec/AGENT-DEVELOPMENT.md); copy-paste minimal templates → [`plugins/spec/examples/`](plugins/spec/examples/).
 
 ### Contributing a plugin
 
-1. Drop the plugin folder into [`plugins/community/`](plugins/community/) (third-party plugins), or — to ship it bundled with SaaSCodex — into the matching tier of [`plugins/_official/`](plugins/_official/).
-2. Pass validation: `od plugin validate`, `pnpm guard`, `pnpm --filter @saascodex/plugin-runtime typecheck`.
+1. Drop the plugin folder into [`plugins/community/`](plugins/community/) (third-party plugins), or — to ship it bundled with SplatStudio — into the matching tier of [`plugins/_official/`](plugins/_official/).
+2. Pass validation: `od plugin validate`, `pnpm guard`, `pnpm --filter @splatstudio/plugin-runtime typecheck`.
 3. Fill the PR using the template in [`plugins/spec/CONTRIBUTING.md`](plugins/spec/CONTRIBUTING.md) (ID, version, lane, mode, capabilities, trigger examples; attach a screenshot / preview for visual plugins).
 4. To publish to an external registry (skills.sh / ClawHub / standalone GitHub) → [`plugins/spec/PUBLISHING-REGISTRIES.md`](plugins/spec/PUBLISHING-REGISTRIES.md).
 
@@ -601,7 +601,7 @@ Full architecture → [`docs/architecture.md`](docs/architecture.md). Skill prot
 - [x] Sidecar protocol + Electron desktop + IPC automation
 - [x] Artifact lint API + 5-dim self-critique pre-emit gate
 - [x] **0.8.0** — plugin marketplace infrastructure (261 official plugins, manifest spec, per-agent install scripts)
-- [x] **0.9.0** — SaaSCodex Cloud (official model service built into the app: zero config, one-click sign-in)
+- [x] **0.9.0** — SplatStudio Cloud (official model service built into the app: zero config, one-click sign-in)
 - [x] **0.10.0** — the all-in-one design workspace: the whole craft loop in one window (references → material → interactive editing → motion → handoff)
 - [x] **0.11.0** — _The Bazaar_: built in the open — a community marketplace of plugins and design systems anyone can pick from and contribute to
 - [x] **0.12.0** — _Brand-backed Design System_: turn the brand you already own into a reusable, portable `DESIGN.md` system
@@ -624,7 +624,7 @@ Phased delivery → [`docs/roadmap.md`](docs/roadmap.md).
 Real people behind every channel.
 
 - 💬 **Discord** — daily chat, plugin sharing, questions → [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
-- 🐦 **X / Twitter** — release notes, milestones, behind the scenes → [**@SaaSCodexHQ**](https://x.com/SaaSCodexHQ)
+- 🐦 **X / Twitter** — release notes, milestones, behind the scenes → [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
 - 🗣️ **GitHub Discussions** — deep Q&A, RFCs, "show your work" → [**Discussions**](https://github.com/nexu-io/open-design/discussions)
 - 🐛 **GitHub Issues** — bug reports, feature requests → [**Issues**](https://github.com/nexu-io/open-design/issues)
 
@@ -634,7 +634,7 @@ The [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Ais
 
 ## Contributing
 
-SaaSCodex keeps moving because contributors — designers, engineers, prompt authors — keep showing up. Many of the most-used skills, design systems, and plugins were written by people outside the core team.
+SplatStudio keeps moving because contributors — designers, engineers, prompt authors — keep showing up. Many of the most-used skills, design systems, and plugins were written by people outside the core team.
 
 ### 🎯 Where to start (max leverage, min change)
 
@@ -643,7 +643,7 @@ SaaSCodex keeps moving because contributors — designers, engineers, prompt aut
 | A new functional **skill** | Drop a folder with `SKILL.md` + optional `assets/` + `references/` | [`skills/`](skills/) · spec in [`docs/skills-protocol.md`](docs/skills-protocol.md) |
 | A new rendering **design template** | Add a renderable `SKILL.md` bundle | [`design-templates/`](design-templates/) |
 | A new **design system** | Drop a package centered on `DESIGN.md`; add `manifest.json`, `tokens.css`, components, assets, or provenance when needed | [`design-systems/<brand>/`](design-systems/) |
-| A new **plugin** | Drop `saascodex.json` + the type-specific payload under a category folder | [`plugins/community/`](plugins/community/) · spec in [`plugins/spec/SPEC.md`](plugins/spec/SPEC.md) · agent dev guide in [`plugins/spec/AGENT-DEVELOPMENT.md`](plugins/spec/AGENT-DEVELOPMENT.md) |
+| A new **plugin** | Drop `splatstudio.json` + the type-specific payload under a category folder | [`plugins/community/`](plugins/community/) · spec in [`plugins/spec/SPEC.md`](plugins/spec/SPEC.md) · agent dev guide in [`plugins/spec/AGENT-DEVELOPMENT.md`](plugins/spec/AGENT-DEVELOPMENT.md) |
 | Support a new **coding-agent CLI** | One runtime definition + registry entry; add a parser only for a new wire format | [`apps/daemon/src/runtimes/defs/`](apps/daemon/src/runtimes/defs/) |
 | Fix a bug or polish UI | Browse the [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label | [Issues →](https://github.com/nexu-io/open-design/issues) |
 | Translate the docs | Update the `README.<lang>.md` files | [`TRANSLATIONS.md`](TRANSLATIONS.md) |
@@ -655,7 +655,7 @@ If *you are the agent reading this*, the fastest path is:
 ```bash
 # 1. Boot locally
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex && corepack enable && pnpm install
+cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
 # 2. Find a good-first-issue and assign yourself
@@ -664,7 +664,7 @@ gh issue develop <number>   # create a branch and worktree
 
 # 3. Make the change, run the checks
 pnpm guard && pnpm typecheck
-pnpm --filter @saascodex/<package> test
+pnpm --filter @splatstudio/<package> test
 
 # 4. Open the PR
 gh pr create --fill
@@ -672,9 +672,9 @@ gh pr create --fill
 
 Full agent-friendly contribution flow, code style, and PR bar → [`CONTRIBUTING.md`](CONTRIBUTING.md) ([Deutsch](docs/i18n/CONTRIBUTING.de.md) · [Français](docs/i18n/CONTRIBUTING.fr.md) · [简体中文](docs/i18n/CONTRIBUTING.zh-CN.md) · [日本語](docs/i18n/CONTRIBUTING.ja-JP.md) · [한국어](docs/i18n/CONTRIBUTING.ko.md) · [Português](docs/i18n/CONTRIBUTING.pt-BR.md) · [ภาษาไทย](docs/i18n/CONTRIBUTING.th.md)).
 
-### 🏅 SaaSCodex Fellow program
+### 🏅 SplatStudio Fellow program
 
-We're recruiting **SaaSCodex Fellows** around the world — Fellows shape the product alongside the core team, represent SaaSCodex officially in their region, and grow the community locally, backed by funded support ($1,000 / MR), free LLM credits, and a direct review track. Details → [`MAINTAINERS.md`](MAINTAINERS.md) and the announcement on [Discord](https://discord.gg/mHAjSMV6gz).
+We're recruiting **SplatStudio Fellows** around the world — Fellows shape the product alongside the core team, represent SplatStudio officially in their region, and grow the community locally, backed by funded support ($1,000 / MR), free LLM credits, and a direct review track. Details → [`MAINTAINERS.md`](MAINTAINERS.md) and the announcement on [Discord](https://discord.gg/mHAjSMV6gz).
 
 ---
 
@@ -715,7 +715,7 @@ Maintainer rules, promotion criteria, and the exit protocol → [`MAINTAINERS.md
 Thanks to everyone who has taken part — code, docs, feedback, a sharp issue, a new skill, a new design system.
 
 <a href="https://github.com/nexu-io/open-design/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SaaSCodex contributors" />
+  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
 ---
@@ -723,7 +723,7 @@ Thanks to everyone who has taken part — code, docs, feedback, a sharp issue, a
 ## Repository activity
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
+  <img alt="SplatStudio — repository metrics" src="https://repo-assets.splatstudio.app/resources/images/github-metrics.svg" />
 </picture>
 
 The SVG above is regenerated daily by [`.github/workflows/metrics.yml`](.github/workflows/metrics.yml) using [`lowlighter/metrics`](https://github.com/lowlighter/metrics).
@@ -733,7 +733,7 @@ The SVG above is regenerated daily by [`.github/workflows/metrics.yml`](.github/
 ## Star us
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 If this saved you thirty minutes, give it a ★. Stars don't pay rent — but they tell the next designer, agent, and contributor that this experiment is worth their attention. One click, three seconds, a real signal.
@@ -742,7 +742,7 @@ If this saved you thirty minutes, give it a ★. Stars don't pay rent — but th
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&theme=dark&cache_bust=2026-08-04" />
     <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
-    <img alt="SaaSCodex star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
+    <img alt="SplatStudio star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
   </picture>
 </a>
 
@@ -760,7 +760,7 @@ If this saved you thirty minutes, give it a ★. Stars don't pay rent — but th
 | [`multica-ai/multica`](https://github.com/multica-ai/multica) | The daemon + adapter architecture — PATH-scan agent detection, local daemon as the only privileged process. |
 | [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md) | Historical source of the original 9-section `DESIGN.md` schema and 70 upstream-derived systems; current packages may extend that baseline. |
 | [`bergside/awesome-design-skills`](https://github.com/bergside/awesome-design-skills) | Source of the 57 design skills added under `design-systems/`. |
-| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | The HTML→MP4 motion-graphics framework, integrated as the first-class `hyperframes-html` in SaaSCodex. |
+| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | The HTML→MP4 motion-graphics framework, integrated as the first-class `hyperframes-html` in SplatStudio. |
 | [Claude Code skills][skill] | The `SKILL.md` convention we adopt verbatim. |
 
 Detailed provenance → [`docs/references.md`](docs/references.md).

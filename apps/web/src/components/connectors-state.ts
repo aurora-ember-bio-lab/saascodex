@@ -1,4 +1,4 @@
-import type { ConnectorDetail, ConnectorStatusResponse } from '@saascodex/contracts';
+import type { ConnectorDetail, ConnectorStatusResponse } from '@splatstudio/contracts';
 import {
   fetchConnectorDiscovery,
   fetchConnectors,

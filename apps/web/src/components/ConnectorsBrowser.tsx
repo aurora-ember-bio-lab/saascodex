@@ -7,8 +7,8 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
   type SyntheticEvent,
 } from 'react';
-import { VisuallyHidden } from '@saascodex/components';
-import type { ConnectorConnectResponse, ConnectorDetail, ConnectorStatusResponse } from '@saascodex/contracts';
+import { VisuallyHidden } from '@splatstudio/components';
+import type { ConnectorConnectResponse, ConnectorDetail, ConnectorStatusResponse } from '@splatstudio/contracts';
 import { useT } from '../i18n';
 import type { Dict } from '../i18n/types';
 import {

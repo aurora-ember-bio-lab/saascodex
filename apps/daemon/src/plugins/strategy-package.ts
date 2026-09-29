@@ -16,11 +16,11 @@ import {
   type AppliedStrategyBindingV2,
   type InstalledPluginRecord,
   type StrategyTaskTypeV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   buildStrategyPackageIdentity,
   normalizeStrategyAssetPath,
-} from '@saascodex/plugin-runtime';
+} from '@splatstudio/plugin-runtime';
 import { inspectBundledStrategyProvenanceV2 } from './strategy-provenance.js';
 
 export type SelectableStrategyTaskTypeV2 = Exclude<StrategyTaskTypeV2, 'generic'>;
@@ -156,7 +156,7 @@ function readBundledStrategyPackageV2(input: {
   // one task type does not move when another task type's shell changes.
   const selectedResources = selectedProfile.resources ?? [];
   const declaredPaths = [
-    './saascodex.json',
+    './splatstudio.json',
     './SKILL.md',
     declaration.assets.core.path,
     declaration.assets.orchestration.path,
@@ -195,7 +195,7 @@ function readBundledStrategyPackageV2(input: {
   }
 
   const parsed = AppliedStrategyBindingV2Schema.safeParse({
-    schema: 'saascodex.applied-strategy/v2',
+    schema: 'splatstudio.applied-strategy/v2',
     id: declaration.id,
     version: input.plugin.version,
     packageHash: identity.packageHash,

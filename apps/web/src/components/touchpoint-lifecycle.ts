@@ -8,7 +8,7 @@ import {
 	verifyWebTouchpoint,
 	webTouchpointContext,
 	type WebTouchpointContent,
-	type SaaSCodexTouchpointElement,
+	type SplatStudioTouchpointElement,
 } from "./touchpoint-component";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -903,7 +903,7 @@ export function mountTouchpoint(
 	ensureWebTouchpointElement();
 	const element = document.createElement(
 		"opend-touchpoint",
-	) as SaaSCodexTouchpointElement;
+	) as SplatStudioTouchpointElement;
 	let cancelled = false,
 		elementDisposed = false,
 		verifiedDisposed = false;

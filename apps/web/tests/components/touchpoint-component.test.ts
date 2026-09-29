@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
 	hasWebTouchpointCloseControl,
-	SaaSCodexTouchpointElement,
+	SplatStudioTouchpointElement,
 	verifyWebTouchpoint,
 	type WebTouchpointContent,
 } from "../../src/components/touchpoint-component";
@@ -107,7 +107,7 @@ describe("hasWebTouchpointCloseControl", () => {
 	it("ignores disabled or hidden marker controls and accepts a usable control", () => {
 		const element = document.createElement(
 			"opend-touchpoint",
-		) as SaaSCodexTouchpointElement;
+		) as SplatStudioTouchpointElement;
 		const root = element.attachShadow({ mode: "open" });
 		const hidden = document.createElement("button");
 		hidden.dataset.touchpointClose = "true";

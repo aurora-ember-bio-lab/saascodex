@@ -17,7 +17,7 @@
 // content) collapse to a single 'changed' summary with the count
 // of additions / removals.
 
-import type { InstalledPluginRecord, PluginManifest } from '@saascodex/contracts';
+import type { InstalledPluginRecord, PluginManifest } from '@splatstudio/contracts';
 
 export interface PluginDiffEntry {
   field:    string;

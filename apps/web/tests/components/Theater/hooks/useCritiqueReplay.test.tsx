@@ -13,8 +13,8 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
-import type { PanelEvent } from '@saascodex/contracts/critique';
+} from '@splatstudio/contracts';
+import type { PanelEvent } from '@splatstudio/contracts/critique';
 
 import { useCritiqueReplay } from '../../../../src/components/Theater/hooks/useCritiqueReplay';
 import type { CritiqueState } from '../../../../src/components/Theater/state/reducer';

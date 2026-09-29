@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { buildWorkspacePermissions, buildWorkspaceSeatSummary, OD_NEXT_AGENT_DECLARED_BLOCK_REASON, type WorkspaceCollabContext } from '@saascodex/contracts';
+import { buildWorkspacePermissions, buildWorkspaceSeatSummary, OD_NEXT_AGENT_DECLARED_BLOCK_REASON, type WorkspaceCollabContext } from '@splatstudio/contracts';
 import { ProjectView } from '../../src/components/ProjectView';
 import { AssistantMessage } from '../../src/components/AssistantMessage';
 import { I18nProvider } from '../../src/i18n';

@@ -1,5 +1,5 @@
-import { defaultCritiqueConfig, FALLBACK_POLICIES } from '@saascodex/contracts/critique';
-import type { CritiqueConfig } from '@saascodex/contracts/critique';
+import { defaultCritiqueConfig, FALLBACK_POLICIES } from '@splatstudio/contracts/critique';
+import type { CritiqueConfig } from '@splatstudio/contracts/critique';
 
 /**
  * Load CritiqueConfig from process.env. Keys map 1:1 to OD_CRITIQUE_*.

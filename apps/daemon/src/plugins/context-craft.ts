@@ -1,4 +1,4 @@
-import type { AppliedPluginSnapshot, InstalledPluginRecord, PluginManifest } from '@saascodex/contracts';
+import type { AppliedPluginSnapshot, InstalledPluginRecord, PluginManifest } from '@splatstudio/contracts';
 
 export function getPluginContextCraft(plugin: InstalledPluginRecord): string[] {
   return getManifestContextCraft(plugin.manifest);

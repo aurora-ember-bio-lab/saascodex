@@ -1,4 +1,4 @@
-// AG-UI ↔ SaaSCodex adapter package.
+// AG-UI ↔ SplatStudio adapter package.
 // Spec §10.3.5 / Phase 4. See `./encode.ts` and `./types.ts`.
 
 export * from './types.js';

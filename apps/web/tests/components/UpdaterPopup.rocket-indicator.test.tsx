@@ -14,13 +14,13 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { SaaSCodexHostUpdaterStatusSnapshot } from '@saascodex/host';
-import { installMockSaaSCodexHost } from '@saascodex/host/testing';
+import type { SplatStudioHostUpdaterStatusSnapshot } from '@splatstudio/host';
+import { installMockSplatStudioHost } from '@splatstudio/host/testing';
 
 import { UpdaterPopup } from '../../src/components/UpdaterPopup';
 import { I18nProvider } from '../../src/i18n';
 
-function idleStatus(): SaaSCodexHostUpdaterStatusSnapshot {
+function idleStatus(): SplatStudioHostUpdaterStatusSnapshot {
   return {
     arch: 'arm64',
     capabilities: {
@@ -40,12 +40,12 @@ function idleStatus(): SaaSCodexHostUpdaterStatusSnapshot {
 }
 
 function downloadedStatus(
-  overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {},
-): SaaSCodexHostUpdaterStatusSnapshot {
+  overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {},
+): SplatStudioHostUpdaterStatusSnapshot {
   return {
     ...idleStatus(),
     availableVersion: '1.2.3-beta.4',
-    downloadPath: '/tmp/saascodex-updater/Open Design Beta.dmg',
+    downloadPath: '/tmp/splatstudio-updater/Open Design Beta.dmg',
     state: 'downloaded',
     ...overrides,
   };
@@ -80,11 +80,11 @@ describe('updater rocket indicator', () => {
         installResult: {
           dryRun: true,
           openedAt: '2026-07-28T00:00:00.000Z',
-          path: '/tmp/saascodex-updater/Open Design Beta.dmg',
+          path: '/tmp/splatstudio-updater/Open Design Beta.dmg',
         },
       }),
     ]) {
-      restoreHost = installMockSaaSCodexHost({
+      restoreHost = installMockSplatStudioHost({
         host: { updater: { status: vi.fn(async () => status) } },
       });
 
@@ -102,7 +102,7 @@ describe('updater rocket indicator', () => {
   });
 
   it('renders the rocket once an installer is downloaded and unopened', async () => {
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: { updater: { status: vi.fn(async () => downloadedStatus()) } },
     });
 
@@ -127,13 +127,13 @@ describe('updater rocket indicator', () => {
         installResult: {
           dryRun: true,
           openedAt: '2026-07-28T00:00:00.000Z',
-          path: '/tmp/saascodex-updater/Open Design Beta.dmg',
+          path: '/tmp/splatstudio-updater/Open Design Beta.dmg',
         },
       });
       return status;
     });
     const quit = vi.fn(async () => ({ ok: true as const }));
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: { updater: { install, quit, status: vi.fn(async () => status) } },
     });
 

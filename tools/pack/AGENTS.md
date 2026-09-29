@@ -14,7 +14,7 @@ Read `tools/pack/CACHE.md` before changing any build-cache node key, adding a ca
 - Linux AppImage build/install/start/stop/logs/uninstall/cleanup smoke commands.
 - Linux headless (no-Electron) install/start/stop via `--headless` flag on `install`, `start`, and `stop`.
 - Linux containerized builds via `electronuserland/builder` Docker image for distro-agnostic glibc compat.
-- Consuming sidecar/process/path primitives from `@saascodex/sidecar-proto`, `@saascodex/sidecar`, and `@saascodex/platform`.
+- Consuming sidecar/process/path primitives from `@splatstudio/sidecar-proto`, `@splatstudio/sidecar`, and `@splatstudio/platform`.
 
 ## Does not own
 
@@ -27,7 +27,7 @@ Read `tools/pack/CACHE.md` before changing any build-cache node key, adding a ca
 
 - Keep cross-platform source responsibilities in named directories such as `cache/`, `config/`, `launcher/`, `resources/`, `updates/`, and `versioning/`; keep platform-owned behavior below `mac/` or `win/`. Mirror those responsibilities in `tests/` when a test set has the same ownership. A new root-level `src/*.ts` file is intentionally treated as unclassified by CI and pays the conservative Windows payload fallback until it is placed in an owned source unit.
 - Tests import source modules through the test-only `@/*` alias. Tests that intentionally inspect source text use the same alias with Vitest's `?raw` suffix; do not reintroduce directory-depth-dependent `../src/` imports or file URLs.
-- Do not hand-build stamp argv, IPC paths, or process matching; use `@saascodex/sidecar` launch/discovery/invoke/stop atomics.
+- Do not hand-build stamp argv, IPC paths, or process matching; use `@splatstudio/sidecar` launch/discovery/invoke/stop atomics.
 - Do not use port numbers in data/log/runtime/cache path decisions. Namespace decides paths; ports are only transient transports.
 - Public release artifacts must use channel-specific app identity: stable uses `Open Design`, beta uses `Open Design Beta`, prerelease uses `Open Design Prerelease`, and preview uses `Open Design Preview`. Local tools-pack installs may still use namespace-scoped install paths only as a developer multi-instance validation convention.
 - Do not let namespace-named `.app` installs change data/log/runtime/cache path conventions.
@@ -56,16 +56,16 @@ Read this section before changing packaged auto-update behavior. The updater cro
 
 ### Release metadata shape
 
-The runtime updater reads `https://releases.saascodex.com/<channel>/latest/metadata.json` unless `OD_UPDATE_METADATA_URL` overrides it. For package-launcher updates:
+The runtime updater reads `https://releases.splatstudio.app/<channel>/latest/metadata.json` unless `OD_UPDATE_METADATA_URL` overrides it. For package-launcher updates:
 
 - A valid packaged-launcher context prefers `platforms.<platform>.artifacts.payload`; the platform installer (`dmg` on macOS or `installer` on Windows) remains the recovery/fallback path.
 - The artifact must have a checksum, preferably `sha256Url`; the updater verifies bytes before exposing an install action.
 - `OD_UPDATE_CURRENT_VERSION` may override the packaged version for tests, but user-flow package validation should prefer building the package with the intended `--app-version`.
 - Release metadata may include `releaseNote.content`, with a `defaultLocale` and locale descriptors containing `url`, `mediaType`, `sha256`, and `size`. The updater does not currently consume this block; `tools-release` owns its publication and verification independently from updater UI behavior.
-- Release metadata may include `control.launcher.version.{min, url}` — the installer-reinstall floor. The updater compares `min` against the **physically installed outer package version** (read at check time from the outer bundle's `saascodex-config.json` via the launcher launch path; `OD_UPDATE_INSTALLED_VERSION` overrides it for tests), NOT the running payload version — payload updates never touch the outer bundle, so a broken outer generation must reach the installer path even when its payload is current. When the floor trips (or `min` is set but the outer version is unreadable — conservative), the updater selects the installer artifact and, when no newer release exists, offers a same-version installer reinstall; snapshot field `reinstall` carries `{reason, installedVersion, minVersion, url}` and the web UI presents the optional operator `url` as a jump link with default i18n copy as fallback. Publication: channel policy is managed as one repo-vars pair per channel — `RELEASE_LAUNCHER_VERSION_MIN_<CHANNEL>` + `RELEASE_LAUNCHER_VERSION_MIN_URL_<CHANNEL>` — passed through workflows verbatim (no YAML fallback expressions) and resolved by the shared resolver in `tools/release/src/storage/launcher-version-floor.ts`: a non-stable channel whose own pair is unset falls back to the STABLE pair as a unit, and format/https/floor validation is applied at that single point. `publish-metadata` hard-fails when `min` exceeds the release version — a floor this release cannot satisfy would make the same-version reinstall offer nag forever. `verify-metadata` re-resolves the same channel policy and checks the published block against it; `summary-metadata` surfaces the floor in the step summary.
+- Release metadata may include `control.launcher.version.{min, url}` — the installer-reinstall floor. The updater compares `min` against the **physically installed outer package version** (read at check time from the outer bundle's `splatstudio-config.json` via the launcher launch path; `OD_UPDATE_INSTALLED_VERSION` overrides it for tests), NOT the running payload version — payload updates never touch the outer bundle, so a broken outer generation must reach the installer path even when its payload is current. When the floor trips (or `min` is set but the outer version is unreadable — conservative), the updater selects the installer artifact and, when no newer release exists, offers a same-version installer reinstall; snapshot field `reinstall` carries `{reason, installedVersion, minVersion, url}` and the web UI presents the optional operator `url` as a jump link with default i18n copy as fallback. Publication: channel policy is managed as one repo-vars pair per channel — `RELEASE_LAUNCHER_VERSION_MIN_<CHANNEL>` + `RELEASE_LAUNCHER_VERSION_MIN_URL_<CHANNEL>` — passed through workflows verbatim (no YAML fallback expressions) and resolved by the shared resolver in `tools/release/src/storage/launcher-version-floor.ts`: a non-stable channel whose own pair is unset falls back to the STABLE pair as a unit, and format/https/floor validation is applied at that single point. `publish-metadata` hard-fails when `min` exceeds the release version — a floor this release cannot satisfy would make the same-version reinstall offer nag forever. `verify-metadata` re-resolves the same channel policy and checks the published block against it; `summary-metadata` surfaces the floor in the step summary.
 - The updater exposes a manual disaster-recovery `clear-cache` action (`od:update:clear-cache` IPC, sidecar action `clear-cache`, Settings → About "Clear update cache" row with a two-stage inline confirm). It resets one-shot update state (downloaded release, install freeze) back to `idle`, purges `releases/`, `staging/`, `downloads/`, and `.back/`, removes a stale launcher `attempt.json` plus any non-`confirmed` desktop-handoff journal, and deletes non-retained launcher payload versions. Runtime `active`/`lastSuccessful` versions, explicit `retained` cleanup entries, `install.json`, and a `confirmed` handoff journal are never touched; locked files defer through the existing cleanup.json retry machinery. An installer helper already spawned by a prior install action is not cancelled.
 - Release-note source lives at `docs/CHANGELOG/v<full-releaseVersion>/<locale>.md`. All channels use the same publication pipeline, while stable additionally requires `en` and `zh-CN` before platform builds proceed.
-- Post-update "what's new" highlights are NOT carried in release `metadata.json`. The daemon's `/api/whats-new` fetches a single hand-curated document on a dedicated R2 bucket (`https://whatsnew.saascodex.com/whats-new.json`, overridable with `OD_WHATS_NEW_URL`); the web home surface shows a one-time card driven by that document's `id`, not the running version. The document is maintained in this repository at `docs/whats-new.json` and published by `.github/workflows/whats-new-publish.yml`; operators edit that one file after a release — there is no per-version publish tooling. See `docs/whats-new.md`.
+- Post-update "what's new" highlights are NOT carried in release `metadata.json`. The daemon's `/api/whats-new` fetches a single hand-curated document on a dedicated R2 bucket (`https://whatsnew.splatstudio.app/whats-new.json`, overridable with `OD_WHATS_NEW_URL`); the web home surface shows a one-time card driven by that document's `id`, not the running version. The document is maintained in this repository at `docs/whats-new.json` and published by `.github/workflows/whats-new-publish.yml`; operators edit that one file after a release — there is no per-version publish tooling. See `docs/whats-new.md`.
 
 ### Channel identity rules
 
@@ -106,7 +106,7 @@ Use this when validating release-channel behavior before handing a Windows beta 
 1. Confirm the latest beta metadata first:
 
 ```bash
-curl.exe --ssl-no-revoke -fsSL https://releases.saascodex.com/beta/latest/metadata.json
+curl.exe --ssl-no-revoke -fsSL https://releases.splatstudio.app/beta/latest/metadata.json
 ```
 
 For `release-beta-s`, check the internal feed instead:
@@ -170,14 +170,14 @@ pnpm tools-pack win cleanup --dir C:\odtp-beta-release-fixed --namespace release
 `docs/testing/updater-lifecycle.md` is the full lifecycle-to-test coverage map (including deliberate manual-only nodes); consult it to find the owning tests for the node you touched, then run the narrow tests plus the repo checks:
 
 ```bash
-pnpm --filter @saascodex/desktop test -- tests/main/updater.test.ts tests/main/updater-host-boundary.test.ts tests/main/preload-host-boundary.test.ts
-pnpm --filter @saascodex/web test -- tests/components/UpdaterPopup.test.tsx tests/lib/updater.test.ts
-pnpm --filter @saascodex/tools-serve test
-pnpm --filter @saascodex/tools-pack test -- tests/win-identity.test.ts tests/win-app.test.ts tests/win-builder.test.ts
-pnpm --filter @saascodex/desktop typecheck
-pnpm --filter @saascodex/web typecheck
-pnpm --filter @saascodex/tools-pack typecheck
-pnpm --filter @saascodex/tools-serve typecheck
+pnpm --filter @splatstudio/desktop test -- tests/main/updater.test.ts tests/main/updater-host-boundary.test.ts tests/main/preload-host-boundary.test.ts
+pnpm --filter @splatstudio/web test -- tests/components/UpdaterPopup.test.tsx tests/lib/updater.test.ts
+pnpm --filter @splatstudio/tools-serve test
+pnpm --filter @splatstudio/tools-pack test -- tests/win-identity.test.ts tests/win-app.test.ts tests/win-builder.test.ts
+pnpm --filter @splatstudio/desktop typecheck
+pnpm --filter @splatstudio/web typecheck
+pnpm --filter @splatstudio/tools-pack typecheck
+pnpm --filter @splatstudio/tools-serve typecheck
 git diff --check
 pnpm guard
 pnpm typecheck

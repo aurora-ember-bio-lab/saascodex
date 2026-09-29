@@ -11,7 +11,7 @@ import {
   type UserDesignSystemInput,
   type UserDesignSystemRevisionInput,
 } from './index.js';
-import type { DesignSystemTokenContractRebuildDecision } from '@saascodex/contracts';
+import type { DesignSystemTokenContractRebuildDecision } from '@splatstudio/contracts';
 import {
   collectDesignSystemSourceContext,
   mergeSourceContextIntoInput,

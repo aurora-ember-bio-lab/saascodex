@@ -12,7 +12,7 @@
 // accidentally hidden behind a still-selected category pill.
 
 import { useEffect, useMemo, useState } from 'react';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 import {
   applyFacetSelection,
   buildFacetCatalog,

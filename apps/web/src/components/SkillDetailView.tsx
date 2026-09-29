@@ -5,8 +5,8 @@ import {
   useState,
   type CSSProperties,
 } from 'react';
-import { Button } from '@saascodex/components';
-import type { SkillDetail, SkillSummary } from '@saascodex/contracts';
+import { Button } from '@splatstudio/components';
+import type { SkillDetail, SkillSummary } from '@splatstudio/contracts';
 import { renderMarkdownToSafeHtml } from '../artifacts/markdown';
 import { useI18n } from '../i18n';
 import {
@@ -56,7 +56,7 @@ function skillInitials(title: string): string {
 
 function skillAuthor(skill: SkillSummary, personalAuthor: string): string {
   return String(skill.source) === 'built-in' || String(skill.source) === 'builtin'
-    ? 'SaaSCodex'
+    ? 'SplatStudio'
     : personalAuthor;
 }
 

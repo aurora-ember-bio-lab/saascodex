@@ -3,10 +3,10 @@
   "id": "starbucks",
   "name": "Starbucks",
   "category": "E-Commerce & Retail",
-  "description": "Bundled SaaSCodex package for Starbucks, derived from curated DESIGN.md, tokens.css, and components.html fixtures.",
+  "description": "Bundled SplatStudio package for Starbucks, derived from curated DESIGN.md, tokens.css, and components.html fixtures.",
   "source": {
     "type": "bundled",
-    "origin": "SaaSCodex curated bundled fixture"
+    "origin": "SplatStudio curated bundled fixture"
   },
   "files": {
     "design": "DESIGN.md",

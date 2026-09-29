@@ -120,7 +120,7 @@ Deferred to a follow-up:
 ## File map
 
 **Added by the shipped stages**
-- `plugins/_official/scenarios/od-media-generation/{saascodex.json,SKILL.md}`
+- `plugins/_official/scenarios/od-media-generation/{splatstudio.json,SKILL.md}`
 - `apps/daemon/src/plugins/atoms/registry.ts`
 - `apps/web/src/components/home-hero/chips.ts`
 - `packages/contracts/src/plugins/scenario-defaults.ts`
@@ -157,6 +157,6 @@ Deferred to a follow-up:
 ```bash
 pnpm guard
 pnpm typecheck
-pnpm --filter @saascodex/daemon test
-pnpm --filter @saascodex/web test
+pnpm --filter @splatstudio/daemon test
+pnpm --filter @splatstudio/web test
 ```

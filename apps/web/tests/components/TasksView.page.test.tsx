@@ -2,7 +2,7 @@
 
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { Routine } from '@saascodex/contracts';
+import type { Routine } from '@splatstudio/contracts';
 
 import { I18nProvider } from '../../src/i18n';
 import { TasksView } from '../../src/components/TasksView';

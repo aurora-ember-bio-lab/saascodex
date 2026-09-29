@@ -9,7 +9,7 @@
 
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { DesignSystemSummary } from '@saascodex/contracts';
+import type { DesignSystemSummary } from '@splatstudio/contracts';
 
 import { DesignSystemsTab } from '../../src/components/DesignSystemsTab';
 import { I18nProvider } from '../../src/i18n';

@@ -1,6 +1,6 @@
 # Security scanning
 
-SaaSCodex uses [Trivy](https://trivy.dev) to scan the source tree and the
+SplatStudio uses [Trivy](https://trivy.dev) to scan the source tree and the
 runtime image for vulnerable dependencies, secrets, and misconfiguration.
 Findings surface in the GitHub **Security → Code scanning** tab as SARIF.
 
@@ -9,7 +9,7 @@ Findings surface in the GitHub **Security → Code scanning** tab as SARIF.
 | Where | Config | What it scans |
 |---|---|---|
 | `.github/workflows/security.yml` | `trivy.yaml`, `.trivyignore` | repo filesystem (`vuln,secret,misconfig`) + the built `deploy/Dockerfile` image |
-| `.github/workflows/saascodex-ci.yml` | — | `pnpm guard`, `pnpm check:skills`, web typecheck |
+| `.github/workflows/splatstudio-ci.yml` | — | `pnpm guard`, `pnpm check:skills`, web typecheck |
 
 `security.yml` runs on pull requests, pushes to `main`, a weekly schedule, and
 manual dispatch. It reports at `HIGH`/`CRITICAL` and currently **reports
@@ -30,9 +30,9 @@ docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:latest \
   fs --config trivy.yaml apps/daemon/src
 
 # The runtime image
-docker build -f deploy/Dockerfile -t saascodex:local .
+docker build -f deploy/Dockerfile -t splatstudio:local .
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest \
-  image --severity HIGH,CRITICAL saascodex:local
+  image --severity HIGH,CRITICAL splatstudio:local
 ```
 
 ## Triage
@@ -49,14 +49,14 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:lates
 
 - [ ] `OD_API_TOKEN` and `JWT_SECRET` are 32-byte random values (see [AUTH.md](./AUTH.md))
 - [ ] `DATABASE_URL` uses TLS outside local compose
-- [ ] Only `SAASCODEX_ALLOWED_ORIGINS` may call `/api` in hosted mode
-- [ ] The docker image runs as non-root (`saascodex` user) with `no-new-privileges`
+- [ ] Only `SPLATSTUDIO_ALLOWED_ORIGINS` may call `/api` in hosted mode
+- [ ] The docker image runs as non-root (`splatstudio` user) with `no-new-privileges`
 - [ ] `security.yml` `exit-code` flipped to `'1'` once the baseline is clean
 
 ## Pruning upstream workflows (private fork)
 
 The checkout carries many upstream workflows under `.github/workflows/` that
 target Nexu's runner fleet and release infra; they will fail on this fork. The
-fork-relevant automation is `security.yml` and `saascodex-ci.yml`. Disable the
+fork-relevant automation is `security.yml` and `splatstudio-ci.yml`. Disable the
 rest under **Settings → Actions → General** (or delete them) when the repo goes
 private.

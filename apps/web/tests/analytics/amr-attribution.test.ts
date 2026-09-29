@@ -24,7 +24,7 @@ describe('AMR attribution helper', () => {
     vi.unstubAllGlobals();
   });
 
-  it('accepts every AMR entry source defined for SaaSCodex entry points', () => {
+  it('accepts every AMR entry source defined for SplatStudio entry points', () => {
     const track = vi.fn();
     const sources = [
       'onboarding_amr_card',
@@ -372,16 +372,16 @@ describe('AMR attribution helper', () => {
     expect(readAmrAttribution(new Date('2026-08-25T12:00:00.000Z'))).toBeNull();
   });
 
-  it('adds SaaSCodex attribution params to AMR wallet URLs', () => {
+  it('adds SplatStudio attribution params to AMR wallet URLs', () => {
     expect(
-      attributedAmrUrl('https://saascodex.com/amr/dashboard?tab=recharge', {
+      attributedAmrUrl('https://splatstudio.app/amr/dashboard?tab=recharge', {
         entryId: 'od-amr-entry-123',
         sourceProduct: 'open_design',
         sourceDetail: 'generation_preview_recharge',
         occurredAt: '2026-06-03T12:00:00.000Z',
       }),
     ).toBe(
-      'https://saascodex.com/amr/dashboard?tab=recharge&od_origin=open_design&od_entry_id=od-amr-entry-123&od_entry_source=generation_preview_recharge&od_entry_at=2026-06-03T12%3A00%3A00.000Z',
+      'https://splatstudio.app/amr/dashboard?tab=recharge&od_origin=open_design&od_entry_id=od-amr-entry-123&od_entry_source=generation_preview_recharge&od_entry_at=2026-06-03T12%3A00%3A00.000Z',
     );
   });
 
@@ -394,11 +394,11 @@ describe('AMR attribution helper', () => {
     };
     // With a device id (user opted into metrics): od_device_id is present.
     expect(
-      attributedAmrUrl('https://saascodex.com/amr/dashboard', attribution, 'od-install-abc'),
+      attributedAmrUrl('https://splatstudio.app/amr/dashboard', attribution, 'od-install-abc'),
     ).toContain('od_device_id=od-install-abc');
     // Without one (consent off): no od_device_id param leaks into the URL.
     expect(
-      attributedAmrUrl('https://saascodex.com/amr/dashboard', attribution, null),
+      attributedAmrUrl('https://splatstudio.app/amr/dashboard', attribution, null),
     ).not.toContain('od_device_id');
   });
 
@@ -425,7 +425,7 @@ describe('AMR attribution helper', () => {
       undefined,
     );
     const url = new URL(
-      attributedAmrUrl('https://saascodex.com/zh/pricing/', attribution),
+      attributedAmrUrl('https://splatstudio.app/zh/pricing/', attribution),
     );
     expect(url.searchParams.get('od_entry_id')).toBe(attribution.entryId);
     expect(url.searchParams.get('od_entry_source')).toBe('deepseek_workbench_badge');

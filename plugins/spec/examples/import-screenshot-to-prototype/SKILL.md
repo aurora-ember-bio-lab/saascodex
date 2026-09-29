@@ -1,9 +1,9 @@
 ---
 name: import-screenshot-to-prototype
-description: Use this plugin when the user provides a screenshot or image reference and wants it reconstructed as an editable SaaSCodex prototype with sensible components, layout, and responsive behavior.
+description: Use this plugin when the user provides a screenshot or image reference and wants it reconstructed as an editable SplatStudio prototype with sensible components, layout, and responsive behavior.
 license: MIT
 metadata:
-  author: saascodex-spec
+  author: splatstudio-spec
   version: "0.1.0"
 ---
 

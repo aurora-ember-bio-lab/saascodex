@@ -29,7 +29,7 @@ import { join } from 'node:path';
 
 import { describe, expect, test } from 'vitest';
 
-import type { AgentsResponse } from '@saascodex/contracts';
+import type { AgentsResponse } from '@splatstudio/contracts';
 
 import { AMR_TEST_WORKSPACE_HEADERS } from '@/vitest/amr';
 import { requestJson } from '@/vitest/http';
@@ -42,7 +42,7 @@ type ProjectResponse = {
   project: { id: string; metadata?: { kind?: string }; name: string };
 };
 
-// Inline fake `vela` binary. Handles the two argv shapes SaaSCodex's
+// Inline fake `vela` binary. Handles the two argv shapes SplatStudio's
 // daemon ever spawns:
 //
 //   `vela models`                       — legacy catalog probe compatibility.
@@ -84,9 +84,9 @@ function readBalanceState() {
 if (env.FAKE_VELA_SPAWN_ENV_LOG) {
   appendFileSync(env.FAKE_VELA_SPAWN_ENV_LOG, JSON.stringify({
     argv: argv.slice(2),
-    workspaceId: env.SAASCODEX_WORKSPACE_ID ?? null,
-    runId: env.SAASCODEX_RUN_ID ?? null,
-    sessionId: env.SAASCODEX_SESSION_ID ?? null,
+    workspaceId: env.SPLATSTUDIO_WORKSPACE_ID ?? null,
+    runId: env.SPLATSTUDIO_RUN_ID ?? null,
+    sessionId: env.SPLATSTUDIO_SESSION_ID ?? null,
   }) + '\\n', 'utf8');
 }
 

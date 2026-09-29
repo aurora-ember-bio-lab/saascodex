@@ -6,7 +6,7 @@ import {
 } from '../../src/runtime/strategy-turn-chrome';
 
 const strategyBinding = {
-  schema: 'saascodex.applied-strategy/v2',
+  schema: 'splatstudio.applied-strategy/v2',
   id: 'od-next-strategy',
   version: '2.0.0',
   packageHash: 'b'.repeat(64),

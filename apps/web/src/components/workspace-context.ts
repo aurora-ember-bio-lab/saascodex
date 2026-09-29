@@ -1,4 +1,4 @@
-import type { WorkspaceContextItem } from '@saascodex/contracts';
+import type { WorkspaceContextItem } from '@splatstudio/contracts';
 
 export function workspaceContextLinkedDir(item: WorkspaceContextItem): string | null {
   if (item.kind !== 'local-code' && item.kind !== 'project') return null;

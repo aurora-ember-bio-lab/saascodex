@@ -10,7 +10,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { HandoffButton } from '../../src/components/HandoffButton';
 import { I18nProvider } from '../../src/i18n';
-import type { AgentInfo, HostEditorsResponse } from '@saascodex/contracts';
+import type { AgentInfo, HostEditorsResponse } from '@splatstudio/contracts';
 
 const fetchHostEditors = vi.fn<() => Promise<HostEditorsResponse>>();
 const openProjectInEditor = vi.fn();
@@ -111,7 +111,7 @@ describe('HandoffButton zero-editors fallback', () => {
           projectId="p1"
           projectKind="prototype"
           projectName="Landing"
-          projectDir="/tmp/saascodex/Landing"
+          projectDir="/tmp/splatstudio/Landing"
           agents={agents}
           metricsConsent
           installationId="od-install-abc"
@@ -121,10 +121,10 @@ describe('HandoffButton zero-editors fallback', () => {
 
     fireEvent.click(await screen.findByTestId('handoff-caret'));
     fireEvent.click(await screen.findByRole('tab', { name: '复制给 CLI' }));
-    // The "SaaSCodex Cloud website" link was removed from the CLI tab
+    // The "SplatStudio Cloud website" link was removed from the CLI tab
     // (acceptance #101); the CLI agent cards remain the surface here.
-    expect(screen.queryByRole('link', { name: /打开 SaaSCodex Cloud 官网/ })).toBeNull();
-    expect(screen.getByTestId('handoff-cli-item-amr').textContent).toContain('SaaSCodex');
+    expect(screen.queryByRole('link', { name: /打开 SplatStudio Cloud 官网/ })).toBeNull();
+    expect(screen.getByTestId('handoff-cli-item-amr').textContent).toContain('SplatStudio');
     expect(screen.getByTestId('handoff-cli-item-amr').textContent).not.toContain('未安装');
     expect(
       screen.getByTestId('handoff-cli-item-amr').compareDocumentPosition(
@@ -136,7 +136,7 @@ describe('HandoffButton zero-editors fallback', () => {
 
     await waitFor(() => expect(copyToClipboard).toHaveBeenCalledTimes(1));
     const prompt = copyToClipboard.mock.calls[0]?.[0] as string;
-    expect(prompt).toContain('/tmp/saascodex/Landing');
+    expect(prompt).toContain('/tmp/splatstudio/Landing');
     expect(prompt).toContain('Vue.js');
     expect(prompt).toContain('Claude Code');
     expect(prompt).toContain('真实可运行');
@@ -154,7 +154,7 @@ describe('HandoffButton zero-editors fallback', () => {
       ],
     });
     copyToClipboard.mockResolvedValue(true);
-    const projectDir = '/tmp/saascodex/Landing';
+    const projectDir = '/tmp/splatstudio/Landing';
 
     render(
       <I18nProvider initial="en">

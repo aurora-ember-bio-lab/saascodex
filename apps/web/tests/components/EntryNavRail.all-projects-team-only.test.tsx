@@ -6,7 +6,7 @@
 // this withdraws the earlier "show all-projects for a team workspace" spec.
 
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { EntryNavRail } from '../../src/components/EntryNavRail';
@@ -22,7 +22,7 @@ function contextFor(workspaceType: 'team' | 'personal'): WorkspaceCollabContext 
     memberStatus: 'active',
     lifecycleState: 'active',
     permissions: { canInviteMembers: true, canViewWorkspaceSettings: true },
-    workspaceSettingsUrl: 'https://saascodex.com/cloud/workspace/settings',
+    workspaceSettingsUrl: 'https://splatstudio.app/cloud/workspace/settings',
   } as unknown as WorkspaceCollabContext;
 }
 

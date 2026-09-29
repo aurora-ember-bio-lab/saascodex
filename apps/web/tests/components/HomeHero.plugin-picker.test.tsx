@@ -10,7 +10,7 @@ import type {
   PluginSourceKind,
   SkillSummary,
   TrustTier,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 vi.mock('../../src/components/home-hero/PlaceholderCarousel', () => ({
   PlaceholderCarousel: () => null,

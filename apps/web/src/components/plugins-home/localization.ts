@@ -2,7 +2,7 @@ import {
   resolveLocalizedText,
   type InstalledPluginRecord,
   type LocalizedText,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { homePresetCopy } from './homePresetCopy';
 
 export function localizeHomePresetTitle(locale: string, record: InstalledPluginRecord): string {

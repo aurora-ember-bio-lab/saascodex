@@ -95,7 +95,7 @@ async function writeWorkspace(root: string): Promise<void> {
 
 function buildRunner(build: () => Promise<void>): WorkspaceBuildRunner {
   return async (args) => {
-    if (args[0] === "--filter" && args[1] === "@saascodex/packaged") await build();
+    if (args[0] === "--filter" && args[1] === "@splatstudio/packaged") await build();
   };
 }
 
@@ -155,7 +155,7 @@ function createConfig(root: string, cacheRoot: string): ToolPackConfig {
 
 describe("ensureWorkspaceBuildArtifacts", () => {
   it("builds once and skips when the key and outputs are still valid", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const config = createConfig(root, cache.root);
     let builds = 0;
@@ -184,7 +184,7 @@ describe("ensureWorkspaceBuildArtifacts", () => {
   });
 
   it("processes sourcemaps after both a credentialless fill and a credentialed hit", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-sourcemaps-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-sourcemaps-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const initialConfig = createConfig(root, cache.root);
     const releaseConfig: ToolPackConfig = {
@@ -235,7 +235,7 @@ describe("ensureWorkspaceBuildArtifacts", () => {
   });
 
   it("writes a Windows version-family alias after a successful build", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-alias-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-alias-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const config: ToolPackConfig = { ...createConfig(root, cache.root), appVersion: "0.9.1-beta.1" };
 
@@ -255,7 +255,7 @@ describe("ensureWorkspaceBuildArtifacts", () => {
   });
 
   it("hoists standalone web peer deps with Windows-compatible directory links", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-peer-deps-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-peer-deps-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const config = createConfig(root, cache.root);
 
@@ -278,7 +278,7 @@ describe("ensureWorkspaceBuildArtifacts", () => {
   });
 
   it("does not write a version-family alias for mac workspace builds", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-mac-alias-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-mac-alias-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const config: ToolPackConfig = { ...createConfig(root, cache.root), appVersion: "0.9.1-beta.1", platform: "mac" };
 
@@ -295,7 +295,7 @@ describe("ensureWorkspaceBuildArtifacts", () => {
   });
 
   it.each(["apps/web/dist/sidecar/index.js", "packages/sidecar/dist/supervisor.mjs"])("restores missing runtime entry %s from cache", async (missingEntry) => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-stale-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-stale-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const config = createConfig(root, cache.root);
     let builds = 0;
@@ -336,7 +336,7 @@ describe("ensureWorkspaceBuildArtifacts", () => {
   });
 
   it("materializes cached internal package outputs for pack tarballs", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-package-cache-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-package-cache-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const config = createConfig(root, cache.root);
     let builds = 0;
@@ -362,7 +362,7 @@ describe("ensureWorkspaceBuildArtifacts", () => {
   });
 
   it("keeps platform-specific workspace build cache nodes separate", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-build-platform-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-build-platform-"));
     const cache = new ToolPackCache(join(root, ".cache"));
     const winConfig = createConfig(root, cache.root);
     const macConfig: ToolPackConfig = {
@@ -421,7 +421,7 @@ describe("runWorkspaceBuild", () => {
       }
     }
     const closure = new Set<string>();
-    const pending = ["@saascodex/packaged"];
+    const pending = ["@splatstudio/packaged"];
     while (pending.length > 0) {
       const name = pending.pop()!;
       if (closure.has(name)) continue;
@@ -430,13 +430,13 @@ describe("runWorkspaceBuild", () => {
         if (packages.has(dependency)) pending.push(dependency);
       }
     }
-    closure.add("@saascodex/dsh-runtime");
+    closure.add("@splatstudio/dsh-runtime");
 
     expect(WORKSPACE_BUILD_PACKAGES.map(({ name }) => name).sort()).toEqual([...closure].sort());
   });
 
   it("leaves dependency order to pnpm while retaining packaging stages", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-runner-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-runner-"));
     const config = createConfig(root, join(root, ".cache"));
     const calls: Array<{ args: string[]; env?: NodeJS.ProcessEnv }> = [];
 
@@ -458,7 +458,7 @@ describe("runWorkspaceBuild", () => {
   });
 
   it("raises the V8 heap ceiling for the closure build without dropping caller NODE_OPTIONS", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-runner-heap-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-runner-heap-"));
     const config = createConfig(root, join(root, ".cache"));
     const calls: Array<{ args: string[]; env?: NodeJS.ProcessEnv }> = [];
     const previousNodeOptions = process.env.NODE_OPTIONS;
@@ -480,7 +480,7 @@ describe("runWorkspaceBuild", () => {
   });
 
   it("restores generated Next typings when a build stage fails", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-runner-failure-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-runner-failure-"));
     const config = createConfig(root, join(root, ".cache"));
 
     try {
@@ -498,7 +498,7 @@ describe("runWorkspaceBuild", () => {
 
 describe("createWorkspaceBuildCacheKey", () => {
   it("witnesses every declared package source and ignores generated outputs", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-workspace-key-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-workspace-key-"));
     const config = createConfig(root, join(root, ".cache"));
 
     try {

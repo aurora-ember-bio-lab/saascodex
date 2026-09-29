@@ -1,4 +1,4 @@
-import type { AgentCompanionSetupResponse } from '@saascodex/contracts';
+import type { AgentCompanionSetupResponse } from '@splatstudio/contracts';
 
 export async function installDeepSeekHarnessCompanion(): Promise<AgentCompanionSetupResponse> {
   const response = await fetch('/api/agents/deepseek-harness/companion/install', {

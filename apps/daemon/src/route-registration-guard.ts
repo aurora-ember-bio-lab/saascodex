@@ -5,7 +5,7 @@ export interface RouteRegistration {
   path: string;
 }
 
-const routeInventorySymbol = Symbol.for('saascodex.routeInventory');
+const routeInventorySymbol = Symbol.for('splatstudio.routeInventory');
 
 const guardedRouteKeys = new Set([
   'POST /api/projects/:id/export/pdf',

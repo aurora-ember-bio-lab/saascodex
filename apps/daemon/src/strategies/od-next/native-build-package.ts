@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 
-import type { SaaSCodexPlanContractV2 } from '@saascodex/contracts';
+import type { SplatStudioPlanContractV2 } from '@splatstudio/contracts';
 
 export interface OdNextNativeBuildPackageBinding {
   buildPackageId: string;
@@ -33,7 +33,7 @@ export function createOdNextNativeBuildPackageBindings(input: {
   taskExecutionId: string;
   taskRunIndex: number;
   planContractHash: string;
-  plan: SaaSCodexPlanContractV2;
+  plan: SplatStudioPlanContractV2;
 }): OdNextNativeBuildPackageBinding[] {
   if (input.plan.fullPlan.executionMode !== 'complex') return [];
   if (!Number.isSafeInteger(input.taskRunIndex) || input.taskRunIndex <= 0) {

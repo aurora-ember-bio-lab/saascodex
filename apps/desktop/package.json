@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/desktop",
+  "name": "@splatstudio/desktop",
   "version": "0.23.1",
   "private": true,
   "type": "module",
@@ -19,15 +19,15 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/contracts": "workspace:*",
-    "@saascodex/diagnostics": "workspace:*",
-    "@saascodex/download": "workspace:*",
-    "@saascodex/host": "workspace:*",
-    "@saascodex/launcher-proto": "workspace:*",
-    "@saascodex/platform": "workspace:*",
-    "@saascodex/release": "workspace:*",
-    "@saascodex/sidecar": "workspace:*",
-    "@saascodex/sidecar-proto": "workspace:*"
+    "@splatstudio/contracts": "workspace:*",
+    "@splatstudio/diagnostics": "workspace:*",
+    "@splatstudio/download": "workspace:*",
+    "@splatstudio/host": "workspace:*",
+    "@splatstudio/launcher-proto": "workspace:*",
+    "@splatstudio/platform": "workspace:*",
+    "@splatstudio/release": "workspace:*",
+    "@splatstudio/sidecar": "workspace:*",
+    "@splatstudio/sidecar-proto": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "24.12.2",

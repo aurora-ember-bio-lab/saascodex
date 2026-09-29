@@ -67,7 +67,7 @@ const DEFAULT_SKETCH_SHAPE_SIZE = 2;
 const DEFAULT_SKETCH_TEXT_SIZE = 16;
 const DEFAULT_SKETCH_VERSION = 1;
 const EXCALIDRAW_DOCUMENT_VERSION = 2;
-const SAASCODEX_EXCALIDRAW_SOURCE = 'https://saascodex.com/sketch';
+const SPLATSTUDIO_EXCALIDRAW_SOURCE = 'https://splatstudio.app/sketch';
 
 export function parseSketchDocument(text: string | null): SketchItem[] {
   return parseSketchWorkspaceDocument(text).items;
@@ -193,7 +193,7 @@ export function buildExcalidrawSketchDocument(
   return {
     type: 'excalidraw',
     version: EXCALIDRAW_DOCUMENT_VERSION,
-    source: SAASCODEX_EXCALIDRAW_SOURCE,
+    source: SPLATSTUDIO_EXCALIDRAW_SOURCE,
     elements: cloneJsonArray(scene.elements),
     appState,
     files: cloneJsonRecord(scene.files),

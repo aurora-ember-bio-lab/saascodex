@@ -1,4 +1,4 @@
-// SaaSCodex web clipper brand/design-system capture runtime.
+// SplatStudio web clipper brand/design-system capture runtime.
 //
 // Injected on demand by the service worker. It does not clone the page. Instead
 // it programmatically reads brand signals from the live DOM/CSSOM and fills a

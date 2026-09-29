@@ -31,13 +31,13 @@ describe("mac standalone prebundle policy", () => {
   it("keeps server-mode package topology unchanged", () => {
     expect(
       shouldInstallInternalPackageForMacPrebundle({
-        packageName: "@saascodex/web",
+        packageName: "@splatstudio/web",
         webOutputMode: "server",
       }),
     ).toBe(true);
     expect(
       shouldInstallInternalPackageForMacPrebundle({
-        packageName: "@saascodex/packaged",
+        packageName: "@splatstudio/packaged",
         webOutputMode: "server",
       }),
     ).toBe(true);
@@ -45,11 +45,11 @@ describe("mac standalone prebundle policy", () => {
 
   it("excludes internal packages replaced by mac standalone prebundles", () => {
     for (const packageName of [
-      "@saascodex/daemon",
-      "@saascodex/desktop",
-      "@saascodex/packaged",
-      "@saascodex/sidecar-proto",
-      "@saascodex/web",
+      "@splatstudio/daemon",
+      "@splatstudio/desktop",
+      "@splatstudio/packaged",
+      "@splatstudio/sidecar-proto",
+      "@splatstudio/web",
     ]) {
       expect(
         shouldInstallInternalPackageForMacPrebundle({
@@ -59,9 +59,9 @@ describe("mac standalone prebundle policy", () => {
       ).toBe(false);
     }
     for (const packageName of [
-      "@saascodex/contracts",
-      "@saascodex/platform",
-      "@saascodex/sidecar",
+      "@splatstudio/contracts",
+      "@splatstudio/platform",
+      "@splatstudio/sidecar",
     ]) {
       expect(
         shouldInstallInternalPackageForMacPrebundle({ packageName, webOutputMode: "standalone" }),
@@ -71,10 +71,10 @@ describe("mac standalone prebundle policy", () => {
 
   it("documents the explicit code-level bundle boundaries", () => {
     expect(MAC_PREBUNDLE_ESBUILD_TARGET).toBe("node24");
-    expect(MAC_PREBUNDLE_POLICIES.packagedMain.externals).toEqual(["@saascodex/sidecar", "electron"]);
+    expect(MAC_PREBUNDLE_POLICIES.packagedMain.externals).toEqual(["@splatstudio/sidecar", "electron"]);
     expect(MAC_PREBUNDLE_POLICIES.daemonCli.externals).toEqual([
       "@ffmpeg-installer/ffmpeg",
-      "@saascodex/sidecar",
+      "@splatstudio/sidecar",
       "better-sqlite3",
       "blake3-wasm",
       "fsevents",
@@ -83,14 +83,14 @@ describe("mac standalone prebundle policy", () => {
     ]);
     expect(MAC_PREBUNDLE_POLICIES.daemonSidecar.externals).toEqual([
       "@ffmpeg-installer/ffmpeg",
-      "@saascodex/sidecar",
+      "@splatstudio/sidecar",
       "better-sqlite3",
       "blake3-wasm",
       "fsevents",
       "hyperframes",
       "node-pty",
     ]);
-    expect(MAC_PREBUNDLE_POLICIES.webSidecar.externals).toEqual(["@saascodex/sidecar"]);
+    expect(MAC_PREBUNDLE_POLICIES.webSidecar.externals).toEqual(["@splatstudio/sidecar"]);
     expect(MAC_DAEMON_PREBUNDLE_ESM_REQUIRE_BANNER).toContain("createRequire");
     // Must match apps/daemon/package.json / the pnpm lockfile, or
     // electron-builder's collector drops the module from the shipped app and
@@ -180,7 +180,7 @@ describe("findForbiddenMacPrebundleInputs", () => {
 
 describe("assertMacPrebundleMetafile", () => {
   it("accepts a safe web sidecar metafile", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-mac-prebundle-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-mac-prebundle-"));
     const metafilePath = join(root, "safe.json");
 
     try {
@@ -199,13 +199,13 @@ describe("assertMacPrebundleMetafile", () => {
   });
 
   it("rejects a packaged main metafile that pulled in web runtime closure", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-mac-prebundle-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-mac-prebundle-"));
     const metafilePath = join(root, "unsafe.json");
 
     try {
       await writeFile(
         metafilePath,
-        JSON.stringify({ inputs: { "/repo/node_modules/@saascodex/web/dist/sidecar/index.js": {} } }),
+        JSON.stringify({ inputs: { "/repo/node_modules/@splatstudio/web/dist/sidecar/index.js": {} } }),
         "utf8",
       );
 
@@ -218,7 +218,7 @@ describe("assertMacPrebundleMetafile", () => {
   });
 
   it("rejects a daemon metafile that bundled wasm-backed runtime dependencies", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-mac-prebundle-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-mac-prebundle-"));
     const metafilePath = join(root, "unsafe-daemon.json");
 
     try {
@@ -237,7 +237,7 @@ describe("assertMacPrebundleMetafile", () => {
   });
 
   it("rejects a daemon metafile that bundled native runtime dependencies", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-mac-prebundle-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-mac-prebundle-"));
     const metafilePath = join(root, "unsafe-native-daemon.json");
 
     try {
@@ -264,11 +264,11 @@ describe("assertMacPrebundleMetafile", () => {
 describe("renderMacPackagedMainEntry", () => {
   it("renders the prebundled runtime entry shim", () => {
     expect(renderMacPackagedMainEntry(true)).toContain("./prebundled/packaged-main.mjs");
-    expect(renderMacPackagedMainEntry(true)).not.toContain("@saascodex/packaged");
+    expect(renderMacPackagedMainEntry(true)).not.toContain("@splatstudio/packaged");
   });
 
   it("renders the package entry shim for non-prebundled mode", () => {
-    expect(renderMacPackagedMainEntry(false)).toContain("@saascodex/packaged");
+    expect(renderMacPackagedMainEntry(false)).toContain("@splatstudio/packaged");
     expect(renderMacPackagedMainEntry(false)).not.toContain("./prebundled/packaged-main.mjs");
   });
 });

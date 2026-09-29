@@ -1,19 +1,19 @@
 targetScope = 'resourceGroup'
 
-@description('Azure region for the SaaSCodex container group and storage account.')
+@description('Azure region for the SplatStudio container group and storage account.')
 param location string = resourceGroup().location
 
 @description('Container group name.')
-param containerGroupName string = 'saascodex'
+param containerGroupName string = 'splatstudio'
 
 @description('DNS label for the Azure Container Instances upstream endpoint. Must be unique in the selected region.')
-param dnsNameLabel string = toLower('saascodex-${uniqueString(resourceGroup().id, location)}')
+param dnsNameLabel string = toLower('splatstudio-${uniqueString(resourceGroup().id, location)}')
 
-@description('SaaSCodex container image.')
-param image string = 'ghcr.io/nexu-io/od:latest'
+@description('SplatStudio container image.')
+param image string = 'ghcr.io/aurora-ember-bio-lab/splatstudio:latest'
 
 @secure()
-@description('Required SaaSCodex API token. Generate with: openssl rand -hex 32')
+@description('Required SplatStudio API token. Generate with: openssl rand -hex 32')
 param odApiToken string
 
 @description('Comma-separated browser-visible origins allowed by the daemon. Set this to the authenticated reverse proxy origin, for example https://od.example.com.')
@@ -30,7 +30,7 @@ param cpuCores int = 1
 @minValue(1)
 param memoryInGB int = 1
 
-@description('Azure Files share quota in GiB for persistent SaaSCodex data.')
+@description('Azure Files share quota in GiB for persistent SplatStudio data.')
 @minValue(1)
 @maxValue(5120)
 param fileShareQuotaGB int = 10
@@ -86,7 +86,7 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01'
     }
     containers: [
       {
-        name: 'saascodex'
+        name: 'splatstudio'
         properties: {
           image: image
           ports: [
@@ -137,7 +137,7 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01'
           }
           volumeMounts: [
             {
-              name: 'saascodex-data'
+              name: 'splatstudio-data'
               mountPath: '/app/.od'
               readOnly: false
             }
@@ -158,7 +158,7 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2023-05-01'
     ]
     volumes: [
       {
-        name: 'saascodex-data'
+        name: 'splatstudio-data'
         azureFile: {
           shareName: dataShare.name
           storageAccountName: storageAccount.name

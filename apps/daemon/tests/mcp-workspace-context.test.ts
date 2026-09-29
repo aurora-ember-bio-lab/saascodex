@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { WorkspaceDirectoryItem } from '@saascodex/contracts';
+import type { WorkspaceDirectoryItem } from '@splatstudio/contracts';
 
 import {
   _resetMcpWorkspaceContextCacheForTests,

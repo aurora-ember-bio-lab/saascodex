@@ -21,16 +21,16 @@ import {
   type DesktopRenderSlidesInput,
   type DesktopRenderSlidesResult,
   type DesktopUpdateStatusSnapshot,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import type {
-  SaaSCodexHostActionResult,
-  SaaSCodexHostCaptureResult,
-  SaaSCodexHostPreviewNavigationFailure,
-  SaaSCodexHostProjectImportInit,
-  SaaSCodexHostUpdaterActionOptions,
-  SaaSCodexHostUpdaterMenuLabels,
-  SaaSCodexHostUpdaterOpenDialogRequest,
-} from "@saascodex/host";
+  SplatStudioHostActionResult,
+  SplatStudioHostCaptureResult,
+  SplatStudioHostPreviewNavigationFailure,
+  SplatStudioHostProjectImportInit,
+  SplatStudioHostUpdaterActionOptions,
+  SplatStudioHostUpdaterMenuLabels,
+  SplatStudioHostUpdaterOpenDialogRequest,
+} from "@splatstudio/host";
 
 import { renderDeckSlides } from "./deck-capture.js";
 import { renderDeterministicFrames } from "./frame-capture.js";
@@ -69,7 +69,7 @@ export function previewNavigationFailureFromDidFailLoad(input: {
   isMainFrame: boolean;
   occurredAtMs: number;
   validatedUrl: string;
-}): SaaSCodexHostPreviewNavigationFailure | null {
+}): SplatStudioHostPreviewNavigationFailure | null {
   if (
     input.isMainFrame
     || input.errorCode !== ABORTED_NAVIGATION_ERROR_CODE
@@ -302,7 +302,7 @@ const MIN_SPLASH_MS = 2000;
 // While the splash is up, the real web app loads in a hidden main window. We
 // reveal it only once the web bundle reports it has actually mounted (it sets
 // `data-od-app-mounted="1"` on first paint of the real UI), so the user never
-// sees the web's own "Loading SaaSCodex…" shell flash between the splash and
+// sees the web's own "Loading SplatStudio…" shell flash between the splash and
 // the app. Poll cadence + a hard ceiling so a missing mount signal can never
 // strand the user on the splash forever.
 const WEB_MOUNT_POLL_MS = 80;
@@ -319,7 +319,7 @@ const DESKTOP_PET_WINDOW_HEIGHT = 300;
 const DESKTOP_PET_WINDOW_MARGIN = 24;
 const UPDATER_STATUS_EVENT = "od:update:status-changed";
 const UPDATER_OPEN_DIALOG_EVENT = "od:update:open-dialog";
-const DESIGN_BROWSER_PARTITION = "persist:saascodex-design-browser";
+const DESIGN_BROWSER_PARTITION = "persist:splatstudio-design-browser";
 const UPDATER_IPC_CHANNELS = [
   "od:update:status",
   "od:update:check",
@@ -393,7 +393,7 @@ export type DesktopRuntime = {
   eval(input: DesktopEvalInput): Promise<DesktopEvalResult>;
   exportArtifact(input: DesktopExportArtifactInput): Promise<DesktopExportArtifactResult>;
   exportPdf(input: DesktopExportPdfInput): Promise<DesktopExportPdfResult>;
-  openUpdateDialog(request: SaaSCodexHostUpdaterOpenDialogRequest): void;
+  openUpdateDialog(request: SplatStudioHostUpdaterOpenDialogRequest): void;
   renderFrames(input: DesktopRenderFramesInput): Promise<DesktopRenderFramesResult>;
   renderSlides(input: DesktopRenderSlidesInput): Promise<DesktopRenderSlidesResult>;
   screenshot(input: DesktopScreenshotInput): Promise<DesktopScreenshotResult>;
@@ -482,7 +482,7 @@ export type DesktopRuntimeOptions = {
    * as having reached running for abnormal-exit detection.
    */
   onRevealed?: () => void;
-  onUpdateMenuLabels?: (labels: SaaSCodexHostUpdaterMenuLabels) => void;
+  onUpdateMenuLabels?: (labels: SplatStudioHostUpdaterMenuLabels) => void;
 };
 
 const DESKTOP_IMPORT_TOKEN_HEADER = "x-od-desktop-import-token";
@@ -527,7 +527,7 @@ export type PickAndImportFolderDeps = {
   baseDir: string;
   desktopAuthSecret: Buffer;
   fetchImpl?: typeof globalThis.fetch;
-  init?: SaaSCodexHostProjectImportInit;
+  init?: SplatStudioHostProjectImportInit;
   /** Round-5: lazy re-registration hook. Called once on 503. */
   registerDesktopAuth?: () => Promise<boolean>;
   /** Injected for tests; defaults to the production HMAC mint. */
@@ -948,7 +948,7 @@ function createPendingHtml(): string {
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>SaaSCodex</title>
+    <title>SplatStudio</title>
     <style>
       html,
       body {
@@ -1080,7 +1080,7 @@ interface RendererCrashScreenContext {
 }
 
 const CRASH_REPORT_ISSUES_URL = "https://github.com/nexu-io/open-design/issues/new";
-const SUPPORT_EMAIL = "support@saascodex.com";
+const SUPPORT_EMAIL = "support@splatstudio.app";
 // Every address the app is allowed to hand to the OS mail client. Keep this in
 // sync with the renderer's own contact affordances (`CONTACT_EMAIL_URL` in
 // `apps/web/src/components/EntryNavRail.tsx`); an address that is not listed
@@ -1090,8 +1090,8 @@ const FIRST_PARTY_EMAILS = new Set([SUPPORT_EMAIL, "contact@open.design"]);
 // Narrow allowlist for the crash screen's "Email us" action: only a mailto
 // addressed to our own support address, carrying nothing but the crash-screen's
 // own `subject`/`body`, opens. Validating just protocol+pathname is not enough —
-// `mailto:support@saascodex.com?bcc=attacker@example.com` (or `?to=`/`?cc=`)
-// keeps `pathname === "support@saascodex.com"` yet smuggles extra recipients
+// `mailto:support@splatstudio.app?bcc=attacker@example.com` (or `?to=`/`?cc=`)
+// keeps `pathname === "support@splatstudio.app"` yet smuggles extra recipients
 // and headers through to `shell.openExternal`. Because this predicate widens the
 // renderer-exposed `shell:open-external` bridge past http, a compromised
 // renderer could otherwise launch the mail client with arbitrary recipients, so
@@ -1152,7 +1152,7 @@ function buildCrashReportUrl(ctx: RendererCrashScreenContext): string {
   const title = `Desktop app keeps crashing (renderer ${ctx.reason})`;
   const body = [
     "**What happened**",
-    "The SaaSCodex desktop window crashed several times in a row and showed the recovery screen.",
+    "The SplatStudio desktop window crashed several times in a row and showed the recovery screen.",
     "",
     "**What I was doing when it started** (please add any detail):",
     "",
@@ -1171,9 +1171,9 @@ function buildCrashReportUrl(ctx: RendererCrashScreenContext): string {
 // Prefilled mailto for the "Email us" action — same auto-filled diagnostics as
 // the issue, for users who'd rather email than open a GitHub account.
 function buildCrashMailtoUrl(ctx: RendererCrashScreenContext): string {
-  const subject = `SaaSCodex keeps crashing (renderer ${ctx.reason})`;
+  const subject = `SplatStudio keeps crashing (renderer ${ctx.reason})`;
   const body = [
-    "The SaaSCodex desktop app crashed several times in a row on my device.",
+    "The SplatStudio desktop app crashed several times in a row on my device.",
     "",
     "(If possible, attach the diagnostics file you saved with the “Save logs…” button.)",
     "",
@@ -1191,7 +1191,7 @@ function createRendererCrashHtml(ctx: RendererCrashScreenContext): string {
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>SaaSCodex</title>
+    <title>SplatStudio</title>
     <style>
       /* Palette mirrors the app's neutral design tokens (apps/web tokens.css):
          warm off-white + near-black, no accent color — matching the black/white
@@ -1287,7 +1287,7 @@ function createRendererCrashHtml(ctx: RendererCrashScreenContext): string {
   </head>
   <body>
     <div class="panel">
-      <p class="title">SaaSCodex keeps closing on this device</p>
+      <p class="title">SplatStudio keeps closing on this device</p>
       <p class="body">The app window crashed several times in a row, so it has paused to avoid getting stuck reloading.</p>
       <p class="body">It will try to recover on its own in a few minutes.</p>
       <div class="actions">
@@ -1297,7 +1297,7 @@ function createRendererCrashHtml(ctx: RendererCrashScreenContext): string {
       <p class="hint" id="diag-note">Saved logs include a crash memory snapshot so we can find the cause. Nothing is sent unless you choose to share it.</p>
       <p class="status" id="status" aria-live="polite"></p>
       <p class="email" id="email-line">Prefer email? <a href="#" id="email">Contact ${SUPPORT_EMAIL}</a></p>
-      <p class="hint">If this keeps happening, quitting and reinstalling SaaSCodex usually resolves it.</p>
+      <p class="hint">If this keeps happening, quitting and reinstalling SplatStudio usually resolves it.</p>
     </div>
     <script>
       (function () {
@@ -1385,7 +1385,7 @@ const SPLASH_STAGE_SEQUENCE: readonly SplashBootStage[] = [
 ];
 
 const SPLASH_STAGE_LABELS: Record<SplashBootStage, string> = {
-  starting: "Starting SaaSCodex",
+  starting: "Starting SplatStudio",
   engine: "Starting the local engine",
   engineReady: "Local engine ready",
   interface: "Preparing the interface",
@@ -1512,7 +1512,7 @@ export function pinNativeAppearanceToLight(): void {
  * + matching size so the reveal swap reads as a single window, never a flash.
  */
 export function createSplashWindow(): SplashWindowHandle {
-  // SaaSCodex ships light-only (the theme setting was removed), so pin the
+  // SplatStudio ships light-only (the theme setting was removed), so pin the
   // native appearance before the first window exists. Electron defaults
   // `themeSource` to `system`, which paints the macOS vibrancy glass and the
   // native chrome dark on a dark-mode Mac — visible on the splash and again in
@@ -1527,7 +1527,7 @@ export function createSplashWindow(): SplashWindowHandle {
     height: 900,
     resizable: false,
     show: true,
-    title: "SaaSCodex",
+    title: "SplatStudio",
     width: 1280,
     webPreferences: {
       contextIsolation: true,
@@ -1941,7 +1941,7 @@ function unavailableUpdaterStatus(): DesktopUpdateStatusSnapshot {
 }
 
 function checkOptionsFromHost(options: unknown): { autoDownload?: boolean } | undefined {
-  const input = options as SaaSCodexHostUpdaterActionOptions | null | undefined;
+  const input = options as SplatStudioHostUpdaterActionOptions | null | undefined;
   const payload = input?.payload;
   if (payload == null || typeof payload.autoDownload !== "boolean") return undefined;
   return { autoDownload: payload.autoDownload };
@@ -2063,7 +2063,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
   // import boundary while leaving web-only deployments untouched.
   ipcMain.handle(
     "dialog:pick-and-import",
-    async (event, init?: SaaSCodexHostProjectImportInit) => {
+    async (event, init?: SplatStudioHostProjectImportInit) => {
       // Defensive failsafe for non-production runtimes (test harnesses
       // that construct createDesktopRuntime without a secret). Round-5
       // production wiring in runDesktopMain ALWAYS passes the per-process
@@ -2244,7 +2244,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
 
   const consoleEntries: DesktopConsoleEntry[] = [];
   const petWindow = createDesktopPetWindow(preloadPath, options.osLocale);
-  const windowTitle = options.windowTitle ?? "SaaSCodex";
+  const windowTitle = options.windowTitle ?? "SplatStudio";
   const window = new BrowserWindow({
     height: 900,
     icon: resolveDesktopIconPath(),
@@ -2257,7 +2257,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     // Starts hidden: the splash window is what the user sees while the real web
     // app loads in here. We reveal this window only once the app has actually
     // mounted (see `revealWhenReady` below), so there is never a flash of the
-    // web's own "Loading SaaSCodex…" shell.
+    // web's own "Loading SplatStudio…" shell.
     show: false,
     title: windowTitle,
     autoHideMenuBar: true,
@@ -2309,19 +2309,19 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     window.setTitle(windowTitle);
   });
   window.webContents.on("did-start-loading", () => {
-    console.info("[saascodex desktop] main window did-start-loading", {
+    console.info("[splatstudio desktop] main window did-start-loading", {
       pendingUrl,
       url: window.webContents.getURL(),
     });
   });
   window.webContents.on("dom-ready", () => {
-    console.info("[saascodex desktop] main window dom-ready", {
+    console.info("[splatstudio desktop] main window dom-ready", {
       title: window.getTitle(),
       url: window.webContents.getURL(),
     });
   });
   window.webContents.on("did-finish-load", () => {
-    console.info("[saascodex desktop] main window did-finish-load", {
+    console.info("[splatstudio desktop] main window did-finish-load", {
       title: window.getTitle(),
       url: window.webContents.getURL(),
     });
@@ -2342,7 +2342,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
       ? undefined
       : previewFrameNameByRoutingId.get(previewFrameRoutingKey(frameProcessId, frameRoutingId));
     const frameName = failedFrame?.name || cachedFrameName;
-    console.error("[saascodex desktop] main window did-fail-load", {
+    console.error("[splatstudio desktop] main window did-fail-load", {
       errorCode,
       errorDescription,
       frameName,
@@ -2364,13 +2364,13 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     if (failure) window.webContents.send(PREVIEW_NAVIGATION_FAILURE_IPC_CHANNEL, failure);
   });
   window.on("unresponsive", () => {
-    console.error("[saascodex desktop] main window unresponsive", {
+    console.error("[splatstudio desktop] main window unresponsive", {
       pendingUrl,
       url: window.webContents.getURL(),
     });
   });
   window.on("responsive", () => {
-    console.info("[saascodex desktop] main window responsive", {
+    console.info("[splatstudio desktop] main window responsive", {
       pendingUrl,
       url: window.webContents.getURL(),
     });
@@ -2390,7 +2390,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     // guard the same way `sendUpdaterStatus` does below and skip crash-report /
     // recovery work once the window is already on its way out.
     const gone = window.isDestroyed() || window.webContents.isDestroyed();
-    console.error("[saascodex desktop] main window render-process-gone", {
+    console.error("[splatstudio desktop] main window render-process-gone", {
       exitCode: details.exitCode,
       reason: details.reason,
       url: gone ? null : window.webContents.getURL(),
@@ -2423,7 +2423,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
       // one passive recovery reload after a quiet cooldown.
       if (outcome.justOpened) {
         console.warn(
-          "[saascodex desktop] renderer crash-loop breaker OPEN — parking; will attempt recovery after cooldown",
+          "[splatstudio desktop] renderer crash-loop breaker OPEN — parking; will attempt recovery after cooldown",
           { reason: details.reason, exitCode: details.exitCode },
         );
         showRendererCrashScreen({
@@ -2452,7 +2452,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
   // `did-navigate-in-page` instead, so app navigation never trips this.
   window.webContents.on("did-navigate", (_event, url, httpResponseCode) => {
     if (!isRendererFailureHttpStatus(httpResponseCode)) return;
-    console.error("[saascodex desktop] main window loaded an HTTP error document", {
+    console.error("[splatstudio desktop] main window loaded an HTTP error document", {
       httpResponseCode,
       url,
     });
@@ -2466,7 +2466,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
   const unsubscribeUpdater = options.updater?.subscribe(() => sendUpdaterStatus()) ?? (() => undefined);
   const requireMainWindowSender = (event: Electron.IpcMainInvokeEvent): void => {
     if (event.sender !== window.webContents) {
-      throw new Error("host IPC is only available to the main SaaSCodex window");
+      throw new Error("host IPC is only available to the main SplatStudio window");
     }
   };
   const discoverUpdateDaemonBaseUrl = async (): Promise<string> => {
@@ -2511,7 +2511,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     guestWebContents.on("will-redirect", blockDisallowed);
     guestWebContents.setWindowOpenHandler(() => ({ action: "deny" }));
   });
-  ipcMain.handle("browser:clear-data", async (event, rawOptions: unknown): Promise<SaaSCodexHostActionResult> => {
+  ipcMain.handle("browser:clear-data", async (event, rawOptions: unknown): Promise<SplatStudioHostActionResult> => {
     requireMainWindowSender(event);
     const optionsRecord = rawOptions != null && typeof rawOptions === "object"
       ? rawOptions as { cookies?: unknown; storage?: unknown }
@@ -2581,7 +2581,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     sendUpdaterStatus(status);
     return status;
   });
-  ipcMain.handle("od:update:quit", async (event, updaterOptions: unknown): Promise<SaaSCodexHostActionResult> => {
+  ipcMain.handle("od:update:quit", async (event, updaterOptions: unknown): Promise<SplatStudioHostActionResult> => {
     requireMainWindowSender(event);
     const blocked = await guardedUpdaterStatus(updaterOptions);
     if (blocked?.error != null) {
@@ -2597,7 +2597,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     setTimeout(() => options.requestQuit?.(), 0);
     return { ok: true };
   });
-  ipcMain.handle("od:update:set-menu-labels", async (event, rawLabels: unknown): Promise<SaaSCodexHostActionResult> => {
+  ipcMain.handle("od:update:set-menu-labels", async (event, rawLabels: unknown): Promise<SplatStudioHostActionResult> => {
     requireMainWindowSender(event);
     const labels = parseDesktopUpdateMenuLabels(rawLabels);
     if (labels == null) return { ok: false, reason: "invalid updater menu labels" };
@@ -2652,7 +2652,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
   });
 
   ipcMain.removeHandler('od:capture-page');
-  ipcMain.handle('od:capture-page', async (event, rawOptions: unknown): Promise<SaaSCodexHostCaptureResult> => {
+  ipcMain.handle('od:capture-page', async (event, rawOptions: unknown): Promise<SplatStudioHostCaptureResult> => {
     if (event.sender !== window.webContents) {
       return { ok: false, reason: 'capture sender not allowed' };
     }
@@ -2796,7 +2796,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     splashStartedAt = created.startedAt;
   }
 
-  let pendingUpdateDialogRequest: SaaSCodexHostUpdaterOpenDialogRequest | null = null;
+  let pendingUpdateDialogRequest: SplatStudioHostUpdaterOpenDialogRequest | null = null;
   let revealed = false;
   let revealing = false;
 
@@ -2823,7 +2823,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
 
   // Hold the splash until BOTH (a) the web bundle reports it has mounted — it
   // sets `data-od-app-mounted="1"` on first paint of the real UI — so we never
-  // reveal the web's own dark "Loading SaaSCodex…" shell, and (b) the splash
+  // reveal the web's own dark "Loading SplatStudio…" shell, and (b) the splash
   // has been up at least MIN_SPLASH_MS so the brand clip plays through. A hard
   // ceiling guarantees the user is never stranded on the splash if the mount
   // signal never arrives.
@@ -2935,7 +2935,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
         if (rendererCrashLoop.rearmIfCooledDown(Date.now())) {
           rendererRecoveryAttempts += 1;
           console.info(
-            "[saascodex desktop] renderer crash-loop cooldown elapsed — attempting recovery reload",
+            "[splatstudio desktop] renderer crash-loop cooldown elapsed — attempting recovery reload",
             { attempt: rendererRecoveryAttempts },
           );
           void reportRendererCrash(options, {
@@ -2963,9 +2963,9 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
         rendererFailed = false;
         // Load the web app into the still-hidden main window as soon as it is
         // discovered; it mounts behind the splash so the swap is instant.
-        console.info("[saascodex desktop] main window loadURL start", { currentUrl, url });
+        console.info("[splatstudio desktop] main window loadURL start", { currentUrl, url });
         await window.loadURL(url);
-        console.info("[saascodex desktop] main window loadURL success", { url });
+        console.info("[splatstudio desktop] main window loadURL success", { url });
         currentUrl = url;
         pendingUrl = null;
         const nextPetUrl = desktopPetUrl(url);
@@ -3033,14 +3033,14 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
     async eval(input) {
       if (window.isDestroyed()) return { error: "desktop window is destroyed", ok: false };
       const startedAt = Date.now();
-      console.info("[saascodex desktop] eval executeJavaScript start", {
+      console.info("[splatstudio desktop] eval executeJavaScript start", {
         ...summarizeExpression(input.expression),
         statusUrl: resolveDesktopStatusUrl(currentUrl, pendingUrl),
         webContentsUrl: window.webContents.getURL(),
       });
       try {
         const value = await window.webContents.executeJavaScript(input.expression, true);
-        console.info("[saascodex desktop] eval executeJavaScript success", {
+        console.info("[splatstudio desktop] eval executeJavaScript success", {
           durationMs: Date.now() - startedAt,
           statusUrl: resolveDesktopStatusUrl(currentUrl, pendingUrl),
           valueType: typeof value,
@@ -3048,7 +3048,7 @@ export async function createDesktopRuntime(options: DesktopRuntimeOptions): Prom
         });
         return { ok: true, value };
       } catch (error) {
-        console.error("[saascodex desktop] eval executeJavaScript failed", {
+        console.error("[splatstudio desktop] eval executeJavaScript failed", {
           durationMs: Date.now() - startedAt,
           error: error instanceof Error ? error.message : String(error),
           statusUrl: resolveDesktopStatusUrl(currentUrl, pendingUrl),

@@ -224,7 +224,7 @@ describe('normalizeCodexConfigContent', () => {
       'model = "gpt-5.5"',
       '[features.multi_agent_v2]',
       'enabled = false',
-      '[projects."/tmp/saascodex"]',
+      '[projects."/tmp/splatstudio"]',
       'trust_level = "trusted"',
     ].join('\n');
 
@@ -233,7 +233,7 @@ describe('normalizeCodexConfigContent', () => {
     expect(result).toBe([
       '[profiles.default]',
       'model = "gpt-5.5"',
-      '[projects."/tmp/saascodex"]',
+      '[projects."/tmp/splatstudio"]',
       'trust_level = "trusted"',
     ].join('\n'));
   });

@@ -10,7 +10,7 @@ import {
   type OdNextPromptBundleV2,
   type ProjectMetadata,
   serializeOdNextPromptBundleV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   InvalidFrozenSkillPackageError,
@@ -32,7 +32,7 @@ const EXAMPLES_DIR = path.join(REPO_ROOT, 'plugins', '_official', 'examples');
  * The example cards the OD Next task types bind by default
  * (`DEFAULT_SCENARIO_PLUGIN_BY_KIND` / `defaultScenarioPluginIdForProjectMetadata`).
  * Folder name and plugin id deliberately differ: SKILL.md declares the Skill's
- * own name, `saascodex.json` declares the plugin catalogue id.
+ * own name, `splatstudio.json` declares the plugin catalogue id.
  */
 const DEFAULT_EXAMPLE_CARDS = [
   { route: 'prototype', folder: 'web-prototype', pluginId: 'example-web-prototype' },
@@ -198,7 +198,7 @@ describe('official example cards enter OD Next as a user-selected Skill', () => 
   });
 
   it('skips an oversized bundled asset instead of dropping the whole Skill', async () => {
-    // `example-saascodex-landing` links `assets/hero.png`, a bundled binary
+    // `example-splatstudio-landing` links `assets/hero.png`, a bundled binary
     // far past the per-file budget. Hard-failing there deleted every word of
     // that card's prose over one screenshot — the same shape as the dead-link
     // case above, and just as unrelated to whether the Skill is safe to carry.

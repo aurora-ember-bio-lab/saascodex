@@ -2,22 +2,22 @@
 
 ## Context
 
-SaaSCodex needs to show the signed-in AMR wallet balance in the local client.
+SplatStudio needs to show the signed-in AMR wallet balance in the local client.
 The accepted product decision is:
 
-- SaaSCodex displays the Vela API wallet ledger balance.
+- SplatStudio displays the Vela API wallet ledger balance.
 - Link remains the source of truth for runtime admission through
   `CreditGuard.Check()`.
 - A short inconsistency window is acceptable while Link has in-flight pending
   usage in Redis.
-- SaaSCodex must not read Link Redis directly.
+- SplatStudio must not read Link Redis directly.
 - Vela API should not add Redis for this display-only feature.
 
-This handoff is only for the Vela-side dependency needed by SaaSCodex.
+This handoff is only for the Vela-side dependency needed by SplatStudio.
 
 ## Vela-Side Goal
 
-Allow SaaSCodex daemon to call the existing wallet balance endpoint with the
+Allow SplatStudio daemon to call the existing wallet balance endpoint with the
 AMR device-login control key:
 
 ```http
@@ -34,7 +34,7 @@ The response can stay as it is today:
 }
 ```
 
-SaaSCodex does not need subscription/package details for v1.
+SplatStudio does not need subscription/package details for v1.
 
 ## Current Evidence
 
@@ -79,7 +79,7 @@ auth helper into billing route registration, instead of duplicating key auth in
 
 ## Non-Goals
 
-- No package/subscription display for SaaSCodex v1.
+- No package/subscription display for SplatStudio v1.
 - No recharge history, usage history, or checkout changes.
 - No API-to-Link Redis projection read.
 - No API Redis cache.
@@ -108,7 +108,7 @@ that should support control-key auth. For v1, the only required endpoint is
 `GET /api/v1/wallet/balance`.
 
 Be careful before applying control-key auth to billing mutation endpoints such
-as checkout creation. SaaSCodex only needs the read-only balance route.
+as checkout creation. SplatStudio only needs the read-only balance route.
 
 ## Redis and Concurrency Decision
 
@@ -117,7 +117,7 @@ Do not read Link Redis for this feature.
 Reasoning:
 
 - Link Redis includes pending usage and is optimized for runtime admission.
-- The SaaSCodex UI only needs account visibility.
+- The SplatStudio UI only needs account visibility.
 - Reading Link Redis from Vela API would introduce another cross-service data
   path and new failure modes.
 - User accepted the temporary difference between displayed ledger balance and
@@ -127,20 +127,20 @@ Do not add Redis to Vela API for this feature.
 
 Reasoning:
 
-- SaaSCodex daemon will apply a 5-10 second in-memory TTL and singleflight to
+- SplatStudio daemon will apply a 5-10 second in-memory TTL and singleflight to
   reduce API/DB fanout.
 - The Vela route remains a simple ledger read.
 - API DB load risk is bounded by daemon-side coalescing and short cache TTL.
 
-## Failure Semantics Expected by SaaSCodex
+## Failure Semantics Expected by SplatStudio
 
-SaaSCodex will interpret Vela responses as follows:
+SplatStudio will interpret Vela responses as follows:
 
 - `200`: show wallet balance.
 - `401` or `403`: show re-auth / unavailable state, not zero balance.
 - `5xx` or network failure: show "balance temporarily unavailable".
 
-Vela does not need to create a special SaaSCodex error shape. Keeping the
+Vela does not need to create a special SplatStudio error shape. Keeping the
 existing error style is acceptable, but tests should make the status code
 contract explicit.
 
@@ -167,16 +167,16 @@ Good existing starting points:
 If the repo already has control-key helpers in `/me` tests, reuse those instead
 of hand-creating key rows.
 
-## SaaSCodex Compatibility Contract
+## SplatStudio Compatibility Contract
 
-After the Vela change lands, SaaSCodex daemon will call:
+After the Vela change lands, SplatStudio daemon will call:
 
 ```http
 GET {VELA_API_URL}/api/v1/wallet/balance
 Authorization: Bearer <controlKey>
 ```
 
-SaaSCodex expects:
+SplatStudio expects:
 
 ```ts
 {
@@ -185,7 +185,7 @@ SaaSCodex expects:
 }
 ```
 
-No SaaSCodex behavior should depend on Link Redis, pending usage keys, or a
+No SplatStudio behavior should depend on Link Redis, pending usage keys, or a
 new Vela API cache.
 
 ## Suggested Validation
@@ -207,7 +207,7 @@ one concrete local API or smoke proof in addition to unit tests.
 - `GET /api/v1/wallet/balance` accepts browser sessions.
 - `GET /api/v1/wallet/balance` accepts control keys.
 - Runtime keys remain rejected.
-- Response shape remains compatible with SaaSCodex v1.
+- Response shape remains compatible with SplatStudio v1.
 - No Redis dependency added to `services/api`.
 - No Link read path added.
 - Tests cover control-key success and runtime-key rejection.

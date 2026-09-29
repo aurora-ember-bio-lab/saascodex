@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 describe("desktop preload host boundary", () => {
-  it("exposes the canonical SaaSCodex host global and diagnostics bridge", () => {
+  it("exposes the canonical SplatStudio host global and diagnostics bridge", () => {
     const here = dirname(fileURLToPath(import.meta.url));
     const source = readFileSync(join(here, "../../src/main/preload.cts"), "utf8");
     const exposedGlobals = Array.from(source.matchAll(/contextBridge\.exposeInMainWorld\(([^,\n]+)/g))
@@ -13,11 +13,11 @@ describe("desktop preload host boundary", () => {
     const runtimeRequires = Array.from(source.matchAll(/require\((['"][^'"]+['"])\)/g))
       .map((match) => match[1]);
 
-    expect(exposedGlobals).toEqual(["SAASCODEX_HOST_GLOBAL", "'openDesignDesktop'"]);
+    expect(exposedGlobals).toEqual(["SPLATSTUDIO_HOST_GLOBAL", "'openDesignDesktop'"]);
     expect(runtimeRequires).toEqual(["'electron'"]);
-    expect(source).toContain("SAASCODEX_HOST_GLOBAL");
+    expect(source).toContain("SPLATSTUDIO_HOST_GLOBAL");
     expect(source).toContain("exportDiagnostics");
-    expect(source).toContain("satisfies SaaSCodexHostBridge");
+    expect(source).toContain("satisfies SplatStudioHostBridge");
     expect(source).toContain("browser");
     expect(source).toContain("browser:clear-data");
     expect(source).toContain("updater");
@@ -35,9 +35,9 @@ describe("desktop preload host boundary", () => {
     expect(source).toContain("od:update:set-menu-labels");
     expect(source).toContain("subscribeOpenDialog");
     expect(source).toContain("od:app-config-changed");
-    expect(source).toContain("saascodex:app-config-changed");
+    expect(source).toContain("splatstudio:app-config-changed");
     expect(source).toContain("window.dispatchEvent(new CustomEvent(APP_CONFIG_CHANGED_EVENT))");
-    expect(source).not.toContain("@saascodex/contracts");
+    expect(source).not.toContain("@splatstudio/contracts");
     expect(source).not.toContain("exposeInMainWorld('electronAPI'");
     expect(source).not.toContain('exposeInMainWorld("__odDesktop"');
     expect(source).not.toContain("exposeInMainWorld('__odDesktop'");

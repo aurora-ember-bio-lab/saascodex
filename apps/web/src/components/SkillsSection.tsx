@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import { useI18n, useT, type Locale } from '../i18n';
 import {
   localizeSkillDescription,
@@ -8,7 +8,7 @@ import {
 } from '../i18n/content';
 import { Icon } from './Icon';
 import type { AppConfig } from '../types';
-import type { SkillSummary } from '@saascodex/contracts';
+import type { SkillSummary } from '@splatstudio/contracts';
 import {
   deleteSkill,
   fetchSkill,

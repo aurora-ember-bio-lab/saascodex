@@ -1,7 +1,7 @@
 // Plan §3.DD1 — pluginInventoryStats + snapshotInventoryStats.
 
 import { describe, expect, it } from 'vitest';
-import type { InstalledPluginRecord, PluginManifest } from '@saascodex/contracts';
+import type { InstalledPluginRecord, PluginManifest } from '@splatstudio/contracts';
 import {
   pluginInventoryStats,
   pluginSourceBuckets,
@@ -31,7 +31,7 @@ const make = (
   installedAt: over.installedAt ?? 1000,
   updatedAt:   over.updatedAt   ?? 1000,
   manifest: {
-    $schema: 'https://saascodex.com/schemas/plugin.v1.json',
+    $schema: 'https://splatstudio.app/schemas/plugin.v1.json',
     name: id,
     version: '0.1.0',
     title: `Title ${id}`,

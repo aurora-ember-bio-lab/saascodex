@@ -2,12 +2,12 @@
 import { createHash } from "node:crypto";
 import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-const { getSaaSCodexHostMock } = vi.hoisted(() => ({ getSaaSCodexHostMock: vi.fn() }));
-vi.mock("@saascodex/host", () => ({ getSaaSCodexHost: getSaaSCodexHostMock }));
+const { getSplatStudioHostMock } = vi.hoisted(() => ({ getSplatStudioHostMock: vi.fn() }));
+vi.mock("@splatstudio/host", () => ({ getSplatStudioHost: getSplatStudioHostMock }));
 import { ProductionCampaignBadge } from "../../src/components/ProductionCampaignBadge";
 import { I18nProvider, useI18n } from "../../src/i18n";
 import * as touchpointComponent from "../../src/components/touchpoint-component";
-import { SaaSCodexTouchpointElement } from "../../src/components/touchpoint-component";
+import { SplatStudioTouchpointElement } from "../../src/components/touchpoint-component";
 const digest = (value: string) => `sha256:${createHash("sha256").update(value).digest("hex")}`;
 const openExternalUrlMock = vi.hoisted(() => vi.fn(async () => true));
 vi.mock("../../src/providers/registry", () => ({ openExternalUrl: openExternalUrlMock }));
@@ -19,11 +19,11 @@ function LocaleSwitch() {
   const { setLocale } = useI18n();
   return <button onClick={() => setLocale("zh-CN")}>Switch locale</button>;
 }
-beforeEach(() => { vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (this: SaaSCodexTouchpointElement) { this.shadowRoot?.replaceChildren(document.createTextNode("Badge")); }); });
-afterEach(() => { cleanup(); getSaaSCodexHostMock.mockReset(); openExternalUrlMock.mockClear(); vi.useRealTimers(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+beforeEach(() => { vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(async function (this: SplatStudioTouchpointElement) { this.shadowRoot?.replaceChildren(document.createTextNode("Badge")); }); });
+afterEach(() => { cleanup(); getSplatStudioHostMock.mockReset(); openExternalUrlMock.mockClear(); vi.useRealTimers(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 describe("ProductionCampaignBadge", () => {
   it("mounts the immutable account-badge through the shared custom-element adapter with locale fallback and no close control", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-GB" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-GB" } });
     const fetchMock = vi.fn(() => Promise.resolve(new Response(JSON.stringify(decision()), { status: 200 }))); vi.stubGlobal("fetch", fetchMock);
     render(<ProductionCampaignBadge authenticated sessionSubject="account-a" />);
     const badge = await screen.findByTestId("production-campaign-badge");
@@ -32,7 +32,7 @@ describe("ProductionCampaignBadge", () => {
     expect(screen.queryByRole("button", { name: /close/i })).toBeNull();
   });
   it("fails closed when the immutable content placement or static actions disagree with the outer decision", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     const mismatchedContent = { ...content, placementKey: "opend.home.campaign-modal" };
     const fetchMock = vi.fn()
       .mockResolvedValueOnce(new Response(JSON.stringify(decision({ content: mismatchedContent })), { status: 200 }))
@@ -51,7 +51,7 @@ describe("ProductionCampaignBadge", () => {
     ["valid mismatched receipt retains the mounted lease", "mismatched", false, false],
     ["malformed 410 diagnoses and clears the mounted lease", "malformed", true, true],
   ] as const)("%s", async (_name, kind, clears, diagnoses) => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     const active = decision();
     const receipt = { touchpointDecisionId: active.touchpointDecisionId, deploymentId: active.deploymentId, activityId: active.activityId, contentVersionId: active.content.id };
     const response = kind === "malformed"
@@ -74,7 +74,7 @@ describe("ProductionCampaignBadge", () => {
   });
 
   it("denies synchronously when authentication is revoked and ignores a deferred A response body", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     let resolveBody: ((value: ReturnType<typeof decision>) => void) | undefined;
     const body = new Promise<ReturnType<typeof decision>>((resolve) => { resolveBody = resolve; });
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: () => body }));
@@ -88,7 +88,7 @@ describe("ProductionCampaignBadge", () => {
   });
 
   it("tears down mounted account A and never revives it when a deferred A recheck resolves after account B", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     let resolveLateA: ((response: Response) => void) | undefined;
     const lateA = new Promise<Response>((resolve) => { resolveLateA = resolve; });
     const fetchMock = vi.fn()
@@ -113,9 +113,9 @@ describe("ProductionCampaignBadge", () => {
   // pair costs one request instead of two, and the mounted host is never torn
   // down between them.
   it("keeps the mounted badge action authorized across focus, online, and interval refreshes", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     let dispatchAction: ((actionId: string) => Promise<void>) | undefined;
-    vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (this: SaaSCodexTouchpointElement, _entry, _digest, _context, _urls, _actions, options) { dispatchAction = options?.dispatchAction; this.shadowRoot?.replaceChildren(document.createTextNode("Badge")); });
+    vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(async function (this: SplatStudioTouchpointElement, _entry, _digest, _context, _urls, _actions, options) { dispatchAction = options?.dispatchAction; this.shadowRoot?.replaceChildren(document.createTextNode("Badge")); });
     const fetchMock = vi.fn((_input: RequestInfo | URL, init?: RequestInit) => Promise.resolve(
       init?.method === "POST"
         ? new Response(JSON.stringify({ ok: true }), { status: 200 })
@@ -134,7 +134,7 @@ describe("ProductionCampaignBadge", () => {
     await act(async () => { window.dispatchEvent(new Event("focus")); window.dispatchEvent(new Event("online")); await Promise.resolve(); });
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(screen.getByTestId("production-campaign-badge").querySelector("opend-touchpoint")).toBe(host);
-    expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+    expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
     await act(async () => { await vi.advanceTimersByTimeAsync(30_000); });
     expect(fetchMock).toHaveBeenCalledTimes(3);
     await dispatchAction?.("learn");
@@ -146,7 +146,7 @@ describe("ProductionCampaignBadge", () => {
   // while the network is down comes back as a new `touchpointDecisionId`, and
   // while that id was in the lease key it rebuilt the badge for no reason.
   it("REGRESSION: a network outage that outlives the server credential does not remount the badge", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     vi.spyOn(touchpointComponent, "verifyWebTouchpoint").mockResolvedValue({ entryUrl: "blob:badge", resourceUrls: new Map(), dispose: vi.fn() } as never);
     let online = true;
     let decisionId = "decision-1";
@@ -167,7 +167,7 @@ describe("ProductionCampaignBadge", () => {
     await act(async () => { await vi.advanceTimersByTimeAsync(100); });
     const host = screen.getByTestId("production-campaign-badge").querySelector("opend-touchpoint");
     expect(host).not.toBeNull();
-    expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+    expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
     online = false;
     await act(async () => { await vi.advanceTimersByTimeAsync(90_000); });
     online = true;
@@ -181,11 +181,11 @@ describe("ProductionCampaignBadge", () => {
     await act(async () => { await vi.advanceTimersByTimeAsync(30_000); });
     expect(requests[0]).toContain("activeDecisionId=decision-1");
     expect(screen.getByTestId("production-campaign-badge").querySelector("opend-touchpoint")).toBe(host);
-    expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+    expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
   });
 
   it("still remounts the badge when the content version changes", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     vi.spyOn(touchpointComponent, "verifyWebTouchpoint").mockResolvedValue({ entryUrl: "blob:badge", resourceUrls: new Map(), dispose: vi.fn() } as never);
     let nextContent = content;
     const fetchMock = vi.fn(async () => {
@@ -202,11 +202,11 @@ describe("ProductionCampaignBadge", () => {
     await act(async () => { await vi.advanceTimersByTimeAsync(30_000); });
     await act(async () => { await vi.advanceTimersByTimeAsync(16); });
     expect(screen.getByTestId("production-campaign-badge").querySelector("opend-touchpoint")).not.toBe(host);
-    expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(2);
+    expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(2);
   });
 
   it("mounts valid badge content when a refresh starts while verification is deferred", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     let resolveVerified: ((value: any) => void) | undefined;
     const verified = new Promise<any>((resolve) => { resolveVerified = resolve; });
     const verify = vi.spyOn(touchpointComponent, "verifyWebTouchpoint").mockReturnValue(verified);
@@ -222,11 +222,11 @@ describe("ProductionCampaignBadge", () => {
 
 
  it("releases a late verified badge resource once without mounting after an account switch", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "en-US" } });
     let resolveVerified: ((value: any) => void) | undefined;
     const verified = new Promise<any>((resolve) => { resolveVerified = resolve; });
     const verify = vi.spyOn(touchpointComponent, "verifyWebTouchpoint").mockReturnValue(verified);
-    const mount = vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount");
+    const mount = vi.spyOn(SplatStudioTouchpointElement.prototype, "mount");
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(JSON.stringify(decision()), { status: 200 })));
     const view = render(<ProductionCampaignBadge authenticated sessionSubject="account-a" />);
     await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1));
@@ -237,7 +237,7 @@ describe("ProductionCampaignBadge", () => {
     expect(mount).not.toHaveBeenCalled();
   });
   it("loads zh-CN content for the same decision after a client locale switch and fences a late en response", async () => {
-    getSaaSCodexHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "fr-FR" } });
+    getSplatStudioHostMock.mockReturnValue({ client: { type: "desktop", osLocale: "fr-FR" } });
     let resolveLateEn: ((response: Response) => void) | undefined;
     const lateEn = new Promise<Response>((resolve) => { resolveLateEn = resolve; });
     const localized = (locale: string) => {
@@ -249,7 +249,7 @@ describe("ProductionCampaignBadge", () => {
       return Promise.resolve(new Response(JSON.stringify(localized(url.includes("locale=zh-CN") ? "zh-CN" : "en-US")), { status: 200 }));
     });
     vi.stubGlobal("fetch", fetchMock);
-    vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(async function (this: SaaSCodexTouchpointElement, _entry, _digest, context) {
+    vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(async function (this: SplatStudioTouchpointElement, _entry, _digest, context) {
       this.shadowRoot?.replaceChildren(document.createTextNode(context.locale === "zh-CN" ? "中文内容" : "English content"));
     });
     render(<I18nProvider initial="en"><LocaleSwitch /><ProductionCampaignBadge authenticated sessionSubject="account-a" /></I18nProvider>);

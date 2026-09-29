@@ -23,8 +23,8 @@ import type {
   LibraryAssetKind,
   LibraryEditAsPageResponse,
   LibrarySourceKind,
-} from '@saascodex/contracts';
-import { LIBRARY_UPLOAD_MAX_BYTES, isLibraryUploadMimeAllowed } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { LIBRARY_UPLOAD_MAX_BYTES, isLibraryUploadMimeAllowed } from '@splatstudio/contracts';
 import type { RouteDeps } from '../server-context.js';
 import {
   addLibraryAssetSource,

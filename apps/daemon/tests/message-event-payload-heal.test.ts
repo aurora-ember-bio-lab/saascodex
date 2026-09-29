@@ -157,7 +157,7 @@ describe('message event payload heal (existing 0.22.x rows)', () => {
     });
     expect(write.truncated).toEqual({ originalBytes: jsonBytes({ file_path: '/p/page-1.html', content: writtenFile }) });
     const readResult = healed.find((event) => event.kind === 'tool_result' && event.toolUseId === 'read-1') as StoredEvent;
-    expect(String(readResult.content)).toMatch(/saascodex/);
+    expect(String(readResult.content)).toMatch(/splatstudio/);
     expect(readResult.isError).toBe(false);
     // Rows that were already small are not touched at all.
     expect(storedEventsJson(db, 'small')).toBe(smallBefore);

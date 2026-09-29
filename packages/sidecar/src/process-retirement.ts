@@ -1,11 +1,11 @@
-import type { ProcessSnapshot, StopProcessesOptions, StopProcessesResult } from "@saascodex/platform";
+import type { ProcessSnapshot, StopProcessesOptions, StopProcessesResult } from "@splatstudio/platform";
 import {
   captureProcessSnapshot,
   isProcessAlive,
   matchesStampedProcess,
   signalProcesses,
   stopProcesses,
-} from "@saascodex/platform";
+} from "@splatstudio/platform";
 
 import { collectSidecarGenerationPids } from "./process-tree.js";
 import { SIDECAR_STAMP_CONTRACT, type SidecarStamp } from "./stamp.js";

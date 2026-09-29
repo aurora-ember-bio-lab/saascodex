@@ -3,8 +3,8 @@ import type {
   PluginManifest,
   ProjectExampleBinding,
   ProjectMetadata,
-} from '@saascodex/contracts';
-import { resolveLocalizedText } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { resolveLocalizedText } from '@splatstudio/contracts';
 
 import { readVerifiedProjectExampleBinding } from '../../plugins/example-binding.js';
 import { renderPluginBriefTemplate } from '../../plugins/share-helpers.js';

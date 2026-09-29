@@ -16,7 +16,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { HandoffButton } from '../../src/components/HandoffButton';
 import { I18nProvider } from '../../src/i18n';
-import type { HostEditorsResponse } from '@saascodex/contracts';
+import type { HostEditorsResponse } from '@splatstudio/contracts';
 
 const fetchHostEditors = vi.fn<() => Promise<HostEditorsResponse>>();
 const openProjectInEditor = vi.fn();

@@ -9,7 +9,7 @@ import type {
   ProjectScenarioTaskProfile,
   LocalCatalogScope,
   RunContextSelection,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   applyPlugin,
   duplicatePluginAsProject,

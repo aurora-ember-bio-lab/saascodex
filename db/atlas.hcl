@@ -1,4 +1,4 @@
-// Atlas configuration for the SaaSCodex control-plane database.
+// Atlas configuration for the SplatStudio control-plane database.
 // Docs: https://atlasgo.io/atlas-schema/projects
 //
 // Usage:
@@ -12,7 +12,7 @@
 
 variable "database_url" {
   type    = string
-  default = "postgres://postgres:postgres@localhost:5432/saascodex?sslmode=disable"
+  default = "postgres://postgres:postgres@localhost:5432/splatstudio?sslmode=disable"
 }
 
 env "local" {

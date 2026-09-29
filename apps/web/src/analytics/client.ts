@@ -9,7 +9,7 @@ import {
   type AnalyticsClientType,
   type AnalyticsConfigResponse,
   type AnalyticsConfigureGlobals,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { scrubBeforeSend } from './scrub';
 import {
   clearExceptionTrackingContext,

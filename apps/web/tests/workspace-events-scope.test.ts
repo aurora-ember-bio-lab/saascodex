@@ -3,7 +3,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { workspaceEventsUrl } from '../src/collab/workspace-events';
 

@@ -3,7 +3,7 @@ import {
   type DeliverableSyntaxCheckResult,
   type DeliverableSyntaxMetrics,
   type DeliverableSyntaxSafeFixRule,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 function finiteNonNegative(value: unknown): number {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0

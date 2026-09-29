@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import type {
   InstalledPluginRecord,
   PluginManifest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { applyPlugin } from '../src/plugins/apply.js';
 import { deriveAutoAtomSurfaces } from '../src/plugins/atoms/auto-surfaces.js';
 
@@ -28,7 +28,7 @@ const consumer = (od: NonNullable<PluginManifest['od']>): InstalledPluginRecord 
   installedAt: Date.now(),
   updatedAt: Date.now(),
   manifest: {
-    $schema: 'https://saascodex.com/schemas/plugin.v1.json',
+    $schema: 'https://splatstudio.app/schemas/plugin.v1.json',
     name: 'fixture',
     title: 'Fixture',
     version: '0.1.0',

@@ -1,4 +1,4 @@
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { Icon } from './Icon';
 import { canShowWorkspaceSettings } from '../collab/settings-access';
 import { useT } from '../i18n';

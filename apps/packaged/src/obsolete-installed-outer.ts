@@ -7,7 +7,7 @@ import {
   processCommandExactlyRunsExecutable,
   stopProcesses,
   type StopProcessesResult,
-} from "@saascodex/platform";
+} from "@splatstudio/platform";
 
 type RetirementLogger = {
   info(message: string, meta?: Record<string, unknown>): void;

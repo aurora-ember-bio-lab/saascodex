@@ -18,8 +18,8 @@
 
 import { act, cleanup, render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { StrategyTaskProjectionV2Schema } from '@saascodex/contracts';
-import type { ChatRunStatusResponse, StrategyTaskProjectionV2 } from '@saascodex/contracts';
+import { StrategyTaskProjectionV2Schema } from '@splatstudio/contracts';
+import type { ChatRunStatusResponse, StrategyTaskProjectionV2 } from '@splatstudio/contracts';
 import { ProjectView } from '../../src/components/ProjectView';
 import type { AgentEvent, ChatMessage } from '../../src/types';
 import clarificationFixture from '../fixtures/chat/odnext-clarification-form.json';

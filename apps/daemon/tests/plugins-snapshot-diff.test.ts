@@ -1,9 +1,9 @@
 // Plan §3.BB2 — diffSnapshots() pure helper.
 
 import { describe, expect, it } from 'vitest';
-import type { AppliedPluginSnapshot } from '@saascodex/contracts';
+import type { AppliedPluginSnapshot } from '@splatstudio/contracts';
 import { diffSnapshots } from '../src/plugins/snapshot-diff.js';
-import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
+import { strategyPackageHashFromDigests } from '@splatstudio/plugin-runtime';
 
 const make = (over: Partial<AppliedPluginSnapshot> = {}): AppliedPluginSnapshot => ({
   snapshotId: 'snap-1',
@@ -30,7 +30,7 @@ function strategy(profileDigest: string) {
     { path: './profiles/prototype.md', sha256: profileDigest },
   ];
   return {
-    schema: 'saascodex.applied-strategy/v2' as const,
+    schema: 'splatstudio.applied-strategy/v2' as const,
     id: 'od-next-strategy' as const,
     version: '2.0.0',
     packageHash: strategyPackageHashFromDigests(assetDigests),

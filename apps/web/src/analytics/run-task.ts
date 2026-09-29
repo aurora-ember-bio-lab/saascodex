@@ -1,8 +1,8 @@
 import type {
   ChatMessage,
   ChatTaskExecutionAnalytics,
-} from '@saascodex/contracts';
-import type { TrackingRunRecoveryActionType } from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts';
+import type { TrackingRunRecoveryActionType } from '@splatstudio/contracts/analytics';
 
 export function runAgentProviderId(agentId: string): string {
   if (agentId === 'amr') return 'amr';

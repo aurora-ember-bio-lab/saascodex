@@ -11,7 +11,7 @@ import {
   createDevWorkspaceContextProvider,
   withLastKnownWorkspaceContext,
 } from '../../src/collab/workspace-context.js';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 const roots: string[] = [];
 

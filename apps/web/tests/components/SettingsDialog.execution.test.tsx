@@ -2,9 +2,9 @@
 
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { SaaSCodexHostUpdaterStatusSnapshot } from '@saascodex/host';
-import { installMockSaaSCodexHost } from '@saascodex/host/testing';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { SplatStudioHostUpdaterStatusSnapshot } from '@splatstudio/host';
+import { installMockSplatStudioHost } from '@splatstudio/host/testing';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { en } from '../../src/i18n/locales/en';
 
 function optionNames(container: HTMLElement): string[] {
@@ -327,11 +327,11 @@ const sampleDesignSystems = [
   },
 ];
 
-let restoreSaaSCodexHost: (() => void) | null = null;
+let restoreSplatStudioHost: (() => void) | null = null;
 
 function updateStatus(
-  overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {},
-): SaaSCodexHostUpdaterStatusSnapshot {
+  overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {},
+): SplatStudioHostUpdaterStatusSnapshot {
   return {
     arch: 'arm64',
     capabilities: {
@@ -554,8 +554,8 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  restoreSaaSCodexHost?.();
-  restoreSaaSCodexHost = null;
+  restoreSplatStudioHost?.();
+  restoreSplatStudioHost = null;
 });
 
 describe('SettingsDialog privacy settings interactions', () => {
@@ -2743,7 +2743,7 @@ describe('SettingsDialog execution settings Local CLI interactions', () => {
     vi.unstubAllGlobals();
   });
 
-  it('pins SaaSCodex to the top of the installed CLI list', () => {
+  it('pins SplatStudio to the top of the installed CLI list', () => {
     const claudeAgent: AgentInfo = {
       id: 'claude',
       name: 'Claude Code',
@@ -2809,7 +2809,7 @@ describe('SettingsDialog execution settings Local CLI interactions', () => {
       version: null,
       models: [],
       installUrl: 'https://github.com/MoonshotAI/kimi-cli',
-      docsUrl: 'https://www.kimi.com/code/docs/en/kimi-cli/guides/getting-started.html?aff=saascodex',
+      docsUrl: 'https://www.kimi.com/code/docs/en/kimi-cli/guides/getting-started.html?aff=splatstudio',
     };
     const { onPersist } = renderSettingsDialog(
       { mode: 'daemon', agentId: null },
@@ -4810,9 +4810,9 @@ describe('SettingsDialog connectors interactions', () => {
 
 describe('SettingsDialog MCP server interactions', () => {
   const installInfo = {
-    command: '/Applications/Open Design.app/Contents/Resources/saascodex/bin/node',
+    command: '/Applications/Open Design.app/Contents/Resources/splatstudio/bin/node',
     args: [
-      '/Applications/Open Design.app/Contents/Resources/app/node_modules/@saascodex/daemon/dist/cli.js',
+      '/Applications/Open Design.app/Contents/Resources/app/node_modules/@splatstudio/daemon/dist/cli.js',
       'mcp',
       '--daemon-url',
       'http://127.0.0.1:51706',
@@ -4865,12 +4865,12 @@ describe('SettingsDialog MCP server interactions', () => {
     await waitFor(() => {
       expect(fetchMock).toHaveBeenCalledWith('/api/mcp/install-info');
     });
-    expect(screen.getByRole('heading', { name: /Connect SaaSCodex to your coding agent/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /Connect SplatStudio to your coding agent/i })).toBeTruthy();
     expect(screen.queryByText(/Run this command in your terminal/i)).toBeNull();
     await waitFor(() => {
-      expect(screen.getByText(/claude mcp add-json --scope user saascodex/i)).toBeTruthy();
+      expect(screen.getByText(/claude mcp add-json --scope user splatstudio/i)).toBeTruthy();
     });
-    expect(screen.getByText(/Keep SaaSCodex running\. Restart your coding agent after setup\./i)).toBeTruthy();
+    expect(screen.getByText(/Keep SplatStudio running\. Restart your coding agent after setup\./i)).toBeTruthy();
     expect(screen.getByText(/What your agent can do/i)).toBeTruthy();
   });
 
@@ -4881,7 +4881,7 @@ describe('SettingsDialog MCP server interactions', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/claude mcp add-json --scope user saascodex/i)).toBeTruthy();
+      expect(screen.getByText(/claude mcp add-json --scope user splatstudio/i)).toBeTruthy();
     });
 
     fireEvent.click(screen.getByRole('button', { name: /Claude Code/i }));
@@ -4890,7 +4890,7 @@ describe('SettingsDialog MCP server interactions', () => {
     await waitFor(() => {
       expect(screen.getByText(/Append this table to ~\/\.codex\/config\.toml/i)).toBeTruthy();
     });
-    expect(screen.getByText(/\[mcp_servers\.saascodex\]/i)).toBeTruthy();
+    expect(screen.getByText(/\[mcp_servers\.splatstudio\]/i)).toBeTruthy();
 
     // Scope to the picker trigger ("Codex" + the TOML method chip) so
     // we don't collide with the new one-click "Install in Codex" /
@@ -4912,14 +4912,14 @@ describe('SettingsDialog MCP server interactions', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/claude mcp add-json --scope user saascodex/i)).toBeTruthy();
+      expect(screen.getByText(/claude mcp add-json --scope user splatstudio/i)).toBeTruthy();
     });
 
     fireEvent.click(screen.getByRole('button', { name: 'Copy setup command' }));
 
     await waitFor(() => {
       expect(writeTextMock).toHaveBeenCalledWith(
-        expect.stringContaining("claude mcp add-json --scope user saascodex"),
+        expect.stringContaining("claude mcp add-json --scope user splatstudio"),
       );
     });
     expect(screen.getByText('Copied')).toBeTruthy();
@@ -4944,7 +4944,7 @@ describe('SettingsDialog MCP server interactions', () => {
 describe('SettingsDialog language interactions', () => {
   afterEach(() => {
     cleanup();
-    window.localStorage.removeItem('saascodex:locale');
+    window.localStorage.removeItem('splatstudio:locale');
     document.documentElement.removeAttribute('lang');
     document.documentElement.removeAttribute('dir');
   });
@@ -4969,7 +4969,7 @@ describe('SettingsDialog language interactions', () => {
     fireEvent.change(select, { target: { value: 'zh-CN' } });
 
     expect((screen.getByLabelText('界面语言') as HTMLSelectElement).value).toBe('zh-CN');
-    expect(window.localStorage.getItem('saascodex:locale')).toBe('zh-CN');
+    expect(window.localStorage.getItem('splatstudio:locale')).toBe('zh-CN');
     expect(document.documentElement.getAttribute('lang')).toBe('zh-CN');
     expect(document.documentElement.getAttribute('dir')).toBe('ltr');
   });
@@ -4979,7 +4979,7 @@ describe('SettingsDialog language interactions', () => {
 
     fireEvent.change(screen.getByLabelText('Language'), { target: { value: 'ar' } });
 
-    expect(window.localStorage.getItem('saascodex:locale')).toBe('ar');
+    expect(window.localStorage.getItem('splatstudio:locale')).toBe('ar');
     expect(document.documentElement.getAttribute('lang')).toBe('ar');
     expect(document.documentElement.getAttribute('dir')).toBe('rtl');
   });
@@ -4989,13 +4989,13 @@ describe('SettingsDialog language interactions', () => {
 
     fireEvent.change(screen.getByLabelText('Language'), { target: { value: 'de' } });
 
-    expect(window.localStorage.getItem('saascodex:locale')).toBe('de');
+    expect(window.localStorage.getItem('splatstudio:locale')).toBe('de');
     expect(document.documentElement.getAttribute('lang')).toBe('de');
 
     fireEvent.click(screen.getByTitle(/close|schließen/i));
     expect(onPersist).not.toHaveBeenCalled();
     expect(onClose).toHaveBeenCalledTimes(1);
-    expect(window.localStorage.getItem('saascodex:locale')).toBe('de');
+    expect(window.localStorage.getItem('splatstudio:locale')).toBe('de');
     expect(document.documentElement.getAttribute('lang')).toBe('de');
     expect(document.documentElement.getAttribute('dir')).toBe('ltr');
   });
@@ -5179,7 +5179,7 @@ describe('SettingsDialog draft reconciliation', () => {
         agentCliEnv: {
           codex: { CODEX_BIN: '/tmp/codex-dev' },
           amr: {
-            SAASCODEX_AMR_PROFILE: 'prod',
+            SPLATSTUDIO_AMR_PROFILE: 'prod',
             AMR_API_BASE_URL: 'https://draft.example.test',
           },
         },
@@ -5201,7 +5201,7 @@ describe('SettingsDialog draft reconciliation', () => {
           },
           agentCliEnv: {
             amr: {
-              SAASCODEX_AMR_PROFILE: 'local',
+              SPLATSTUDIO_AMR_PROFILE: 'local',
               AMR_API_BASE_URL: 'https://daemon.example.test',
             },
           },
@@ -5235,7 +5235,7 @@ describe('SettingsDialog draft reconciliation', () => {
         agentCliEnv: {
           codex: { CODEX_BIN: '/tmp/codex-dev' },
           amr: {
-            SAASCODEX_AMR_PROFILE: 'local',
+            SPLATSTUDIO_AMR_PROFILE: 'local',
             AMR_API_BASE_URL: 'https://draft.example.test',
           },
         },
@@ -5263,7 +5263,7 @@ describe('SettingsDialog draft reconciliation', () => {
           },
           agentCliEnv: {
             amr: {
-              SAASCODEX_AMR_PROFILE: 'prod',
+              SPLATSTUDIO_AMR_PROFILE: 'prod',
             },
           },
         },
@@ -5272,7 +5272,7 @@ describe('SettingsDialog draft reconciliation', () => {
           agentModels: {},
           agentCliEnv: {
             amr: {
-              SAASCODEX_AMR_PROFILE: 'local',
+              SPLATSTUDIO_AMR_PROFILE: 'local',
             },
           },
         },
@@ -5286,13 +5286,13 @@ describe('SettingsDialog draft reconciliation', () => {
         {
           codex: { CODEX_BIN: '/tmp/codex-dev' },
           amr: {
-            SAASCODEX_AMR_PROFILE: 'prod',
+            SPLATSTUDIO_AMR_PROFILE: 'prod',
             AMR_API_BASE_URL: 'https://draft.example.test',
           },
         },
         {
           amr: {
-            SAASCODEX_AMR_PROFILE: 'local',
+            SPLATSTUDIO_AMR_PROFILE: 'local',
             AMR_API_BASE_URL: 'https://daemon.example.test',
           },
         },
@@ -5300,7 +5300,7 @@ describe('SettingsDialog draft reconciliation', () => {
     ).toEqual({
       codex: { CODEX_BIN: '/tmp/codex-dev' },
       amr: {
-        SAASCODEX_AMR_PROFILE: 'local',
+        SPLATSTUDIO_AMR_PROFILE: 'local',
         AMR_API_BASE_URL: 'https://draft.example.test',
       },
     });
@@ -5928,11 +5928,11 @@ describe('SettingsDialog about interactions', () => {
         url: 'https://fixture.test/Open Design Beta.dmg',
       },
       availableVersion: '1.2.3-beta.4',
-      downloadPath: '/tmp/saascodex-updater/Open Design Beta.dmg',
+      downloadPath: '/tmp/splatstudio-updater/Open Design Beta.dmg',
       state: 'downloaded',
     });
     const download = vi.fn(async () => downloaded);
-    restoreSaaSCodexHost = installMockSaaSCodexHost({
+    restoreSplatStudioHost = installMockSplatStudioHost({
       host: {
         updater: {
           download,
@@ -5970,7 +5970,7 @@ describe('SettingsDialog about interactions', () => {
   it('clears the updater cache from the about page after inline confirmation', async () => {
     const cleared = updateStatus({ state: 'idle' });
     const clearCache = vi.fn(async () => cleared);
-    restoreSaaSCodexHost = installMockSaaSCodexHost({
+    restoreSplatStudioHost = installMockSplatStudioHost({
       host: {
         updater: {
           'clear-cache': clearCache,
@@ -6007,7 +6007,7 @@ describe('SettingsDialog about interactions', () => {
   });
 
   it('hides updater cache recovery when packaged updates are unsupported', async () => {
-    restoreSaaSCodexHost = installMockSaaSCodexHost({
+    restoreSplatStudioHost = installMockSplatStudioHost({
       host: {
         updater: {
           status: vi.fn(async () => updateStatus({
@@ -6040,10 +6040,10 @@ describe('SettingsDialog about interactions', () => {
   it('installs a downloaded payload update from the about page', async () => {
     const payloadReady = updateStatus({
       artifact: {
-        name: 'saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+        name: 'splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
         platformKey: 'mac',
         type: 'payload',
-        url: 'https://fixture.test/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+        url: 'https://fixture.test/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
       },
       availableVersion: '1.2.3-beta.4',
       capabilities: {
@@ -6052,7 +6052,7 @@ describe('SettingsDialog about interactions', () => {
         canOpenInstaller: false,
         requiresManualInstall: false,
       },
-      downloadPath: '/tmp/saascodex-updater/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+      downloadPath: '/tmp/splatstudio-updater/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
       state: 'downloaded',
     });
     const installing = updateStatus({
@@ -6061,7 +6061,7 @@ describe('SettingsDialog about interactions', () => {
     });
     const install = vi.fn(async () => installing);
     const quit = vi.fn(async () => ({ ok: true as const }));
-    restoreSaaSCodexHost = installMockSaaSCodexHost({
+    restoreSplatStudioHost = installMockSplatStudioHost({
       host: {
         updater: {
           install,
@@ -6100,10 +6100,10 @@ describe('SettingsDialog about interactions', () => {
   it('keeps a quit retry action when update install succeeds but quit throws or fails', async () => {
     const payloadReady = updateStatus({
       artifact: {
-        name: 'saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+        name: 'splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
         platformKey: 'mac',
         type: 'payload',
-        url: 'https://fixture.test/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+        url: 'https://fixture.test/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
       },
       availableVersion: '1.2.3-beta.4',
       capabilities: {
@@ -6112,7 +6112,7 @@ describe('SettingsDialog about interactions', () => {
         canOpenInstaller: false,
         requiresManualInstall: false,
       },
-      downloadPath: '/tmp/saascodex-updater/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+      downloadPath: '/tmp/splatstudio-updater/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
       state: 'downloaded',
     });
     const installed = updateStatus({
@@ -6120,7 +6120,7 @@ describe('SettingsDialog about interactions', () => {
       installResult: {
         dryRun: true,
         openedAt: '2026-05-19T00:00:00.000Z',
-        path: '/tmp/saascodex-updater/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+        path: '/tmp/splatstudio-updater/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
       },
     });
     const install = vi.fn(async () => installed);
@@ -6130,7 +6130,7 @@ describe('SettingsDialog about interactions', () => {
         ok: false as const,
         reason: 'desktop quit is not available',
       });
-    restoreSaaSCodexHost = installMockSaaSCodexHost({
+    restoreSplatStudioHost = installMockSplatStudioHost({
       host: {
         updater: {
           install,

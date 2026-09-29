@@ -1,7 +1,7 @@
 {
   "toolName": "tools-release",
-  "packageName": "@saascodex/tools-release",
-  "buildCommand": "pnpm --filter @saascodex/tools-release build",
+  "packageName": "@splatstudio/tools-release",
+  "buildCommand": "pnpm --filter @splatstudio/tools-release build",
   "distEntries": ["dist/index.mjs"],
   "inputs": ["src", "resources", "scripts", "meta.json", "package.json", "esbuild.config.mjs", "tsconfig.json"]
 }

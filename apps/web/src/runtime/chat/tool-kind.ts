@@ -1,4 +1,4 @@
-import { isTodoWriteToolName } from '@saascodex/contracts';
+import { isTodoWriteToolName } from '@splatstudio/contracts';
 /**
  * 工具行的语义:这一次调用到底在干什么。
  *

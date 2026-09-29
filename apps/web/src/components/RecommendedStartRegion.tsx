@@ -5,7 +5,7 @@ import {
   trackHomeRecommendationClick,
   trackHomeRecommendationSurfaceView,
 } from '../analytics/events';
-import type { TrackingOnboardingProductType } from '@saascodex/contracts/analytics';
+import type { TrackingOnboardingProductType } from '@splatstudio/contracts/analytics';
 import type { ProjectMetadata } from '../types';
 import {
   nextStarter,

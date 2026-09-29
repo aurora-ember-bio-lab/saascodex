@@ -44,7 +44,7 @@ import {
   renderMediaGenerationContract,
 } from './media-contract.js';
 import { renderPanelPrompt } from './panel.js';
-import { defaultCritiqueConfig, type CritiqueConfig } from '@saascodex/contracts/critique';
+import { defaultCritiqueConfig, type CritiqueConfig } from '@splatstudio/contracts/critique';
 import {
   composeOdNextStrategyRequestPromptV2,
   executionProfileFromStreamFormat,
@@ -60,7 +60,7 @@ import {
   type MediaExecutionPolicy,
   type MediaSurface,
   type OdNextStrategyRequestRecipeV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 // Prepended first in every composed prompt so it wins precedence over all
 // later sections, including skill bodies and user/project instructions.
@@ -96,7 +96,7 @@ function renderUiLocalePrompt(
   const lines = [
     '# UI locale override',
     '',
-    `The SaaSCodex UI locale for this run is \`${normalized}\` (${languageName}). All user-visible chat prose and generated UI controls must follow this locale, especially \`<question-form>\` titles, question labels, placeholders, and option labels. Keep machine-readable ids and object option \`value\` fields exact and unlocalized.`,
+    `The SplatStudio UI locale for this run is \`${normalized}\` (${languageName}). All user-visible chat prose and generated UI controls must follow this locale, especially \`<question-form>\` titles, question labels, placeholders, and option labels. Keep machine-readable ids and object option \`value\` fields exact and unlocalized.`,
     `The artifacts you generate must also be in ${languageName}: every piece of user-visible copy in the HTML/React/page/deck you produce — headings, body text, navigation, button and link labels, captions, alt text, and form fields — is written in this language by default. This holds even when a chosen template, plugin, or design system ships its reference/example content in another language: treat that copy as a layout and style reference and translate/adapt it into ${languageName}, do not ship its wording verbatim. ${PROMPT_LOCALE_EXEMPT_TERMS_SENTENCE}`,
   ];
   // The worked zh-CN quick-brief copy below matches the CLASSIC default
@@ -462,7 +462,7 @@ const MEDIA_DISPATCH_HINT = `
 
 If the user asks you to generate an image, video, or audio file — regardless of which provider or model they mention (fal, Replicate, OpenAI, etc.) — use the daemon dispatcher via your **Bash tool**. Do NOT call provider REST APIs directly.
 
-SaaSCodex Cloud models use the \`vela/*\` prefix. Never invoke the \`vela\`
+SplatStudio Cloud models use the \`vela/*\` prefix. Never invoke the \`vela\`
 CLI directly for those models: the OD dispatcher owns trusted Workspace
 attribution, polling, downloads, and final project-file placement.
 
@@ -593,7 +593,7 @@ function renderRuntimeMediaDefaultsHint(
   if (lines.length === 0) return '';
   return `
 
-### SaaSCodex Cloud media defaults
+### SplatStudio Cloud media defaults
 
 This AMR run uses these managed media defaults when the user has not selected
 a different run-scoped model:
@@ -606,7 +606,7 @@ const FILESYSTEM_HANDOFF_OVERRIDE = `
 
 ## Filesystem handoff
 
-This run uses SaaSCodex's filesystem execution profile. Project files are the source of truth for generated artifacts.
+This run uses SplatStudio's filesystem execution profile. Project files are the source of truth for generated artifacts.
 
 Normal rhythm for artifact work:
 1. Start with a short ordinary assistant message or compact \`<od-card>\` that states the locked direction.
@@ -616,7 +616,7 @@ Normal rhythm for artifact work:
 
 Never type a tool invocation into assistant text as XML, markdown, JSON, or prose; if the runtime cannot call the tool, briefly explain that instead of simulating it.
 
-This tool-call rule does not apply to SaaSCodex UI markup. \`<question-form>\`, \`<od-card>\`, the self-closing \`<od-next key="..." value="..."/>\` follow-up markers, and the \`<od-focus key="..."/>\` display marker are assistant text blocks that the host renders in the UI, not tool calls. When you need to ask structured questions, emit the complete \`<question-form>...</question-form>\` block directly in assistant text; do not route it through a native tool call and do not stop after an introductory sentence.
+This tool-call rule does not apply to SplatStudio UI markup. \`<question-form>\`, \`<od-card>\`, the self-closing \`<od-next key="..." value="..."/>\` follow-up markers, and the \`<od-focus key="..."/>\` display marker are assistant text blocks that the host renders in the UI, not tool calls. When you need to ask structured questions, emit the complete \`<question-form>...</question-form>\` block directly in assistant text; do not route it through a native tool call and do not stop after an introductory sentence.
 
 When you write or edit an HTML file in the project folder through the native file tool, that file is already visible in the user's file panel and preview.
 
@@ -738,7 +738,7 @@ export interface ComposeInput {
    * from `planToolNoteForRuntime(agentId, streamFormat)` a few lines down, and
    * a caller that passes nothing gets exactly today's behaviour there. It is an
    * input rather than a second internal derivation so this composer and its
-   * `@saascodex/contracts` mirror stay byte-identical for identical inputs —
+   * `@splatstudio/contracts` mirror stay byte-identical for identical inputs —
    * the parity that `tests/plugins-strategy-recipe.test.ts` pins.
    */
   planToolNote?: string | null | undefined;
@@ -944,7 +944,7 @@ export function composeSystemPrompt({
   // Everything below this early return is the legacy stack; OD Next runs never
   // reach it. Their content comes from
   // `plugins/_official/scenarios/od-next-strategy/assets/**` plus the
-  // TypeScript in `@saascodex/contracts` `od-next-strategy.ts`, which is
+  // TypeScript in `@splatstudio/contracts` `od-next-strategy.ts`, which is
   // where OD Next carries host runtime contracts. The two sides share no
   // composition floor, so a rule added below holds only for the runs that take
   // this branch, and eligibility is re-evaluated per run
@@ -1072,7 +1072,7 @@ export function composeSystemPrompt({
   const deckFrameworkDirective = renderDeckFrameworkDirective(resolvedExecutionProfile);
 
   // API/BYOK mode (streamFormat === 'plain'): mirrors the same fix from
-  // `@saascodex/contracts`'s composer. The daemon hits this path for
+  // `@splatstudio/contracts`'s composer. The daemon hits this path for
   // any plain-stream adapter (e.g. DeepSeek), so without pinning the
   // override above DISCOVERY_AND_PHILOSOPHY here too, those daemon
   // agents still emit the `<todo-list>` / `[读取 X]` pseudo-tool
@@ -1498,7 +1498,7 @@ export function composeSystemPrompt({
   // originating assistant message, and answers return as the next user message.
   // Applies to every agent — question-form is UI-parsed markup, not a tool.
   if (!isSlimCharterHead || isAskMode) parts.push(
-    "\n\n---\n\n## Structured clarification on any turn\n\nWhen clarification is materially necessary and the answer benefits from structured input, emit a `<question-form>` block instead of writing a bulleted list of options in markdown. The host renders it inline in the originating assistant message; a markdown list renders as plain text and forces the user to type a reply. Use the richest appropriate web form controls (`radio`, `checkbox`, `select`, `text`, `textarea`, `number`, `range`, `date`, `time`, `datetime-local`, `color`, `url`, `email`, `tel`, `file`, `switch`). When the clarification needs reference images, source docs, screenshots, or other user files, combine a `type: \"file\"` question with the text/options in the same form; selected files are uploaded into Design Files and submitted as attached/context files on the answer turn. For every finite-choice question, keep user control by leaving `allowCustom` unset or setting it to `true`, and add localized `customLabel` / `customPlaceholder` when useful. Use free-form prose questions only when a form would add no structure. Do NOT also duplicate the form's questions as markdown text alongside it.\n\n`<question-form>` is assistant text for the SaaSCodex UI, not a native tool call. If you need to clarify direction, emit the complete `<question-form>...</question-form>` block directly in the assistant message before any TodoWrite, file write/edit, Bash, or other native tool call. Do not stop after an introductory sentence such as \"先确认一下方向：\"; the same message must include the full form.\n\nAt most 6-7 options per question; merge near-duplicates instead of listing more. Choose `radio` vs `select` by option count, not importance: `radio` for a short list, `select` once it runs long (languages, timezones, voices); `checkbox` is always a plain list. `select` options may carry `group` (first group expands, the rest collapse) and `trailingLabel` (a short end-of-row code such as `ZH-CN`); both optional. Label options in the user's words, not jargon: \"Magazine-style layout\", not \"Editorial\". Reword only `label`; never change a stable `value`. Keep each `label` under ~40 characters; put anything longer in `description`.",
+    "\n\n---\n\n## Structured clarification on any turn\n\nWhen clarification is materially necessary and the answer benefits from structured input, emit a `<question-form>` block instead of writing a bulleted list of options in markdown. The host renders it inline in the originating assistant message; a markdown list renders as plain text and forces the user to type a reply. Use the richest appropriate web form controls (`radio`, `checkbox`, `select`, `text`, `textarea`, `number`, `range`, `date`, `time`, `datetime-local`, `color`, `url`, `email`, `tel`, `file`, `switch`). When the clarification needs reference images, source docs, screenshots, or other user files, combine a `type: \"file\"` question with the text/options in the same form; selected files are uploaded into Design Files and submitted as attached/context files on the answer turn. For every finite-choice question, keep user control by leaving `allowCustom` unset or setting it to `true`, and add localized `customLabel` / `customPlaceholder` when useful. Use free-form prose questions only when a form would add no structure. Do NOT also duplicate the form's questions as markdown text alongside it.\n\n`<question-form>` is assistant text for the SplatStudio UI, not a native tool call. If you need to clarify direction, emit the complete `<question-form>...</question-form>` block directly in the assistant message before any TodoWrite, file write/edit, Bash, or other native tool call. Do not stop after an introductory sentence such as \"先确认一下方向：\"; the same message must include the full form.\n\nAt most 6-7 options per question; merge near-duplicates instead of listing more. Choose `radio` vs `select` by option count, not importance: `radio` for a short list, `select` once it runs long (languages, timezones, voices); `checkbox` is always a plain list. `select` options may carry `group` (first group expands, the rest collapse) and `trailingLabel` (a short end-of-row code such as `ZH-CN`); both optional. Label options in the user's words, not jargon: \"Magazine-style layout\", not \"Editorial\". Reword only `label`; never change a stable `value`. Keep each `label` under ~40 characters; put anything longer in `description`.",
   );
 
   /*
@@ -1654,11 +1654,11 @@ If the rules below tell you to plan with TodoWrite, write the plan as prose inst
 // after this override (see `isAskMode` gating in composeSystemPrompt) — so this
 // block is the whole behavioral charter for the turn and must read as
 // self-contained, not as a preface that overrides "rules below". Keep it
-// BYTE-IDENTICAL to the @saascodex/contracts copy so a daemon chat and a
+// BYTE-IDENTICAL to the @splatstudio/contracts copy so a daemon chat and a
 // BYOK/API chat behave the same.
 const CHAT_MODE_OVERRIDE = `# Ask mode — bare conversation (this is the whole charter for this turn)
 
-This conversation is in SaaSCodex Ask mode: a fast, low-overhead chat kept deliberately light to save tokens. SaaSCodex is the open-source Claude Design alternative and a native Figma counterpart. Official links: GitHub https://github.com/nexu-io/open-design, website https://saascodex.com/, Discord https://discord.gg/mHAjSMV6gz.
+This conversation is in SplatStudio Ask mode: a fast, low-overhead chat kept deliberately light to save tokens. SplatStudio is the open-source Claude Design alternative and a native Figma counterpart. Official links: GitHub https://github.com/nexu-io/open-design, website https://splatstudio.app/, Discord https://discord.gg/mHAjSMV6gz.
 
 Behave like a direct, multi-turn desktop chat assistant. Prefer concise prose: answer the question, explain, compare options, debug prompts, and review existing work. You still have the user's project files, attachments, connectors, MCP servers, project memory, any active design system, and any skills they attached for this turn — use them as context, and follow an attached skill's workflow when one is present.
 
@@ -1666,11 +1666,11 @@ This mode does not load the heavy design-discovery workflow or the full designer
 
 If the user explicitly asks you to build, generate, design, or export a concrete artifact (a page, prototype, deck, image, video, audio, or a file change), handle it inline only when it is genuinely trivial; for anything substantial, say so in one line and suggest switching to Design mode (or Plan mode for a document-first brief), where the full design workflow, brand discipline, and artifact tooling are loaded. Keep this turn conversational.
 
-For mid-conversation clarification you may still emit a \`<question-form>\` block — it is markup the SaaSCodex UI parses, not a native tool call.`;
+For mid-conversation clarification you may still emit a \`<question-form>\` block — it is markup the SplatStudio UI parses, not a native tool call.`;
 
 const PLAN_MODE_OVERRIDE = `# Plan mode — editable document first (read first — overrides every rule below)
 
-This conversation is in SaaSCodex Plan mode. Use the same context, files, attachments, connectors, MCP servers, project memory, tools, and design systems as Design mode, but do NOT create the final design artifact first.
+This conversation is in SplatStudio Plan mode. Use the same context, files, attachments, connectors, MCP servers, project memory, tools, and design systems as Design mode, but do NOT create the final design artifact first.
 
 In filesystem runs, substantial plan-document work still starts with a real TodoWrite/task-list tool call and keeps it updated as work progresses. Do not narrate TodoWrite availability to the user; show progress through the Todo card when the runtime supports it. In plain API runs, follow the API-mode override above and write the plan directly as prose without mentioning missing tools.
 
@@ -2132,7 +2132,7 @@ function renderMediaMetadataAction(
   const article = surface === 'audio' ? 'an' : 'a';
   const mode = mediaExecution?.mode ?? 'enabled';
   if (mode === 'disabled') {
-    return `This is ${article} **${surface}** project, but SaaSCodex-owned media execution is disabled for this run. Plan the creative brief only unless an external MCP media tool is explicitly configured. Do NOT call OD media generation tools and do NOT emit \`<artifact>\` HTML for media surfaces.`;
+    return `This is ${article} **${surface}** project, but SplatStudio-owned media execution is disabled for this run. Plan the creative brief only unless an external MCP media tool is explicitly configured. Do NOT call OD media generation tools and do NOT emit \`<artifact>\` HTML for media surfaces.`;
   }
   return `This is ${article} **${surface}** project. Plan the creative brief carefully, then dispatch via the **media generation contract** using ${command}. Do NOT emit \`<artifact>\` HTML for media surfaces.`;
 }

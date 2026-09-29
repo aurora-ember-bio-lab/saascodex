@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceBillingSummary, WorkspaceCollabContext } from '@splatstudio/contracts';
 
 import {
   canUpgradeFromPlanTier,

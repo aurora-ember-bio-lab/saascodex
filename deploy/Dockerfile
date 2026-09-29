@@ -33,9 +33,9 @@ RUN corepack enable && \
     pnpm install --frozen-lockfile
 
 COPY apps ./apps
-RUN pnpm --filter @saascodex/daemon build && \
-    pnpm --filter @saascodex/web build && \
-    pnpm --filter @saascodex/daemon deploy --legacy --prod /app/deploy/daemon && \
+RUN pnpm --filter @splatstudio/daemon build && \
+    pnpm --filter @splatstudio/web build && \
+    pnpm --filter @splatstudio/daemon deploy --legacy --prod /app/deploy/daemon && \
     pnpm store prune && \
     rm -rf \
       /root/.cache \
@@ -86,28 +86,28 @@ COPY plugins/_official ./plugins/_official
 FROM ${RUNTIME_IMAGE}
 
 RUN apk add --no-cache tini poppler-utils bash git && \
-    addgroup -S -g 1001 saascodex && \
-    adduser -S -D -H -u 1001 -G saascodex saascodex
+    addgroup -S -g 1001 splatstudio && \
+    adduser -S -D -H -u 1001 -G splatstudio splatstudio
 
 WORKDIR /app
-COPY --from=build --chown=saascodex:saascodex /app/deploy/daemon ./apps/daemon
-COPY --from=build --chown=saascodex:saascodex /app/apps/web/out ./apps/web/out
-COPY --from=build --chown=saascodex:saascodex /app/skills ./skills
-COPY --from=build --chown=saascodex:saascodex /app/design-systems ./design-systems
-COPY --from=build --chown=saascodex:saascodex /app/craft ./craft
-COPY --from=build --chown=saascodex:saascodex /app/prompt-templates ./prompt-templates
-COPY --from=build --chown=saascodex:saascodex /app/data ./data
-COPY --from=build --chown=saascodex:saascodex /app/assets/frames ./assets/frames
-COPY --from=build --chown=saascodex:saascodex /app/assets/community-pets ./assets/community-pets
+COPY --from=build --chown=splatstudio:splatstudio /app/deploy/daemon ./apps/daemon
+COPY --from=build --chown=splatstudio:splatstudio /app/apps/web/out ./apps/web/out
+COPY --from=build --chown=splatstudio:splatstudio /app/skills ./skills
+COPY --from=build --chown=splatstudio:splatstudio /app/design-systems ./design-systems
+COPY --from=build --chown=splatstudio:splatstudio /app/craft ./craft
+COPY --from=build --chown=splatstudio:splatstudio /app/prompt-templates ./prompt-templates
+COPY --from=build --chown=splatstudio:splatstudio /app/data ./data
+COPY --from=build --chown=splatstudio:splatstudio /app/assets/frames ./assets/frames
+COPY --from=build --chown=splatstudio:splatstudio /app/assets/community-pets ./assets/community-pets
 # Plan §3.J4 / spec §23.3.5 — bundled atom plugins registered on
 # daemon boot. The directory contains `plugins/_official/atoms/<atom>/`
-# pairs (SKILL.md + saascodex.json); registerBundledPlugins() walks
+# pairs (SKILL.md + splatstudio.json); registerBundledPlugins() walks
 # it on startup so the container ships with first-party atoms reachable
 # via the same registry path third-party plugins use.
-COPY --from=build --chown=saascodex:saascodex /app/plugins/_official ./plugins/_official
+COPY --from=build --chown=splatstudio:splatstudio /app/plugins/_official ./plugins/_official
 
 RUN mkdir -p /app/.od && \
-    chown -R saascodex:saascodex /app
+    chown -R splatstudio:splatstudio /app
 
 ENV NODE_ENV=production
 ENV NODE_OPTIONS=--max-old-space-size=192
@@ -116,6 +116,6 @@ ENV OD_PORT=7456
 
 EXPOSE 7456
 
-USER saascodex
+USER splatstudio
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["node", "apps/daemon/dist/cli.js", "--no-open"]

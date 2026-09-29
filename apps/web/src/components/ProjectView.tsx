@@ -48,7 +48,7 @@ import { assistantMessageNeverHadARun } from '../runtime/chat/host-authored-mess
 import { resolveRecoveryActionBlockReason } from '../runtime/chat/recovery-gating';
 import { canRetainSuccessfulRunForBlockedStrategy } from '../runtime/blocked-strategy-result';
 import { loadConversationTranscript } from '../state/load-conversation-transcript';
-import { normalizeCustomReason } from '@saascodex/contracts/analytics';
+import { normalizeCustomReason } from '@splatstudio/contracts/analytics';
 import {
   deletePreviewComment,
   fetchConnectorStatuses,
@@ -93,7 +93,7 @@ import {
   type ChatTaskExecutionAnalytics,
   type ProjectWorkspaceScope,
   type ResearchOptions,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   anonymizeArtifactId,
   artifactKindToTracking,
@@ -103,7 +103,7 @@ import {
   projectKindFromMetadataToTrackingOrLegacyDefault,
   projectKindToTracking,
   sessionModeToTracking,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import type {
   TrackingArtifactKind,
   TrackingConversationForkErrorCode,
@@ -112,7 +112,7 @@ import type {
   TrackingDesignSystemOrigin,
   TrackingDesignSystemStatusValue,
   TrackingRunRecoveryActionType,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackByokPreflightBlocked,
@@ -202,7 +202,7 @@ import {
   extractBrandFromHtml,
   finalizeBrandProject,
 } from '../runtime/brands';
-import { isSaaSCodexHostAvailable } from '@saascodex/host';
+import { isSplatStudioHostAvailable } from '@splatstudio/host';
 import {
   getBrandBrowser,
   BRAND_BROWSER_TAB_ID,
@@ -263,7 +263,7 @@ import type {
   RunContextSelection,
   WorkspaceCollabContext,
   WorkspaceContextItem,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   AgentEvent,
   AgentInfo,
@@ -455,7 +455,7 @@ type ProjectChatSendMeta = ChatSendMeta & {
    *  lives in the queue item, so a pre-run block (e.g. the AMR balance gate)
    *  must NOT re-queue it — only pause further drains. */
   queueDrain?: boolean;
-  /** The SaaSCodex Cloud balance gate already ran for this exact send at
+  /** The SplatStudio Cloud balance gate already ran for this exact send at
    *  the home submit (with any soft warning answered there); skip re-gating
    *  so the user is never double-prompted for one task. */
   amrGatePrechecked?: boolean;
@@ -1241,7 +1241,7 @@ function buildCreateDesignSystemFromProjectPrompt(input: {
       ]
     : ['- Active design system: (none)'];
   return [
-    'Create this project as a complete SaaSCodex design system workspace.',
+    'Create this project as a complete SplatStudio design system workspace.',
     '',
     'Autonomy requirement:',
     '- Do not ask setup or clarification questions during design-system generation.',
@@ -1330,7 +1330,7 @@ function historyWithWorkspaceContext(
     '',
     '',
     '<active-workspace-context>',
-    'SaaSCodex selected or inferred these workspace contexts for this turn. Treat absolute paths as reference context unless the user explicitly asks to edit them.',
+    'SplatStudio selected or inferred these workspace contexts for this turn. Treat absolute paths as reference context unless the user explicitly asks to edit them.',
     ...items.map((item, index) => {
       const details = [
         item.path ? `path: ${item.path}` : null,
@@ -2337,7 +2337,7 @@ export function ProjectView({
   );
   const cloudModelSelected = config.mode === 'daemon' && config.agentId === 'amr';
   const projectRunRequiresWorkspaceScope = cloudModelSelected;
-  // An SaaSCodex Cloud run needs a wallet, and the ONLY client-side veto is
+  // An SplatStudio Cloud run needs a wallet, and the ONLY client-side veto is
   // "there is no billing principal at all". Either witness suffices: the
   // caller's own cloud identity, or a project scope that already names an
   // explicit personal/team principal.
@@ -5679,7 +5679,7 @@ export function ProjectView({
       // desktop host: the web-only host never exposes a webview, so retrying
       // can't change an `unavailable` verdict.
       let snapshot = await readBrandBrowserSnapshot(tabId, 8000);
-      if (snapshot.status === 'ready' || !isSaaSCodexHostAvailable()) return snapshot;
+      if (snapshot.status === 'ready' || !isSplatStudioHostAvailable()) return snapshot;
       // Retries cover the mount/registration race only — a ready webview resolves
       // these reads almost instantly. Use a short per-retry cap so a genuinely
       // hung/walled page fails fast instead of stacking full timeout windows.
@@ -8526,7 +8526,7 @@ export function ProjectView({
       /*
        * ── OPEND-2614 【不变量】本地数据画得出来的先画,要跟服务器说的话排后面 ──
        *
-       * 「点击发送 → 消息上屏」这一段里唯一的 await 是下面那道 SaaSCodex Cloud
+       * 「点击发送 → 消息上屏」这一段里唯一的 await 是下面那道 SplatStudio Cloud
        * 预检。它在有工作区身份的项目上是**两条 HTTP 往返**,其中
        * `/api/workspace/billing?…&freshness=authoritative` 会逼 daemon 向上游
        * Vela 取一次新读数(daemon 侧翻成 `requireFresh: true`)。上屏排在它后面,
@@ -8711,7 +8711,7 @@ export function ProjectView({
         if (messagesConversationIdRef.current !== runConversationId) return;
         setMessages(restore);
       };
-      // SaaSCodex Cloud pre-run balance gate: a definitively insufficient
+      // SplatStudio Cloud pre-run balance gate: a definitively insufficient
       // wallet blocks the run BEFORE any message is persisted or a daemon run
       // spawned, surfacing the subscription dialog instead of a mid-run
       // AMR_INSUFFICIENT_BALANCE failure. Sends the home submit already gated
@@ -10753,7 +10753,7 @@ export function ProjectView({
        * (OPEND-2719)。以前这里是 `void handleSend(...)`:输入框立刻清空,
        * 于是「不代管就会丢正文」变成了硬约束,拦截档只能拿队列去接。
        *
-       * 这一等**只对 SaaSCodex Cloud 有实际时长** —— 只有那一档在
+       * 这一等**只对 SplatStudio Cloud 有实际时长** —— 只有那一档在
        * `POST /api/runs` 之前有一次预检往返;别的 agent 这条路上一个 await
        * 都没有,promise 在微任务里就落定,输入框和以前一样立刻清空。
        * 等待期间 `ChatComposer` 自己会把发送键换成「准备中」那枚不可点的
@@ -11344,7 +11344,7 @@ export function ProjectView({
         return { message: outcome.message };
       }
       const conversationId = activeConversationId;
-      const shareAction = action === 'publish' ? 'publish-github' : 'contribute-saascodex';
+      const shareAction = action === 'publish' ? 'publish-github' : 'contribute-splatstudio';
       setActivePluginActionPaths((prev) => new Set(prev).add(relativePath));
       let taskStart;
       try {
@@ -11575,31 +11575,31 @@ export function ProjectView({
     ],
   );
 
-  // "Share to SaaSCodex" — kicks off the bundled `od-share-to-community`
+  // "Share to SplatStudio" — kicks off the bundled `od-share-to-community`
   // scenario in the active conversation. We just inject the trigger prompt
   // through the standard chat-send path; the agent then loads SKILL.md and
   // drives the rest. Keep this preparing state alive for the resulting chat
   // run so the action reads as async packaging instead of instant sharing.
-  const [shareToSaaSCodexBusyMessageId, setShareToSaaSCodexBusyMessageId] = useState<string | null>(null);
-  const shareToSaaSCodexBusyMessageIdRef = useRef<string | null>(null);
+  const [shareToSplatStudioBusyMessageId, setShareToSplatStudioBusyMessageId] = useState<string | null>(null);
+  const shareToSplatStudioBusyMessageIdRef = useRef<string | null>(null);
   useEffect(() => {
-    if (!shareToSaaSCodexBusyMessageIdRef.current || currentConversationBusy) return;
-    shareToSaaSCodexBusyMessageIdRef.current = null;
-    setShareToSaaSCodexBusyMessageId(null);
+    if (!shareToSplatStudioBusyMessageIdRef.current || currentConversationBusy) return;
+    shareToSplatStudioBusyMessageIdRef.current = null;
+    setShareToSplatStudioBusyMessageId(null);
   }, [currentConversationBusy]);
-  const handleShareToSaaSCodex = useCallback((assistantMessageId: string) => {
-    if (currentConversationActionDisabled || shareToSaaSCodexBusyMessageIdRef.current) return;
-    shareToSaaSCodexBusyMessageIdRef.current = assistantMessageId;
-    setShareToSaaSCodexBusyMessageId(assistantMessageId);
+  const handleShareToSplatStudio = useCallback((assistantMessageId: string) => {
+    if (currentConversationActionDisabled || shareToSplatStudioBusyMessageIdRef.current) return;
+    shareToSplatStudioBusyMessageIdRef.current = assistantMessageId;
+    setShareToSplatStudioBusyMessageId(assistantMessageId);
     void Promise.resolve(handleSend(SHARE_TO_COMMUNITY_PROMPT, [], []))
       .then((started) => {
         if (started) return;
-        shareToSaaSCodexBusyMessageIdRef.current = null;
-        setShareToSaaSCodexBusyMessageId(null);
+        shareToSplatStudioBusyMessageIdRef.current = null;
+        setShareToSplatStudioBusyMessageId(null);
       })
       .catch(() => {
-        shareToSaaSCodexBusyMessageIdRef.current = null;
-        setShareToSaaSCodexBusyMessageId(null);
+        shareToSplatStudioBusyMessageIdRef.current = null;
+        setShareToSplatStudioBusyMessageId(null);
       });
   }, [currentConversationActionDisabled, handleSend]);
 
@@ -12953,10 +12953,10 @@ export function ProjectView({
           daemonOutcome.result.conversationId,
         );
         if (daemonOutcome.result.status === 'ready') return;
-        if (!isSaaSCodexHostAvailable() && !hasBrowserFallback()) return;
+        if (!isSplatStudioHostAvailable() && !hasBrowserFallback()) return;
       } else {
         fallbackMessage = daemonOutcome.error;
-        if (!isSaaSCodexHostAvailable() && !hasBrowserFallback()) {
+        if (!isSplatStudioHostAvailable() && !hasBrowserFallback()) {
           setBrandExtractionStatusOverride({ brandId, status: 'needs_input' });
           setProjectActionsToast({
             message: daemonOutcome.error,
@@ -12974,7 +12974,7 @@ export function ProjectView({
       // from the preview tab, the browser <webview> may be `display:none` and
       // Electron can throttle its renderer; a focus-only request wakes it
       // without navigating/re-triggering a wall.
-      if (isSaaSCodexHostAvailable() && brandExtractionSourceUrl) {
+      if (isSplatStudioHostAvailable() && brandExtractionSourceUrl) {
         setBrowserOpenRequest({
           tabId: BRAND_BROWSER_TAB_ID,
           url: brandExtractionSourceUrl,
@@ -12995,7 +12995,7 @@ export function ProjectView({
       // Still no readable local source. Recoverable — clear/settle/download the
       // Browser page and click Continue again, or use the agent fallback.
       setBrandExtractionStatusOverride({ brandId, status: 'needs_input' });
-      if (isSaaSCodexHostAvailable() && brandExtractionSourceUrl) {
+      if (isSplatStudioHostAvailable() && brandExtractionSourceUrl) {
         setBrowserOpenRequest({
           tabId: BRAND_BROWSER_TAB_ID,
           url: brandExtractionSourceUrl,
@@ -13537,9 +13537,9 @@ export function ProjectView({
 
   // Wire the Critique Theater drop-in mount into the project workspace.
   // The hook reads the M1 Settings toggle out of the existing
-  // `saascodex:config` localStorage blob and stays in sync with the
+  // `splatstudio:config` localStorage blob and stays in sync with the
   // platform `storage` event (cross-tab) plus the same-tab
-  // `saascodex:critique-theater-toggle` CustomEvent. The mount itself
+  // `splatstudio:critique-theater-toggle` CustomEvent. The mount itself
   // returns `null` until the daemon emits a `critique.run_started` for
   // the active project, so the visual surface is unchanged for users
   // who have not opted in. The daemon-side gate
@@ -13777,8 +13777,8 @@ export function ProjectView({
               onRequestPluginFolderAgentAction={handlePluginFolderAgentAction}
               activePluginActionPaths={activePluginActionPaths}
               hiddenPluginActionPaths={hiddenAssistantPluginActionPaths}
-              onShareToSaaSCodex={handleShareToSaaSCodex}
-              shareToSaaSCodexBusyMessageId={shareToSaaSCodexBusyMessageId}
+              onShareToSplatStudio={handleShareToSplatStudio}
+              shareToSplatStudioBusyMessageId={shareToSplatStudioBusyMessageId}
               forceStreamingMessageIds={forceStreamingPluginMessageIds}
               initialDraft={chatInitialDraft}
               onboardingStarterPath={onboardingEntryRef.current?.productType ?? null}
@@ -14784,13 +14784,13 @@ function latestDesignSystemActivityEvents(messages: ChatMessage[]): AgentEvent[]
 }
 
 function pluginWorkflowTitle(action: PluginFolderAgentAction): string {
-  return action === 'publish' ? 'Publish repo' : 'SaaSCodex PR';
+  return action === 'publish' ? 'Publish repo' : 'SplatStudio PR';
 }
 
 function pluginWorkflowCliCommand(action: PluginFolderAgentAction, relativePath: string): string {
   return action === 'publish'
     ? `od plugin publish-repo ${relativePath}`
-    : `od plugin saascodex-pr ${relativePath}`;
+    : `od plugin splatstudio-pr ${relativePath}`;
 }
 
 function pluginWorkflowPlannedSteps(action: PluginFolderAgentAction): string[] {
@@ -14803,7 +14803,7 @@ function pluginWorkflowPlannedSteps(action: PluginFolderAgentAction): string[] {
     ];
   }
   return [
-    'Ensure the SaaSCodex fork exists',
+    'Ensure the SplatStudio fork exists',
     'Clone the fork and prepare a branch',
     'Copy the plugin into plugins/community',
     'Push the branch and open the PR form',
@@ -14924,7 +14924,7 @@ export function resolveSucceededRunStatus(status: ChatMessage['runStatus']): Cha
 const DESIGN_RESULT_MISSING_DETAIL =
   'The design run finished without producing a deliverable project file.';
 const DESIGN_RESULT_DELIVERY_FAILED_DETAIL =
-  'The design result was generated, but SaaSCodex could not save it to the project.';
+  'The design result was generated, but SplatStudio could not save it to the project.';
 
 function applyDesignDeliveryOutcome(
   message: ChatMessage,

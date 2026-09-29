@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { isSameWorkspacePrincipal } from '@saascodex/contracts';
+import { isSameWorkspacePrincipal } from '@splatstudio/contracts';
 import type {
   ProjectVisibility,
   ProjectWorkspaceScope,
   ProjectWorkspaceScopeResponse,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   WORKSPACE_CONTEXT_REFRESH_EVENT,
 } from './useWorkspaceContext';

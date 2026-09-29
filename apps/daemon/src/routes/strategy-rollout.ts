@@ -1,5 +1,5 @@
 import type { Express, RequestHandler } from 'express';
-import type { OdNextRolloutControlResponse } from '@saascodex/contracts';
+import type { OdNextRolloutControlResponse } from '@splatstudio/contracts';
 
 import {
   readOdNextRolloutControlStatus,

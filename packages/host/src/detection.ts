@@ -1,17 +1,17 @@
 import {
-  SAASCODEX_HOST_GLOBAL,
-  SAASCODEX_HOST_VERSION,
-  SAASCODEX_HOST_CLIENT_TYPES,
-  type SaaSCodexHostBridge,
-  type SaaSCodexHostClientType,
-  type SaaSCodexHostGlobalScope,
+  SPLATSTUDIO_HOST_GLOBAL,
+  SPLATSTUDIO_HOST_VERSION,
+  SPLATSTUDIO_HOST_CLIENT_TYPES,
+  type SplatStudioHostBridge,
+  type SplatStudioHostClientType,
+  type SplatStudioHostGlobalScope,
 } from "./protocol.js";
 
 /**
  * @module detection
  *
  * Locates the host bridge on a global scope and structurally validates it.
- * Owns the {@link isSaaSCodexHostBridge} type guard plus the scope-lookup
+ * Owns the {@link isSplatStudioHostBridge} type guard plus the scope-lookup
  * helpers used by every renderer-facing accessor.
  */
 
@@ -26,14 +26,14 @@ function hasFunction(record: Record<string, unknown>, key: string): boolean {
 }
 
 /**
- * Structural type guard for a fully-formed {@link SaaSCodexHostBridge}: checks
+ * Structural type guard for a fully-formed {@link SplatStudioHostBridge}: checks
  * version, client type, and the presence of every required capability method.
  */
-export function isSaaSCodexHostBridge(value: unknown): value is SaaSCodexHostBridge {
+export function isSplatStudioHostBridge(value: unknown): value is SplatStudioHostBridge {
   if (!isRecord(value)) return false;
-  if (value.version !== SAASCODEX_HOST_VERSION) return false;
+  if (value.version !== SPLATSTUDIO_HOST_VERSION) return false;
   const client = value.client;
-  if (!isRecord(client) || client.type !== SAASCODEX_HOST_CLIENT_TYPES.DESKTOP) return false;
+  if (!isRecord(client) || client.type !== SPLATSTUDIO_HOST_CLIENT_TYPES.DESKTOP) return false;
   if (client.platform != null && typeof client.platform !== "string") return false;
   if (client.osLocale != null && typeof client.osLocale !== "string") return false;
 
@@ -81,11 +81,11 @@ export function isSaaSCodexHostBridge(value: unknown): value is SaaSCodexHostBri
 }
 
 /** @internal Read the host-bridge candidate from a scope (or its `window`). */
-function candidateFromScope(scope: SaaSCodexHostGlobalScope): unknown {
-  if (SAASCODEX_HOST_GLOBAL in scope) return scope[SAASCODEX_HOST_GLOBAL];
+function candidateFromScope(scope: SplatStudioHostGlobalScope): unknown {
+  if (SPLATSTUDIO_HOST_GLOBAL in scope) return scope[SPLATSTUDIO_HOST_GLOBAL];
   const windowValue = scope.window;
-  if (isRecord(windowValue) && SAASCODEX_HOST_GLOBAL in windowValue) {
-    return windowValue[SAASCODEX_HOST_GLOBAL];
+  if (isRecord(windowValue) && SPLATSTUDIO_HOST_GLOBAL in windowValue) {
+    return windowValue[SPLATSTUDIO_HOST_GLOBAL];
   }
   return undefined;
 }
@@ -94,17 +94,17 @@ function candidateFromScope(scope: SaaSCodexHostGlobalScope): unknown {
  * Resolve the validated host bridge from `scope`, or `null` when absent or
  * malformed.
  */
-export function getSaaSCodexHost(scope: SaaSCodexHostGlobalScope = globalThis): SaaSCodexHostBridge | null {
+export function getSplatStudioHost(scope: SplatStudioHostGlobalScope = globalThis): SplatStudioHostBridge | null {
   const candidate = candidateFromScope(scope);
-  return isSaaSCodexHostBridge(candidate) ? candidate : null;
+  return isSplatStudioHostBridge(candidate) ? candidate : null;
 }
 
-/** True when a valid SaaSCodex host bridge is present on `scope`. */
-export function isSaaSCodexHostAvailable(scope: SaaSCodexHostGlobalScope = globalThis): boolean {
-  return getSaaSCodexHost(scope) != null;
+/** True when a valid SplatStudio host bridge is present on `scope`. */
+export function isSplatStudioHostAvailable(scope: SplatStudioHostGlobalScope = globalThis): boolean {
+  return getSplatStudioHost(scope) != null;
 }
 
 /** Detect the host client type on `scope`, falling back to web. */
-export function detectSaaSCodexHostClientType(scope: SaaSCodexHostGlobalScope = globalThis): SaaSCodexHostClientType | "web" {
-  return getSaaSCodexHost(scope)?.client.type ?? "web";
+export function detectSplatStudioHostClientType(scope: SplatStudioHostGlobalScope = globalThis): SplatStudioHostClientType | "web" {
+  return getSplatStudioHost(scope)?.client.type ?? "web";
 }

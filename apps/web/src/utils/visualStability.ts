@@ -1,4 +1,4 @@
-export const VISUAL_STABILITY_STORAGE_KEY = 'saascodex:visual-stability';
+export const VISUAL_STABILITY_STORAGE_KEY = 'splatstudio:visual-stability';
 
 export function isVisualStabilityMode(): boolean {
   if (typeof window === 'undefined') return false;

@@ -14,7 +14,7 @@
 // snapshot-side aggregation in separately because that side
 // requires a SQLite read.
 
-import type { InstalledPluginRecord, PluginSourceKind } from '@saascodex/contracts';
+import type { InstalledPluginRecord, PluginSourceKind } from '@splatstudio/contracts';
 
 export interface PluginInventoryStats {
   total:       number;

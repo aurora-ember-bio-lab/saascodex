@@ -1,6 +1,6 @@
 import { useT } from '../../i18n';
 import type { Dict } from '../../i18n/types';
-import type { PanelistRole } from '@saascodex/contracts/critique';
+import type { PanelistRole } from '@splatstudio/contracts/critique';
 import type { CritiqueRound } from './state/reducer';
 
 interface Props {

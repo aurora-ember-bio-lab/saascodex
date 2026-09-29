@@ -5,7 +5,7 @@ import type {
   OdCard,
   OdCardMemoryApplied,
   OdCardBrandBrowserAssist,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { Icon } from './Icon';
 import styles from './OdCard.module.css';
 

@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
 
-import { LAUNCHER_SCHEMA_VERSION } from "@saascodex/launcher-proto";
+import { LAUNCHER_SCHEMA_VERSION } from "@splatstudio/launcher-proto";
 import { describe, expect, it } from "vitest";
 
 import type { ToolPackConfig } from "@/config/index.js";
@@ -65,24 +65,24 @@ async function writeFakeMacApp(config: ToolPackConfig): Promise<ReturnType<typeo
   const resourcesRoot = join(paths.appPath, "Contents", "Resources");
   const executablePath = join(paths.appPath, "Contents", "MacOS", identity.executableName);
   await mkdir(join(paths.appPath, "Contents", "MacOS"), { recursive: true });
-  await mkdir(join(resourcesRoot, "saascodex", "bin"), { recursive: true });
-  await mkdir(join(resourcesRoot, "saascodex", "prebundled", "daemon"), { recursive: true });
-  await mkdir(join(resourcesRoot, "saascodex", "prebundled", "web"), { recursive: true });
-  await mkdir(join(resourcesRoot, "saascodex-web-standalone"), { recursive: true });
+  await mkdir(join(resourcesRoot, "splatstudio", "bin"), { recursive: true });
+  await mkdir(join(resourcesRoot, "splatstudio", "prebundled", "daemon"), { recursive: true });
+  await mkdir(join(resourcesRoot, "splatstudio", "prebundled", "web"), { recursive: true });
+  await mkdir(join(resourcesRoot, "splatstudio-web-standalone"), { recursive: true });
   await writeFile(executablePath, "#!/bin/sh\nexit 0\n", "utf8");
   await chmod(executablePath, 0o755);
-  await writeFile(join(resourcesRoot, "saascodex", "bin", "node"), "#!/bin/sh\nexit 0\n", "utf8");
-  await writeFile(join(resourcesRoot, "saascodex", "prebundled", "daemon", "daemon-sidecar.mjs"), "export {};\n", "utf8");
-  await writeFile(join(resourcesRoot, "saascodex", "prebundled", "web", "web-sidecar.mjs"), "export {};\n", "utf8");
+  await writeFile(join(resourcesRoot, "splatstudio", "bin", "node"), "#!/bin/sh\nexit 0\n", "utf8");
+  await writeFile(join(resourcesRoot, "splatstudio", "prebundled", "daemon", "daemon-sidecar.mjs"), "export {};\n", "utf8");
+  await writeFile(join(resourcesRoot, "splatstudio", "prebundled", "web", "web-sidecar.mjs"), "export {};\n", "utf8");
   await writeFile(
-    join(resourcesRoot, "saascodex-config.json"),
+    join(resourcesRoot, "splatstudio-config.json"),
     `${JSON.stringify({
       appVersion: config.appVersion,
-      daemonSidecarEntryRelative: "saascodex/prebundled/daemon/daemon-sidecar.mjs",
+      daemonSidecarEntryRelative: "splatstudio/prebundled/daemon/daemon-sidecar.mjs",
       namespace: config.namespace,
-      nodeCommandRelative: "saascodex/bin/node",
+      nodeCommandRelative: "splatstudio/bin/node",
       webOutputMode: "standalone",
-      webSidecarEntryRelative: "saascodex/prebundled/web/web-sidecar.mjs",
+      webSidecarEntryRelative: "splatstudio/prebundled/web/web-sidecar.mjs",
     }, null, 2)}\n`,
     "utf8",
   );
@@ -139,7 +139,7 @@ describe("tools-pack mac launcher payload archives", () => {
         "Open Design Beta.app",
         "Contents",
         "Resources",
-        "saascodex-config.json",
+        "splatstudio-config.json",
       ));
     } finally {
       await rm(root, { force: true, recursive: true });

@@ -35,10 +35,10 @@ const validDocument = {
   id: "1.2.3",
   title: "Headline",
   body: "First bullet.\nSecond bullet.",
-  imageUrl: "https://whatsnew.saascodex.com/cover.webp",
-  linkUrl: "https://saascodex.com/release/",
+  imageUrl: "https://whatsnew.splatstudio.app/cover.webp",
+  linkUrl: "https://splatstudio.app/release/",
   locales: {
-    "zh-CN": { title: "标题", body: "第一条。\n第二条。", linkUrl: "https://saascodex.com/zh/release/" },
+    "zh-CN": { title: "标题", body: "第一条。\n第二条。", linkUrl: "https://splatstudio.app/zh/release/" },
   },
 };
 
@@ -109,7 +109,7 @@ describe("what's new document guard", () => {
   });
 
   test("a non-https imageUrl fails", async () => {
-    await expect(check({ ...validDocument, imageUrl: "http://whatsnew.saascodex.com/cover.webp" })).resolves.toBe(
+    await expect(check({ ...validDocument, imageUrl: "http://whatsnew.splatstudio.app/cover.webp" })).resolves.toBe(
       false,
     );
   });
@@ -118,7 +118,7 @@ describe("what's new document guard", () => {
     await expect(
       check({
         ...validDocument,
-        locales: { "zh-CN": { ...validDocument.locales["zh-CN"], linkUrl: "saascodex.com/zh/" } },
+        locales: { "zh-CN": { ...validDocument.locales["zh-CN"], linkUrl: "splatstudio.app/zh/" } },
       }),
     ).resolves.toBe(false);
   });

@@ -21,12 +21,12 @@ describe('AI HTML version snapshots', () => {
       runId: 'run-1',
       externalPluginAnalytics: {
         entrySurface: 'external_mcp',
-        externalPluginId: 'saascodex',
+        externalPluginId: 'splatstudio',
         pluginWorkflowId: 'workflow-1',
       },
     })).toEqual({
       entrySurface: 'external_mcp',
-      externalPluginId: 'saascodex',
+      externalPluginId: 'splatstudio',
       pluginWorkflowId: 'workflow-1',
       runId: 'run-1',
     });
@@ -34,7 +34,7 @@ describe('AI HTML version snapshots', () => {
       runId: 'run-old-id',
       externalPluginAnalytics: {
         entrySurface: 'external_mcp',
-        externalPluginId: 'saascodex-cloud',
+        externalPluginId: 'splatstudio-cloud',
         pluginWorkflowId: 'workflow-old-id',
       },
     })).toBeUndefined();
@@ -42,7 +42,7 @@ describe('AI HTML version snapshots', () => {
       runId: 'run-2',
       externalPluginAnalytics: {
         entrySurface: 'open_design_ui',
-        externalPluginId: 'saascodex',
+        externalPluginId: 'splatstudio',
         pluginWorkflowId: 'workflow-2',
       },
     })).toBeUndefined();
@@ -99,7 +99,7 @@ describe('AI HTML version snapshots', () => {
       promptSource: 'message',
       origin: {
         entrySurface: 'external_mcp',
-        externalPluginId: 'saascodex',
+        externalPluginId: 'splatstudio',
         pluginWorkflowId: 'workflow-1',
         runId: 'run-1',
       },
@@ -122,7 +122,7 @@ describe('AI HTML version snapshots', () => {
         contentDigest: expect.stringMatching(/^[a-f0-9]{64}$/),
         origin: {
           entrySurface: 'external_mcp',
-          externalPluginId: 'saascodex',
+          externalPluginId: 'splatstudio',
           pluginWorkflowId: 'workflow-1',
           runId: 'run-1',
         },
@@ -145,7 +145,7 @@ describe('AI HTML version snapshots', () => {
         promptSource: 'message',
         origin: {
           entrySurface: 'external_mcp',
-          externalPluginId: 'saascodex',
+          externalPluginId: 'splatstudio',
           pluginWorkflowId: `workflow-${run}`,
           runId: run,
         },

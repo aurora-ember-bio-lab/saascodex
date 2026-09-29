@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ProjectView } from '../../src/components/ProjectView';
 import type { ProjectWorkspaceScopeState } from '../../src/collab/useProjectWorkspaceScope';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import type {
   AgentInfo,
   AppConfig,
@@ -247,7 +247,7 @@ vi.mock('../../src/components/ChatPane', async (importOriginal) => {
       meta?: unknown,
     ) => unknown;
     onResumeRun?: (message: ChatMessage) => void;
-    onShareToSaaSCodex?: (assistantMessageId: string) => void;
+    onShareToSplatStudio?: (assistantMessageId: string) => void;
     onContinueRemainingTasks?: (
       message: ChatMessage,
       todos: Array<{ content: string; status: string }>,
@@ -317,9 +317,9 @@ vi.mock('../../src/components/ChatPane', async (importOriginal) => {
           */}
         <button
           type="button"
-          data-testid="share-to-saascodex"
+          data-testid="share-to-splatstudio"
           onClick={() => {
-            if (failed) props.onShareToSaaSCodex?.(failed.id);
+            if (failed) props.onShareToSplatStudio?.(failed.id);
           }}
         >
           share
@@ -395,12 +395,12 @@ const localConfig: AppConfig = {
   designSystemId: null,
 };
 
-/** SaaSCodex Cloud:2719 那条路唯一会跑预检的配置。 */
+/** SplatStudio Cloud:2719 那条路唯一会跑预检的配置。 */
 const amrConfig: AppConfig = { ...localConfig, agentId: 'amr' };
 
 const agents = [
   { id: 'agent-1', name: 'OpenCode', bin: 'opencode', available: true, models: [] },
-  { id: 'amr', name: 'SaaSCodex Cloud', available: true, models: [] },
+  { id: 'amr', name: 'SplatStudio Cloud', available: true, models: [] },
 ] as unknown as AgentInfo[];
 
 const userMessage: ChatMessage = {
@@ -819,7 +819,7 @@ describe('OPEND-2719 收窄:只有输入框那条路把正文要回去', () => {
   it('分享到社区:余额不足时照旧进队列,不抢输入框', async () => {
     await renderBlockedAmrProject();
 
-    fireEvent.click(screen.getByTestId('share-to-saascodex'));
+    fireEvent.click(screen.getByTestId('share-to-splatstudio'));
 
     await waitFor(() => expect(screen.getByTestId('queued-count').textContent).toBe('1'));
     expect(screen.getByTestId('queued-prompts').textContent).not.toBe('');

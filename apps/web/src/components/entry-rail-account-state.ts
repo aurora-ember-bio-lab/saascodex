@@ -18,7 +18,7 @@ export function shouldShowCreditsBalance(input: {
 }
 
 export function requiresAmrReauthentication(
-  amrSessionState: import('@saascodex/contracts').AmrSessionState | undefined,
+  amrSessionState: import('@splatstudio/contracts').AmrSessionState | undefined,
   workspaceFailure: WorkspaceContextState['failure'],
 ): boolean {
   return amrSessionState === 'reauth_required' || workspaceFailure === 'reauth-required';
@@ -37,7 +37,7 @@ export function requiresAmrReauthentication(
 export function resolveEntryRailAccountFooterState(
   workspaceState: WorkspaceContextState,
   amrLoggedIn: boolean | null | undefined,
-  amrSessionState?: import('@saascodex/contracts').AmrSessionState,
+  amrSessionState?: import('@splatstudio/contracts').AmrSessionState,
 ): EntryRailAccountFooterState {
   if (requiresAmrReauthentication(amrSessionState, workspaceState.failure)) return 'sign-in';
   if (workspaceState.context) return 'hidden';

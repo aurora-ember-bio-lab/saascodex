@@ -63,12 +63,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build runtime image
-        run: docker build -f deploy/Dockerfile -t saascodex:ci .
+        run: docker build -f deploy/Dockerfile -t splatstudio:ci .
       - name: Trivy image scan
         uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: image
-          image-ref: saascodex:ci
+          image-ref: splatstudio:ci
           severity: HIGH,CRITICAL
           format: sarif
           output: trivy-image.sarif

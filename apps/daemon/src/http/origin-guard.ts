@@ -1,5 +1,5 @@
 import type { Request } from 'express';
-import { createApiError } from '@saascodex/contracts';
+import { createApiError } from '@splatstudio/contracts';
 import { isLocalSameOrigin } from '../origin-validation.js';
 import { err, ok, type Result } from './types.js';
 

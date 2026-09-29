@@ -24,8 +24,8 @@ import {
   type TrackingProjectKind,
   type TrackingRunResult,
   type TrackingSessionMode,
-} from '@saascodex/contracts/analytics';
-import type { ChatSessionMode, ChatTaskExecutionAnalytics } from '@saascodex/contracts';
+} from '@splatstudio/contracts/analytics';
+import type { ChatSessionMode, ChatTaskExecutionAnalytics } from '@splatstudio/contracts';
 import type { ApiProtocol } from '../types';
 
 // Map the BYOK transport protocol to the tracking provider id.

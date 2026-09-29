@@ -7,7 +7,7 @@ describe('userFacingAgentLabel', () => {
     expect(
       userFacingAgentLabel(
         'claude',
-        '/Applications/Open Design Beta.app/Contents/Resources/saascodex/bin/claude',
+        '/Applications/Open Design Beta.app/Contents/Resources/splatstudio/bin/claude',
       ),
     ).toBe('claude');
   });
@@ -16,7 +16,7 @@ describe('userFacingAgentLabel', () => {
     expect(
       userFacingAgentLabel(
         null,
-        '/Applications/Open Design Beta.app/Contents/Resources/saascodex/bin/vela',
+        '/Applications/Open Design Beta.app/Contents/Resources/splatstudio/bin/vela',
       ),
     ).toBe('vela');
   });
@@ -25,7 +25,7 @@ describe('userFacingAgentLabel', () => {
     expect(
       userFacingAgentLabel(
         '',
-        'C:\\Program Files\\Open Design\\resources\\saascodex\\bin\\unknown.exe',
+        'C:\\Program Files\\Open Design\\resources\\splatstudio\\bin\\unknown.exe',
       ),
     ).toBe('unknown');
   });

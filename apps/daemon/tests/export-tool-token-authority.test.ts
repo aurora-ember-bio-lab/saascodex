@@ -14,7 +14,7 @@ import type {
   DesktopExportArtifactResult,
   DesktopRenderSlidesInput,
   DesktopRenderSlidesResult,
-} from '@saascodex/sidecar-proto';
+} from '@splatstudio/sidecar-proto';
 import {
   closeDatabase,
   ensureWorkspaceProject,

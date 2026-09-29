@@ -12,7 +12,7 @@ import {
   type TouchpointCachedIdentity,
   type TouchpointOfflineReplayReason,
   type TouchpointSchedule,
-} from '@saascodex/contracts/api/touchpointOffline';
+} from '@splatstudio/contracts/api/touchpointOffline';
 
 /**
  * Local store for touchpoint content bytes and the schedule they were
@@ -491,7 +491,7 @@ export function createTouchpointContentCache(runtimeDataDir: string): Touchpoint
       if (!full) return null;
       const effectiveServerTime = new Date(now).toISOString();
       // The two rewritten timing fields, and only those two. See the contract
-      // in `@saascodex/contracts/api/touchpointOffline` for why each one is
+      // in `@splatstudio/contracts/api/touchpointOffline` for why each one is
       // rewritten rather than echoed.
       full.serverTime = effectiveServerTime;
       full.authorizationExpiresAt = schedule.endsAt;

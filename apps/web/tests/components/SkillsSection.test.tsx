@@ -8,7 +8,7 @@ import { I18nProvider } from '../../src/i18n';
 import { en } from '../../src/i18n/locales/en';
 import { zhCN } from '../../src/i18n/locales/zh-CN';
 import type { AppConfig } from '../../src/types';
-import type { SkillSummary } from '@saascodex/contracts';
+import type { SkillSummary } from '@splatstudio/contracts';
 
 const originalFetch = globalThis.fetch;
 

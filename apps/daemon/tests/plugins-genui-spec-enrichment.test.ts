@@ -12,7 +12,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import Database from 'better-sqlite3';
 import express from 'express';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -102,9 +102,9 @@ beforeEach(async () => {
   const pluginFolder = path.join(pluginRoot, PLUGIN_ID);
   await mkdir(pluginFolder, { recursive: true });
   await writeFile(
-    path.join(pluginFolder, 'saascodex.json'),
+    path.join(pluginFolder, 'splatstudio.json'),
     JSON.stringify({
-      $schema: 'https://saascodex.com/schemas/plugin.v1.json',
+      $schema: 'https://splatstudio.app/schemas/plugin.v1.json',
       name: PLUGIN_ID,
       title: 'Phase 2A.5 fixture',
       version: '1.0.0',

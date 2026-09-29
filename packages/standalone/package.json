@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/standalone",
+  "name": "@splatstudio/standalone",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -19,7 +19,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/download": "workspace:*",
+    "@splatstudio/download": "workspace:*",
     "jszip": "3.10.1"
   },
   "devDependencies": {

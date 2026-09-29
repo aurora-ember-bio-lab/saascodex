@@ -2,7 +2,7 @@ import { readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { userInfo } from 'node:os';
 import { buildAutomaticDiagnostics, DIAGNOSTIC_MAX_BYTES, redactJsonValue,
-  type AutomaticDiagnosticManifest, type LogSource } from '@saascodex/diagnostics';
+  type AutomaticDiagnosticManifest, type LogSource } from '@splatstudio/diagnostics';
 import { DiagnosticOutbox, type DiagnosticIncident } from '../storage/diagnostic-outbox.js';
 import { DiagnosticRelay, DiagnosticRelayError, type DiagnosticDevice } from '../integrations/diagnostic-relay.js';
 import { DiagnosticConsentFence } from './diagnostic-consent.js';

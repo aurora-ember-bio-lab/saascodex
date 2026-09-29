@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/tools-pack",
+  "name": "@splatstudio/tools-pack",
   "version": "0.23.1",
   "private": true,
   "type": "module",
@@ -15,11 +15,11 @@
   "dependencies": {
     "@electron/notarize": "3.1.1",
     "@electron/rebuild": "4.0.4",
-    "@saascodex/launcher-proto": "workspace:*",
-    "@saascodex/platform": "workspace:*",
-    "@saascodex/release": "workspace:*",
-    "@saascodex/sidecar": "workspace:*",
-    "@saascodex/sidecar-proto": "workspace:*",
+    "@splatstudio/launcher-proto": "workspace:*",
+    "@splatstudio/platform": "workspace:*",
+    "@splatstudio/release": "workspace:*",
+    "@splatstudio/sidecar": "workspace:*",
+    "@splatstudio/sidecar-proto": "workspace:*",
     "cac": "6.7.14",
     "electron-builder": "26.8.1",
     "resedit": "1.7.2"

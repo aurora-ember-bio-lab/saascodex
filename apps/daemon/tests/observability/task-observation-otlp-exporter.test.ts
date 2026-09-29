@@ -1,7 +1,7 @@
 import {
   normalizeAgentObservationV1,
   type NormalizedAgentObservationV1,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { describe, expect, it, vi } from 'vitest';
 
 import {
@@ -33,7 +33,7 @@ const TASK_ID = 'task-otlp-fixture';
 const RUN_OBSERVATION_ID = strategyTaskRunObservationId(TASK_ID, RUN_ID);
 const FINAL_TEXT = {
   kind: 'turn' as const,
-  schema: 'saascodex.od-next-request-turn/v1' as const,
+  schema: 'splatstudio.od-next-request-turn/v1' as const,
   text: 'production-fixture',
   utf8Bytes: 'production-fixture'.length,
   sha256: 'a'.repeat(64),
@@ -71,10 +71,10 @@ StrategyTaskExecutionRecord {
     promptBundle: {
       ...FINAL_TEXT,
       kind: 'bundle',
-      schema: 'saascodex.od-next-prompt-bundle/v2',
+      schema: 'splatstudio.od-next-prompt-bundle/v2',
     },
     frozenInputIdentity: {
-      schema: 'saascodex.od-next-frozen-input-identity/v1',
+      schema: 'splatstudio.od-next-frozen-input-identity/v1',
       snapshotId: 'snapshot-fixture',
       strategyPackageHash: 'sha256:package-fixture',
       frozenSkillPackageIdentity: createEmptyFrozenSkillPackage().identity,
@@ -143,8 +143,8 @@ function observation(input: {
           bytes: boundary === 'hostComposed' ? FINAL_TEXT.utf8Bytes : 32,
           safePayload: boundary === 'hostComposed'
             ? {
-                type: 'saascodex.od-next-host-composed-prompt',
-                schema: 'saascodex.od-next-exact-send-prompt/v1',
+                type: 'splatstudio.od-next-host-composed-prompt',
+                schema: 'splatstudio.od-next-exact-send-prompt/v1',
                 boundary: 'hostComposed',
                 kind: FINAL_TEXT.kind,
                 promptSchema: FINAL_TEXT.schema,
@@ -152,7 +152,7 @@ function observation(input: {
                 sha256: FINAL_TEXT.sha256,
                 utf8Bytes: FINAL_TEXT.utf8Bytes,
                 promptStack: {
-                  type: 'saascodex.prompt-stack',
+                  type: 'splatstudio.prompt-stack',
                   redactionVersion: 'prompt-stack-redaction-v1',
                   sections: [{ kind: 'odNextExactFinalText', redactedContent: 'fixture' }],
                 },
@@ -203,7 +203,7 @@ function aggregate(): StrategyTaskObservationAggregateV1 {
         promptBoundary: 'hostComposed',
         usage: usage(100, 10),
         quality: {
-          schema: 'saascodex.safe-run-quality/v1',
+          schema: 'splatstudio.safe-run-quality/v1',
           result: {
             output: { text: 'safe assistant output', redacted: true, truncated: false },
             error: {
@@ -726,8 +726,8 @@ describe('task observation OTLP exporter', () => {
     expect(stringAttribute(run, 'langfuse.observation.output')).toBe('safe assistant output');
     expect(stringAttribute(run, 'langfuse.observation.status_message')).toBe('safe failure');
     const expectedPromptInput = {
-      type: 'saascodex.od-next-host-composed-prompt',
-      schema: 'saascodex.od-next-exact-send-prompt/v1',
+      type: 'splatstudio.od-next-host-composed-prompt',
+      schema: 'splatstudio.od-next-exact-send-prompt/v1',
       boundary: 'hostComposed',
       kind: FINAL_TEXT.kind,
       promptSchema: FINAL_TEXT.schema,
@@ -735,7 +735,7 @@ describe('task observation OTLP exporter', () => {
       sha256: FINAL_TEXT.sha256,
       utf8Bytes: FINAL_TEXT.utf8Bytes,
       promptStack: {
-        type: 'saascodex.prompt-stack',
+        type: 'splatstudio.prompt-stack',
         redactionVersion: 'prompt-stack-redaction-v1',
         sections: [{ kind: 'odNextExactFinalText', redactedContent: 'fixture' }],
       },
@@ -1117,7 +1117,7 @@ describe('task observation OTLP exporter', () => {
     const relayAndDirect = {
       LANGFUSE_PUBLIC_KEY: 'pk-fixture',
       LANGFUSE_SECRET_KEY: 'sk-fixture',
-      SAASCODEX_TELEMETRY_RELAY_URL: 'https://relay.example.test',
+      SPLATSTUDIO_TELEMETRY_RELAY_URL: 'https://relay.example.test',
       LANGFUSE_EXPORTER_MODE: 'otlp',
     };
     expect(readTaskObservationExporterConfig(
@@ -1145,7 +1145,7 @@ describe('task observation OTLP exporter', () => {
 
     expect(readTaskTelemetrySinkConfig({
       ...env,
-      SAASCODEX_TELEMETRY_RELAY_URL: 'https://relay.example.test',
+      SPLATSTUDIO_TELEMETRY_RELAY_URL: 'https://relay.example.test',
     })).toMatchObject({ kind: 'relay', relayUrl: 'https://relay.example.test' });
     const direct = readTaskTelemetrySinkConfig(env);
     expect(direct).toMatchObject({ kind: 'langfuse', baseUrl: 'https://self-host.example.test' });
@@ -1156,9 +1156,9 @@ describe('task observation OTLP exporter', () => {
     })).toMatchObject({ mode: 'otlp', baseUrl: 'https://self-host.example.test' });
     expect(readTaskTelemetrySinkConfig({})).toBeNull();
     expect(TASK_OBSERVATION_SCHEMA_CAPABILITY_V1).toMatchObject({
-      schema: 'saascodex.task-observation-schema-capability/v1',
-      aggregateSchema: 'saascodex.strategy-task-observation/v1',
-      normalizedObservationSchema: 'saascodex.normalized-agent-observation/v1',
+      schema: 'splatstudio.task-observation-schema-capability/v1',
+      aggregateSchema: 'splatstudio.strategy-task-observation/v1',
+      normalizedObservationSchema: 'splatstudio.normalized-agent-observation/v1',
     });
     expect(TASK_OBSERVATION_SCHEMA_CAPABILITY_V1.safeQualityFields).toEqual(
       expect.arrayContaining(['assistant_output', 'tool_io', 'manifests', 'error']),

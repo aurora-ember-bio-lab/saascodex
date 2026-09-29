@@ -1,4 +1,4 @@
-import { findRealTagOffset, HTML_TAG_PATTERNS } from '@saascodex/contracts/runtime/html-injection-points';
+import { findRealTagOffset, HTML_TAG_PATTERNS } from '@splatstudio/contracts/runtime/html-injection-points';
 
 export type SpeakerNotesPresenterLabels = {
   title: string;

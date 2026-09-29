@@ -1,4 +1,4 @@
-import type { AmrEntryAttribution } from '@saascodex/contracts/analytics';
+import type { AmrEntryAttribution } from '@splatstudio/contracts/analytics';
 import {
   readOnboardingProfile,
   type OnboardingProfile,

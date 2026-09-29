@@ -26,7 +26,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { useDesignMdState } from '../../src/hooks/useDesignMdState';
 import { fetchProjectFiles } from '../../src/providers/registry';

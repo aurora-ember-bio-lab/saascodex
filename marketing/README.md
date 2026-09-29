@@ -1,6 +1,6 @@
-# SaaSCodex marketing site
+# SplatStudio marketing site
 
-Static pages for **saascodex.com** — the plan page, registration, and landing.
+Static pages for **splatstudio.app** — the plan page, registration, and landing.
 Deploy this directory as its own Vercel project (static, no build step).
 
 | Page | Path | Purpose |
@@ -26,8 +26,8 @@ cd marketing
 vercel deploy --prod      # or import the folder as a Vercel project
 ```
 
-Set the site's domain to `saascodex.com`. The pages point the app/API at
-`https://app.saascodex.com` (`API_BASE` / `APP_URL` in `register.html`); change
+Set the site's domain to `splatstudio.app`. The pages point the app/API at
+`https://app.splatstudio.app` (`API_BASE` / `APP_URL` in `register.html`); change
 those constants if the app or daemon live elsewhere.
 
 ## Registration contract

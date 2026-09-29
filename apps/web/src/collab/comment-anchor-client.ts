@@ -1,5 +1,5 @@
 import type { AnchorWriteBack } from '../comments';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { workspaceProjectHeaders } from './workspace-identity';
 
 export interface PersistCommentAnchorArgs {

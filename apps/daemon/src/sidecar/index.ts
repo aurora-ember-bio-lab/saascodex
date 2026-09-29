@@ -1,5 +1,5 @@
-import { APP_KEYS, SIDECAR_MESSAGES, isSidecarSource } from "@saascodex/sidecar-proto";
-import { SidecarFactory, type SidecarClient } from "@saascodex/sidecar";
+import { APP_KEYS, SIDECAR_MESSAGES, isSidecarSource } from "@splatstudio/sidecar-proto";
+import { SidecarFactory, type SidecarClient } from "@splatstudio/sidecar";
 
 import { startDaemonSidecar, type DaemonSidecarHandle } from "./server.js";
 import {

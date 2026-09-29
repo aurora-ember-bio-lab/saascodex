@@ -92,7 +92,7 @@ test("allows line-ending and trailing-whitespace normalization without treating 
 });
 
 test("fails closed when a template path exists but cannot be read as a file", async () => {
-  const repoRoot = await mkdtemp(path.join(os.tmpdir(), "saascodex-html-preview-contract-"));
+  const repoRoot = await mkdtemp(path.join(os.tmpdir(), "splatstudio-html-preview-contract-"));
   const templatePath = path.join(
     repoRoot,
     "plugins/_official/examples/document-report/template.json",

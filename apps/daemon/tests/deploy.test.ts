@@ -285,12 +285,12 @@ describe('deploy file set', () => {
     await writeFile(path.join(dir, 'page.html'), '<!doctype html><body><h1>Hello</h1></body>');
 
     const files = await buildDeployFileSet(projectsRoot, projectId, 'page.html', {
-      hookScriptUrl: 'https://cdn.example.com/saascodex-hook.js',
+      hookScriptUrl: 'https://cdn.example.com/splatstudio-hook.js',
     });
     const html = files.find((f) => f.file === 'index.html')?.data.toString('utf8') ?? '';
 
     expect(html).toContain(
-      '<script src="https://cdn.example.com/saascodex-hook.js" defer data-saascodex-deploy-hook="true" data-closeable="true"></script></body>',
+      '<script src="https://cdn.example.com/splatstudio-hook.js" defer data-splatstudio-deploy-hook="true" data-closeable="true"></script></body>',
     );
   });
 
@@ -499,8 +499,8 @@ describe('deploy file set', () => {
     const out = injectDeployHookScript(html, 'https://cdn.example.com/hook.js');
 
     expect(out).toContain(authored);
-    expect(out.indexOf('data-saascodex-deploy-hook')).toBeGreaterThan(out.indexOf('<main>real</main>'));
-    expect(out.indexOf('data-saascodex-deploy-hook')).toBeLessThan(out.lastIndexOf('</body>'));
+    expect(out.indexOf('data-splatstudio-deploy-hook')).toBeGreaterThan(out.indexOf('<main>real</main>'));
+    expect(out.indexOf('data-splatstudio-deploy-hook')).toBeLessThan(out.lastIndexOf('</body>'));
   });
 
   it('extracts url() and @import refs from inline <style> blocks', () => {

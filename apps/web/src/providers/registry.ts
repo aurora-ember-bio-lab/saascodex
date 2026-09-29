@@ -3,7 +3,7 @@ import {
   workspaceContextHasTeamIdentity,
   type PublicFileManualRevokeRequiredData,
   type PublicProjectFilePublication,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { boundedRequestErrorCode } from '../analytics/workspace';
 import type {
   ConnectorAuthConfigPrepareResponse,
@@ -18,7 +18,7 @@ import type {
   ImportGitHubDesignSystemResponse,
   ImportShadcnDesignSystemRequest,
   ImportShadcnDesignSystemResponse,
-  SaaSCodexGithubLatestReleaseResponse,
+  SplatStudioGithubLatestReleaseResponse,
   ImportLocalDesignSystemRequest,
   ImportLocalDesignSystemResponse,
   ReplaceProjectWorkingDirResponse,
@@ -35,7 +35,7 @@ import type {
   SocialShareRequest,
   SocialShareResponse,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   AgentInfo,
   AppVersionInfo,
@@ -86,9 +86,9 @@ import type {
 import type { ArtifactManifest } from '../artifacts/types';
 import { GENERIC_DEPLOY_ENVELOPE_CODES } from '../analytics/deploy-error-code';
 import {
-  isSaaSCodexHostAvailable,
+  isSplatStudioHostAvailable,
   openHostExternalUrl,
-} from '@saascodex/host';
+} from '@splatstudio/host';
 import {
   coalescedGet,
   evictCoalescedGet,
@@ -1378,13 +1378,13 @@ export interface ConnectorActionResult {
 }
 
 function popupBlockedMessage(): string {
-  return 'Popup blocked. Allow popups for SaaSCodex and try again.';
+  return 'Popup blocked. Allow popups for SplatStudio and try again.';
 }
 
 export async function openExternalUrl(url: string): Promise<boolean> {
   const bridgedUrl = await bridgeFirstPartyUrl(url);
   const targetUrl = bridgedUrl ?? url;
-  if (isSaaSCodexHostAvailable()) {
+  if (isSplatStudioHostAvailable()) {
     const opened = await openHostExternalUrl(targetUrl);
     if (opened.ok) return true;
   }
@@ -1412,7 +1412,7 @@ export async function openExternalUrl(url: string): Promise<boolean> {
 async function bridgeFirstPartyUrl(url: string): Promise<string | null> {
   try {
     const target = new URL(url);
-    if (!['saascodex.com', 'www.saascodex.com', 'staging.saascodex.com'].includes(target.hostname)) return null;
+    if (!['splatstudio.app', 'www.splatstudio.app', 'staging.splatstudio.app'].includes(target.hostname)) return null;
     const resp = await fetch('/api/attribution/bridge-url', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1437,7 +1437,7 @@ async function decodeConnectorError(resp: Response): Promise<string> {
 
 export async function connectConnector(connectorId: string): Promise<ConnectorActionResult> {
   let authWindow: Window | null = null;
-  const useExternalBrowser = isSaaSCodexHostAvailable();
+  const useExternalBrowser = isSplatStudioHostAvailable();
   try {
     if (!useExternalBrowser) {
       authWindow = window.open('about:blank', '_blank');
@@ -1715,9 +1715,9 @@ export type LatestGithubReleaseInfo = {
 
 export async function fetchLatestGithubReleaseInfo(): Promise<LatestGithubReleaseInfo | null> {
   try {
-    const resp = await fetch('/api/github/saascodex/releases/latest');
+    const resp = await fetch('/api/github/splatstudio/releases/latest');
     if (!resp.ok) return null;
-    const json = (await resp.json()) as Partial<SaaSCodexGithubLatestReleaseResponse>;
+    const json = (await resp.json()) as Partial<SplatStudioGithubLatestReleaseResponse>;
     if (typeof json.tag_name !== 'string' || typeof json.html_url !== 'string') return null;
     return {
       tagName: json.tag_name,
@@ -2201,8 +2201,8 @@ export async function fetchProjectFiles(
   }
 }
 
-export type ProjectDesignTokenSuggestion = import('@saascodex/contracts').ProjectDesignTokenSuggestion;
-export type ProjectDesignTokenSuggestionProp = import('@saascodex/contracts').ProjectDesignTokenSuggestionProp;
+export type ProjectDesignTokenSuggestion = import('@splatstudio/contracts').ProjectDesignTokenSuggestion;
+export type ProjectDesignTokenSuggestionProp = import('@splatstudio/contracts').ProjectDesignTokenSuggestionProp;
 
 export async function fetchProjectDesignTokenSuggestions(
   projectId: string,
@@ -2594,7 +2594,7 @@ const LEGACY_PREVIEW_SCOPE_REFRESH_MS = 45 * 60 * 1000;
 function previewCapabilityHref(pathname: string): string {
   const runtimeHref = typeof globalThis.location?.href === 'string'
     ? globalThis.location.href
-    : 'http://saascodex.local/';
+    : 'http://splatstudio.local/';
   return new URL(pathname, runtimeHref).href;
 }
 
@@ -2613,7 +2613,7 @@ export async function fetchProjectPreviewBaseHref(
     if (!response.ok) return null;
     const body = (await response.json()) as ProjectPreviewUrlResponse;
     if (typeof body.url !== 'string' || !body.url.startsWith('/')) return null;
-    const parsed = new URL(body.url, 'http://saascodex.local');
+    const parsed = new URL(body.url, 'http://splatstudio.local');
     const expectedPrefix = `/api/projects/${encodeURIComponent(projectId)}/preview/`;
     if (!parsed.pathname.startsWith(expectedPrefix)) return null;
     const directoryEnd = parsed.pathname.lastIndexOf('/') + 1;
@@ -2639,7 +2639,7 @@ export async function renewProjectPreviewBaseScope(
   href: string,
 ): Promise<number | null> {
   try {
-    const parsed = new URL(href, 'http://saascodex.local');
+    const parsed = new URL(href, 'http://splatstudio.local');
     const expectedPrefix = `/api/projects/${encodeURIComponent(projectId)}/preview/`;
     if (!parsed.pathname.startsWith(expectedPrefix)) return null;
     const scopeEnd = parsed.pathname.indexOf('/', expectedPrefix.length);
@@ -3482,14 +3482,14 @@ export async function replaceProjectWorkingDir(
 // editors on demand (PATH probe + macOS bundle scan), and the POST
 // endpoint spawns the chosen app with the project's resolvedDir.
 export async function fetchHostEditors(): Promise<
-  import('@saascodex/contracts').HostEditorsResponse
+  import('@splatstudio/contracts').HostEditorsResponse
 > {
   return coalescedGet(
     'host-editors',
     async () => {
       const resp = await fetch('/api/editors');
       if (!resp.ok) throw new Error(`GET /api/editors failed: ${resp.status}`);
-      return (await resp.json()) as import('@saascodex/contracts').HostEditorsResponse;
+      return (await resp.json()) as import('@splatstudio/contracts').HostEditorsResponse;
     },
     IN_FLIGHT_SHARE_ONLY_MS,
   );
@@ -3497,9 +3497,9 @@ export async function fetchHostEditors(): Promise<
 
 export async function openProjectInEditor(
   projectId: string,
-  editorId: import('@saascodex/contracts').HostEditorId,
+  editorId: import('@splatstudio/contracts').HostEditorId,
   workspaceContext?: WorkspaceCollabContext | null,
-): Promise<import('@saascodex/contracts').OpenProjectInEditorResponse> {
+): Promise<import('@splatstudio/contracts').OpenProjectInEditorResponse> {
   const resp = await fetch(
     `/api/projects/${encodeURIComponent(projectId)}/open-in`,
     {
@@ -3515,7 +3515,7 @@ export async function openProjectInEditor(
     const body = await readApiErrorBody(resp);
     throw new Error(body.message);
   }
-  return (await resp.json()) as import('@saascodex/contracts').OpenProjectInEditorResponse;
+  return (await resp.json()) as import('@splatstudio/contracts').OpenProjectInEditorResponse;
 }
 
 export async function fetchDesignSystemPreview(
@@ -3741,8 +3741,8 @@ import type {
   LibraryIngestResponse,
   LibraryPairingStartResponse,
   LibrarySyncResponse,
-} from '@saascodex/contracts';
-import { LIBRARY_UPLOAD_MAX_BYTES, isLibraryUploadMimeAllowed } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { LIBRARY_UPLOAD_MAX_BYTES, isLibraryUploadMimeAllowed } from '@splatstudio/contracts';
 
 /** Raw bytes URL for a library asset (image src / download href). */
 export function libraryAssetRawUrl(id: string): string {

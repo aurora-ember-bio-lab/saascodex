@@ -7,23 +7,23 @@ import {
   renameWorkspaceArtifactPath,
 } from '../../chat-artifacts/store.js';
 import type { Express, Request, Response } from 'express';
-import type { LintArtifactRequest, LintArtifactResponse } from '@saascodex/contracts';
+import type { LintArtifactRequest, LintArtifactResponse } from '@splatstudio/contracts';
 import {
   PREVIEW_OBSERVABILITY_BRIDGE_MARKER,
   buildPreviewBaseHrefBridge,
   buildPreviewObservabilityBridge,
-} from '@saascodex/contracts/runtime/preview-observability';
+} from '@splatstudio/contracts/runtime/preview-observability';
 import {
   PREVIEW_BUILD_FOCUS_BRIDGE_MARKER,
   buildPreviewBuildFocusBridge,
-} from '@saascodex/contracts/runtime/preview-build-focus';
+} from '@splatstudio/contracts/runtime/preview-build-focus';
 import {
   buildPreviewFocusGuard,
   buildPreviewRedirectGuard,
   buildPreviewSandboxShim,
   PREVIEW_URL_GUARD_MAX_HTML_BYTES,
   previewHtmlHasLoadTimeLocationNavigation,
-} from '@saascodex/contracts/runtime/preview-guards';
+} from '@splatstudio/contracts/runtime/preview-guards';
 import {
   endOfTag,
   findRealElementRange,
@@ -31,11 +31,11 @@ import {
   findRealTagOffset,
   HTML_TAG_PATTERNS,
   prependAfterDoctype,
-} from '@saascodex/contracts/runtime/html-injection-points';
+} from '@splatstudio/contracts/runtime/html-injection-points';
 import {
   PREVIEW_RUNTIME_STATE_LIMITS,
   PREVIEW_RUNTIME_STATE_VERSION,
-} from '@saascodex/contracts/runtime/preview-runtime-state';
+} from '@splatstudio/contracts/runtime/preview-runtime-state';
 import {
   automaticStrategyTaskProfileForProjectMetadata,
   defaultScenarioPluginIdForProjectMetadata,
@@ -56,7 +56,7 @@ import {
   type RestoreProjectAutomaticScenarioResponse,
   type ProjectSyncState,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { readMeta as readBrandMeta } from '../../brands/store.js';
 import { createProjectArtifactFile } from '../../artifacts/create.js';
 import { ArtifactPublicationBlockedError } from '../../artifacts/publication-guard.js';
@@ -2073,7 +2073,7 @@ function buildDesignSystemCopySourceContext(input: {
   return [
     '# Source Project Context',
     '',
-    'This design-system workspace was created from an existing SaaSCodex project. Treat the copied project files as the primary source evidence for the generated design system.',
+    'This design-system workspace was created from an existing SplatStudio project. Treat the copied project files as the primary source evidence for the generated design system.',
     '',
     '## Source project',
     '',
@@ -2103,7 +2103,7 @@ function buildDesignSystemCopySourceContext(input: {
     '- Read this file before editing design-system outputs.',
     '- Read the copied files directly from the project workspace; they are source evidence, not generated design-system output.',
     '- Preserve high-signal assets, source examples, UI surfaces, copy, tokens, typography, and interaction patterns from the copied project.',
-    '- Generate a reusable SaaSCodex design-system package in this same project: DESIGN.md, README.md, SKILL.md, colors_and_type.css, context/provenance, focused preview cards, preserved assets/build/fonts when available, and ui_kits/app/.',
+    '- Generate a reusable SplatStudio design-system package in this same project: DESIGN.md, README.md, SKILL.md, colors_and_type.css, context/provenance, focused preview cards, preserved assets/build/fonts when available, and ui_kits/app/.',
     '- Before final response, run `"$OD_NODE_BIN" "$OD_BIN" tools connectors design-system-package-audit --path . --fail-on-warnings` and fix every actionable issue.',
     '',
   ].join('\n');
@@ -2123,7 +2123,7 @@ function buildDesignSystemCopyPendingPrompt(input: {
     .slice(0, 140)
     .map((name) => `  - ${name}`);
   return [
-    'Create this project as a complete SaaSCodex design system workspace.',
+    'Create this project as a complete SplatStudio design system workspace.',
     '',
     'Autonomy requirement:',
     '- Do not ask setup or clarification questions during design-system generation.',
@@ -3207,7 +3207,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
   app.get('/api/project-locations', async (_req, res) => {
     try {
       const locations = await configuredProjectLocations();
-      /** @type {import('@saascodex/contracts').ProjectLocationsResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectLocationsResponse} */
       const body = { locations };
       res.json(body);
     } catch (err: any) {
@@ -3238,7 +3238,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
       const config = await writeAppConfig(ctx.paths.RUNTIME_DATA_DIR, { projectLocations: prepared });
       const locations = allProjectLocations(PROJECTS_DIR, config.projectLocations);
       const removedProjectIds = unregisterProjectsForRemovedLocations(previousLocations, config.projectLocations ?? []);
-      /** @type {import('@saascodex/contracts').ProjectLocationsResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectLocationsResponse} */
       const body = { locations, removedProjectIds };
       res.json(body);
     } catch (err: any) {
@@ -3315,7 +3315,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
           }
         }
       }
-      /** @type {import('@saascodex/contracts').ScanProjectLocationsResponse} */
+      /** @type {import('@splatstudio/contracts').ScanProjectLocationsResponse} */
       const body = { scanned, imported, existing, skipped };
       res.json(body);
     } catch (err: any) {
@@ -3365,7 +3365,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
       // construction, unbound — so `workspaceId` is always `null`; no binding
       // lookup needed (a `listWorkspaceProjectBindings` scan here would only
       // ever resolve to misses).
-      /** @type {import('@saascodex/contracts').ProjectsResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectsResponse} */
       const body = {
         projects: listUnboundProjects(db)
           .filter((project: any) => projectVisibleForLocations(project, locations))
@@ -3411,7 +3411,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
           }
         : authoritativeCtx;
       if (ctx.memberStatus === 'removed') {
-        /** @type {import('@saascodex/contracts').WorkspaceProjectsResponse} */
+        /** @type {import('@splatstudio/contracts').WorkspaceProjectsResponse} */
         const body = { projects: [] };
         return res.json(body);
       }
@@ -3482,7 +3482,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
           groupCountProperties,
         );
       }
-      /** @type {import('@saascodex/contracts').WorkspaceProjectsResponse} */
+      /** @type {import('@splatstudio/contracts').WorkspaceProjectsResponse} */
       const body = { projects };
       res.json(body);
     } catch (err: any) {
@@ -3874,7 +3874,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
       if (typeof name !== 'string' || !name.trim()) {
         return sendApiError(res, 400, 'BAD_REQUEST', 'name required');
       }
-      // SaaSCodex plan gating: once the free plan's 7-day trial has
+      // SplatStudio plan gating: once the free plan's 7-day trial has
       // lapsed it allows 3 active projects; during the trial and on paid
       // plans creation is unlimited. The billing state file starts every
       // fresh installation inside its trial window.
@@ -4492,7 +4492,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
         }
         throw err;
       }
-      /** @type {import('@saascodex/contracts').CreateProjectResponse} */
+      /** @type {import('@splatstudio/contracts').CreateProjectResponse} */
       const createdProject = pluginResolutionState.snapshot
         ? getProject(db, id) ?? project
         : project;
@@ -4824,7 +4824,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
           // Open-tabs state is convenience metadata; file duplication succeeds
           // without it.
         }
-        /** @type {import('@saascodex/contracts').DuplicateProjectResponse} */
+        /** @type {import('@splatstudio/contracts').DuplicateProjectResponse} */
         const body = {
           project: createHome
             ? { ...project, workspaceId: createHome.workspaceId }
@@ -4886,7 +4886,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
       const targetProjectId = randomId();
       const targetName = normalizeDesignSystemCopyName(req.body?.name, sourceProject);
       const requestedPendingPrompt = normalizePendingPrompt(req.body?.pendingPrompt);
-      const sourceNotes = `Created from SaaSCodex project "${sourceProject.name}" (${sourceProject.id}).`;
+      const sourceNotes = `Created from SplatStudio project "${sourceProject.name}" (${sourceProject.id}).`;
       let createdDesignSystemId: string | null = null;
       let insertedProject = false;
       try {
@@ -4996,7 +4996,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
           metadata,
         );
         await linkUserDesignSystemProject(USER_DESIGN_SYSTEMS_DIR, designSystem.id, targetProjectId);
-        /** @type {import('@saascodex/contracts').CreateDesignSystemProjectFromProjectResponse} */
+        /** @type {import('@splatstudio/contracts').CreateDesignSystemProjectFromProjectResponse} */
         const body = {
           project: createHome
             ? { ...project, workspaceId: createHome.workspaceId }
@@ -5051,7 +5051,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
     }
     const resolvedDir = projectDetailResolvedDir(PROJECTS_DIR, project, resolveProjectDir);
     const binding = getWorkspaceProjectByProjectId(db, project.id);
-    /** @type {import('@saascodex/contracts').ProjectResponse} */
+    /** @type {import('@splatstudio/contracts').ProjectResponse} */
     const body = {
       project: {
         ...project,
@@ -5093,7 +5093,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
       knownWorkspaceType: workspaceTypes?.typeOf(binding?.workspaceId) ?? null,
       ...(ctx.configuredEnv ? { configuredEnv: ctx.configuredEnv() } : {}),
     });
-    /** @type {import('@saascodex/contracts').ProjectWorkspaceScopeResponse} */
+    /** @type {import('@splatstudio/contracts').ProjectWorkspaceScopeResponse} */
     const body = { scope };
     res.json(body);
   });
@@ -5476,7 +5476,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
         // reached teammates after the NEXT file edit — or never.
         ctx.collabSync.refreshTeamProjectMetadata(req.params.id);
       }
-      /** @type {import('@saascodex/contracts').ProjectResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectResponse} */
       const body = { project };
       res.json(body);
     } catch (err: any) {
@@ -5537,7 +5537,7 @@ export function registerProjectRoutes(app: Express, ctx: RegisterProjectRoutesDe
       await cancelRunsOwnedBy(design.runs, { projectId: req.params.id });
       dbDeleteProject(db, req.params.id);
       await removeProjectDir(PROJECTS_DIR, req.params.id).catch(() => {});
-      /** @type {import('@saascodex/contracts').OkResponse} */
+      /** @type {import('@splatstudio/contracts').OkResponse} */
       const body = { ok: true };
       res.json(body);
     } catch (err: any) {
@@ -6549,7 +6549,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
       // request-coalescing window, so transport caches must always revalidate
       // this dynamic inventory.
       res.setHeader('Cache-Control', 'no-store');
-      /** @type {import('@saascodex/contracts').ProjectFilesResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectFilesResponse} */
       const body = { files };
       res.json(body);
     } catch (err: any) {
@@ -6654,7 +6654,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
       const folders = await listProjectFolders(PROJECTS_DIR, req.params.id, {
         metadata: project.metadata,
       });
-      /** @type {import('@saascodex/contracts').ProjectFoldersResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectFoldersResponse} */
       const body = { folders };
       res.json(body);
     } catch (err: any) {
@@ -6688,7 +6688,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
         name,
         project.metadata,
       );
-      /** @type {import('@saascodex/contracts').ProjectFolderResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectFolderResponse} */
       const body = { folder };
       res.json(body);
     } catch (err: any) {
@@ -6722,7 +6722,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
         folderPath,
         project.metadata,
       );
-      /** @type {import('@saascodex/contracts').DeleteProjectFolderResponse} */
+      /** @type {import('@splatstudio/contracts').DeleteProjectFolderResponse} */
       const body = { ok: true };
       res.json(body);
     } catch (err: any) {
@@ -6777,7 +6777,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
         sendApiError(res, 503, 'PREVIEW_SCOPE_NOT_FOUND', 'preview scope not found');
         return;
       }
-      /** @type {import('@saascodex/contracts').ProjectPreviewUrlResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectPreviewUrlResponse} */
       const body = {
         url: `/api/projects/${encodeURIComponent(project.id)}/preview/${scope}/${encodeProjectPathForUrl(meta.name)}`,
         file: meta.name,
@@ -6845,7 +6845,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
         sendApiError(res, 404, 'PREVIEW_SCOPE_NOT_FOUND', 'preview scope not found');
         return;
       }
-      /** @type {import('@saascodex/contracts').ProjectPreviewScopeRenewResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectPreviewScopeRenewResponse} */
       const body = { expiresAt };
       res.setHeader('Cache-Control', 'no-store');
       res.json(body);
@@ -7206,7 +7206,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
       } catch (error) {
         console.warn('[chat-artifacts] delete bookkeeping failed', error);
       }
-      /** @type {import('@saascodex/contracts').DeleteProjectFileResponse} */
+      /** @type {import('@splatstudio/contracts').DeleteProjectFileResponse} */
       const body = { ok: true };
       res.json(body);
     } catch (err: any) {
@@ -7317,7 +7317,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
       if (!file) {
         return sendApiError(res, 404, 'FILE_NOT_FOUND', 'file not found');
       }
-      /** @type {import('@saascodex/contracts').ProjectFileVersionsResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectFileVersionsResponse} */
       const body = { file, versions };
       res.setHeader('Cache-Control', 'no-store');
       res.json(body);
@@ -7413,7 +7413,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
       if (!version) {
         return sendApiError(res, 400, 'BAD_REQUEST', 'version could not be created');
       }
-      /** @type {import('@saascodex/contracts').CreateProjectFileVersionResponse} */
+      /** @type {import('@splatstudio/contracts').CreateProjectFileVersionResponse} */
       const body = { version };
       res.json(body);
     } catch (err: any) {
@@ -7490,7 +7490,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
           return { file, version, versionWarning };
         },
       );
-      /** @type {import('@saascodex/contracts').RestoreProjectFileVersionResponse} */
+      /** @type {import('@splatstudio/contracts').RestoreProjectFileVersionResponse} */
       const body = { file, version, ...(versionWarning ? { versionWarning } : {}) };
       res.json(body);
     } catch (err: any) {
@@ -7523,7 +7523,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
         versionId,
         project.metadata,
       );
-      /** @type {import('@saascodex/contracts').ProjectFileVersionResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectFileVersionResponse} */
       const typedBody = body;
       res.setHeader('Cache-Control', 'no-store');
       res.json(typedBody);
@@ -7672,7 +7672,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
                 (versionLock) => writeAndCapture(versionLock),
               )
               : await writeAndCapture();
-            /** @type {import('@saascodex/contracts').ProjectFileResponse} */
+            /** @type {import('@splatstudio/contracts').ProjectFileResponse} */
             const body = {
               file: meta,
               ...(versionCapture ? { version: versionCapture.version } : {}),
@@ -7790,7 +7790,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
             (versionLock) => writeAndCapture(versionLock),
           )
           : await writeAndCapture();
-        /** @type {import('@saascodex/contracts').ProjectFileResponse} */
+        /** @type {import('@splatstudio/contracts').ProjectFileResponse} */
         const body = {
           file: meta,
           ...(versionCapture ? { version: versionCapture.version } : {}),
@@ -7875,7 +7875,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
       } catch (error) {
         console.warn('[chat-artifacts] rename bookkeeping failed', error);
       }
-      /** @type {import('@saascodex/contracts').RenameProjectFileResponse} */
+      /** @type {import('@splatstudio/contracts').RenameProjectFileResponse} */
       const body = result;
       res.json(body);
     } catch (err: any) {
@@ -7914,7 +7914,7 @@ export function registerProjectFileRoutes(app: Express, ctx: RegisterProjectFile
       } catch (error) {
         console.warn('[chat-artifacts] delete bookkeeping failed', error);
       }
-      /** @type {import('@saascodex/contracts').DeleteProjectFileResponse} */
+      /** @type {import('@splatstudio/contracts').DeleteProjectFileResponse} */
       const body = { ok: true };
       res.json(body);
     } catch (err: any) {
@@ -8020,7 +8020,7 @@ export function registerProjectUploadRoutes(app: Express, ctx: RegisterProjectUp
             // skip files that vanished mid-flight
           }
         }
-        /** @type {import('@saascodex/contracts').UploadProjectFilesResponse} */
+        /** @type {import('@splatstudio/contracts').UploadProjectFilesResponse} */
         const body = { files: out };
         res.json(body);
       } catch (err: any) {

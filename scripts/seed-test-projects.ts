@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Seed SaaSCodex with pre-baked test projects so the UI has real slide
+// Seed SplatStudio with pre-baked test projects so the UI has real slide
 // decks and web prototypes to work with without waiting for an LLM run.
 // Pulls each project's content straight from a skill or plugin
 // `example.html`, drops it in as `index.html`, and adds a couple of fake
@@ -139,7 +139,7 @@ const DECKS: SeedFixture[] = [
 
 const WEBS: SeedFixture[] = [
   {
-    skillId: 'saascodex-landing',
+    skillId: 'splatstudio-landing',
     sourceKind: 'skill',
     kind: 'prototype',
     name: 'Editorial landing — Atelier Zero',
@@ -311,7 +311,7 @@ function parseArgs(argv: string[]): Args {
 function printHelp() {
   console.log(`Usage: pnpm seed:test-projects [opts]
 
-Seeds SaaSCodex with pre-baked, real HTML artifacts from:
+Seeds SplatStudio with pre-baked, real HTML artifacts from:
   - Skills examples
   - Bundled default plugin examples
   - Community plugin examples

@@ -15,7 +15,7 @@ import {
   type AmrContinuationCursor,
   type AmrContinuationRecovery,
   type ExecutionProfile,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   createDsmlArtifactTextSuppressor,
   createToolCallTextSuppressor,
@@ -204,7 +204,7 @@ export function attachAcpSession({
   envFormat = 'array',
   stdioMcpRemovedInVersion,
   send,
-  clientName = 'saascodex',
+  clientName = 'splatstudio',
   clientVersion = 'runtime-adapter',
   stageTimeoutMs = DEFAULT_STAGE_TIMEOUT_MS,
   executionProfile = 'filesystem',
@@ -969,7 +969,7 @@ export function attachAcpSession({
       // Fall back to the direct-child timer below.
     }
     // Some ACP agents keep the child process alive after stdin closes,
-    // waiting for another prompt. Each SaaSCodex run owns one process per
+    // waiting for another prompt. Each SplatStudio run owns one process per
     // turn, so close it once this prompt is cleanly complete.
     if (!terminalOwnedByCaller) {
       const cleanExitTimer = setTimeout(() => {

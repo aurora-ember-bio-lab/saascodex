@@ -6,10 +6,10 @@ import { join } from "node:path";
 import { runInNewContext } from "node:vm";
 import { ModuleKind, ScriptTarget, transpileModule } from "typescript";
 import { describe, expect, it } from "vitest";
-import * as launcherProto from "@saascodex/launcher-proto";
-import * as release from "@saascodex/release";
-import type { SidecarStamp } from "@saascodex/sidecar";
-import * as sidecarProto from "@saascodex/sidecar-proto";
+import * as launcherProto from "@splatstudio/launcher-proto";
+import * as release from "@splatstudio/release";
+import type { SidecarStamp } from "@splatstudio/sidecar";
+import * as sidecarProto from "@splatstudio/sidecar-proto";
 
 const require = createRequire(import.meta.url);
 function compile(name: string, entry = false): string {
@@ -62,10 +62,10 @@ async function scenario(platform: "darwin" | "win32", channel: "stable" | "prere
   const paths = { logsRoot: join(root, "logs"), dataRoot: join(root, "data"), runtimeRoot: join(root, "runtime") };
   const selected = new Error("selection boundary");
   const modules: Record<string, unknown> = {
-    "@saascodex/launcher-proto": launcherProto,
-    "@saascodex/release": release,
-    "@saascodex/sidecar-proto": sidecarProto,
-    "@saascodex/platform": {
+    "@splatstudio/launcher-proto": launcherProto,
+    "@splatstudio/release": release,
+    "@splatstudio/sidecar-proto": sidecarProto,
+    "@splatstudio/platform": {
       waitForProcessExit: async (pid: number) => {
         expect(pid).toBe(4242);
         trace.push("wait-armed"); armed.resolve();
@@ -76,7 +76,7 @@ async function scenario(platform: "darwin" | "win32", channel: "stable" | "prere
         return { remainingPids: [4242], forcedPids: [], stoppedPids: [] };
       },
     },
-    "@saascodex/sidecar": {
+    "@splatstudio/sidecar": {
       readCurrentSidecarStamp: () => null,
       isCurrentSidecarLauncher: () => false,
       getSidecarStatus: async (stamp: SidecarStamp) => {
@@ -90,7 +90,7 @@ async function scenario(platform: "darwin" | "win32", channel: "stable" | "prere
       bootstrapSidecarProcess: async () => { trace.push(`bootstrap:${alive}`); return false; },
     },
     "electron": { app: { commandLine: { appendSwitch() {} }, exit: (code: number) => trace.push(`exit:${code}`) } },
-    "@saascodex/desktop/main": { async recordIncomingUpdateLifecycle() {}, applyOsLocaleSwitch() {}, applyLoopbackConnectionLimitSwitch() {} },
+    "@splatstudio/desktop/main": { async recordIncomingUpdateLifecycle() {}, applyOsLocaleSwitch() {}, applyLoopbackConnectionLimitSwitch() {} },
     "./config.js": { readPackagedConfig: async () => ({ namespace, appVersion: version }) },
     "./headless-runtime.js": { parsePackagedHeadlessRequest: () => ({ headless: false }), runPackagedMcpActionAgainstExistingDaemon: async () => false },
     "./paths.js": { resolvePackagedNamespacePaths: () => paths },

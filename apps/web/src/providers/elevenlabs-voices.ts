@@ -1,4 +1,4 @@
-import type { AudioVoiceOption } from '@saascodex/contracts';
+import type { AudioVoiceOption } from '@splatstudio/contracts';
 
 type JsonRecord = Record<string, unknown>;
 

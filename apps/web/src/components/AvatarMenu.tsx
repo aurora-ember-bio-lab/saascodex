@@ -26,7 +26,7 @@ import { fetchProviderModels } from '../providers/provider-models';
 import {
   canReachWorkspaceBillingEntrance,
   workspaceBillingAuthorityContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { AgentInfo, AppConfig, ExecMode, ProviderModelOption } from '../types';
 import {
   canUpgradeVelaPlan,
@@ -85,7 +85,7 @@ interface Props {
 }
 
 /**
- * Compact runtime control. Click opens a dropdown with the SaaSCodex account
+ * Compact runtime control. Click opens a dropdown with the SplatStudio account
  * and the model picker for the active agent. Execution wiring that is not a
  * per-message choice (execution mode, which CLI agent, PATH rescan, BYOK
  * provider setup) lives in Settings → Execution; this popover keeps the
@@ -271,7 +271,7 @@ export function AvatarMenu({
     [agents],
   );
   const amrAvailable = amrAgent !== null;
-  const amrProfile = config.agentCliEnv?.amr?.SAASCODEX_AMR_PROFILE;
+  const amrProfile = config.agentCliEnv?.amr?.SPLATSTUDIO_AMR_PROFILE;
 
   // Fetch the live login status when the popover opens so plan-gated model
   // rows route to the signed-in profile's workspace-scoped plans page (see

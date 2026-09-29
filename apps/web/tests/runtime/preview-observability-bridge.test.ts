@@ -5,7 +5,7 @@ import {
   PREVIEW_OBSERVABILITY_MESSAGE_TYPE,
   buildPreviewObservabilityBridge,
   type PreviewObservabilityMessage,
-} from '@saascodex/contracts/runtime/preview-observability';
+} from '@splatstudio/contracts/runtime/preview-observability';
 
 interface ScheduledTask {
   at: number;

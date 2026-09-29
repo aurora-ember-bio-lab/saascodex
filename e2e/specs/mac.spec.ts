@@ -1246,12 +1246,12 @@ macOnboardingDescribe('packaged mac onboarding AMR smoke', () => {
       const screenshot = await runToolsPackJson<MacInspectResult>('inspect', ['--path', onboardingScreenshotPath]);
       expect(screenshot.screenshot?.path).toBe(onboardingScreenshotPath);
       expect(await fileSizeBytes(onboardingScreenshotPath)).toBeGreaterThan(0);
-      await report.report.save('screenshots/saascodex-mac-onboarding-smoke.png', await readFile(onboardingScreenshotPath));
+      await report.report.save('screenshots/splatstudio-mac-onboarding-smoke.png', await readFile(onboardingScreenshotPath));
       await report.report.json('onboarding-summary.json', {
         health,
         initial,
         namespace,
-        screenshot: 'screenshots/saascodex-mac-onboarding-smoke.png',
+        screenshot: 'screenshots/splatstudio-mac-onboarding-smoke.png',
         start: {
           appPath: start.appPath,
           executablePath: start.executablePath,
@@ -2644,7 +2644,7 @@ async function buildVersionBumpedMacPayloadFixture(
       throw new Error(`payload manifest has no entry.executable: ${payloadZipPath}`);
     }
     // <bundle>.app/Contents/MacOS/<binary> → <bundle>.app/Contents/Resources
-    const configPath = join(extractRoot, dirname(dirname(executableRelPath)), 'Resources', 'saascodex-config.json');
+    const configPath = join(extractRoot, dirname(dirname(executableRelPath)), 'Resources', 'splatstudio-config.json');
     const config = JSON.parse(await readFile(configPath, 'utf8')) as { appVersion?: string };
     config.appVersion = bumpedVersion;
     await writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`, 'utf8');
@@ -2957,7 +2957,7 @@ async function assertMacInviteProtocolRegistration(installedAppPath: string): Pr
 
 async function invokeMacInviteDeeplink(installedAppPath: string): Promise<void> {
   // `-a` pins delivery to this namespace's installed test bundle instead of a
-  // developer's stable SaaSCodex app that may own the same global scheme.
+  // developer's stable SplatStudio app that may own the same global scheme.
   await execFileAsync('/usr/bin/open', ['-a', installedAppPath, packagedInviteDeeplink]);
 }
 

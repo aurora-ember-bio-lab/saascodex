@@ -5,7 +5,7 @@ import type {
   ProjectDesignTokenSuggestionProp,
   ProjectDesignTokenSuggestionQuery,
   ProjectDesignTokenSuggestionsResponse,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { readDesignSystem } from './design-systems/index.js';
 
 type ProjectFileLike = {

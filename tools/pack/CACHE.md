@@ -102,10 +102,10 @@ Current materialization-time parameters:
   electron-builder `extraMetadata.version`, then rewritten on materialization
   by `rewriteUnpackedAppPackageVersion` and `rewriteWinExecutableVersion`, then
   verified by `assertMaterializedUnpackedVersionConsistency` — a fail-closed
-  check over the app `package.json` version, the `saascodex-config.json`
+  check over the app `package.json` version, the `splatstudio-config.json`
   `appVersion`, and the Windows executable fixed file version.
 - **Namespace / channel and runtime endpoints.**
-  `win.electron-builder-dir` omits them. `saascodex-config.json` — which
+  `win.electron-builder-dir` omits them. `splatstudio-config.json` — which
   carries `namespace`, `amrProfile`, `telemetryRelayUrl`, `updateMetadataUrl`,
   `posthogKey`/`posthogHost`, `webOutputMode`, and `namespaceBaseRoot` — is
   regenerated on the materialization path by `writePackagedConfig`.
@@ -115,7 +115,7 @@ The downstream `win.nsis-payload-overlay`, `win.nsis-installer`,
 full `packagedVersion` in their keys, because their content includes the
 already-stamped payload. `win.nsis-payload-base` instead carries only
 `versionCore`: its content excludes `Open Design.exe`,
-`resources/app/package.json`, and `resources/saascodex-config.json`, which
+`resources/app/package.json`, and `resources/splatstudio-config.json`, which
 are assigned to the version-bearing overlay.
 `win.launcher-payload-base` is the exception: its key carries `namespace`, but
 version identity reaches it only indirectly through the upstream `sourceKey`;

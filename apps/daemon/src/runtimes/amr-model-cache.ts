@@ -1,4 +1,4 @@
-import type { AmrModelsResponse } from '@saascodex/contracts';
+import type { AmrModelsResponse } from '@splatstudio/contracts';
 import type { RuntimeModelOption } from './types.js';
 
 type RemoteCacheEntry = {

@@ -37,9 +37,9 @@
  *   FAKE_ACP_INVOCATION_LOG              – append one JSON line per handshake
  *                                          request, tagged with the caller's
  *                                          `clientInfo.name`. `attachAcpSession`
- *                                          identifies as `saascodex` and
+ *                                          identifies as `splatstudio` and
  *                                          `detectAcpModels` as
- *                                          `saascodex-detect`, so a test can
+ *                                          `splatstudio-detect`, so a test can
  *                                          count real run sessions without
  *                                          counting model-detection probes.
  */

@@ -160,7 +160,7 @@ describe('/api/chat', () => {
     const invocationLog = join(tmpdir(), `od-amr-model-request-${randomUUID()}.jsonl`);
     try {
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.splatstudio.app/v1';
       process.env.FAKE_VELA_INVOCATION_LOG = invocationLog;
       process.env.FAKE_VELA_LOG_SET_MODEL = '1';
       process.env.FAKE_VELA_LOG_PROMPT = '1';
@@ -242,7 +242,7 @@ child.on('exit', (code, signal) => {
       'sample-plugin',
     );
     await fsp.cp(baseFixtureDir, fixtureDir, { recursive: true });
-    const manifestPath = resolve(fixtureDir, 'saascodex.json');
+    const manifestPath = resolve(fixtureDir, 'splatstudio.json');
     const manifest = JSON.parse(await fsp.readFile(manifestPath, 'utf8')) as {
       name: string;
       title: string;
@@ -696,7 +696,7 @@ const fs = require('node:fs');
 process.stdin.resume();
 process.stdin.on('end', () => {
   fs.writeFileSync(${JSON.stringify(envFile)}, process.env.OPENCODE_CONFIG_CONTENT || '');
-  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SAASCODEX_BYOK_API_KEY || '');
+  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SPLATSTUDIO_BYOK_API_KEY || '');
   fs.writeFileSync(${JSON.stringify(argsFile)}, JSON.stringify(process.argv.slice(2)));
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: 'byok-opencode-ok' } }));
@@ -734,7 +734,7 @@ process.stdin.on('end', () => {
           '--dir',
           expect.stringContaining(projectId),
           '-m',
-          'saascodex-byok/deepseek-v4-flash',
+          'splatstudio-byok/deepseek-v4-flash',
         ]);
         const parsed = JSON.parse(await fsp.readFile(envFile, 'utf8')) as {
           provider?: Record<string, {
@@ -743,12 +743,12 @@ process.stdin.on('end', () => {
             models?: Record<string, unknown>;
           }>;
         };
-        const provider = parsed.provider?.['saascodex-byok'];
+        const provider = parsed.provider?.['splatstudio-byok'];
         expect(provider).toMatchObject({
           npm: '@ai-sdk/openai-compatible',
           options: {
             baseURL: 'https://api.senseaudio.cn',
-            apiKey: '{env:SAASCODEX_BYOK_API_KEY}',
+            apiKey: '{env:SPLATSTUDIO_BYOK_API_KEY}',
           },
         });
         expect(provider?.models?.['deepseek-v4-flash']).toEqual({
@@ -790,7 +790,7 @@ const fs = require('node:fs');
 process.stdin.resume();
 process.stdin.on('end', () => {
   fs.writeFileSync(${JSON.stringify(envFile)}, process.env.OPENCODE_CONFIG_CONTENT || '');
-  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SAASCODEX_BYOK_API_KEY || '');
+  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SPLATSTUDIO_BYOK_API_KEY || '');
   fs.writeFileSync(${JSON.stringify(argsFile)}, JSON.stringify(process.argv.slice(2)));
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: 'byok-opencode-keyless-ok' } }));
@@ -829,7 +829,7 @@ process.stdin.on('end', () => {
           '--dir',
           expect.stringContaining(projectId),
           '-m',
-          'saascodex-byok/model',
+          'splatstudio-byok/model',
         ]);
         const rawConfig = await fsp.readFile(envFile, 'utf8');
         const parsed = JSON.parse(rawConfig) as {
@@ -839,7 +839,7 @@ process.stdin.on('end', () => {
             models?: Record<string, unknown>;
           }>;
         };
-        const provider = parsed.provider?.['saascodex-byok'];
+        const provider = parsed.provider?.['splatstudio-byok'];
         expect(provider).toMatchObject({
           npm: '@ai-sdk/openai-compatible',
           options: {
@@ -847,7 +847,7 @@ process.stdin.on('end', () => {
           },
         });
         expect(provider?.options).not.toHaveProperty('apiKey');
-        expect(rawConfig).not.toContain('SAASCODEX_BYOK_API_KEY');
+        expect(rawConfig).not.toContain('SPLATSTUDIO_BYOK_API_KEY');
       },
     );
   });
@@ -877,7 +877,7 @@ const fs = require('node:fs');
 process.stdin.resume();
 process.stdin.on('end', () => {
   fs.writeFileSync(${JSON.stringify(envFile)}, process.env.OPENCODE_CONFIG_CONTENT || '');
-  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SAASCODEX_BYOK_API_KEY || '');
+  fs.writeFileSync(${JSON.stringify(keyFile)}, process.env.SPLATSTUDIO_BYOK_API_KEY || '');
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: 'opencode-ok' } }));
   console.log(JSON.stringify({ type: 'step_finish', part: { tokens: { input: 1, output: 1 } } }));
@@ -906,7 +906,7 @@ process.stdin.on('end', () => {
         expect(body).toContain('opencode-ok');
         expect(await fsp.readFile(keyFile, 'utf8')).toBe('');
         const rawConfig = await fsp.readFile(envFile, 'utf8');
-        expect(rawConfig).not.toContain('saascodex-byok');
+        expect(rawConfig).not.toContain('splatstudio-byok');
         expect(rawConfig).not.toContain('sk-test-byok');
       },
     );
@@ -1167,7 +1167,7 @@ process.exit(1);
     try {
       // Unique key so the shared model cache key is unique per test run.
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.splatstudio.app/v1';
       const workspaceFixture =
         await createPersonalWorkspaceBoundProjectFixture('Transient AMR catalog fixture');
 
@@ -1186,7 +1186,7 @@ if (args[0] === 'model' && args[1] === 'list') {
   state.attempts += 1;
   writeFileSync(stateFile, JSON.stringify(state), 'utf8');
   if (state.attempts < 3) {
-    process.stderr.write('Get "https://amr-link.saascodex.com/v1/models": context deadline exceeded\\n');
+    process.stderr.write('Get "https://amr-link.splatstudio.app/v1/models": context deadline exceeded\\n');
     process.exit(1);
   }
 }
@@ -1257,7 +1257,7 @@ child.on('exit', (code, signal) => {
       // shared model cache key unique so this case never reuses another test's
       // cached remote catalog.
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.splatstudio.app/v1';
       const workspaceFixture =
         await createPersonalWorkspaceBoundProjectFixture('Cached AMR catalog fixture');
 
@@ -1272,7 +1272,7 @@ const args = process.argv.slice(2);
 // \`login\`, and \`agent run\` still delegate to the fixture, mirroring the real
 // CLI where the offline preset and the ACP run do not need the gateway.
 if (args[0] === 'model' && args[1] === 'list') {
-  process.stderr.write('Get "https://amr-link.saascodex.com/v1/models": context deadline exceeded\\n');
+  process.stderr.write('Get "https://amr-link.splatstudio.app/v1/models": context deadline exceeded\\n');
   process.exit(1);
 }
 const child = spawn(process.execPath, [fixture, ...args], {
@@ -1330,7 +1330,7 @@ child.on('exit', (code, signal) => {
     const model = 'claude-observability-5';
     try {
       process.env.VELA_RUNTIME_KEY = `fake-runtime-key-${randomUUID()}`;
-      process.env.VELA_LINK_URL = 'https://amr-link.saascodex.com/v1';
+      process.env.VELA_LINK_URL = 'https://amr-link.splatstudio.app/v1';
       process.env.FAKE_VELA_MODEL_PRESET_JSON = JSON.stringify({
         source: 'preset',
         data: [{
@@ -1567,10 +1567,10 @@ process.stdin.resume();
 process.stdin.on('end', () => {
   const pluginDir = path.join(process.cwd(), 'generated-plugin');
   fs.mkdirSync(pluginDir, { recursive: true });
-  fs.writeFileSync(path.join(pluginDir, 'saascodex.json'), JSON.stringify({ name: 'generated-plugin' }, null, 2));
+  fs.writeFileSync(path.join(pluginDir, 'splatstudio.json'), JSON.stringify({ name: 'generated-plugin' }, null, 2));
   fs.writeFileSync(path.join(pluginDir, 'SKILL.md'), '# Generated plugin\\n');
   console.log(JSON.stringify({ type: 'step_start' }));
-  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 SaaSCodex 插件脚手架。先读取文档规范，再生成插件文件。' } }));
+  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 SplatStudio 插件脚手架。先读取文档规范，再生成插件文件。' } }));
   console.log(JSON.stringify({ type: 'step_finish', part: { tokens: { input: 1, output: 1 } } }));
   process.exit(0);
 });
@@ -1584,7 +1584,7 @@ process.stdin.on('end', () => {
             projectId,
             conversationId,
             pluginId: 'od-plugin-authoring',
-            message: '请创建一个可刷新、可审计、由 API 驱动的 SaaSCodex 插件脚手架。',
+            message: '请创建一个可刷新、可审计、由 API 驱动的 SplatStudio 插件脚手架。',
           }),
         });
         expect(createResponse.status).toBe(202);
@@ -1600,7 +1600,7 @@ process.stdin.on('end', () => {
         const filesResponse = await fetch(`${baseUrl}/api/projects/${projectId}/files`);
         expect(filesResponse.status).toBe(200);
         const filesBody = await filesResponse.json() as { files: Array<{ name: string }> };
-        expect(filesBody.files.some((file) => file.name === 'generated-plugin/saascodex.json')).toBe(true);
+        expect(filesBody.files.some((file) => file.name === 'generated-plugin/splatstudio.json')).toBe(true);
         expect(filesBody.files.some((file) => file.name === 'generated-plugin/SKILL.md')).toBe(true);
       },
     );
@@ -1634,7 +1634,7 @@ process.stdin.on('end', () => {
 process.stdin.resume();
 process.stdin.on('end', () => {
   console.log(JSON.stringify({ type: 'step_start' }));
-  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 SaaSCodex 插件脚手架。先读取文档规范，再生成插件文件。' } }));
+  console.log(JSON.stringify({ type: 'text', part: { text: '我来帮你创建一个通用的 SplatStudio 插件脚手架。先读取文档规范，再生成插件文件。' } }));
   console.log(JSON.stringify({ type: 'step_finish', part: { tokens: { input: 1, output: 1 } } }));
   process.exit(0);
 });
@@ -1648,7 +1648,7 @@ process.stdin.on('end', () => {
             projectId,
             conversationId,
             pluginId: 'od-plugin-authoring',
-            message: '请创建一个可刷新、可审计、由 API 驱动的 SaaSCodex 插件脚手架。',
+            message: '请创建一个可刷新、可审计、由 API 驱动的 SplatStudio 插件脚手架。',
           }),
         });
         expect(createResponse.status).toBe(202);
@@ -2162,7 +2162,7 @@ process.stdin.on('data', (chunk) => {
 });
 process.stdin.on('end', () => {
   const checks = [
-    prompt.includes('## Composed skill — saascodex-landing-deck') ? 'has-deck-skill-header' : 'missing-deck-skill-header',
+    prompt.includes('## Composed skill — splatstudio-landing-deck') ? 'has-deck-skill-header' : 'missing-deck-skill-header',
     prompt.includes('# Slide deck — fixed framework (this is non-negotiable for deck mode)') ? 'has-deck-framework' : 'missing-deck-framework',
   ];
   console.log(JSON.stringify({ type: 'step_start' }));
@@ -2178,7 +2178,7 @@ process.stdin.on('end', () => {
           body: JSON.stringify({
             agentId: 'opencode',
             message: 'build an editorial brand deck',
-            skillIds: ['saascodex-landing-deck'],
+            skillIds: ['splatstudio-landing-deck'],
           }),
         });
         const body = await response.text();
@@ -2204,7 +2204,7 @@ process.stdin.on('data', (chunk) => {
 process.stdin.on('end', () => {
   const checks = [
     prompt.includes('# imagegen') ? 'has-base-image-skill-body' : 'missing-base-image-skill-body',
-    prompt.includes('## Composed skill — saascodex-landing-deck') ? 'has-composed-deck-skill-header' : 'missing-composed-deck-skill-header',
+    prompt.includes('## Composed skill — splatstudio-landing-deck') ? 'has-composed-deck-skill-header' : 'missing-composed-deck-skill-header',
     prompt.includes('## Media generation contract (load-bearing — overrides softer wording above)') ? 'has-image-contract' : 'missing-image-contract',
     prompt.includes('# Slide deck — fixed framework (this is non-negotiable for deck mode)') ? 'unexpected-deck-framework' : 'kept-deck-framework-out',
   ];
@@ -2222,7 +2222,7 @@ process.stdin.on('end', () => {
             agentId: 'opencode',
             message: 'generate an image while also referencing a deck template',
             skillId: 'imagegen',
-            skillIds: ['saascodex-landing-deck'],
+            skillIds: ['splatstudio-landing-deck'],
           }),
         });
         const body = await response.text();
@@ -2578,10 +2578,10 @@ process.stdin.on('data', (chunk) => {
   prompt += chunk;
 });
 process.stdin.on('end', () => {
-  const hasDuplicateComposedAlias = prompt.includes('## Composed skill — saascodex-landing');
+  const hasDuplicateComposedAlias = prompt.includes('## Composed skill — splatstudio-landing');
   const checks = [
     hasDuplicateComposedAlias ? 'duplicate-alias-composed-skill' : 'deduped-alias-composed-skill',
-    prompt.includes('# saascodex-landing') ? 'has-base-alias-skill-body' : 'missing-base-alias-skill-body',
+    prompt.includes('# splatstudio-landing') ? 'has-base-alias-skill-body' : 'missing-base-alias-skill-body',
   ];
   console.log(JSON.stringify({ type: 'step_start' }));
   console.log(JSON.stringify({ type: 'text', part: { text: checks.join('\\n') } }));
@@ -2595,9 +2595,9 @@ process.stdin.on('end', () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             agentId: 'opencode',
-            message: 'build the SaaSCodex landing page',
+            message: 'build the SplatStudio landing page',
             skillId: 'editorial-collage',
-            skillIds: ['saascodex-landing'],
+            skillIds: ['splatstudio-landing'],
           }),
         });
         const body = await response.text();

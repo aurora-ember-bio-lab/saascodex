@@ -63,15 +63,15 @@ export const no: Dict = {
 
   // ── Chat: plan / balance gates ───────────────────────────────────
   'chat.amrError.authMessage':
-    'SaaSCodex Cloud-kontoen din er ikke autorisert ennå. Autoriser den, og denne kjøringen prøves automatisk på nytt.',
+    'SplatStudio Cloud-kontoen din er ikke autorisert ennå. Autoriser den, og denne kjøringen prøves automatisk på nytt.',
   'chat.amrError.balanceMessage':
-    'SaaSCodex Cloud-saldoen er brukt opp. Fyll på for å fortsette denne kjøringen.',
+    'SplatStudio Cloud-saldoen er brukt opp. Fyll på for å fortsette denne kjøringen.',
   'chat.amrError.authorizeCta': 'Autoriser og prøv igjen',
   'chat.amrError.rechargeCta': 'Fyll på',
   'chat.amrBalanceGate.title': 'Oppgrader planen og fortsett å skape',
   'chat.amrBalanceGate.message':
     'Ikke nok kreditter ({balance} igjen). Oppgrader eller fyll på, så starter oppgaven med en gang.',
-  'chat.amrBalanceGate.benefitsTitle': 'Dette gir SaaSCodex Cloud',
+  'chat.amrBalanceGate.benefitsTitle': 'Dette gir SplatStudio Cloud',
   'chat.amrBalanceGate.benefit1': 'Ingen API-nøkler – stort utvalg av modeller',
   'chat.amrBalanceGate.benefit2': 'Innebygd SOTA-agent for design, uten oppsett',
   'chat.amrBalanceGate.benefit3': 'Offisiell tjeneste – pålitelig',
@@ -80,7 +80,7 @@ export const no: Dict = {
   'chat.amrBalanceGate.plansCta': 'Oppgrader planen',
   'chat.amrBalanceGate.signedOutTitle': 'Logg inn for å komme i gang',
   'chat.amrBalanceGate.signedOutMessage':
-    'Du bruker SaaSCodex Cloud-agenten – logg inn, så starter denne oppgaven med en gang.',
+    'Du bruker SplatStudio Cloud-agenten – logg inn, så starter denne oppgaven med en gang.',
   'chat.amrBalanceGate.signInCta': 'Logg inn',
   'chat.amrBalanceGate.watchingWallet': 'Vi fortsetter automatisk så snart saldoen er oppdatert.',
 
@@ -105,7 +105,7 @@ export const no: Dict = {
   'chat.runError.title.upstreamUnavailable': 'Modelltjenesten er utilgjengelig',
   'chat.runError.title.cliSessionRefused': 'Inkompatibel agentversjon',
   'chat.runError.cliSessionRefusedMessage':
-    'SaaSCodex støtter ikke denne agentversjonen ennå. Bytt til en støttet versjon og prøv igjen.',
+    'SplatStudio støtter ikke denne agentversjonen ennå. Bytt til en støttet versjon og prøv igjen.',
   'chat.runError.cliMissingMessage':
     'Sjekk at {agent} er installert på denne maskinen, og prøv igjen.',
   'chat.runError.promptTooLargeMessage':
@@ -211,11 +211,11 @@ export const no: Dict = {
   'campaign.deepseekV4Flash.benefit': 'Ubegrenset DeepSeek V4 Pro og V4 Flash',
   'campaign.deepseekV4Flash.timing': '13.–27. august: gratis i kampanjeperioden',
   'campaign.deepseekV4Flash.ruleSummary':
-    'Fra 13. til 27. august kan betalende brukere bruke DeepSeek V4 Pro og V4 Flash gratis i SaaSCodex. Omfattende misbruk kan stanse kampanjetilgangen.',
+    'Fra 13. til 27. august kan betalende brukere bruke DeepSeek V4 Pro og V4 Flash gratis i SplatStudio. Omfattende misbruk kan stanse kampanjetilgangen.',
   'campaign.deepseekV4Flash.windowLabel': '13.–27. august',
   'campaign.deepseekV4Flash.weekFreeSuffix': 'to uker gratis',
   'campaign.deepseekV4Flash.boundary':
-    'Ubegrenset modellkvote og gratis genereringer i planen gjelder bare i SaaSCodex – ikke via MCP, CLI, API eller andre flater. Endelig vurdering ligger hos SaaSCodex. Enkelte modeller kan måtte stå i kø i rushtiden.',
+    'Ubegrenset modellkvote og gratis genereringer i planen gjelder bare i SplatStudio – ikke via MCP, CLI, API eller andre flater. Endelig vurdering ligger hos SplatStudio. Enkelte modeller kan måtte stå i kø i rushtiden.',
   'campaign.deepseekV4Flash.countdownLabel': 'Nedtelling til kampanjeslutt',
   'campaign.deepseekV4Flash.countdownEnded': 'Kampanjen er over',
   'campaign.deepseekV4Flash.countdownRemaining': '{days}d {hms}',

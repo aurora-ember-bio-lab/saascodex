@@ -8,12 +8,12 @@ import {
   type AppliedPluginSnapshot,
   type PluginManifest,
   type PluginPipeline,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   parseManifest,
   resolveAppliedPipeline,
   type ScenarioRegistryEntry,
-} from '@saascodex/plugin-runtime';
+} from '@splatstudio/plugin-runtime';
 import { composeSystemPrompt } from '../../src/prompts/system.js';
 import { loadAtomBodies } from '../../src/plugins/atom-bodies.js';
 import { registerBundledPlugins } from '../../src/plugins/bundled.js';
@@ -129,10 +129,10 @@ async function composeDefaultPrompt(
 
 beforeAll(async () => {
   officialManifest = loadManifest(
-    'plugins/_official/scenarios/od-new-generation/saascodex.json',
+    'plugins/_official/scenarios/od-new-generation/splatstudio.json',
   );
   communityManifest = loadManifest(
-    'plugins/community/humanize-ppt/saascodex.json',
+    'plugins/community/humanize-ppt/splatstudio.json',
   );
   db = new Database(':memory:');
   db.exec(`

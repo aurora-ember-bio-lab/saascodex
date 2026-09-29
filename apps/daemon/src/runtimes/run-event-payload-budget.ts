@@ -5,7 +5,7 @@
  * `message_event_batches.events_json`) — and every `raw` line it streams to the
  * browser — fits {@link RUN_EVENT_JSON_BUDGET_BYTES}. An event that would not
  * fit has its payload shortened here, deterministically, with an explicit
- * inline marker (`[saascodex: …]`) naming how many bytes were cut, and a
+ * inline marker (`[splatstudio: …]`) naming how many bytes were cut, and a
  * `truncated: { originalBytes }` field on the event itself.
  *
  * Why a budget exists at all (incident 2026-09-14): cursor-agent's
@@ -44,7 +44,7 @@
  */
 import { createHash } from 'node:crypto';
 
-import type { AgentEventPayloadTruncation } from '@saascodex/contracts';
+import type { AgentEventPayloadTruncation } from '@splatstudio/contracts';
 
 /** Maximum UTF-8 size of one stored run event's JSON. */
 export const RUN_EVENT_JSON_BUDGET_BYTES = 64 * 1024;
@@ -128,11 +128,11 @@ function payloadDigest(value: string): string {
 }
 
 function truncationMarker(originalBytes: number, omittedBytes: number, digest: string): string {
-  return `\n…[saascodex: truncated ${omittedBytes} of ${originalBytes} bytes, sha256 ${digest}]…\n`;
+  return `\n…[splatstudio: truncated ${omittedBytes} of ${originalBytes} bytes, sha256 ${digest}]…\n`;
 }
 
 function omittedFieldMarker(value: string): string {
-  return `[saascodex: omitted ${utf8Bytes(value)} bytes of full content, sha256 ${payloadDigest(value)}]`;
+  return `[splatstudio: omitted ${utf8Bytes(value)} bytes of full content, sha256 ${payloadDigest(value)}]`;
 }
 
 function isUtf8Continuation(byte: number | undefined): boolean {

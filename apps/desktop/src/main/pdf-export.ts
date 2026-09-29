@@ -1,8 +1,8 @@
 import { writeFile } from "node:fs/promises";
 
 import { BrowserWindow, dialog } from "electron";
-import type { DesktopExportPdfInput, DesktopExportPdfResult } from "@saascodex/sidecar-proto";
-import { findRealElementRange, findRealTagEnd, findRealTagOffset, HTML_TAG_PATTERNS } from '@saascodex/contracts/runtime/html-injection-points';
+import type { DesktopExportPdfInput, DesktopExportPdfResult } from "@splatstudio/sidecar-proto";
+import { findRealElementRange, findRealTagEnd, findRealTagOffset, HTML_TAG_PATTERNS } from '@splatstudio/contracts/runtime/html-injection-points';
 
 export type PageSize = { height: number; width: number };
 

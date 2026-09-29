@@ -4,7 +4,7 @@ import type {
   TeamProject,
   WorkspaceCollabContext,
   WorkspaceInvalidationSsePayload,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { createProactiveContentPull } from '../src/collab/proactive-content-pull.js';
 import { createWorkspaceInvalidationPoller } from '../src/collab/workspace-invalidation-poller.js';
 

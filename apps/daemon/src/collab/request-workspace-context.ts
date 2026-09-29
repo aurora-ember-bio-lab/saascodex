@@ -1,4 +1,4 @@
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import { workspaceResourceContextFromRequest } from './workspace-resource-mutation.js';
 import {
   workspaceContextFromDirectoryItem,

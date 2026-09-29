@@ -163,8 +163,8 @@ Output a single file with all CSS inline. Mirror the structure of
 
 The runtime script (keyboard / wheel / touch nav, dot indicator,
 progress bar, ESC overview) should match the model documented in
-[`saascodex-landing-deck/scripts/compose.ts`](../saascodex-landing-deck/scripts/compose.ts).
-Do **not** reuse the saascodex-landing-deck CSS; the visual
+[`splatstudio-landing-deck/scripts/compose.ts`](../splatstudio-landing-deck/scripts/compose.ts).
+Do **not** reuse the splatstudio-landing-deck CSS; the visual
 language is different.
 
 ### 4. Self-check
@@ -193,7 +193,7 @@ language is different.
   and use solid hex from the table in
   `design-systems/kami/DESIGN.md` §2.
 - **Do not** add a router. This is a single-file artifact.
-- **Do not** reuse Atelier Zero collage imagery (the saascodex-landing
+- **Do not** reuse Atelier Zero collage imagery (the splatstudio-landing
   visual system). Kami is gradient-free, image-light, and hierarchy
   is carried by type.
 
@@ -201,7 +201,7 @@ language is different.
 
 - [`kami-landing`](../kami-landing/) — long-form one-pager sister skill.
 - [`design-systems/kami/DESIGN.md`](../../design-systems/kami/DESIGN.md) — token spec.
-- [`saascodex-landing-deck`](../saascodex-landing-deck/) — same
+- [`splatstudio-landing-deck`](../splatstudio-landing-deck/) — same
   horizontal swipe nav model, different visual language (Atelier Zero).
 - Upstream: [`tw93/kami`](https://github.com/tw93/kami) — original
   Claude skill (MIT). Kami's slides.py template documents the macro

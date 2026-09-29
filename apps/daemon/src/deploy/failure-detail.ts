@@ -2,7 +2,7 @@ import {
   normalizeUpstreamCode,
   normalizeUpstreamStatus,
   type ApiFailureDetail,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 const NETWORK_ERROR_CODES = new Set([
   'ECONNREFUSED', 'ECONNRESET', 'ENOTFOUND', 'EAI_AGAIN', 'ETIMEDOUT',

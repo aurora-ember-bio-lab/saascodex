@@ -12,7 +12,7 @@ import type {
   Conversation,
   ProjectFile,
 } from '../../types';
-import type { ChatSessionMode, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { ChatSessionMode, WorkspaceCollabContext } from '@splatstudio/contracts';
 import type { ChatSendMeta } from '../ChatComposer';
 import { useConversationChat } from './useConversationChat';
 import styles from './SideChatTab.module.css';

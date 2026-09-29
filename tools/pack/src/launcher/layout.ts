@@ -8,9 +8,9 @@ import {
   type LauncherPaths,
   type LauncherRuntimeDescriptor,
   type LauncherVersionPaths,
-} from "@saascodex/launcher-proto";
-import { SIDECAR_DEFAULTS } from "@saascodex/sidecar-proto";
-import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@saascodex/release";
+} from "@splatstudio/launcher-proto";
+import { SIDECAR_DEFAULTS } from "@splatstudio/sidecar-proto";
+import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@splatstudio/release";
 
 import type { ToolPackConfig, ToolPackPlatform } from "../config/index.js";
 

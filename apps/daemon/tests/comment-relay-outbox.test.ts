@@ -8,7 +8,7 @@ import {
   type CollabMemberRole,
   type PreviewComment,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   closeDatabase,
   insertConversation,

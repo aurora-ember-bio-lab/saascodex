@@ -2,7 +2,7 @@
 
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { Routine } from '@saascodex/contracts';
+import type { Routine } from '@splatstudio/contracts';
 
 import { sortRoutinesNewestFirst, TasksView } from '../../src/components/TasksView';
 

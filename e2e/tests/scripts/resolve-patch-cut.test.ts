@@ -178,8 +178,8 @@ describe("cut-patch-release pre-flight", () => {
     const result = await preflight({
       branches: ["0.5.1", "0.6.1", "0.20.3", "0.22.0", "0.22.1", "0.22.2"],
       releases: {
-        "saascodex-v0.22.0": { isDraft: false, isPrerelease: false },
-        "saascodex-v0.22.1": { isDraft: false, isPrerelease: false },
+        "splatstudio-v0.22.0": { isDraft: false, isPrerelease: false },
+        "splatstudio-v0.22.1": { isDraft: false, isPrerelease: false },
       },
     });
 
@@ -199,8 +199,8 @@ describe("cut-patch-release pre-flight", () => {
     const result = await preflight({
       branches: ["0.20.3", "0.22.0", "0.22.1"],
       releases: {
-        "saascodex-v0.22.0": { isDraft: false, isPrerelease: false },
-        "saascodex-v0.22.1": { isDraft: false, isPrerelease: false },
+        "splatstudio-v0.22.0": { isDraft: false, isPrerelease: false },
+        "splatstudio-v0.22.1": { isDraft: false, isPrerelease: false },
       },
     });
 
@@ -214,11 +214,11 @@ describe("cut-patch-release pre-flight", () => {
 
   it("[P1] gates the first patch of a line on that line's minor, not the older line", async () => {
     // What the old MINOR_BASE comment was protecting: cutting 0.15.1 must check
-    // saascodex-v0.15.0, never the 0.14.x line it just left. Still true, now
+    // splatstudio-v0.15.0, never the 0.14.x line it just left. Still true, now
     // because 0.15.0 is the previous release branch.
     const result = await preflight({
       branches: ["0.14.0", "0.14.1", "0.15.0"],
-      releases: { "saascodex-v0.14.1": { isDraft: false, isPrerelease: false } },
+      releases: { "splatstudio-v0.14.1": { isDraft: false, isPrerelease: false } },
     });
 
     expect(result.version).toBe("0.15.1");
@@ -233,7 +233,7 @@ describe("cut-patch-release pre-flight", () => {
     // never lands on them and they cannot wedge the guard shut.
     const result = await preflight({
       branches: ["0.5.1", "0.6.1", "0.20.3", "0.22.0"],
-      releases: { "saascodex-v0.22.0": { isDraft: false, isPrerelease: false } },
+      releases: { "splatstudio-v0.22.0": { isDraft: false, isPrerelease: false } },
     });
 
     expect(result.version).toBe("0.22.1");
@@ -244,13 +244,13 @@ describe("cut-patch-release pre-flight", () => {
   it("[P2] treats a draft or prerelease GitHub Release as not shipped", async () => {
     const draft = await preflight({
       branches: ["0.22.0", "0.22.1"],
-      releases: { "saascodex-v0.22.1": { isDraft: true, isPrerelease: false } },
+      releases: { "splatstudio-v0.22.1": { isDraft: true, isPrerelease: false } },
     });
     expect(draft.cut).toBe(false);
 
     const prerelease = await preflight({
       branches: ["0.22.0", "0.22.1"],
-      releases: { "saascodex-v0.22.1": { isDraft: false, isPrerelease: true } },
+      releases: { "splatstudio-v0.22.1": { isDraft: false, isPrerelease: true } },
     });
     expect(prerelease.cut).toBe(false);
 
@@ -265,7 +265,7 @@ describe("cut-patch-release pre-flight", () => {
     const result = await preflight({
       branches: ["0.22.0", "0.22.1", "0.22.2"],
       inputVersion: "0.22.9",
-      releases: { "saascodex-v0.22.0": { isDraft: false, isPrerelease: false } },
+      releases: { "splatstudio-v0.22.0": { isDraft: false, isPrerelease: false } },
     });
 
     expect(result.version).toBe("0.22.9");
@@ -283,7 +283,7 @@ describe("cut-patch-release pre-flight", () => {
   ])("[P1] fails the gate on a lookup error: %s", async (failure) => {
     const gh = await ghOnPath({}, failure);
     const result = await run("gate", {
-      env: { GATE_TAG: "saascodex-v0.22.2", FORCE: "false" },
+      env: { GATE_TAG: "splatstudio-v0.22.2", FORCE: "false" },
       pathPrefix: gh.bin,
     });
 
@@ -310,7 +310,7 @@ describe("cut-patch-release pre-flight", () => {
     const result = await preflight({
       branches: ["0.22.0", "0.22.1"],
       inputVersion: "0.20.9",
-      releases: { "saascodex-v0.22.0": { isDraft: false, isPrerelease: false } },
+      releases: { "splatstudio-v0.22.0": { isDraft: false, isPrerelease: false } },
     });
 
     expect(result.version).toBe("0.20.9");
@@ -374,14 +374,14 @@ describe("cut-patch-release workflow wiring", () => {
 // like a passing, permanently-closed gate.
 describe("test harness", () => {
   it("[P2] resolves the stub gh off PATH", async () => {
-    const gh = await ghOnPath({ "saascodex-v1.0.0": { isDraft: false, isPrerelease: false } });
+    const gh = await ghOnPath({ "splatstudio-v1.0.0": { isDraft: false, isPrerelease: false } });
     const result = await run("gate", {
-      env: { GATE_TAG: "saascodex-v1.0.0", FORCE: "false" },
+      env: { GATE_TAG: "splatstudio-v1.0.0", FORCE: "false" },
       pathPrefix: gh.bin,
     });
 
     expect(result.status, result.stderr).toBe(0);
     expect(result.outputs.published).toBe("true");
-    expect((await readFile(gh.log, "utf8")).trim()).toContain("release view saascodex-v1.0.0");
+    expect((await readFile(gh.log, "utf8")).trim()).toContain("release view splatstudio-v1.0.0");
   });
 });

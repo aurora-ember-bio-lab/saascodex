@@ -8,7 +8,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ProjectView } from '../../src/components/ProjectView';
 import type { ProjectWorkspaceScopeState } from '../../src/collab/useProjectWorkspaceScope';
-import type { ChatRunStatusResponse, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { ChatRunStatusResponse, WorkspaceCollabContext } from '@splatstudio/contracts';
 import type {
   AgentInfo,
   AppConfig,
@@ -249,7 +249,7 @@ const cloudConfig: AppConfig = {
 
 const agents = [
   { id: 'agent-1', name: 'OpenCode', bin: 'opencode', available: true, models: [] },
-  { id: 'amr', name: 'SaaSCodex Cloud', available: true, models: [] },
+  { id: 'amr', name: 'SplatStudio Cloud', available: true, models: [] },
 ] as unknown as AgentInfo[];
 
 function renderProjectView(config: AppConfig = cloudConfig) {

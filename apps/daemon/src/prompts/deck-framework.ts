@@ -7,4 +7,4 @@ export {
   DECK_SKELETON_HTML,
   renderDeckFrameworkDirective,
   renderLegacyDeckCompatibilityDirective,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { PanelEvent } from '@saascodex/contracts/critique';
+import type { PanelEvent } from '@splatstudio/contracts/critique';
 import { parseCritiqueStream } from '../src/critique/parser.js';
 import {
   MalformedBlockError,

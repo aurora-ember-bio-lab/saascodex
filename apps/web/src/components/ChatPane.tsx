@@ -53,7 +53,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import historyStyles from './chat/ConversationHistoryDock.module.css';
-import { hasOdCard, OD_NEXT_STRATEGY_ID, type ProjectMediaTask } from '@saascodex/contracts';
+import { hasOdCard, OD_NEXT_STRATEGY_ID, type ProjectMediaTask } from '@splatstudio/contracts';
 import { useAnalytics } from '../analytics/provider';
 import { getResolvedDeviceId } from '../analytics/client';
 import {
@@ -110,11 +110,11 @@ import type {
   ChatSessionMode,
   RunContextSelection,
   WorkspaceContextItem,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   TrackingProjectKind,
   TrackingRunRecoveryActionType,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { isDesignSystemWorkspacePrompt } from '../design-system-auto-prompt';
 import {
   isTodoWriteToolName,
@@ -720,11 +720,11 @@ interface Props {
   ) => Promise<{ message?: string; url?: string } | void> | { message?: string; url?: string } | void;
   activePluginActionPaths?: Set<string>;
   hiddenPluginActionPaths?: Set<string>;
-  // "Share to SaaSCodex" button on each completed assistant message —
+  // "Share to SplatStudio" button on each completed assistant message —
   // wired by ProjectView to handleSend with the bundled
   // `od-share-to-community` scenario's trigger prompt.
-  onShareToSaaSCodex?: (assistantMessageId: string) => void;
-  shareToSaaSCodexBusyMessageId?: string | null;
+  onShareToSplatStudio?: (assistantMessageId: string) => void;
+  shareToSplatStudioBusyMessageId?: string | null;
   forceStreamingMessageIds?: Set<string>;
   initialDraft?: string;
   // Product path of the Home recommendation that started this project. When
@@ -983,7 +983,7 @@ interface Props {
   config?: AppConfig;
 }
 
-const AMR_PROFILE_ENV_KEY = 'SAASCODEX_AMR_PROFILE';
+const AMR_PROFILE_ENV_KEY = 'SPLATSTUDIO_AMR_PROFILE';
 
 type Tab = 'chat' | 'comments';
 
@@ -1350,8 +1350,8 @@ export function ChatPane({
   onRequestPluginFolderAgentAction,
   activePluginActionPaths,
   hiddenPluginActionPaths,
-  onShareToSaaSCodex,
-  shareToSaaSCodexBusyMessageId,
+  onShareToSplatStudio,
+  shareToSplatStudioBusyMessageId,
   forceStreamingMessageIds,
   initialDraft,
   onboardingStarterPath = null,
@@ -1732,7 +1732,7 @@ export function ChatPane({
     onBrandBrowserAssistConfirm,
     onArtifactShare,
     onForkFromMessage,
-    onShareToSaaSCodex,
+    onShareToSplatStudio,
     onNextStepAiOptimize: onContinueBrandEnrichment,
     onNextStepContinueExtraction: onContinueBrandExtraction,
     onNextStepContinueAiExtraction: onContinueBrandAgentExtraction,
@@ -1746,7 +1746,7 @@ export function ChatPane({
     onBrandBrowserAssistConfirm,
     onArtifactShare,
     onForkFromMessage,
-    onShareToSaaSCodex,
+    onShareToSplatStudio,
     onNextStepAiOptimize: onContinueBrandEnrichment,
     onNextStepContinueExtraction: onContinueBrandExtraction,
     onNextStepContinueAiExtraction: onContinueBrandAgentExtraction,
@@ -4444,8 +4444,8 @@ export function ChatPane({
                   onRequestPluginFolderAgentAction={onRequestPluginFolderAgentAction}
                   activePluginActionPaths={activePluginActionPaths}
                   hiddenPluginActionPaths={hiddenPluginActionPaths}
-                  onShareToSaaSCodex={onShareToSaaSCodex}
-                  shareToSaaSCodexBusyMessageId={shareToSaaSCodexBusyMessageId}
+                  onShareToSplatStudio={onShareToSplatStudio}
+                  shareToSplatStudioBusyMessageId={shareToSplatStudioBusyMessageId}
                   forceStreamingMessageIds={forceStreamingMessageIds}
                   lastAssistantId={lastAssistantId}
                   lastTurnAssistantId={lastTurnAssistantId}
@@ -4792,7 +4792,7 @@ interface AssistantCallbacks {
   onBrandBrowserAssistConfirm: BrandBrowserAssistConfirm | undefined;
   onArtifactShare: ((fileName: string, anchorId?: string) => void) | undefined;
   onForkFromMessage: ((message: ChatMessage) => void) | undefined;
-  onShareToSaaSCodex: ((assistantMessageId: string) => void) | undefined;
+  onShareToSplatStudio: ((assistantMessageId: string) => void) | undefined;
   onNextStepAiOptimize: (() => void) | undefined;
   onNextStepContinueExtraction: (() => void) | undefined;
   onNextStepContinueAiExtraction: (() => void) | undefined;
@@ -5204,8 +5204,8 @@ function ChatRows({
   onRequestPluginFolderAgentAction,
   activePluginActionPaths,
   hiddenPluginActionPaths,
-  onShareToSaaSCodex,
-  shareToSaaSCodexBusyMessageId,
+  onShareToSplatStudio,
+  shareToSplatStudioBusyMessageId,
   forceStreamingMessageIds,
   lastAssistantId,
   lastTurnAssistantId,
@@ -5287,8 +5287,8 @@ function ChatRows({
   onRequestPluginFolderAgentAction?: (relativePath: string, action: PluginFolderAgentAction) => void;
   activePluginActionPaths?: Set<string>;
   hiddenPluginActionPaths?: Set<string>;
-  onShareToSaaSCodex?: (assistantMessageId: string) => void;
-  shareToSaaSCodexBusyMessageId?: string | null;
+  onShareToSplatStudio?: (assistantMessageId: string) => void;
+  shareToSplatStudioBusyMessageId?: string | null;
   forceStreamingMessageIds?: Set<string>;
   lastAssistantId: string | undefined;
   lastTurnAssistantId: string | undefined;
@@ -5420,12 +5420,12 @@ function ChatRows({
         onRequestPluginFolderAgentAction={onRequestPluginFolderAgentAction}
         activePluginActionPaths={activePluginActionPaths}
         hiddenPluginActionPaths={hiddenPluginActionPaths}
-        onShareToSaaSCodex={
-          onShareToSaaSCodex
-            ? () => assistantCallbacksRef.current.onShareToSaaSCodex?.(m.id)
+        onShareToSplatStudio={
+          onShareToSplatStudio
+            ? () => assistantCallbacksRef.current.onShareToSplatStudio?.(m.id)
             : undefined
         }
-        shareToSaaSCodexBusy={shareToSaaSCodexBusyMessageId === m.id}
+        shareToSplatStudioBusy={shareToSplatStudioBusyMessageId === m.id}
         showRole={assistantRoleByMessageId.get(m.id) ?? true}
         isLast={m.id === lastAssistantId}
         isLastTurn={m.id === lastTurnAssistantId}
@@ -6194,7 +6194,7 @@ function queuedTipPlacement(
   );
 }
 
-  const QUEUED_SEND_DRAG_MIME = 'application/x-saascodex-queued-send';
+  const QUEUED_SEND_DRAG_MIME = 'application/x-splatstudio-queued-send';
 
 interface QueuedSendDragState {
   draggingId: string;
@@ -6528,7 +6528,7 @@ export function buildRunErrorDiagnosticText(input: RunErrorDiagnosticInput): str
   }
 
   lines.push(
-    'SaaSCodex run error diagnostics',
+    'SplatStudio run error diagnostics',
     `trace_id: ${input.traceId ?? 'n/a'}`,
     `run_id: ${input.traceId ?? 'n/a'}`,
     `error_code: ${input.errorCode ?? 'n/a'}`,

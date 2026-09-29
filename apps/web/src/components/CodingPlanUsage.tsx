@@ -1,8 +1,8 @@
 import type {
   WorkspaceBillingResponse,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
-import { VisuallyHidden } from '@saascodex/components';
+} from '@splatstudio/contracts';
+import { VisuallyHidden } from '@splatstudio/components';
 import { isTeamPlanTier } from '../collab/team-plan';
 import { useI18n } from '../i18n';
 import { codingPlanQuotaView } from './coding-plan-usage-model';

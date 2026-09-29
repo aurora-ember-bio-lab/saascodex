@@ -14,8 +14,8 @@ const {
 }));
 
 vi.mock('node:child_process', () => ({ execFile: execFileMock }));
-vi.mock('@saascodex/platform', async (importOriginal) => ({
-  ...await importOriginal<typeof import('@saascodex/platform')>(),
+vi.mock('@splatstudio/platform', async (importOriginal) => ({
+  ...await importOriginal<typeof import('@splatstudio/platform')>(),
   listProcessSnapshots: listProcessSnapshotsMock,
   stopProcesses: stopProcessesMock,
 }));
@@ -94,7 +94,7 @@ describe('runVelaCommand', () => {
       env: {
         ...process.env,
         VELA_BIN: process.execPath,
-        SAASCODEX_AMR_PROFILE: 'feature-test',
+        SPLATSTUDIO_AMR_PROFILE: 'feature-test',
         OD_DATA_DIR: '',
       },
     });

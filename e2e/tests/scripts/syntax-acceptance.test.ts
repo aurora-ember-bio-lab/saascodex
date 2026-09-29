@@ -30,7 +30,7 @@ const scratch = async () => {
 afterEach(async () => {
   await Promise.all(scratchRoots.splice(0).map(root => rm(root, { recursive: true, force: true })));
 });
-const metrics = { strategyRoute: 'od-next', agent: 'saascodex:amr', model: 'deepseek-v4-flash', deliverableSyntax: {
+const metrics = { strategyRoute: 'od-next', agent: 'splatstudio:amr', model: 'deepseek-v4-flash', deliverableSyntax: {
   status: 'pass', terminalRunStatus: 'succeeded', recoveredDeliveryCount: 0,
   finalization: { action: 'allow', summaryVersion: 1, repairEngine: 'host-safe-fixer@2', initialStatus: 'pass', stagedPatchCount: 0, committedPatchCount: 0, committedRepairRules: [] },
 } };
@@ -58,14 +58,14 @@ describe('syntax acceptance evidence contract', () => {
   });
 
   it('[P1] confines upload to one repeat of built-in synthetic fixtures and the test relay', () => {
-    const input = { enabled: true, mode: 'replay', externalInputs: false, profile: 'test', isolatedRoot: '/tmp/synthetic', token: 'abc12345', relayUrl: 'https://telemetry-test.saascodex.com/api/langfuse' };
+    const input = { enabled: true, mode: 'replay', externalInputs: false, profile: 'test', isolatedRoot: '/tmp/synthetic', token: 'abc12345', relayUrl: 'https://telemetry-test.splatstudio.app/api/langfuse' };
     const plan = resolveSyntaxTelemetryCanary(input)!;
     expect(plan.prefs).toEqual({ metrics: true, content: true, artifactManifest: false });
     expect(plan.env).toMatchObject({ AMR_HOME: '/tmp/synthetic/amr', OD_INSTALLATION_DIR: '', OD_LEGACY_DATA_DIR: '', VELA_CONTROL_KEY: '', VELA_RUNTIME_KEY: '', POSTHOG_KEY: '', LANGFUSE_PUBLIC_KEY: '', LANGFUSE_SECRET_KEY: '', OD_TELEMETRY_ENV: 'synthetic-test-abc12345' });
-    expect(plan.env).not.toHaveProperty('SAASCODEX_VELA_TELEMETRY');
+    expect(plan.env).not.toHaveProperty('SPLATSTUDIO_VELA_TELEMETRY');
     expect(plan.fixtures.map(fixture => fixture.id)).toEqual(['synthetic-clean', 'synthetic-repaired', 'synthetic-warning']);
     expect(plan.fixtures.every(fixture => fixture.source.length < 256 && fixture.expected !== undefined)).toBe(true);
-    for (const invalid of [{ mode: 'real' }, { externalInputs: true }, { repeat: '2' }, { profile: 'prod' }, { relayUrl: 'https://telemetry.saascodex.com/api/langfuse' }, { relayUrl: undefined }]) {
+    for (const invalid of [{ mode: 'real' }, { externalInputs: true }, { repeat: '2' }, { profile: 'prod' }, { relayUrl: 'https://telemetry.splatstudio.app/api/langfuse' }, { relayUrl: undefined }]) {
       expect(() => resolveSyntaxTelemetryCanary({ ...input, ...invalid })).toThrow();
     }
   });

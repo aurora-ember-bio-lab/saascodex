@@ -1,4 +1,4 @@
-import { mediaFailureNextStep } from '@saascodex/contracts';
+import { mediaFailureNextStep } from '@splatstudio/contracts';
 
 import type { MediaTaskError } from './tasks.js';
 

@@ -13,7 +13,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   deriveConfigureGlobals,
   type DeriveConfigureGlobalsInput,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   getConfigureGlobals,
   setConfigureGlobals,

@@ -11,8 +11,8 @@ import { homeTemplateTrigger } from '../helpers/home-template-picker';
 
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
-import { automaticStrategyTaskProfileForRouteId } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
+import { automaticStrategyTaskProfileForRouteId } from '@splatstudio/contracts';
 
 vi.mock('../../src/components/home-hero/PlaceholderCarousel', () => ({
   PlaceholderCarousel: () => null,

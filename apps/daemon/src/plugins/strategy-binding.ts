@@ -2,8 +2,8 @@ import type {
   ProjectMetadata,
   ProjectScenarioTaskProfile,
   ProjectStrategyBinding,
-} from '@saascodex/contracts';
-import { automaticStrategyTaskProfileForProjectMetadata } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { automaticStrategyTaskProfileForProjectMetadata } from '@splatstudio/contracts';
 
 const TASK_PROFILES = new Set<ProjectScenarioTaskProfile>([
   'prototype',

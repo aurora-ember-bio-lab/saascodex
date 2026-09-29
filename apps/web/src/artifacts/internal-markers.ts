@@ -16,8 +16,8 @@
  */
 const INTERNAL_MARKER_TAGS = [
   'od-title',
-  'saascodex-plan-contract',
-  'saascodex-runtime-state',
+  'splatstudio-plan-contract',
+  'splatstudio-runtime-state',
 ] as const;
 
 const COMPLETE_BLOCK_RE = new RegExp(

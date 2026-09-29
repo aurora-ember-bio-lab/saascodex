@@ -9,7 +9,7 @@ const distEntry = resolve(entryDir, "../dist/cli.js");
 
 if (!existsSync(distEntry)) {
   throw new Error(
-    `SaaSCodex daemon dist entry not found at ${distEntry}. Run "pnpm bootstrap" after install (or "pnpm --filter @saascodex/daemon build").`,
+    `SplatStudio daemon dist entry not found at ${distEntry}. Run "pnpm bootstrap" after install (or "pnpm --filter @splatstudio/daemon build").`,
   );
 }
 

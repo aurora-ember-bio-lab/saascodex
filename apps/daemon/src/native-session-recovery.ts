@@ -7,7 +7,7 @@ import type {
   NativeSessionRecoveryHandle,
   NativeSessionRecoveryMetadata,
   NativeSessionRecoveryReason,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { ResumeInvalidationReason } from './agent-session-resume.js';
 import {
   runtimeResumesSessionById,

@@ -2,7 +2,7 @@ import {
   TOKEN_SCHEMA,
   type TokenLayer,
   type TokenSpec,
-} from '@saascodex/contracts/design-systems/token-schema';
+} from '@splatstudio/contracts/design-systems/token-schema';
 
 export type DesignTokenEvidenceConfidence = 'high' | 'medium' | 'low' | 'fallback' | 'alias';
 

@@ -1,7 +1,7 @@
 import { mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, relative } from "node:path";
 
-import type { DesktopUpdateErrorSnapshot } from "@saascodex/sidecar-proto";
+import type { DesktopUpdateErrorSnapshot } from "@splatstudio/sidecar-proto";
 
 /**
  * @module updater/support

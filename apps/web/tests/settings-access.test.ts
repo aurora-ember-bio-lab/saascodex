@@ -5,7 +5,7 @@ import {
   type CollabMemberRole,
   type WorkspaceCollabContext,
   type WorkspaceLifecycleState,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   canShowWorkspaceSettings,
   isWorkspaceSettingsEntryWriteAction,

@@ -20,15 +20,15 @@ describe('stripInternalControlMarkers', () => {
   it('removes OD Next machine protocol blocks', () => {
     const text = [
       'Here is the plan.',
-      '<saascodex-plan-contract>{"schema":"saascodex.plan-contract/v2"}</saascodex-plan-contract>',
-      '<saascodex-runtime-state>{"schema":"saascodex.strategy-state/v2"}</saascodex-runtime-state>',
+      '<splatstudio-plan-contract>{"schema":"splatstudio.plan-contract/v2"}</splatstudio-plan-contract>',
+      '<splatstudio-runtime-state>{"schema":"splatstudio.strategy-state/v2"}</splatstudio-runtime-state>',
       'Done.',
     ].join('\n');
 
     const out = stripInternalControlMarkers(text);
 
-    expect(out).not.toContain('saascodex-plan-contract');
-    expect(out).not.toContain('saascodex-runtime-state');
+    expect(out).not.toContain('splatstudio-plan-contract');
+    expect(out).not.toContain('splatstudio-runtime-state');
     expect(out).not.toContain('plan-contract/v2');
     expect(out).toContain('Here is the plan.');
     expect(out).toContain('Done.');

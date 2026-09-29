@@ -2276,7 +2276,7 @@ describe('proactive content pull (hub project-content-changed consumer)', () => 
         { projectId: 'proj-1', ownerMemberId: 'wm-owner' },
       ],
       // Authorized mirrors intentionally contain shared files, not the local
-      // `.saascodex/project.json`. Presence must use the guarded target's
+      // `.splatstudio/project.json`. Presence must use the guarded target's
       // exact receipt plus the promoted live directory instead.
       hasMaterializedProject: (
         _projectId,

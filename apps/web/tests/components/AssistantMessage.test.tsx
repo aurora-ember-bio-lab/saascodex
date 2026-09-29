@@ -138,8 +138,8 @@ describe('internal control markers', () => {
   it('never renders OD Next machine protocol blocks as prose', () => {
     const content = [
       'Plan is frozen.',
-      '<saascodex-plan-contract>{"schema":"saascodex.plan-contract/v2"}</saascodex-plan-contract>',
-      '<saascodex-runtime-state>{"schema":"saascodex.strategy-state/v2"}</saascodex-runtime-state>',
+      '<splatstudio-plan-contract>{"schema":"splatstudio.plan-contract/v2"}</splatstudio-plan-contract>',
+      '<splatstudio-runtime-state>{"schema":"splatstudio.strategy-state/v2"}</splatstudio-runtime-state>',
     ].join('\n\n');
 
     render(
@@ -153,8 +153,8 @@ describe('internal control markers', () => {
       />,
     );
 
-    expect(document.body.textContent).not.toContain('saascodex-plan-contract');
-    expect(document.body.textContent).not.toContain('saascodex-runtime-state');
+    expect(document.body.textContent).not.toContain('splatstudio-plan-contract');
+    expect(document.body.textContent).not.toContain('splatstudio-runtime-state');
     expect(document.body.textContent).toContain('Plan is frozen.');
   });
 });
@@ -252,7 +252,7 @@ describe('AssistantMessage feedback gate', () => {
     expect(container.querySelector('[data-user-action-card="plugin-suggestion"]')).toBeNull();
     expect(screen.queryByText('Design review helper')).toBeNull();
     expect(screen.queryByText('Turn this repository workflow into a reusable helper.')).toBeNull();
-    expect(screen.queryByRole('button', { name: 'Contribute to saascodex' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Contribute to splatstudio' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'View details' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Create plugin/template' })).toBeNull();
     expect(container.textContent).not.toContain('candidate-1');
@@ -405,7 +405,7 @@ describe('AssistantMessage feedback gate', () => {
   });
 
   /*
-   * 「贡献到 SaaSCodex 社区」原来的用例住在这里,走的是下一步引导的
+   * 「贡献到 SplatStudio 社区」原来的用例住在这里,走的是下一步引导的
    * 更多 → 分享 → 贡献 三级路径。产品裁决(2026-08-26)把 `default` 那一档
    * 整档换成 agent 现写的三条行为引导,那条路径连同它的三级菜单一起没了,
    * 这个入口因此**没有落点了**。
@@ -620,7 +620,7 @@ describe('AssistantMessage status badge updates (Bug A)', () => {
               // 不是某一个 label。
               label: 'context_compaction',
               detail:
-                'AMR Cloud reported insufficient balance. Top up at https://saascodex.com/amr/dashboard, then retry.',
+                'AMR Cloud reported insufficient balance. Top up at https://splatstudio.app/amr/dashboard, then retry.',
             } as ChatMessage['events'][number],
           ],
         })}
@@ -630,8 +630,8 @@ describe('AssistantMessage status badge updates (Bug A)', () => {
       />,
     );
 
-    const link = screen.getByRole('link', { name: 'https://saascodex.com/amr/dashboard' });
-    expect(link.getAttribute('href')).toBe('https://saascodex.com/amr/dashboard');
+    const link = screen.getByRole('link', { name: 'https://splatstudio.app/amr/dashboard' });
+    expect(link.getAttribute('href')).toBe('https://splatstudio.app/amr/dashboard');
     expect(link.classList.contains('md-link')).toBe(true);
   });
 
@@ -1370,7 +1370,7 @@ describe('AssistantMessage question forms', () => {
     expect(screen.getByText('Editorial narrative')).toBeTruthy();
     expect(screen.getByRole('img', { name: 'Visual tone: Editorial narrative' })).toHaveAttribute(
       'src',
-      'https://repo-assets.saascodex.com/style-catalog/v1/deck-editorial-narrative-v1.webp',
+      'https://repo-assets.splatstudio.app/style-catalog/v1/deck-editorial-narrative-v1.webp',
     );
   });
 
@@ -1412,7 +1412,7 @@ describe('AssistantMessage question forms', () => {
       screen.getByRole('img', { name: 'Visual direction: Expressive consumer' }),
     ).toHaveAttribute(
       'src',
-      'https://repo-assets.saascodex.com/style-catalog/v1/prototype-expressive-consumer-v1.webp',
+      'https://repo-assets.splatstudio.app/style-catalog/v1/prototype-expressive-consumer-v1.webp',
     );
     expect(screen.queryByText('prototype-expressive-consumer')).toBeNull();
   });
@@ -1508,37 +1508,37 @@ describe('AssistantMessage question forms', () => {
     {
       projectKind: 'web_clone' as const,
       title: 'Quiet SaaS',
-      src: 'https://repo-assets.saascodex.com/style-catalog/v1/prototype-quiet-saas-v1.webp',
+      src: 'https://repo-assets.splatstudio.app/style-catalog/v1/prototype-quiet-saas-v1.webp',
     },
     {
       projectKind: 'wireframe' as const,
       title: 'Quiet SaaS',
-      src: 'https://repo-assets.saascodex.com/style-catalog/v1/prototype-quiet-saas-v1.webp',
+      src: 'https://repo-assets.splatstudio.app/style-catalog/v1/prototype-quiet-saas-v1.webp',
     },
     {
       projectKind: 'live_artifact' as const,
       title: 'Quiet SaaS',
-      src: 'https://repo-assets.saascodex.com/style-catalog/v1/prototype-quiet-saas-v1.webp',
+      src: 'https://repo-assets.splatstudio.app/style-catalog/v1/prototype-quiet-saas-v1.webp',
     },
     {
       projectKind: 'document' as const,
       title: 'Docs reference',
-      src: 'https://repo-assets.saascodex.com/style-catalog/v1/document-docs-reference-v1.webp',
+      src: 'https://repo-assets.splatstudio.app/style-catalog/v1/document-docs-reference-v1.webp',
     },
     {
       projectKind: 'image' as const,
       title: 'Editorial photo',
-      src: 'https://repo-assets.saascodex.com/style-catalog/v1/image-photo-editorial-v1.webp',
+      src: 'https://repo-assets.splatstudio.app/style-catalog/v1/image-photo-editorial-v1.webp',
     },
     {
       projectKind: 'video' as const,
       title: 'Swiss Pulse',
-      src: 'https://repo-assets.saascodex.com/style-catalog/v1/video-swiss-pulse-v1.webp',
+      src: 'https://repo-assets.splatstudio.app/style-catalog/v1/video-swiss-pulse-v1.webp',
     },
     {
       projectKind: 'hyperframes' as const,
       title: 'Swiss Pulse',
-      src: 'https://repo-assets.saascodex.com/style-catalog/v1/video-swiss-pulse-v1.webp',
+      src: 'https://repo-assets.splatstudio.app/style-catalog/v1/video-swiss-pulse-v1.webp',
     },
   ])('keeps selected $projectKind style previews in the answered summary', ({
     projectKind,
@@ -1611,7 +1611,7 @@ describe('AssistantMessage question forms', () => {
     expect(screen.getByRole('img', { name: 'Visual tone: Editorial narrative' })).toBeTruthy();
     expect(screen.getByRole('img', { name: 'Visual tone: Premium pitch' })).toHaveAttribute(
       'src',
-      'https://repo-assets.saascodex.com/style-catalog/v1/deck-premium-pitch-v1.webp',
+      'https://repo-assets.splatstudio.app/style-catalog/v1/deck-premium-pitch-v1.webp',
     );
   });
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { coalescedGet, evictCoalescedGet } from '../lib/coalesced-get';
-import { Button, VisuallyHidden } from '@saascodex/components';
+import { Button, VisuallyHidden } from '@splatstudio/components';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackDesignSystemsTemplateCardClick,
@@ -10,11 +10,11 @@ import {
   trackPageView,
   trackWorkspaceResourceActionResult,
 } from '../analytics/events';
-import type { DesignSystemEditClickProps } from '@saascodex/contracts/analytics';
+import type { DesignSystemEditClickProps } from '@splatstudio/contracts/analytics';
 import type {
   TrackingDesignSystemStatusAction,
   TrackingDesignSystemStatusValue,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { useI18n } from '../i18n';
 import { useWorkspaceContext } from '../collab/useWorkspaceContext';
 import {
@@ -33,7 +33,7 @@ import { useWorkspaceSnapshotActivation } from '../collab/workspace-snapshot-act
 import {
   workspaceContextHasTeamIdentity,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { Locale } from '../i18n/types';
 import {
   localizeDesignSystemCategory,
@@ -57,7 +57,7 @@ import { Toast } from './Toast';
 import type { DesignSystemDetail, DesignSystemSummary, ProjectTemplate, Surface } from '../types';
 import styles from './DesignSystemsTab.module.css';
 import { workspaceAnalyticsDimensions } from '../analytics/workspace';
-import type { TrackingWorkspaceScope } from '@saascodex/contracts/analytics';
+import type { TrackingWorkspaceScope } from '@splatstudio/contracts/analytics';
 
 interface Props {
   /** EntryShell parks this mounted tab while another nav surface is visible. */

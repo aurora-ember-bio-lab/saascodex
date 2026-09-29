@@ -119,8 +119,8 @@ describe('CLI startup boundaries', () => {
       OD_DATA_DIR: dataDir,
       POSTHOG_KEY: '',
       POSTHOG_HOST: '',
-      SAASCODEX_VELA_TELEMETRY: 'off',
-      SAASCODEX_TELEMETRY_RELAY_URL: '',
+      SPLATSTUDIO_VELA_TELEMETRY: 'off',
+      SPLATSTUDIO_TELEMETRY_RELAY_URL: '',
       LANGFUSE_PUBLIC_KEY: '',
       LANGFUSE_SECRET_KEY: '',
     };

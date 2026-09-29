@@ -1,9 +1,9 @@
-import { isTodoWriteToolName } from '@saascodex/contracts';
+import { isTodoWriteToolName } from '@splatstudio/contracts';
 import {
   eventsEndedByAskingUser,
   todoStatusIsUnfinished,
   turnEndedByAskingUser,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { AgentEvent } from '../types';
 
 export type TodoStatus = 'pending' | 'in_progress' | 'completed' | 'stopped';

@@ -12,7 +12,7 @@ import type {
   CollabCloudComment,
   CollabCloudMemberDirectoryEntry,
   CollabMemberRole,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 const DEFAULT_FETCH_TIMEOUT_MS = 8_000;
 

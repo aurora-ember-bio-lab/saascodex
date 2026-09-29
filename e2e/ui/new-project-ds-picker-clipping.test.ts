@@ -13,7 +13,7 @@ import { routeAgents } from '../lib/playwright/mock-factory.js';
 // project/composer picker (DesignSystemPicker.tsx) avoids this by portalling to
 // document.body with viewport-aware up/down placement; the local one does not.
 
-const STORAGE_KEY = 'saascodex:config';
+const STORAGE_KEY = 'splatstudio:config';
 
 const AGENTS = [
   {

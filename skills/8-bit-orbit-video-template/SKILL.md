@@ -51,7 +51,7 @@ Ship a premium template-mode Hyperframes composition with a ready default showca
 ```
 
 The rendered MP4 showcase used by `example.html` is hosted at
-`https://repo-assets.saascodex.com/resources/videos/skills/8-bit-orbit-video-template/default-showcase.mp4`.
+`https://repo-assets.splatstudio.app/resources/videos/skills/8-bit-orbit-video-template/default-showcase.mp4`.
 
 ## Workflow
 

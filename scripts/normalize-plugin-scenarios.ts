@@ -89,7 +89,7 @@ async function listManifests(): Promise<string[]> {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) {
         await walk(full);
-      } else if (entry.isFile() && entry.name === 'saascodex.json') {
+      } else if (entry.isFile() && entry.name === 'splatstudio.json') {
         out.push(full);
       }
     }

@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
 
-import { LAUNCHER_SCHEMA_VERSION } from "@saascodex/launcher-proto";
+import { LAUNCHER_SCHEMA_VERSION } from "@splatstudio/launcher-proto";
 import { describe, expect, it } from "vitest";
 
 import type { ToolPackConfig } from "@/config/index.js";
@@ -91,10 +91,10 @@ function createWinPaths(root: string, namespace: string): WinPaths {
     installTimingPath: join(namespaceRoot, "logs", "install.timing.json"),
     nsisLogPath: join(namespaceRoot, "logs", "nsis.log"),
     nsisIncludePath: join(namespaceRoot, "nsis", "installer.nsh"),
-    packagedConfigPath: join(namespaceRoot, "saascodex-config.json"),
+    packagedConfigPath: join(namespaceRoot, "splatstudio-config.json"),
     packagedMainPrebundleMetaPath: join(namespaceRoot, "prebundle-meta", "packaged-main.meta.json"),
     packagedMainPrebundlePath: join(namespaceRoot, "assembled", "app", "prebundled", "packaged-main.mjs"),
-    resourceRoot: join(namespaceRoot, "resources", "saascodex"),
+    resourceRoot: join(namespaceRoot, "resources", "splatstudio"),
     setupPath: join(namespaceRoot, "builder", "Open Design-release-beta-win-setup.exe"),
     setupZipPath: join(namespaceRoot, "builder", "Open Design-release-beta-win-portable.zip"),
     startMenuShortcutPath: join(namespaceRoot, "start-menu.lnk"),
@@ -121,21 +121,21 @@ async function writeFakeWinUnpackedApp(root: string, namespace: string, version:
   await mkdir(join(paths.unpackedRoot, "resources"), { recursive: true });
   await writeFile(join(paths.unpackedRoot, "Open Design.exe"), "fake executable\n", "utf8");
   await writeFile(
-    join(paths.unpackedRoot, "resources", "saascodex-config.json"),
+    join(paths.unpackedRoot, "resources", "splatstudio-config.json"),
     `${JSON.stringify({
       appVersion: version,
-      daemonSidecarEntryRelative: "saascodex/prebundled/daemon/daemon-sidecar.mjs",
+      daemonSidecarEntryRelative: "splatstudio/prebundled/daemon/daemon-sidecar.mjs",
       namespace,
-      nodeCommandRelative: "saascodex/bin/node",
+      nodeCommandRelative: "splatstudio/bin/node",
       webOutputMode: "standalone",
-      webSidecarEntryRelative: "saascodex/prebundled/web/web-sidecar.mjs",
+      webSidecarEntryRelative: "splatstudio/prebundled/web/web-sidecar.mjs",
     }, null, 2)}\n`,
     "utf8",
   );
   await mkdir(join(paths.unpackedRoot, "resources", "app"), { recursive: true });
   await writeFile(
     join(paths.unpackedRoot, "resources", "app", "package.json"),
-    `${JSON.stringify({ name: "saascodex-packaged-app", version })}\n`,
+    `${JSON.stringify({ name: "splatstudio-packaged-app", version })}\n`,
     "utf8",
   );
   await mkdir(join(paths.packagedConfigPath, ".."), { recursive: true });
@@ -143,11 +143,11 @@ async function writeFakeWinUnpackedApp(root: string, namespace: string, version:
     paths.packagedConfigPath,
     `${JSON.stringify({
       appVersion: version,
-      daemonSidecarEntryRelative: "saascodex/prebundled/daemon/daemon-sidecar.mjs",
+      daemonSidecarEntryRelative: "splatstudio/prebundled/daemon/daemon-sidecar.mjs",
       namespace,
-      nodeCommandRelative: "saascodex/bin/node",
+      nodeCommandRelative: "splatstudio/bin/node",
       webOutputMode: "standalone",
-      webSidecarEntryRelative: "saascodex/prebundled/web/web-sidecar.mjs",
+      webSidecarEntryRelative: "splatstudio/prebundled/web/web-sidecar.mjs",
     }, null, 2)}\n`,
     "utf8",
   );
@@ -210,7 +210,7 @@ describe("tools-pack Windows launcher payload archives", () => {
       expect(manifest.entry.executable).toBe("payload/Open Design.exe");
       expect(manifest.version).toBe(version);
       await expectPathExists(join(extractRoot, "payload", "Open Design.exe"));
-      await expectPathExists(join(extractRoot, "payload", "resources", "saascodex-config.json"));
+      await expectPathExists(join(extractRoot, "payload", "resources", "splatstudio-config.json"));
     } finally {
       await rm(root, { force: true, recursive: true });
     }
@@ -262,11 +262,11 @@ describe("tools-pack Windows launcher payload archives", () => {
           paths.packagedConfigPath,
           `${JSON.stringify({
             appVersion: version,
-            daemonSidecarEntryRelative: "saascodex/prebundled/daemon/daemon-sidecar.mjs",
+            daemonSidecarEntryRelative: "splatstudio/prebundled/daemon/daemon-sidecar.mjs",
             namespace,
-            nodeCommandRelative: "saascodex/bin/node",
+            nodeCommandRelative: "splatstudio/bin/node",
             webOutputMode: "standalone",
-            webSidecarEntryRelative: "saascodex/prebundled/web/web-sidecar.mjs",
+            webSidecarEntryRelative: "splatstudio/prebundled/web/web-sidecar.mjs",
           }, null, 2)}\n`,
           "utf8",
         );
@@ -287,7 +287,7 @@ describe("tools-pack Windows launcher payload archives", () => {
 
       const manifest = JSON.parse(await readFile(join(extractRoot, "manifest.json"), "utf8")) as { version: string };
       const config = JSON.parse(
-        await readFile(join(extractRoot, "payload", "resources", "saascodex-config.json"), "utf8"),
+        await readFile(join(extractRoot, "payload", "resources", "splatstudio-config.json"), "utf8"),
       ) as { appVersion: string };
       const packageJson = JSON.parse(
         await readFile(join(extractRoot, "payload", "resources", "app", "package.json"), "utf8"),
@@ -328,7 +328,7 @@ describe("tools-pack Windows launcher payload archives", () => {
 
       const manifest = JSON.parse(await readFile(join(extractRoot, "manifest.json"), "utf8")) as { version: string };
       const configJson = JSON.parse(
-        await readFile(join(extractRoot, "payload", "resources", "saascodex-config.json"), "utf8"),
+        await readFile(join(extractRoot, "payload", "resources", "splatstudio-config.json"), "utf8"),
       ) as { appVersion: string };
       expect(manifest.version).toBe(version);
       expect(configJson.appVersion).toBe(version);

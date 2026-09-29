@@ -17,11 +17,11 @@
 // `/api/memory/events`.
 
 import { randomUUID } from 'node:crypto';
-import { splitOnOdCards } from '@saascodex/contracts';
+import { splitOnOdCards } from '@splatstudio/contracts';
 import type {
   MemoryVerifyResult,
   MemoryVerifyRecord,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { memoryEvents } from './memory.js';
 
 export interface ActiveRuleForVerify {

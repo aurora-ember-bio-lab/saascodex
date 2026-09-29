@@ -10,8 +10,8 @@
 // existing imports (`BrandLogo`, `hostnameOf`) keep working.
 
 import { useCallback, useEffect, useState } from 'react';
-import { Button } from '@saascodex/components';
-import type { BrandSummary } from '@saascodex/contracts';
+import { Button } from '@splatstudio/components';
+import type { BrandSummary } from '@splatstudio/contracts';
 import { useT } from '../i18n';
 import { navigate } from '../router';
 import { useAnalytics } from '../analytics/provider';

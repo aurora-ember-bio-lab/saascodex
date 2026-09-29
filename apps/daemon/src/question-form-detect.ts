@@ -20,5 +20,5 @@ export {
   findQuestionFormCloseTag,
   questionFormBodyIsRenderable,
   scanQuestionForms,
-} from '@saascodex/contracts';
-export type { QuestionFormScan } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+export type { QuestionFormScan } from '@splatstudio/contracts';

@@ -3,8 +3,8 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('@saascodex/host', () => ({
-  isSaaSCodexHostAvailable: () => true,
+vi.mock('@splatstudio/host', () => ({
+  isSplatStudioHostAvailable: () => true,
   pickAndImportHostProject: vi.fn(),
 }));
 
@@ -37,7 +37,7 @@ vi.mock('../../src/collab/useWorkspaceContext', () => ({
   }),
 }));
 
-import { pickAndImportHostProject } from '@saascodex/host';
+import { pickAndImportHostProject } from '@splatstudio/host';
 import { NewProjectModal } from '../../src/components/NewProjectModal';
 import { I18nProvider } from '../../src/i18n';
 import type {

@@ -1,13 +1,13 @@
 # Community
 
-SaaSCodex is built by **Aurora Ember Cyber Bio Lab**.
+SplatStudio is built by **Aurora Ember Cyber Bio Lab**.
 
 | Channel | Where |
 |---|---|
 | Subreddit | [r/AuroraEmberBioLab](https://www.reddit.com/r/AuroraEmberBioLab/) |
 | Discord | [ember00339](https://discord.com/users/1296921014558789664) |
 | GitHub org | [github.com/aurora-ember-bio-lab](https://github.com/aurora-ember-bio-lab) |
-| Website | [saascodex.com](https://saascodex.com) |
+| Website | [splatstudio.app](https://splatstudio.app) |
 
 ## Where to talk about what
 

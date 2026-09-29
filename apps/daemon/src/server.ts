@@ -9,7 +9,7 @@ import type {
   DesktopRenderFramesResult,
   DesktopRenderSlidesInput,
   DesktopRenderSlidesResult,
-} from '@saascodex/sidecar-proto';
+} from '@splatstudio/sidecar-proto';
 import express from 'express';
 import multer from 'multer';
 import JSZip from 'jszip';
@@ -31,29 +31,29 @@ import {
   PLUGIN_SHARE_ACTION_PLUGIN_IDS,
   renderChatTurnHostProtocolInstructions,
   resolveOdNextDeckFrameworkMode,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   advanceAuthenticatedDoneCapture,
   isTodoWriteToolName,
   stopReasonIsTruncation,
   todoItemsFromTodoWriteInput,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   renderUnfinishedTodoRecall,
   recalledTodosFromTodoWriteInput,
   type RecalledTodo,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   CollabCloudMemberDirectoryEntry,
   TeamProject,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   detectOdNextDevicePlatformFromText,
   resolveOdNextDevicePlatform,
   selectOdNextDeviceFrameContextV2,
   selectOdNextLayoutPrimitivesCss,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   loadOdNextTaskResourcesForSnapshot,
   materializeOdNextDeviceFrames,
@@ -77,7 +77,7 @@ import {
 } from './prompts/stable-sections.js';
 import { emittedRenderableQuestionForm } from './question-form-detect.js';
 import { resolveProjectRoot } from './project-root.js';
-import { SAASCODEX_PLUGIN_ID } from './mcp-observability.js';
+import { SPLATSTUDIO_PLUGIN_ID } from './mcp-observability.js';
 import {
   resolveDaemonCliPath,
   resolveDaemonPluginPreviewsDir,
@@ -238,8 +238,8 @@ export {
 } from './runtimes/run-lifecycle-analytics.js';
 
 export { resolveProjectRoot };
-import { createCommandInvocation } from '@saascodex/platform';
-import { SIDECAR_ENV } from '@saascodex/sidecar-proto';
+import { createCommandInvocation } from '@splatstudio/platform';
+import { SIDECAR_ENV } from '@splatstudio/sidecar-proto';
 import {
   buildLiveArtifactsMcpServersForAgent,
   checkPromptArgvBudget,
@@ -648,7 +648,7 @@ import { newInsertId, readAnalyticsContext, type AnalyticsContext, type Analytic
 import {
   agentIdToTracking,
   modelIdForTracking,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   mergeNoProxyWithLoopbackDefaults,
   redactSecrets,
@@ -746,7 +746,7 @@ import {
   chatScrollForensicsBodyParser,
   chatScrollForensicsHandler,
 } from './diagnostics-client-evidence.js';
-import { DIAGNOSTICS_EXPORT_PATH } from '@saascodex/diagnostics';
+import { DIAGNOSTICS_EXPORT_PATH } from '@splatstudio/diagnostics';
 import {
   createProjectArchiveStream,
   createBatchArchiveStream,
@@ -945,7 +945,7 @@ import { registerBrowserSessionRoutes } from './routes/browser-sessions.js';
 import { createTerminalService } from './terminals.js';
 import { createBrowserSessionService } from './browser-sessions.js';
 import { registerSocialShareRoutes } from './routes/social-share.js';
-import { registerSaaSCodexPublicMetadataRoutes } from './routes/saascodex-public-metadata.js';
+import { registerSplatStudioPublicMetadataRoutes } from './routes/splatstudio-public-metadata.js';
 import { registerWhatsNewRoutes } from './routes/whats-new.js';
 import { registerMemoryRoutes } from './routes/memory.js';
 import {
@@ -1209,7 +1209,7 @@ import {
   isApiAuthDisabled,
   isApiTokenMiddlewareEnabled,
 } from './api-token-auth.js';
-import { createSaaSCodexPublicMetadataService } from './services/saascodex-public-metadata.js';
+import { createSplatStudioPublicMetadataService } from './services/splatstudio-public-metadata.js';
 import { createWhatsNewService } from './services/whats-new.js';
 import { execCommandViaLoginShell } from './services/login-shell.js';
 import {
@@ -1251,14 +1251,14 @@ function projectCreatePreparationTimeoutMsFromEnv(): number | null {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 }
 
-/** @typedef {import('@saascodex/contracts').ApiErrorCode} ApiErrorCode */
-/** @typedef {import('@saascodex/contracts').ApiError} ApiError */
-/** @typedef {import('@saascodex/contracts').ApiErrorResponse} ApiErrorResponse */
-/** @typedef {import('@saascodex/contracts').ChatRequest} ChatRequest */
-/** @typedef {import('@saascodex/contracts').ChatSseEvent} ChatSseEvent */
-/** @typedef {import('@saascodex/contracts').ProxyStreamRequest} ProxyStreamRequest */
-/** @typedef {import('@saascodex/contracts').ProxySseEvent} ProxySseEvent */
-/** @typedef {import('@saascodex/contracts').ProjectConversationCreatedSsePayload} ProjectConversationCreatedSsePayload */
+/** @typedef {import('@splatstudio/contracts').ApiErrorCode} ApiErrorCode */
+/** @typedef {import('@splatstudio/contracts').ApiError} ApiError */
+/** @typedef {import('@splatstudio/contracts').ApiErrorResponse} ApiErrorResponse */
+/** @typedef {import('@splatstudio/contracts').ChatRequest} ChatRequest */
+/** @typedef {import('@splatstudio/contracts').ChatSseEvent} ChatSseEvent */
+/** @typedef {import('@splatstudio/contracts').ProxyStreamRequest} ProxyStreamRequest */
+/** @typedef {import('@splatstudio/contracts').ProxySseEvent} ProxySseEvent */
+/** @typedef {import('@splatstudio/contracts').ProjectConversationCreatedSsePayload} ProjectConversationCreatedSsePayload */
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1285,7 +1285,7 @@ const PLUGIN_PREVIEWS_DIR = resolveDaemonPluginPreviewsDir({
   projectRoot: PROJECT_ROOT,
 });
 const OD_BIN = resolveDaemonCliPath();
-export function resolveSaaSCodexNodeBin({
+export function resolveSplatStudioNodeBin({
   env = process.env,
   execPath = process.execPath,
   platform = process.platform,
@@ -1310,7 +1310,7 @@ export function resolveSaaSCodexNodeBin({
   return execPath;
 }
 
-const OD_NODE_BIN = resolveSaaSCodexNodeBin();
+const OD_NODE_BIN = resolveSplatStudioNodeBin();
 const SKILLS_DIR = resolveDaemonResourceDir(
   DAEMON_RESOURCE_ROOT,
   'skills',
@@ -1902,7 +1902,7 @@ export function createAgentRuntimeToolPrompt(
     `- Daemon URL: \`${daemonUrl}\` (also available as \`OD_DAEMON_URL\`).`,
     '- `OD_NODE_BIN` is the absolute path to the Node-compatible runtime that started the daemon; packaged desktop installs provide this even when the user has no system `node` on PATH.',
     '- `OD_HYPERFRAMES_BIN` is the absolute path to Open Design\'s pinned HyperFrames CLI. Run lightweight commands through `OD_NODE_BIN`; use `"$OD_NODE_BIN" "$OD_BIN" media scaffold` for composition setup and never use a user-level `npx` cache.',
-    '- `OD_BIN` is the absolute path to the SaaSCodex CLI script. On POSIX shells run wrappers with `"$OD_NODE_BIN" "$OD_BIN" tools ...`; do not call bare `od`, which may resolve to the system octal-dump command on Unix-like systems.',
+    '- `OD_BIN` is the absolute path to the SplatStudio CLI script. On POSIX shells run wrappers with `"$OD_NODE_BIN" "$OD_BIN" tools ...`; do not call bare `od`, which may resolve to the system octal-dump command on Unix-like systems.',
     '- On PowerShell use `& $env:OD_NODE_BIN $env:OD_BIN tools ...`; on cmd.exe use `"%OD_NODE_BIN%" "%OD_BIN%" tools ...`.',
     tokenLine,
     '- Prefer project wrapper commands through `OD_NODE_BIN` + `OD_BIN` over raw HTTP. The wrappers read these environment values automatically.',
@@ -1910,7 +1910,7 @@ export function createAgentRuntimeToolPrompt(
   ].join('\n');
 }
 
-export function createSaaSCodexToolEnv({
+export function createSplatStudioToolEnv({
   daemonUrl,
   hyperFramesBin = resolveHyperFramesCliPath(),
   projectDir,
@@ -2086,7 +2086,7 @@ export function telemetryPromptFromRunRequest(message, currentPrompt) {
   return typeof currentPrompt === 'string' ? currentPrompt : message;
 }
 
-// Keep this header grammar aligned with parseFormAnswers in @saascodex/contracts.
+// Keep this header grammar aligned with parseFormAnswers in @splatstudio/contracts.
 const FORM_ANSWERS_HEADER_RE =
   /^\s*\[form answers(?:\s*[\u2014\-:]\s*([^\]\r\n]+))?\]\s*(?:\r?\n|$)/i;
 
@@ -3307,7 +3307,7 @@ export async function startServer({
 
       res.setHeader('WWW-Authenticate', API_TOKEN_BASIC_CHALLENGE);
       return res.status(401).type('text/plain').send(
-        'SaaSCodex authentication required. Use username "saascodex" and OD_API_TOKEN as the password.',
+        'SplatStudio authentication required. Use username "splatstudio" and OD_API_TOKEN as the password.',
       );
     });
   }
@@ -3646,18 +3646,18 @@ export async function startServer({
       marketplaceProvenance: {
         sourceMarketplaceId: OFFICIAL_MARKETPLACE_ID,
         marketplaceTrust:    'official',
-        entryNamePrefix:     'saascodex',
+        entryNamePrefix:     'splatstudio',
       },
     });
     bundledMarketplaceEntries = result.registered.map((plugin) => ({
-      name:        `saascodex/${plugin.id}`,
+      name:        `splatstudio/${plugin.id}`,
       title:       plugin.title,
       title_i18n:  plugin.manifest.title_i18n,
       description: plugin.manifest.description,
       description_i18n: plugin.manifest.description_i18n,
       version:     plugin.version,
       source:      bundledPluginRegistrySource(plugin.source),
-      publisher:   { id: 'saascodex', url: 'https://saascodex.com' },
+      publisher:   { id: 'splatstudio', url: 'https://splatstudio.app' },
       homepage:    plugin.manifest.homepage,
       license:     plugin.manifest.license,
       tags:        plugin.manifest.tags,
@@ -5514,7 +5514,7 @@ export async function startServer({
       const project = getProject(db, projectId);
       if (!project) return false;
       // Authorized Vela mirrors contain the shared project files, not the
-      // local-only `.saascodex/project.json`. Their exact-scope receipt is
+      // local-only `.splatstudio/project.json`. Their exact-scope receipt is
       // the durable version proof; the live directory proves the promoted
       // namespace still exists. Both are required so a deleted tree heals,
       // while another workspace/owner's receipt can never satisfy this pull.
@@ -8285,7 +8285,7 @@ export async function startServer({
     const reportHost = reportHostForPoweredPreview();
     const baseOrigin = resolvedPort ? `http://${reportHost}:${resolvedPort}` : null;
     res.setHeader('Cache-Control', 'no-store');
-    /** @type {import('@saascodex/contracts').ProjectPreviewIsolationResponse} */
+    /** @type {import('@splatstudio/contracts').ProjectPreviewIsolationResponse} */
     const body = {
       supported: Boolean(baseOrigin),
       baseOrigin,
@@ -8309,8 +8309,8 @@ export async function startServer({
     env: process.env,
   });
 
-  const openDesignPublicMetadata = createSaaSCodexPublicMetadataService();
-  registerSaaSCodexPublicMetadataRoutes(app, {
+  const openDesignPublicMetadata = createSplatStudioPublicMetadataService();
+  registerSplatStudioPublicMetadataRoutes(app, {
     http: httpDeps,
     openDesignPublicMetadata,
   });
@@ -9442,7 +9442,7 @@ export async function startServer({
         if (!USER_PLUGIN_SOURCE_KINDS.has(sourcePlugin.sourceKind)) return res.status(409).json({ ok: false, code: 'plugin-not-shareable', message: 'Only user-installed plugins can start a share project.' });
         const body = req.body && typeof req.body === 'object' ? req.body : {};
         const action = normalizePluginShareAction(body.action);
-        if (!action) return sendApiError(res, 400, 'BAD_REQUEST', 'action must be publish-github or contribute-saascodex');
+        if (!action) return sendApiError(res, 400, 'BAD_REQUEST', 'action must be publish-github or contribute-splatstudio');
         const createWorkspace = await authorizeCreatedProjectWorkspace(
           req,
           fetchProjectCreationWorkspaceDirectory,
@@ -9504,7 +9504,7 @@ export async function startServer({
       try { const project = getProject(db, req.params.id); if (!project) return sendApiError(res, 404, 'PROJECT_NOT_FOUND', 'project not found'); const projectBinding = getWorkspaceProjectByProjectId(db, req.params.id); if (!projectBinding?.workspaceId || !projectBinding.createdByWorkspaceMemberId) return sendApiError(res, 409, 'WORKSPACE_PROJECT_UNBOUND', 'project must have an exact workspace owner before installing a plugin'); const installScope = { workspaceId: String(projectBinding.workspaceId), workspaceMemberId: String(projectBinding.createdByWorkspaceMemberId) }; const body = req.body && typeof req.body === 'object' ? req.body : {}; const relativePath = normalizeProjectPluginFolderPath(body.path); const projectRoot = resolveProjectDir(PROJECTS_DIR, req.params.id, project.metadata); const folder = await resolveProjectChildDirectory(projectRoot, relativePath); const warnings = []; const log = []; let plugin = null; let message = 'Install finished.'; for await (const ev of installPlugin(db, { source: folder, roots: PLUGIN_REGISTRY_ROOTS, allowReplacePlugin: (pluginId) => allowScopedPluginReplace(installScope, pluginId) })) { if (ev.message) log.push(ev.message); if (Array.isArray(ev.warnings)) warnings.splice(0, warnings.length, ...ev.warnings); if (ev.kind === 'success') { plugin = ev.plugin; ensureWorkspaceResource(db, 'plugin', installScope.workspaceId, ev.plugin.id, { visibility: 'personal', resourceState: 'active', createdByWorkspaceMemberId: installScope.workspaceMemberId, updatedByWorkspaceMemberId: installScope.workspaceMemberId }); message = `Installed ${ev.plugin.title}.`; break; } if (ev.kind === 'error') { message = ev.message; break; } } res.status(plugin ? 200 : 400).json({ ok: Boolean(plugin), plugin, warnings, message, log }); } catch (err) { const code = err && err.code; const status = code === 'ENOENT' || code === 'ENOTDIR' ? 404 : 400; sendApiError(res, status, status === 404 ? 'PLUGIN_FOLDER_NOT_FOUND' : 'BAD_REQUEST', String(err?.message || err)); }
     },
     handleProjectPluginCli: async (req, res, action) => {
-      try { const project = getProject(db, req.params.id); if (!project) return sendApiError(res, 404, 'PROJECT_NOT_FOUND', 'project not found'); const body = req.body && typeof req.body === 'object' ? req.body : {}; const relativePath = normalizeProjectPluginFolderPath(body.path); const projectRoot = resolveProjectDir(PROJECTS_DIR, req.params.id, project.metadata); const folder = await resolveProjectChildDirectory(projectRoot, relativePath); const subcommand = action === 'publish-github' ? 'publish-repo' : 'saascodex-pr'; const timeout = action === 'publish-github' ? 240_000 : 300_000; const result = await execCommandViaLoginShell(OD_NODE_BIN, [OD_BIN, 'plugin', subcommand, folder, '--json'], { timeout }); const payload = result.stdout ? JSON.parse(result.stdout) : null; if (!result.ok || !payload?.ok) return res.status(500).json({ ok: false, code: payload?.error?.label || (action === 'publish-github' ? 'publish-repo-failed' : 'saascodex-pr-failed'), message: payload?.error?.stderr || payload?.error?.stdout || (action === 'publish-github' ? 'GitHub repo publish failed.' : 'SaaSCodex PR creation failed.'), log: payload?.steps?.map((step) => step.stderr || step.stdout || step.command).filter(Boolean) ?? [result.stderr || result.stdout || `${subcommand} failed`] }); res.json({ ok: true, message: action === 'publish-github' ? (payload.repoUrl ? `Published plugin to ${payload.repoUrl}.` : 'Published plugin to GitHub.') : (payload.prUrl ? `Opened SaaSCodex PR flow at ${payload.prUrl}.` : 'Opened SaaSCodex PR flow.'), ...(payload.repoUrl ? { url: payload.repoUrl } : {}), ...(payload.prUrl ? { url: payload.prUrl } : {}), log: payload.steps?.map((step) => step.stderr || step.stdout || step.command).filter(Boolean) ?? [] }); } catch (err) { res.status(400).json({ ok: false, message: String(err?.message || err), log: [] }); }
+      try { const project = getProject(db, req.params.id); if (!project) return sendApiError(res, 404, 'PROJECT_NOT_FOUND', 'project not found'); const body = req.body && typeof req.body === 'object' ? req.body : {}; const relativePath = normalizeProjectPluginFolderPath(body.path); const projectRoot = resolveProjectDir(PROJECTS_DIR, req.params.id, project.metadata); const folder = await resolveProjectChildDirectory(projectRoot, relativePath); const subcommand = action === 'publish-github' ? 'publish-repo' : 'splatstudio-pr'; const timeout = action === 'publish-github' ? 240_000 : 300_000; const result = await execCommandViaLoginShell(OD_NODE_BIN, [OD_BIN, 'plugin', subcommand, folder, '--json'], { timeout }); const payload = result.stdout ? JSON.parse(result.stdout) : null; if (!result.ok || !payload?.ok) return res.status(500).json({ ok: false, code: payload?.error?.label || (action === 'publish-github' ? 'publish-repo-failed' : 'splatstudio-pr-failed'), message: payload?.error?.stderr || payload?.error?.stdout || (action === 'publish-github' ? 'GitHub repo publish failed.' : 'SplatStudio PR creation failed.'), log: payload?.steps?.map((step) => step.stderr || step.stdout || step.command).filter(Boolean) ?? [result.stderr || result.stdout || `${subcommand} failed`] }); res.json({ ok: true, message: action === 'publish-github' ? (payload.repoUrl ? `Published plugin to ${payload.repoUrl}.` : 'Published plugin to GitHub.') : (payload.prUrl ? `Opened SplatStudio PR flow at ${payload.prUrl}.` : 'Opened SplatStudio PR flow.'), ...(payload.repoUrl ? { url: payload.repoUrl } : {}), ...(payload.prUrl ? { url: payload.prUrl } : {}), log: payload.steps?.map((step) => step.stderr || step.stdout || step.command).filter(Boolean) ?? [] }); } catch (err) { res.status(400).json({ ok: false, message: String(err?.message || err), log: [] }); }
     },
     handleCandidateDraft: async (req, res) => {
       if (!isLocalSameOrigin(req, resolvedPort)) return res.status(403).json({ error: 'cross-origin request rejected' });
@@ -9512,11 +9512,11 @@ export async function startServer({
     },
     handleCandidateShareTask: async (req, res) => {
       if (!isLocalSameOrigin(req, resolvedPort)) return res.status(403).json({ error: 'cross-origin request rejected' });
-      try { const project = getProject(db, req.params.id); if (!project) return sendApiError(res, 404, 'PROJECT_NOT_FOUND', 'project not found'); const body = req.body && typeof req.body === 'object' ? req.body : {}; const action = body.action === 'publish-github' || body.action === 'contribute-saascodex' ? body.action : null; if (!action) return sendApiError(res, 400, 'BAD_REQUEST', 'plugin share action is required'); const projectRoot = resolveProjectDir(PROJECTS_DIR, req.params.id, project.metadata); const draft = await generateSkillPluginDraft(db, projectRoot, req.params.id, req.params.candidateId); if (!draft) return sendApiError(res, 404, 'NOT_FOUND', 'plugin candidate not found'); if (!draft.validation.ok) return res.status(422).json({ ok: false, code: 'plugin-draft-invalid', message: 'Generated plugin draft is invalid.', draft }); const task = pluginShareTaskStore.createAndStart(req.params.id, { action, path: draft.draftPath }, draft.folder); res.status(202).json({ taskId: task.id, action, path: draft.draftPath, status: task.status, startedAt: task.startedAt, draft }); } catch (err) { res.status(400).json({ ok: false, message: String(err?.message || err) }); }
+      try { const project = getProject(db, req.params.id); if (!project) return sendApiError(res, 404, 'PROJECT_NOT_FOUND', 'project not found'); const body = req.body && typeof req.body === 'object' ? req.body : {}; const action = body.action === 'publish-github' || body.action === 'contribute-splatstudio' ? body.action : null; if (!action) return sendApiError(res, 400, 'BAD_REQUEST', 'plugin share action is required'); const projectRoot = resolveProjectDir(PROJECTS_DIR, req.params.id, project.metadata); const draft = await generateSkillPluginDraft(db, projectRoot, req.params.id, req.params.candidateId); if (!draft) return sendApiError(res, 404, 'NOT_FOUND', 'plugin candidate not found'); if (!draft.validation.ok) return res.status(422).json({ ok: false, code: 'plugin-draft-invalid', message: 'Generated plugin draft is invalid.', draft }); const task = pluginShareTaskStore.createAndStart(req.params.id, { action, path: draft.draftPath }, draft.folder); res.status(202).json({ taskId: task.id, action, path: draft.draftPath, status: task.status, startedAt: task.startedAt, draft }); } catch (err) { res.status(400).json({ ok: false, message: String(err?.message || err) }); }
     },
     handleProjectShareTask: async (req, res) => {
       if (!isLocalSameOrigin(req, resolvedPort)) return res.status(403).json({ error: 'cross-origin request rejected' });
-      try { const project = getProject(db, req.params.id); if (!project) return sendApiError(res, 404, 'PROJECT_NOT_FOUND', 'project not found'); const body = req.body && typeof req.body === 'object' ? req.body : {}; const action: PluginShareAction | null = body.action === 'publish-github' || body.action === 'contribute-saascodex' ? body.action : null; if (!action) return sendApiError(res, 400, 'BAD_REQUEST', 'plugin share action is required'); const relativePath = normalizeProjectPluginFolderPath(body.path); const projectRoot = resolveProjectDir(PROJECTS_DIR, req.params.id, project.metadata); const folder = await resolveProjectChildDirectory(projectRoot, relativePath); const task = pluginShareTaskStore.createAndStart(req.params.id, { action, path: relativePath }, folder); res.status(202).json({ taskId: task.id, action, path: relativePath, status: task.status, startedAt: task.startedAt }); } catch (err) { const code = err && err.code; const status = code === 'ENOENT' || code === 'ENOTDIR' ? 404 : 400; sendApiError(res, status, status === 404 ? 'PLUGIN_FOLDER_NOT_FOUND' : 'BAD_REQUEST', String(err?.message || err)); }
+      try { const project = getProject(db, req.params.id); if (!project) return sendApiError(res, 404, 'PROJECT_NOT_FOUND', 'project not found'); const body = req.body && typeof req.body === 'object' ? req.body : {}; const action: PluginShareAction | null = body.action === 'publish-github' || body.action === 'contribute-splatstudio' ? body.action : null; if (!action) return sendApiError(res, 400, 'BAD_REQUEST', 'plugin share action is required'); const relativePath = normalizeProjectPluginFolderPath(body.path); const projectRoot = resolveProjectDir(PROJECTS_DIR, req.params.id, project.metadata); const folder = await resolveProjectChildDirectory(projectRoot, relativePath); const task = pluginShareTaskStore.createAndStart(req.params.id, { action, path: relativePath }, folder); res.status(202).json({ taskId: task.id, action, path: relativePath, status: task.status, startedAt: task.startedAt }); } catch (err) { const code = err && err.code; const status = code === 'ENOENT' || code === 'ENOTDIR' ? 404 : 400; sendApiError(res, status, status === 404 ? 'PLUGIN_FOLDER_NOT_FOUND' : 'BAD_REQUEST', String(err?.message || err)); }
     },
   };
 
@@ -9574,7 +9574,7 @@ export async function startServer({
     type ScenarioEntry = {
       id: string;
       taskKind: 'new-generation' | 'figma-migration' | 'code-migration' | 'tune-collab';
-      pipeline: NonNullable<NonNullable<import('@saascodex/contracts').PluginManifest['od']>['pipeline']>;
+      pipeline: NonNullable<NonNullable<import('@splatstudio/contracts').PluginManifest['od']>['pipeline']>;
     };
     const byTaskKind = new Map<ScenarioEntry['taskKind'], ScenarioEntry>();
     try {
@@ -10479,7 +10479,7 @@ export async function startServer({
         // legacy warn/fallback path only for ordinary snapshots.
         if (!snap?.strategy && stages.length > 0) {
           const { loadAtomBodies } = await import('./plugins/atom-bodies.js');
-          const { renderActiveStageBlocks } = await import('@saascodex/contracts');
+          const { renderActiveStageBlocks } = await import('@splatstudio/contracts');
           const { atomsForPrompt } = await import('./plugins/critique-prompt-gate.js');
           const stageViews = [];
           for (const stage of stages) {
@@ -12350,7 +12350,7 @@ export async function startServer({
           strategyTaskAtStart?.frozenSkillPackage
             ? renderFrozenSkillRosterContext(strategyTaskAtStart.frozenSkillPackage)
             : JSON.stringify({
-                schema: 'saascodex.od-next-frozen-skill-package/v1',
+                schema: 'splatstudio.od-next-frozen-skill-package/v1',
                 state: 'missing',
               }),
           odNextTaskInputSnapshot?.requestInputText ?? '',
@@ -13237,7 +13237,7 @@ export async function startServer({
     });
 
     // External MCP servers configured by the user in Settings → External MCP.
-    // SaaSCodex relays them to the agent so the model can call those tools.
+    // SplatStudio relays them to the agent so the model can call those tools.
     // Two delivery shapes today:
     //   - Claude Code: write a `.mcp.json` into the project cwd. Claude Code
     //     auto-loads that file at spawn (same format the CLI accepts via
@@ -13604,7 +13604,7 @@ export async function startServer({
       );
       await normalizeCodexConfigFile(codexConfigEnv);
 
-      // When SaaSCodex leaves model selection at `default`, Codex resolves
+      // When SplatStudio leaves model selection at `default`, Codex resolves
       // the concrete model from config.toml. A known-old CLI can accept the
       // config, start `exec`, and only then reject a newer configured model.
       // Gate only evidence-backed stable-version/model combinations before
@@ -13743,7 +13743,7 @@ export async function startServer({
           disablePlugins:
             def.id === 'codex'
             && run.externalPluginAnalytics?.externalPluginId
-              === SAASCODEX_PLUGIN_ID,
+              === SPLATSTUDIO_PLUGIN_ID,
           ...(nativeBuildPackageBindings.length > 0
             ? { nativeBuildPackageBindings }
             : {}),
@@ -14285,7 +14285,7 @@ export async function startServer({
         return finishStrategyAwarePhysicalRun('failed', 1, null);
       }
     }
-    const odMediaEnv = createSaaSCodexToolEnv({
+    const odMediaEnv = createSplatStudioToolEnv({
       daemonUrl,
       projectDir: cwd,
       projectId: typeof projectId === 'string' ? projectId : null,
@@ -16788,7 +16788,7 @@ export async function startServer({
               ? { chunk: tail }
               : { type: 'text_delta', delta: tail };
             // The protocol withholds any text that might still turn out to be
-            // a reserved `<saascodex-…>` block; `finish()` is what finally
+            // a reserved `<splatstudio-…>` block; `finish()` is what finally
             // rules that out, so this tail is the first moment those bytes are
             // user-visible. It cannot go back through `send` — `push` throws
             // once the protocol is finished — so it applies the same visible
@@ -17423,7 +17423,7 @@ export async function startServer({
       systemPrompt: [
         renderOrbitTemplateSystemPrompt(template),
         systemPrompt,
-        'You are Orbit, an autonomous activity-summary agent inside SaaSCodex.',
+        'You are Orbit, an autonomous activity-summary agent inside SplatStudio.',
         'You must discover connectors and connector tools yourself through the OD CLI; the daemon has not chosen tools for you.',
         'You must create and register a Live Artifact as the final deliverable. Do not merely describe what you would do.',
         'Do not ask follow-up questions, do not emit <question-form>, and do not wait for user input. This run is unattended; pick reasonable defaults and complete the artifact.',

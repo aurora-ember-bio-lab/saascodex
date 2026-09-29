@@ -593,7 +593,7 @@ export interface ProjectWorkspaceScopeResponse {
 }
 
 // Local D-lane placeholder until the B-owned CurrentWorkspaceContext is
-// imported into saascodex. The route adapter keeps this replaceable.
+// imported into splatstudio. The route adapter keeps this replaceable.
 export type WorkspaceProjectRole = 'owner' | 'admin' | 'member';
 
 // C owns project sync orchestration. D exposes this on its read model and emits

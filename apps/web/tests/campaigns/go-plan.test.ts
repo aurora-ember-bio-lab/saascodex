@@ -23,24 +23,24 @@ describe('Go plan touchpoints', () => {
     expect(goPlanCampaignNextBoundary(start - 1)).toBe(start);
     expect(goPlanCampaignNextBoundary(start)).toBe(end);
     expect(goPlanCampaignNextBoundary(end)).toBeNull();
-    expect(GO_PLAN_PRICING_URL).toBe('https://saascodex.com/pricing/');
+    expect(GO_PLAN_PRICING_URL).toBe('https://splatstudio.app/pricing/');
   });
 
   it('hands Pricing the source locale without targeting retired Landing routes', () => {
     expect(goPlanPricingUrl('en')).toBe(
-      'https://saascodex.com/pricing/?od_locale=en',
+      'https://splatstudio.app/pricing/?od_locale=en',
     );
     expect(goPlanPricingUrl('zh-CN')).toBe(
-      'https://saascodex.com/zh/pricing/?od_locale=zh',
+      'https://splatstudio.app/zh/pricing/?od_locale=zh',
     );
     expect(goPlanPricingUrl('pt-BR')).toBe(
-      'https://saascodex.com/pt-br/pricing/?od_locale=pt-br',
+      'https://splatstudio.app/pt-br/pricing/?od_locale=pt-br',
     );
     expect(goPlanPricingUrl('es-ES')).toBe(
-      'https://saascodex.com/es/pricing/?od_locale=es',
+      'https://splatstudio.app/es/pricing/?od_locale=es',
     );
     expect(goPlanPricingUrl('no')).toBe(
-      'https://saascodex.com/pricing/?od_locale=en',
+      'https://splatstudio.app/pricing/?od_locale=en',
     );
   });
 

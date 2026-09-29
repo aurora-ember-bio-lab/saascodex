@@ -14,11 +14,11 @@
 import type {
   TrackingFileSizeBucket,
   TrackingFileType,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   fileSizeBucketToTracking,
   fileTypeToTracking,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
 export interface UploadCohort {
   file_count: number;

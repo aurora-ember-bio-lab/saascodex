@@ -4,7 +4,7 @@ import type {
   TrackingCampaignConversionSource,
   TrackingCampaignId,
   TrackingPageName,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   readOnboardingProfile,
   type OnboardingProfile,
@@ -30,7 +30,7 @@ interface SyncAmrProfileOptions {
   now?: Date;
 }
 
-const AMR_ATTRIBUTION_STORAGE_KEY = 'saascodex:amr-entry-attribution:v1';
+const AMR_ATTRIBUTION_STORAGE_KEY = 'splatstudio:amr-entry-attribution:v1';
 const AMR_ATTRIBUTION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
 /**
@@ -222,11 +222,11 @@ export function amrHandoffDeviceId(input: {
   return input.installationId ?? input.resolvedDeviceId ?? null;
 }
 
-// Builds the AMR handoff URL with SaaSCodex attribution params. When
+// Builds the AMR handoff URL with SplatStudio attribution params. When
 // `deviceId` is provided it is added as `od_device_id`, so AMR can link the
-// landing/registration directly back to this SaaSCodex install instead of
+// landing/registration directly back to this SplatStudio install instead of
 // only through the one-shot entry id. The caller passes it ONLY when the user
-// has consented to metrics: AMR is SaaSCodex's official model service, so
+// has consented to metrics: AMR is SplatStudio's official model service, so
 // this is a same-owner cross-product link, but it still respects the telemetry
 // opt-in. Pass null/undefined to omit it.
 export function attributedAmrUrl(
@@ -343,7 +343,7 @@ async function mirrorAmrEntryToAmrAnalytics(
       }),
     });
   } catch {
-    // AMR analytics mirroring must never block the primary SaaSCodex action.
+    // AMR analytics mirroring must never block the primary SplatStudio action.
   }
 }
 

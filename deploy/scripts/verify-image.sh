@@ -90,5 +90,5 @@ if [[ "$health_code" != "200" ]]; then
 fi
 
 rss_bytes="$(docker stats --no-stream --format '{{.MemUsage}}' "$CONTAINER_ID" | awk '{print $1}')"
-echo "saascodex runtime image verified: $IMAGE_REF"
+echo "splatstudio runtime image verified: $IMAGE_REF"
 echo "container memory sample: ${rss_bytes}"

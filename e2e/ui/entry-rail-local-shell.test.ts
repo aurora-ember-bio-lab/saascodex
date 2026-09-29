@@ -95,7 +95,7 @@ function recentRow(page: Page, name: string) {
 
 async function gotoHome(page: Page): Promise<void> {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.long });
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: T.long });
   await expect(page.getByTestId('home-hero')).toBeVisible({ timeout: T.medium });
   await ensureRailOpen(page);
 }

@@ -16,7 +16,7 @@ import {
   ANALYTICS_HEADER_LOCALE,
   ANALYTICS_HEADER_REQUEST_ID,
   ANALYTICS_HEADER_SESSION_ID,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import {
   applyConsent,
   applyIdentity,
@@ -30,7 +30,7 @@ import {
 import { APP_VERSION_PLACEHOLDER } from './app-version';
 import { patchExceptionTrackingAppVersion } from './error-tracking';
 import { setChatCorrelation } from '../observability/chat-context';
-import type { AnalyticsConfigureGlobals } from '@saascodex/contracts/analytics';
+import type { AnalyticsConfigureGlobals } from '@splatstudio/contracts/analytics';
 import {
   detectClientType,
   getAnonymousId,

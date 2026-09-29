@@ -2,8 +2,8 @@ import type {
   AppliedStrategyBindingV2,
   InstalledPluginRecord,
   PluginPipeline,
-} from '@saascodex/contracts';
-import { OD_NEXT_PROMPT_STAGE_CONTRACT_V2 } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { OD_NEXT_PROMPT_STAGE_CONTRACT_V2 } from '@splatstudio/contracts';
 import { validateBundledStrategyActivationV2 } from './strategy-provenance.js';
 
 export class InvalidOdNextStrategyPipelineV2Error extends Error {

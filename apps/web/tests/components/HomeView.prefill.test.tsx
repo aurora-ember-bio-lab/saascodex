@@ -58,7 +58,7 @@ const AUTHORING_PLUGIN = {
     od: {
       kind: 'scenario',
       taskKind: 'new-generation',
-      useCase: { query: 'Create an SaaSCodex plugin for {{pluginGoal}}.' },
+      useCase: { query: 'Create an SplatStudio plugin for {{pluginGoal}}.' },
       inputs: [
         {
           name: 'pluginGoal',
@@ -293,14 +293,14 @@ const LIVE_ARTIFACT_PLUGIN = {
     ...DEFAULT_PLUGIN.manifest,
     name: 'example-live-artifact',
     title: 'Live Artifact',
-    description: 'Create refreshable, auditable SaaSCodex artifacts.',
+    description: 'Create refreshable, auditable SplatStudio artifacts.',
     od: {
       kind: 'scenario',
       taskKind: 'new-generation',
       mode: 'prototype',
       scenario: 'live',
       useCase: {
-        query: 'Create refreshable, auditable SaaSCodex artifacts backed by connector or local data.',
+        query: 'Create refreshable, auditable SplatStudio artifacts backed by connector or local data.',
       },
       context: {
         skills: [{ path: './SKILL.md' }],
@@ -335,9 +335,9 @@ const LIVE_ARTIFACT_IMAGE_TEMPLATE_PLUGIN = {
 };
 
 const AUTHORING_DEFAULT_SCENARIO_INPUTS = {
-  artifactKind: 'SaaSCodex plugin',
-  audience: 'SaaSCodex plugin authors',
-  topic: 'packaging a reusable workflow as an SaaSCodex plugin',
+  artifactKind: 'SplatStudio plugin',
+  audience: 'SplatStudio plugin authors',
+  topic: 'packaging a reusable workflow as an SplatStudio plugin',
 };
 
 const REFLY_DESIGN_SYSTEM = {
@@ -581,7 +581,7 @@ describe('HomeView prompt handoff', () => {
     });
     vi.stubGlobal('fetch', fetchMock);
     stubAnimationFrame();
-    window.localStorage.setItem('saascodex:home-composer:prompt', 'Keep my draft');
+    window.localStorage.setItem('splatstudio:home-composer:prompt', 'Keep my draft');
     const onSubmit = vi.fn();
     render(<HomeView projects={[]} onSubmit={onSubmit} onOpenProject={() => undefined} />);
     await waitFor(() => expect(screen.getByTestId('home-hero-template-picker').getAttribute('data-type')).toBe('prototype'));
@@ -601,7 +601,7 @@ describe('HomeView prompt handoff', () => {
       if (url === '/api/plugins') return catalog;
       throw new Error(`unexpected fetch ${url}`);
     }));
-    window.localStorage.setItem('saascodex:home-composer:prompt', 'My first prototype');
+    window.localStorage.setItem('splatstudio:home-composer:prompt', 'My first prototype');
     const onSubmit = vi.fn();
     render(<HomeView projects={[]} onSubmit={onSubmit} onOpenProject={() => undefined} />);
     expect((screen.getByTestId('home-hero-submit') as HTMLButtonElement).disabled).toBe(true);
@@ -616,7 +616,7 @@ describe('HomeView prompt handoff', () => {
   });
 
   it('restores a saved Deck selection instead of seeding Prototype', async () => {
-    window.localStorage.setItem('saascodex:home-composer:chip', JSON.stringify({
+    window.localStorage.setItem('splatstudio:home-composer:chip', JSON.stringify({
       chipId: 'deck', pluginId: SIMPLE_DECK_PLUGIN.id, projectKind: 'deck',
     }));
     vi.stubGlobal('fetch', vi.fn<typeof fetch>(async () => new Response(JSON.stringify({ plugins: [WEB_PROTOTYPE_PLUGIN, SIMPLE_DECK_PLUGIN] }))));
@@ -947,7 +947,7 @@ describe('HomeView prompt handoff', () => {
       // The lead chip cuts the title to eight code points ("Web Prot…").
       expect(screen.getByTestId('home-hero-active-plugin').textContent).toContain('Web Prot…');
     });
-    expect(JSON.parse(window.localStorage.getItem('saascodex:home-composer:chip')!)).toEqual({
+    expect(JSON.parse(window.localStorage.getItem('splatstudio:home-composer:chip')!)).toEqual({
       chipId: 'prototype',
       pluginId: 'example-web-prototype',
       projectKind: 'prototype',
@@ -1032,9 +1032,9 @@ describe('HomeView prompt handoff', () => {
     ));
     expect(JSON.parse(String((applyCall?.[1] as RequestInit).body))).toMatchObject({
       inputs: {
-        artifactKind: 'SaaSCodex plugin',
-        audience: 'SaaSCodex plugin authors',
-        topic: 'packaging a reusable workflow as an SaaSCodex plugin',
+        artifactKind: 'SplatStudio plugin',
+        audience: 'SplatStudio plugin authors',
+        topic: 'packaging a reusable workflow as an SplatStudio plugin',
       },
     });
     await waitFor(() => {
@@ -1049,9 +1049,9 @@ describe('HomeView prompt handoff', () => {
       pluginId: 'od-new-generation',
       appliedPluginSnapshotId: 'snap-default',
       pluginInputs: {
-        artifactKind: 'SaaSCodex plugin',
-        audience: 'SaaSCodex plugin authors',
-        topic: 'packaging a reusable workflow as an SaaSCodex plugin',
+        artifactKind: 'SplatStudio plugin',
+        audience: 'SplatStudio plugin authors',
+        topic: 'packaging a reusable workflow as an SplatStudio plugin',
       },
       projectKind: 'other',
     }));
@@ -1265,7 +1265,7 @@ describe('HomeView prompt handoff', () => {
 
     await waitFor(() => {
       expect(screen.getByTestId('home-hero-template-trigger').textContent).toContain('Prototype');
-      expect(JSON.parse(window.localStorage.getItem('saascodex:home-composer:chip') ?? '{}'))
+      expect(JSON.parse(window.localStorage.getItem('splatstudio:home-composer:chip') ?? '{}'))
         .toMatchObject({ chipId: 'prototype', prototypeSubtypeId: legacyChipId });
     });
 
@@ -2624,7 +2624,7 @@ async function pickPrototypeScene(scene: string) {
   });
   await waitFor(() => {
     expect(screen.getByTestId('home-hero-template-trigger').textContent).toContain('Prototype');
-    expect(JSON.parse(window.localStorage.getItem('saascodex:home-composer:chip') ?? '{}'))
+    expect(JSON.parse(window.localStorage.getItem('splatstudio:home-composer:chip') ?? '{}'))
       .toMatchObject({ chipId: 'prototype', prototypeSubtypeId: scene });
   });
 }

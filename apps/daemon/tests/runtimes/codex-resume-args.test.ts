@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   codexAgentDef,
-  codexSaaSCodexShellEnvironmentArgs,
+  codexSplatStudioShellEnvironmentArgs,
 } from '../../src/runtimes/defs/codex.js';
 
 // codex is capture-style: it mints its own thread id (reported on the stream's
@@ -97,9 +97,9 @@ describe('codex buildArgs session resume', () => {
     expect(args).not.toContain('resume');
   });
 
-  it('carries only the SaaSCodex wrapper contract across Codex shell environment filtering', () => {
+  it('carries only the SplatStudio wrapper contract across Codex shell environment filtering', () => {
     const args = codexAgentDef.buildArgs('prompt', [], [], {}, {});
-    const shellArgs = codexSaaSCodexShellEnvironmentArgs();
+    const shellArgs = codexSplatStudioShellEnvironmentArgs();
 
     expect(args).toEqual(expect.arrayContaining(shellArgs));
     expect(shellArgs).toContain('allow_login_shell=false');

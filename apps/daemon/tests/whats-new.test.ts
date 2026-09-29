@@ -11,8 +11,8 @@ const DOC = {
   id: '0.13.0',
   title: 'Design system sync',
   body: 'Import, edit and sync design systems.',
-  imageUrl: 'https://whatsnew.saascodex.com/0.13.0.png',
-  linkUrl: 'https://github.com/nexu-io/open-design/releases/tag/saascodex-v0.13.0',
+  imageUrl: 'https://whatsnew.splatstudio.app/0.13.0.png',
+  linkUrl: 'https://github.com/nexu-io/open-design/releases/tag/splatstudio-v0.13.0',
   locales: { 'zh-CN': { title: '设计系统同步' } },
 };
 

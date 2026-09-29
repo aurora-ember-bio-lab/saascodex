@@ -2,7 +2,7 @@ import {
   normalizeAgentObservationV1,
   type StrategyInputStageV2,
   type StrategyTaskTypeV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -182,7 +182,7 @@ function record(input: {
     })] : []),
   ];
   const aggregate: StrategyTaskObservationAggregateV1 = {
-    schema: 'saascodex.strategy-task-observation/v1',
+    schema: 'splatstudio.strategy-task-observation/v1',
     root: {
       observationId: rootId,
       taskExecutionId: input.id,

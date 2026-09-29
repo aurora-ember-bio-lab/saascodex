@@ -47,9 +47,9 @@ function makeConfig(namespaceRoot: string): ToolPackConfig {
 
 describe("writeNsisInclude", () => {
   it("escapes double quotes and newlines in the local-data root", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-win-nsis-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-win-nsis-"));
     try {
-      const includePath = join(root, "include", "saascodex.nsh");
+      const includePath = join(root, "include", "splatstudio.nsh");
       const paths = { nsisIncludePath: includePath } as WinPaths;
       const config = makeConfig('C:\\Open "Design"\nbeta');
 
@@ -68,9 +68,9 @@ describe("writeNsisInclude", () => {
   });
 
   it("writes portable installer observations under the Electron namespace", async () => {
-    const root = await mkdtemp(join(tmpdir(), "saascodex-win-nsis-"));
+    const root = await mkdtemp(join(tmpdir(), "splatstudio-win-nsis-"));
     try {
-      const includePath = join(root, "include", "saascodex.nsh");
+      const includePath = join(root, "include", "splatstudio.nsh");
       const paths = { nsisIncludePath: includePath } as WinPaths;
       const config = { ...makeConfig("C:\\ignored"), portable: true };
 

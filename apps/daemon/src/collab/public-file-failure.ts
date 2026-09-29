@@ -3,7 +3,7 @@ import {
   normalizeUpstreamStatus,
   type ApiFailureDetail,
   type ApiFailureStage,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { velaCommandStderr } from '../integrations/vela-command.js';
 
 /**

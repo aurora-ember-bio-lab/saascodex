@@ -1,0 +1,15 @@
+{
+  "$schema": "https://splatstudio.app/schemas/marketplace.v1.json",
+  "specVersion": "1.0.0",
+  "name": "splatstudio-premium",
+  "version": "0.1.0",
+  "owner": {
+    "name": "Aurora Ember Cyber Bio Lab",
+    "url": "https://splatstudio.app/premium"
+  },
+  "metadata": {
+    "description": "Premium (licensed) plugin registry seed. Entries are discoverable when the workspace is entitled per commercial-core/entitlements.json; unentitled workspaces see them locked.",
+    "version": "0.1.0"
+  },
+  "plugins": []
+}

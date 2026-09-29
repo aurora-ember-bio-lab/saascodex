@@ -6,7 +6,7 @@ import type {
   OdNextRolloutControlStatus,
   OdNextRolloutMode,
   OdNextRolloutModeSource,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { LabsSection } from '../../src/components/LabsSection';
 import { I18nProvider } from '../../src/i18n';
@@ -114,7 +114,7 @@ describe('LabsSection', () => {
     expect(screen.getByText('Design Harness')).toBeTruthy();
     expect(
       screen.getByText(
-        "Your next generation will use SaaSCodex's latest strategy, with noticeably more polished results (beta)",
+        "Your next generation will use SplatStudio's latest strategy, with noticeably more polished results (beta)",
       ),
     ).toBeTruthy();
   });

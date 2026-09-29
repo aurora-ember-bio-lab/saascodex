@@ -1,5 +1,5 @@
 export const AMR_ARTIFACT_UPGRADE_REQUEST_EVENT =
-  'saascodex:amr-artifact-upgrade-request';
+  'splatstudio:amr-artifact-upgrade-request';
 
 export type AmrArtifactUpgradeDecision = 'proceed' | 'cancel';
 

@@ -6,8 +6,8 @@ import {
   LAUNCHER_SCHEMA_VERSION,
   resolveLauncherPaths,
   resolveLauncherVersionPaths,
-} from "@saascodex/launcher-proto";
-import { SIDECAR_SOURCES } from "@saascodex/sidecar-proto";
+} from "@splatstudio/launcher-proto";
+import { SIDECAR_SOURCES } from "@splatstudio/sidecar-proto";
 import { describe, expect, it, vi } from "vitest";
 
 import {
@@ -251,12 +251,12 @@ describe("legacy payload desktop handoff", () => {
 
   it("does nothing outside the packaged desktop runtime", async () => {
     await expect(prepareLegacyPayloadDesktopHandoff({
-      dataRoot: "/tmp/saascodex/data",
+      dataRoot: "/tmp/splatstudio/data",
       env: {},
       namespace: "default",
       outerPid: null,
       platform: "darwin",
-      runtimeRoot: "/tmp/saascodex/runtime",
+      runtimeRoot: "/tmp/splatstudio/runtime",
       source: SIDECAR_SOURCES.TOOLS_DEV,
     })).resolves.toEqual({ kind: "none", reason: "not-packaged" });
   });

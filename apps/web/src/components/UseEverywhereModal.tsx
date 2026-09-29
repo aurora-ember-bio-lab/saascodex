@@ -1,4 +1,4 @@
-// Use SaaSCodex Everywhere — modal entry that documents SaaSCodex's
+// Use SplatStudio Everywhere — modal entry that documents SplatStudio's
 // non-UI surfaces (CLI, MCP, HTTP, Skills) and ships a one-click "copy
 // guide for an agent" payload. Reachable from the entry top-bar and
 // from Settings → Integrations as a sibling of the existing MCP install
@@ -49,7 +49,7 @@ interface Props {
   onOpenSettings?: () => void;
   /** Live daemon URL when known (e.g. http://127.0.0.1:7456). */
   daemonUrl?: string;
-  /** Optional SaaSCodex version string surfaced in the agent guide header. */
+  /** Optional SplatStudio version string surfaced in the agent guide header. */
   versionHint?: string;
 }
 

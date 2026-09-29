@@ -1,8 +1,8 @@
-# RFC: Agent-ready SaaSCodex — cross-project tasks & spanning-project permissions
+# RFC: Agent-ready SplatStudio — cross-project tasks & spanning-project permissions
 
 **Status:** Draft (companion to agent-ready.md; the maintainer's separate reviewable permissions writeup)
 **Author:** @leonaburime-ucla
-**Related:** #5398 (make SaaSCodex agent-ready); companion: [agent-ready.md](./agent-ready.md) (slice 5)
+**Related:** #5398 (make SplatStudio agent-ready); companion: [agent-ready.md](./agent-ready.md) (slice 5)
 
 ## Summary
 

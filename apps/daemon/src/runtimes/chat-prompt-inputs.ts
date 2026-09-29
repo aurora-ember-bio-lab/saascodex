@@ -6,7 +6,7 @@ import {
   type OdNextPromptBundleHeadV2,
   type OdNextPromptBundleRecipeIdentityV2,
   serializeOdNextPromptBundleV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { renderResearchCommandContract } from '../prompts/research-contract.js';
 import {
   describeChangedStableSections,

@@ -17,7 +17,7 @@ import { mockSignedInVelaAccount } from '@/playwright/visual';
 import { T } from '@/timeouts';
 
 /*
- * OPEND-2614 · Home → project hand-off with SaaSCodex Cloud (AMR).
+ * OPEND-2614 · Home → project hand-off with SplatStudio Cloud (AMR).
  *
  * F6 (#7890) made a Home send flush the optimistic pending frame on the tick
  * the click lands — but only on the local-agent path. With AMR selected the
@@ -49,7 +49,7 @@ declare global {
 
 const AMR_AGENT = {
   id: 'amr',
-  name: 'SaaSCodex AMR',
+  name: 'SplatStudio AMR',
   bin: 'vela',
   available: true,
   version: 'test',

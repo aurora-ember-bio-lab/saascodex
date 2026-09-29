@@ -94,7 +94,7 @@ import type {
   InstallDesignSystemResponse,
   UninstallResponse,
   UpdateDeployConfigRequest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export type {
   CloudflarePagesDeploySelection,
@@ -108,7 +108,7 @@ export type {
   PreviewAnnotationStyle,
   PreviewCommentSelectionKind,
   PreviewVisualMarkKind,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export type ExecMode = 'daemon' | 'api';
 export type ApiProtocol =

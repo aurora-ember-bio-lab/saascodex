@@ -7,7 +7,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   ProjectReferenceModal,
   type ProjectReferenceSelection,
@@ -217,14 +217,14 @@ describe('ProjectReferenceModal', () => {
     const { onSelect } = renderModal();
     vi.mocked(getProjectDetail).mockResolvedValue({
       project,
-      resolvedDir: '/tmp/saascodex/project-ref',
+      resolvedDir: '/tmp/splatstudio/project-ref',
     });
 
     await confirmSelection();
 
     await waitFor(() => {
       expect(onSelect).toHaveBeenCalledWith([
-        { project, resolvedDir: '/tmp/saascodex/project-ref' },
+        { project, resolvedDir: '/tmp/splatstudio/project-ref' },
       ]);
     });
   });
@@ -238,7 +238,7 @@ describe('ProjectReferenceModal', () => {
     renderModal({ projects: [boundProject], workspaceContext: context });
     vi.mocked(getProjectDetail).mockResolvedValue({
       project: boundProject,
-      resolvedDir: '/tmp/saascodex/project-ref',
+      resolvedDir: '/tmp/splatstudio/project-ref',
     });
 
     await confirmSelection();
@@ -277,10 +277,10 @@ describe('ProjectReferenceModal', () => {
     const { onSelect } = renderModal({ projects: [project, secondProject] });
     vi.mocked(getProjectDetail).mockImplementation(async (id: string) => {
       if (id === project.id) {
-        return { project, resolvedDir: '/tmp/saascodex/project-ref' };
+        return { project, resolvedDir: '/tmp/splatstudio/project-ref' };
       }
       if (id === secondProject.id) {
-        return { project: secondProject, resolvedDir: '/tmp/saascodex/second-project' };
+        return { project: secondProject, resolvedDir: '/tmp/splatstudio/second-project' };
       }
       return null;
     });
@@ -291,8 +291,8 @@ describe('ProjectReferenceModal', () => {
 
     await waitFor(() => {
       expect(onSelect).toHaveBeenCalledWith([
-        { project, resolvedDir: '/tmp/saascodex/project-ref' },
-        { project: secondProject, resolvedDir: '/tmp/saascodex/second-project' },
+        { project, resolvedDir: '/tmp/splatstudio/project-ref' },
+        { project: secondProject, resolvedDir: '/tmp/splatstudio/second-project' },
       ]);
     });
   });

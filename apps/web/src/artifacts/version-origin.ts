@@ -1,9 +1,9 @@
-import type { ArtifactOrigin, ProjectFileVersion } from '@saascodex/contracts';
-import type { ArtifactExportResultProps } from '@saascodex/contracts/analytics';
+import type { ArtifactOrigin, ProjectFileVersion } from '@splatstudio/contracts';
+import type { ArtifactExportResultProps } from '@splatstudio/contracts/analytics';
 
 const CONTENT_DIGEST_RE = /^[a-f0-9]{64}$/u;
 const ORIGIN_ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u;
-const EXTERNAL_PLUGIN_IDS = new Set(['saascodex']);
+const EXTERNAL_PLUGIN_IDS = new Set(['splatstudio']);
 
 export type ArtifactExportOriginProps = Pick<
   ArtifactExportResultProps,

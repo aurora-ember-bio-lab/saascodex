@@ -68,7 +68,7 @@ export function attachDesktopChildProcessCrashReporter(
 ): void {
   app.on("child-process-gone", (_event, details) => {
     if (details.reason === "clean-exit") return;
-    logger.error("[saascodex desktop] child-process-gone", {
+    logger.error("[splatstudio desktop] child-process-gone", {
       type: details.type,
       reason: details.reason,
       exitCode: details.exitCode,

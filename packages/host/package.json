@@ -1,9 +1,9 @@
 {
-  "name": "@saascodex/host",
+  "name": "@splatstudio/host",
   "version": "0.23.1",
   "private": true,
   "type": "module",
-  "description": "SaaSCodex renderer host bridge protocol.",
+  "description": "SplatStudio renderer host bridge protocol.",
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
@@ -29,7 +29,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/release": "workspace:*"
+    "@splatstudio/release": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "24.12.2",

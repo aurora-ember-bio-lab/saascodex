@@ -2,7 +2,7 @@ import {
   serializeOdNextRequestTurnV1,
   serializeOdNextPromptBundleV2,
   type StrategyInputStageV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { createEmptyFrozenSkillPackage } from '../../src/strategies/od-next/frozen-skill-package.js';
 

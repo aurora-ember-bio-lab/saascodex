@@ -68,7 +68,7 @@ async function seedProjectWithAssistantFileLink(
   });
   expect(fileResponse.ok(), `seed index.html: ${await fileResponse.text()}`).toBeTruthy();
 
-  const localAbsoluteHref = `/Users/mac/saascodex/saascodex-preview-0.10.0/projects/File%20Link%20Routing/index.html`;
+  const localAbsoluteHref = `/Users/mac/splatstudio/splatstudio-preview-0.10.0/projects/File%20Link%20Routing/index.html`;
   const assistantText = `已完成单文件原型：[index.html](${localAbsoluteHref})。`;
   const assistantResponse = await page.request.put(
     `/api/projects/${projectId}/conversations/${conversationId}/messages/a-${projectId}`,
@@ -88,7 +88,7 @@ async function seedProjectWithAssistantFileLink(
 }
 
 async function waitForWorkspaceReady(page: Page) {
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.medium }).catch(() => {});
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: T.medium }).catch(() => {});
   await expect(page.getByTestId('chat-composer')).toBeVisible({ timeout: T.medium });
   await expect(page.getByTestId('file-workspace')).toBeVisible({ timeout: T.medium });
 }

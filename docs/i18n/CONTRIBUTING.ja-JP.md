@@ -1,4 +1,4 @@
-# SaaSCodex へのコントリビューション
+# SplatStudio へのコントリビューション
 
 コントリビューションを検討してくださりありがとうございます。OD は意図的に小さく保っています — 価値の大部分はフレームワークコードではなく**ファイル**（Skill、Design System、プロンプトフラグメント）にあります。そのため、最も効果の高いコントリビューションは通常、フォルダ 1 つ、Markdown ファイル 1 つ、または PR サイズの adapter です。
 
@@ -29,12 +29,12 @@
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex
+cd splatstudio
 corepack enable           # packageManager で指定された pnpm を選択
 pnpm install
 pnpm tools-dev run web    # daemon + web フォアグラウンドループ
 pnpm typecheck            # tsc -b --noEmit
-pnpm --filter @saascodex/web build  # 必要に応じて web パッケージをビルド
+pnpm --filter @splatstudio/web build  # 必要に応じて web パッケージをビルド
 ```
 
 Node `~24` と pnpm `10.33.x` が必要です。`nvm` / `fnm` はオプション。使用する場合は `nvm install 24 && nvm use 24` または `fnm install 24 && fnm use 24` を実行してください。macOS、Linux、WSL2 が主要プラットフォームです。Windows ネイティブもサポートされています — 一般的なセットアップ時の落とし穴については [`docs/windows-troubleshooting.md`](../../docs/windows-troubleshooting.md) を参照してください。

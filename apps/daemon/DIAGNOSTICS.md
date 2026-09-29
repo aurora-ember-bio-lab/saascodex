@@ -65,7 +65,7 @@ block R2 delivery. These records do not change the Run SLO success calculation.
 Focused tests cover durable dedupe/restart, stale leases, consent revocation and
 re-enabling, corrupt preferences, recovery outcomes, byte/age pruning, no-run delivery,
 and a lost completion receipt. The Worker contract is maintained in
-[saascodex-telemetry-worker](https://code.powerformer.net/core/saascodex-telemetry-worker),
+[splatstudio-telemetry-worker](https://code.powerformer.net/core/splatstudio-telemetry-worker),
 whose `DIAGNOSTICS.md` contains the verified wrangler download/reassembly commands.
 
 Before releasing a client, enable and validate the compatible Worker with a

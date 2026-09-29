@@ -2,12 +2,12 @@ import {
   API_ERROR_CODES,
   workspaceSeatCapacityState,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type {
   TrackingCountBucket,
   TrackingWorkspaceDimensions,
   TrackingWorkspacePage,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
 /** Convert product context to the bounded, PII-free Workspace dimensions. */
 export function workspaceAnalyticsDimensions(

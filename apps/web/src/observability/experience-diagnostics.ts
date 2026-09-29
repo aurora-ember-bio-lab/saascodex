@@ -2,7 +2,7 @@ import {
   CLIENT_EXPERIENCE_DIAGNOSTIC_EVENT,
   parseClientExperienceDiagnostic,
   type ClientExperienceDiagnostic,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
 // Independent of PostHog initialization and its safety-consent bypass. The local
 // daemon is the consent authority. No text, URLs, stacks or content enter this bridge.

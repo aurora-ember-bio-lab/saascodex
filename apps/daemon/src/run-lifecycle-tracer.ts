@@ -1,5 +1,5 @@
 import type { RunTelemetryTimestamps } from './run-analytics-observability.js';
-import type { TrackingFirstModelEventType } from '@saascodex/contracts/analytics';
+import type { TrackingFirstModelEventType } from '@splatstudio/contracts/analytics';
 
 export type RunLifecycleMark =
   | 'start_requested'

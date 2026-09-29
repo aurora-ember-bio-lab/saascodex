@@ -3,7 +3,7 @@ import {
   type CreateProjectExampleReference,
   type ProjectMetadata,
   type ProjectScenarioTaskProfile,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 interface EntryStrategyRoutingInput {
   automaticStrategyTaskProfile?: ProjectScenarioTaskProfile | null;

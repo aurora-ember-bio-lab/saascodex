@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties, Dispatch, SetStateAction } from 'react';
-import { Button, VisuallyHidden } from '@saascodex/components';
+import { Button, VisuallyHidden } from '@splatstudio/components';
 import type {
   AmrWalletSnapshot,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
-import { validateBaseUrl } from '@saascodex/contracts/api/connectionTest';
+} from '@splatstudio/contracts';
+import { validateBaseUrl } from '@splatstudio/contracts/api/connectionTest';
 import {
   agentIdToTracking,
   byokProtocolToTracking,
   executionModeToTracking,
   settingsSectionToTracking,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { useAnalytics } from '../analytics/provider';
 import { byokErrorCode } from '../analytics/byok-error-code';
 import {
@@ -46,7 +46,7 @@ import { AgentDiagnosticRow } from './AgentDiagnosticRow';
 import { DeepSeekHarnessSetupDialog } from './DeepSeekHarnessSetupDialog';
 import { AmrLoginPill } from './AmrLoginPill';
 import { PlanBadge } from './PlanBadge';
-import { orderAgentsWithSaaSCodexFirst } from './agentOrdering';
+import { orderAgentsWithSplatStudioFirst } from './agentOrdering';
 import {
   AMR_LOGIN_STATUS_EVENT,
   amrLoginStatusEventReason,
@@ -293,7 +293,7 @@ interface ByokProviderPreset {
 // sign-in coachmark when the user has not authorized AMR yet).
 export type SettingsHighlight = 'amr' | null;
 
-const SAASCODEX_RELEASES_URL = 'https://github.com/nexu-io/open-design/releases';
+const SPLATSTUDIO_RELEASES_URL = 'https://github.com/nexu-io/open-design/releases';
 
 type AboutUpdatePrimaryAction = 'check' | 'download' | 'install' | 'quit';
 type AboutUpdateTone = 'neutral' | 'success' | 'warning' | 'error';
@@ -874,7 +874,7 @@ function cleanAgentVersionLabel(
 }
 
 function displayAgentName(agent: Pick<AgentInfo, 'id' | 'name'>): string {
-  return agent.id === 'amr' ? 'SaaSCodex' : agent.name;
+  return agent.id === 'amr' ? 'SplatStudio' : agent.name;
 }
 
 const AGENT_CLI_ENV_FIELDS = [
@@ -1267,7 +1267,7 @@ export function updateAgentCliEnvValue(
 }
 
 const AMR_PROFILE_AGENT_ID = 'amr';
-const AMR_PROFILE_ENV_KEY = 'SAASCODEX_AMR_PROFILE';
+const AMR_PROFILE_ENV_KEY = 'SPLATSTUDIO_AMR_PROFILE';
 
 function sameAgentModelChoice(
   left: AgentModelChoice | undefined,
@@ -2004,7 +2004,7 @@ export function SettingsDialog({
   ]);
 
   const handleOpenReleaseNotes = useCallback(() => {
-    void openExternalUrl(SAASCODEX_RELEASES_URL);
+    void openExternalUrl(SPLATSTUDIO_RELEASES_URL);
   }, []);
 
   // Manual updater/launcher cache clear — the disaster-recovery action for
@@ -3921,7 +3921,7 @@ export function SettingsDialog({
   };
   const activeHeader = sectionHeader[activeSection];
   const visibleAgents = agents.filter(isVisibleLocalCliAgent);
-  const installedAgents = orderAgentsWithSaaSCodexFirst(
+  const installedAgents = orderAgentsWithSplatStudioFirst(
     visibleAgents.filter((agent) => agent.available || deepSeekHarnessNeedsSetup(agent)),
   );
   const unavailableAgents = visibleAgents.filter(
@@ -4501,7 +4501,7 @@ export function SettingsDialog({
               </div>
               </div>
               {cfg.mode === 'daemon' && !amrCardSignedIn ? (
-                // Only prompt to sign into SaaSCodex Cloud when NOT already
+                // Only prompt to sign into SplatStudio Cloud when NOT already
                 // signed in — the AMR/vela session IS the cloud identity (one
                 // session drives both), so a logged-in user has nothing to do
                 // here and the callout was showing spuriously.
@@ -4510,7 +4510,7 @@ export function SettingsDialog({
                     <strong>{t('settings.cloudCalloutTitle')}</strong>
                     <p>{t('settings.cloudCalloutBody')}</p>
                   </div>
-                  {/* Same device-auth flow as the 授权 button on the SaaSCodex
+                  {/* Same device-auth flow as the 授权 button on the SplatStudio
                       agent card below — the AMR/vela session IS the cloud
                       identity, so signing in here is that one flow. This used to
                       navigate to onboarding, which walked the user through the
@@ -8180,7 +8180,7 @@ function MediaProvidersSection({
 // Important: every snippet uses absolute paths to the daemon's current
 // Node-compatible runtime and built cli.js, fetched at runtime. macOS
 // and Linux ship a system /usr/bin/od (octal-dump) that shadows any
-// `od` we might add to PATH, and most SaaSCodex users run from
+// `od` we might add to PATH, and most SplatStudio users run from
 // source where `od` is not installed globally. The installer panel
 // must NOT reference bare `od`.
 type McpClientId =
@@ -8275,7 +8275,7 @@ function buildCodexEnvToml(info: McpInstallInfo): string {
   if (entries.length === 0) return '';
   return `
 
-[mcp_servers.saascodex.env]
+[mcp_servers.splatstudio.env]
 ${entries.map(([key, value]) => `${key} = ${JSON.stringify(value)}`).join('\n')}`;
 }
 
@@ -8287,13 +8287,13 @@ function buildSharedMcpJson(info: McpInstallInfo): string {
     .join('\n');
   return `{
   "mcpServers": {
-    "saascodex": ${innerJson}
+    "splatstudio": ${innerJson}
   }
 }`;
 }
 
 // One-click install toggle for Codex: queries the daemon for whether
-// `codex mcp get saascodex` succeeds, and POSTs/DELETEs the install
+// `codex mcp get splatstudio` succeeds, and POSTs/DELETEs the install
 // endpoint to call `codex mcp add/remove` on the user's behalf. The
 // copy-snippet path still works for users who prefer to paste manually
 // or whose Codex CLI is not on PATH (button shows a disabled hint in
@@ -8415,7 +8415,7 @@ function IntegrationsSection() {
       buildInstruction: () => t('settings.mcpInstructionCli'),
       buildSnippet: (info) => {
         const inner = JSON.stringify(buildMcpStdioServerConfig(info));
-        return `claude mcp add-json --scope user saascodex '${inner}'`;
+        return `claude mcp add-json --scope user splatstudio '${inner}'`;
       },
       buildSnippetLang: () => 'bash',
     },
@@ -8431,7 +8431,7 @@ function IntegrationsSection() {
         );
         return t('settings.mcpInstructionCodex', { path });
       },
-      buildSnippet: (info) => `[mcp_servers.saascodex]\ncommand = ${JSON.stringify(info.command)}\nargs = ${JSON.stringify(info.args)}${buildCodexEnvToml(info)}`,
+      buildSnippet: (info) => `[mcp_servers.splatstudio]\ncommand = ${JSON.stringify(info.command)}\nargs = ${JSON.stringify(info.args)}${buildCodexEnvToml(info)}`,
       buildSnippetLang: () => 'toml',
     },
     {
@@ -8447,7 +8447,7 @@ function IntegrationsSection() {
       buildDeeplink: (info) => {
         const inner = buildMcpStdioServerConfig(info);
         const encoded = utf8Btoa(JSON.stringify(inner));
-        return `cursor://anysphere.cursor-deeplink/mcp/install?name=saascodex&config=${encoded}`;
+        return `cursor://anysphere.cursor-deeplink/mcp/install?name=splatstudio&config=${encoded}`;
       },
       deeplinkLabel: () => t('settings.mcpDeeplinkInstallCursor'),
     },
@@ -8470,7 +8470,7 @@ function IntegrationsSection() {
         t('settings.mcpInstructionCopilot', {
           shortcut: commandPaletteShortcut(info.platform),
         }),
-      buildSnippet: (info) => `{\n  "servers": {\n    "saascodex": {\n      "type": "stdio",\n      "command": ${JSON.stringify(info.command)},\n      "args": ${JSON.stringify(info.args)}${info.env && Object.keys(info.env).length > 0 ? `,\n      "env": ${JSON.stringify(info.env)}` : ''}\n    }\n  }\n}`,
+      buildSnippet: (info) => `{\n  "servers": {\n    "splatstudio": {\n      "type": "stdio",\n      "command": ${JSON.stringify(info.command)},\n      "args": ${JSON.stringify(info.args)}${info.env && Object.keys(info.env).length > 0 ? `,\n      "env": ${JSON.stringify(info.env)}` : ''}\n    }\n  }\n}`,
       buildSnippetLang: () => 'json',
     },
     {
@@ -8489,7 +8489,7 @@ function IntegrationsSection() {
         t('settings.mcpInstructionZed', {
           shortcut: settingsShortcut(info.platform),
         }),
-      buildSnippet: (info) => `{\n  "context_servers": {\n    "saascodex": {\n      "source": "custom",\n      "command": ${JSON.stringify(info.command)},\n      "args": ${JSON.stringify(info.args)}${info.env && Object.keys(info.env).length > 0 ? `,\n      "env": ${JSON.stringify(info.env)}` : ''}\n    }\n  }\n}`,
+      buildSnippet: (info) => `{\n  "context_servers": {\n    "splatstudio": {\n      "source": "custom",\n      "command": ${JSON.stringify(info.command)},\n      "args": ${JSON.stringify(info.args)}${info.env && Object.keys(info.env).length > 0 ? `,\n      "env": ${JSON.stringify(info.env)}` : ''}\n    }\n  }\n}`,
       buildSnippetLang: () => 'json',
     },
     {
@@ -8830,7 +8830,7 @@ function IntegrationsSection() {
  * The toggle has two halves on opposite sides of the HTTP boundary:
  *
  *   * Browser-side: `useCritiqueTheaterEnabled` reads / writes the
- *     `saascodex:config` localStorage blob; this is what gates
+ *     `splatstudio:config` localStorage blob; this is what gates
  *     whether `<CritiqueTheaterMount>` actually renders.
  *   * Daemon-side: the rollout resolver in `server.ts` reads
  *     `project.metadata.critiqueTheaterEnabled`, so the daemon only

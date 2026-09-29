@@ -1,6 +1,6 @@
 /**
  * Streaming half of the `<od-next key="…">` marker (shape lives in
- * `@saascodex/contracts`, `api/next-step-marker`).
+ * `@splatstudio/contracts`, `api/next-step-marker`).
  *
  * Two hard requirements, both of them scars:
  *
@@ -58,7 +58,7 @@ import {
   OD_NEXT_OPEN_TAG,
   parseNextStepMarkerValue,
   parseNextStepSuggestions,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 /** Tolerates `</od-next >`, which models write often enough to matter. */
 const CLOSE_TAG_RE = /<\/od-next\s*>/i;

@@ -4,12 +4,12 @@ import { detectAcpModels, DEFAULT_MODEL_OPTION } from './shared.js';
 import type { RuntimeAgentDef } from '../types.js';
 
 // Design instructions injected into Reasonix's ACP system prompt via
-// REASONIX_ACP_SYSTEM_APPEND. This ensures the model follows SaaSCodex's
+// REASONIX_ACP_SYSTEM_APPEND. This ensures the model follows SplatStudio's
 // design workflow (artifact output, design system, skill instructions)
 // instead of treating every request as a pure coding task.
-const DESIGN_INSTRUCTIONS = `# SaaSCodex integration — MUST follow
+const DESIGN_INSTRUCTIONS = `# SplatStudio integration — MUST follow
 
-You are running inside SaaSCodex, a design tool. The user message contains
+You are running inside SplatStudio, a design tool. The user message contains
 design context (system prompt, skill instructions, design system tokens).
 Follow these rules:
 

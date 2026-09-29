@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/tools-release",
+  "name": "@splatstudio/tools-release",
   "version": "0.23.1",
   "private": true,
   "type": "module",
@@ -13,8 +13,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/launcher-proto": "workspace:*",
-    "@saascodex/release": "workspace:*",
+    "@splatstudio/launcher-proto": "workspace:*",
+    "@splatstudio/release": "workspace:*",
     "cac": "6.7.14",
     "sharp": "0.35.3",
     "yaml": "2.9.0"

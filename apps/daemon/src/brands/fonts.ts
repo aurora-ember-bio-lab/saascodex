@@ -4,7 +4,7 @@ import path from "node:path";
 
 import type { Brand } from "./schema.js";
 import { fetchExternalBrandAsset } from "./safe-fetch.js";
-import { findRealTagEnd, HTML_TAG_PATTERNS } from '@saascodex/contracts/runtime/html-injection-points';
+import { findRealTagEnd, HTML_TAG_PATTERNS } from '@splatstudio/contracts/runtime/html-injection-points';
 
 /**
  * Webfont self-hosting for a brand workspace.

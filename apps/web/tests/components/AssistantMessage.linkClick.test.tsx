@@ -121,7 +121,7 @@ describe('AssistantMessage — chat file-link routing (#1239)', () => {
     const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
     anchor!.dispatchEvent(clickEvent);
 
-    // Not the current workspace's file — but it IS an SaaSCodex file, so
+    // Not the current workspace's file — but it IS an SplatStudio file, so
     // the click must route to the owning project in the SAME window rather
     // than falling through to Electron's window-open handler (which lands a
     // chrome-less child window on the home screen).
@@ -140,12 +140,12 @@ describe('AssistantMessage — chat file-link routing (#1239)', () => {
     const { container } = render(
       <AssistantMessage
         message={messageWithText(
-          '只有一个文件：[deck-outline.md](/Users/mac/.saascodex/data/projects/other-project/deck-outline.md)。',
+          '只有一个文件：[deck-outline.md](/Users/mac/.splatstudio/data/projects/other-project/deck-outline.md)。',
         )}
         streaming={false}
         projectId="project-1"
         projectFileNames={new Set(['unrelated.html'])}
-        projectResolvedDir="/Users/mac/.saascodex/data/projects/project-1"
+        projectResolvedDir="/Users/mac/.splatstudio/data/projects/project-1"
         onRequestOpenFile={onRequestOpenFile}
       />,
     );
@@ -376,7 +376,7 @@ describe('AssistantMessage — chat file-link routing (#1239)', () => {
     const { container } = render(
       <AssistantMessage
         message={messageWithText(
-          '已完成单文件原型：[index.html](/Users/mac/saascodex/saascodex-preview-0.10.0/projects/Web%20Prototype/index.html)。',
+          '已完成单文件原型：[index.html](/Users/mac/splatstudio/splatstudio-preview-0.10.0/projects/Web%20Prototype/index.html)。',
         )}
         streaming={false}
         projectId="project-1"
@@ -543,7 +543,7 @@ describe('AssistantMessage — chat file-link routing (#1239)', () => {
     const { container } = render(
       <AssistantMessage
         message={messageWithText(
-          '成稿在 [index.html](/Users/mac/.saascodex/data/projects/other-project/index.html)。',
+          '成稿在 [index.html](/Users/mac/.splatstudio/data/projects/other-project/index.html)。',
         )}
         streaming={false}
         projectId="project-1"

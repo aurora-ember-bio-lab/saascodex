@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { CollabMemberRole } from '@saascodex/contracts';
+import type { CollabMemberRole } from '@splatstudio/contracts';
 import { navigate } from '../router';
 import { useCollab } from './useCollab';
 import { useWorkspaceContext } from './useWorkspaceContext';

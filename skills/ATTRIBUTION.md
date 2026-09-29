@@ -1,6 +1,6 @@
 # Vendored skill attribution
 
-SaaSCodex's skill catalog includes third-party skills imported from the
+SplatStudio's skill catalog includes third-party skills imported from the
 following repositories. Licenses are permissive (MIT / Apache-2.0) unless noted;
 license texts are preserved in [`_licenses/`](./_licenses/) and, where present,
 alongside each imported skill folder.
@@ -61,7 +61,7 @@ alongside each imported skill folder.
 
 - Imported skills keep their original folder names and `SKILL.md`
   frontmatter; no content was modified. The only structural change is
-  flattening into this directory, which matches SaaSCodex's flat
+  flattening into this directory, which matches SplatStudio's flat
   `skills/<name>/SKILL.md` discovery.
 - Skills without a frontmatter `name` derive their catalog id from the
   folder name.

@@ -2,9 +2,9 @@ import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import type { SidecarStamp, SidecarStopResult } from "@saascodex/sidecar";
-import { APP_KEYS, SIDECAR_SOURCES } from "@saascodex/sidecar-proto";
-import type { StopProcessesResult, stopProcesses, waitForProcessExit } from "@saascodex/platform";
+import type { SidecarStamp, SidecarStopResult } from "@splatstudio/sidecar";
+import { APP_KEYS, SIDECAR_SOURCES } from "@splatstudio/sidecar-proto";
+import type { StopProcessesResult, stopProcesses, waitForProcessExit } from "@splatstudio/platform";
 import { describe, expect, it, vi } from "vitest";
 
 import { exitPackagedLauncherForExistingDesktop, inspectExistingDesktopForLauncher, waitForLauncherAfterQuit } from "../src/launcher-after-quit.js";
@@ -20,7 +20,7 @@ function fakePaths(root: string): PackagedNamespacePaths {
     desktopLogsRoot: join(root, "logs", "desktop"), electronSessionDataRoot: join(root, "user-data", "session"),
     electronUserDataRoot: join(root, "user-data"), installationRoot: root,
     installerObservationRoot: join(root, "data", "observations", "installer"), logsRoot: join(root, "logs"), namespaceRoot: root,
-    resourceRoot: join(root, "resources", "saascodex"), runtimeRoot: join(root, "runtime"), updateRoot: join(root, "updates"),
+    resourceRoot: join(root, "resources", "splatstudio"), runtimeRoot: join(root, "runtime"), updateRoot: join(root, "updates"),
   };
 }
 

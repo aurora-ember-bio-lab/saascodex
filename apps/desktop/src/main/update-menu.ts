@@ -1,4 +1,4 @@
-import type { DesktopUpdateStatusSnapshot } from "@saascodex/sidecar-proto";
+import type { DesktopUpdateStatusSnapshot } from "@splatstudio/sidecar-proto";
 
 export type DesktopUpdateMenuLabels = {
   check: string;
@@ -22,7 +22,7 @@ export const DEFAULT_DESKTOP_UPDATE_MENU_LABELS: DesktopUpdateMenuLabels = Objec
   downloading: "Downloading Update…",
   install: "Install Update…",
   installing: "Installing Update…",
-  restart: "Restart to Update SaaSCodex…",
+  restart: "Restart to Update SplatStudio…",
 });
 
 const UPDATE_MENU_LABEL_KEYS = ["check", "checking", "downloading", "install", "installing", "restart"] as const;

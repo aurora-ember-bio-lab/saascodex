@@ -26,7 +26,7 @@
 
 import { promises as fsp } from 'node:fs';
 import path from 'node:path';
-import { PROFILE_MEMORY_ID } from '@saascodex/contracts';
+import { PROFILE_MEMORY_ID } from '@splatstudio/contracts';
 import {
   deleteMemoryEntry,
   isHeuristicExtractionArtifact,

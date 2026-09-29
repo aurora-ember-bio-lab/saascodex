@@ -10,7 +10,7 @@ import { suppressWhatsNew } from '../lib/playwright/mock-factory.js';
 // rectangle behind every wrapped segment — reading as permanent selection
 // highlights. The inner `<code>` must stay transparent.
 
-const STORAGE_KEY = 'saascodex:config';
+const STORAGE_KEY = 'splatstudio:config';
 
 test.beforeEach(async ({ page }) => {
   // The entry home mounts `WhatsNewPopup` (EntryShell.tsx) and its backdrop sits
@@ -122,8 +122,8 @@ test('[P1] MCP OAuth connect callback updates status and supports disconnect', a
 
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.medium });
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: T.medium });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SplatStudio' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
   }

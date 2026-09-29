@@ -1,18 +1,18 @@
 ---
-title: SaaSCodex 0.19.0 — Image Generation, Unlocked
-description: Bring ideas to life with your SaaSCodex subscription—generate images directly with Seedream 5.0 Pro, GPT Image 2.0, and Nano Banana 2.0.
+title: SplatStudio 0.19.0 — Image Generation, Unlocked
+description: Bring ideas to life with your SplatStudio subscription—generate images directly with Seedream 5.0 Pro, GPT Image 2.0, and Nano Banana 2.0.
 ---
 
 ### 🌟 Codename: *Image Generation, Unlocked*
 
-🖼️ **Bring ideas to life with your SaaSCodex subscription—generate images
+🖼️ **Bring ideas to life with your SplatStudio subscription—generate images
 directly with Seedream 5.0 Pro, GPT Image 2.0, and Nano Banana 2.0.**
 
 ## 🔥 Highlights
 
 - 🎨 **Three flagship image models, included with your subscription.** Generate
   and edit images directly with Seedream 5.0 Pro, GPT Image 2.0, and Nano
-  Banana 2.0 through SaaSCodex Cloud. The agent can pass multiple reference
+  Banana 2.0 through SplatStudio Cloud. The agent can pass multiple reference
   images and explicit aspect ratio, resolution, and quality settings when the
   selected model publishes them. Requests are checked before generation starts,
   progress remains visible, output paths come from the daemon, and one transient
@@ -102,6 +102,6 @@ None reported.
 
 ## ⬆️ Upgrade note
 
-Install SaaSCodex 0.19.0 through the normal in-app update flow or the current
+Install SplatStudio 0.19.0 through the normal in-app update flow or the current
 installer after the stable release is available. No additional manual steps
 are documented for this release.

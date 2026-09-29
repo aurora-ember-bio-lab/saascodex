@@ -3,11 +3,11 @@
 // evaluators do not have to infer the repair lifecycle from daemon internals.
 
 export const DELIVERABLE_SYNTAX_TOOL_SCHEMA =
-  'saascodex.deliverable-syntax-tool/v1' as const;
+  'splatstudio.deliverable-syntax-tool/v1' as const;
 export const DELIVERABLE_SYNTAX_REPAIR_SCHEMA =
-  'saascodex.deliverable-syntax-repair/v1' as const;
+  'splatstudio.deliverable-syntax-repair/v1' as const;
 export const DELIVERABLE_SYNTAX_METRICS_SCHEMA =
-  'saascodex.deliverable-syntax-metrics/v1' as const;
+  'splatstudio.deliverable-syntax-metrics/v1' as const;
 export const DELIVERABLE_SYNTAX_CHECKER = 'web-syntax@1' as const;
 
 export type DeliverableSyntaxChecker = typeof DELIVERABLE_SYNTAX_CHECKER;

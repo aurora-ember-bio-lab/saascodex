@@ -1,7 +1,7 @@
 import {
   normalizeArtifactFocusPath,
   type ArtifactFocusSelection,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { artifactKind } from './format';
 
 /** Order the already admitted turn artifacts; focus must never widen that set. */

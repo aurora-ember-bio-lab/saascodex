@@ -49,8 +49,8 @@ function textOf(text: string) {
 beforeEach(() => {
   window.localStorage.clear();
   // 产品稿是中文原件,判据就钉在中文上;其余 18 个 locale 是它的忠实翻译。
-  window.localStorage.setItem('saascodex:locale', 'zh-CN');
-  window.localStorage.setItem('saascodex:locale-source', 'manual');
+  window.localStorage.setItem('splatstudio:locale', 'zh-CN');
+  window.localStorage.setItem('splatstudio:locale-source', 'manual');
 });
 
 afterEach(() => {

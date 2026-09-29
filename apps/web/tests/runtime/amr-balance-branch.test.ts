@@ -21,7 +21,7 @@ import {
   buildWorkspaceSeatSummary,
   type WorkspaceBillingSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { describe, expect, it } from 'vitest';
 
 import {

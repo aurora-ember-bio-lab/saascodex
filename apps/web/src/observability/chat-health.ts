@@ -49,7 +49,7 @@ import type {
   ChatOpenKind,
   ChatSampleReason,
   ChatStreamHealthProps,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
 import { reportSafetyEvent } from '../analytics/error-tracking';
 import {

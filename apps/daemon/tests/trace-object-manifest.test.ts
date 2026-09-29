@@ -82,9 +82,9 @@ describe('buildTraceObjectManifests', () => {
       fetchImpl: fetchSpy as any,
       env: {
         NODE_ENV: 'test',
-        SAASCODEX_OBJECT_RELAY_URL: 'https://telemetry.saascodex.com/api/objects/batch',
-        SAASCODEX_OBJECT_MAX_BYTES: '1024',
-        SAASCODEX_OBJECT_BATCH_MAX_BYTES: '2300',
+        SPLATSTUDIO_OBJECT_RELAY_URL: 'https://telemetry.splatstudio.app/api/objects/batch',
+        SPLATSTUDIO_OBJECT_MAX_BYTES: '1024',
+        SPLATSTUDIO_OBJECT_BATCH_MAX_BYTES: '2300',
       },
       now: () => new Date('2026-06-08T00:00:00.000Z'),
     });
@@ -162,7 +162,7 @@ describe('buildTraceObjectManifests', () => {
       fetchImpl: fetchSpy as any,
       env: {
         NODE_ENV: 'test',
-        SAASCODEX_OBJECT_RELAY_URL: 'https://telemetry.saascodex.com/api/objects/batch',
+        SPLATSTUDIO_OBJECT_RELAY_URL: 'https://telemetry.splatstudio.app/api/objects/batch',
       },
       now: () => new Date('2026-06-08T00:00:00.000Z'),
     });
@@ -202,7 +202,7 @@ describe('buildTraceObjectManifests', () => {
       fetchImpl: vi.fn() as any,
       env: {
         NODE_ENV: 'test',
-        SAASCODEX_OBJECT_RELAY_URL: 'https://telemetry.saascodex.com/api/objects/batch',
+        SPLATSTUDIO_OBJECT_RELAY_URL: 'https://telemetry.splatstudio.app/api/objects/batch',
       },
       uploadMode: 'manifest-only',
       now: () => new Date('2026-06-08T00:00:00.000Z'),
@@ -262,7 +262,7 @@ describe('buildTraceObjectManifests', () => {
       fetchImpl: fetchSpy as any,
       env: {
         NODE_ENV: 'test',
-        SAASCODEX_OBJECT_RELAY_URL: 'https://telemetry.saascodex.com/api/objects/batch',
+        SPLATSTUDIO_OBJECT_RELAY_URL: 'https://telemetry.splatstudio.app/api/objects/batch',
       },
       now: () => new Date('2026-06-08T00:00:00.000Z'),
     });
@@ -285,7 +285,7 @@ describe('buildTraceObjectManifests', () => {
         expect(parsed.objects).toHaveLength(1);
         return new Response(JSON.stringify({ upload_token: 'upload-token' }), { status: 200 });
       }
-      expect(url).toBe('https://telemetry.saascodex.com/api/objects/batch');
+      expect(url).toBe('https://telemetry.splatstudio.app/api/objects/batch');
       expect((parsed as unknown as { upload_token: string }).upload_token).toBe('upload-token');
       expect(parsed.objects).toHaveLength(1);
       return new Response(
@@ -313,14 +313,14 @@ describe('buildTraceObjectManifests', () => {
       fetchImpl: fetchSpy as any,
       env: {
         NODE_ENV: 'production',
-        SAASCODEX_TELEMETRY_RELAY_URL: 'https://telemetry.saascodex.com/api/langfuse//',
+        SPLATSTUDIO_TELEMETRY_RELAY_URL: 'https://telemetry.splatstudio.app/api/langfuse//',
       },
       now: () => new Date('2026-06-08T00:00:00.000Z'),
     });
 
     expect(fetchSpy).toHaveBeenCalledTimes(2);
-    expect(fetchSpy.mock.calls[0]![0]).toBe('https://telemetry.saascodex.com/api/objects/authorize');
-    expect(fetchSpy.mock.calls[1]![0]).toBe('https://telemetry.saascodex.com/api/objects/batch');
+    expect(fetchSpy.mock.calls[0]![0]).toBe('https://telemetry.splatstudio.app/api/objects/authorize');
+    expect(fetchSpy.mock.calls[1]![0]).toBe('https://telemetry.splatstudio.app/api/objects/batch');
     expect(projectFileReadTracker.calls).toBe(1);
     expect(manifests?.completeness).toBe('complete');
     expect(manifests?.artifactManifest?.[0]).toMatchObject({
@@ -350,8 +350,8 @@ describe('buildTraceObjectManifests', () => {
       fetchImpl: fetchSpy as any,
       env: {
         NODE_ENV: 'test',
-        SAASCODEX_OBJECT_RELAY_URL: 'https://telemetry.saascodex.com/api/objects/batch',
-        SAASCODEX_OBJECT_MAX_BYTES: '8',
+        SPLATSTUDIO_OBJECT_RELAY_URL: 'https://telemetry.splatstudio.app/api/objects/batch',
+        SPLATSTUDIO_OBJECT_MAX_BYTES: '8',
       },
       now: () => new Date('2026-06-08T00:00:00.000Z'),
     });

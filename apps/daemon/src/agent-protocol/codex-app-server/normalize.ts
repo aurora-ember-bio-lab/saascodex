@@ -1,7 +1,7 @@
 import { createCodexTurnUsage } from '../../observability/codex-turn-usage.js';
 /** @module agent-protocol/codex-app-server/normalize
  *
- * Translates codex `app-server` JSON-RPC notifications into the SaaSCodex
+ * Translates codex `app-server` JSON-RPC notifications into the SplatStudio
  * agent-event stream.
  *
  * The design rule here is "one mapping, not two". Everything the daemon already

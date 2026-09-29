@@ -15,7 +15,7 @@
 
 export type HomeGuideStage = 'chip' | 'card' | 'done';
 
-const STORAGE_KEY = 'saascodex:home-first-run-guide';
+const STORAGE_KEY = 'splatstudio:home-first-run-guide';
 
 export function readHomeGuideStage(): HomeGuideStage {
   if (typeof window === 'undefined') return 'done';

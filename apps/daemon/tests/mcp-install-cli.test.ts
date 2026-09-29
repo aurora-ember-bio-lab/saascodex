@@ -35,18 +35,18 @@ async function runCli(args: string[]): Promise<{ stdout: string; stderr: string;
 
 describe('od mcp install CLI identity probe', () => {
   it('emits a stable identity token without requiring an agent slug', async () => {
-    const result = await runCli(['mcp', 'install', '--saascodex-cli-probe']);
+    const result = await runCli(['mcp', 'install', '--splatstudio-cli-probe']);
 
     expect(result.code).toBe(0);
     expect(result.stderr).toBe('');
-    expect(result.stdout).toBe('saascodex-cli:mcp-install:v1\n');
+    expect(result.stdout).toBe('splatstudio-cli:mcp-install:v1\n');
   });
 
   it('includes the resolved launch spec in JSON dry-run output', async () => {
     const launchSpec = {
-      command: '/opt/saascodex/runtime',
-      args: ['/opt/saascodex/daemon-cli.mjs', 'mcp'],
-      env: { OD_DATA_DIR: '/tmp/saascodex-data' },
+      command: '/opt/splatstudio/runtime',
+      args: ['/opt/splatstudio/daemon-cli.mjs', 'mcp'],
+      env: { OD_DATA_DIR: '/tmp/splatstudio-data' },
     };
     const server = createServer((_req, res) => {
       res.setHeader('content-type', 'application/json');

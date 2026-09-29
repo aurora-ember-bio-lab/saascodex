@@ -38,7 +38,7 @@ describe('canonical Vela terminal command integration', () => {
       },
       configuredEnv: {
         VELA_BIN: fakeVela,
-        VELA_INVOCATION_SOURCE: 'saascodex',
+        VELA_INVOCATION_SOURCE: 'splatstudio',
       },
       maxBuffer: 64 * 1024,
     };
@@ -50,7 +50,7 @@ describe('canonical Vela terminal command integration', () => {
       args: string[];
       invocationSource: string;
     };
-    expect(successLog).toEqual({ args, invocationSource: 'saascodex' });
+    expect(successLog).toEqual({ args, invocationSource: 'splatstudio' });
 
     let failure: unknown;
     try {
@@ -108,7 +108,7 @@ describe('canonical Vela terminal command integration', () => {
           'run', 'terminal', '--run-id', 'settings-run', '--outcome', 'failed',
           '--terminal-at', '2026-08-05T02:03:04.567Z', '--json',
         ],
-        invocationSource: 'saascodex',
+        invocationSource: 'splatstudio',
       });
     } finally {
       db.close();

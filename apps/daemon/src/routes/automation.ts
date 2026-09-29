@@ -1,5 +1,5 @@
 import type { Express } from 'express';
-import type { AutomationProposalStatus } from '@saascodex/contracts';
+import type { AutomationProposalStatus } from '@splatstudio/contracts';
 
 import {
   applyAutomationProposal,

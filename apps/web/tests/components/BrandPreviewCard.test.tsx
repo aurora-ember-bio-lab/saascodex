@@ -3,7 +3,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { BrandSummary, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { BrandSummary, WorkspaceCollabContext } from '@splatstudio/contracts';
 import { workspaceContextFixture } from '../helpers/workspace-context';
 
 const workspaceContextState = vi.hoisted(() => ({

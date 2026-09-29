@@ -42,7 +42,7 @@ describe('SideChatTab', () => {
     const config = {
       mode: 'daemon',
       agentCliEnv: {
-        amr: { SAASCODEX_AMR_PROFILE: 'test' },
+        amr: { SPLATSTUDIO_AMR_PROFILE: 'test' },
       },
     } as unknown as AppConfig;
     const conversations = [

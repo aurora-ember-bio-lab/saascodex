@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { SaaSCodexPlanContractV2Schema, StrategyRuntimeStateV2Schema } from '../plugins/strategy-v2.js';
+import { SplatStudioPlanContractV2Schema, StrategyRuntimeStateV2Schema } from '../plugins/strategy-v2.js';
 
 import {
   indexCanonicalXmlChildren,
@@ -12,7 +12,7 @@ import {
 } from './canonical-xml.js';
 
 export const OD_NEXT_INTENT_RESOLUTION_TURN_SCHEMA =
-  'saascodex.od-next-intent-resolution-turn/v1' as const;
+  'splatstudio.od-next-intent-resolution-turn/v1' as const;
 
 export const OdNextIntentResolutionTurnV1Schema = z.object({
   taskExecutionId: z.string().min(1),
@@ -77,7 +77,7 @@ export function composeOdNextIntentResolutionTurnV1(input: Omit<OdNextIntentReso
       '# OD Next execution intent resolution',
       'Continue the locked native session. The preceding response omitted executionIntent. Resolve only that field from the frozen original user request below and the existing task context. Do not use tools, create or modify files, ask another question, rewrite the plan, or repeat the visible answer.',
       'Use plan_only when the original request limits the task to a visible planning answer, including an explicit no-write request. Use produce for requested file work, including an editable Plan document or an explicit small Chat edit. Clarification answers do not remove an original no-write constraint.',
-      `Emit exactly one saascodex-runtime-state block and no other text or Plan Contract. Its schema is saascodex.strategy-state/v2, route full_plan, inputStage ${input.stage}, executionMode ${JSON.stringify(executionMode)}, executionIntent produce or plan_only, reasonCodes [], and outcome completed for plan_only or plan_ready for produce. Do not change any other task decision.`,
+      `Emit exactly one splatstudio-runtime-state block and no other text or Plan Contract. Its schema is splatstudio.strategy-state/v2, route full_plan, inputStage ${input.stage}, executionMode ${JSON.stringify(executionMode)}, executionIntent produce or plan_only, reasonCodes [], and outcome completed for plan_only or plan_ready for produce. Do not change any other task decision.`,
       '## Frozen original user request',
       originalRequest,
     ].join('\n\n'),
@@ -87,9 +87,9 @@ export function composeOdNextIntentResolutionTurnV1(input: Omit<OdNextIntentReso
 /** Durable source/reply envelope for the one host-owned intent supplement. */
 const ProtocolResultSchema = z.object({
   visibleText: z.string(),
-  planContract: SaaSCodexPlanContractV2Schema.optional(),
+  planContract: SplatStudioPlanContractV2Schema.optional(),
   runtimeState: StrategyRuntimeStateV2Schema.optional(),
-  repairPlanContract: SaaSCodexPlanContractV2Schema.optional(),
+  repairPlanContract: SplatStudioPlanContractV2Schema.optional(),
   repairRuntimeState: StrategyRuntimeStateV2Schema.optional(),
   normalizations: z.array(z.string()),
   issues: z.array(z.object({

@@ -1,4 +1,4 @@
-import type { SaaSCodexPlanContractV2 } from '@saascodex/contracts';
+import type { SplatStudioPlanContractV2 } from '@splatstudio/contracts';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -8,7 +8,7 @@ import {
 } from '../../../src/strategies/od-next/protocol.js';
 
 const plan = {
-  schema: 'saascodex.plan-contract/v2',
+  schema: 'splatstudio.plan-contract/v2',
   strategy: {
     id: 'od-next-strategy',
     version: '2.0.0',
@@ -59,7 +59,7 @@ const plan = {
 } as const;
 
 const state = {
-  schema: 'saascodex.strategy-state/v2',
+  schema: 'splatstudio.strategy-state/v2',
   route: 'full_plan',
   inputStage: 'request',
   outcome: 'plan_ready',
@@ -75,9 +75,9 @@ describe('OD Next machine protocol stream', () => {
   it('recognizes exact blocks across every chunk boundary and never returns machine bytes', () => {
     const wire = [
       'Ready to build.\n',
-      machineBlock('saascodex-plan-contract', plan),
+      machineBlock('splatstudio-plan-contract', plan),
       '\n',
-      machineBlock('saascodex-runtime-state', state),
+      machineBlock('splatstudio-runtime-state', state),
       '\nOne open decision remains.',
     ].join('');
 
@@ -85,8 +85,8 @@ describe('OD Next machine protocol stream', () => {
       const stream = new OdNextMachineProtocolStream();
       const visible = stream.push(wire.slice(0, split)) + stream.push(wire.slice(split));
       const result = stream.finish();
-      expect(visible).not.toContain('saascodex-plan-contract');
-      expect(visible).not.toContain('saascodex-runtime-state');
+      expect(visible).not.toContain('splatstudio-plan-contract');
+      expect(visible).not.toContain('splatstudio-runtime-state');
       expect(result.visibleText).toBe('Ready to build.\n\n\nOne open decision remains.');
       expect(result.issues).toEqual([]);
       expect(result.planContract).toEqual(plan);
@@ -101,16 +101,16 @@ describe('OD Next machine protocol stream', () => {
     const stream = new OdNextMachineProtocolStream();
     stream.push([
       '先对齐两个问题。',
-      '<saascodex-runtime-state>',
+      '<splatstudio-runtime-state>',
       JSON.stringify({
-        schema: 'saascodex.strategy-state/v2',
+        schema: 'splatstudio.strategy-state/v2',
         route: 'full_plan',
         inputStage: 'request',
         outcome: 'clarification_required',
         executionMode: 'simple',
         reasonCodes: ['scope_required'],
       }),
-      '</saascodex-runtime-state>',
+      '</splatstudio-runtime-state>',
     ].join('\n'));
     const result = stream.finish();
     expect(result.issues).toEqual([]);
@@ -138,9 +138,9 @@ describe('OD Next machine protocol stream', () => {
     const stream = new OdNextMachineProtocolStream();
     const visible = stream.push([
       'summary',
-      machineBlock('saascodex-plan-contract', plan),
-      machineBlock('saascodex-plan-contract', plan),
-      machineBlock('saascodex-runtime-state', state),
+      machineBlock('splatstudio-plan-contract', plan),
+      machineBlock('splatstudio-plan-contract', plan),
+      machineBlock('splatstudio-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -155,12 +155,12 @@ describe('OD Next machine protocol stream', () => {
   it('keeps one schema-valid fenced contract only as a repair anchor', () => {
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<saascodex-plan-contract>',
+      '<splatstudio-plan-contract>',
       '```json',
       JSON.stringify(plan),
       '```',
-      '</saascodex-plan-contract>',
-      machineBlock('saascodex-runtime-state', state),
+      '</splatstudio-plan-contract>',
+      machineBlock('splatstudio-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -178,14 +178,14 @@ describe('OD Next machine protocol stream', () => {
     // task went straight to a terminal block.
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<saascodex-plan-contract>',
+      '<splatstudio-plan-contract>',
       'Here is the plan:',
       '```json',
       JSON.stringify(plan),
       '```',
       'Let me know if you want changes.',
-      '</saascodex-plan-contract>',
-      machineBlock('saascodex-runtime-state', state),
+      '</splatstudio-plan-contract>',
+      machineBlock('splatstudio-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -198,10 +198,10 @@ describe('OD Next machine protocol stream', () => {
     // partial object mistaken for a declaration.
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<saascodex-plan-contract>',
+      '<splatstudio-plan-contract>',
       JSON.stringify(plan).slice(0, 60),
-      '</saascodex-plan-contract>',
-      machineBlock('saascodex-runtime-state', state),
+      '</splatstudio-plan-contract>',
+      machineBlock('splatstudio-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -216,11 +216,11 @@ describe('OD Next machine protocol stream', () => {
     };
     const stream = new OdNextMachineProtocolStream();
     stream.push([
-      '<saascodex-plan-contract>',
+      '<splatstudio-plan-contract>',
       'plan follows',
       JSON.stringify(withBrace),
-      '</saascodex-plan-contract>',
-      machineBlock('saascodex-runtime-state', state),
+      '</splatstudio-plan-contract>',
+      machineBlock('splatstudio-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -230,7 +230,7 @@ describe('OD Next machine protocol stream', () => {
   it('suppresses malformed and oversized reserved blocks instead of leaking them', () => {
     const stream = new OdNextMachineProtocolStream({ maxMachineBlockBytes: 64 });
     const visible = stream.push(
-      `before<saascodex-plan-contract data-x="bad">${'x'.repeat(200)}\n</saascodex-plan-contract>after`,
+      `before<splatstudio-plan-contract data-x="bad">${'x'.repeat(200)}\n</splatstudio-plan-contract>after`,
     );
     const result = stream.finish();
 
@@ -244,7 +244,7 @@ describe('OD Next machine protocol stream', () => {
   });
 
   it('consumes an incomplete closing tag at EOF across every chunk boundary', () => {
-    const complete = machineBlock('saascodex-plan-contract', plan);
+    const complete = machineBlock('splatstudio-plan-contract', plan);
     const wire = `summary\n${complete.slice(0, -1)}`;
 
     for (let split = 0; split <= wire.length; split += 1) {
@@ -266,7 +266,7 @@ describe('OD Next machine protocol stream', () => {
   });
 
   it('leaves the ordinary Run path byte-for-byte unchanged', () => {
-    const ordinary = `Visible <saascodex-runtime-state>{"not":"active"}</saascodex-runtime-state>`;
+    const ordinary = `Visible <splatstudio-runtime-state>{"not":"active"}</splatstudio-runtime-state>`;
     expect(passThroughOrdinaryAssistantText(null, ordinary)).toBe(ordinary);
 
     const strategy = new OdNextMachineProtocolStream();
@@ -275,14 +275,14 @@ describe('OD Next machine protocol stream', () => {
   });
 
   it('does not terminate suppression on a closing-tag string inside JSON', () => {
-    const hostile = structuredClone(plan) as unknown as SaaSCodexPlanContractV2;
-    hostile.taskProfile.goal = 'Never leak </saascodex-plan-contract> machine bytes';
+    const hostile = structuredClone(plan) as unknown as SplatStudioPlanContractV2;
+    hostile.taskProfile.goal = 'Never leak </splatstudio-plan-contract> machine bytes';
     hostile.decisionSummary.goal = hostile.taskProfile.goal;
     const stream = new OdNextMachineProtocolStream();
     const visible = stream.push([
       'summary',
-      machineBlock('saascodex-plan-contract', hostile),
-      machineBlock('saascodex-runtime-state', state),
+      machineBlock('splatstudio-plan-contract', hostile),
+      machineBlock('splatstudio-runtime-state', state),
     ].join('\n'));
     const result = stream.finish();
 
@@ -297,10 +297,10 @@ describe('OD Next machine protocol stream', () => {
 
 describe('physical-run protocol output ownership', () => {
   it.each([undefined, 'intent_resolution'] as const)('preserves parsed reply bytes with purpose %s and only emits ordinary answers', purpose => {
-    const runtime = { schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'request',
+    const runtime = { schema: 'splatstudio.strategy-state/v2', route: 'full_plan', inputStage: 'request',
       outcome: 'completed', executionMode: 'simple', executionIntent: 'plan_only', reasonCodes: [] };
     const visible = 'Discuss this JSON: {"runtimeState":{"example":true}}.\n';
-    const text = `${visible}<saascodex-runtime-state>\n${JSON.stringify(runtime)}\n</saascodex-runtime-state>`;
+    const text = `${visible}<splatstudio-runtime-state>\n${JSON.stringify(runtime)}\n</splatstudio-runtime-state>`;
     const stream = createOdNextRunProtocol(purpose ? { purpose } : null);
     let emitted = '';
     for (let i = 0; i < text.length; i += 7) emitted += stream.push(text.slice(i, i + 7));
@@ -313,7 +313,7 @@ describe('physical-run protocol output ownership', () => {
 
   it.each([undefined, 'intent_resolution'] as const)('handles a close-time withheld text tail with purpose %s', purpose => {
     const stream = createOdNextRunProtocol(purpose ? { purpose } : null);
-    const text = 'Example: <saascodex-runtime-sta';
+    const text = 'Example: <splatstudio-runtime-sta';
     const emitted = stream.push(text);
     const finished = stream.finish();
     expect(finished.parsed.visibleText).toBe(text);

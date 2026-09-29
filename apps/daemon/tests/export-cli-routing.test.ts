@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { EXPORT_FORMATS } from '@saascodex/contracts';
+import { EXPORT_FORMATS } from '@splatstudio/contracts';
 
 import {
   buildExportCliResultEnvelope,

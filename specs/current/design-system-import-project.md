@@ -2,7 +2,7 @@
 
 ## Purpose
 
-SaaSCodex needs imported design systems to satisfy four stakeholders at
+SplatStudio needs imported design systems to satisfy four stakeholders at
 once:
 
 - **Push channel**: system-prompt injection must stay small, dense,

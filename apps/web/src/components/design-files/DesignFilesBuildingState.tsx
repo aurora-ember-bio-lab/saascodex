@@ -5,12 +5,12 @@ import {
   parsePreviewBuildFocusSections,
   previewBuildFocusRequest,
   type PreviewSection,
-} from '@saascodex/contracts/runtime/preview-build-focus';
+} from '@splatstudio/contracts/runtime/preview-build-focus';
 
 import { useT } from '../../i18n';
 import { appendResourceQuery } from '../../collab/workspace-identity';
 import { projectRawUrl } from '../../providers/registry';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import type { ProjectFile } from '../../types';
 import type { RunProgressStep } from '../../runtime/run-progress';
 import { RunStepFeed } from './RunStepFeed';

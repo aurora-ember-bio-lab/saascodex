@@ -1,7 +1,7 @@
 import type {
-  SaaSCodexPlanContractV2,
+  SplatStudioPlanContractV2,
   StrategyInputStageV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import type { OdNextComplexRuntimeEvidence } from './complex-production.js';
 import { resolveDaemonOwnedOdNextComplexRuntimeEvidence } from './complex-runtime-evidence.js';
@@ -15,7 +15,7 @@ export type OdNextExecutionPreflightResolver = (input: {
   runId: string;
   agentId: string;
   productionRoutes: readonly string[];
-  plan: SaaSCodexPlanContractV2;
+  plan: SplatStudioPlanContractV2;
 }) => OdNextExecutionPreflightInput | undefined | Promise<OdNextExecutionPreflightInput | undefined>;
 
 export type OdNextComplexProductionResolver = (input: {
@@ -23,7 +23,7 @@ export type OdNextComplexProductionResolver = (input: {
   taskExecutionId: string;
   runId: string;
   agentId: string;
-  plan: SaaSCodexPlanContractV2;
+  plan: SplatStudioPlanContractV2;
   runtimeCapabilitySnapshot?: unknown;
 }) => OdNextComplexRuntimeEvidence | undefined | Promise<OdNextComplexRuntimeEvidence | undefined>;
 
@@ -52,7 +52,7 @@ interface AutomaticContinuationRun {
  * this service owns capability selection only.
  */
 export async function resolveAutomaticContinuationEvidence(input: {
-  plan: SaaSCodexPlanContractV2 | null | undefined;
+  plan: SplatStudioPlanContractV2 | null | undefined;
   phase: 'eligibility' | 'completion';
   task: AutomaticContinuationTask;
   run: AutomaticContinuationRun;

@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   applyPlugin,
   cacheTabsLocally,
-  contributeGeneratedPluginToSaaSCodex,
+  contributeGeneratedPluginToSplatStudio,
   createConversation,
   createDesignSystemProjectFromProject,
   createProject,
@@ -41,7 +41,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   projectDisplaySnapshotKey,
   readProjectDisplaySnapshot,
@@ -1704,7 +1704,7 @@ describe('installGeneratedPluginFolder', () => {
     const fetchMock = vi.fn<typeof fetch>(async () => new Response(
       JSON.stringify({
         ok: false,
-        warnings: ['Missing saascodex.json'],
+        warnings: ['Missing splatstudio.json'],
         message: 'Plugin validation failed.',
         log: ['Validating generated-plugin'],
       }),
@@ -1716,7 +1716,7 @@ describe('installGeneratedPluginFolder', () => {
 
     expect(outcome).toMatchObject({
       ok: false,
-      warnings: ['Missing saascodex.json'],
+      warnings: ['Missing splatstudio.json'],
       message: 'Plugin validation failed.',
       log: ['Validating generated-plugin'],
     });
@@ -1835,7 +1835,7 @@ describe('generated plugin share actions', () => {
       'generated-plugin',
       context,
     );
-    const contribute = await contributeGeneratedPluginToSaaSCodex(
+    const contribute = await contributeGeneratedPluginToSplatStudio(
       'project-1',
       'generated-plugin',
       context,
@@ -1857,7 +1857,7 @@ describe('generated plugin share actions', () => {
     );
     expect(fetchMock).toHaveBeenNthCalledWith(
       2,
-      '/api/projects/project-1/plugins/contribute-saascodex',
+      '/api/projects/project-1/plugins/contribute-splatstudio',
       expect.objectContaining({
         method: 'POST',
         headers: expect.objectContaining({
@@ -1988,7 +1988,7 @@ describe('createPluginShareProject', () => {
 
     const outcome = await createPluginShareProject(
       'sample-plugin',
-      'contribute-saascodex',
+      'contribute-splatstudio',
     );
 
     expect(outcome).toEqual({
@@ -2350,7 +2350,7 @@ describe('deleteProject local caches', () => {
     vi.unstubAllGlobals();
   });
 
-  const tabsKey = 'saascodex:project-tabs:v1:p1';
+  const tabsKey = 'splatstudio:project-tabs:v1:p1';
   const historyKey = designBrowserHistoryStorageKey('p1');
   const viewportKey = designBrowserViewportStorageKey('p1');
 

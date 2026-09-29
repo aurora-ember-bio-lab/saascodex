@@ -7,7 +7,7 @@
 // daemon endpoint is required.
 
 import { useCallback, useState } from 'react';
-import type { Brand, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { Brand, WorkspaceCollabContext } from '@splatstudio/contracts';
 import {
   fetchProjectFileText,
   uploadProjectFile,

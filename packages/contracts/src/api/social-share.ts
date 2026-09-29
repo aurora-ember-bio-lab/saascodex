@@ -1,6 +1,6 @@
-export const SAASCODEX_GITHUB_REPO_URL = 'https://github.com/nexu-io/open-design';
+export const SPLATSTUDIO_GITHUB_REPO_URL = 'https://github.com/nexu-io/open-design';
 
-export type SocialShareTargetKind = 'saascodex-repo' | 'project-html';
+export type SocialShareTargetKind = 'splatstudio-repo' | 'project-html';
 
 export type SocialSharePlatform =
   | 'x'
@@ -156,14 +156,14 @@ function buildPlatformUrl(
 }
 
 export function buildSocialSharePayload(input: SocialShareRequest): SocialShareResponse {
-  const kind = input.kind === 'project-html' ? 'project-html' : 'saascodex-repo';
+  const kind = input.kind === 'project-html' ? 'project-html' : 'splatstudio-repo';
   const url = normalizeSocialShareUrl(input.url)
-    ?? (kind === 'saascodex-repo' ? SAASCODEX_GITHUB_REPO_URL : '');
-  const fallbackTitle = kind === 'project-html' ? 'SaaSCodex project' : 'SaaSCodex';
+    ?? (kind === 'splatstudio-repo' ? SPLATSTUDIO_GITHUB_REPO_URL : '');
+  const fallbackTitle = kind === 'project-html' ? 'SplatStudio project' : 'SplatStudio';
   const title = cleanText(input.title, fallbackTitle);
   const fallbackText = kind === 'project-html'
-    ? `Built with SaaSCodex: ${title}. SaaSCodex repo: ${SAASCODEX_GITHUB_REPO_URL}`
-    : 'SaaSCodex is an open-source workspace for creating, editing, deploying, and handing off design artifacts.';
+    ? `Built with SplatStudio: ${title}. SplatStudio repo: ${SPLATSTUDIO_GITHUB_REPO_URL}`
+    : 'SplatStudio is an open-source workspace for creating, editing, deploying, and handing off design artifacts.';
   const text = cleanText(input.text, fallbackText);
   const copyText = cleanText(input.copyText, `${text}\n${url}`);
   const platforms = PLATFORM_DESCRIPTORS.map((descriptor) => ({
@@ -189,7 +189,7 @@ export function buildSocialSharePayload(input: SocialShareRequest): SocialShareR
     title,
     text,
     copyText,
-    githubRepoUrl: SAASCODEX_GITHUB_REPO_URL,
+    githubRepoUrl: SPLATSTUDIO_GITHUB_REPO_URL,
     platforms,
   };
 }

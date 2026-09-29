@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
-import { automaticStrategyTaskProfileForRouteId } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
+import { automaticStrategyTaskProfileForRouteId } from '@splatstudio/contracts';
 import {
   filterPluginsBySubChip,
   isSubChipParent,

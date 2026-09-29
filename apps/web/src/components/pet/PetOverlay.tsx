@@ -23,7 +23,7 @@ interface Props {
   dockLine?: boolean;
 }
 
-const STORAGE_KEY = 'saascodex:pet-position';
+const STORAGE_KEY = 'splatstudio:pet-position';
 
 export interface PetTaskSummary {
   projectId: string;

@@ -24,7 +24,7 @@ test.skipIf(!vela || !opencode)('[P2] real AMR previews incomplete long patches 
     VELA_BIN: vela!, VELA_OPENCODE_BIN: opencode!,
     VELA_RUNTIME_KEY: 'local-fixture-only', VELA_LINK_URL: provider.baseUrl,
     VELA_API_URL: provider.baseUrl, AMR_HOME: path.join(suite.scratchDir, 'amr'),
-    SAASCODEX_AMR_PROFILE: 'local', VELA_PROFILE: 'local',
+    SPLATSTUDIO_AMR_PROFILE: 'local', VELA_PROFILE: 'local',
     XDG_CONFIG_HOME: path.join(suite.scratchDir, 'config'),
     XDG_DATA_HOME: path.join(suite.scratchDir, 'data'),
     XDG_CACHE_HOME: path.join(suite.scratchDir, 'cache'),

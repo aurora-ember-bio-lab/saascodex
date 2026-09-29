@@ -354,7 +354,7 @@ function isAllowedDependencySpec(spec: string): boolean {
 // reproducible. A peer range aimed at a third-party host is the opposite
 // case — the host's version is chosen by the user, so an exact peer means
 // any host upgrade leaves the peer unsatisfiable and the plugin refuses to
-// install at all. `@saascodex/dsh-runtime` hit exactly that: pinned to a
+// install at all. `@splatstudio/dsh-runtime` hit exactly that: pinned to a
 // single DeepSeek Harness release candidate, it became uninstallable the
 // moment the upstream shipped the next one.
 //
@@ -893,9 +893,9 @@ const webImportIsolationSkippedDirectories = new Set([
   "test-results",
 ]);
 const webImportIsolationForbiddenPackages = [
-  "@saascodex/platform",
-  "@saascodex/sidecar",
-  "@saascodex/sidecar-proto",
+  "@splatstudio/platform",
+  "@splatstudio/sidecar",
+  "@splatstudio/sidecar-proto",
 ];
 const webImportIsolationForbiddenDaemonRoots = [
   "apps/daemon/src",
@@ -999,7 +999,7 @@ function webImportIsolationViolationReason(fromRepositoryPath: string, specifier
   if (!resolvedPath) return null;
 
   if (webImportIsolationForbiddenDaemonRoots.some((root) => isPathOrDescendant(resolvedPath, root))) {
-    return "apps/web must use daemon HTTP APIs or @saascodex/contracts instead of daemon private source";
+    return "apps/web must use daemon HTTP APIs or @splatstudio/contracts instead of daemon private source";
   }
 
   if (webImportIsolationForbiddenPackageRoots.some((root) => isPathOrDescendant(resolvedPath, root))) {
@@ -1270,7 +1270,7 @@ function collectStylePolicyViolationsFromSource(repositoryPath: string, source: 
         filePath: repositoryPath,
         lineNumber: lineNumberForIndex(source, match.index ?? 0),
         match: match[0],
-        reason: "default Tailwind palette classes must use SaaSCodex token utilities instead",
+        reason: "default Tailwind palette classes must use SplatStudio token utilities instead",
       });
     }
   }
@@ -1287,7 +1287,7 @@ function collectStylePolicyViolationsFromSource(repositoryPath: string, source: 
           source,
           match.index,
           value,
-          "unregistered hardcoded UI colors must use SaaSCodex tokens or an explicit allowlist entry",
+          "unregistered hardcoded UI colors must use SplatStudio tokens or an explicit allowlist entry",
         );
       }
     } else {
@@ -1302,7 +1302,7 @@ function collectStylePolicyViolationsFromSource(repositoryPath: string, source: 
           source,
           match.index ?? 0,
           value,
-          "unregistered hardcoded UI colors must use SaaSCodex tokens or an explicit allowlist entry",
+          "unregistered hardcoded UI colors must use SplatStudio tokens or an explicit allowlist entry",
         );
       }
     }
@@ -1363,7 +1363,7 @@ async function checkStylePolicy(): Promise<boolean> {
     for (const violation of violations) {
       console.error(`- ${violation.filePath}:${violation.lineNumber} \`${violation.match}\` -> ${violation.reason}`);
     }
-    console.error("Use SaaSCodex token utilities/CSS variables or add a narrow allowlist entry with a reason.");
+    console.error("Use SplatStudio token utilities/CSS variables or add a narrow allowlist entry with a reason.");
     return false;
   }
 
@@ -1382,7 +1382,7 @@ async function checkStylePolicy(): Promise<boolean> {
 // lands inside the author's string and silently truncates their page.
 //
 // That defect reappeared in six separate files because each one hand-rolled its
-// own lookup. `@saascodex/contracts/runtime/html-injection-points` is now the
+// own lookup. `@splatstudio/contracts/runtime/html-injection-points` is now the
 // single implementation, and this check is what keeps the next one from being
 // written: a grep-driven sweep already missed an entire app once.
 // ---------------------------------------------------------------------------

@@ -21,8 +21,8 @@ import { tmpdir } from 'node:os';
 import { delimiter, dirname, join, posix } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { SidecarStamp } from '@saascodex/sidecar';
-import { APP_KEYS } from '@saascodex/sidecar-proto';
+import type { SidecarStamp } from '@splatstudio/sidecar';
+import { APP_KEYS } from '@splatstudio/sidecar-proto';
 
 import {
   buildPackagedDaemonSpawnEnv,
@@ -479,7 +479,7 @@ describe('resolvePackagedElectronNodeCommand', () => {
   });
 
   it('keeps the main executable on non-macOS platforms', async () => {
-    const execPath = '/opt/Open Design/saascodex';
+    const execPath = '/opt/Open Design/splatstudio';
 
     await expect(resolvePackagedElectronNodeCommand(execPath, 'linux')).resolves.toBe(execPath);
   });
@@ -676,12 +676,12 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       appVersion: null,
       daemonCliEntry: null,
       legacyDataDir: null,
-      nodeCommand: 'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\saascodex\\bin\\node.exe',
+      nodeCommand: 'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\splatstudio\\bin\\node.exe',
       requireDesktopAuth: true,
     });
 
     expect(env.OD_NODE_BIN).toBe(
-      'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\saascodex\\bin\\node.exe',
+      'C:\\Users\\Ada\\AppData\\Local\\Programs\\Open Design\\resources\\splatstudio\\bin\\node.exe',
     );
   });
 
@@ -691,10 +691,10 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       daemonCliEntry: null,
       legacyDataDir: null,
       requireDesktopAuth: true,
-      telemetryRelayUrl: 'https://telemetry.saascodex.com/api/langfuse',
+      telemetryRelayUrl: 'https://telemetry.splatstudio.app/api/langfuse',
     });
-    expect(env.SAASCODEX_TELEMETRY_RELAY_URL).toBe(
-      'https://telemetry.saascodex.com/api/langfuse',
+    expect(env.SPLATSTUDIO_TELEMETRY_RELAY_URL).toBe(
+      'https://telemetry.splatstudio.app/api/langfuse',
     );
   });
 
@@ -706,7 +706,7 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       legacyDataDir: null,
       requireDesktopAuth: true,
     });
-    expect(env.SAASCODEX_AMR_PROFILE).toBe('test');
+    expect(env.SPLATSTUDIO_AMR_PROFILE).toBe('test');
   });
 
   it('forwards the per-profile Vela console origins to the daemon', () => {
@@ -741,7 +741,7 @@ describe('buildPackagedDaemonSpawnEnv', () => {
         requireDesktopAuth: true,
         velaWebUrl: 'https://vela.example.invalid',
       });
-      expect(env.SAASCODEX_AMR_PROFILE).toBe(amrProfile);
+      expect(env.SPLATSTUDIO_AMR_PROFILE).toBe(amrProfile);
       expect(env.OD_WORKSPACE_CONTEXT_SOURCE).toBe('vela');
       expect(env.OD_TEAM_PROJECTS_TRANSPORT).toBe('vela-cli');
       expect(env.OD_COLLAB_TRANSPORT).toBe('vela-cli');
@@ -800,13 +800,13 @@ describe('buildPackagedDaemonSpawnEnv', () => {
       daemonCliEntry: null,
       legacyDataDir: null,
       requireDesktopAuth: true,
-      velaWebUrl: 'https://saascodex.com/cloud',
+      velaWebUrl: 'https://splatstudio.app/cloud',
     });
     expect(env.OD_WORKSPACE_CONTEXT_SOURCE).toBe('vela');
     expect(env.OD_TEAM_PROJECTS_TRANSPORT).toBe('vela-cli');
     expect(env.OD_COLLAB_TRANSPORT).toBe('vela-cli');
     expect(env.OD_RESOURCE_TRANSPORT).toBe('vela-cli');
-    expect(env.OD_VELA_WEB_URL).toBe('https://saascodex.com/cloud');
+    expect(env.OD_VELA_WEB_URL).toBe('https://splatstudio.app/cloud');
   });
 
   // The profile allowlist remains the load-bearing half of the gate for every

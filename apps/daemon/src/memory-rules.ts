@@ -19,7 +19,7 @@
 import type {
   AnnotationDistillInput,
   RuleProposalDraft,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 // suggestWithLLM lives in the @ts-nocheck memory-llm module; its inferred type
 // is loose, which is fine — we only consume the {type,name,description,body}
 // MemoryDraft shape it documents.

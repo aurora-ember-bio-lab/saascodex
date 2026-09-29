@@ -9,7 +9,7 @@ import { checkRootPackageManagerLockfiles, isScriptTestFile } from "../../../scr
 const temporaryDirectories: string[] = [];
 
 async function temporaryRepository(): Promise<string> {
-  const directory = await mkdtemp(path.join(tmpdir(), "saascodex-guard-"));
+  const directory = await mkdtemp(path.join(tmpdir(), "splatstudio-guard-"));
   temporaryDirectories.push(directory);
   return directory;
 }

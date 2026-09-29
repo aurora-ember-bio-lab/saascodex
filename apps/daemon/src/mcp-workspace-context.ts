@@ -1,7 +1,7 @@
 import type {
   WorkspaceDirectoryItem,
   WorkspaceDirectoryResponse,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 /**
  * Workspace-aware request context for the MCP stdio bridge (#6569).

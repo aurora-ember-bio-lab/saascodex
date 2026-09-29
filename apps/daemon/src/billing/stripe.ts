@@ -1,6 +1,6 @@
 // Minimal Stripe REST client over fetch.
 //
-// SaaSCodex only needs three Stripe operations (Checkout Session, Customer
+// SplatStudio only needs three Stripe operations (Checkout Session, Customer
 // Portal, webhook verification), so we speak the REST API directly with
 // form encoding instead of pulling in the full SDK. Webhook signatures use
 // Stripe's documented scheme: HMAC-SHA256 over `${timestamp}.${payload}`
@@ -96,8 +96,8 @@ export function createStripeClient(options: StripeClientOptions) {
         'line_items[0][quantity]': '1',
         success_url: input.successUrl,
         cancel_url: input.cancelUrl,
-        'metadata[saascodex_plan]': input.plan,
-        'subscription_data[metadata][saascodex_plan]': input.plan,
+        'metadata[splatstudio_plan]': input.plan,
+        'subscription_data[metadata][splatstudio_plan]': input.plan,
         allow_promotion_codes: 'false',
         billing_address_collection: 'auto',
       };

@@ -36,7 +36,7 @@ async function stubCatalogsEmpty(page: import('@playwright/test').Page) {
   await routeAgents(page, [
     {
       id: 'amr',
-      name: 'SaaSCodex AMR',
+      name: 'SplatStudio AMR',
       bin: 'vela',
       available: true,
       version: 'test',
@@ -52,7 +52,7 @@ function amrAgentToggle(settings: Locator): Locator {
 
 test('[P0] after local Sign out, the app returns to Cloud sign-in without clearing setup', async ({ page }) => {
   await stubCatalogsEmpty(page);
-  const root = join(tmpdir(), `saascodex-amr-logout-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+  const root = join(tmpdir(), `splatstudio-amr-logout-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
   const reloginVelaBin = await writeFakeVelaBin(join(root, 'bin-relogin'), {
     failAuthAtPrompt: true,
     requireLoginConfig: false,
@@ -118,7 +118,7 @@ test('[P0] after local Sign out, the app returns to Cloud sign-in without cleari
 
   const settings = await openSettingsDialog(page);
   // Scope to the AMR agent card: the settings sidebar also carries an
-  // "SaaSCodex MCP" nav item, so a surface-wide /SaaSCodex/i now resolves
+  // "SplatStudio MCP" nav item, so a surface-wide /SplatStudio/i now resolves
   // to that `settings-nav-item` (which has no aria-pressed) instead of the
   // agent card's select button.
   await expect(amrAgentToggle(settings)).toHaveAttribute('aria-pressed', 'true');
@@ -134,12 +134,12 @@ test('[P0] after local Sign out, the app returns to Cloud sign-in without cleari
   // so the saved AMR setup must survive for reauthentication.
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await expect(
-    page.getByRole('heading', { name: /Welcome to SaaSCodex|欢迎使用 SaaSCodex/i }),
+    page.getByRole('heading', { name: /Welcome to SplatStudio|欢迎使用 SplatStudio/i }),
   ).toBeVisible({ timeout: T.long });
   await expect(page.getByRole('button', { name: /Sign in \/ Sign up|登录 \/ 注册/i })).toBeVisible();
   await expect(page.getByTestId('home-hero-input')).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => {
-    const raw = window.localStorage.getItem('saascodex:config');
+    const raw = window.localStorage.getItem('splatstudio:config');
     return raw ? JSON.parse(raw) : null;
   })).toMatchObject({
     agentId: 'amr',

@@ -17,7 +17,7 @@ import {
   getCritiqueRun,
   reconcileStaleRuns,
 } from '../src/critique/persistence.js';
-import { defaultCritiqueConfig } from '@saascodex/contracts/critique';
+import { defaultCritiqueConfig } from '@splatstudio/contracts/critique';
 
 function freshDb(): Database.Database {
   const db = new Database(':memory:');

@@ -70,7 +70,7 @@ Connector-backed live artifact refresh is allowed only for tools that remain rea
 {
   "type": "connector_tool",
   "toolName": "github.public_repo_summary",
-  "input": { "owner": "saascodex", "repo": "saascodex" },
+  "input": { "owner": "splatstudio", "repo": "splatstudio" },
   "connector": {
     "connectorId": "github_public",
     "accountLabel": "public",

@@ -4,16 +4,16 @@ import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-libra
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type {
-  SaaSCodexHostUpdaterOpenDialogListener,
-  SaaSCodexHostUpdaterStatusListener,
-  SaaSCodexHostUpdaterStatusSnapshot,
-} from '@saascodex/host';
-import { installMockSaaSCodexHost } from '@saascodex/host/testing';
+  SplatStudioHostUpdaterOpenDialogListener,
+  SplatStudioHostUpdaterStatusListener,
+  SplatStudioHostUpdaterStatusSnapshot,
+} from '@splatstudio/host';
+import { installMockSplatStudioHost } from '@splatstudio/host/testing';
 
 import { UpdateDialog } from '../../src/components/UpdateDialog';
 import { I18nProvider } from '../../src/i18n';
 
-function idleStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {}): SaaSCodexHostUpdaterStatusSnapshot {
+function idleStatus(overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {}): SplatStudioHostUpdaterStatusSnapshot {
   return {
     arch: 'arm64',
     capabilities: {
@@ -33,28 +33,28 @@ function idleStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {})
   };
 }
 
-function payloadReadyStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {}): SaaSCodexHostUpdaterStatusSnapshot {
+function payloadReadyStatus(overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {}): SplatStudioHostUpdaterStatusSnapshot {
   return idleStatus({
     artifact: {
-      name: 'saascodex-1.2.4-payload.zip',
+      name: 'splatstudio-1.2.4-payload.zip',
       platformKey: 'mac',
       type: 'payload',
-      url: 'https://example.test/saascodex-1.2.4-payload.zip',
+      url: 'https://example.test/splatstudio-1.2.4-payload.zip',
     },
     availableVersion: '1.2.4',
-    downloadPath: '/tmp/saascodex-1.2.4-payload.zip',
+    downloadPath: '/tmp/splatstudio-1.2.4-payload.zip',
     state: 'downloaded',
     ...overrides,
   });
 }
 
-function availableStatus(overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {}): SaaSCodexHostUpdaterStatusSnapshot {
+function availableStatus(overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {}): SplatStudioHostUpdaterStatusSnapshot {
   return idleStatus({
     artifact: {
-      name: 'saascodex-1.2.4-payload.zip',
+      name: 'splatstudio-1.2.4-payload.zip',
       platformKey: 'mac',
       type: 'payload',
-      url: 'https://example.test/saascodex-1.2.4-payload.zip',
+      url: 'https://example.test/splatstudio-1.2.4-payload.zip',
     },
     availableVersion: '1.2.4',
     state: 'available',
@@ -72,10 +72,10 @@ describe('UpdateDialog', () => {
   });
 
   it('updates silently in the background and opens ready state only after the native menu request', async () => {
-    let statusListener: SaaSCodexHostUpdaterStatusListener | null = null;
-    let openDialogListener: SaaSCodexHostUpdaterOpenDialogListener | null = null;
+    let statusListener: SplatStudioHostUpdaterStatusListener | null = null;
+    let openDialogListener: SplatStudioHostUpdaterOpenDialogListener | null = null;
     const ready = payloadReadyStatus();
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         updater: {
           status: vi.fn(async () => idleStatus()),
@@ -110,13 +110,13 @@ describe('UpdateDialog', () => {
   });
 
   it('shows reinstall copy and the operator link when the feed forces the installer route', async () => {
-    let openDialogListener: SaaSCodexHostUpdaterOpenDialogListener | null = null;
+    let openDialogListener: SplatStudioHostUpdaterOpenDialogListener | null = null;
     const ready = payloadReadyStatus({
       artifact: {
-        name: 'saascodex-1.2.4-setup.exe',
+        name: 'splatstudio-1.2.4-setup.exe',
         platformKey: 'win',
         type: 'installer',
-        url: 'https://example.test/saascodex-1.2.4-setup.exe',
+        url: 'https://example.test/splatstudio-1.2.4-setup.exe',
       },
       reinstall: {
         installedVersion: '1.0.0',
@@ -125,7 +125,7 @@ describe('UpdateDialog', () => {
         url: 'https://example.com/reinstall-help',
       },
     });
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         updater: {
           status: vi.fn(async () => ready),
@@ -145,16 +145,16 @@ describe('UpdateDialog', () => {
 
     await screen.findByRole('dialog', { name: 'Check for updates' });
     expect(
-      screen.getByText('SaaSCodex 1.2.4 requires a full reinstall. SaaSCodex will close and open the installer.'),
+      screen.getByText('SplatStudio 1.2.4 requires a full reinstall. SplatStudio will close and open the installer.'),
     ).toBeTruthy();
     expect(screen.getByTestId('update-dialog-reinstall-learn-more')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Explore new features' })).toBeNull();
   });
 
   it('starts an explicit auto-downloading check when opened from an idle menu state', async () => {
-    let openDialogListener: SaaSCodexHostUpdaterOpenDialogListener | null = null;
+    let openDialogListener: SplatStudioHostUpdaterOpenDialogListener | null = null;
     const check = vi.fn(async () => idleStatus({ state: 'not-available' }));
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         updater: {
           check,
@@ -185,15 +185,15 @@ describe('UpdateDialog', () => {
   });
 
   it('keeps copy and actions focused as an update moves from available to downloading and installing', async () => {
-    let statusListener: SaaSCodexHostUpdaterStatusListener | null = null;
-    let openDialogListener: SaaSCodexHostUpdaterOpenDialogListener | null = null;
+    let statusListener: SplatStudioHostUpdaterStatusListener | null = null;
+    let openDialogListener: SplatStudioHostUpdaterOpenDialogListener | null = null;
     const available = availableStatus();
     const downloading = availableStatus({
       progress: { receivedBytes: 42, totalBytes: 100 },
       state: 'downloading',
     });
     const download = vi.fn(async () => downloading);
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         updater: {
           download,
@@ -234,12 +234,12 @@ describe('UpdateDialog', () => {
   });
 
   it('replaces technical check errors with concise recovery copy', async () => {
-    let openDialogListener: SaaSCodexHostUpdaterOpenDialogListener | null = null;
+    let openDialogListener: SplatStudioHostUpdaterOpenDialogListener | null = null;
     const failed = idleStatus({
       error: { code: 'network-timeout', message: 'ETIMEDOUT https://updates.example.test/latest.yml' },
       state: 'error',
     });
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         updater: {
           check: vi.fn(async () => failed),
@@ -269,10 +269,10 @@ describe('UpdateDialog', () => {
   });
 
   it('offers a manual download instead of another check when in-app updates are unsupported', async () => {
-    let openDialogListener: SaaSCodexHostUpdaterOpenDialogListener | null = null;
+    let openDialogListener: SplatStudioHostUpdaterOpenDialogListener | null = null;
     const openExternal = vi.fn(async () => ({ ok: true as const }));
     const unsupported = idleStatus({ enabled: false, state: 'unsupported', supported: false });
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         shell: { openExternal },
         updater: {
@@ -299,7 +299,7 @@ describe('UpdateDialog', () => {
   });
 
   it('defaults to Later when tasks are active and requires an explicit Restart anyway override', async () => {
-    let openDialogListener: SaaSCodexHostUpdaterOpenDialogListener | null = null;
+    let openDialogListener: SplatStudioHostUpdaterOpenDialogListener | null = null;
     const ready = payloadReadyStatus();
     const blocked = payloadReadyStatus({
       error: {
@@ -311,7 +311,7 @@ describe('UpdateDialog', () => {
     const installed = payloadReadyStatus({
       installResult: {
         openedAt: '2026-07-16T12:00:00.000Z',
-        path: '/tmp/saascodex-1.2.4-payload.zip',
+        path: '/tmp/splatstudio-1.2.4-payload.zip',
       },
       state: 'installing',
     });
@@ -319,7 +319,7 @@ describe('UpdateDialog', () => {
       .mockResolvedValueOnce(blocked)
       .mockResolvedValueOnce(installed);
     const quit = vi.fn(async () => ({ ok: true as const }));
-    restoreHost = installMockSaaSCodexHost({
+    restoreHost = installMockSplatStudioHost({
       host: {
         updater: {
           install,
@@ -340,7 +340,7 @@ describe('UpdateDialog', () => {
     });
     fireEvent.click(await screen.findByRole('button', { name: 'Install and restart' }));
 
-    expect(await screen.findByText('SaaSCodex is still working')).toBeTruthy();
+    expect(await screen.findByText('SplatStudio is still working')).toBeTruthy();
     expect(screen.getByText('2 active tasks are still running. Restarting now will interrupt them.')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Later' })).toHaveFocus();
 

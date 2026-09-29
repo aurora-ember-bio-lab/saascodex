@@ -6,7 +6,7 @@
 
 import { describe, expect, it } from 'vitest';
 import {
-  SAASCODEX_SITE_ORIGIN,
+  SPLATSTUDIO_SITE_ORIGIN,
   pluginSlug,
   pluginSlugSegment,
   pluginDetailSlug,
@@ -28,7 +28,7 @@ describe('pluginSlugSegment', () => {
 
 describe('pluginDetailSlug (single segment = last id segment)', () => {
   it('takes the slugified last segment, dropping any namespace', () => {
-    expect(pluginDetailSlug('saascodex/Hero Deck')).toBe('hero-deck');
+    expect(pluginDetailSlug('splatstudio/Hero Deck')).toBe('hero-deck');
     expect(pluginDetailSlug('community/registry-starter')).toBe('registry-starter');
     expect(pluginDetailSlug('live-dashboard')).toBe('live-dashboard');
   });
@@ -36,27 +36,27 @@ describe('pluginDetailSlug (single segment = last id segment)', () => {
 
 describe('pluginSlug (multi-segment, namespace preserved)', () => {
   it('slugifies each segment and keeps / as a separator', () => {
-    expect(pluginSlug('saascodex/Hero Deck')).toBe('saascodex/hero-deck');
+    expect(pluginSlug('splatstudio/Hero Deck')).toBe('splatstudio/hero-deck');
   });
 });
 
 describe('pluginDetailPath / pluginPreviewPath', () => {
   it('detail path is single-segment with trailing slash', () => {
-    expect(pluginDetailPath('saascodex/Hero Deck')).toBe('/plugins/hero-deck/');
+    expect(pluginDetailPath('splatstudio/Hero Deck')).toBe('/plugins/hero-deck/');
     expect(pluginDetailPath('live-dashboard')).toBe('/plugins/live-dashboard/');
   });
   it('preview path keeps the namespace', () => {
-    expect(pluginPreviewPath('saascodex/Hero Deck')).toBe(
-      '/plugins/previews/saascodex/hero-deck/',
+    expect(pluginPreviewPath('splatstudio/Hero Deck')).toBe(
+      '/plugins/previews/splatstudio/hero-deck/',
     );
   });
 });
 
 describe('pluginShareUrl', () => {
-  it('defaults to the public saascodex.com origin, single-segment path', () => {
-    expect(SAASCODEX_SITE_ORIGIN).toBe('https://saascodex.com');
-    expect(pluginShareUrl('saascodex/live-dashboard')).toBe(
-      'https://saascodex.com/plugins/live-dashboard/',
+  it('defaults to the public splatstudio.app origin, single-segment path', () => {
+    expect(SPLATSTUDIO_SITE_ORIGIN).toBe('https://splatstudio.app');
+    expect(pluginShareUrl('splatstudio/live-dashboard')).toBe(
+      'https://splatstudio.app/plugins/live-dashboard/',
     );
   });
   it('honours an explicit origin and trims a trailing slash on it', () => {

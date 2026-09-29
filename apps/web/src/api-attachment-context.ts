@@ -1,4 +1,4 @@
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 import {
   fetchProjectFilePreview,
   fetchProjectFileText,
@@ -94,7 +94,7 @@ async function buildApiAttachmentContext(
     }
     if (remaining <= 0) {
       blocks.push(
-        '[SaaSCodex omitted remaining attached files because the attachment context budget was exhausted.]',
+        '[SplatStudio omitted remaining attached files because the attachment context budget was exhausted.]',
       );
       break;
     }
@@ -223,7 +223,7 @@ function inferProjectFileKind(name: string): ProjectFileKind {
 function clipAttachmentText(text: string, maxChars: number): string {
   if (text.length <= maxChars) return text;
   const omitted = text.length - maxChars;
-  return `${text.slice(0, maxChars)}\n\n[SaaSCodex truncated ${omitted} chars from this attachment before sending it to the API provider.]`;
+  return `${text.slice(0, maxChars)}\n\n[SplatStudio truncated ${omitted} chars from this attachment before sending it to the API provider.]`;
 }
 
 function escapeMarkdownFence(text: string): string {

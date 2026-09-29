@@ -12,7 +12,7 @@ describe('plugin skill description client boundary', () => {
       'utf8',
     );
 
-    expect(packageJson.dependencies).not.toHaveProperty('@saascodex/plugin-runtime');
-    expect(runtimeSource).not.toContain("from '@saascodex/plugin-runtime'");
+    expect(packageJson.dependencies).not.toHaveProperty('@splatstudio/plugin-runtime');
+    expect(runtimeSource).not.toContain("from '@splatstudio/plugin-runtime'");
   });
 });

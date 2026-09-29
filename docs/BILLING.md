@@ -1,6 +1,6 @@
 # Billing and plans
 
-SaaSCodex ships a local-first Free plan and two paid Stripe subscription
+SplatStudio ships a local-first Free plan and two paid Stripe subscription
 plans. This document is the contract for what each plan may do, how the
 Stripe integration is wired, and how to configure it in each environment.
 
@@ -30,7 +30,7 @@ plan live there and are the single source of truth.
   the billing state file). During the trial the workspace behaves like Pro.
 - **3 active projects** after the trial - creating a fourth returns
   `project_limit`.
-- **Watermark on exports** - free-plan exports carry the SaaSCodex
+- **Watermark on exports** - free-plan exports carry the SplatStudio
   watermark; Pro and Studios exports are clean.
 
 ### API key tier
@@ -46,7 +46,7 @@ in [architecture.md](./architecture.md#api-authentication). Paid plans
    - Pro: €28 / month → copy the price ID (`price_...`)
    - Studios: €48 / month → copy the price ID (`price_...`)
 2. Add a webhook endpoint pointing at
-   `https://app.saascodex.com/api/billing/webhook` with these events:
+   `https://app.splatstudio.app/api/billing/webhook` with these events:
    - `checkout.session.completed`
    - `customer.subscription.updated`
    - `customer.subscription.deleted`
@@ -128,7 +128,7 @@ project-limit and watermark gating, webhook signature verification
 every handled event, and the store's trial seeding and expiry:
 
 ```bash
-pnpm --filter @saascodex/daemon exec vitest run -c vitest.config.ts tests/billing.test.ts
+pnpm --filter @splatstudio/daemon exec vitest run -c vitest.config.ts tests/billing.test.ts
 ```
 
 `apps/daemon/tests/billing-routes.test.ts` is a full **HTTP integration test**
@@ -138,10 +138,10 @@ client at a mock `fetch`, and drives plans → Checkout → signed webhook →
 subscription state → cancellation:
 
 ```bash
-pnpm --filter @saascodex/daemon exec vitest run -c vitest.config.ts tests/billing-routes.test.ts
+pnpm --filter @splatstudio/daemon exec vitest run -c vitest.config.ts tests/billing-routes.test.ts
 ```
 
 No Stripe account is needed for either suite. For an end-to-end check against a
-real account, point the webhook at `https://app.saascodex.com/api/billing/webhook`
+real account, point the webhook at `https://app.splatstudio.app/api/billing/webhook`
 and use `stripe listen --forward-to localhost:7456/api/billing/webhook` in
 development.

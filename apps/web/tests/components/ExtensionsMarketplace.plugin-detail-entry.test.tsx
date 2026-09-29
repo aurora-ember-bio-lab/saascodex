@@ -7,7 +7,7 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
-import { InstalledPluginRecordSchema } from '@saascodex/contracts';
+import { InstalledPluginRecordSchema } from '@splatstudio/contracts';
 
 import { ExtensionsMarketplace } from '../../src/components/PluginsView';
 import { MarketplaceView } from '../../src/components/MarketplaceView';
@@ -39,7 +39,7 @@ const INSTALLED_OFFICIAL = InstalledPluginRecordSchema.parse({
   sourceKind: 'bundled',
   source: '/plugins/_official/build-test',
   sourceMarketplaceId: 'official',
-  sourceMarketplaceEntryName: 'saascodex/build-test',
+  sourceMarketplaceEntryName: 'splatstudio/build-test',
   trust: 'bundled',
   capabilitiesGranted: [],
   manifest: {
@@ -57,14 +57,14 @@ const INSTALLED_OFFICIAL = InstalledPluginRecordSchema.parse({
 const MARKETPLACES = [
   {
     id: 'official',
-    url: 'https://saascodex.com/marketplace/saascodex-marketplace.json',
+    url: 'https://splatstudio.app/marketplace/splatstudio-marketplace.json',
     trust: 'official',
     manifest: {
-      name: 'SaaSCodex Official',
+      name: 'SplatStudio Official',
       version: '1.0.0',
       plugins: [
         {
-          name: 'saascodex/build-test',
+          name: 'splatstudio/build-test',
           title: 'Build test',
           source: 'github:nexu-io/open-design@main/plugins/_official/build-test',
           version: '0.1.0',
@@ -75,7 +75,7 @@ const MARKETPLACES = [
   },
   {
     id: 'community',
-    url: 'https://saascodex.com/marketplace/community.json',
+    url: 'https://splatstudio.app/marketplace/community.json',
     trust: 'restricted',
     manifest: {
       name: 'Community',
@@ -149,7 +149,7 @@ describe('ExtensionsMarketplace installed plugin detail entry', () => {
 
     fireEvent.click(
       await screen.findByTestId(
-        'plugins-card-official:saascodex/build-test:0.1.0',
+        'plugins-card-official:splatstudio/build-test:0.1.0',
       ),
     );
 
@@ -165,7 +165,7 @@ describe('ExtensionsMarketplace installed plugin detail entry', () => {
     await waitFor(() => {
       expect(window.location.pathname).toBe('/plugins');
       expect(screen.getByTestId(
-        'plugins-card-official:saascodex/build-test:0.1.0',
+        'plugins-card-official:splatstudio/build-test:0.1.0',
       )).toBeTruthy();
     });
     expect(screen.queryByTestId('plugin-detail')).toBeNull();

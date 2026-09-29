@@ -1,4 +1,4 @@
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 /**
  * The slice of `VelaLoginStatus` (see `providers/daemon.ts`) this module

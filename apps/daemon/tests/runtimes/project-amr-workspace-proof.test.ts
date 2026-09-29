@@ -102,10 +102,10 @@ describe('AMR persisted project Workspace scope', () => {
       workspaceScope: scopeB,
     });
 
-    expect(initialA.SAASCODEX_WORKSPACE_ID).toBe('workspace-a');
-    expect(retryA.SAASCODEX_WORKSPACE_ID).toBe('workspace-a');
-    expect(initialB.SAASCODEX_WORKSPACE_ID).toBe('workspace-b');
-    expect(retryB.SAASCODEX_WORKSPACE_ID).toBe('workspace-b');
+    expect(initialA.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-a');
+    expect(retryA.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-a');
+    expect(initialB.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-b');
+    expect(retryB.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-b');
   });
 
   it('keeps a run on its authorized Workspace when the project is rebound before retry', async () => {
@@ -135,8 +135,8 @@ describe('AMR persisted project Workspace scope', () => {
       workspaceScope,
     });
 
-    expect(initial.SAASCODEX_WORKSPACE_ID).toBe('workspace-a');
-    expect(retry.SAASCODEX_WORKSPACE_ID).toBe('workspace-a');
+    expect(initial.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-a');
+    expect(retry.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-a');
   });
 
   it('keeps the verified Workspace when the project is rebound before the first spawn', async () => {
@@ -159,7 +159,7 @@ describe('AMR persisted project Workspace scope', () => {
       workspaceScope,
     });
 
-    expect(initial.SAASCODEX_WORKSPACE_ID).toBe('workspace-a');
+    expect(initial.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-a');
   });
 
   it('does not expose membership/current/directory inputs to the billing-scope resolver', async () => {
@@ -194,8 +194,8 @@ describe('AMR persisted project Workspace scope', () => {
       onWorkspaceScopeOutcome: (outcome) => outcomes.push(outcome),
     });
 
-    expect(initial.SAASCODEX_WORKSPACE_ID).toBe('workspace-a');
-    expect(retry.SAASCODEX_WORKSPACE_ID).toBe('workspace-a');
+    expect(initial.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-a');
+    expect(retry.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-a');
     expect(outcomes).toEqual([0, 1].map(() => ({
       kind: 'resolved_persisted_binding',
       projectId: 'project-a',
@@ -225,8 +225,8 @@ describe('AMR persisted project Workspace scope', () => {
       workspaceScope,
     });
 
-    expect(initial.SAASCODEX_WORKSPACE_ID).toBe('workspace-personal');
-    expect(retry.SAASCODEX_WORKSPACE_ID).toBe('workspace-personal');
+    expect(initial.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-personal');
+    expect(retry.SPLATSTUDIO_WORKSPACE_ID).toBe('workspace-personal');
   });
 
   it('keeps an unbound local AMR project account-scoped on initial spawn and retry', async () => {
@@ -250,8 +250,8 @@ describe('AMR persisted project Workspace scope', () => {
     }, {
       onWorkspaceScopeOutcome: (outcome) => outcomes.push(outcome),
     });
-    expect(initial).not.toHaveProperty('SAASCODEX_WORKSPACE_ID');
-    expect(retry).not.toHaveProperty('SAASCODEX_WORKSPACE_ID');
+    expect(initial).not.toHaveProperty('SPLATSTUDIO_WORKSPACE_ID');
+    expect(retry).not.toHaveProperty('SPLATSTUDIO_WORKSPACE_ID');
     expect(outcomes).toHaveLength(2);
     expect(outcomes).toEqual([0, 1].map(() => ({
       kind: 'account_scoped_unbound',
@@ -278,7 +278,7 @@ describe('AMR persisted project Workspace scope', () => {
         onWorkspaceScopeOutcome: (outcome) => outcomes.push(outcome),
       });
 
-      expect(env).not.toHaveProperty('SAASCODEX_WORKSPACE_ID');
+      expect(env).not.toHaveProperty('SPLATSTUDIO_WORKSPACE_ID');
       expect(outcomes).toEqual([]);
     },
   );

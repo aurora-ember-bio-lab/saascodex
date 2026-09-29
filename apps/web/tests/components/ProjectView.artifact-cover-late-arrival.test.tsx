@@ -214,7 +214,7 @@ const readyRef = {
 function renderProjectView() {
   const project = {
     id: PROJECT_ID,
-    name: 'SaaSCodex 种子轮路演 Deck',
+    name: 'SplatStudio 种子轮路演 Deck',
     skillId: null,
     designSystemId: null,
   } as never;

@@ -14,11 +14,11 @@ import {
 } from '../src/plugins/publish.js';
 
 const META = {
-  pluginId:          'saascodex/sample-plugin',
+  pluginId:          'splatstudio/sample-plugin',
   pluginVersion:     '1.0.0',
   pluginTitle:       'Sample Plugin',
   pluginDescription: 'A fixture for the publish flow.',
-  repoUrl:           'https://github.com/saascodex/sample-plugin',
+  repoUrl:           'https://github.com/splatstudio/sample-plugin',
 };
 
 describe('buildPublishLink', () => {
@@ -27,7 +27,7 @@ describe('buildPublishLink', () => {
       'anthropics-skills',
       'awesome-agent-skills',
       'clawhub',
-      'saascodex',
+      'splatstudio',
       'skills-sh',
     ].sort());
   });
@@ -40,7 +40,7 @@ describe('buildPublishLink', () => {
     const params = new URLSearchParams(link.url.split('?')[1]);
     expect(params.get('title')).toBe('Add Sample Plugin');
     expect(params.get('body')).toContain('A fixture for the publish flow.');
-    expect(link.prBody).toContain('https://github.com/saascodex/sample-plugin');
+    expect(link.prBody).toContain('https://github.com/splatstudio/sample-plugin');
   });
 
   it('builds a github-issue URL for awesome-agent-skills', () => {
@@ -56,20 +56,20 @@ describe('buildPublishLink', () => {
   it('points at skills.sh + the npx skills add command (no PR form there)', () => {
     const link = buildPublishLink({ catalog: 'skills-sh', meta: META });
     expect(link.url).toBe('https://skills.sh/');
-    expect(link.prBody).toContain('npx skills add saascodex/sample-plugin');
+    expect(link.prBody).toContain('npx skills add splatstudio/sample-plugin');
   });
 
-  it('builds an SaaSCodex registry submission URL', () => {
-    // The dedicated `saascodex/plugin-registry` repo per
+  it('builds an SplatStudio registry submission URL', () => {
+    // The dedicated `splatstudio/plugin-registry` repo per
     // docs/plans/plugin-registry.md §1.2 is the long-term target; until that
     // operational launch step happens, submissions land in `nexu-io/open-design`
     // (plugins/community/<plugin-name>/), keeping contribution where stars and
     // PR traffic already are.
-    const link = buildPublishLink({ catalog: 'saascodex', meta: META });
+    const link = buildPublishLink({ catalog: 'splatstudio', meta: META });
     expect(link.catalogLabel).toBe('nexu-io/open-design');
-    expect(link.url).toMatch(/^https:\/\/github\.com\/nexu-io\/saascodex\/issues\/new\?/);
-    expect(link.prBody).toContain('plugins/community/<plugin-name>/saascodex.json');
-    expect(link.prBody).toContain('plugins/registry/community/saascodex-marketplace.json');
+    expect(link.url).toMatch(/^https:\/\/github\.com\/nexu-io\/splatstudio\/issues\/new\?/);
+    expect(link.prBody).toContain('plugins/community/<plugin-name>/splatstudio.json');
+    expect(link.prBody).toContain('plugins/registry/community/splatstudio-marketplace.json');
   });
 
   it('falls back to owner/repo placeholder when repoUrl is missing for skills-sh', () => {
@@ -100,12 +100,12 @@ describe('upsertMarketplaceJsonEntry', () => {
 
     expect(outcome.inserted).toBe(true);
     expect(outcome.entry).toMatchObject({
-      name: 'saascodex/sample-plugin',
-      source: 'github:saascodex/sample-plugin',
+      name: 'splatstudio/sample-plugin',
+      source: 'github:splatstudio/sample-plugin',
       version: '1.0.0',
       title: 'Sample Plugin',
       publisher: {
-        github: 'saascodex',
+        github: 'splatstudio',
       },
     });
     expect(outcome.manifest.plugins).toHaveLength(1);
@@ -122,8 +122,8 @@ describe('upsertMarketplaceJsonEntry', () => {
         extra: true,
         plugins: [
           {
-            name: 'saascodex/sample-plugin',
-            source: 'github:saascodex/sample-plugin@old',
+            name: 'splatstudio/sample-plugin',
+            source: 'github:splatstudio/sample-plugin@old',
             version: '0.9.0',
             tags: ['kept'],
           },
@@ -132,15 +132,15 @@ describe('upsertMarketplaceJsonEntry', () => {
       meta: {
         ...META,
         pluginVersion: '1.1.0',
-        repoUrl: 'https://github.com/saascodex/sample-plugin/tree/main/plugins/sample',
+        repoUrl: 'https://github.com/splatstudio/sample-plugin/tree/main/plugins/sample',
       },
     });
 
     expect(outcome.inserted).toBe(false);
     expect(outcome.manifest.extra).toBe(true);
     expect(outcome.manifest.plugins[0]).toMatchObject({
-      name: 'saascodex/sample-plugin',
-      source: 'github:saascodex/sample-plugin@main/plugins/sample',
+      name: 'splatstudio/sample-plugin',
+      source: 'github:splatstudio/sample-plugin@main/plugins/sample',
       version: '1.1.0',
       tags: ['kept'],
     });
@@ -152,7 +152,7 @@ describe('upsertMarketplaceJsonEntry', () => {
       meta: {
         pluginId: 'sample-plugin',
         pluginVersion: '1.0.0',
-        repoUrl: 'https://github.com/saascodex/sample-plugin',
+        repoUrl: 'https://github.com/splatstudio/sample-plugin',
       },
     })).toThrow(PublishError);
   });

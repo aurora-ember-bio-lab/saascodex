@@ -2,7 +2,7 @@
 
 **Parent:** [`spec.md`](spec.md) · **Related:** [`deployment/docker.md`](deployment/docker.md) · [`deploy/README.md`](../deploy/README.md)
 
-Deploy SaaSCodex on Linux or macOS with a single command. The installer wraps the existing Docker Compose stack — no build step required.
+Deploy SplatStudio on Linux or macOS with a single command. The installer wraps the existing Docker Compose stack — no build step required.
 
 ## Quick reference
 
@@ -10,7 +10,7 @@ Clone the repository and run the installer:
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex
+cd splatstudio
 bash deploy/scripts/install.sh
 ```
 
@@ -38,26 +38,26 @@ Running the installer without flags launches an interactive wizard:
   ║          One-Click Installer         ║
   ╚══════════════════════════════════════╝
 
-[saascodex] OS: Linux ubuntu 24.04 (x86_64)
-[saascodex] Docker: Docker version 26.1.3, build b72abbb
-[saascodex] Compose: Docker Compose version v2.27.1
+[splatstudio] OS: Linux ubuntu 24.04 (x86_64)
+[splatstudio] Docker: Docker version 26.1.3, build b72abbb
+[splatstudio] Compose: Docker Compose version v2.27.1
 
-Docker image [ghcr.io/nexu-io/od:latest]:
+Docker image [ghcr.io/aurora-ember-bio-lab/splatstudio:latest]:
 Port [7456]:
 Allowed origins (CORS, comma-separated, or empty) []:
 Memory limit [384m]:
 
-[saascodex] Pulling image: ghcr.io/nexu-io/od:latest
-[saascodex] Starting SaaSCodex...
-[saascodex] Waiting for health check (up to 60s)...
-[saascodex] Daemon is healthy (200 OK)
+[splatstudio] Pulling image: ghcr.io/aurora-ember-bio-lab/splatstudio:latest
+[splatstudio] Starting SplatStudio...
+[splatstudio] Waiting for health check (up to 60s)...
+[splatstudio] Daemon is healthy (200 OK)
 ```
 
 ### What each prompt does
 
 | Prompt | Default | Notes |
 |--------|---------|-------|
-| **Docker image** | `ghcr.io/nexu-io/od:latest` | Use `:latest` for the newest stable image, `:<version>` for a pinned release, or `@sha256:<digest>` for reproducibility |
+| **Docker image** | `ghcr.io/aurora-ember-bio-lab/splatstudio:latest` | Use `:latest` for the newest stable image, `:<version>` for a pinned release, or `@sha256:<digest>` for reproducibility |
 | **Port** | `7456` | The port the daemon listens on. Must not be in use. |
 | **Allowed origins** | _(empty)_ | CORS origins for reverse-proxy setups. See [`deploy/README.md`](../deploy/README.md). Leave empty for localhost-only use. |
 | **Memory limit** | `384m` | Container memory cap. Raise for large concurrent agent runs. |
@@ -100,28 +100,28 @@ The installer creates a `systemd --user` unit that wraps Docker Compose. No `sud
 
 ```bash
 # Check status
-systemctl --user status saascodex
+systemctl --user status splatstudio
 
 # Start / stop / restart
-systemctl --user start saascodex
-systemctl --user stop saascodex
-systemctl --user restart saascodex
+systemctl --user start splatstudio
+systemctl --user stop splatstudio
+systemctl --user restart splatstudio
 
 # View logs
-journalctl --user -u saascodex -f
+journalctl --user -u splatstudio -f
 
 # Disable auto-start
-systemctl --user disable saascodex
+systemctl --user disable splatstudio
 
 # Re-enable auto-start
-systemctl --user enable saascodex
+systemctl --user enable splatstudio
 ```
 
 To skip systemd unit creation, pass `--no-systemd` to the installer.
 
 ### macOS (Docker Desktop)
 
-Docker Desktop manages the container lifecycle. Use Docker Desktop's dashboard to start, stop, or restart the `saascodex` container, or use the CLI:
+Docker Desktop manages the container lifecycle. Use Docker Desktop's dashboard to start, stop, or restart the `splatstudio` container, or use the CLI:
 
 ```bash
 # Using docker compose directly
@@ -141,7 +141,7 @@ bash deploy/scripts/update.sh
 To update to a specific image:
 
 ```bash
-bash deploy/scripts/update.sh --image=ghcr.io/nexu-io/od@sha256:<digest>
+bash deploy/scripts/update.sh --image=ghcr.io/aurora-ember-bio-lab/splatstudio@sha256:<digest>
 ```
 
 The update script:
@@ -173,10 +173,10 @@ All settings live in `deploy/.env`. Edit it directly or re-run the installer to 
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `SAASCODEX_IMAGE` | `ghcr.io/nexu-io/od:latest` | Full image reference |
-| `SAASCODEX_PORT` | `7456` | Host-side port (bound to `127.0.0.1`) |
-| `SAASCODEX_ALLOWED_ORIGINS` | _(empty)_ | CORS origins for reverse-proxy setups |
-| `SAASCODEX_MEM_LIMIT` | `384m` | Container memory cap |
+| `SPLATSTUDIO_IMAGE` | `ghcr.io/aurora-ember-bio-lab/splatstudio:latest` | Full image reference |
+| `SPLATSTUDIO_PORT` | `7456` | Host-side port (bound to `127.0.0.1`) |
+| `SPLATSTUDIO_ALLOWED_ORIGINS` | _(empty)_ | CORS origins for reverse-proxy setups |
+| `SPLATSTUDIO_MEM_LIMIT` | `384m` | Container memory cap |
 | `NODE_OPTIONS` | `--max-old-space-size=192` | Node.js heap cap inside the container |
 
 The container always binds `127.0.0.1:<port>:7456` — the daemon is never directly exposed to the network. To allow remote access, put an authenticated reverse proxy in front. See [`deploy/README.md`](../deploy/README.md) for the authentication and allowed-origin contract.
@@ -193,7 +193,7 @@ The container always binds `127.0.0.1:<port>:7456` — the daemon is never direc
 | systemd unit not created | `systemd` not found | Omit `--no-systemd` if systemd is available, or manage via Docker CLI |
 | `.env` has wrong port after re-install | Old backup not restored | Edit `deploy/.env` directly or delete it and re-run |
 | Container exits immediately | Image incompatibility | Check `docker compose -f deploy/docker-compose.yml logs` for errors |
-| Browser sign-in repeats | Username or token does not match | Use username `saascodex` and the exact `OD_API_TOKEN` value from `deploy/.env`; recreate the container after changing it |
+| Browser sign-in repeats | Username or token does not match | Use username `splatstudio` and the exact `OD_API_TOKEN` value from `deploy/.env`; recreate the container after changing it |
 
 ## References
 

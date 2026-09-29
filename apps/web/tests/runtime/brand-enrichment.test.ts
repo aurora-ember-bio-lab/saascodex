@@ -20,7 +20,7 @@ describe('brand enrichment runtime helpers', () => {
   it('builds a complete fallback prompt when no seeded prompt is available', () => {
     const prompt = buildBrandEnrichmentPrompt('');
 
-    expect(prompt).toContain('AI optimize this SaaSCodex design system in place.');
+    expect(prompt).toContain('AI optimize this SplatStudio design system in place.');
     expect(prompt).toContain('Do not create a duplicate system.');
     expect(prompt).toContain('10-20');
     expect(prompt).toContain('anti-bot verification page');
@@ -41,14 +41,14 @@ describe('brand enrichment runtime helpers', () => {
     const prompt = buildBrandEnrichmentPrompt('Existing extraction prompt', {
       metadata: {
         kind: 'brand',
-        brandSourceUrl: 'https://saascodex.com/',
+        brandSourceUrl: 'https://splatstudio.app/',
         brandId: 'brand_open_design',
-        brandDesignSystemId: 'user:saascodex-6',
+        brandDesignSystemId: 'user:splatstudio-6',
         entryFile: 'brand.html',
         importedFrom: 'brand-extraction',
       },
-      designSystemId: 'user:saascodex-6',
-      designSystemTitle: 'SaaSCodex',
+      designSystemId: 'user:splatstudio-6',
+      designSystemTitle: 'SplatStudio',
       projectFiles: [
         {
           name: 'system/variables.css',
@@ -66,8 +66,8 @@ describe('brand enrichment runtime helpers', () => {
     });
 
     expect(prompt).toContain('Current programmatic extraction context:');
-    expect(prompt).toContain('Existing registered design system: SaaSCodex (user:saascodex-6)');
-    expect(prompt).toContain('Source to re-check: https://saascodex.com/');
+    expect(prompt).toContain('Existing registered design system: SplatStudio (user:splatstudio-6)');
+    expect(prompt).toContain('Source to re-check: https://splatstudio.app/');
     expect(prompt).toContain('system/variables.css');
     expect(prompt).toContain('fonts/Inter.woff2');
     expect(prompt).toContain('Programmatic modules to inspect and reconcile');

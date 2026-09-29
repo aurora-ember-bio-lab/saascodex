@@ -31,8 +31,8 @@ afterEach(() => {
 function pluginFolderFiles(folderPath: string): ProjectFile[] {
   return [
     {
-      name: `${folderPath}/saascodex.json`,
-      path: `${folderPath}/saascodex.json`,
+      name: `${folderPath}/splatstudio.json`,
+      path: `${folderPath}/splatstudio.json`,
       size: 100,
       mtime: 1700000005,
       kind: 'code',
@@ -86,8 +86,8 @@ describe('AssistantMessage generated plugin files without in-chat install contro
     // Changing the host's install bookkeeping cannot recreate the retired UI.
     rerender(<AssistantMessage {...props} hiddenPluginActionPaths={new Set()} activePluginActionPaths={new Set()} />);
     expect(screen.queryByTestId(`assistant-plugin-actions-${folderPath}`)).toBeNull();
-    fireEvent.click(screen.getByTestId(`artifact-card-open-${folderPath}/saascodex.json`));
-    expect(onOpen).toHaveBeenCalledWith(`${folderPath}/saascodex.json`);
+    fireEvent.click(screen.getByTestId(`artifact-card-open-${folderPath}/splatstudio.json`));
+    expect(onOpen).toHaveBeenCalledWith(`${folderPath}/splatstudio.json`);
     expect(onAction).not.toHaveBeenCalled();
   });
 });

@@ -26,7 +26,7 @@ import type {
   BrandMeta,
   BrandSummary,
   ProjectMetadata,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   createUserDesignSystem,

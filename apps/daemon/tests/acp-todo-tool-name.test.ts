@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isTodoWriteToolName } from '@saascodex/contracts';
+import { isTodoWriteToolName } from '@splatstudio/contracts';
 import { acpToolName } from '../src/agent-protocol/acp/updates.js';
 
 /**

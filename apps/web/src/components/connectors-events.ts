@@ -1,5 +1,5 @@
-export const CONNECTOR_CALLBACK_MESSAGE_TYPE = 'saascodex:connector-connected';
-export const CONNECTORS_CHANGED_EVENT = 'saascodex:connectors-changed';
+export const CONNECTOR_CALLBACK_MESSAGE_TYPE = 'splatstudio:connector-connected';
+export const CONNECTORS_CHANGED_EVENT = 'splatstudio:connectors-changed';
 
 export function notifyConnectorsChanged(): void {
   if (typeof window === 'undefined') return;

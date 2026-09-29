@@ -5,7 +5,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogTitle,
-} from '@saascodex/components';
+} from '@splatstudio/components';
 import { useT } from '../i18n';
 
 interface Props {

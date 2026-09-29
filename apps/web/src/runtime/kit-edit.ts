@@ -1,4 +1,4 @@
-import type { Brand, BrandColorRole, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { Brand, BrandColorRole, WorkspaceCollabContext } from '@splatstudio/contracts';
 import {
   deleteProjectFile,
   fetchProjectFileText,

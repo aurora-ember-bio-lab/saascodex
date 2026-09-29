@@ -1,4 +1,4 @@
-import type { InputFieldSpec } from '@saascodex/contracts';
+import type { InputFieldSpec } from '@splatstudio/contracts';
 import type { Locale } from './types';
 
 type PluginChromeKey =

@@ -27,7 +27,7 @@ import {
 let codexRuntime: Awaited<ReturnType<typeof createFakeAgentRuntimes>>['codex'];
 const AMR_AGENT = {
   id: 'amr',
-  name: 'SaaSCodex AMR',
+  name: 'SplatStudio AMR',
   bin: 'vela',
   available: true,
   version: 'test',
@@ -264,7 +264,7 @@ test('[P0] @critical AMR auth failures return to the existing sign-in gate witho
   await sendPrompt(page, 'AMR auth failure recovery smoke');
   await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(page).toHaveURL(/\/onboarding$/, { timeout: T.long });
-  await expect(page.getByRole('heading', { name: /Welcome to SaaSCodex|欢迎使用 SaaSCodex/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Welcome to SplatStudio|欢迎使用 SplatStudio/i })).toBeVisible();
   await expect(page.getByRole('alertdialog')).toHaveCount(0);
   expect(loginRequested).toBe(false);
 });
@@ -361,7 +361,7 @@ test('[P0] @critical AMR model catalog invalid-key failures return to sign-in wi
   loggedIn = false;
   await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(page).toHaveURL(/\/onboarding$/, { timeout: T.long });
-  await expect(page.getByRole('heading', { name: /Welcome to SaaSCodex|欢迎使用 SaaSCodex/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Welcome to SplatStudio|欢迎使用 SplatStudio/i })).toBeVisible();
   await expect(page.getByRole('alertdialog')).toHaveCount(0);
   expect(loginRequested).toBe(false);
 });
@@ -455,14 +455,14 @@ test('[P0] @critical signed-out Cloud switching keeps the existing sign-in gate 
 
   const card = runErrorCard(page);
   await expect(card.getByRole('button')).toHaveText([
-    'Contact us', 'Export logs', 'Switch to SaaSCodex Cloud',
+    'Contact us', 'Export logs', 'Switch to SplatStudio Cloud',
   ]);
-  await card.getByRole('button', { name: 'Switch to SaaSCodex Cloud', exact: true }).click();
+  await card.getByRole('button', { name: 'Switch to SplatStudio Cloud', exact: true }).click();
 
   // OPEND-3205 removes the Settings detour, not the existing authentication
   // gate. Keep the signed-out fixture and require explicit sign-in, with no run.
   await expect(page).toHaveURL(/\/onboarding$/, { timeout: T.medium });
-  await expect(page.getByRole('heading', { name: /Welcome to SaaSCodex|欢迎使用 SaaSCodex/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Welcome to SplatStudio|欢迎使用 SplatStudio/i })).toBeVisible();
   await expect
     .poll(async () => {
       const raw = await page.evaluate((key) => window.localStorage.getItem(key), STORAGE_KEY);
@@ -687,7 +687,7 @@ test('[P0] @critical Settings preserves AMR account, recharge shortcut, and mode
 
   await settings.getByTestId('settings-agent-select-codex').click();
   await expect(settings.getByTestId('settings-agent-select-codex')).toHaveAttribute('aria-pressed', 'true');
-  await expect(settings.getByTestId('settings-agent-select-amr')).toContainText('SaaSCodex');
+  await expect(settings.getByTestId('settings-agent-select-amr')).toContainText('SplatStudio');
 
   await settings.getByTestId('settings-agent-select-amr').click();
   await expect(settings.getByTestId('settings-agent-select-amr')).toHaveAttribute('aria-pressed', 'true');
@@ -768,7 +768,7 @@ test('[P0] after an AMR failure the user can switch to Codex and complete a fres
 test('[P0] CLI upstream outages preserve guidance with only the Cloud switch', async ({ page }) => {
   await stubCatalogsEmpty(page);
   await stubRuntimeAgents(page);
-  const root = join(tmpdir(), `saascodex-upstream-ui-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+  const root = join(tmpdir(), `splatstudio-upstream-ui-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
   const runtimes = await createFakeAgentRuntimes({ root: join(root, 'agents'), runtimeIds: ['claude'] });
   const config = {
     mode: 'daemon',
@@ -844,7 +844,7 @@ test('[P0] CLI upstream outages preserve guidance with only the Cloud switch', a
     'The current model is temporarily unavailable. Try again later, or switch models.',
   );
   await expect(card.getByRole('button')).toHaveText([
-    'Contact us', 'Export logs', 'Switch to SaaSCodex Cloud',
+    'Contact us', 'Export logs', 'Switch to SplatStudio Cloud',
   ]);
   await expect(card.getByRole('button', { name: /^Retry$/i })).toHaveCount(0);
   await expect(card).not.toContainText('The model provider is temporarily unavailable.');
@@ -853,8 +853,8 @@ test('[P0] CLI upstream outages preserve guidance with only the Cloud switch', a
 
 test('[P1] zh-CN context-limit guidance offers only Cloud switching and keeps raw source off the card', async ({ page }) => {
   await page.addInitScript(() => {
-    window.localStorage.setItem('saascodex:locale', 'zh-CN');
-    window.localStorage.setItem('saascodex:locale-source', 'manual');
+    window.localStorage.setItem('splatstudio:locale', 'zh-CN');
+    window.localStorage.setItem('splatstudio:locale-source', 'manual');
   });
   await stubCatalogsEmpty(page);
   await stubRuntimeAgents(page);
@@ -933,7 +933,7 @@ test('[P1] zh-CN context-limit guidance offers only Cloud switching and keeps ra
     '当前上下文已超出模型可处理的长度，请新建对话后再试。',
   );
   await expect(card.getByRole('button')).toHaveText([
-    '联系我们', '导出日志', '切换到 SaaSCodex Cloud',
+    '联系我们', '导出日志', '切换到 SplatStudio Cloud',
   ]);
   await expect(card.getByRole('button', { name: '重试', exact: true })).toHaveCount(0);
 
@@ -1036,11 +1036,11 @@ test('[P0] antigravity rate limits keep classification and use only the Cloud sw
   await expect(card).toContainText('Model service is busy', { timeout: T.long });
   await expect(card).not.toContainText('Switch to another Antigravity model before retrying this run.');
   await expect(card.getByRole('button')).toHaveText([
-    'Contact us', 'Export logs', 'Switch to SaaSCodex Cloud',
+    'Contact us', 'Export logs', 'Switch to SplatStudio Cloud',
   ]);
   await expect(card.getByRole('button', { name: /Switch model in terminal|^Retry$/i })).toHaveCount(0);
-  await card.getByRole('button', { name: 'Switch to SaaSCodex Cloud', exact: true }).click();
-  await expect(page.getByText('Switched to SaaSCodex Cloud. Please resend your task.', { exact: true })).toBeVisible();
+  await card.getByRole('button', { name: 'Switch to SplatStudio Cloud', exact: true }).click();
+  await expect(page.getByText('Switched to SplatStudio Cloud. Please resend your task.', { exact: true })).toBeVisible();
   await expect(page).toHaveURL(originalUrl);
   await runRequests.expectNone();
   expect(oauthLaunchCalls).toBe(0);
@@ -1066,7 +1066,7 @@ async function setupAmrWorkspace(
 ) {
   await stubCatalogsEmpty(page);
 
-  const root = join(tmpdir(), `saascodex-amr-ui-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+  const root = join(tmpdir(), `splatstudio-amr-ui-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
   const homeDir = join(root, 'home');
   const fakeVelaSessionId = `fake-amr-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const velaBin = await writeFakeVelaBin(join(root, 'bin'), {
@@ -1112,7 +1112,7 @@ async function setupAmrWorkspace(
         VELA_LINK_URL: 'http://localhost:18081',
         VELA_RUNTIME_KEY: 'fake-runtime-key',
         FAKE_VELA_SESSION_ID: fakeVelaSessionId,
-        ...(options.profile ? { SAASCODEX_AMR_PROFILE: options.profile } : {}),
+        ...(options.profile ? { SPLATSTUDIO_AMR_PROFILE: options.profile } : {}),
       },
       codex: codexRuntime.env,
     },

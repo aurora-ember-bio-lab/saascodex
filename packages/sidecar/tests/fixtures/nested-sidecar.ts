@@ -17,10 +17,10 @@ const child = await spawnSidecar({
   // opt out. On POSIX this remains a normal attached child.
   detached: false,
   resources: {
-    dataRoot: "/tmp/saascodex-nested-child",
+    dataRoot: "/tmp/splatstudio-nested-child",
     ownerPid: null,
     port: 0,
-    runtimeRoot: "/tmp/saascodex-nested-child-runtime",
+    runtimeRoot: "/tmp/splatstudio-nested-child-runtime",
   },
   stamp: childStamp,
 });

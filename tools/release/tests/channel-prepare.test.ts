@@ -141,7 +141,7 @@ async function writeFakeGhScript(root: string): Promise<string> {
 }
 
 /**
- * Hermetic stand-in for the repository's `saascodex-v*` tags. The prepare
+ * Hermetic stand-in for the repository's `splatstudio-v*` tags. The prepare
  * scripts derive the latest-stable floor from `git tag --list`, so without
  * this the tests depend on whatever tags the local clone happens to have —
  * green on tagless CI checkouts, permanently red on any developer clone once
@@ -263,18 +263,18 @@ describe("tools-release local channel prepare validation", () => {
       const commonEnv = {
         GITHUB_REPOSITORY: "nexu-io/open-design",
         GITHUB_SHA: "0123456789abcdef0123456789abcdef01234567",
-        SAASCODEX_GH_NODE_SCRIPT: fakeGh,
-        SAASCODEX_STABLE_METADATA_URL: `${server.origin}/stable/latest/metadata.json`,
-        SAASCODEX_STABLE_VERSION: packagedVersion,
+        SPLATSTUDIO_GH_NODE_SCRIPT: fakeGh,
+        SPLATSTUDIO_STABLE_METADATA_URL: `${server.origin}/stable/latest/metadata.json`,
+        SPLATSTUDIO_STABLE_VERSION: packagedVersion,
         // Matches the stable fixture metadata above and keeps the tag-derived
         // latest-stable floor below any real packaged version.
-        ...(await createHermeticTagRepoEnv(["saascodex-v0.9.0"])),
+        ...(await createHermeticTagRepoEnv(["splatstudio-v0.9.0"])),
       };
 
       const beta = await runPrepare("beta", {
         ...commonEnv,
         GITHUB_REF_NAME: "main",
-        SAASCODEX_BETA_METADATA_URL: `${server.origin}/beta/latest/metadata.json`,
+        SPLATSTUDIO_BETA_METADATA_URL: `${server.origin}/beta/latest/metadata.json`,
       });
       expect(beta.stdout).toContain("[release-beta] channel: beta");
       expect(beta.outputs.release_version).toBe(`${packagedVersion}-beta.1`);
@@ -284,7 +284,7 @@ describe("tools-release local channel prepare validation", () => {
       const prerelease = await runPrepare("prerelease", {
         ...commonEnv,
         GITHUB_REF_NAME: "main",
-        SAASCODEX_PRERELEASE_METADATA_URL: `${server.origin}/prerelease/latest/metadata.json`,
+        SPLATSTUDIO_PRERELEASE_METADATA_URL: `${server.origin}/prerelease/latest/metadata.json`,
       });
       expect(prerelease.stdout).toContain("[release-prerelease] channel: prerelease");
       expect(prerelease.outputs.release_version).toBe(`${packagedVersion}-prerelease.1`);
@@ -314,9 +314,9 @@ describe("tools-release local channel prepare validation", () => {
         GITHUB_REF_NAME: "main",
         GITHUB_REPOSITORY: "nexu-io/open-design",
         GITHUB_SHA: "0123456789abcdef0123456789abcdef01234567",
-        SAASCODEX_BETA_METADATA_URL: `${server.origin}/beta/latest/metadata.json`,
-        SAASCODEX_RELEASE_FORCE: "1",
-        SAASCODEX_STABLE_METADATA_URL: `${server.origin}/stable/latest/metadata.json`,
+        SPLATSTUDIO_BETA_METADATA_URL: `${server.origin}/beta/latest/metadata.json`,
+        SPLATSTUDIO_RELEASE_FORCE: "1",
+        SPLATSTUDIO_STABLE_METADATA_URL: `${server.origin}/stable/latest/metadata.json`,
       });
 
       expect(beta.stdout).toContain("[release-beta] force: true");
@@ -342,10 +342,10 @@ describe("tools-release local channel prepare validation", () => {
         GITHUB_REF_NAME: `release/v${packagedVersion}`,
         GITHUB_REPOSITORY: "nexu-io/open-design",
         GITHUB_SHA: "0123456789abcdef0123456789abcdef01234567",
-        SAASCODEX_GH_NODE_SCRIPT: fakeGh,
-        SAASCODEX_RELEASE_DRY_RUN: "true",
-        SAASCODEX_RELEASES_PUBLIC_ORIGIN: server.origin,
-        SAASCODEX_STABLE_PRERELEASE_VERSION: prereleaseVersion,
+        SPLATSTUDIO_GH_NODE_SCRIPT: fakeGh,
+        SPLATSTUDIO_RELEASE_DRY_RUN: "true",
+        SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN: server.origin,
+        SPLATSTUDIO_STABLE_PRERELEASE_VERSION: prereleaseVersion,
       });
 
       expect(stable.stdout).toContain("[release-stable] channel: stable");
@@ -356,7 +356,7 @@ describe("tools-release local channel prepare validation", () => {
       expect(stable.outputs.github_release_enabled).toBe("false");
       expect(stable.outputs.publish_side_effects_enabled).toBe("false");
       expect(stable.outputs.run_prepublish_jobs).toBe("false");
-      expect(stable.outputs.version_tag).toBe(`saascodex-v${packagedVersion}`);
+      expect(stable.outputs.version_tag).toBe(`splatstudio-v${packagedVersion}`);
     } finally {
       await server.close();
       await rm(ghRoot, { force: true, recursive: true });
@@ -377,10 +377,10 @@ describe("tools-release local channel prepare validation", () => {
         GITHUB_REF_NAME: `release/v${packagedVersion}`,
         GITHUB_REPOSITORY: "nexu-io/open-design",
         GITHUB_SHA: "0123456789abcdef0123456789abcdef01234567",
-        SAASCODEX_GH_NODE_SCRIPT: fakeGh,
-        SAASCODEX_RELEASE_DRY_RUN: "prepublish",
-        SAASCODEX_RELEASES_PUBLIC_ORIGIN: server.origin,
-        SAASCODEX_STABLE_PRERELEASE_VERSION: prereleaseVersion,
+        SPLATSTUDIO_GH_NODE_SCRIPT: fakeGh,
+        SPLATSTUDIO_RELEASE_DRY_RUN: "prepublish",
+        SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN: server.origin,
+        SPLATSTUDIO_STABLE_PRERELEASE_VERSION: prereleaseVersion,
       });
 
       expect(stable.stdout).toContain("[release-stable] dry run mode: prepublish");
@@ -409,10 +409,10 @@ describe("tools-release local channel prepare validation", () => {
         GITHUB_REF_NAME: `release/v${packagedVersion}`,
         GITHUB_REPOSITORY: "nexu-io/open-design",
         GITHUB_SHA: "0123456789abcdef0123456789abcdef01234567",
-        SAASCODEX_GH_NODE_SCRIPT: fakeGh,
-        SAASCODEX_RELEASE_DRY_RUN: "false",
-        SAASCODEX_RELEASES_PUBLIC_ORIGIN: server.origin,
-        SAASCODEX_STABLE_PRERELEASE_VERSION: prereleaseVersion,
+        SPLATSTUDIO_GH_NODE_SCRIPT: fakeGh,
+        SPLATSTUDIO_RELEASE_DRY_RUN: "false",
+        SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN: server.origin,
+        SPLATSTUDIO_STABLE_PRERELEASE_VERSION: prereleaseVersion,
       });
 
       expect(stable.stdout).toContain("[release-stable] dry run: false");
@@ -439,10 +439,10 @@ describe("tools-release local channel prepare validation", () => {
         GITHUB_REF_NAME: `release/v${packagedVersion}`,
         GITHUB_REPOSITORY: "nexu-io/open-design",
         GITHUB_SHA: "0123456789abcdef0123456789abcdef01234567",
-        SAASCODEX_GH_NODE_SCRIPT: fakeGh,
-        SAASCODEX_RELEASE_DRY_RUN: "metadata",
-        SAASCODEX_RELEASES_PUBLIC_ORIGIN: server.origin,
-        SAASCODEX_STABLE_PRERELEASE_VERSION: `${packagedVersion}-preview.2`,
+        SPLATSTUDIO_GH_NODE_SCRIPT: fakeGh,
+        SPLATSTUDIO_RELEASE_DRY_RUN: "metadata",
+        SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN: server.origin,
+        SPLATSTUDIO_STABLE_PRERELEASE_VERSION: `${packagedVersion}-preview.2`,
       })).rejects.toThrow(/prereleaseVersion must be x\.y\.z-prerelease\.N/);
     } finally {
       await server.close();
@@ -464,10 +464,10 @@ describe("tools-release local channel prepare validation", () => {
         GITHUB_REF_NAME: "main",
         GITHUB_REPOSITORY: "nexu-io/open-design",
         GITHUB_SHA: "0123456789abcdef0123456789abcdef01234567",
-        SAASCODEX_GH_NODE_SCRIPT: fakeGh,
-        SAASCODEX_RELEASE_DRY_RUN: "metadata",
-        SAASCODEX_RELEASES_PUBLIC_ORIGIN: server.origin,
-        SAASCODEX_STABLE_PRERELEASE_VERSION: prereleaseVersion,
+        SPLATSTUDIO_GH_NODE_SCRIPT: fakeGh,
+        SPLATSTUDIO_RELEASE_DRY_RUN: "metadata",
+        SPLATSTUDIO_RELEASES_PUBLIC_ORIGIN: server.origin,
+        SPLATSTUDIO_STABLE_PRERELEASE_VERSION: prereleaseVersion,
       })).rejects.toThrow(/requires GITHUB_REF_NAME to be release\/vX\.Y\.Z; got main/);
     } finally {
       await server.close();

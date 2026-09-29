@@ -51,7 +51,7 @@
 
 推荐格式：
 
-- `SaaSCodex main CI failed`
+- `SplatStudio main CI failed`
 - `failing jobs: ...`
 - `commit: ...`
 - `PR: ...`

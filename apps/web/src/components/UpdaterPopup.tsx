@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import type { SaaSCodexHostUpdaterStatusSnapshot } from '@saascodex/host';
+import type { SplatStudioHostUpdaterStatusSnapshot } from '@splatstudio/host';
 
 import { Icon } from './Icon';
 import { popoverIn } from '../motion';
@@ -205,7 +205,7 @@ export function UpdaterPopup({
 
   useEffect(() => {
     let mounted = true;
-    const applyStatus = (status: SaaSCodexHostUpdaterStatusSnapshot) => {
+    const applyStatus = (status: SplatStudioHostUpdaterStatusSnapshot) => {
       if (!mounted) return;
       setModel(deriveUpdaterModel(status, { hostAvailable: true }));
     };

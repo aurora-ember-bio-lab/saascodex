@@ -54,11 +54,11 @@ export const RELEASE_PLATFORM_NAMESPACE_SUFFIXES = Object.freeze({
 } as const satisfies Record<ReleasePlatform, string>);
 
 const PRODUCT_NAME = "Open Design";
-const DEFAULT_NAMESPACE = "saascodex";
+const DEFAULT_NAMESPACE = "splatstudio";
 
 const descriptors: Record<"prerelease" | "stable", ReleaseChannelDescriptor> = {
   prerelease: {
-    appId: "io.saascodex.desktop.prerelease",
+    appId: "io.splatstudio.desktop.prerelease",
     baseVersionField: "baseVersion",
     channel: "prerelease",
     counterField: "releaseNumber",
@@ -70,7 +70,7 @@ const descriptors: Record<"prerelease" | "stable", ReleaseChannelDescriptor> = {
     storagePrefix: "prerelease",
   },
   stable: {
-    appId: "io.saascodex.desktop",
+    appId: "io.splatstudio.desktop",
     baseVersionField: "baseVersion",
     channel: "stable",
     counterField: null,
@@ -96,7 +96,7 @@ export function releaseChannelDescriptor(channel: string): ReleaseChannelDescrip
   if (channel === "stable" || channel === "prerelease") return descriptors[channel];
   const displayLabel = channel[0]!.toUpperCase() + channel.slice(1);
   return {
-    appId: `io.saascodex.desktop.${channel}`,
+    appId: `io.splatstudio.desktop.${channel}`,
     baseVersionField: "baseVersion",
     channel,
     counterField: "releaseNumber",

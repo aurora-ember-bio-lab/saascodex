@@ -63,7 +63,7 @@ const SHOW_PAYLOAD: WhatsNewResponse = {
     title: 'Design system sync',
     body: 'Import, edit and sync design systems\nFaster canvas pan and zoom\nProject import and dark-mode contrast fixes',
     imageUrl: 'https://cdn.example.test/whats-new/0-16-1.jpg',
-    linkUrl: 'https://saascodex.com/blog/0-16-1/',
+    linkUrl: 'https://splatstudio.app/blog/0-16-1/',
   },
 };
 
@@ -197,7 +197,7 @@ describe('WhatsNewPopup version resolution', () => {
     expect(screen.getByTestId('whats-new-popup').textContent).not.toContain(PLACEHOLDER_VERSION);
     // The daemon stamps the highlights document with the running version for
     // exactly this display purpose, so it is a real source to name meanwhile.
-    expect(screen.getByText(`SaaSCodex ${SHOW_PAYLOAD.version} is here`)).toBeTruthy();
+    expect(screen.getByText(`SplatStudio ${SHOW_PAYLOAD.version} is here`)).toBeTruthy();
   });
 
   it('keeps the placeholder out of the surface-view analytics too', async () => {
@@ -217,7 +217,7 @@ describe('WhatsNewPopup version resolution', () => {
     const view = renderCard(true);
 
     await waitFor(() => {
-      expect(screen.getByText(`SaaSCodex ${SHOW_PAYLOAD.version} is here`)).toBeTruthy();
+      expect(screen.getByText(`SplatStudio ${SHOW_PAYLOAD.version} is here`)).toBeTruthy();
     });
 
     appVersion.current = RUNNING_APP_VERSION;
@@ -228,9 +228,9 @@ describe('WhatsNewPopup version resolution', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(`SaaSCodex ${RUNNING_APP_VERSION} is here`)).toBeTruthy();
+      expect(screen.getByText(`SplatStudio ${RUNNING_APP_VERSION} is here`)).toBeTruthy();
     });
-    expect(screen.queryByText(`SaaSCodex ${SHOW_PAYLOAD.version} is here`)).toBeNull();
+    expect(screen.queryByText(`SplatStudio ${SHOW_PAYLOAD.version} is here`)).toBeNull();
   });
 
   it('waits instead of inventing one when neither source can name a version', async () => {
@@ -249,7 +249,7 @@ describe('WhatsNewPopup version resolution', () => {
       </I18nProvider>,
     );
     await waitFor(() => {
-      expect(screen.getByText(`SaaSCodex ${RUNNING_APP_VERSION} is here`)).toBeTruthy();
+      expect(screen.getByText(`SplatStudio ${RUNNING_APP_VERSION} is here`)).toBeTruthy();
     });
   });
 });
@@ -265,7 +265,7 @@ describe('WhatsNewPopup content', () => {
     await waitFor(() => {
       expect(screen.getByTestId('whats-new-popup')).toBeTruthy();
     });
-    expect(screen.getByText(`SaaSCodex ${RUNNING_APP_VERSION} is here`)).toBeTruthy();
+    expect(screen.getByText(`SplatStudio ${RUNNING_APP_VERSION} is here`)).toBeTruthy();
     // The highlights payload's own `version` is display-irrelevant here; the
     // running version is the truth source (see contracts/api/whats-new.ts).
     expect(screen.queryByText(/0\.12\.1/)).toBeNull();
@@ -321,19 +321,19 @@ describe('WhatsNewPopup actions', () => {
   });
 
   it.each([
-    ['en', 'View Arena', 'https://saascodex.com/llm-arena-for-design/'],
-    ['zh-CN', '查看评测站', 'https://saascodex.com/zh/llm-arena-for-design/'],
+    ['en', 'View Arena', 'https://splatstudio.app/llm-arena-for-design/'],
+    ['zh-CN', '查看评测站', 'https://splatstudio.app/zh/llm-arena-for-design/'],
   ])('uses the configured %s CTA and matching Arena destination', async (locale, label, url) => {
-    window.localStorage.setItem('saascodex:locale', locale!);
-    window.localStorage.setItem('saascodex:locale-source', 'manual');
+    window.localStorage.setItem('splatstudio:locale', locale!);
+    window.localStorage.setItem('splatstudio:locale-source', 'manual');
     mockedFetchWhatsNew.mockResolvedValue({
       ...SHOW_PAYLOAD,
       content: {
         ...SHOW_PAYLOAD.content!,
         ctaLabel: 'View Arena',
-        linkUrl: 'https://saascodex.com/llm-arena-for-design/',
+        linkUrl: 'https://splatstudio.app/llm-arena-for-design/',
         locales: {
-          'zh-CN': { ctaLabel: '查看评测站', linkUrl: 'https://saascodex.com/zh/llm-arena-for-design/' },
+          'zh-CN': { ctaLabel: '查看评测站', linkUrl: 'https://splatstudio.app/zh/llm-arena-for-design/' },
         },
       },
     });
@@ -360,7 +360,7 @@ describe('WhatsNewPopup actions', () => {
 
     fireEvent.click(await screen.findByTestId('whats-new-cta'));
 
-    expect(mockedOpenExternalUrl).toHaveBeenCalledWith('https://saascodex.com/blog/0-16-1/');
+    expect(mockedOpenExternalUrl).toHaveBeenCalledWith('https://splatstudio.app/blog/0-16-1/');
     expect(window.localStorage.getItem(WHATS_NEW_LAST_SEEN_STORAGE_KEY)).toBe('highlight-0-16-1');
     expect(screen.queryByTestId('whats-new-popup')).toBeNull();
   });

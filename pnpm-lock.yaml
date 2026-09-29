@@ -27,22 +27,22 @@ importers:
 
   .:
     devDependencies:
-      '@saascodex/components':
+      '@splatstudio/components':
         specifier: workspace:*
         version: link:packages/components
-      '@saascodex/daemon':
+      '@splatstudio/daemon':
         specifier: workspace:*
         version: link:apps/daemon
-      '@saascodex/tools-dev':
+      '@splatstudio/tools-dev':
         specifier: workspace:*
         version: link:tools/dev
-      '@saascodex/tools-pack':
+      '@splatstudio/tools-pack':
         specifier: workspace:*
         version: link:tools/pack
-      '@saascodex/tools-release':
+      '@splatstudio/tools-release':
         specifier: workspace:*
         version: link:tools/release
-      '@saascodex/tools-serve':
+      '@splatstudio/tools-serve':
         specifier: workspace:*
         version: link:tools/serve
       '@types/node':
@@ -60,7 +60,7 @@ importers:
 
   apps/closure:
     dependencies:
-      '@saascodex/standalone':
+      '@splatstudio/standalone':
         specifier: workspace:*
         version: link:../../packages/standalone
     devDependencies:
@@ -94,34 +94,34 @@ importers:
       '@opentelemetry/api':
         specifier: 1.9.1
         version: 1.9.1
-      '@saascodex/agui-adapter':
+      '@splatstudio/agui-adapter':
         specifier: workspace:*
         version: link:../../packages/agui-adapter
-      '@saascodex/contracts':
+      '@splatstudio/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
-      '@saascodex/diagnostics':
+      '@splatstudio/diagnostics':
         specifier: workspace:*
         version: link:../../packages/diagnostics
-      '@saascodex/launcher-proto':
+      '@splatstudio/launcher-proto':
         specifier: workspace:*
         version: link:../../packages/launcher-proto
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@saascodex/plugin-runtime':
+      '@splatstudio/plugin-runtime':
         specifier: workspace:*
         version: link:../../packages/plugin-runtime
-      '@saascodex/registry-protocol':
+      '@splatstudio/registry-protocol':
         specifier: workspace:*
         version: link:../../packages/registry-protocol
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../../packages/release
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../../packages/sidecar
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../../packages/sidecar-proto
       acorn:
@@ -206,31 +206,31 @@ importers:
 
   apps/desktop:
     dependencies:
-      '@saascodex/contracts':
+      '@splatstudio/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
-      '@saascodex/diagnostics':
+      '@splatstudio/diagnostics':
         specifier: workspace:*
         version: link:../../packages/diagnostics
-      '@saascodex/download':
+      '@splatstudio/download':
         specifier: workspace:*
         version: link:../../packages/download
-      '@saascodex/host':
+      '@splatstudio/host':
         specifier: workspace:*
         version: link:../../packages/host
-      '@saascodex/launcher-proto':
+      '@splatstudio/launcher-proto':
         specifier: workspace:*
         version: link:../../packages/launcher-proto
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../../packages/release
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../../packages/sidecar
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../../packages/sidecar-proto
     devDependencies:
@@ -249,31 +249,31 @@ importers:
 
   apps/packaged:
     dependencies:
-      '@saascodex/contracts':
+      '@splatstudio/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
-      '@saascodex/daemon':
+      '@splatstudio/daemon':
         specifier: workspace:*
         version: link:../daemon
-      '@saascodex/desktop':
+      '@splatstudio/desktop':
         specifier: workspace:*
         version: link:../desktop
-      '@saascodex/launcher-proto':
+      '@splatstudio/launcher-proto':
         specifier: workspace:*
         version: link:../../packages/launcher-proto
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../../packages/release
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../../packages/sidecar
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../../packages/sidecar-proto
-      '@saascodex/web':
+      '@splatstudio/web':
         specifier: workspace:*
         version: link:../web
     devDependencies:
@@ -310,22 +310,22 @@ importers:
       '@lexical/utils':
         specifier: 0.36.2
         version: 0.36.2
-      '@saascodex/components':
+      '@splatstudio/components':
         specifier: workspace:*
         version: link:../../packages/components
-      '@saascodex/contracts':
+      '@splatstudio/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
-      '@saascodex/host':
+      '@splatstudio/host':
         specifier: workspace:*
         version: link:../../packages/host
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../../packages/sidecar
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../../packages/sidecar-proto
       '@xterm/addon-fit':
@@ -434,16 +434,16 @@ importers:
       '@playwright/test':
         specifier: 1.60.0
         version: 1.60.0
-      '@saascodex/contracts':
+      '@splatstudio/contracts':
         specifier: workspace:*
         version: link:../packages/contracts
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../packages/release
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../packages/sidecar
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../packages/sidecar-proto
       '@types/node':
@@ -470,7 +470,7 @@ importers:
 
   packages/agui-adapter:
     dependencies:
-      '@saascodex/contracts':
+      '@splatstudio/contracts':
         specifier: workspace:*
         version: link:../contracts
     devDependencies:
@@ -522,7 +522,7 @@ importers:
 
   packages/contracts:
     dependencies:
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../release
       zod:
@@ -560,7 +560,7 @@ importers:
 
   packages/download:
     dependencies:
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../platform
     devDependencies:
@@ -625,7 +625,7 @@ importers:
 
   packages/host:
     dependencies:
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../release
     devDependencies:
@@ -644,10 +644,10 @@ importers:
 
   packages/launcher-proto:
     dependencies:
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../release
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../sidecar-proto
     devDependencies:
@@ -700,7 +700,7 @@ importers:
 
   packages/plugin-runtime:
     dependencies:
-      '@saascodex/contracts':
+      '@splatstudio/contracts':
         specifier: workspace:*
         version: link:../contracts
       zod:
@@ -756,7 +756,7 @@ importers:
 
   packages/sidecar:
     dependencies:
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../platform
     devDependencies:
@@ -775,7 +775,7 @@ importers:
 
   packages/sidecar-proto:
     dependencies:
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../release
     devDependencies:
@@ -794,7 +794,7 @@ importers:
 
   packages/standalone:
     dependencies:
-      '@saascodex/download':
+      '@splatstudio/download':
         specifier: workspace:*
         version: link:../download
       jszip:
@@ -819,13 +819,13 @@ importers:
 
   shells/terminal:
     devDependencies:
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../../packages/sidecar
-      '@saascodex/standalone':
+      '@splatstudio/standalone':
         specifier: workspace:*
         version: link:../../packages/standalone
       '@types/node':
@@ -840,13 +840,13 @@ importers:
 
   tools/dev:
     dependencies:
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../../packages/sidecar
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../../packages/sidecar-proto
       cac:
@@ -874,19 +874,19 @@ importers:
       '@electron/rebuild':
         specifier: 4.0.4
         version: 4.0.4
-      '@saascodex/launcher-proto':
+      '@splatstudio/launcher-proto':
         specifier: workspace:*
         version: link:../../packages/launcher-proto
-      '@saascodex/platform':
+      '@splatstudio/platform':
         specifier: workspace:*
         version: link:../../packages/platform
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../../packages/release
-      '@saascodex/sidecar':
+      '@splatstudio/sidecar':
         specifier: workspace:*
         version: link:../../packages/sidecar
-      '@saascodex/sidecar-proto':
+      '@splatstudio/sidecar-proto':
         specifier: workspace:*
         version: link:../../packages/sidecar-proto
       cac:
@@ -921,10 +921,10 @@ importers:
 
   tools/release:
     dependencies:
-      '@saascodex/launcher-proto':
+      '@splatstudio/launcher-proto':
         specifier: workspace:*
         version: link:../../packages/launcher-proto
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../../packages/release
       cac:
@@ -959,7 +959,7 @@ importers:
 
   tools/serve:
     dependencies:
-      '@saascodex/release':
+      '@splatstudio/release':
         specifier: workspace:*
         version: link:../../packages/release
       cac:

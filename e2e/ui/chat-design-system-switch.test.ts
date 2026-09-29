@@ -12,7 +12,7 @@ import { expect, test } from '@/playwright/suite';
 import type { Page } from '@playwright/test';
 import { routeAgents, routeSuccessfulRuns } from '@/playwright/mock-factory';
 
-const STORAGE_KEY = 'saascodex:config';
+const STORAGE_KEY = 'splatstudio:config';
 
 const DESIGN_SYSTEMS = [
   {

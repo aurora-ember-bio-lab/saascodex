@@ -12,10 +12,10 @@ async function fixture() {
   const root = await mkdtemp(join(tmpdir(), 'od-runtime-verification-'));
   roots.push(root);
   const resources = join(await realpath(root), 'resources');
-  await mkdir(join(resources, 'saascodex/bin/libexec/opencode'), { recursive: true });
-  await writeFile(join(resources, 'saascodex-config.json'), JSON.stringify({ appVersion: '0.22.0-prerelease.19' }));
-  await writeFile(join(resources, 'saascodex/bin/vela'), 'vela fixture');
-  await writeFile(join(resources, 'saascodex/bin/libexec/opencode/opencode'), 'opencode fixture');
+  await mkdir(join(resources, 'splatstudio/bin/libexec/opencode'), { recursive: true });
+  await writeFile(join(resources, 'splatstudio-config.json'), JSON.stringify({ appVersion: '0.22.0-prerelease.19' }));
+  await writeFile(join(resources, 'splatstudio/bin/vela'), 'vela fixture');
+  await writeFile(join(resources, 'splatstudio/bin/libexec/opencode/opencode'), 'opencode fixture');
   const manifest = join(root, 'mac_arm64.json');
   await writeFile(manifest, JSON.stringify({ channel: 'prerelease', releaseVersion: '0.22.0-prerelease.19', platformKey: 'mac_arm64', github: { commit: 'a'.repeat(40) } }));
   const runVersion = vi.fn(async (binary: string): Promise<string> => binary.endsWith('/vela') ? '0.0.35\n' : '0.0.0--202609020336\n');
@@ -30,13 +30,13 @@ describe('packaged runtime identity', () => {
     expect(result.binaries.vela).toMatchObject({ version: '0.0.35', sha256: expect.stringMatching(/^[a-f0-9]{64}$/) });
     expect(result.binaries.opencode.version).toBe('0.0.0--202609020336');
     expect(input.runVersion.mock.calls.map(([binary]) => binary)).toEqual([
-      join(input.resources, 'saascodex/bin/vela'), join(input.resources, 'saascodex/bin/libexec/opencode/opencode'),
+      join(input.resources, 'splatstudio/bin/vela'), join(input.resources, 'splatstudio/bin/libexec/opencode/opencode'),
     ]);
     expect(result.scope).toBe('binary-identity-only');
   });
   it('rejects an app/manifest mismatch before executing a binary', async () => {
     const input = await fixture();
-    await writeFile(join(input.resources, 'saascodex-config.json'), JSON.stringify({ appVersion: '0.22.0-prerelease.18' }));
+    await writeFile(join(input.resources, 'splatstudio-config.json'), JSON.stringify({ appVersion: '0.22.0-prerelease.18' }));
     await expect(verifyPackagedRuntime(input)).rejects.toThrow('app version');
     expect(input.runVersion).not.toHaveBeenCalled();
   });
@@ -52,12 +52,12 @@ describe('packaged runtime identity', () => {
   });
   it('rejects a missing companion instead of finding OpenCode on PATH', async () => {
     const input = await fixture();
-    await rm(join(input.resources, 'saascodex/bin/libexec/opencode/opencode'));
+    await rm(join(input.resources, 'splatstudio/bin/libexec/opencode/opencode'));
     await expect(verifyPackagedRuntime(input)).rejects.toThrow();
   });
   it('rejects binaries that escape the selected package through symlinks', async () => {
     const input = await fixture();
-    const binary = join(input.resources, 'saascodex/bin/vela');
+    const binary = join(input.resources, 'splatstudio/bin/vela');
     await rm(binary);
     await writeFile(join(input.root, 'outside-vela'), 'foreign');
     await symlink(join(input.root, 'outside-vela'), binary);

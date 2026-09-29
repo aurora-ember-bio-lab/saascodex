@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { expect, it } from 'vitest';
-import type { PersistedAgentEvent } from '@saascodex/contracts';
+import type { PersistedAgentEvent } from '@splatstudio/contracts';
 import { buildTurnBlocks } from '../../../src/runtime/chat/build-turn-blocks';
 
 const KEY = 'a7f3c91ed2b40561';

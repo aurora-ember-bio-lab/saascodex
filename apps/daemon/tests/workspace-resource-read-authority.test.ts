@@ -2,7 +2,7 @@ import express from 'express';
 import type { AddressInfo } from 'node:net';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 import { registerPluginRoutes } from '../src/routes/plugins/index.js';
 import { registerStaticResourceRoutes } from '../src/routes/static-resource.js';

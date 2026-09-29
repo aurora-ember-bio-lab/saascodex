@@ -1,6 +1,6 @@
 # Deployment (Vercel, Railway, Docker)
 
-SaaSCodex is a monorepo with two runnable apps:
+SplatStudio is a monorepo with two runnable apps:
 
 - **web** (`apps/web`) — Next.js app; builds to a static export in
   `apps/web/out`.
@@ -22,8 +22,8 @@ Because the daemon serves both, there are two supported topologies.
 | `OD_BIND_HOST` | daemon | Bind address; `0.0.0.0` in containers |
 | `OD_PORT` / `--port` | daemon | Listen port (Railway injects `PORT`) |
 | `OD_PUBLIC_BASE_URL` | daemon | Public origin for checkout redirects and absolute links |
-| `SAASCODEX_ALLOWED_ORIGINS` | daemon | Comma-separated browser origins allowed to call `/api` |
-| `SAASCODEX_DISABLE_API_AUTH` | daemon | `1` only behind a trusted, already-authenticated proxy |
+| `SPLATSTUDIO_ALLOWED_ORIGINS` | daemon | Comma-separated browser origins allowed to call `/api` |
+| `SPLATSTUDIO_DISABLE_API_AUTH` | daemon | `1` only behind a trusted, already-authenticated proxy |
 | `DATABASE_URL` | daemon, migrate | Postgres + pgvector (see [DATABASE.md](./DATABASE.md)) |
 | `JWT_SECRET` | daemon (hosted) | Signing secret for hosted sessions (see [AUTH.md](./AUTH.md)) |
 | `STRIPE_*` | daemon | Billing (see [BILLING.md](./BILLING.md)) |
@@ -63,7 +63,7 @@ Run it manually (or as a deploy gate) after the Postgres service is healthy.
 ## Topology B — Vercel (web) + Railway (API)
 
 [`vercel.json`](../vercel.json) is already configured for the static export:
-`buildCommand` runs `pnpm --filter @saascodex/web build` and the output
+`buildCommand` runs `pnpm --filter @splatstudio/web build` and the output
 directory is `apps/web/out`.
 
 1. Deploy the repo to Vercel (framework preset: **Other**; the `vercel.json`
@@ -79,7 +79,7 @@ directory is `apps/web/out`.
    }
    ```
    Replace `<daemon>` with your Railway domain and redeploy.
-4. Set `SAASCODEX_ALLOWED_ORIGINS` on the daemon to your Vercel domain so the
+4. Set `SPLATSTUDIO_ALLOWED_ORIGINS` on the daemon to your Vercel domain so the
    origin guard accepts browser calls.
 
 > The web defaults to same-origin `/api`. In the split topology the rewrite
@@ -92,11 +92,11 @@ cp deploy/.env.example deploy/.env
 # edit deploy/.env (token, origins, DATABASE_URL, …)
 docker compose -f deploy/docker-compose.yml up -d postgres
 docker compose -f deploy/docker-compose.yml run --rm migrate   # apply migrations
-docker compose -f deploy/docker-compose.yml up -d saascodex
+docker compose -f deploy/docker-compose.yml up -d splatstudio
 ```
 
 The image is also published by this repo's Docker workflow
-(`deploy/Dockerfile`). Compose services: `saascodex`, `postgres`, `migrate`,
+(`deploy/Dockerfile`). Compose services: `splatstudio`, `postgres`, `migrate`,
 and `atlas` (profile `tools`).
 
 ## Verify a deployment
@@ -113,6 +113,6 @@ curl -fsS -H "Authorization: Bearer $OD_API_TOKEN" \
 - [ ] `OD_API_TOKEN` set (or auth consciously disabled behind a trusted proxy)
 - [ ] `JWT_SECRET` set (hosted sessions)
 - [ ] `OD_PUBLIC_BASE_URL` matches the public origin
-- [ ] `SAASCODEX_ALLOWED_ORIGINS` includes the web origin (split topology)
+- [ ] `SPLATSTUDIO_ALLOWED_ORIGINS` includes the web origin (split topology)
 - [ ] Stripe keys + webhook endpoint configured ([BILLING.md](./BILLING.md))
 - [ ] `/api/health` returns 200 from the public URL

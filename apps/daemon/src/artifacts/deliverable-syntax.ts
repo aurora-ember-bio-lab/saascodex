@@ -8,7 +8,7 @@ import {
   DELIVERABLE_SYNTAX_CHECKER as CONTRACT_DELIVERABLE_SYNTAX_CHECKER,
   type DeliverableSyntaxCheckResult as ContractDeliverableSyntaxResult,
   type DeliverableSyntaxDiagnostic as ContractDeliverableSyntaxDiagnostic,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export const DELIVERABLE_SYNTAX_CHECKER = CONTRACT_DELIVERABLE_SYNTAX_CHECKER;
 

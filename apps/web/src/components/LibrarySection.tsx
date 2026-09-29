@@ -4,7 +4,7 @@
 // upload, agent task, design-system staging, AI generation) with a source
 // badge, a kind badge, and back-links. Captures from the browser extension
 // stream in live over the `/api/library/events` SSE feed. The OD Clipper is
-// zero-config — it connects automatically whenever SaaSCodex is running
+// zero-config — it connects automatically whenever SplatStudio is running
 // locally, so there is no pairing step here.
 //
 // Each card thumbnail is kind-aware (image / video / html / font / color) and
@@ -14,7 +14,7 @@
 // the action bar or with Delete / Backspace.
 
 import { memo, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
-import type { ChatAttachment, DesignSystemSummary, LibraryAsset } from '@saascodex/contracts';
+import type { ChatAttachment, DesignSystemSummary, LibraryAsset } from '@splatstudio/contracts';
 import {
   applyLibraryAsset,
   deleteLibraryAsset,
@@ -32,7 +32,7 @@ import { useInView } from './plugins-home/useInView';
 import { navigate } from '../router';
 import { setPendingDesignSystemCreateEntry } from '../analytics/ds-create-entry';
 import { setComposerSeed, setDesignSystemAssetSeed, setHomeComposerAssetSeed } from '../state/libraryHandoff';
-import { Button, Dialog, DialogDescription, DialogFooter, DialogTitle } from '@saascodex/components';
+import { Button, Dialog, DialogDescription, DialogFooter, DialogTitle } from '@splatstudio/components';
 import { Icon } from './Icon';
 import {
   KindIcon,
@@ -1143,7 +1143,7 @@ export function LibrarySection({ active, onOpenProject }: Props) {
           <p className={styles.headerHint}>{t('library.headerHint')}</p>
           <a
             className={styles.clipperDownload}
-            href="https://saascodex.com/clipper"
+            href="https://splatstudio.app/clipper"
             target="_blank"
             rel="noreferrer"
           >

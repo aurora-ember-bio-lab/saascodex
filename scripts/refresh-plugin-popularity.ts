@@ -8,7 +8,7 @@
  *
  *   1. Query PostHog `run_finished` for the trailing-window per-plugin_id counts
  *      (total runs + distinct users).
- *   2. Join against the live bundled catalog (the saascodex.json manifests
+ *   2. Join against the live bundled catalog (the splatstudio.json manifests
  *      under plugins/_official → the daemon's plugin ids); drop retired ids.
  *   3. Blend distinct-users + runs into one [0,1] score and rewrite the
  *      generated file.
@@ -89,7 +89,7 @@ async function fetchCounts(): Promise<Counts> {
 
 // 2. live catalog from the bundled first-party manifests. Their bare `name`
 // matches the telemetry plugin_id; the marketplace registry is not used (its
-// names are `saascodex/<id>`-prefixed and do not match plugin_id).
+// names are `splatstudio/<id>`-prefixed and do not match plugin_id).
 interface CatalogEntry {
   dir: string;
   od: Record<string, unknown>;
@@ -108,7 +108,7 @@ function liveCatalog(): Map<string, CatalogEntry> {
     }
     for (const dir of entries) {
       const dirPath = join(officialRoot, bucket, dir);
-      const mf = join(dirPath, 'saascodex.json');
+      const mf = join(dirPath, 'splatstudio.json');
       if (!existsSync(mf)) continue;
       try {
         const j = JSON.parse(readFileSync(mf, 'utf8')) as { name?: string; od?: Record<string, unknown> };
@@ -255,7 +255,7 @@ async function main(): Promise<void> {
     return;
   }
   if (!existsSync(join(OD_REPO, 'plugins/_official'))) {
-    throw new Error(`--od-repo does not look like an saascodex checkout: ${OD_REPO}`);
+    throw new Error(`--od-repo does not look like an splatstudio checkout: ${OD_REPO}`);
   }
 
   const counts = await fetchCounts();

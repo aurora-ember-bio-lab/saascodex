@@ -1,8 +1,8 @@
-# RFC: Agent-ready SaaSCodex — one assistant that can drive the whole app
+# RFC: Agent-ready SplatStudio — one assistant that can drive the whole app
 
 **Status:** Draft (umbrella design for review; only slice 1 ships code in the first PR)
 **Author:** @leonaburime-ucla
-**Related:** #5398 (make SaaSCodex agent-ready)
+**Related:** #5398 (make SplatStudio agent-ready)
 
 ## Summary
 

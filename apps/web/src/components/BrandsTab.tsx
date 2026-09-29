@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button } from '@saascodex/components';
-import type { BrandSummary, WorkspaceCollabContext } from '@saascodex/contracts';
+import { Button } from '@splatstudio/components';
+import type { BrandSummary, WorkspaceCollabContext } from '@splatstudio/contracts';
 import { useT } from '../i18n';
 import { navigate, useRoute } from '../router';
 import {

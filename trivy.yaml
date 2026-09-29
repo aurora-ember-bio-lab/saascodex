@@ -1,4 +1,4 @@
-# Trivy configuration for SaaSCodex (https://trivy.dev).
+# Trivy configuration for SplatStudio (https://trivy.dev).
 #
 # Used by local runs (`trivy fs --config trivy.yaml .`) and as a reference for
 # the CI workflow in .github/workflows/security.yml. Docs: docs/SECURITY.md.

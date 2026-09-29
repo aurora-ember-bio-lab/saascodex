@@ -38,7 +38,7 @@ describe('Workspace resource mutation authority preflight', () => {
     const pluginSource = path.join(sourceRoot, pluginId);
     await mkdir(pluginSource, { recursive: true });
     await writeFile(
-      path.join(pluginSource, 'saascodex.json'),
+      path.join(pluginSource, 'splatstudio.json'),
       JSON.stringify({
         name: pluginId,
         title: pluginId,

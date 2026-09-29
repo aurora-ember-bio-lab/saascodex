@@ -3,7 +3,7 @@ import {
   PROJECT_EXPORT_MANIFEST_SCHEMA,
   isExportFormat,
   type StandaloneHtmlExportRequest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import nodePath from 'node:path';
 import os from 'node:os';
 import { readFile, rm } from 'node:fs/promises';
@@ -333,7 +333,7 @@ export function registerImportRoutes(app: Express, ctx: RegisterImportRoutesDeps
       // the imported folder's artifacts. Persist an empty saved tab state so
       // ProjectView does not auto-open the detected primary file on hydration.
       setTabs(db, projectId, [], null);
-      /** @type {import('@saascodex/contracts').ReplaceProjectWorkingDirResponse} */
+      /** @type {import('@splatstudio/contracts').ReplaceProjectWorkingDirResponse} */
       const body = { project: updated, baseDir: normalizedPath, entryFile };
       res.json(body);
     } catch (err: any) {
@@ -526,7 +526,7 @@ export function registerImportRoutes(app: Express, ctx: RegisterImportRoutesDeps
         );
         return createdProject;
       })();
-      /** @type {import('@saascodex/contracts').ImportFolderResponse} */
+      /** @type {import('@splatstudio/contracts').ImportFolderResponse} */
       const body = { project, conversationId: cid, entryFile };
       res.json(body);
     } catch (err: any) {
@@ -556,7 +556,7 @@ function stripHostDetail(value: string): string {
  *
  * This split is the point. The renderer is reached over a unix socket whose
  * path encodes the runtime namespace, so a failed connect arrives as
- * `connect ENOENT /tmp/saascodex/ipc/<namespace>/desktop.sock` and a timeout
+ * `connect ENOENT /tmp/splatstudio/ipc/<namespace>/desktop.sock` and a timeout
  * as `IPC request timed out: <same path>`. That string does not stop here:
  * `od export` writes the daemon's `message` verbatim to its stderr, the agent
  * reads it, and from there it is one prompt-adherence failure away from the
@@ -1403,7 +1403,7 @@ export function registerProjectExportRoutes(app: Express, ctx: RegisterProjectEx
       const files = await listFiles(PROJECTS_DIR, req.params.id, {
         metadata: project.metadata,
       });
-      /** @type {import('@saascodex/contracts').ProjectExportManifestResponse} */
+      /** @type {import('@splatstudio/contracts').ProjectExportManifestResponse} */
       const body = buildProjectExportManifestResponse({
         project,
         projectId: req.params.id,

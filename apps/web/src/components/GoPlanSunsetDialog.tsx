@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Button, Dialog } from '@saascodex/components';
+import { Button, Dialog } from '@splatstudio/components';
 
 import { attributedAmrUrl, recordAmrEntry } from '../analytics/amr-attribution';
 import {

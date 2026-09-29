@@ -24,7 +24,7 @@ const ENV = {
   STRIPE_PRICE_PRO_EUR: 'price_pro_28',
   STRIPE_PRICE_STUDIOS_EUR: 'price_studios_48',
   STRIPE_WEBHOOK_SECRET: WEBHOOK_SECRET,
-  OD_PUBLIC_BASE_URL: 'https://app.saascodex.com',
+  OD_PUBLIC_BASE_URL: 'https://app.splatstudio.app',
 } as NodeJS.ProcessEnv;
 
 const stripeCalls: Array<{ url: string; body: string }> = [];
@@ -67,7 +67,7 @@ let base: string;
 let nowMs = 1_760_000_000_000;
 
 beforeAll(async () => {
-  dir = await mkdtemp(path.join(tmpdir(), 'saascodex-billing-routes-'));
+  dir = await mkdtemp(path.join(tmpdir(), 'splatstudio-billing-routes-'));
   const app = express();
   // Mirror server.ts: the webhook claims the raw body before the JSON parser.
   app.use('/api/billing/webhook', express.raw({ type: 'application/json' }));
@@ -136,7 +136,7 @@ describe('billing routes (HTTP)', () => {
 
   it('creates a Stripe Checkout session for Pro', async () => {
     stripeCalls.length = 0;
-    const { status, body } = await postJson('/api/billing/checkout', { plan: 'pro', email: 'buyer@saascodex.com' });
+    const { status, body } = await postJson('/api/billing/checkout', { plan: 'pro', email: 'buyer@splatstudio.app' });
     expect(status).toBe(200);
     expect(body.url).toBe('https://checkout.stripe.test/cs_test_123');
     expect(body.plan).toBe('pro');
@@ -145,9 +145,9 @@ describe('billing routes (HTTP)', () => {
     const params = new URLSearchParams(call.body);
     expect(params.get('mode')).toBe('subscription');
     expect(params.get('line_items[0][price]')).toBe('price_pro_28');
-    expect(params.get('metadata[saascodex_plan]')).toBe('pro');
-    expect(params.get('customer_email')).toBe('buyer@saascodex.com');
-    expect(params.get('success_url')).toBe('https://app.saascodex.com/billing?checkout=success');
+    expect(params.get('metadata[splatstudio_plan]')).toBe('pro');
+    expect(params.get('customer_email')).toBe('buyer@splatstudio.app');
+    expect(params.get('success_url')).toBe('https://app.splatstudio.app/billing?checkout=success');
   });
 
   it('rejects an invalid plan and an unsigned/malformed webhook', async () => {
@@ -166,8 +166,8 @@ describe('billing routes (HTTP)', () => {
         object: {
           customer: 'cus_test_1',
           subscription: 'sub_test_1',
-          metadata: { saascodex_plan: 'pro' },
-          customer_details: { email: 'buyer@saascodex.com' },
+          metadata: { splatstudio_plan: 'pro' },
+          customer_details: { email: 'buyer@splatstudio.app' },
         },
       },
     });

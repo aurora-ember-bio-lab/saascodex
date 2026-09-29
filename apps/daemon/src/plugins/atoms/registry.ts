@@ -25,7 +25,7 @@ import type Database from 'better-sqlite3';
 import type {
   AppliedPluginSnapshot,
   PipelineStage,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { UntilSignals } from '../until.js';
 import {
   scanRunEventsForUsageAnalytics,

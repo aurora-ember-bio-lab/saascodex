@@ -1,12 +1,12 @@
 import type Database from 'better-sqlite3';
-import type { MarketplaceManifest, MarketplacePluginEntry } from '@saascodex/contracts';
+import type { MarketplaceManifest, MarketplacePluginEntry } from '@splatstudio/contracts';
 import type {
   RegistryEntry,
   RegistryPublishOutcome,
   RegistryPublishRequest,
   RegistryTrust,
   RegistryYankOutcome,
-} from '@saascodex/registry-protocol';
+} from '@splatstudio/registry-protocol';
 import { StaticRegistryBackend, toRegistryEntry } from './static-backend.js';
 
 type SqliteDb = Database.Database;

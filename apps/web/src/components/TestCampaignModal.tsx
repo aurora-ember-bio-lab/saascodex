@@ -2,12 +2,12 @@ import {
 	TOUCHPOINT_COMPONENT_V2_RUNTIME_API_VERSION,
 	TOUCHPOINT_COMPONENT_V2_SDK_VERSION,
 	TOUCHPOINT_COMPONENT_V2_WRAPPER_VERSION,
-} from "@saascodex/contracts";
+} from "@splatstudio/contracts";
 import type {
 	TestRuntimeContext,
 	TestRuntimeDecision,
-} from "@saascodex/contracts/api/touchpointTestRuntime";
-import { getSaaSCodexHost, SAASCODEX_HOST_VERSION } from "@saascodex/host";
+} from "@splatstudio/contracts/api/touchpointTestRuntime";
+import { getSplatStudioHost, SPLATSTUDIO_HOST_VERSION } from "@splatstudio/host";
 import { mountTouchpoint } from "./touchpoint-lifecycle";
 import {
 	navigateCampaignTarget,
@@ -193,10 +193,10 @@ export async function dispatchTestCampaignAction(
 }
 
 function supportsHost(authenticated: boolean): boolean {
-	const host = getSaaSCodexHost();
+	const host = getSplatStudioHost();
 	return (
 		authenticated &&
-		host?.version === SAASCODEX_HOST_VERSION &&
+		host?.version === SPLATSTUDIO_HOST_VERSION &&
 		host.client.type === "desktop"
 	);
 }
@@ -299,7 +299,7 @@ export async function recordTestAcceptance(
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify({
 				placementKey: input.placementKey,
-				hostVersion: input.hostVersion ?? String(SAASCODEX_HOST_VERSION),
+				hostVersion: input.hostVersion ?? String(SPLATSTUDIO_HOST_VERSION),
 				locale: input.locale,
 				scenario: input.scenario,
 				evidence: acceptanceEvidence(input),
@@ -307,7 +307,7 @@ export async function recordTestAcceptance(
 					? {
 							version: 1,
 							snapshotHash: input.snapshotHash,
-							hostFamily: "saascodex-desktop",
+							hostFamily: "splatstudio-desktop",
 							platform: "desktop",
 							hostRelease: process.env.NEXT_PUBLIC_CMS_HOST_RELEASE,
 							runtime: {
@@ -382,7 +382,7 @@ export type TestTouchpointMountProps = Readonly<{
 	onCloseControlChange?: (available: boolean | null) => void;
 }>;
 
-/** Mounts one immutable v2 placement in the real SaaSCodex Shadow DOM host. */
+/** Mounts one immutable v2 placement in the real SplatStudio Shadow DOM host. */
 export function TestTouchpointMount({
 	decision,
 	placementKey,
@@ -456,7 +456,7 @@ function validIso(value: unknown): value is string {
 	);
 }
 
-/** Real Electron Test harness for all enabled SaaSCodex placements. */
+/** Real Electron Test harness for all enabled SplatStudio placements. */
 export function TestCampaignModal({
 	authenticated,
 	sessionSubject,

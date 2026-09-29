@@ -60,7 +60,7 @@ async function stubPackagedDesktopWithReadyUpdate(page: Page) {
       },
       channel: 'prerelease',
       currentVersion: '0.20.0-prerelease.13',
-      downloadPath: '/tmp/saascodex-update.zip',
+      downloadPath: '/tmp/splatstudio-update.zip',
       enabled: true,
       mode: 'package-launcher',
       platform: 'darwin',

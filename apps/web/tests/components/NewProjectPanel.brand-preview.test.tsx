@@ -3,17 +3,17 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { BrandSummary } from '@saascodex/contracts';
-import { isSaaSCodexHostAvailable, pickHostWorkingDir } from '@saascodex/host';
+import type { BrandSummary } from '@splatstudio/contracts';
+import { isSplatStudioHostAvailable, pickHostWorkingDir } from '@splatstudio/host';
 import { NewProjectPanel } from '../../src/components/NewProjectPanel';
 import { openFolderDialog } from '../../src/providers/registry';
 import type { DesignSystemSummary, SkillSummary } from '../../src/types';
 
-vi.mock('@saascodex/host', async () => {
-  const actual = await vi.importActual<typeof import('@saascodex/host')>('@saascodex/host');
+vi.mock('@splatstudio/host', async () => {
+  const actual = await vi.importActual<typeof import('@splatstudio/host')>('@splatstudio/host');
   return {
     ...actual,
-    isSaaSCodexHostAvailable: vi.fn(),
+    isSplatStudioHostAvailable: vi.fn(),
     pickHostWorkingDir: vi.fn(),
   };
 });
@@ -38,7 +38,7 @@ vi.mock('../../src/runtime/brands', () => ({
   useBrandsByDesignSystemId: () => brandsByDesignSystem,
 }));
 
-const mockedIsHostAvailable = vi.mocked(isSaaSCodexHostAvailable);
+const mockedIsHostAvailable = vi.mocked(isSplatStudioHostAvailable);
 const mockedOpenFolderDialog = vi.mocked(openFolderDialog);
 
 const skills: SkillSummary[] = [

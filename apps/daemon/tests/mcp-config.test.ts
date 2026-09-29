@@ -491,10 +491,10 @@ describe('buildOpenCodeMcpConfigContent', () => {
         allowedDirectories: ['/tmp/od-project'],
         extraConfig: {
           provider: {
-            'saascodex-byok': {
-              name: 'SaaSCodex BYOK',
+            'splatstudio-byok': {
+              name: 'SplatStudio BYOK',
               npm: '@ai-sdk/openai-compatible',
-              options: { apiKey: '{env:SAASCODEX_BYOK_API_KEY}' },
+              options: { apiKey: '{env:SPLATSTUDIO_BYOK_API_KEY}' },
               models: { 'gpt-4o-mini': { name: 'gpt-4o-mini' } },
             },
           },
@@ -509,8 +509,8 @@ describe('buildOpenCodeMcpConfigContent', () => {
       permission?: { external_directory?: Record<string, string> };
     };
 
-    expect(parsed.provider?.['saascodex-byok']).toMatchObject({
-      name: 'SaaSCodex BYOK',
+    expect(parsed.provider?.['splatstudio-byok']).toMatchObject({
+      name: 'SplatStudio BYOK',
       npm: '@ai-sdk/openai-compatible',
     });
     expect(parsed.mcp?.['basic-memory']).toBeTruthy();

@@ -13,7 +13,7 @@ describe('expandHomePrefix', () => {
   });
 
   it('expands ~/sub to a joined absolute path under home', () => {
-    expect(expandHomePrefix('~/projects/saascodex')).toBe(path.join(home, 'projects', 'saascodex'));
+    expect(expandHomePrefix('~/projects/splatstudio')).toBe(path.join(home, 'projects', 'splatstudio'));
   });
 
   it('expands $HOME bare to the user home directory', () => {
@@ -21,7 +21,7 @@ describe('expandHomePrefix', () => {
   });
 
   it('expands $HOME/sub to a joined path under home', () => {
-    expect(expandHomePrefix('$HOME/.saascodex')).toBe(path.join(home, '.saascodex'));
+    expect(expandHomePrefix('$HOME/.splatstudio')).toBe(path.join(home, '.splatstudio'));
   });
 
   it('expands the ${HOME} braced form bare and prefixed', () => {

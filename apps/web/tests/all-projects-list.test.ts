@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { TeamProject, WorkspaceCollabContext } from '@saascodex/contracts';
+import type { TeamProject, WorkspaceCollabContext } from '@splatstudio/contracts';
 
 import {
   buildAllProjectsList,

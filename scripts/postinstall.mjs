@@ -8,7 +8,7 @@ import { gunzipSync } from "node:zlib";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(scriptDir, "..");
-const phase = process.argv[2] ?? process.env.SAASCODEX_POSTINSTALL_PHASE ?? "all";
+const phase = process.argv[2] ?? process.env.SPLATSTUDIO_POSTINSTALL_PHASE ?? "all";
 if (!["all", "dependencies", "build", "describe"].includes(phase)) {
   throw new Error(`Unknown postinstall phase: ${phase}`);
 }
@@ -39,9 +39,9 @@ const localDevelopment = Object.freeze({
   ]),
 });
 const buildTargets = localDevelopment.targets;
-const externalPlanPath = process.env.SAASCODEX_POSTINSTALL_PLAN_PATH?.trim() ?? "";
-const receiptPath = process.env.SAASCODEX_POSTINSTALL_RECEIPT_PATH?.trim() ?? "";
-const planEntry = process.env.SAASCODEX_POSTINSTALL_ENTRY?.trim() || phase;
+const externalPlanPath = process.env.SPLATSTUDIO_POSTINSTALL_PLAN_PATH?.trim() ?? "";
+const receiptPath = process.env.SPLATSTUDIO_POSTINSTALL_RECEIPT_PATH?.trim() ?? "";
+const planEntry = process.env.SPLATSTUDIO_POSTINSTALL_ENTRY?.trim() || phase;
 
 function canonicalValue(value) {
   if (Array.isArray(value)) return value.map(canonicalValue);
@@ -102,7 +102,7 @@ function readExternalPlan() {
 
 const externalPlan = readExternalPlan();
 const externalEntry = externalPlan?.entries[planEntry] ?? null;
-const timingPath = process.env.SAASCODEX_POSTINSTALL_TIMING_PATH?.trim() ?? "";
+const timingPath = process.env.SPLATSTUDIO_POSTINSTALL_TIMING_PATH?.trim() ?? "";
 const postinstallStartedAt = Date.now();
 const postinstallStarted = performance.now();
 let timingWarningWritten = false;
@@ -341,12 +341,12 @@ function postinstallConcurrency() {
     }
     return value;
   }
-  const raw = process.env.SAASCODEX_POSTINSTALL_CONCURRENCY;
+  const raw = process.env.SPLATSTUDIO_POSTINSTALL_CONCURRENCY;
   if (raw == null || raw.trim() === "") return localDevelopment.concurrency;
 
   const value = Number.parseInt(raw, 10);
   if (!Number.isFinite(value) || value < 1) {
-    throw new Error(`SAASCODEX_POSTINSTALL_CONCURRENCY must be a positive integer, got: ${raw}`);
+    throw new Error(`SPLATSTUDIO_POSTINSTALL_CONCURRENCY must be a positive integer, got: ${raw}`);
   }
   return value;
 }
@@ -400,12 +400,12 @@ function selectedBuildTargets() {
     }
     return requested;
   }
-  const raw = process.env.SAASCODEX_POSTINSTALL_TARGETS;
+  const raw = process.env.SPLATSTUDIO_POSTINSTALL_TARGETS;
   let targets = available;
   if (raw != null && raw.trim() !== "") {
     const requested = JSON.parse(raw);
     if (!Array.isArray(requested) || requested.some((target) => typeof target !== "string" || !available.includes(target))) {
-      throw new Error("SAASCODEX_POSTINSTALL_TARGETS must be a JSON array of available build target directories");
+      throw new Error("SPLATSTUDIO_POSTINSTALL_TARGETS must be a JSON array of available build target directories");
     }
     // Execution scope, not a cache policy: retain the ordinary dependency graph
     // and rebuild selected tools plus their workspace dependencies. Install-time
@@ -507,7 +507,7 @@ if (needsRebuild) {
   const rebuildStarted = performance.now();
   const rebuild = spawnSync(
     packageManager.command,
-    [...packageManager.argsPrefix, "--filter", "@saascodex/daemon", "rebuild", "better-sqlite3"],
+    [...packageManager.argsPrefix, "--filter", "@splatstudio/daemon", "rebuild", "better-sqlite3"],
     { cwd: repoRoot, stdio: "inherit" },
   );
   recordTiming({

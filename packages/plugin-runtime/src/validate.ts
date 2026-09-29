@@ -1,4 +1,4 @@
-import { PluginManifestSchema, type PluginManifest } from '@saascodex/contracts';
+import { PluginManifestSchema, type PluginManifest } from '@splatstudio/contracts';
 
 export interface ValidateResult {
   ok: boolean;

@@ -16,7 +16,7 @@
 
 import type { Server } from 'node:http';
 import { afterEach, describe, expect, it } from 'vitest';
-import type { ProjectMetadata, ProjectScenarioTaskProfile } from '@saascodex/contracts';
+import type { ProjectMetadata, ProjectScenarioTaskProfile } from '@splatstudio/contracts';
 import { closeDatabase } from '../../src/db.js';
 import { startServer, type StartServerOptions } from '../../src/server.js';
 

@@ -1,8 +1,8 @@
 {
   "extensionName": {
-    "message": "SaaSCodex Web Clipper"
+    "message": "SplatStudio Web Clipper"
   },
   "extensionDescription": {
-    "message": "Clip pages, design systems, screenshots, images, and Figma import JSON into your SaaSCodex Library."
+    "message": "Clip pages, design systems, screenshots, images, and Figma import JSON into your SplatStudio Library."
   }
 }

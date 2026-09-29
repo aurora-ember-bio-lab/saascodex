@@ -1,4 +1,4 @@
-import type { ProjectContentTransferState } from '@saascodex/contracts';
+import type { ProjectContentTransferState } from '@splatstudio/contracts';
 
 export interface ProjectContentTransferScope {
   projectId: string;

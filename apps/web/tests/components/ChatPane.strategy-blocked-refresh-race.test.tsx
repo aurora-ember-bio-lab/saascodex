@@ -27,8 +27,8 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { forwardRef } from 'react';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
-import { StrategyTaskProjectionV2Schema } from '@saascodex/contracts';
-import type { StrategyTaskProjectionV2 } from '@saascodex/contracts';
+import { StrategyTaskProjectionV2Schema } from '@splatstudio/contracts';
+import type { StrategyTaskProjectionV2 } from '@splatstudio/contracts';
 
 import { ChatPane } from '../../src/components/ChatPane';
 import { mergeServerMessagesIntoConversation } from '../../src/components/ProjectView';

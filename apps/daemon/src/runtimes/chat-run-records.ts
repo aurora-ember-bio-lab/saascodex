@@ -13,7 +13,7 @@ import type {
   ChatRunStatusResponse,
   ProjectMetadata as ContractProjectMetadata,
   StrategyTaskProjectionV2,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import type { AnalyticsContext } from '../analytics.js';
 import type { RunArtifactBaseline } from '../run-artifact-fs.js';
 import type {

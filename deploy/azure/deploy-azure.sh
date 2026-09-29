@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Deploy SaaSCodex to Azure from the Bicep templates in this directory.
+# Deploy SplatStudio to Azure from the Bicep templates in this directory.
 #
 #   deploy/azure/deploy-azure.sh --target app-service --resource-group od-rg --location eastus
 #   deploy/azure/deploy-azure.sh --target aci         --resource-group od-rg --location eastus
@@ -13,13 +13,13 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 TARGET="${TARGET:-app-service}"
-RESOURCE_GROUP="${RESOURCE_GROUP:-saascodex-rg}"
+RESOURCE_GROUP="${RESOURCE_GROUP:-splatstudio-rg}"
 LOCATION="${LOCATION:-eastus}"
-NAME="${NAME:-saascodex}"
-IMAGE="${IMAGE:-docker.io/vanjayak/saascodex:latest}"
+NAME="${NAME:-splatstudio}"
+IMAGE="${IMAGE:-docker.io/vanjayak/splatstudio:latest}"
 API_TOKEN="${API_TOKEN:-}"
 EXTRA_ALLOWED_ORIGINS="${EXTRA_ALLOWED_ORIGINS:-}"
-DEPLOYMENT_NAME="${DEPLOYMENT_NAME:-saascodex}"
+DEPLOYMENT_NAME="${DEPLOYMENT_NAME:-splatstudio}"
 
 usage() {
   cat <<'EOF'
@@ -27,18 +27,18 @@ Usage: deploy/azure/deploy-azure.sh [options]
 
 Options:
   --target <app-service|aci>      deployment lane (default: app-service)
-  --resource-group <name>         resource group to deploy into (default: saascodex-rg)
+  --resource-group <name>         resource group to deploy into (default: splatstudio-rg)
   --location <region>             Azure region, used to create the group (default: eastus)
-  --name <name>                   base name for resources (default: saascodex)
-  --image <image-ref>             container image (default: docker.io/vanjayak/saascodex:latest)
+  --name <name>                   base name for resources (default: splatstudio)
+  --image <image-ref>             container image (default: docker.io/vanjayak/splatstudio:latest)
   --api-token <token>             API token; generated with `openssl rand -hex 32` if omitted
   --extra-allowed-origins <list>  extra comma-separated browser origins for /api
-  --deployment-name <name>        ARM deployment name (default: saascodex)
+  --deployment-name <name>        ARM deployment name (default: splatstudio)
   -h, --help
 
 Examples:
   deploy/azure/deploy-azure.sh --target app-service --resource-group od-rg --location westeurope
-  deploy/azure/deploy-azure.sh --target aci --resource-group od-rg --image docker.io/vanjayak/saascodex@sha256:<digest>
+  deploy/azure/deploy-azure.sh --target aci --resource-group od-rg --image docker.io/vanjayak/splatstudio@sha256:<digest>
 EOF
 }
 

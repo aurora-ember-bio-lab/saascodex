@@ -29,16 +29,16 @@ function parseModels(stdout: string) {
   ];
 }
 
-export function hasSaaSCodexProfile(env: NodeJS.ProcessEnv): boolean {
-  return existsSync(path.join(resolveSaaSCodexProfileDir(env), 'package.json'));
+export function hasSplatStudioProfile(env: NodeJS.ProcessEnv): boolean {
+  return existsSync(path.join(resolveSplatStudioProfileDir(env), 'package.json'));
 }
 
-export function resolveSaaSCodexProfileDir(env: NodeJS.ProcessEnv): string {
+export function resolveSplatStudioProfileDir(env: NodeJS.ProcessEnv): string {
   const configuredHome = env.DSH_HOME?.trim();
   const dshHome = configuredHome
     ? path.resolve(configuredHome)
     : path.join(homedir(), '.dsh');
-  return path.join(dshHome, 'profiles', 'saascodex');
+  return path.join(dshHome, 'profiles', 'splatstudio');
 }
 
 const DSH_VERSION_RE = /^v?(\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?)$/u;
@@ -82,20 +82,20 @@ export const deepseekHarnessAgentDef = {
     parse: parseDeepSeekHarnessVersion,
   },
   compatibilityProbe: {
-    args: ['--profile', 'saascodex', '--probe'],
+    args: ['--profile', 'splatstudio', '--probe'],
     timeoutMs: 10_000,
     // rc.6 auto-initializes a missing profile before booting it, so avoid
     // invoking --probe until the user-installed profile already exists.
-    preflight: hasSaaSCodexProfile,
+    preflight: hasSplatStudioProfile,
     parse: (stdout) => parseDshProfileProbeOutput(stdout).plugin_version,
   },
   listModels: {
-    args: ['--profile', 'saascodex', '--models'],
+    args: ['--profile', 'splatstudio', '--models'],
     parse: parseModels,
     timeoutMs: 10_000,
   },
   fallbackModels: [DEFAULT_MODEL_OPTION],
-  buildArgs: () => ['--profile', 'saascodex', '--stdio'],
+  buildArgs: () => ['--profile', 'splatstudio', '--stdio'],
   promptViaStdin: true,
   streamFormat: 'dsh-profile-jsonl',
   resumesSessionViaProfileStdio: true,

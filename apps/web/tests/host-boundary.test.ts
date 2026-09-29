@@ -23,7 +23,7 @@ describe('host bridge boundary', () => {
       '__odDesktop',
       '__OD_CLIENT_TYPE__',
       '__od__',
-      'SAASCODEX_HOST_GLOBAL',
+      'SPLATSTUDIO_HOST_GLOBAL',
     ];
     const candidates = [
       ...filesUnder(join(webRoot, 'src')),

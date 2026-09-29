@@ -161,7 +161,7 @@ def read_back(url: str, expected: bytes) -> None:
 def main() -> int:
     document_path = Path(_env("WHATS_NEW_DOCUMENT", "docs/whats-new.json"))
     object_key = _env("WHATS_NEW_OBJECT_KEY", "whats-new.json")
-    public_url = _env("WHATS_NEW_PUBLIC_URL", "https://whatsnew.saascodex.com/whats-new.json")
+    public_url = _env("WHATS_NEW_PUBLIC_URL", "https://whatsnew.splatstudio.app/whats-new.json")
     dry_run = os.environ.get("WHATS_NEW_DRY_RUN", "").strip().lower() == "true"
 
     body, payload = read_document(document_path)

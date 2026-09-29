@@ -4,7 +4,7 @@ import { execFile } from 'node:child_process';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-// Guards the Azure Bicep templates against drifting from the SaaSCodex
+// Guards the Azure Bicep templates against drifting from the SplatStudio
 // runtime contract. Source-level checks run without the Azure CLI; the extra
 // `bicep build` pass runs only when the bicep binary is on PATH.
 
@@ -13,7 +13,7 @@ const azureDir = join(repoRoot, 'deploy/azure');
 const appServicePath = join(azureDir, 'app-service.bicep');
 const aciPath = join(azureDir, 'aci.bicep');
 
-// Must match deploy/docker-compose.yml and charts/saascodex.
+// Must match deploy/docker-compose.yml and charts/splatstudio.
 const CONTAINER_PORT = '7456';
 const DATA_DIR = '/app/.od';
 const HEALTH_PATH = '/api/health';

@@ -3,7 +3,7 @@ import type {
   LifecycleScope,
   StandaloneLifecycleTransitionPort,
   StandaloneShellUpdaterPort,
-} from "@saascodex/standalone";
+} from "@splatstudio/standalone";
 
 export function requireCompleteStandaloneRetirement(
   result: Readonly<{ remainingPids: readonly number[] }> | null,
@@ -12,7 +12,7 @@ export function requireCompleteStandaloneRetirement(
 export class FixtureShellUpdaterPort implements StandaloneShellUpdaterPort {
   readonly shellType: string;
   constructor(root: string, scope: LifecycleScope, lifecycle: LifecyclePort & StandaloneLifecycleTransitionPort, options?: {
-    algebra: typeof import("@saascodex/standalone").SHELL_UPDATE_ALGEBRA;
+    algebra: typeof import("@splatstudio/standalone").SHELL_UPDATE_ALGEBRA;
     attachmentId?: string;
     channelHeadUrl?: string;
     faultAt?: "after-transition" | "before-handoff-persist";
@@ -22,12 +22,12 @@ export class FixtureShellUpdaterPort implements StandaloneShellUpdaterPort {
       kind: "shell-install";
       attemptId: string;
       fence: number;
-      occupants: readonly import("@saascodex/standalone").StandaloneLifecycleOccupant[];
+      occupants: readonly import("@splatstudio/standalone").StandaloneLifecycleOccupant[];
     }>, commit: () => Promise<T>) => Promise<T>;
     shellType?: string;
-    standalone?: typeof import("@saascodex/standalone");
+    standalone?: typeof import("@splatstudio/standalone");
     target?: string;
-    trustedKeys?: import("@saascodex/standalone").StandaloneTrustedKeyRing;
+    trustedKeys?: import("@splatstudio/standalone").StandaloneTrustedKeyRing;
   });
   readSnapshot(): ReturnType<StandaloneShellUpdaterPort["readSnapshot"]>;
   waitForChange(afterRevision: number, timeoutMs: number): ReturnType<StandaloneShellUpdaterPort["waitForChange"]>;

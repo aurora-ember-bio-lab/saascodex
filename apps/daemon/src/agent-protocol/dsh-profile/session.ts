@@ -1,5 +1,5 @@
 /** @module agent-protocol/dsh-profile/session
- * One-run controller for `dsh --profile saascodex --stdio`.
+ * One-run controller for `dsh --profile splatstudio --stdio`.
  */
 import type { ChildProcess } from 'node:child_process';
 import { createDshProfileJsonlStream } from './stream.js';
@@ -222,7 +222,7 @@ export function attachDshProfileSession({
           return;
         }
         if (frame.status === 'cancelled' && !aborted) {
-          fail('DeepSeek Harness profile cancelled a run that SaaSCodex did not cancel.');
+          fail('DeepSeek Harness profile cancelled a run that SplatStudio did not cancel.');
           return;
         }
         finish(frame.status);

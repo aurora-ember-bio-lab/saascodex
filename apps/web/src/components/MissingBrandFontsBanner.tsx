@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 
 import { Icon } from './Icon';
 

@@ -7,12 +7,12 @@ parameters:
 
 variables:
   vmImageName: ubuntu-latest
-  resourceGroupName: saascodex-aci
-  deploymentName: saascodex-aci
+  resourceGroupName: splatstudio-aci
+  deploymentName: splatstudio-aci
   location: eastus
   templateFile: deploy/azure/container-instance.bicep
-  openDesignImage: ghcr.io/nexu-io/od:latest
-  dnsNameLabel: saascodex-$(Build.BuildId)
+  openDesignImage: ghcr.io/aurora-ember-bio-lab/splatstudio:latest
+  dnsNameLabel: splatstudio-$(Build.BuildId)
   browserOrigin: https://od.example.com
 
 pool:
@@ -22,7 +22,7 @@ steps:
   - checkout: self
 
   - task: AzureCLI@2
-    displayName: Deploy SaaSCodex to Azure Container Instances
+    displayName: Deploy SplatStudio to Azure Container Instances
     inputs:
       azureSubscription: ${{ parameters.azureServiceConnection }}
       scriptType: bash

@@ -19,8 +19,8 @@
 //   - `action` — discriminated union the HomeView dispatcher matches
 //     on. The rail component itself stays presentational.
 
-import type { ProjectKind, ProjectMetadata } from '@saascodex/contracts';
-import type { DefaultScenarioPluginId } from '@saascodex/contracts';
+import type { ProjectKind, ProjectMetadata } from '@splatstudio/contracts';
+import type { DefaultScenarioPluginId } from '@splatstudio/contracts';
 import type { IconName } from '../Icon';
 
 // Plugin ids the chip rail can dispatch to. Most chips route to a
@@ -348,7 +348,7 @@ export const HOME_HERO_CHIPS: ReadonlyArray<HomeHeroChip> = [
     label: 'Create plugin',
     icon: 'edit',
     group: 'migrate',
-    hint: 'Author a reusable SaaSCodex plugin and add it to My plugins.',
+    hint: 'Author a reusable SplatStudio plugin and add it to My plugins.',
     action: { kind: 'create-plugin' },
   },
   {
@@ -443,7 +443,7 @@ export function orderedCreateChips(): HomeHeroChip[] {
 // Cross-surface handoff: the workspace tabs-bar "+" fan picks a template
 // outside the hero; HomeHero listens for this window event and applies the
 // chip exactly as if its own template picker had been clicked.
-export const HOME_APPLY_TEMPLATE_EVENT = 'saascodex:home-apply-template';
+export const HOME_APPLY_TEMPLATE_EVENT = 'splatstudio:home-apply-template';
 
 // Helper used by tests + the rail component to pull the chip metadata
 // off a click target without round-tripping through React state.

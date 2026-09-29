@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  SAASCODEX_PLUGIN_SPEC_VERSION,
+  SPLATSTUDIO_PLUGIN_SPEC_VERSION,
   MarketplacePluginEntrySchema,
   PluginManifestSchema,
   resolveLocalizedText,
@@ -8,7 +8,7 @@ import {
 
 describe('plugin manifest localized text', () => {
   it('exports the current plugin spec version for manifests and registries', () => {
-    expect(SAASCODEX_PLUGIN_SPEC_VERSION).toBe('1.0.0');
+    expect(SPLATSTUDIO_PLUGIN_SPEC_VERSION).toBe('1.0.0');
   });
 
   it('accepts legacy string use-case queries', () => {
@@ -85,8 +85,8 @@ describe('plugin manifest localized text', () => {
 
   it('accepts localized marketplace entry metadata', () => {
     const entry = MarketplacePluginEntrySchema.parse({
-      name: 'saascodex/example-sample',
-      source: 'github:saascodex/plugins/examples/sample',
+      name: 'splatstudio/example-sample',
+      source: 'github:splatstudio/plugins/examples/sample',
       version: '1.0.0',
       title: 'Sample',
       title_i18n: {

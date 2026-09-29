@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { SaaSCodexPlanContractV2 } from '@saascodex/contracts';
+import type { SplatStudioPlanContractV2 } from '@splatstudio/contracts';
 
 import {
   decideStrategyRequestRoute,
@@ -14,14 +14,14 @@ function daemonPlan(
   route: string,
   outputKind: string,
   inputRefs: string[] = ['request'],
-): SaaSCodexPlanContractV2 {
+): SplatStudioPlanContractV2 {
   return {
     taskProfile: {
       taskType,
       requiredDeliverables: [{ id: outputKind, kind: outputKind }],
     },
     runManifest: { productionRoutes: [route], inputRefs },
-  } as SaaSCodexPlanContractV2;
+  } as SplatStudioPlanContractV2;
 }
 
 describe('OD Next resolver and preflight', () => {

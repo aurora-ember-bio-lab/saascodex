@@ -10,12 +10,12 @@ import ffprobeInstaller from '@ffprobe-installer/ffprobe';
 import {
   convergeSidecarLaunch,
   stopSidecar,
-} from '@saascodex/sidecar';
+} from '@splatstudio/sidecar';
 import {
   APP_KEYS,
   SIDECAR_MODES,
   SIDECAR_SOURCES,
-} from '@saascodex/sidecar-proto';
+} from '@splatstudio/sidecar-proto';
 import { describe, expect, test } from 'vitest';
 
 import { createSmokeSuite } from '@/vitest/suite';

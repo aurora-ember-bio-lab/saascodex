@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { buildProjectPoweredFileUrl } from '@saascodex/contracts';
+import { buildProjectPoweredFileUrl } from '@splatstudio/contracts';
 import {
   resolvePoweredBaseOrigin,
   swapLoopbackHost,

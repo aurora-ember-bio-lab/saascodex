@@ -46,7 +46,7 @@
 import type {
   TeamResourcesChangedSsePayload,
   WorkspaceTeamResourceKind,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 /** This daemon's one local `workspace_resources` row for a resource, as far
  *  as reconciliation cares. Only rows the caller has already filtered to

@@ -3,7 +3,7 @@ import { delimiter } from 'node:path';
 import path from 'node:path';
 import { homedir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { wellKnownUserToolchainBins } from '@saascodex/platform';
+import { wellKnownUserToolchainBins } from '@splatstudio/platform';
 import { resolveSandboxRuntimeConfigFromEnv } from '../sandbox-mode.js';
 import { expandHomePath } from './paths.js';
 import type { RuntimeAgentDef } from './types.js';

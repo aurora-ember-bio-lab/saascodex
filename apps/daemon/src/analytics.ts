@@ -3,7 +3,7 @@
 // is a no-op, so dev builds and third-party forks impose zero overhead.
 //
 // Web-side captures (apps/web/src/analytics) carry the matching identity in
-// HTTP headers (see x-od-analytics-* constants in @saascodex/contracts);
+// HTTP headers (see x-od-analytics-* constants in @splatstudio/contracts);
 // daemon reads those headers off the request and reuses the same
 // device_id as the PostHog distinct_id so events from both sides land on
 // the same person. (v2: renamed from `anonymous_id`.)
@@ -35,7 +35,7 @@ import {
   type AnalyticsHostProduct,
   type AnalyticsPublisherClass,
   EVENT_SCHEMA_VERSION,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { readAppConfig } from './app-config.js';
 import { readTelemetryEnvironment } from './telemetry-environment.js';
 
@@ -318,7 +318,7 @@ export function createAnalyticsService(args: {
   // assumes a server deployment where the ingestion request originates from a
   // datacenter IP, so GeoIP would mis-attribute every user to the server's
   // location — hence it stamps `$geoip_disable: true` and PostHog skips
-  // country enrichment. SaaSCodex's daemon runs on the USER'S OWN machine,
+  // country enrichment. SplatStudio's daemon runs on the USER'S OWN machine,
   // so the request's source IP is the user's real public IP, identical to what
   // posthog-js already sends. Leaving the default on stripped country from
   // every daemon-emitted event (run_created, run_finished, *_result, …) —
@@ -559,7 +559,7 @@ function randomInsertId(): string {
 }
 
 // Re-export so server.ts and route handlers don't need a second import
-// path; the canonical hash lives in @saascodex/contracts/analytics so
+// path; the canonical hash lives in @splatstudio/contracts/analytics so
 // the web bundle produces the same id for the same (projectId, fileName).
 export const anonymizeArtifactId = anonymizeArtifactIdShared;
 

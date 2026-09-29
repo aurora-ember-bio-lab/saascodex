@@ -26,7 +26,7 @@ import {
   type ModelCatalogEntry,
 } from './protocol.js';
 
-export const name = 'saascodex-runtime';
+export const name = 'splatstudio-runtime';
 export const inject = [
   'openDesignStartup',
   'agentDefaultModel',
@@ -199,7 +199,7 @@ async function listModelCatalog(ctx: Context): Promise<ModelCatalogEntry[]> {
         });
       }
     } catch {
-      ctx.logger.warn(`saascodex-runtime: could not list models for provider "${provider.id}"`);
+      ctx.logger.warn(`splatstudio-runtime: could not list models for provider "${provider.id}"`);
     }
   }
   return catalog;
@@ -411,7 +411,7 @@ async function serve(
           type: 'protocol_error',
           ...(requestId ? { request_id: requestId } : {}),
           code: 'DSH_PROFILE_INVALID_COMMAND',
-          message: 'SaaSCodex sent an invalid profile command.',
+          message: 'SplatStudio sent an invalid profile command.',
         });
         return;
       }
@@ -451,7 +451,7 @@ async function serve(
 export function apply(ctx: Context): void {
   const startup = ctx.openDesignStartup;
   const exit = ctx.get('appExit');
-  if (!startup || !exit) throw new Error('saascodex-runtime requires startup and appExit services');
+  if (!startup || !exit) throw new Error('splatstudio-runtime requires startup and appExit services');
   if (startup.mode === 'probe') {
     writeFrame(process.stdout, identityFrame('probe', PLUGIN_VERSION));
     exit(0);
@@ -465,7 +465,7 @@ export function apply(ctx: Context): void {
     }
     await serve(ctx, process.stdout, exit);
   }).catch((error: unknown) => {
-    process.stderr.write(`saascodex-runtime: ${error instanceof Error ? error.message : String(error)}\n`);
+    process.stderr.write(`splatstudio-runtime: ${error instanceof Error ? error.message : String(error)}\n`);
     exit(1);
   });
 }

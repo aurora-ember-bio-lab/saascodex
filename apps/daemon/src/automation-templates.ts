@@ -8,7 +8,7 @@ import type {
   AutomationTemplateStageKind,
   AutomationTokenCompressionMode,
   AutomationTriggerKind,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export const BUILT_IN_AUTOMATION_TEMPLATES: AutomationTemplate[] = [
   {

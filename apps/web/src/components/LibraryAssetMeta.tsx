@@ -12,7 +12,7 @@ import type {
   LibraryAssetKind,
   LibraryElementMeta,
   LibrarySourceKind,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export const SOURCE_LABELS: Record<LibrarySourceKind, string> = {
   clipper: 'Clipper',

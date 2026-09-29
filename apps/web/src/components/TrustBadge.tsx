@@ -1,7 +1,7 @@
 import type {
   MarketplaceTrust,
   TrustTier,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { useT } from '../i18n';
 
 type TrustBadgeTrust = TrustTier | MarketplaceTrust;

@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { Button, VisuallyHidden } from '@saascodex/components';
+import { Button, VisuallyHidden } from '@splatstudio/components';
 import { useAnalytics } from '../analytics/provider';
 import { getResolvedDeviceId } from '../analytics/client';
 import {

@@ -167,7 +167,7 @@ describe('run request idempotency', () => {
       analyticsHints: {
         entrySurface: 'external_mcp',
         hostProduct: 'codex_unknown',
-        externalPluginId: 'saascodex',
+        externalPluginId: 'splatstudio',
         externalPluginVersion: '0.4.0',
         distributionMechanism: 'git_marketplace',
         publisherClass: 'open_design_first_party',
@@ -208,7 +208,7 @@ describe('run request idempotency', () => {
       pluginWorkflowId,
       logicalRequestDigest: logical.digest,
       externalPluginContext: {
-        id: 'saascodex',
+        id: 'splatstudio',
         version: '0.4.0',
         distributionMechanism: 'git_marketplace',
         publisherClass: 'open_design_first_party',
@@ -269,7 +269,7 @@ describe('run request idempotency', () => {
         analyticsHints: {
           entrySurface: 'external_mcp',
           hostProduct: 'codex_unknown',
-          externalPluginId: 'saascodex',
+          externalPluginId: 'splatstudio',
           externalPluginVersion: '0.4.0',
           distributionMechanism: 'git_marketplace',
           publisherClass: 'open_design_first_party',
@@ -308,7 +308,7 @@ function snapshotEnv(): Record<string, string | undefined> {
     LANGFUSE_PUBLIC_KEY: process.env.LANGFUSE_PUBLIC_KEY,
     LANGFUSE_SECRET_KEY: process.env.LANGFUSE_SECRET_KEY,
     LANGFUSE_BASE_URL: process.env.LANGFUSE_BASE_URL,
-    SAASCODEX_TELEMETRY_RELAY_URL: process.env.SAASCODEX_TELEMETRY_RELAY_URL,
+    SPLATSTUDIO_TELEMETRY_RELAY_URL: process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL,
   };
 }
 
@@ -325,7 +325,7 @@ async function startWithFakeClaude(bin: string): Promise<StartedServer> {
   delete process.env.LANGFUSE_PUBLIC_KEY;
   delete process.env.LANGFUSE_SECRET_KEY;
   delete process.env.LANGFUSE_BASE_URL;
-  delete process.env.SAASCODEX_TELEMETRY_RELAY_URL;
+  delete process.env.SPLATSTUDIO_TELEMETRY_RELAY_URL;
   const server = await startServer({ port: 0, returnServer: true }) as StartedServer;
   const response = await fetch(`${server.url}/api/app-config`, {
     method: 'PUT',

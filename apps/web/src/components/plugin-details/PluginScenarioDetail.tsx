@@ -8,12 +8,12 @@
 // (backdrop, header, byline, hero, footer with Use plugin CTA).
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Dialog } from '@saascodex/components';
+import { Dialog } from '@splatstudio/components';
 import type {
   InstalledPluginRecord,
   PluginManifest,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { useI18n } from '../../i18n';
 import { localizePluginChrome } from '../../i18n/plugin-content';
 import { Icon } from '../Icon';

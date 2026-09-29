@@ -10,7 +10,7 @@ import {
 } from './canonical-xml.js';
 
 export const OD_NEXT_PROMPT_BUNDLE_SCHEMA_V2 =
-  'saascodex.od-next-prompt-bundle/v2' as const;
+  'splatstudio.od-next-prompt-bundle/v2' as const;
 
 /**
  * The cache-stable head of the Bundle: `open_design_core_system_prompt`,

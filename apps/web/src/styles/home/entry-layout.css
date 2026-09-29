@@ -132,7 +132,7 @@
   gap: 8px;
   /* 12px side gutters (per product): to the window's left edge and — through
      the right margin — to the content card beside it. The bottom gutter is 8
-     (OPEND-3116, design spec): the SaaSCodex / account row at the foot of
+     (OPEND-3116, design spec): the SplatStudio / account row at the foot of
      the column sits 8px off the window's bottom edge. Top margin 0: the tab
      bar already contributes a 10px gap below the tabs (its bottom padding),
      so the single visible gap between the tabs and this column stays 10px
@@ -8845,7 +8845,7 @@ button.entry-nav-rail__menu-credits-row:active:not(:disabled) {
    workspace menu meta, InviteDialog art, InlineModelSwitcher account block.
    Sourced verbatim from pre-integration 37f7510f4. ---- */
 
-/* Account row: SaaSCodex login/plan, lifted out of the agent card so the
+/* Account row: SplatStudio login/plan, lifted out of the agent card so the
    agent name is never truncated. */
 .inline-switcher__account {
   order: 0;
@@ -8861,7 +8861,7 @@ button.entry-nav-rail__menu-credits-row:active:not(:disabled) {
     border-color 120ms var(--ease-out);
 }
 
-/* The SaaSCodex entry is also the agent selector now: hovering the clickable
+/* The SplatStudio entry is also the agent selector now: hovering the clickable
    area previews selectability, and the active agent gets the same accent
    highlight the grid rows use. */
 .inline-switcher__account:has(.inline-switcher__account-select:hover):not(.is-active) {
@@ -8934,7 +8934,7 @@ button.entry-nav-rail__menu-credits-row:active:not(:disabled) {
   min-width: 0;
 }
 
-/* Balance shown as a muted subtitle line under the SaaSCodex name. Each
+/* Balance shown as a muted subtitle line under the SplatStudio name. Each
    stat is "label value"; the gap (not a literal separator) keeps them apart. */
 .inline-switcher__account-subtitle {
   display: flex;

@@ -4,8 +4,8 @@ import {
   evaluateRuntimeEvidenceGraphV1,
   type NormalizedAgentObservationV1,
   type OdNextRuntimeCapabilitySnapshotV1,
-  type SaaSCodexPlanContractV2,
-} from '@saascodex/contracts';
+  type SplatStudioPlanContractV2,
+} from '@splatstudio/contracts';
 
 import {
   evaluateOdNextExecutionEligibility,
@@ -71,7 +71,7 @@ function capabilitySnapshotHashIsValid(
  * from the Task14 registry and sanitized fixture replay.
  */
 export function evaluateOdNextComplexEligibility(input: {
-  plan: SaaSCodexPlanContractV2;
+  plan: SplatStudioPlanContractV2;
   selectedAgentId: string;
   capabilitySnapshot?: unknown;
 }): OdNextComplexGateResult {
@@ -135,7 +135,7 @@ function buildPackageId(
  * order is the normalized adapter replay order, avoiding cross-clock math.
  */
 export function evaluateOdNextComplexChildEvidence(input: {
-  plan: SaaSCodexPlanContractV2;
+  plan: SplatStudioPlanContractV2;
   taskExecutionId: string;
   runId: string;
   taskRunIndex: number;
@@ -344,7 +344,7 @@ export function evaluateOdNextComplexChildEvidence(input: {
 }
 
 export function evaluateOdNextComplexProduction(input: {
-  plan: SaaSCodexPlanContractV2;
+  plan: SplatStudioPlanContractV2;
   selectedAgentId: string;
   taskExecutionId: string;
   runId: string;

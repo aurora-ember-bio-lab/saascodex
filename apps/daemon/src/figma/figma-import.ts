@@ -12,7 +12,7 @@ import { promises as fsp } from 'node:fs';
 import type {
   FigmaImportResult,
   FigmaInventory,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   walkNode,
   liftTokens,

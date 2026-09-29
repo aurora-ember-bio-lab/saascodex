@@ -6,8 +6,8 @@ import type {
   Project,
   ProjectMetadata,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
-import { TeamResourceCopyForbiddenError } from '@saascodex/contracts';
+} from '@splatstudio/contracts';
+import { TeamResourceCopyForbiddenError } from '@splatstudio/contracts';
 import {
   duplicatePluginExampleIntoProject,
   PluginDuplicateProjectError,
@@ -1012,9 +1012,9 @@ export function registerProjectPluginRoutes(app: Express, deps: RegisterPluginRo
     if (!await authorizeWrite(req, res, req.params.id)) return;
     return helpers.handleCandidateShareTask(req, res);
   });
-  app.post('/api/projects/:id/plugins/contribute-saascodex', async (req, res) => {
+  app.post('/api/projects/:id/plugins/contribute-splatstudio', async (req, res) => {
     if (!await authorizeWrite(req, res, req.params.id)) return;
-    return helpers.handleProjectPluginCli(req, res, 'contribute-saascodex');
+    return helpers.handleProjectPluginCli(req, res, 'contribute-splatstudio');
   });
   app.post('/api/projects/:id/plugins/share-tasks', async (req, res) => {
     if (!await authorizeWrite(req, res, req.params.id)) return;

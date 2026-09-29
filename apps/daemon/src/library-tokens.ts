@@ -9,7 +9,7 @@
 
 import type Database from 'better-sqlite3';
 import { createHash, randomBytes, randomInt } from 'node:crypto';
-import type { LibraryConnectionStatus } from '@saascodex/contracts';
+import type { LibraryConnectionStatus } from '@splatstudio/contracts';
 import {
   findLibraryTokenByHash,
   insertLibraryToken,

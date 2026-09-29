@@ -2,7 +2,7 @@
 
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { LibraryAsset } from '@saascodex/contracts';
+import type { LibraryAsset } from '@splatstudio/contracts';
 
 vi.mock('../../src/components/plugins-home/useInView', () => ({
   useInView: () => ({ ref: { current: null }, inView: false }),

@@ -1,6 +1,6 @@
 # Azure Container Instances
 
-This guide deploys the Docker image to Azure Container Instances (ACI) with persistent SaaSCodex data. Before choosing or documenting any daemon data mount, read root `AGENTS.md` → **Daemon data directory contract**. That section is mandatory and must not be restated here.
+This guide deploys the Docker image to Azure Container Instances (ACI) with persistent SplatStudio data. Before choosing or documenting any daemon data mount, read root `AGENTS.md` → **Daemon data directory contract**. That section is mandatory and must not be restated here.
 
 ACI is the daemon upstream in this topology. The browser-facing app URL must be served by an authenticated TLS reverse proxy that forwards traffic to ACI, injects the daemon bearer token on `/api/*` requests, and sends a browser origin listed in `OD_ALLOWED_ORIGINS`.
 
@@ -13,10 +13,10 @@ ACI is the daemon upstream in this topology. The browser-facing app URL must be 
 ## Step 1: Choose Names
 
 ```bash
-export RESOURCE_GROUP=saascodex-aci
+export RESOURCE_GROUP=splatstudio-aci
 export LOCATION=eastus
-export DEPLOYMENT_NAME=saascodex-aci
-export DNS_LABEL=saascodex-$RANDOM
+export DEPLOYMENT_NAME=splatstudio-aci
+export DNS_LABEL=splatstudio-$RANDOM
 export BROWSER_ORIGIN=https://od.example.com
 export OD_API_TOKEN="$(openssl rand -hex 32)"
 ```
@@ -120,7 +120,7 @@ az deployment group create \
     odApiToken="$OD_API_TOKEN" \
     dnsNameLabel="$DNS_LABEL" \
     allowedOrigins="$BROWSER_ORIGIN" \
-    image="ghcr.io/nexu-io/od:latest" \
+    image="ghcr.io/aurora-ember-bio-lab/splatstudio:latest" \
     cpuCores=1 \
     memoryInGB=1 \
     fileShareQuotaGB=10
@@ -146,7 +146,7 @@ View logs:
 ```bash
 az container logs \
   --resource-group "$RESOURCE_GROUP" \
-  --name saascodex
+  --name splatstudio
 ```
 
 Restart the container group:
@@ -154,7 +154,7 @@ Restart the container group:
 ```bash
 az container restart \
   --resource-group "$RESOURCE_GROUP" \
-  --name saascodex
+  --name splatstudio
 ```
 
 Delete all Azure resources created by this guide:

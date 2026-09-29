@@ -12,7 +12,7 @@ export default function Card() {
 `);
     expect(out).not.toContain('import React');
     expect(out).toContain('function Card()');
-    expect(out).toContain('window.__SaaSCodexComponent');
+    expect(out).toContain('window.__SplatStudioComponent');
     expect(out).toContain("typeof Card !== 'undefined' ? Card : null");
   });
 

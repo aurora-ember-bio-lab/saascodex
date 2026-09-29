@@ -14,7 +14,7 @@ import {
   CHAT_PROTOCOL_FENCE_CLOSE_RE as FENCE_CLOSE_RE,
   isChatProtocolStandaloneLine as isStandaloneMarkdownLine,
   type ChatProtocolRange as Range,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export { FENCE_OPEN_RE, FENCE_CLOSE_RE, isStandaloneMarkdownLine, type Range };
 

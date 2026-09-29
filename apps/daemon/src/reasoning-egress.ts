@@ -2,7 +2,7 @@ import type { Response } from 'express';
 import type {
   ReasoningExecutionMode,
   ReasoningExecutionPolicy,
-} from '@saascodex/contracts/api/reasoningExecution';
+} from '@splatstudio/contracts/api/reasoningExecution';
 import { normalizeGoogleModelId } from './integrations/google-models.js';
 
 export type ReasoningEgressRouteKind =

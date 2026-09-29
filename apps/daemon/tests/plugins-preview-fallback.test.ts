@@ -70,9 +70,9 @@ beforeEach(async () => {
     '<section class="slide hero dark"><p>fallback body via assets</p></section>',
   );
   await writeFile(
-    path.join(folder, 'saascodex.json'),
+    path.join(folder, 'splatstudio.json'),
     JSON.stringify({
-      $schema: 'https://saascodex.com/schemas/plugin.v1.json',
+      $schema: 'https://splatstudio.app/schemas/plugin.v1.json',
       name: PLUGIN_ID,
       title: 'Preview fallback fixture',
       version: '1.0.0',
@@ -127,6 +127,6 @@ describe('GET /api/plugins/:id/preview — fallback chain', () => {
     const body = await resp.text();
     expect(body).toContain('<main id="deck">');
     expect(body).toContain('fallback body via assets');
-    expect(body).toContain('Preview fallback fixture | SaaSCodex Example');
+    expect(body).toContain('Preview fallback fixture | SplatStudio Example');
   });
 });

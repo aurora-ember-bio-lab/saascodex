@@ -1,4 +1,4 @@
-import type { WorkspaceBillingSummary } from '@saascodex/contracts';
+import type { WorkspaceBillingSummary } from '@splatstudio/contracts';
 import { createPartitionedRefreshCache } from '../services/partitioned-refresh-cache.js';
 
 export interface AccountBillingSummaryCacheOptions {

@@ -9,7 +9,7 @@ import {
   localMcpResourceDefinitions,
   localMcpToolDefinitions,
 } from '../src/mcp.js';
-import { SAASCODEX_BRIEF_APP_HTML } from '../src/mcp-apps/brief-resource.js';
+import { SPLATSTUDIO_BRIEF_APP_HTML } from '../src/mcp-apps/brief-resource.js';
 
 const require = createRequire(import.meta.url);
 const { JSDOM } = require('jsdom') as {
@@ -166,7 +166,7 @@ function createBriefAppHarness(options: {
     } as JsonRpcMessage);
   }
 
-  const dom = new JSDOM(SAASCODEX_BRIEF_APP_HTML, {
+  const dom = new JSDOM(SPLATSTUDIO_BRIEF_APP_HTML, {
     beforeParse(window) {
       widgetWindow = window;
       if (options.legacyFollowUp || options.nativeToolOutput) {
@@ -245,7 +245,7 @@ function createBriefAppHarness(options: {
   };
 }
 
-describe('local SaaSCodex MCP brief app', () => {
+describe('local SplatStudio MCP brief app', () => {
   it('exposes collect_brief through the canonical MCP Apps resource', () => {
     const collectBrief = localMcpToolDefinitions().find(
       (tool) => tool.name === 'collect_brief',
@@ -255,15 +255,15 @@ describe('local SaaSCodex MCP brief app', () => {
       name: 'collect_brief',
       _meta: {
         ui: {
-          resourceUri: 'ui://saascodex/artifact-card-v8.html',
+          resourceUri: 'ui://splatstudio/artifact-card-v8.html',
         },
-        'ui/resourceUri': 'ui://saascodex/artifact-card-v8.html',
-        'openai/outputTemplate': 'ui://saascodex/artifact-card-v8.html',
+        'ui/resourceUri': 'ui://splatstudio/artifact-card-v8.html',
+        'openai/outputTemplate': 'ui://splatstudio/artifact-card-v8.html',
       },
     });
     expect(localMcpResourceDefinitions()).toContainEqual(
       expect.objectContaining({
-        uri: 'ui://saascodex/artifact-card-v8.html',
+        uri: 'ui://splatstudio/artifact-card-v8.html',
         mimeType: 'text/html;profile=mcp-app',
       }),
     );
@@ -275,42 +275,42 @@ describe('local SaaSCodex MCP brief app', () => {
   });
 
   it('keeps one brief card without a self-triggering resize observer', () => {
-    expect(SAASCODEX_BRIEF_APP_HTML).not.toContain('ResizeObserver');
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).not.toContain('ResizeObserver');
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'ui/notifications/size-changed',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain('{ width, height }');
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain('document.body.scrollHeight');
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain('{ width, height }');
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain('document.body.scrollHeight');
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'width: Math.ceil(window.innerWidth)',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'width === lastWidth && height === lastHeight',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain('notifyIntrinsicHeight');
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain('requestAnimationFrame');
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain('notifyIntrinsicHeight');
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain('requestAnimationFrame');
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'ui/notifications/host-context-changed',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'updateHostLocale(result && result.hostContext)',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'draft.localeSource === "fallback"',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'payload.questionFormsByLocale',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'draft.briefDraftId === payload.briefDraftId',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).toContain(
       'candidate.value === (previousValue || item.defaultValue)',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).not.toContain(
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).not.toContain(
       'error instanceof Error ? error.message',
     );
-    expect(SAASCODEX_BRIEF_APP_HTML).not.toContain('setWidgetState');
+    expect(SPLATSTUDIO_BRIEF_APP_HTML).not.toContain('setWidgetState');
   });
 
   it('keeps a confirmed brief locked and retries only Host publication', async () => {
@@ -844,7 +844,7 @@ describe('local SaaSCodex MCP brief app', () => {
     });
   });
 
-  it('keeps user-facing MCP copy on public SaaSCodex product terms', () => {
+  it('keeps user-facing MCP copy on public SplatStudio product terms', () => {
     const visibleToolCopy = localMcpToolDefinitions()
       .flatMap((tool) => [
         tool.description,
@@ -868,7 +868,7 @@ describe('local SaaSCodex MCP brief app', () => {
       MCP_SERVER_INSTRUCTIONS,
     ].join('\n');
 
-    expect(userFacingCopy).toContain('SaaSCodex Cloud');
+    expect(userFacingCopy).toContain('SplatStudio Cloud');
     expect(userFacingCopy).toContain('Local Codex');
     expect(userFacingCopy).not.toContain('Secure BYOK');
     expect(userFacingCopy).not.toMatch(/\b(?:Vela|AMR)\b/u);

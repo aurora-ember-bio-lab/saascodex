@@ -3,7 +3,7 @@ import type {
   ProjectLocationsResponse,
   ScanProjectLocationsResponse,
   UpdateProjectLocationsRequest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 export async function fetchProjectLocations(): Promise<ProjectLocation[]> {
   try {

@@ -21,9 +21,9 @@ import { T } from '@/timeouts';
 
 test.describe.configure({ timeout: T.xlong });
 
-const STORAGE_KEY = 'saascodex:config';
-const LOCALE_KEY = 'saascodex:locale';
-const LOCALE_SOURCE_KEY = 'saascodex:locale-source';
+const STORAGE_KEY = 'splatstudio:config';
+const LOCALE_KEY = 'splatstudio:locale';
+const LOCALE_SOURCE_KEY = 'splatstudio:locale-source';
 
 const HOME_CONFIG = {
   mode: 'daemon',
@@ -184,7 +184,7 @@ const HOME_PLUGINS = [
       name: 'example-live-artifact',
       title: 'Live Artifact',
       version: '0.1.0',
-      description: 'Create refreshable, auditable SaaSCodex artifacts.',
+      description: 'Create refreshable, auditable SplatStudio artifacts.',
       od: {
         kind: 'scenario',
         taskKind: 'new-generation',
@@ -192,7 +192,7 @@ const HOME_PLUGINS = [
         scenario: 'live',
         useCase: {
           query:
-            'Create refreshable, auditable SaaSCodex artifacts backed by connector or local data.',
+            'Create refreshable, auditable SplatStudio artifacts backed by connector or local data.',
         },
       },
     },
@@ -416,7 +416,7 @@ const PROMPT_TEMPLATES = [
     category: 'product',
     model: 'gpt-image-2',
     aspect: '16:9',
-    source: { repo: 'saascodex/image-prompts', license: 'MIT' },
+    source: { repo: 'splatstudio/image-prompts', license: 'MIT' },
   },
   {
     id: 'video-reveal',
@@ -426,7 +426,7 @@ const PROMPT_TEMPLATES = [
     category: 'product',
     model: 'doubao-seedance-2-0-260128',
     aspect: '16:9',
-    source: { repo: 'saascodex/video-prompts', license: 'MIT' },
+    source: { repo: 'splatstudio/video-prompts', license: 'MIT' },
   },
   {
     id: 'hyperframes-caption',
@@ -441,7 +441,7 @@ const PROMPT_TEMPLATES = [
 ];
 
 async function waitForLoadingToClear(page: Page) {
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: 15_000 });
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: 15_000 });
 }
 
 async function seedBrowserConfig(page: Page, config: Record<string, unknown>) {
@@ -466,7 +466,7 @@ async function seedBrowserLocale(page: Page, locale: string) {
 async function gotoEntryHome(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await waitForLoadingToClear(page);
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SplatStudio' });
   if (await privacyDialog.isVisible().catch(() => false)) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
   }
@@ -491,7 +491,7 @@ test.beforeEach(async ({ page }) => {
     }
   }, { key: STORAGE_KEY, value: HOME_CONFIG, campaigns: CAMPAIGN_DISMISSAL_STORAGE });
 
-  await page.route('**/api/github/saascodex', async (route) => {
+  await page.route('**/api/github/splatstudio', async (route) => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
@@ -595,7 +595,7 @@ test.beforeEach(async ({ page }) => {
 
 test('[P0] cold-start Home keeps the type capsule transparent and disabled while plugins settle', async ({ page }, testInfo) => {
   await page.addInitScript(() => {
-    window.localStorage.removeItem('saascodex:home-composer:chip');
+    window.localStorage.removeItem('splatstudio:home-composer:chip');
   });
   for (const viewport of [
     { width: 1280, height: 900 },
@@ -853,12 +853,12 @@ test('[P1] home composer plus menu opens project, local code, Figma help, and de
     await route.fulfill({
       json: {
         project: referenceProject,
-        resolvedDir: '/tmp/saascodex/reference-home-project',
+        resolvedDir: '/tmp/splatstudio/reference-home-project',
       },
     });
   });
   await page.route('**/api/dialog/open-folder', async (route) => {
-    await route.fulfill({ json: { path: '/tmp/saascodex/local-code-home' } });
+    await route.fulfill({ json: { path: '/tmp/splatstudio/local-code-home' } });
   });
   await page.route('**/api/dir-exists', async (route) => {
     await route.fulfill({ json: { exists: true } });
@@ -1139,12 +1139,12 @@ test('[P1] home composer sends referenced workspace context into project creatio
     await route.fulfill({
       json: {
         project: referenceProject,
-        resolvedDir: '/tmp/saascodex/reference-home-payload',
+        resolvedDir: '/tmp/splatstudio/reference-home-payload',
       },
     });
   });
   await page.route('**/api/dialog/open-folder', async (route) => {
-    await route.fulfill({ json: { path: '/tmp/saascodex/local-code-home-payload' } });
+    await route.fulfill({ json: { path: '/tmp/splatstudio/local-code-home-payload' } });
   });
   await page.route('**/api/dir-exists', async (route) => {
     await route.fulfill({ json: { exists: true } });
@@ -1177,7 +1177,7 @@ test('[P1] home composer sends referenced workspace context into project creatio
   await expect.poll(() => createBodies.length).toBe(1);
   const metadata = createBodies[0]?.metadata as { linkedDirs?: string[] } | undefined;
   expect(metadata?.linkedDirs ?? []).toEqual([
-    '/tmp/saascodex/local-code-home-payload',
+    '/tmp/splatstudio/local-code-home-payload',
   ]);
 });
 
@@ -1232,7 +1232,7 @@ test('[P1] home staged workspace context auto-sends into the first project run',
     await route.fulfill({
       json: {
         project: referenceProject,
-        resolvedDir: '/tmp/saascodex/reference-home-autosend',
+        resolvedDir: '/tmp/splatstudio/reference-home-autosend',
       },
     });
   });
@@ -1323,7 +1323,7 @@ test('[P1] home staged workspace context auto-sends into the first project run',
     runId: 'home-autosend-context-run',
   });
   await page.route('**/api/dialog/open-folder', async (route) => {
-    await route.fulfill({ json: { path: '/tmp/saascodex/local-code-home-autosend' } });
+    await route.fulfill({ json: { path: '/tmp/splatstudio/local-code-home-autosend' } });
   });
   await page.route('**/api/dir-exists', async (route) => {
     await route.fulfill({ json: { exists: true } });
@@ -1359,9 +1359,9 @@ test('[P1] home staged workspace context auto-sends into the first project run',
   const context = runBodies[0]?.context as { workspaceItems?: Array<{ id?: string; label?: string; absolutePath?: string }> } | undefined;
   expect(context?.workspaceItems ?? []).toEqual([
     expect.objectContaining({
-      id: 'local-code:/tmp/saascodex/local-code-home-autosend',
+      id: 'local-code:/tmp/splatstudio/local-code-home-autosend',
       label: 'local-code-home-autosend',
-      absolutePath: '/tmp/saascodex/local-code-home-autosend',
+      absolutePath: '/tmp/splatstudio/local-code-home-autosend',
     }),
   ]);
   await expect
@@ -1587,8 +1587,8 @@ test('[P1] home suggestion entry remains retryable after create failures', async
 
 test('[P2] zh-CN home smoke exposes the localized creation type, design system, working directory, and run entries', async ({ page }) => {
   await page.addInitScript(() => {
-    window.localStorage.setItem('saascodex:locale', 'zh-CN');
-    window.localStorage.setItem('saascodex:locale-source', 'manual');
+    window.localStorage.setItem('splatstudio:locale', 'zh-CN');
+    window.localStorage.setItem('splatstudio:locale-source', 'manual');
   });
   await seedBrowserLocale(page, 'zh-CN');
   await routeHomeDesignSystems(page);
@@ -1986,7 +1986,7 @@ test('[P1] selecting another example updates the composer input', async ({ page 
   await expect(input).toHaveText('Create a live Notion dashboard artifact.');
 
   await useExamplePreset(page, 'example-live-artifact');
-  await expect(input).toHaveText('Create refreshable, auditable SaaSCodex artifacts.');
+  await expect(input).toHaveText('Create refreshable, auditable SplatStudio artifacts.');
 });
 
 /**

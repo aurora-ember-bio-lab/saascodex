@@ -2,7 +2,7 @@ import {
   isSameWorkspacePrincipal,
   type WorkspaceCollabContext,
   type WorkspacePrincipal,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { workspaceIdentityCacheKey } from '../collab/workspace-identity';
 

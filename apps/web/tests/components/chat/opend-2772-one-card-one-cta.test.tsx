@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 /**
  * OPEND-2772 保留一次失败仅一张卡的守卫。
- * 最新 OPEND-2807 / G16：CLI/BYOK 固定联系我们、导出日志、切换到 SaaSCodex Cloud；
+ * 最新 OPEND-2807 / G16：CLI/BYOK 固定联系我们、导出日志、切换到 SplatStudio Cloud；
  * Cloud 固定联系我们、导出日志、重试。旧的额外重试和恢复阶梯已被用户明确撤销。
  * 标题正文仍按批准文案，不随按钮组合改变。
  */
@@ -79,7 +79,7 @@ afterEach(() => {
 });
 
 /** 产品文案逐字 —— `chat.amrCard.switchCta` */
-const CLOUD_CTA = '切换到 SaaSCodex Cloud';
+const CLOUD_CTA = '切换到 SplatStudio Cloud';
 
 function failedMessage(opts: { agentId: string; code: string; detail?: string }): ChatMessage {
   return {
@@ -172,8 +172,8 @@ describe('OPEND-2772 · 一次失败只出一张卡', () => {
   });
 });
 
-describe('OPEND-2807 · CLI/BYOK 主按钮固定切换到 SaaSCodex Cloud', () => {
-  it('按钮逐字使用工单和 G16 的「切换到 SaaSCodex Cloud」', () => {
+describe('OPEND-2807 · CLI/BYOK 主按钮固定切换到 SplatStudio Cloud', () => {
+  it('按钮逐字使用工单和 G16 的「切换到 SplatStudio Cloud」', () => {
     renderFailure({ agentId: 'claude', code: 'AGENT_AUTH_REQUIRED' });
 
     const cta = screen.getByTestId('chat-error-switch-to-cloud');

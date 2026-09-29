@@ -7,9 +7,9 @@ import type {
 } from '../plugins/strategy-v2.js';
 
 export const OD_NEXT_TASK_CONFIGURATION_SCHEMA_V1 =
-  'saascodex.od-next-task-configuration/v1' as const;
+  'splatstudio.od-next-task-configuration/v1' as const;
 export const OD_NEXT_REQUEST_INPUT_FACTS_SCHEMA_V1 =
-  'saascodex.od-next-request-input-facts/v1' as const;
+  'splatstudio.od-next-request-input-facts/v1' as const;
 
 export type OdNextProductionTaskTypeV1 = Exclude<StrategyTaskTypeV2, 'generic'>;
 

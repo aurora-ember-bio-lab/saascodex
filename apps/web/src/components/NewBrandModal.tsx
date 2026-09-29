@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import { useT } from '../i18n';
 import { useBrandExtract } from '../runtime/useBrandExtract';
 import type { BrandReference } from '../runtime/brand-references';

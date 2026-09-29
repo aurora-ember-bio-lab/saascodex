@@ -36,7 +36,7 @@ The v1 manifest uses fixed canonical file names:
   "description": "A concise English catalog summary.",
   "source": {
     "type": "bundled",
-    "origin": "SaaSCodex curated bundled fixture"
+    "origin": "SplatStudio curated bundled fixture"
   },
   "files": {
     "design": "DESIGN.md",

@@ -1,9 +1,9 @@
 import type { StrategyInputStageV2 } from '../plugins/strategy-v2.js';
 
 export const OD_NEXT_PROMPT_BUNDLE_SCHEMA_V1 =
-  'saascodex.od-next-prompt-bundle/v1' as const;
+  'splatstudio.od-next-prompt-bundle/v1' as const;
 export const OD_NEXT_REQUEST_TURN_SCHEMA_V1 =
-  'saascodex.od-next-request-turn/v1' as const;
+  'splatstudio.od-next-request-turn/v1' as const;
 
 export interface OdNextPromptBundleV1 {
   systemPrompt: string;

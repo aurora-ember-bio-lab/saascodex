@@ -16,8 +16,8 @@ import { join } from 'node:path';
 import Database from 'better-sqlite3';
 import { migrateCritique, getCritiqueRun } from '../src/critique/persistence.js';
 import { runOrchestrator, type CritiqueSseBus } from '../src/critique/orchestrator.js';
-import type { CritiqueSseEvent } from '@saascodex/contracts/critique';
-import { defaultCritiqueConfig } from '@saascodex/contracts/critique';
+import type { CritiqueSseEvent } from '@splatstudio/contracts/critique';
+import { defaultCritiqueConfig } from '@splatstudio/contracts/critique';
 
 function freshDb(): Database.Database {
   const db = new Database(':memory:');

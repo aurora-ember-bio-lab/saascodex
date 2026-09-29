@@ -1,5 +1,5 @@
 export const PROTOCOL_VERSION = 1 as const;
-export const RUNTIME_NAME = 'saascodex' as const;
+export const RUNTIME_NAME = 'splatstudio' as const;
 export const CAPABILITIES = {
   session_resume: true,
   session_cancel: true,

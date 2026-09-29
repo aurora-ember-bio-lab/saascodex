@@ -5,7 +5,7 @@ import {
   readProcessStampFromCommand,
   type ProcessSnapshot,
   type StampedProcessInvocationSnapshot,
-} from "@saascodex/platform";
+} from "@splatstudio/platform";
 
 import {
   isSidecarLauncherCommand,

@@ -52,7 +52,7 @@ import {
   DESKTOP_ARTIFACT_CAPTURE_MODES,
   type DesktopExportArtifactInput,
   type DesktopExportArtifactResult,
-} from '@saascodex/sidecar-proto';
+} from '@splatstudio/sidecar-proto';
 
 import {
   bundleStandaloneHtml,

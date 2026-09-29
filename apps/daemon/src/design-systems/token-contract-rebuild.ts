@@ -1,7 +1,7 @@
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
-import type { DesignSystemTokenContractRebuildDecision } from '@saascodex/contracts';
+import type { DesignSystemTokenContractRebuildDecision } from '@splatstudio/contracts';
 import type { DesignSystemRevisionFileChange } from './index.js';
 
 export type DesignTokenContractRebuildPreparation = {

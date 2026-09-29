@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { act, cleanup, render } from '@testing-library/react';
-import type { ChatMessage } from '@saascodex/contracts';
+import type { ChatMessage } from '@splatstudio/contracts';
 import { AssistantMessage } from '../../../src/components/AssistantMessage';
 import { foldStrategyTaskTurns } from '../../../src/components/ChatPane';
 import { I18nProvider } from '../../../src/i18n';

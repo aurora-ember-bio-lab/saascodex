@@ -1,8 +1,8 @@
-# SaaSCodex 插件规范
+# SplatStudio 插件规范
 
 语言：[English](SPEC.md) | 简体中文
 
-这是可移植 SaaSCodex 插件的精简契约。完整产品规范仍以 `docs/plugins-spec.zh-CN.md` 为准；本文档面向贡献者和外部编码 agent。
+这是可移植 SplatStudio 插件的精简契约。完整产品规范仍以 `docs/plugins-spec.zh-CN.md` 为准；本文档面向贡献者和外部编码 agent。
 
 ## 1. 最小插件
 
@@ -24,14 +24,14 @@ description: Use this plugin when the user wants...
 
 文件夹名、`name` 和 manifest `name` 应保持一致。使用小写字母、数字和连字符。
 
-## 2. 增强版 SaaSCodex 插件
+## 2. 增强版 SplatStudio 插件
 
-当插件需要出现在 SaaSCodex marketplace 卡片或 starter 中时，添加 `saascodex.json`：
+当插件需要出现在 SplatStudio marketplace 卡片或 starter 中时，添加 `splatstudio.json`：
 
 ```text
 my-plugin/
   SKILL.md
-  saascodex.json
+  splatstudio.json
   README.md
   preview/
   examples/
@@ -40,11 +40,11 @@ my-plugin/
   evals/
 ```
 
-`saascodex.json` 指向 skill，并声明产品表面：
+`splatstudio.json` 指向 skill，并声明产品表面：
 
 ```json
 {
-  "$schema": "https://saascodex.com/schemas/plugin.v1.json",
+  "$schema": "https://splatstudio.app/schemas/plugin.v1.json",
   "specVersion": "1.0.0",
   "name": "my-plugin",
   "title": "My Plugin",
@@ -129,7 +129,7 @@ HyperFrames 插件可以使用 `od.mode: "video"` 加 `hyperframes` tag，让它
 ## 6. Manifest 规则
 
 - `name` 是稳定插件 id。
-- `specVersion` 是此 manifest 遵循的 SaaSCodex 插件规范版本。除非 schema 升级，否则使用当前规范包的值（`1.0.0`）。
+- `specVersion` 是此 manifest 遵循的 SplatStudio 插件规范版本。除非 schema 升级，否则使用当前规范包的值（`1.0.0`）。
 - `version` 必填。尽量使用 semver。
 - `version` 是插件包自身版本，独立于 `specVersion`。
 - `compat.agentSkills[0].path` 应指向 `./SKILL.md`。
@@ -208,11 +208,11 @@ preview 应展示真实输出形态，而不是装饰性的 splash screen。
 打开 PR 前：
 
 1. 校验 JSON 语法。
-2. 确认 `saascodex.json` 包含 `specVersion`，并在行为变化时 bump 插件 `version`。
+2. 确认 `splatstudio.json` 包含 `specVersion`，并在行为变化时 bump 插件 `version`。
 3. 运行 `pnpm guard`。
-4. 运行 `pnpm --filter @saascodex/plugin-runtime typecheck`。
+4. 运行 `pnpm --filter @splatstudio/plugin-runtime typecheck`。
 5. 如果可用，运行 `od plugin validate ./path/to/plugin`。
 6. 视觉类插件包含一张截图、渲染 preview 或示例输出。
 7. 在 PR body 里说明 trust 和 capabilities。
 
-外部 registry 分发策略见 [`PUBLISHING-REGISTRIES.zh-CN.md`](PUBLISHING-REGISTRIES.zh-CN.md)。简言之：把 GitHub 或 SaaSCodex PR 作为 source of truth，让文件夹能作为通用 `SKILL.md` skill 安装；本地验证通过后，再发布或登记到 skills.sh、ClawHub 或其他 registry。
+外部 registry 分发策略见 [`PUBLISHING-REGISTRIES.zh-CN.md`](PUBLISHING-REGISTRIES.zh-CN.md)。简言之：把 GitHub 或 SplatStudio PR 作为 source of truth，让文件夹能作为通用 `SKILL.md` skill 安装；本地验证通过后，再发布或登记到 skills.sh、ClawHub 或其他 registry。

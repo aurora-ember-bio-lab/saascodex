@@ -1,8 +1,8 @@
-import type { ByokChatProviderConfig } from '@saascodex/contracts';
+import type { ByokChatProviderConfig } from '@splatstudio/contracts';
 
 export const BYOK_OPENCODE_AGENT_ID = 'byok-opencode';
-export const BYOK_OPENCODE_PROVIDER_ID = 'saascodex-byok';
-export const BYOK_OPENCODE_API_KEY_ENV = 'SAASCODEX_BYOK_API_KEY';
+export const BYOK_OPENCODE_PROVIDER_ID = 'splatstudio-byok';
+export const BYOK_OPENCODE_API_KEY_ENV = 'SPLATSTUDIO_BYOK_API_KEY';
 export const BYOK_OPENCODE_PROVIDER_REQUIRED_MESSAGE =
   'BYOK OpenCode requires a complete provider configuration for this run.';
 const DEFAULT_CONTEXT_TOKEN_LIMIT = 128_000;
@@ -74,7 +74,7 @@ export function buildOpenCodeByokProviderConfig(
   const config = {
     provider: {
       [BYOK_OPENCODE_PROVIDER_ID]: {
-        name: 'SaaSCodex BYOK',
+        name: 'SplatStudio BYOK',
         ...providerEntry,
         models: {
           [rawModel]: {

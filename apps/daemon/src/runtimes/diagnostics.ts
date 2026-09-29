@@ -2,7 +2,7 @@ import { agentBinEnvKey, agentSearchDirs } from './executables.js';
 import type { AgentLaunchResolution } from './launch.js';
 import type { AgentAuthProbeResult } from './auth.js';
 import type { AgentDiagnostic, RuntimeAgentDef } from './types.js';
-import type { AgentFixIntent } from '@saascodex/contracts';
+import type { AgentFixIntent } from '@splatstudio/contracts';
 
 // Cap on how many searched dirs we attach to a `not-on-path` diagnostic.
 // The resolver walks PATH + the user-toolchain whitelist, which can run to
@@ -91,7 +91,7 @@ export function buildVersionDiagnostic(
     return {
       reason: 'version-probe-failed',
       severity: 'error',
-      message: `${def.name} was found, but SaaSCodex could not verify its version.`,
+      message: `${def.name} was found, but SplatStudio could not verify its version.`,
       detail: `Expected ${expected}.`,
       fixActions: [
         { kind: 'openDocs' },
@@ -103,7 +103,7 @@ export function buildVersionDiagnostic(
   return {
     reason: 'untested-version',
     severity: 'warning',
-    message: `${def.name} ${version} has not been tested with this SaaSCodex build.`,
+    message: `${def.name} ${version} has not been tested with this SplatStudio build.`,
     detail: `Tested versions: ${expected}.`,
     fixActions: [
       { kind: 'openDocs' },
@@ -119,8 +119,8 @@ export function buildCompatibilityDiagnostic(
   return {
     reason: 'runtime-profile-incompatible',
     severity: 'error',
-    message: `${def.name} is installed, but its SaaSCodex profile is missing or incompatible.`,
-    detail: 'Install the pinned SaaSCodex profile bundle in Harness profile `saascodex`, then rescan.',
+    message: `${def.name} is installed, but its SplatStudio profile is missing or incompatible.`,
+    detail: 'Install the pinned SplatStudio profile bundle in Harness profile `splatstudio`, then rescan.',
     fixActions: [
       { kind: 'openDocs' },
       { kind: 'rescan' },

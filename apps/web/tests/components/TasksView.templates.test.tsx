@@ -5,7 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import type {
   AutomationEvolutionProposal,
   AutomationTemplate as ContractAutomationTemplate,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { TasksView } from '../../src/components/TasksView';
 

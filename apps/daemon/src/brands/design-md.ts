@@ -7,7 +7,7 @@
 // This is the body passed to createUserDesignSystem so a brand becomes an
 // applyable, swatch-listed user design system.
 
-import type { Brand, BrandColor, BrandFontSpec } from '@saascodex/contracts';
+import type { Brand, BrandColor, BrandFontSpec } from '@splatstudio/contracts';
 
 /** Escape a value so it is safe as a double-quoted YAML scalar. */
 function yamlString(value: string): string {

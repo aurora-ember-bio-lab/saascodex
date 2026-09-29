@@ -24,9 +24,9 @@ import {
   updateCurrentApiProtocolConfig,
 } from '../../src/components/SettingsDialog';
 import { deriveUpdaterModel } from '../../src/lib/updater';
-import type { SaaSCodexHostUpdaterStatusSnapshot } from '@saascodex/host';
+import type { SplatStudioHostUpdaterStatusSnapshot } from '@splatstudio/host';
 import type { AppConfig, AppVersionInfo, ConnectionTestResponse } from '../../src/types';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 const originalFetch = globalThis.fetch;
 
@@ -51,8 +51,8 @@ const packagedVersion: AppVersionInfo = {
 };
 
 function updateStatus(
-  overrides: Partial<SaaSCodexHostUpdaterStatusSnapshot> = {},
-): SaaSCodexHostUpdaterStatusSnapshot {
+  overrides: Partial<SplatStudioHostUpdaterStatusSnapshot> = {},
+): SplatStudioHostUpdaterStatusSnapshot {
   return {
     arch: 'arm64',
     capabilities: {
@@ -221,10 +221,10 @@ describe('SettingsDialog about update control', () => {
       deriveUpdaterModel(
         updateStatus({
           artifact: {
-            name: 'saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+            name: 'splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
             platformKey: 'mac',
             type: 'payload',
-            url: 'https://fixture.test/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+            url: 'https://fixture.test/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
           },
           availableVersion: '1.2.3-beta.4',
           capabilities: {
@@ -233,7 +233,7 @@ describe('SettingsDialog about update control', () => {
             canOpenInstaller: false,
             requiresManualInstall: false,
           },
-          downloadPath: '/tmp/saascodex-updater/saascodex-1.2.3-beta.4-mac-arm64-payload.zip',
+          downloadPath: '/tmp/splatstudio-updater/splatstudio-1.2.3-beta.4-mac-arm64-payload.zip',
           state: 'downloaded',
         }),
         { hostAvailable: true },

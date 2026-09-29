@@ -30,7 +30,7 @@ describe('byok-opencode runtime config', () => {
         'json',
         '--dangerously-skip-permissions',
         '-m',
-        'saascodex-byok/gpt-5.5',
+        'splatstudio-byok/gpt-5.5',
       ]);
     } finally {
       agentCapabilities.delete('byok-opencode');
@@ -60,8 +60,8 @@ describe('byok-opencode runtime config', () => {
   );
 
   it('prefixes raw BYOK models with the run-scoped OpenCode provider id', () => {
-    expect(opencodeByokModelId('gpt-4o-mini')).toBe('saascodex-byok/gpt-4o-mini');
-    expect(opencodeByokModelId('saascodex-byok/gpt-4o-mini')).toBe('saascodex-byok/gpt-4o-mini');
+    expect(opencodeByokModelId('gpt-4o-mini')).toBe('splatstudio-byok/gpt-4o-mini');
+    expect(opencodeByokModelId('splatstudio-byok/gpt-4o-mini')).toBe('splatstudio-byok/gpt-4o-mini');
     expect(opencodeByokModelId('default')).toBeNull();
   });
 
@@ -75,7 +75,7 @@ describe('byok-opencode runtime config', () => {
       'deepseek-v4-flash',
     );
 
-    expect(out?.modelId).toBe('saascodex-byok/deepseek-v4-flash');
+    expect(out?.modelId).toBe('splatstudio-byok/deepseek-v4-flash');
     expect(out?.env).toEqual({ [BYOK_OPENCODE_API_KEY_ENV]: 'sk-secret' });
     expect(JSON.stringify(out?.config)).not.toContain('sk-secret');
     expect(out?.config).toMatchObject({
@@ -106,7 +106,7 @@ describe('byok-opencode runtime config', () => {
       'gpt-5.5',
     );
 
-    expect(out?.modelId).toBe('saascodex-byok/gpt-5.5');
+    expect(out?.modelId).toBe('splatstudio-byok/gpt-5.5');
     expect(out?.config).toMatchObject({
       provider: {
         [BYOK_OPENCODE_PROVIDER_ID]: {
@@ -398,7 +398,7 @@ describe('byok-opencode runtime config', () => {
       'llama3.2',
     );
 
-    expect(out?.modelId).toBe('saascodex-byok/llama3.2');
+    expect(out?.modelId).toBe('splatstudio-byok/llama3.2');
     expect(out?.env).toEqual({});
     expect(out?.config).toMatchObject({
       provider: {
@@ -433,7 +433,7 @@ describe('byok-opencode runtime config', () => {
       'model',
     );
 
-    expect(out?.modelId).toBe('saascodex-byok/model');
+    expect(out?.modelId).toBe('splatstudio-byok/model');
     expect(out?.env).toEqual({});
     expect(out?.config).toMatchObject({
       provider: {

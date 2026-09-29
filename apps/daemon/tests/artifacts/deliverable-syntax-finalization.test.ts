@@ -78,7 +78,7 @@ describe('deliverable syntax finalization', () => {
       processTreeQuiescent: true,
       checkedAt: 123,
       previousMetrics: {
-        schema: 'saascodex.deliverable-syntax-metrics/v1',
+        schema: 'splatstudio.deliverable-syntax-metrics/v1',
         checkCount: 2,
         checkerDurationMs: 9,
         repairableCheckCount: 1,
@@ -258,7 +258,7 @@ describe('deliverable syntax finalization', () => {
     await expect(finalizeDeliverableSyntax({
       artifactKind: 'html', projectRoot, entryFile: 'index.html', processTreeQuiescent: true,
       repairState: {
-        schema: 'saascodex.deliverable-syntax-repair/v1', mode: 'agent_tool',
+        schema: 'splatstudio.deliverable-syntax-repair/v1', mode: 'agent_tool',
         attempt: 3, maxAttempts: 3, checker: 'web-syntax@1', candidateHash: checked.candidateHash!,
       },
     })).resolves.toMatchObject({

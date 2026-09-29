@@ -5,7 +5,7 @@ import path from 'node:path';
 import { finished } from 'node:stream/promises';
 
 import express from 'express';
-import { strategyPackageHashFromDigests } from '@saascodex/plugin-runtime';
+import { strategyPackageHashFromDigests } from '@splatstudio/plugin-runtime';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { closeDatabase, listMessages, openDatabase } from '../src/db.js';
@@ -86,7 +86,7 @@ async function seed(journal: 'new' | 'legacy', linked = true) {
     projectId: PROJECT, conversationId: CONVERSATION, runId: null,
     pluginId: 'od-next-strategy', pluginVersion: '2.0.0', manifestSourceDigest: 'cold-clarification',
     strategy: {
-      schema: 'saascodex.applied-strategy/v2', id: 'od-next-strategy', version: '2.0.0',
+      schema: 'splatstudio.applied-strategy/v2', id: 'od-next-strategy', version: '2.0.0',
       packageHash: strategyPackageHashFromDigests(assetDigests), assetDigests,
       selectedTaskProfile: {
         taskType: 'prototype', version: '2.0.0', path: './assets/task-profiles/prototype.md',
@@ -128,12 +128,12 @@ async function seed(journal: 'new' | 'legacy', linked = true) {
   const protocol = new OdNextMachineProtocolStream();
   protocol.push([
     '<question-form id="scope">{"questions":[{"id":"surface","label":"Surface?"}]}</question-form>',
-    '<saascodex-runtime-state>',
+    '<splatstudio-runtime-state>',
     JSON.stringify({
-      schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'request',
+      schema: 'splatstudio.strategy-state/v2', route: 'full_plan', inputStage: 'request',
       outcome: 'clarification_required', executionMode: null, reasonCodes: [],
     }),
-    '</saascodex-runtime-state>',
+    '</splatstudio-runtime-state>',
   ].join('\n'));
   finalizeStrategyPlanningTurn(db, { taskExecutionId: TASK, runId: run.id, protocol });
   await finishRun(warmRuns, run);

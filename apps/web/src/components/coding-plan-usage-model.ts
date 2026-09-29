@@ -2,7 +2,7 @@
 // the numbers the panel draws can be pinned in a spec without rendering
 // anything.
 
-import type { WorkspaceBillingPreflight } from '@saascodex/contracts';
+import type { WorkspaceBillingPreflight } from '@splatstudio/contracts';
 import type { Dict } from '../i18n/types';
 
 type CodingPlanWindow = WorkspaceBillingPreflight['codingPlan']['windows'][number];

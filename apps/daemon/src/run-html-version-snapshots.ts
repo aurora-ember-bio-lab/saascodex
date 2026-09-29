@@ -5,10 +5,10 @@ import type {
   ArtifactOrigin,
   ProjectFileVersion,
   ProjectFileVersionPromptSource,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { ensureCurrentProjectFileVersion } from './project-file-versions.js';
-import { SAASCODEX_PLUGIN_ID } from './mcp-observability.js';
+import { SPLATSTUDIO_PLUGIN_ID } from './mcp-observability.js';
 import type { RunArtifactDiff } from './run-artifact-fs.js';
 
 export interface AiHtmlVersionSnapshotInput {
@@ -43,7 +43,7 @@ export function artifactOriginForRun(input: {
   const analytics = input.externalPluginAnalytics;
   if (
     analytics?.entrySurface !== 'external_mcp'
-    || analytics.externalPluginId !== SAASCODEX_PLUGIN_ID
+    || analytics.externalPluginId !== SPLATSTUDIO_PLUGIN_ID
     || typeof analytics.pluginWorkflowId !== 'string'
     || !analytics.pluginWorkflowId
   ) {
@@ -51,7 +51,7 @@ export function artifactOriginForRun(input: {
   }
   return {
     entrySurface: 'external_mcp',
-    externalPluginId: SAASCODEX_PLUGIN_ID,
+    externalPluginId: SPLATSTUDIO_PLUGIN_ID,
     pluginWorkflowId: analytics.pluginWorkflowId,
     runId: input.runId,
   };

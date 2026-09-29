@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { ChatMessage } from '@saascodex/contracts';
+import type { ChatMessage } from '@splatstudio/contracts';
 
 import { forkBoundaryMessageIndex } from '../../../src/runtime/chat/fork-boundary';
 

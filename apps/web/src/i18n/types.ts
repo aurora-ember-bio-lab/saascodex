@@ -1,6 +1,6 @@
 // Supported UI locales. Adding a new locale requires creating a new
 // dictionary in `./locales/` and registering it in `./index.tsx`.
-// SaaSCodex ships a curated 12-language set.
+// SplatStudio ships a curated 12-language set.
 export type Locale = 'en' | 'de' | 'zh-CN' | 'pt-BR' | 'es-ES' | 'ar' | 'ja' | 'ko' | 'fr' | 'it' | 'no';
 
 export const LOCALES: Locale[] = ['en', 'de', 'zh-CN', 'pt-BR', 'es-ES', 'ar', 'ja', 'ko', 'fr', 'it', 'no'];
@@ -4433,8 +4433,8 @@ export interface Dict {
   'assistant.forkingConversation': string;
   /** 分叉分界线下面那行脚注 —— 告诉人 Fork 不是跳走,上文已经带过去了。 */
   'assistant.forkNote': string;
-  'assistant.shareToSaaSCodex': string;
-  'assistant.shareToSaaSCodexBusy': string;
+  'assistant.shareToSplatStudio': string;
+  'assistant.shareToSplatStudioBusy': string;
   'assistant.feedbackPrompt': string;
   'assistant.feedbackPositive': string;
   'assistant.feedbackNegative': string;

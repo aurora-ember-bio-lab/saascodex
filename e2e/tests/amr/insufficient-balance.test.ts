@@ -58,7 +58,7 @@ describe('AMR insufficient balance run failures', () => {
       });
       expect(events).toContain('AMR_INSUFFICIENT_BALANCE');
       expect(events).toContain(
-        'https://saascodex.com/cloud/dashboard?source=open_design',
+        'https://splatstudio.app/cloud/dashboard?source=open_design',
       );
 
       const messages = await listMessages(

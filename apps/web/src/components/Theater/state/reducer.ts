@@ -6,7 +6,7 @@ import type {
   ParserWarningKind,
   RoundDecision,
   ShipStatus,
-} from '@saascodex/contracts/critique';
+} from '@splatstudio/contracts/critique';
 
 /**
  * Synthetic reducer action the host hooks (`useCritiqueStream`,

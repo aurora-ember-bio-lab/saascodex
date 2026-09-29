@@ -3,10 +3,10 @@
   "id": "professional",
   "name": "Professional",
   "category": "Professional & Corporate",
-  "description": "Bundled SaaSCodex package for Professional, derived from curated DESIGN.md, tokens.css, and components.html fixtures.",
+  "description": "Bundled SplatStudio package for Professional, derived from curated DESIGN.md, tokens.css, and components.html fixtures.",
   "source": {
     "type": "bundled",
-    "origin": "SaaSCodex curated bundled fixture"
+    "origin": "SplatStudio curated bundled fixture"
   },
   "files": {
     "design": "DESIGN.md",

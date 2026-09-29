@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 
 import {
   APP_KEYS,
-  SAASCODEX_SIDECAR_CONTRACT,
+  SPLATSTUDIO_SIDECAR_CONTRACT,
   SIDECAR_MESSAGES,
   SIDECAR_MODES,
   SIDECAR_SOURCES,
@@ -15,7 +15,7 @@ import {
   type DesktopUpdateAction,
   type DesktopUpdateResult,
   type WebStatusSnapshot,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import {
   convergeSidecarLaunch,
   findSidecarProcesses,
@@ -24,8 +24,8 @@ import {
   stopSidecars,
   withSidecarLifecycleLock,
   type SidecarStamp,
-} from "@saascodex/sidecar";
-import { readLogTail } from "@saascodex/platform";
+} from "@splatstudio/sidecar";
+import { readLogTail } from "@splatstudio/platform";
 
 import type { ToolPackConfig } from "../config/index.js";
 import { allPackagedSidecarStopRequests, toolPackSidecarStamp } from "../config/sidecar-stamps.js";
@@ -241,7 +241,7 @@ async function pinInstalledPackagedConfigNamespace(
   config: ToolPackConfig,
   executablePath: string,
 ): Promise<{ installedConfigPath: string; launchConfigPath: string }> {
-  const installedConfigPath = join(dirname(executablePath), "resources", "saascodex-config.json");
+  const installedConfigPath = join(dirname(executablePath), "resources", "splatstudio-config.json");
   if (!(await pathExists(installedConfigPath))) {
     throw new Error(`installed packaged config missing at ${installedConfigPath}`);
   }
@@ -256,7 +256,7 @@ async function pinInstalledPackagedConfigNamespace(
   };
   const body = `${JSON.stringify(pinned, null, 2)}\n`;
   await writeFile(installedConfigPath, body, "utf8");
-  const launchConfigPath = join(config.roots.runtime.namespaceRoot, "runtime", "launch-saascodex-config.json");
+  const launchConfigPath = join(config.roots.runtime.namespaceRoot, "runtime", "launch-splatstudio-config.json");
   await mkdir(dirname(launchConfigPath), { recursive: true });
   await writeFile(launchConfigPath, body, "utf8");
   return { installedConfigPath, launchConfigPath };

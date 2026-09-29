@@ -1,4 +1,4 @@
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 /**
  * The complete workspace identity carried by workspace-aware web requests.
@@ -56,7 +56,7 @@ export function appendResourceQuery(path: string, query: string): string {
  * an admin this key differs for one and the same member of one and the same
  * workspace — and a comparison written this way is silently correct for a plain
  * member and silently wrong for everyone above them. Use
- * `isSameWorkspacePrincipal` from `@saascodex/contracts` for that question;
+ * `isSameWorkspacePrincipal` from `@splatstudio/contracts` for that question;
  * its docs carry the full rationale and the list of defects this produced.
  */
 export function workspaceIdentityCacheKey(

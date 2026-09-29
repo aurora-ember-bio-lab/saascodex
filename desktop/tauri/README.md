@@ -1,4 +1,4 @@
-# SaaSCodex desktop (Tauri)
+# SplatStudio desktop (Tauri)
 
 A thin **Tauri v2** native shell over the local daemon. The window loads
 `src/index.html`, which checks `http://127.0.0.1:7456/api/health` and forwards
@@ -49,5 +49,5 @@ installers for Windows (NSIS/MSI), macOS (`.dmg`, universal), and Linux
 ## Pointing at a hosted daemon
 
 To wrap the hosted deployment instead of a local daemon, change the
-`saascodex-daemon-url` meta in `src/index.html` (e.g.
-`https://app.saascodex.com`).
+`splatstudio-daemon-url` meta in `src/index.html` (e.g.
+`https://app.splatstudio.app`).

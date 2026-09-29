@@ -37,8 +37,8 @@ describe("macAppExecutablePath", () => {
 
   it("honors a custom executable name", () => {
     const appPath = "/tmp/out/mac/Open Design.app";
-    expect(macAppExecutablePath(appPath, "saascodex-beta")).toBe(
-      join(appPath, "Contents", "MacOS", "saascodex-beta"),
+    expect(macAppExecutablePath(appPath, "splatstudio-beta")).toBe(
+      join(appPath, "Contents", "MacOS", "splatstudio-beta"),
     );
   });
 });

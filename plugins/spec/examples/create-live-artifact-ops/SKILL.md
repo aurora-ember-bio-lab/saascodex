@@ -3,7 +3,7 @@ name: create-live-artifact-ops
 description: Create a refreshable live operations artifact for customer success, support, or launch review workflows.
 license: MIT
 metadata:
-  author: SaaSCodex Spec Examples
+  author: SplatStudio Spec Examples
   version: "0.1.0"
 ---
 

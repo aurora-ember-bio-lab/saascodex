@@ -104,7 +104,7 @@ describe('namespace isolation spec', () => {
 
       const pluginInfo = await requestJson<InstalledPlugin>(webUrl, '/api/plugins/e2e-namespace-plugin');
       expect(pluginInfo.fsPath).toBe(expectedPluginRoot);
-      await access(path.join(expectedPluginRoot, 'saascodex.json'));
+      await access(path.join(expectedPluginRoot, 'splatstudio.json'));
       expect(await readFile(path.join(expectedPluginRoot, 'SKILL.md'), 'utf8')).toContain('E2E namespace plugin');
 
       await suite.report.json('summary.json', {
@@ -126,7 +126,7 @@ async function writeLocalPluginFixture(root: string): Promise<string> {
   const pluginRoot = path.join(root, 'plugin-source');
   await mkdir(pluginRoot, { recursive: true });
   await writeFile(
-    path.join(pluginRoot, 'saascodex.json'),
+    path.join(pluginRoot, 'splatstudio.json'),
     JSON.stringify(
       {
         name: 'e2e-namespace-plugin',

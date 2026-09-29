@@ -10,7 +10,7 @@ import {
   type SetStateAction,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { Dialog } from '@saascodex/components';
+import { Dialog } from '@splatstudio/components';
 import {
   PLUGIN_SHARE_ACTION_PLUGIN_IDS,
   resolveLocalizedText,
@@ -20,7 +20,7 @@ import {
   type PluginSourceKind,
   type SkillSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   fetchSkills,
   importSkill,
@@ -49,7 +49,7 @@ import {
   stableAnalyticsRequestErrorCode,
   workspaceAnalyticsDimensions,
 } from '../analytics/workspace';
-import type { TrackingWorkspaceScope } from '@saascodex/contracts/analytics';
+import type { TrackingWorkspaceScope } from '@splatstudio/contracts/analytics';
 import {
   addPluginMarketplace,
   applyPlugin,
@@ -194,22 +194,22 @@ const PLUGIN_SHARE_DETAILS: Record<PluginShareAction, {
     eyebrow: 'GitHub repository',
     fallbackTitle: 'Publish Plugin to GitHub',
     fallbackDescription:
-      'Creates a public GitHub repository for this local SaaSCodex plugin.',
+      'Creates a public GitHub repository for this local SplatStudio plugin.',
     confirmLabel: 'Start publishing',
     steps: [
-      'Create a new SaaSCodex project for the publish workflow.',
+      'Create a new SplatStudio project for the publish workflow.',
       'Copy this plugin into that project as isolated source context.',
       'Run the official publish action plugin against the local daemon.',
     ],
   },
-  'contribute-saascodex': {
-    eyebrow: 'SaaSCodex pull request',
-    fallbackTitle: 'Contribute Plugin to SaaSCodex',
+  'contribute-splatstudio': {
+    eyebrow: 'SplatStudio pull request',
+    fallbackTitle: 'Contribute Plugin to SplatStudio',
     fallbackDescription:
-      'Opens a pull request that adds this plugin to the SaaSCodex community catalog.',
+      'Opens a pull request that adds this plugin to the SplatStudio community catalog.',
     confirmLabel: 'Start contribution',
     steps: [
-      'Create a new SaaSCodex project for the contribution workflow.',
+      'Create a new SplatStudio project for the contribution workflow.',
       'Copy this plugin into that project as isolated source context.',
       'Run the official contribution action plugin against the local daemon.',
     ],
@@ -357,8 +357,8 @@ export function PluginsView({
 
   useEffect(() => {
     void refresh();
-    window.addEventListener('saascodex:plugins-changed', refresh);
-    return () => window.removeEventListener('saascodex:plugins-changed', refresh);
+    window.addEventListener('splatstudio:plugins-changed', refresh);
+    return () => window.removeEventListener('splatstudio:plugins-changed', refresh);
     // Re-run on workspace switch (not just mount) so "installed" reflects the
     // newly active workspace's binding — see `pluginsWorkspaceContext` above.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1403,7 +1403,7 @@ export function ExtensionsMarketplace({
     setLoading(false);
   }
 
-  // `saascodex:plugins-changed` re-reads on mutation. Re-registered per
+  // `splatstudio:plugins-changed` re-reads on mutation. Re-registered per
   // identity so the handler always closes over a current `refresh`.
   const marketplaceAccountGeneration = currentWorkspaceAccountGeneration();
   const marketplaceReadMode = workspaceContext
@@ -1427,8 +1427,8 @@ export function ExtensionsMarketplace({
       if (isActiveRef.current) void refresh();
       else catalogStaleRef.current = true;
     };
-    window.addEventListener('saascodex:plugins-changed', onPluginsChanged);
-    return () => window.removeEventListener('saascodex:plugins-changed', onPluginsChanged);
+    window.addEventListener('splatstudio:plugins-changed', onPluginsChanged);
+    return () => window.removeEventListener('splatstudio:plugins-changed', onPluginsChanged);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [marketplaceIdentity]);
 
@@ -2061,7 +2061,7 @@ export function ExtensionsMarketplace({
         skill={selectedSkill}
         author={
           scope === 'official'
-            ? 'SaaSCodex'
+            ? 'SplatStudio'
             : scope === 'team'
               ? 'Nexu Team'
               : t('chat.you')
@@ -2594,7 +2594,7 @@ export function ExtensionsMarketplace({
                   <p>
                     {t('pluginsView.uploadFolderBody', {
                       kind: pluginKindLabel(createKind, t),
-                      manifest: createKind === 'plugin' ? 'saascodex.json / SKILL.md' : 'SKILL.md',
+                      manifest: createKind === 'plugin' ? 'splatstudio.json / SKILL.md' : 'SKILL.md',
                     })}
                   </p>
                   <input
@@ -2928,7 +2928,7 @@ function pluginShareSlug(name: string): string {
     name
       .toLowerCase()
       .replace(/[^a-z0-9._-]+/g, '-')
-      .replace(/(^[-._]+|[-._]+$)/g, '') || 'saascodex-plugin'
+      .replace(/(^[-._]+|[-._]+$)/g, '') || 'splatstudio-plugin'
   );
 }
 
@@ -3314,7 +3314,7 @@ function AvailablePluginDetailsModal({
                 </h3>
               </div>
               <p className="plugin-details-modal__section-hint">
-                This official catalog entry is bundled with SaaSCodex and is ready to use.
+                This official catalog entry is bundled with SplatStudio and is ready to use.
               </p>
             </section>
           ) : (
@@ -3603,7 +3603,7 @@ function SourcesPanel({
               onSourceUrlInput?.();
             }}
             onChange={(event) => setUrl(event.target.value)}
-            placeholder="https://example.com/saascodex-marketplace.json"
+            placeholder="https://example.com/splatstudio-marketplace.json"
             disabled={pendingAction === 'add'}
           />
           <select
@@ -3840,7 +3840,7 @@ function PluginImportModal({
           {kind === 'zip' ? (
             <FileImportPanel
               title="Upload zip"
-              body="Choose a .zip archive containing saascodex.json, SKILL.md, or .claude-plugin/plugin.json."
+              body="Choose a .zip archive containing splatstudio.json, SKILL.md, or .claude-plugin/plugin.json."
               accept=".zip,application/zip"
               working={working}
               fileLabel={zipFile?.name ?? 'No zip selected'}

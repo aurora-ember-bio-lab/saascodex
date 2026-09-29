@@ -94,7 +94,7 @@ requires_openai_auth = false
     const run = await requestJson<{ status: string }>(runtime.url.daemon(), `/api/runs/${runId}`);
     expect(run.status).toBe('succeeded');
     expect(provider.userAgents.length).toBeGreaterThan(0);
-    expect(provider.userAgents.every(agent => agent.startsWith(`saascodex/${version} `))).toBe(true);
+    expect(provider.userAgents.every(agent => agent.startsWith(`splatstudio/${version} `))).toBe(true);
     const file = await fetch(runtime.url.daemon(`/api/projects/${project.project.id}/raw/codex-long-command.txt`));
     expect(file.ok).toBe(true);
     expect(await file.text()).toBe(content);

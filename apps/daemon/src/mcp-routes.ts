@@ -1,6 +1,6 @@
 import type { Express } from 'express';
 import fs from 'node:fs';
-import { SIDECAR_ENV } from '@saascodex/sidecar-proto';
+import { SIDECAR_ENV } from '@splatstudio/sidecar-proto';
 import { buildMcpInstallPayload, type McpInstallPayload } from './mcp-install-info.js';
 import { installCodexMcp, probeCodexInstall, refreshOwnedCodexMcp, uninstallCodexMcp } from './codex-cli.js';
 import { isManagedMcpBootstrapEnv } from './mcp-bootstrap.js';
@@ -47,7 +47,7 @@ export function registerMcpRoutes(app: Express, ctx: RegisterMcpRoutesDeps) {
   function computeInstallPayload(): McpInstallPayload {
     const cliPath = OD_BIN;
     // Forward only the opaque inherited client capability. IPC endpoint
-    // naming and transport stay private to @saascodex/sidecar.
+    // naming and transport stay private to @splatstudio/sidecar.
     const sidecarEnv = inheritedEnvironment();
     const isSidecarMode = Object.keys(sidecarEnv).length > 0;
     const mcpBootstrapCommand = process.env.OD_MCP_BOOTSTRAP_COMMAND;
@@ -63,7 +63,7 @@ export function registerMcpRoutes(app: Express, ctx: RegisterMcpRoutesDeps) {
     }
     Object.assign(sidecarEnv, managedMcpRegistrationEnv());
     // tools-dev / packaged launchers export OD_WEB_PORT so the daemon
-    // knows where the browser-facing SaaSCodex studio is running.
+    // knows where the browser-facing SplatStudio studio is running.
     // CLI-only / headless launches set neither and webBaseUrl falls
     // through as null — MCP clients then just omit the studio deep
     // link from their responses.
@@ -115,7 +115,7 @@ export function registerMcpRoutes(app: Express, ctx: RegisterMcpRoutesDeps) {
   // so we shell out to it rather than rewriting ~/.codex/config.toml
   // ourselves — that way we inherit Codex's merge / validation rules
   // and only need to track its argv. See apps/daemon/src/codex-cli.ts.
-  const CODEX_MCP_NAME = 'saascodex';
+  const CODEX_MCP_NAME = 'splatstudio';
 
   // Under a managed outer, keep this install's own Codex registration pointed
   // at the runtime that is running now. Registrations name a versioned
@@ -184,7 +184,7 @@ export function registerMcpRoutes(app: Express, ctx: RegisterMcpRoutesDeps) {
     }
   });
 
-  // External MCP server configuration. SaaSCodex connects to these as a
+  // External MCP server configuration. SplatStudio connects to these as a
   // CLIENT and surfaces their tools to the underlying agent at spawn time.
   // GET returns user-saved entries plus the built-in template list so the UI
   // can render the "Add MCP server" picker without a second round-trip.
@@ -416,7 +416,7 @@ function renderOAuthResultPage(opts: any) {
   const title = ok ? 'Connected' : 'Authorization failed';
   const heading = ok ? '✅ Connected' : '⚠️ Authorization failed';
   const body = ok
-    ? `Your MCP server <code>${escapeHtml(opts.serverId ?? '')}</code> is now connected. You can close this tab and return to SaaSCodex.`
+    ? `Your MCP server <code>${escapeHtml(opts.serverId ?? '')}</code> is now connected. You can close this tab and return to SplatStudio.`
     : escapeHtml(opts.message ?? 'Authorization could not be completed.');
   const accent = ok ? '#1a7f37' : '#cf222e';
   const payload = ok
@@ -426,7 +426,7 @@ function renderOAuthResultPage(opts: any) {
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>${escapeHtml(title)} — SaaSCodex</title>
+<title>${escapeHtml(title)} — SplatStudio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
   :root { color-scheme: light dark; }
@@ -473,7 +473,7 @@ function renderOAuthResultPage(opts: any) {
         window.opener.postMessage(payload, '*');
       }
       if (window.BroadcastChannel) {
-        var bc = new BroadcastChannel('saascodex-mcp-oauth');
+        var bc = new BroadcastChannel('splatstudio-mcp-oauth');
         bc.postMessage(payload);
         bc.close();
       }

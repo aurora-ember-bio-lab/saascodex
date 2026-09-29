@@ -1,5 +1,5 @@
 {
-  "name": "@saascodex/packaged",
+  "name": "@splatstudio/packaged",
   "version": "0.23.1",
   "private": true,
   "type": "module",
@@ -21,18 +21,18 @@
   "scripts": {
     "build": "node ./esbuild.config.mjs && tsc -p tsconfig.json --emitDeclarationOnly",
     "test": "vitest run -c vitest.config.ts",
-    "typecheck": "pnpm --filter @saascodex/desktop build && tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
+    "typecheck": "pnpm --filter @splatstudio/desktop build && tsc -p tsconfig.json --noEmit && tsc -p tsconfig.tests.json --noEmit"
   },
   "dependencies": {
-    "@saascodex/contracts": "workspace:*",
-    "@saascodex/daemon": "workspace:*",
-    "@saascodex/desktop": "workspace:*",
-    "@saascodex/launcher-proto": "workspace:*",
-    "@saascodex/platform": "workspace:*",
-    "@saascodex/release": "workspace:*",
-    "@saascodex/sidecar": "workspace:*",
-    "@saascodex/sidecar-proto": "workspace:*",
-    "@saascodex/web": "workspace:*"
+    "@splatstudio/contracts": "workspace:*",
+    "@splatstudio/daemon": "workspace:*",
+    "@splatstudio/desktop": "workspace:*",
+    "@splatstudio/launcher-proto": "workspace:*",
+    "@splatstudio/platform": "workspace:*",
+    "@splatstudio/release": "workspace:*",
+    "@splatstudio/sidecar": "workspace:*",
+    "@splatstudio/sidecar-proto": "workspace:*",
+    "@splatstudio/web": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "24.12.2",

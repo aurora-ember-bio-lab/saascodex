@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
-import type { MarketplaceManifest } from '@saascodex/contracts';
+import type { MarketplaceManifest } from '@splatstudio/contracts';
 import { StaticRegistryBackend } from '../src/registry/static-backend.js';
 import {
   DatabaseRegistryBackend,
@@ -92,12 +92,12 @@ describe('registry backends', () => {
       },
       async createPublishPullRequest(mutation) {
         mutationFiles = mutation.files.map((file) => file.path);
-        return { url: 'https://github.com/saascodex/plugin-registry/pull/1' };
+        return { url: 'https://github.com/splatstudio/plugin-registry/pull/1' };
       },
     };
     const backend = await GithubRegistryBackend.create({
       id: 'official',
-      owner: 'saascodex',
+      owner: 'splatstudio',
       repo: 'plugin-registry',
       client,
     });
@@ -105,7 +105,7 @@ describe('registry backends', () => {
     if (!entry) throw new Error('fixture entry missing');
     await expect(backend.publish?.({ entry })).resolves.toMatchObject({
       ok: true,
-      pullRequestUrl: 'https://github.com/saascodex/plugin-registry/pull/1',
+      pullRequestUrl: 'https://github.com/splatstudio/plugin-registry/pull/1',
     });
     expect(mutationFiles).toEqual([
       'plugins/vendor/example/entry.json',

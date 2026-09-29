@@ -4,12 +4,12 @@ import {
   SIDECAR_MODES,
   SIDECAR_SOURCES,
   type SidecarSource,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import {
   parseLauncherAfterQuitArgs,
   parseLauncherDelegatedArgs,
   parseLauncherHandoffResumeArgs,
-} from "@saascodex/launcher-proto";
+} from "@splatstudio/launcher-proto";
 import {
   bootstrapSidecarProcess,
   isCurrentSidecarLauncher,
@@ -20,7 +20,7 @@ import {
   type SidecarClient,
   type SidecarRuntimeContext,
   type SidecarStamp,
-} from "@saascodex/sidecar";
+} from "@splatstudio/sidecar";
 import {
   recordIncomingUpdateLifecycle,
   applyLoopbackConnectionLimitSwitch,
@@ -28,8 +28,8 @@ import {
   createSplashWindow,
   setSplashStage,
   type DesktopMainHandle,
-} from "@saascodex/desktop/main";
-import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@saascodex/release";
+} from "@splatstudio/desktop/main";
+import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@splatstudio/release";
 import { join } from "node:path";
 import { app, dialog } from "electron";
 
@@ -397,7 +397,7 @@ async function main(): Promise<void> {
   // lack of a target should surface as the protocol layer's structured 503.
   const odProtocol = registerOdProtocol(() => sidecars.currentWebUrl());
 
-  const { runDesktopMain } = await import("@saascodex/desktop/main");
+  const { runDesktopMain } = await import("@splatstudio/desktop/main");
   let desktopHandle: DesktopMainHandle | null = null;
   const invokeDesktop = async (action: string, input: unknown) => {
     if (desktopHandle == null) throw new Error("packaged desktop sidecar is not running");

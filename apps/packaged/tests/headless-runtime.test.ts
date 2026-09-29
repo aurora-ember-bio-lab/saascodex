@@ -6,7 +6,7 @@ import {
   resolvePackagedMcpBootstrapLaunch,
   runPackagedMcpActionAgainstExistingDaemon,
 } from "../src/headless-runtime.js";
-import { APP_KEYS, MCP_BOOTSTRAP_CONTRACT, SIDECAR_SOURCES } from "@saascodex/sidecar-proto";
+import { APP_KEYS, MCP_BOOTSTRAP_CONTRACT, SIDECAR_SOURCES } from "@splatstudio/sidecar-proto";
 
 describe("parsePackagedHeadlessRequest", () => {
   it("accepts a headless Codex MCP install request", () => {
@@ -67,11 +67,11 @@ describe("resolvePackagedMcpBootstrapLaunch", () => {
 
   it("invokes a non-macOS installed launcher directly", () => {
     expect(resolvePackagedMcpBootstrapLaunch({
-      currentExecutablePath: "/tmp/payload/saascodex",
-      installedLaunchPath: "/opt/saascodex/saascodex",
+      currentExecutablePath: "/tmp/payload/splatstudio",
+      installedLaunchPath: "/opt/splatstudio/splatstudio",
       platform: "linux",
     })).toEqual({
-      command: "/opt/saascodex/saascodex",
+      command: "/opt/splatstudio/splatstudio",
       args: ["--headless"],
     });
   });

@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { evaluateRuntimeEvidenceGraphV1 } from '@saascodex/contracts';
+import { evaluateRuntimeEvidenceGraphV1 } from '@splatstudio/contracts';
 import { describe, expect, it } from 'vitest';
 
 import { buildStructuredMainRunObservationV1 } from '../../src/observability/main-run-observation.js';
@@ -336,7 +336,7 @@ describe('Claude native Child evidence side channel', () => {
           availability: 'exact',
           source: 'provider_stream',
           safePayload: {
-            type: 'saascodex.child-injected-prompt',
+            type: 'splatstudio.child-injected-prompt',
             messages: [{
               redactedContent: expect.stringContaining('[REDACTED:path]'),
             }],

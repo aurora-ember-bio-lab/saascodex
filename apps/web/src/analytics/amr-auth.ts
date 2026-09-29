@@ -21,7 +21,7 @@ import type {
   AmrEntryAttribution,
   TrackingAmrEntrySource,
   TrackingPageName,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 import { amrEntryPageForSource } from './amr-attribution';
 import { setAnalyticsUserId } from './client';
 import { trackAmrAuthResult, trackAmrAuthStage } from './events';

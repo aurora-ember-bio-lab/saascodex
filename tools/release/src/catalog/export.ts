@@ -32,7 +32,7 @@ import { loadCatalogSystemTokens } from "./system-tokens.ts";
 
 const REPO_TREE = "https://github.com/nexu-io/open-design/tree/main";
 const REPO_BLOB = "https://github.com/nexu-io/open-design/blob/main";
-const PLUGIN_PREVIEWS_BASE_URL = "https://repo-assets.saascodex.com/plugin-previews";
+const PLUGIN_PREVIEWS_BASE_URL = "https://repo-assets.splatstudio.app/plugin-previews";
 
 const OFFICIAL_BUCKETS = [
   "examples",
@@ -243,7 +243,7 @@ function exportDesignTemplates(repoRoot: string): CatalogTemplateRecord[] {
     const summary =
       asString(data.description) ||
       extractFirstProseParagraph(body) ||
-      "SaaSCodex renderable design template.";
+      "SplatStudio renderable design template.";
     out.push({
       id: folder,
       type: "template",
@@ -280,7 +280,7 @@ function exportLiveArtifacts(repoRoot: string): CatalogTemplateRecord[] {
     const h1 = extractH1(body);
     let cleanH1 = h1 ? stripMarkdownInline(h1) : "";
     cleanH1 = cleanH1.replace(/\s*[·•]\s*live[\s-]artifact\s+template$/i, "").trim();
-    const summary = extractFirstProseParagraph(body) || "SaaSCodex Live Artifact template.";
+    const summary = extractFirstProseParagraph(body) || "SplatStudio Live Artifact template.";
     const liveId = `live-${folder}`;
     out.push({
       id: liveId,
@@ -384,7 +384,7 @@ function exportPlugins(repoRoot: string): CatalogPluginRecord[] {
     const dir = join(officialRoot, bucket);
     for (const name of listDirs(dir)) {
       const record = loadPlugin({
-        manifestPath: join(dir, name, "saascodex.json"),
+        manifestPath: join(dir, name, "splatstudio.json"),
         slug: name,
         bucket,
         sourceUrl: `${REPO_TREE}/plugins/_official/${bucket}/${name}`,
@@ -398,7 +398,7 @@ function exportPlugins(repoRoot: string): CatalogPluginRecord[] {
   const communityRoot = join(repoRoot, "plugins/community");
   for (const name of listDirs(communityRoot)) {
     const record = loadPlugin({
-      manifestPath: join(communityRoot, name, "saascodex.json"),
+      manifestPath: join(communityRoot, name, "splatstudio.json"),
       slug: name,
       bucket: "community",
       routeId: `community/${name}`,

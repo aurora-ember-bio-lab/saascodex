@@ -2,9 +2,9 @@ import {
   APP_KEYS,
   SIDECAR_MODES,
   SIDECAR_SOURCES,
-} from "@saascodex/sidecar-proto";
-import type { SidecarStamp, SidecarStopRequest } from "@saascodex/sidecar";
-import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@saascodex/release";
+} from "@splatstudio/sidecar-proto";
+import type { SidecarStamp, SidecarStopRequest } from "@splatstudio/sidecar";
+import { releaseChannelFromNamespace, releaseChannelFromVersion } from "@splatstudio/release";
 
 import type { ToolPackConfig } from "./index.js";
 

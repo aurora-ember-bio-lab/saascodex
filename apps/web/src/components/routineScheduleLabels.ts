@@ -1,4 +1,4 @@
-import type { RoutineSchedule } from '@saascodex/contracts';
+import type { RoutineSchedule } from '@splatstudio/contracts';
 
 import type { Dict } from '../i18n/types';
 

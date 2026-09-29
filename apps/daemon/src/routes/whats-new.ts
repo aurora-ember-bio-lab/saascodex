@@ -1,5 +1,5 @@
 import type { Express } from 'express';
-import type { WhatsNewResponse } from '@saascodex/contracts';
+import type { WhatsNewResponse } from '@splatstudio/contracts';
 import { readCurrentAppVersionInfo } from '../app-version.js';
 import { type WhatsNewService } from '../services/whats-new.js';
 

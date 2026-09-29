@@ -32,7 +32,7 @@ import { composeChatUserRequestForAgent } from '../src/server.js';
 import {
   recalledTodosFromTodoWriteInput,
   renderUnfinishedTodoRecall,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 const TODO_WRITE = (todos: Array<{ content: string; status: string }>, id = 'tw-1') => ({
   kind: 'tool_use' as const,

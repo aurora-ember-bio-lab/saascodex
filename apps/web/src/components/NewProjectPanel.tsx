@@ -1,9 +1,9 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Dialog, DialogDescription, DialogFooter, DialogTitle } from '@saascodex/components';
-import { createTabToTracking } from '@saascodex/contracts/analytics';
-import { isSaaSCodexHostAvailable, pickHostWorkingDir } from '@saascodex/host';
-import type { SaaSCodexHostProjectImportSuccess } from '@saascodex/host';
+import { Dialog, DialogDescription, DialogFooter, DialogTitle } from '@splatstudio/components';
+import { createTabToTracking } from '@splatstudio/contracts/analytics';
+import { isSplatStudioHostAvailable, pickHostWorkingDir } from '@splatstudio/host';
+import type { SplatStudioHostProjectImportSuccess } from '@splatstudio/host';
 import { useAnalytics } from '../analytics/provider';
 import {
   trackDesignSystemApplyResult,
@@ -11,12 +11,12 @@ import {
   trackNewProjectModalSurfaceView,
   trackNewProjectModalTabClick,
 } from '../analytics/events';
-import type { ConnectorDetail } from '@saascodex/contracts';
+import type { ConnectorDetail } from '@splatstudio/contracts';
 import type {
   TrackingDesignSystemApplyTargetKind,
   TrackingDesignSystemOrigin,
   TrackingDesignSystemStatusValue,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
 import { useI18n, useT } from '../i18n';
 import { localizeSkillDescription, localizeSkillName } from '../i18n/content';
@@ -163,7 +163,7 @@ interface Props {
   // never sees the path or the HMAC token; it only receives the
   // host-owned project identifiers and forwards them here so App-level
   // state can refresh through the daemon API.
-  onImportFolderResponse?: (response: SaaSCodexHostProjectImportSuccess) => Promise<void> | void;
+  onImportFolderResponse?: (response: SplatStudioHostProjectImportSuccess) => Promise<void> | void;
   mediaProviders?: Record<string, MediaProviderCredentials>;
   connectors?: ConnectorDetail[];
   connectorsLoading?: boolean;
@@ -794,7 +794,7 @@ export function NewProjectPanel({
     setWorkingDirPicking(true);
     setWorkingDirError(null);
     try {
-      if (isSaaSCodexHostAvailable()) {
+      if (isSplatStudioHostAvailable()) {
         const result = await pickHostWorkingDir();
         if (result.ok) {
           setWorkingDir(result.baseDir);
@@ -803,7 +803,7 @@ export function NewProjectPanel({
         }
         if ('canceled' in result && result.canceled) return;
         setWorkingDirError({
-          message: `Couldn't open the folder picker (${'reason' in result ? result.reason : 'host unavailable'}). Please update SaaSCodex and try again.`,
+          message: `Couldn't open the folder picker (${'reason' in result ? result.reason : 'host unavailable'}). Please update SplatStudio and try again.`,
         });
         return;
       }

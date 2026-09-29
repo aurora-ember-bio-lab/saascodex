@@ -1,4 +1,4 @@
-import { Button } from '@saascodex/components';
+import { Button } from '@splatstudio/components';
 import { useCallback, useEffect, useId, useRef, useState, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
 

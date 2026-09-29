@@ -23,7 +23,7 @@ import {
   type TeamProject,
   type WorkspaceCollabContext,
   workspaceContextHasTeamIdentity,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { Icon, type IconName } from './Icon';
 import {
   hasCompletionNotice,
@@ -225,9 +225,9 @@ function dockActionsAnchorFor(
   };
 }
 
-const STORAGE_KEY = 'saascodex:workspace-tabs:v1';
-const OPEN_WORKSPACE_TAB_EVENT = 'saascodex:workspace-tabs:open';
-const REMOVE_WORKSPACE_PROJECT_TABS_EVENT = 'saascodex:workspace-tabs:remove-project';
+const STORAGE_KEY = 'splatstudio:workspace-tabs:v1';
+const OPEN_WORKSPACE_TAB_EVENT = 'splatstudio:workspace-tabs:open';
+const REMOVE_WORKSPACE_PROJECT_TABS_EVENT = 'splatstudio:workspace-tabs:remove-project';
 const MAX_PERSISTED_TAB_SCOPES = 12;
 const TAB_DRAG_HAPTIC_MS = 8;
 const TAB_DROP_HAPTIC_MS = 12;

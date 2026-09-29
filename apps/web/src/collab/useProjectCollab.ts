@@ -5,7 +5,7 @@ import type {
   ProjectContentTransferState,
   ProjectVisibility,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { resolveCollabSession } from './collab-session';
 import {
   lastResolvedTeamProjects as cachedTeamProjects,

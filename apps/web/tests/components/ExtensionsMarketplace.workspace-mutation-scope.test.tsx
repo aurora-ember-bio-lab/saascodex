@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type {
   InstalledPluginRecord,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { ExtensionsMarketplace } from '../../src/components/PluginsView';
 import { I18nProvider } from '../../src/i18n';

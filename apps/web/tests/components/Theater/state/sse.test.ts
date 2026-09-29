@@ -11,7 +11,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import {
   createCritiqueEventsConnection,
@@ -19,8 +19,8 @@ import {
   critiqueEventsUrl,
   sseToPanelEvent,
 } from '../../../../src/components/Theater/state/sse';
-import { CRITIQUE_SSE_EVENT_NAMES } from '@saascodex/contracts/critique';
-import type { CritiqueSseEventName } from '@saascodex/contracts/critique';
+import { CRITIQUE_SSE_EVENT_NAMES } from '@splatstudio/contracts/critique';
+import type { CritiqueSseEventName } from '@splatstudio/contracts/critique';
 
 type Listener = (evt: Event) => void;
 

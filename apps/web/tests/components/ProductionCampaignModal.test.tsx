@@ -17,9 +17,9 @@ const openExternalUrlMock = vi.hoisted(() => vi.fn(async () => true));
 type CampaignHostGlobal = typeof globalThis & {
 	__openDesignCampaignTestHost?: unknown;
 };
-vi.mock("@saascodex/host", () => ({
-	SAASCODEX_HOST_VERSION: 2,
-	getSaaSCodexHost: () =>
+vi.mock("@splatstudio/host", () => ({
+	SPLATSTUDIO_HOST_VERSION: 2,
+	getSplatStudioHost: () =>
 		(globalThis as CampaignHostGlobal).__openDesignCampaignTestHost,
 }));
 vi.mock("../../src/providers/registry", () => ({
@@ -29,7 +29,7 @@ import { ProductionCampaignModal } from "../../src/components/ProductionCampaign
 import { internalActionNavigationUrl } from "../../src/components/touchpoint-navigation";
 import { ProductionCampaignBadge } from "../../src/components/ProductionCampaignBadge";
 import * as touchpointComponent from "../../src/components/touchpoint-component";
-import { SaaSCodexTouchpointElement } from "../../src/components/touchpoint-component";
+import { SplatStudioTouchpointElement } from "../../src/components/touchpoint-component";
 import { I18nProvider, useI18n } from "../../src/i18n";
 
 const digest = (value: string) =>
@@ -146,8 +146,8 @@ beforeEach(() => {
 		length: 1,
 	} as DOMRectList);
 	vi
-		.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
-		.mockImplementation(async function (this: SaaSCodexTouchpointElement) {
+		.spyOn(SplatStudioTouchpointElement.prototype, "mount")
+		.mockImplementation(async function (this: SplatStudioTouchpointElement) {
 			this.shadowRoot?.replaceChildren(
 				document.createTextNode("Verified campaign"),
 			);
@@ -201,9 +201,9 @@ describe("ProductionCampaignModal", () => {
 			client: { osLocale: "de-DE", type: "desktop" },
 		};
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 			.mockImplementation(async function (
-				this: SaaSCodexTouchpointElement,
+				this: SplatStudioTouchpointElement,
 				_entry,
 				_digest,
 				context,
@@ -273,9 +273,9 @@ describe("ProductionCampaignModal", () => {
 				mounted = resolve;
 			});
 			vi
-				.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+				.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 				.mockImplementation(async function (
-					this: SaaSCodexTouchpointElement,
+					this: SplatStudioTouchpointElement,
 					_entry,
 					_digest,
 					context,
@@ -708,7 +708,7 @@ describe("Production campaign live refresh", () => {
 		await tick(30_000);
 		expect(fetchMock).toHaveBeenCalledTimes(2);
 		expect(document.querySelector("opend-touchpoint")).toBe(host);
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 		fireEvent.keyDown(document, { key: "Escape" });
 		expect(screen.queryByRole("dialog")).toBeNull();
 		await tick(60_000);
@@ -750,7 +750,7 @@ describe("Production campaign live refresh", () => {
 		expect(staged).toHaveBeenCalledTimes(2);
 		expect(screen.getByRole("dialog")).toBe(dialog);
 		expect(document.querySelector("opend-touchpoint")).toBe(element);
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 		expect(document.body.style.overflow).toBe("hidden");
 		fireEvent.keyDown(document, { key: "Tab" });
 		expect(modal.contains(document.activeElement)).toBe(true);
@@ -760,7 +760,7 @@ describe("Production campaign live refresh", () => {
 		});
 		expect(screen.getByRole("dialog")).toBe(dialog);
 		expect(document.querySelector("opend-touchpoint")).toBe(element);
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 	});
 
 	// OPEND-3369 measured this; OPEND-3374 reversed it. **Deliberate contract
@@ -792,7 +792,7 @@ describe("Production campaign live refresh", () => {
 		expect(rotating).toHaveBeenCalledTimes(POLLS + 1);
 		// One host element for the whole hour, mounted once.
 		expect(hosts.size).toBe(1);
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 	});
 
 	// The control it used to need: with a stable id the answer was already one
@@ -808,7 +808,7 @@ describe("Production campaign live refresh", () => {
 		await tick(POLLS * 30_000);
 		expect(fetchMock).toHaveBeenCalledTimes(POLLS + 1);
 		expect(document.querySelector("opend-touchpoint")).toBe(host);
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 	});
 
 	// OPEND-3374, the core case. The server credential row lives 60s and the
@@ -846,7 +846,7 @@ describe("Production campaign live refresh", () => {
 		const dialog = screen.getByRole("dialog");
 		const host = document.querySelector("opend-touchpoint");
 		expect(host).not.toBeNull();
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 
 		// Three polls' worth of outage: past the 60s credential TTL, well inside
 		// the authorization the server granted.
@@ -873,7 +873,7 @@ describe("Production campaign live refresh", () => {
 		expect(document.querySelector("opend-touchpoint")).toBe(host);
 		// One mount for the whole episode: no rebuilt shadow DOM, no replayed
 		// entry animation, no scroll lock released and re-taken.
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 		expect(document.body.style.overflow).toBe("hidden");
 	});
 
@@ -939,9 +939,9 @@ describe("Production campaign live refresh", () => {
 		};
 		let dispatchAction: ((actionId: string) => Promise<void>) | undefined;
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 			.mockImplementation(async function (
-				this: SaaSCodexTouchpointElement,
+				this: SplatStudioTouchpointElement,
 				_entry,
 				_digest,
 				_context,
@@ -1008,7 +1008,7 @@ describe("Production campaign live refresh", () => {
 		await tick(30_000);
 		await tick(16);
 		expect(document.querySelector("opend-touchpoint")).not.toBe(host);
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(2);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(2);
 	});
 
 	// Keeping the previous decision OBJECT when the key matches must never mean
@@ -1343,9 +1343,9 @@ describe("ProductionCampaignModal mount lifetime", () => {
 			client: { osLocale: "en-US", type: "desktop" },
 		};
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 			.mockImplementation(async function (
-				this: SaaSCodexTouchpointElement,
+				this: SplatStudioTouchpointElement,
 				_entry,
 				_digest,
 				_context,
@@ -1389,7 +1389,7 @@ describe("ProductionCampaignModal mount lifetime", () => {
 			client: { osLocale: "en-US", type: "desktop" },
 		};
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 			.mockRejectedValue(new Error("mount failed"));
 		vi.stubGlobal(
 			"fetch",
@@ -1401,7 +1401,7 @@ describe("ProductionCampaignModal mount lifetime", () => {
 		);
 		render(<ProductionCampaignModal authenticated sessionSubject="user-a" />);
 		await waitFor(() =>
-			expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalled(),
+			expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalled(),
 		);
 		expect(screen.queryByRole("button", { name: "Close" })).toBeNull();
 		fireEvent.keyDown(document, { key: "Escape" });
@@ -1414,8 +1414,8 @@ describe("ProductionCampaignModal mount lifetime", () => {
 		};
 		let closeControl!: HTMLButtonElement;
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
-			.mockImplementation(async function (this: SaaSCodexTouchpointElement) {
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
+			.mockImplementation(async function (this: SplatStudioTouchpointElement) {
 				closeControl = document.createElement("button");
 				closeControl.dataset.touchpointClose = "true";
 				closeControl.disabled = true;
@@ -1460,9 +1460,9 @@ describe("ProductionCampaignModal mount lifetime", () => {
 				mounted = resolve;
 			});
 			vi
-				.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+				.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 				.mockImplementation(async function (
-					this: SaaSCodexTouchpointElement,
+					this: SplatStudioTouchpointElement,
 					_entry,
 					_digest,
 					_context,
@@ -1515,7 +1515,7 @@ describe("ProductionCampaignModal mount lifetime", () => {
 				await vi.advanceTimersByTimeAsync(30_000);
 			});
 			expect(gets).toBe(2);
-			expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+			expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 			await act(async () => {
 				await vi.advanceTimersByTimeAsync(10_000);
 			});
@@ -1542,9 +1542,9 @@ describe("ProductionCampaignModal mount lifetime", () => {
 		};
 		let dispatchAction: ((actionId: string) => Promise<void>) | undefined;
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 			.mockImplementation(async function (
-				this: SaaSCodexTouchpointElement,
+				this: SplatStudioTouchpointElement,
 				_entry,
 				_digest,
 				_context,
@@ -1575,7 +1575,7 @@ describe("ProductionCampaignModal mount lifetime", () => {
 		window.dispatchEvent(new Event("focus"));
 		window.dispatchEvent(new Event("online"));
 		await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
-		expect(SaaSCodexTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
+		expect(SplatStudioTouchpointElement.prototype.mount).toHaveBeenCalledTimes(1);
 		expect(document.querySelector("opend-touchpoint")).toBe(host);
 		await dispatchAction?.("learn");
 		expect(fetchMock).toHaveBeenCalledWith(
@@ -1634,8 +1634,8 @@ describe("ProductionCampaignModal mount lifetime", () => {
 		let rejectOldMount!: (reason?: unknown) => void;
 		let mountCount = 0;
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
-			.mockImplementation(async function (this: SaaSCodexTouchpointElement) {
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
+			.mockImplementation(async function (this: SplatStudioTouchpointElement) {
 				mountCount += 1;
 				if (mountCount === 1) {
 					await new Promise<never>((_, reject) => {
@@ -1687,7 +1687,7 @@ describe("ProductionCampaignModal mount lifetime", () => {
 		const verify = vi
 			.spyOn(touchpointComponent, "verifyWebTouchpoint")
 			.mockReturnValue(verified);
-		const mount = vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount");
+		const mount = vi.spyOn(SplatStudioTouchpointElement.prototype, "mount");
 		mount.mockClear();
 		vi.stubGlobal(
 			"fetch",
@@ -1833,7 +1833,7 @@ describe("ProductionCampaignModal device impressions", () => {
 	});
 	it("does not consume an impression during verification or on failed mount and dismissal", async () => {
 		let finish!: () => void;
-		vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(
+		vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(
 			() =>
 				new Promise<void>((_, reject) => {
 					finish = () => reject(new Error("mount failed"));
@@ -2110,9 +2110,9 @@ describe("ProductionCampaignModal device impressions", () => {
 		});
 		let click!: (id: string) => Promise<void>;
 		vi
-			.spyOn(SaaSCodexTouchpointElement.prototype, "mount")
+			.spyOn(SplatStudioTouchpointElement.prototype, "mount")
 			.mockImplementation(async function (
-				this: SaaSCodexTouchpointElement,
+				this: SplatStudioTouchpointElement,
 				_entry,
 				_digest,
 				_context,
@@ -2185,7 +2185,7 @@ describe("ProductionCampaignModal device impressions", () => {
 	});
 	it("does not record a successful mount that completes after unmount", async () => {
 		let finish!: () => void;
-		vi.spyOn(SaaSCodexTouchpointElement.prototype, "mount").mockImplementation(
+		vi.spyOn(SplatStudioTouchpointElement.prototype, "mount").mockImplementation(
 			() =>
 				new Promise<void>((resolve) => {
 					finish = resolve;

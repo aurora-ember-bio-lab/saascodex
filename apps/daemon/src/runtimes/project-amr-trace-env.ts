@@ -106,7 +106,7 @@ export function pinRunWorkspaceScopeForProject(
  * Project A stays pinned to A for initial spawn and every retry even if the UI
  * switches to B, authority lookup is unavailable, or the project is later
  * rebound. Vela/AMR receives the signed-in account credentials plus
- * `SAASCODEX_WORKSPACE_ID=A` and remains the final authorization/billing
+ * `SPLATSTUDIO_WORKSPACE_ID=A` and remains the final authorization/billing
  * authority. A genuinely unbound local project stays account-scoped and omits
  * the Workspace env var on every attempt.
  */

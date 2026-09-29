@@ -1,8 +1,8 @@
 # Premium plugins
 
-Licensed SaaSCodex plugins. These are distribution sources, not bundled
+Licensed SplatStudio plugins. These are distribution sources, not bundled
 content: the daemon discovers them through
-[`plugins/registry/premium/saascodex-marketplace.json`](../../plugins/registry/premium/saascodex-marketplace.json)
+[`plugins/registry/premium/splatstudio-marketplace.json`](../../plugins/registry/premium/splatstudio-marketplace.json)
 and activates one only when the workspace is entitled (see
 [`commercial-core/`](../../commercial-core/) and
 [`docs/PLUGIN-ECOSYSTEM.md`](../../docs/PLUGIN-ECOSYSTEM.md)).
@@ -12,7 +12,7 @@ and activates one only when the workspace is entitled (see
 ```
 premium_plugins/<vendor>/<plugin>/
   SKILL.md          # portable skill contract (same as all plugins)
-  saascodex.json    # standard marketplace manifest
+  splatstudio.json    # standard marketplace manifest
   commercial.json   # price / plan / license scope (first-party sidecar)
 ```
 
@@ -27,7 +27,7 @@ manifest, and map it in `commercial-core/entitlements.json`.
 
 ## Rules
 
-- Keep the plugin folder standard (`SKILL.md` + `saascodex.json`); pricing and
+- Keep the plugin folder standard (`SKILL.md` + `splatstudio.json`); pricing and
   entitlement live in `commercial.json`, never in the frozen plugin schema.
 - Never ship secrets or license keys inside a plugin folder.
 - The plugin must degrade gracefully when unentitled: visible-but-locked, no

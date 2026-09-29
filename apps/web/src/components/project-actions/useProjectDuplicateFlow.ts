@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
-import type { TrackingProjectCollectionPage } from '@saascodex/contracts/analytics';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
+import type { TrackingProjectCollectionPage } from '@splatstudio/contracts/analytics';
 
 import { useAnalytics } from '../../analytics/provider';
 import { trackWorkspaceProjectActionResult } from '../../analytics/events';

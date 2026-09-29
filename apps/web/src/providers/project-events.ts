@@ -11,7 +11,7 @@ import {
   type ProjectConversationCreatedSsePayload,
   type ProjectContentTransferStateSsePayload,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   workspaceIdentityCacheKey,
   workspaceResourceUrl,

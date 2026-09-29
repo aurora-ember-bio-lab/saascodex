@@ -109,7 +109,7 @@ export function renderFallbackCard(meta: SkillCardMeta, indexInCatalog: number):
 <body>
   <div class="card">
     <div class="top-bar">
-      <span>SaaSCodex · Catalog</span>
+      <span>SplatStudio · Catalog</span>
       <span>Nº ${indexStr}</span>
     </div>
     <div>

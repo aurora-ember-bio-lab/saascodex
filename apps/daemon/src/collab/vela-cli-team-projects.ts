@@ -1,4 +1,4 @@
-import type { ProjectMetadata, TeamProject } from '@saascodex/contracts';
+import type { ProjectMetadata, TeamProject } from '@splatstudio/contracts';
 import type {
   UpsertVelaTeamProjectInput,
   VelaTeamProjectCatalogClient,

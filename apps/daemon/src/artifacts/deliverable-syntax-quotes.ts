@@ -1,4 +1,4 @@
-import type { DeliverableSyntaxSafeFixRule } from '@saascodex/contracts';
+import type { DeliverableSyntaxSafeFixRule } from '@splatstudio/contracts';
 import { parse, type Token } from 'acorn';
 
 const MAX_LITERAL_LENGTH = 4096;

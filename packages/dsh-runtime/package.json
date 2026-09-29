@@ -1,7 +1,7 @@
 {
-  "name": "@saascodex/dsh-runtime",
+  "name": "@splatstudio/dsh-runtime",
   "version": "0.1.0",
-  "description": "DeepSeek Harness profile runtime for SaaSCodex",
+  "description": "DeepSeek Harness profile runtime for SplatStudio",
   "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",

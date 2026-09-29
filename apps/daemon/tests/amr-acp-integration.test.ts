@@ -456,7 +456,7 @@ if (args[0] === 'model' && args[1] === 'list') {
   state.attempts += 1;
   if (stateFile) writeFileSync(stateFile, JSON.stringify(state), 'utf8');
   if (state.attempts < 3) {
-    process.stderr.write('Get "https://amr-link.saascodex.com/v1/models": context deadline exceeded\\n');
+    process.stderr.write('Get "https://amr-link.splatstudio.app/v1/models": context deadline exceeded\\n');
     process.exit(1);
   }
 }

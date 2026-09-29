@@ -10,7 +10,7 @@ import {
   resolveSkillId,
 } from '../src/skills.js';
 
-// Regression coverage for the editorial-collage → saascodex-landing rename.
+// Regression coverage for the editorial-collage → splatstudio-landing rename.
 // The daemon persists the chosen skill_id verbatim on a project row and
 // resolves it later by id, so a folder/frontmatter rename without a
 // compatibility shim would silently drop the skill prompt for projects
@@ -24,18 +24,18 @@ beforeAll(async () => {
   // Mimic the on-disk shape the production registry expects: one
   // directory per skill, each with a SKILL.md whose frontmatter `name`
   // becomes the canonical id returned by listSkills().
-  await mkdir(path.join(skillsRoot, 'saascodex-landing'), { recursive: true });
+  await mkdir(path.join(skillsRoot, 'splatstudio-landing'), { recursive: true });
   await writeFile(
-    path.join(skillsRoot, 'saascodex-landing', 'SKILL.md'),
-    '---\nname: saascodex-landing\ndescription: Atelier Zero landing.\n---\n\nbody\n',
+    path.join(skillsRoot, 'splatstudio-landing', 'SKILL.md'),
+    '---\nname: splatstudio-landing\ndescription: Atelier Zero landing.\n---\n\nbody\n',
     'utf8',
   );
-  await mkdir(path.join(skillsRoot, 'saascodex-landing-deck'), {
+  await mkdir(path.join(skillsRoot, 'splatstudio-landing-deck'), {
     recursive: true,
   });
   await writeFile(
-    path.join(skillsRoot, 'saascodex-landing-deck', 'SKILL.md'),
-    '---\nname: saascodex-landing-deck\ndescription: Atelier Zero deck.\n---\n\nbody\n',
+    path.join(skillsRoot, 'splatstudio-landing-deck', 'SKILL.md'),
+    '---\nname: splatstudio-landing-deck\ndescription: Atelier Zero deck.\n---\n\nbody\n',
     'utf8',
   );
   // An untouched skill so we can prove the helper still resolves
@@ -54,9 +54,9 @@ afterAll(async () => {
 
 describe('SKILL_ID_ALIASES', () => {
   it('maps the editorial-collage rename to its current canonical id', () => {
-    expect(SKILL_ID_ALIASES['editorial-collage']).toBe('saascodex-landing');
+    expect(SKILL_ID_ALIASES['editorial-collage']).toBe('splatstudio-landing');
     expect(SKILL_ID_ALIASES['editorial-collage-deck']).toBe(
-      'saascodex-landing-deck',
+      'splatstudio-landing-deck',
     );
   });
 
@@ -67,9 +67,9 @@ describe('SKILL_ID_ALIASES', () => {
 
 describe('resolveSkillId', () => {
   it('forwards deprecated ids to their canonical replacement', () => {
-    expect(resolveSkillId('editorial-collage')).toBe('saascodex-landing');
+    expect(resolveSkillId('editorial-collage')).toBe('splatstudio-landing');
     expect(resolveSkillId('editorial-collage-deck')).toBe(
-      'saascodex-landing-deck',
+      'splatstudio-landing-deck',
     );
   });
 
@@ -90,7 +90,7 @@ describe('findSkillById', () => {
     const skills = await listSkills(skillsRoot);
     const skill = findSkillById(skills, 'editorial-collage');
     if (!skill) throw new Error('editorial-collage skill not found');
-    expect(skill.id).toBe('saascodex-landing');
+    expect(skill.id).toBe('splatstudio-landing');
     expect(skill.body).toContain('body');
   });
 
@@ -98,13 +98,13 @@ describe('findSkillById', () => {
     const skills = await listSkills(skillsRoot);
     const skill = findSkillById(skills, 'editorial-collage-deck');
     if (!skill) throw new Error('editorial-collage-deck skill not found');
-    expect(skill.id).toBe('saascodex-landing-deck');
+    expect(skill.id).toBe('splatstudio-landing-deck');
   });
 
   it('still resolves current ids exactly', async () => {
     const skills = await listSkills(skillsRoot);
-    expect(findSkillById(skills, 'saascodex-landing')?.id).toBe(
-      'saascodex-landing',
+    expect(findSkillById(skills, 'splatstudio-landing')?.id).toBe(
+      'splatstudio-landing',
     );
     expect(findSkillById(skills, 'simple-deck')?.id).toBe('simple-deck');
   });
@@ -113,6 +113,6 @@ describe('findSkillById', () => {
     const skills = await listSkills(skillsRoot);
     expect(findSkillById(skills, 'definitely-not-a-skill')).toBeUndefined();
     expect(findSkillById(skills, '')).toBeUndefined();
-    expect(findSkillById(null, 'saascodex-landing')).toBeUndefined();
+    expect(findSkillById(null, 'splatstudio-landing')).toBeUndefined();
   });
 });

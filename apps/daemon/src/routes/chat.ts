@@ -32,7 +32,7 @@ import {
   classifyAIHubMixModel,
 } from '../integrations/aihubmix.js';
 import { isSafeId as isSafeProjectId } from '../projects.js';
-import { projectKindToTracking } from '@saascodex/contracts/analytics';
+import { projectKindToTracking } from '@splatstudio/contracts/analytics';
 import { proxyDispatcherRequestInit, validateUserProviderBaseUrl } from '../connectionTest.js';
 import { isKnownReasoningEffort, resolveModelForServiceTier } from '../runtimes/models.js';
 import { googleStreamGenerateContentUrl } from '../integrations/google-models.js';
@@ -1105,7 +1105,7 @@ export function registerChatRoutes(app: Express, ctx: RegisterChatRoutesDeps) {
           Authorization: `Bearer ${apiKey}`,
           ...(validated.parsed!.hostname === 'openrouter.ai' ? {
             'HTTP-Referer': 'https://opendesign.dev',
-            'X-Title': 'SaaSCodex',
+            'X-Title': 'SplatStudio',
           } : {}),
         },
         redirect: 'error' as const,

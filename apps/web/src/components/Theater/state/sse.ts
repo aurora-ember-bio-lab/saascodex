@@ -4,8 +4,8 @@ import {
   type CritiqueSseEvent,
   type CritiqueSseEventName,
   type PanelEvent,
-} from '@saascodex/contracts/critique';
-import type { WorkspaceCollabContext } from '@saascodex/contracts';
+} from '@splatstudio/contracts/critique';
+import type { WorkspaceCollabContext } from '@splatstudio/contracts';
 
 import type { CritiqueAction } from './reducer';
 import { workspaceResourceUrl } from '../../../collab/workspace-identity';

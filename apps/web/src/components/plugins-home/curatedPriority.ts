@@ -4,14 +4,14 @@
 // viewport. The ids are daemon plugin ids, so the ordering remains
 // stable across locales and title-copy tweaks.
 
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 
 const CURATED_PROTOTYPE_PLUGIN_IDS = [
   'example-velar-luxury-real-estate',
   'example-hr-onboarding',
   'example-pricing-page',
   'example-gamified-app',
-  'example-saascodex-landing',
+  'example-splatstudio-landing',
 ] as const;
 
 // Wireframe scenario: lo-fi / sketch explorations across distinct styles —

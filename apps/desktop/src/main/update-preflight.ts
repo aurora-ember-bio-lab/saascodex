@@ -20,13 +20,13 @@ export function updateRestartSafetyError(safety: Exclude<UpdateRestartSafety, { 
     return {
       code: UPDATE_RESTART_BLOCKED_ERROR_CODE,
       details: { activeRunCount: safety.activeRunCount },
-      message: `SaaSCodex is still working on ${safety.activeRunCount} active task${safety.activeRunCount === 1 ? "" : "s"}.`,
+      message: `SplatStudio is still working on ${safety.activeRunCount} active task${safety.activeRunCount === 1 ? "" : "s"}.`,
     };
   }
   return {
     code: UPDATE_RESTART_UNKNOWN_ERROR_CODE,
     details: { activeRunCount: null },
-    message: "SaaSCodex could not confirm whether tasks are still running.",
+    message: "SplatStudio could not confirm whether tasks are still running.",
   };
 }
 

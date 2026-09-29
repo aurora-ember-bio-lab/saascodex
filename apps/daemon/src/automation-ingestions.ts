@@ -14,7 +14,7 @@ import type {
   CreateAutomationSourceIngestionRequest,
   JsonValue,
   MemoryType,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 
 import { createAutomationProposal } from './automation-proposals.js';
 import { getAnyAutomationTemplate } from './automation-templates.js';

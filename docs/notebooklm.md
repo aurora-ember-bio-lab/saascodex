@@ -1,6 +1,6 @@
-# NotebookLM: export issues/PRs from SaaSCodex
+# NotebookLM: export issues/PRs from SplatStudio
 
-SaaSCodex gets a lot of feedback via GitHub Issues + PRs. If you want NotebookLM to help with:
+SplatStudio gets a lot of feedback via GitHub Issues + PRs. If you want NotebookLM to help with:
 
 - support answers (with citations)
 - clustering + taxonomy of user scenarios
@@ -36,7 +36,7 @@ You can override the output path:
 ```bash
 pnpm exec tsx scripts/notebooklm-export-github.ts \
   --repo nexu-io/open-design \
-  --out notebooklm/saascodex-snapshot.md
+  --out notebooklm/splatstudio-snapshot.md
 ```
 
 ### Flags

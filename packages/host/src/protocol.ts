@@ -1,43 +1,43 @@
-import type { ReleaseChannel } from "@saascodex/release";
+import type { ReleaseChannel } from "@splatstudio/release";
 
 /**
  * @module protocol
  *
- * The SaaSCodex renderer host-bridge wire contract: the injected-global name
+ * The SplatStudio renderer host-bridge wire contract: the injected-global name
  * and version, client/updater constant registries, and every request/result
- * type that crosses the host bridge — including the {@link SaaSCodexHostBridge}
+ * type that crosses the host bridge — including the {@link SplatStudioHostBridge}
  * shape itself. Pure declarations only; depends on nothing else in the package.
  */
 
-export const SAASCODEX_HOST_GLOBAL = "__od__";
-export const SAASCODEX_HOST_VERSION = 2;
+export const SPLATSTUDIO_HOST_GLOBAL = "__od__";
+export const SPLATSTUDIO_HOST_VERSION = 2;
 
-export const SAASCODEX_HOST_CLIENT_TYPES = Object.freeze({
+export const SPLATSTUDIO_HOST_CLIENT_TYPES = Object.freeze({
   DESKTOP: "desktop",
 } as const);
 
-export type SaaSCodexHostClientType =
-  (typeof SAASCODEX_HOST_CLIENT_TYPES)[keyof typeof SAASCODEX_HOST_CLIENT_TYPES];
+export type SplatStudioHostClientType =
+  (typeof SPLATSTUDIO_HOST_CLIENT_TYPES)[keyof typeof SPLATSTUDIO_HOST_CLIENT_TYPES];
 
-export type SaaSCodexHostClient = {
+export type SplatStudioHostClient = {
   // BCP-47 locale string (e.g. "zh-CN", "pt-BR") the host process read from
   // the OS at startup. The renderer uses this so the packaged desktop app
   // can follow the OS language even when Chromium's built-in
   // `navigator.language` would have defaulted to en-US.
   osLocale?: string;
   platform?: string;
-  type: SaaSCodexHostClientType;
+  type: SplatStudioHostClientType;
 };
 
-export type SaaSCodexHostFailure = {
+export type SplatStudioHostFailure = {
   details?: unknown;
   ok: false;
   reason: string;
 };
 
-export type SaaSCodexHostActionResult =
+export type SplatStudioHostActionResult =
   | { ok: true }
-  | SaaSCodexHostFailure;
+  | SplatStudioHostFailure;
 
 /**
  * The workspace attribution the renderer gives the host so a folder import
@@ -57,7 +57,7 @@ export type SaaSCodexHostActionResult =
  * it would reject the very `WorkspaceCollabContext` callers pass. Callers hand
  * over a variable, not a fresh literal, so the extra fields ride along fine.
  */
-export type SaaSCodexHostWorkspaceContext = {
+export type SplatStudioHostWorkspaceContext = {
   lifecycleState: string;
   memberStatus: string;
   permissions: {
@@ -70,43 +70,43 @@ export type SaaSCodexHostWorkspaceContext = {
   workspaceType: string;
 };
 
-export type SaaSCodexHostProjectImportInit = {
+export type SplatStudioHostProjectImportInit = {
   designSystemId?: string | null;
   name?: string;
   skillId?: string | null;
-  workspaceContext?: SaaSCodexHostWorkspaceContext | null;
+  workspaceContext?: SplatStudioHostWorkspaceContext | null;
 };
 
-export type SaaSCodexHostProjectImportSuccess = {
+export type SplatStudioHostProjectImportSuccess = {
   conversationId: string;
   entryFile: string | null;
   ok: true;
   projectId: string;
 };
 
-export type SaaSCodexHostProjectImportResult =
-  | SaaSCodexHostProjectImportSuccess
+export type SplatStudioHostProjectImportResult =
+  | SplatStudioHostProjectImportSuccess
   | {
       canceled: true;
       ok: false;
     }
-  | SaaSCodexHostFailure;
+  | SplatStudioHostFailure;
 
-export type SaaSCodexHostProjectReplaceWorkingDirSuccess = {
+export type SplatStudioHostProjectReplaceWorkingDirSuccess = {
   baseDir: string;
   entryFile: string | null;
   ok: true;
 };
 
-export type SaaSCodexHostProjectReplaceWorkingDirResult =
-  | SaaSCodexHostProjectReplaceWorkingDirSuccess
+export type SplatStudioHostProjectReplaceWorkingDirResult =
+  | SplatStudioHostProjectReplaceWorkingDirSuccess
   | {
       canceled: true;
       ok: false;
     }
-  | SaaSCodexHostFailure;
+  | SplatStudioHostFailure;
 
-export type SaaSCodexHostPickWorkingDirSuccess = {
+export type SplatStudioHostPickWorkingDirSuccess = {
   baseDir: string;
   ok: true;
   // Single-use HMAC token (minted by the host main process for `baseDir`)
@@ -116,24 +116,24 @@ export type SaaSCodexHostPickWorkingDirSuccess = {
   token: string;
 };
 
-export type SaaSCodexHostPickWorkingDirResult =
-  | SaaSCodexHostPickWorkingDirSuccess
+export type SplatStudioHostPickWorkingDirResult =
+  | SplatStudioHostPickWorkingDirSuccess
   | {
       canceled: true;
       ok: false;
     }
-  | SaaSCodexHostFailure;
+  | SplatStudioHostFailure;
 
-export type SaaSCodexHostPdfPrintOptions = {
+export type SplatStudioHostPdfPrintOptions = {
   deck?: boolean;
 };
 
-export type SaaSCodexHostCaptureClip = { x: number; y: number; width: number; height: number };
-export type SaaSCodexHostCaptureOptions = { clip?: SaaSCodexHostCaptureClip };
-export type SaaSCodexHostCaptureSuccess = { dataUrl: string; h: number; ok: true; w: number };
-export type SaaSCodexHostCaptureResult = SaaSCodexHostCaptureSuccess | SaaSCodexHostFailure;
+export type SplatStudioHostCaptureClip = { x: number; y: number; width: number; height: number };
+export type SplatStudioHostCaptureOptions = { clip?: SplatStudioHostCaptureClip };
+export type SplatStudioHostCaptureSuccess = { dataUrl: string; h: number; ok: true; w: number };
+export type SplatStudioHostCaptureResult = SplatStudioHostCaptureSuccess | SplatStudioHostFailure;
 
-export type SaaSCodexHostPreviewNavigationFailure = {
+export type SplatStudioHostPreviewNavigationFailure = {
   errorCode: number;
   eventId: number;
   frameName?: string;
@@ -141,11 +141,11 @@ export type SaaSCodexHostPreviewNavigationFailure = {
   validatedUrl: string;
 };
 
-export type SaaSCodexHostPreviewNavigationFailureListener = (
-  failure: SaaSCodexHostPreviewNavigationFailure,
+export type SplatStudioHostPreviewNavigationFailureListener = (
+  failure: SplatStudioHostPreviewNavigationFailure,
 ) => void;
 
-export type SaaSCodexHostBrowserClearDataOptions = {
+export type SplatStudioHostBrowserClearDataOptions = {
   cookies?: boolean;
   storage?: boolean;
 };
@@ -157,16 +157,16 @@ export type SaaSCodexHostBrowserClearDataOptions = {
  * muddy gray when the OS is dark but the app theme is explicitly light);
  * `system` restores following the OS.
  */
-export const SAASCODEX_HOST_APPEARANCE_THEMES = Object.freeze({
+export const SPLATSTUDIO_HOST_APPEARANCE_THEMES = Object.freeze({
   DARK: "dark",
   LIGHT: "light",
   SYSTEM: "system",
 } as const);
 
-export type SaaSCodexHostAppearanceTheme =
-  (typeof SAASCODEX_HOST_APPEARANCE_THEMES)[keyof typeof SAASCODEX_HOST_APPEARANCE_THEMES];
+export type SplatStudioHostAppearanceTheme =
+  (typeof SPLATSTUDIO_HOST_APPEARANCE_THEMES)[keyof typeof SPLATSTUDIO_HOST_APPEARANCE_THEMES];
 
-export const SAASCODEX_HOST_UPDATER_ACTIONS = Object.freeze({
+export const SPLATSTUDIO_HOST_UPDATER_ACTIONS = Object.freeze({
   CHECK: "check",
   CLEAR_CACHE: "clear-cache",
   DOWNLOAD: "download",
@@ -175,16 +175,16 @@ export const SAASCODEX_HOST_UPDATER_ACTIONS = Object.freeze({
   STATUS: "status",
 } as const);
 
-export type SaaSCodexHostUpdaterAction =
-  (typeof SAASCODEX_HOST_UPDATER_ACTIONS)[keyof typeof SAASCODEX_HOST_UPDATER_ACTIONS];
+export type SplatStudioHostUpdaterAction =
+  (typeof SPLATSTUDIO_HOST_UPDATER_ACTIONS)[keyof typeof SPLATSTUDIO_HOST_UPDATER_ACTIONS];
 
 /** @internal Updater actions that return a status snapshot (every action except `quit`). */
-export type SaaSCodexHostUpdaterStatusAction = Exclude<
-  SaaSCodexHostUpdaterAction,
-  typeof SAASCODEX_HOST_UPDATER_ACTIONS.QUIT
+export type SplatStudioHostUpdaterStatusAction = Exclude<
+  SplatStudioHostUpdaterAction,
+  typeof SPLATSTUDIO_HOST_UPDATER_ACTIONS.QUIT
 >;
 
-export const SAASCODEX_HOST_UPDATER_STATES = Object.freeze({
+export const SPLATSTUDIO_HOST_UPDATER_STATES = Object.freeze({
   AVAILABLE: "available",
   CHECKING: "checking",
   DOWNLOADED: "downloaded",
@@ -196,35 +196,35 @@ export const SAASCODEX_HOST_UPDATER_STATES = Object.freeze({
   UNSUPPORTED: "unsupported",
 } as const);
 
-export type SaaSCodexHostUpdaterState =
-  (typeof SAASCODEX_HOST_UPDATER_STATES)[keyof typeof SAASCODEX_HOST_UPDATER_STATES];
+export type SplatStudioHostUpdaterState =
+  (typeof SPLATSTUDIO_HOST_UPDATER_STATES)[keyof typeof SPLATSTUDIO_HOST_UPDATER_STATES];
 
-export type SaaSCodexHostUpdaterMode = "js-incremental" | "package-launcher";
-export type SaaSCodexHostUpdaterChannel = ReleaseChannel;
+export type SplatStudioHostUpdaterMode = "js-incremental" | "package-launcher";
+export type SplatStudioHostUpdaterChannel = ReleaseChannel;
 
-export type SaaSCodexHostUpdaterActionOptions = {
+export type SplatStudioHostUpdaterActionOptions = {
   payload?: Record<string, unknown>;
 };
 
-export type SaaSCodexHostUpdaterCapabilitySet = {
+export type SplatStudioHostUpdaterCapabilitySet = {
   canApplyInPlace: boolean;
   canDownload: boolean;
   canOpenInstaller: boolean;
   requiresManualInstall: boolean;
 };
 
-export type SaaSCodexHostUpdaterPathSnapshot = {
+export type SplatStudioHostUpdaterPathSnapshot = {
   downloadRoot?: string;
   manifestPath?: string;
 };
 
-export type SaaSCodexHostUpdaterChecksumSnapshot = {
+export type SplatStudioHostUpdaterChecksumSnapshot = {
   algorithm: "sha256" | "sha512";
   url?: string;
   value?: string;
 };
 
-export type SaaSCodexHostUpdaterArtifactSnapshot = {
+export type SplatStudioHostUpdaterArtifactSnapshot = {
   name?: string;
   platformKey?: string;
   size?: number;
@@ -232,18 +232,18 @@ export type SaaSCodexHostUpdaterArtifactSnapshot = {
   url: string;
 };
 
-export type SaaSCodexHostUpdaterProgressSnapshot = {
+export type SplatStudioHostUpdaterProgressSnapshot = {
   receivedBytes: number;
   totalBytes?: number;
 };
 
-export type SaaSCodexHostUpdaterErrorSnapshot = {
+export type SplatStudioHostUpdaterErrorSnapshot = {
   code: string;
   details?: unknown;
   message: string;
 };
 
-export type SaaSCodexHostUpdaterInstallResult = {
+export type SplatStudioHostUpdaterInstallResult = {
   activeVersion?: string;
   artifactPath?: string;
   dryRun?: boolean;
@@ -254,11 +254,11 @@ export type SaaSCodexHostUpdaterInstallResult = {
   path: string;
 };
 
-export type SaaSCodexHostUpdaterReleaseSnapshot = {
+export type SplatStudioHostUpdaterReleaseSnapshot = {
   arch: string;
-  artifact: SaaSCodexHostUpdaterArtifactSnapshot;
-  checksum: SaaSCodexHostUpdaterChecksumSnapshot;
-  channel: SaaSCodexHostUpdaterChannel;
+  artifact: SplatStudioHostUpdaterArtifactSnapshot;
+  checksum: SplatStudioHostUpdaterChecksumSnapshot;
+  channel: SplatStudioHostUpdaterChannel;
   downloadedAt: string;
   key: string;
   metadata?: Record<string, unknown>;
@@ -267,29 +267,29 @@ export type SaaSCodexHostUpdaterReleaseSnapshot = {
   version: string;
 };
 
-export type SaaSCodexHostUpdaterIncomingSnapshot = {
+export type SplatStudioHostUpdaterIncomingSnapshot = {
   arch: string;
-  artifact: SaaSCodexHostUpdaterArtifactSnapshot;
-  channel: SaaSCodexHostUpdaterChannel;
+  artifact: SplatStudioHostUpdaterArtifactSnapshot;
+  channel: SplatStudioHostUpdaterChannel;
   key?: string;
   metadata?: Record<string, unknown>;
-  progress?: SaaSCodexHostUpdaterProgressSnapshot;
+  progress?: SplatStudioHostUpdaterProgressSnapshot;
   startedAt: string;
   version: string;
 };
 
-export type SaaSCodexHostUpdaterCacheLifecycleTrigger = "cold-start" | "manual" | "next-version-ready";
+export type SplatStudioHostUpdaterCacheLifecycleTrigger = "cold-start" | "manual" | "next-version-ready";
 
-export type SaaSCodexHostUpdaterReleaseLifecycleState =
+export type SplatStudioHostUpdaterReleaseLifecycleState =
   | "cleanup-deferred"
   | "cleanup-removed"
   | "deprecated"
   | "retained"
   | "unknown";
 
-export type SaaSCodexHostUpdaterCacheLifecycleSummary = {
+export type SplatStudioHostUpdaterCacheLifecycleSummary = {
   lastRunAt?: string;
-  lastTrigger?: SaaSCodexHostUpdaterCacheLifecycleTrigger;
+  lastTrigger?: SplatStudioHostUpdaterCacheLifecycleTrigger;
   platform: string;
   releases: {
     cleanupDeferred: number;
@@ -302,11 +302,11 @@ export type SaaSCodexHostUpdaterCacheLifecycleSummary = {
   };
 };
 
-export type SaaSCodexHostUpdaterCacheSnapshot = {
-  lifecycle?: SaaSCodexHostUpdaterCacheLifecycleSummary;
+export type SplatStudioHostUpdaterCacheSnapshot = {
+  lifecycle?: SplatStudioHostUpdaterCacheLifecycleSummary;
 };
 
-export type SaaSCodexHostUpdaterReinstallReason =
+export type SplatStudioHostUpdaterReinstallReason =
   | "launcher-schema"
   | "outer-below-min"
   | "outer-version-unreadable";
@@ -317,47 +317,47 @@ export type SaaSCodexHostUpdaterReinstallReason =
  * outer package version; `url` is an optional operator-supplied explanation
  * link.
  */
-export type SaaSCodexHostUpdaterReinstallSnapshot = {
+export type SplatStudioHostUpdaterReinstallSnapshot = {
   installedVersion?: string;
   minVersion?: string;
-  reason: SaaSCodexHostUpdaterReinstallReason;
+  reason: SplatStudioHostUpdaterReinstallReason;
   url?: string;
 };
 
-export type SaaSCodexHostUpdaterStatusSnapshot = {
-  active?: SaaSCodexHostUpdaterReleaseSnapshot;
+export type SplatStudioHostUpdaterStatusSnapshot = {
+  active?: SplatStudioHostUpdaterReleaseSnapshot;
   arch: string;
-  artifact?: SaaSCodexHostUpdaterArtifactSnapshot;
+  artifact?: SplatStudioHostUpdaterArtifactSnapshot;
   artifactUrl?: string;
   availableVersion?: string;
-  cache?: SaaSCodexHostUpdaterCacheSnapshot;
-  capabilities: SaaSCodexHostUpdaterCapabilitySet;
-  channel: SaaSCodexHostUpdaterChannel;
-  checksum?: SaaSCodexHostUpdaterChecksumSnapshot;
+  cache?: SplatStudioHostUpdaterCacheSnapshot;
+  capabilities: SplatStudioHostUpdaterCapabilitySet;
+  channel: SplatStudioHostUpdaterChannel;
+  checksum?: SplatStudioHostUpdaterChecksumSnapshot;
   currentVersion: string;
   downloadPath?: string;
   enabled: boolean;
-  error?: SaaSCodexHostUpdaterErrorSnapshot;
-  incoming?: SaaSCodexHostUpdaterIncomingSnapshot;
-  installResult?: SaaSCodexHostUpdaterInstallResult;
+  error?: SplatStudioHostUpdaterErrorSnapshot;
+  incoming?: SplatStudioHostUpdaterIncomingSnapshot;
+  installResult?: SplatStudioHostUpdaterInstallResult;
   lastCheckedAt?: string;
   metadata?: Record<string, unknown>;
-  mode: SaaSCodexHostUpdaterMode;
-  paths?: SaaSCodexHostUpdaterPathSnapshot;
+  mode: SplatStudioHostUpdaterMode;
+  paths?: SplatStudioHostUpdaterPathSnapshot;
   platform: string;
-  progress?: SaaSCodexHostUpdaterProgressSnapshot;
-  reinstall?: SaaSCodexHostUpdaterReinstallSnapshot;
-  state: SaaSCodexHostUpdaterState;
+  progress?: SplatStudioHostUpdaterProgressSnapshot;
+  reinstall?: SplatStudioHostUpdaterReinstallSnapshot;
+  state: SplatStudioHostUpdaterState;
   supported: boolean;
 };
 
-export type SaaSCodexHostUpdaterResult =
-  | { ok: true; status: SaaSCodexHostUpdaterStatusSnapshot }
-  | SaaSCodexHostFailure;
+export type SplatStudioHostUpdaterResult =
+  | { ok: true; status: SplatStudioHostUpdaterStatusSnapshot }
+  | SplatStudioHostFailure;
 
-export type SaaSCodexHostUpdaterStatusListener = (status: SaaSCodexHostUpdaterStatusSnapshot) => void;
+export type SplatStudioHostUpdaterStatusListener = (status: SplatStudioHostUpdaterStatusSnapshot) => void;
 
-export type SaaSCodexHostUpdaterMenuLabels = {
+export type SplatStudioHostUpdaterMenuLabels = {
   check: string;
   checking: string;
   downloading: string;
@@ -366,27 +366,27 @@ export type SaaSCodexHostUpdaterMenuLabels = {
   restart: string;
 };
 
-export type SaaSCodexHostUpdaterOpenDialogRequest = {
+export type SplatStudioHostUpdaterOpenDialogRequest = {
   source: string;
 };
 
-export type SaaSCodexHostUpdaterOpenDialogListener = (request: SaaSCodexHostUpdaterOpenDialogRequest) => void;
+export type SplatStudioHostUpdaterOpenDialogListener = (request: SplatStudioHostUpdaterOpenDialogRequest) => void;
 
-export type SaaSCodexHostBridge = {
+export type SplatStudioHostBridge = {
   // Optional so older host builds still satisfy the bridge shape; callers
   // must feature-detect before invoking.
   appearance?: {
-    setTheme(theme: SaaSCodexHostAppearanceTheme): void;
+    setTheme(theme: SplatStudioHostAppearanceTheme): void;
   };
   browser: {
-    clearData(options?: SaaSCodexHostBrowserClearDataOptions): Promise<SaaSCodexHostActionResult>;
+    clearData(options?: SplatStudioHostBrowserClearDataOptions): Promise<SplatStudioHostActionResult>;
   };
   capture: {
-    page(options?: SaaSCodexHostCaptureOptions): Promise<SaaSCodexHostCaptureResult>;
+    page(options?: SplatStudioHostCaptureOptions): Promise<SplatStudioHostCaptureResult>;
   };
-  client: SaaSCodexHostClient;
+  client: SplatStudioHostClient;
   pdf: {
-    print(html: string, nonce?: string, options?: SaaSCodexHostPdfPrintOptions): Promise<SaaSCodexHostActionResult>;
+    print(html: string, nonce?: string, options?: SplatStudioHostPdfPrintOptions): Promise<SplatStudioHostActionResult>;
   };
   pet: {
     setVisible(visible: boolean): void;
@@ -395,35 +395,35 @@ export type SaaSCodexHostBridge = {
   // Electron is the only layer that can observe a compositor-affecting
   // subframe navigation failure after the iframe DOM remains healthy.
   preview?: {
-    getLatestNavigationFailure(): SaaSCodexHostPreviewNavigationFailure | null;
-    subscribeNavigationFailure(listener: SaaSCodexHostPreviewNavigationFailureListener): () => void;
+    getLatestNavigationFailure(): SplatStudioHostPreviewNavigationFailure | null;
+    subscribeNavigationFailure(listener: SplatStudioHostPreviewNavigationFailureListener): () => void;
   };
   project: {
-    pickAndImport(init?: SaaSCodexHostProjectImportInit): Promise<SaaSCodexHostProjectImportResult>;
-    pickAndReplaceWorkingDir(projectId: string): Promise<SaaSCodexHostProjectReplaceWorkingDirResult>;
+    pickAndImport(init?: SplatStudioHostProjectImportInit): Promise<SplatStudioHostProjectImportResult>;
+    pickAndReplaceWorkingDir(projectId: string): Promise<SplatStudioHostProjectReplaceWorkingDirResult>;
     // Optional so older host builds still satisfy the bridge shape; callers
     // must feature-detect before invoking.
-    pickWorkingDir?(): Promise<SaaSCodexHostPickWorkingDirResult>;
+    pickWorkingDir?(): Promise<SplatStudioHostPickWorkingDirResult>;
   };
   shell: {
-    openExternal(url: string): Promise<SaaSCodexHostActionResult>;
-    openPath(projectId: string): Promise<SaaSCodexHostActionResult>;
+    openExternal(url: string): Promise<SplatStudioHostActionResult>;
+    openPath(projectId: string): Promise<SplatStudioHostActionResult>;
   };
   // Desktop only. Absent in Web and old clients; callers must fail closed.
   updater: {
-    check(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
-    "clear-cache"(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
-    download(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
-    install(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
-    quit(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostActionResult>;
-    setMenuLabels(labels: SaaSCodexHostUpdaterMenuLabels): Promise<SaaSCodexHostActionResult>;
-    status(options?: SaaSCodexHostUpdaterActionOptions): Promise<SaaSCodexHostUpdaterStatusSnapshot>;
-    subscribe(listener: SaaSCodexHostUpdaterStatusListener): () => void;
-    subscribeOpenDialog(listener: SaaSCodexHostUpdaterOpenDialogListener): () => void;
+    check(options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot>;
+    "clear-cache"(options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot>;
+    download(options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot>;
+    install(options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot>;
+    quit(options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostActionResult>;
+    setMenuLabels(labels: SplatStudioHostUpdaterMenuLabels): Promise<SplatStudioHostActionResult>;
+    status(options?: SplatStudioHostUpdaterActionOptions): Promise<SplatStudioHostUpdaterStatusSnapshot>;
+    subscribe(listener: SplatStudioHostUpdaterStatusListener): () => void;
+    subscribeOpenDialog(listener: SplatStudioHostUpdaterOpenDialogListener): () => void;
   };
-  version: typeof SAASCODEX_HOST_VERSION;
+  version: typeof SPLATSTUDIO_HOST_VERSION;
 };
 
-export type SaaSCodexHostGlobalScope = Record<string, unknown> & {
+export type SplatStudioHostGlobalScope = Record<string, unknown> & {
   window?: unknown;
 };

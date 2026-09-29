@@ -10,7 +10,7 @@ cli
       return;
     }
     if (channel === "prerelease" || channel === "stable") {
-      process.env.SAASCODEX_RELEASE_CHANNEL = channel;
+      process.env.SPLATSTUDIO_RELEASE_CHANNEL = channel;
       await import("./metadata/prepare-stable.ts");
       return;
     }

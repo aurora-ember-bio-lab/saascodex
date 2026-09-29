@@ -3,10 +3,10 @@
   "id": "contemporary",
   "name": "Contemporary",
   "category": "Modern & Minimal",
-  "description": "Bundled SaaSCodex package for Contemporary, derived from curated DESIGN.md, tokens.css, and components.html fixtures.",
+  "description": "Bundled SplatStudio package for Contemporary, derived from curated DESIGN.md, tokens.css, and components.html fixtures.",
   "source": {
     "type": "bundled",
-    "origin": "SaaSCodex curated bundled fixture"
+    "origin": "SplatStudio curated bundled fixture"
   },
   "files": {
     "design": "DESIGN.md",

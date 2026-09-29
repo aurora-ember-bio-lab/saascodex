@@ -1,4 +1,4 @@
-// SaaSCodex plan catalog and plan gating.
+// SplatStudio plan catalog and plan gating.
 //
 // Plans are the single source of truth for what each tier may do. The
 // Stripe price IDs are supplied through env vars so the same build works
@@ -16,7 +16,7 @@ export interface PlanDefinition {
   trialDays: number;
   /** Maximum concurrent projects; null means unlimited. */
   maxProjects: number | null;
-  /** Exports carry the SaaSCodex watermark while true. */
+  /** Exports carry the SplatStudio watermark while true. */
   watermarkExports: boolean;
   /** Programmatic API access (OD_API_TOKEN bearer) is allowed. */
   apiAccess: boolean;

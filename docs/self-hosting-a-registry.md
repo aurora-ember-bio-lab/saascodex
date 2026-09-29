@@ -1,6 +1,6 @@
-# Self-hosting An SaaSCodex Registry
+# Self-hosting An SplatStudio Registry
 
-An SaaSCodex registry is a source of `saascodex-marketplace.json` plus the
+An SplatStudio registry is a source of `splatstudio-marketplace.json` plus the
 review process that produces it. In v1 this can be a static GitHub repository,
 GitHub Enterprise, S3/R2, or any HTTPS host.
 
@@ -8,17 +8,17 @@ GitHub Enterprise, S3/R2, or any HTTPS host.
 
 ```text
 plugins/registry/
-  official/saascodex-marketplace.json
-  community/saascodex-marketplace.json
+  official/splatstudio-marketplace.json
+  community/splatstudio-marketplace.json
 plugins/community/<vendor>/<plugin-name>/
   SKILL.md
-  saascodex.json
+  splatstudio.json
 ```
 
 The machine-readable URL is the raw JSON file:
 
 ```bash
-od marketplace add https://example.com/saascodex-marketplace.json --trust restricted
+od marketplace add https://example.com/splatstudio-marketplace.json --trust restricted
 od marketplace refresh <id>
 od marketplace search "deck" --json
 ```
@@ -30,7 +30,7 @@ rejects HTML.
 
 ```bash
 od marketplace login https://github.example.com/org/plugin-registry
-od marketplace add https://raw.github.example.com/org/plugin-registry/main/saascodex-marketplace.json --trust trusted
+od marketplace add https://raw.github.example.com/org/plugin-registry/main/splatstudio-marketplace.json --trust trusted
 ```
 
 Authentication is delegated to `gh auth login --hostname <host>`. Tokens stay

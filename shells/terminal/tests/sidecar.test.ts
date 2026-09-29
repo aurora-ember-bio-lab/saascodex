@@ -9,12 +9,12 @@ import {
   invokeSidecar,
   stopSidecar,
   type SidecarStamp,
-} from "@saascodex/sidecar";
+} from "@splatstudio/sidecar";
 import {
   createStandaloneGenerationBinding,
   sha256Hex,
   type GenerationRecord,
-} from "@saascodex/standalone";
+} from "@splatstudio/standalone";
 
 import { repoRoot, terminalRoot } from "./helpers.js";
 

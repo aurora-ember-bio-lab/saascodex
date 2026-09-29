@@ -41,7 +41,7 @@ const SELECTORS = {
 
 const AMR_AGENT = {
   id: 'amr',
-  name: 'SaaSCodex AMR',
+  name: 'SplatStudio AMR',
   bin: 'vela',
   available: true,
   version: 'test',

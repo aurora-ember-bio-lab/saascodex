@@ -16,7 +16,7 @@ import {
   buildWorkspacePermissions,
   buildWorkspaceSeatSummary,
   type WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { runVelaResourceCommand } from '../src/collab/vela-cli-resource-adapter.js';
 import {
   createCollabRuntime,
@@ -2818,7 +2818,7 @@ describe('collab sync routes', () => {
     tempDirs.push(dir);
     await mkdir(path.join(dir, '.od-skills', 'fs-emerald'), { recursive: true });
     await writeFile(
-      path.join(dir, '.od-skills', 'fs-emerald', 'saascodex.json'),
+      path.join(dir, '.od-skills', 'fs-emerald', 'splatstudio.json'),
       JSON.stringify({ title: 'Emerald Editorial', name: 'example-fs-emerald-editorial' }),
     );
 
@@ -2842,7 +2842,7 @@ describe('collab sync routes', () => {
     tempDirs.push(dir);
     await mkdir(path.join(dir, '.od-skills', 'fs-emerald'), { recursive: true });
     await writeFile(
-      path.join(dir, '.od-skills', 'fs-emerald', 'saascodex.json'),
+      path.join(dir, '.od-skills', 'fs-emerald', 'splatstudio.json'),
       JSON.stringify({ title: 'Emerald Editorial' }),
     );
 

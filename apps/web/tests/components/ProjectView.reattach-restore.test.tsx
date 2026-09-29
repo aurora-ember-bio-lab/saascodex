@@ -284,14 +284,14 @@ describe('computeProducedFiles', () => {
     const before = new Set(['input.png']);
     const next = [
       { name: 'input.png', path: 'input.png', kind: 'image', size: 10 },
-      { name: 'generated-plugin/saascodex.json', path: 'generated-plugin/saascodex.json', kind: 'code', size: 20 },
+      { name: 'generated-plugin/splatstudio.json', path: 'generated-plugin/splatstudio.json', kind: 'code', size: 20 },
       { name: 'generated-plugin/SKILL.md', path: 'generated-plugin/SKILL.md', kind: 'code', size: 30 },
     ];
 
     expect(
       computeProducedFiles(before, next as never, [], 'project-1')?.map((file) => file.name),
     ).toEqual([
-      'generated-plugin/saascodex.json',
+      'generated-plugin/splatstudio.json',
       'generated-plugin/SKILL.md',
     ]);
   });
@@ -2271,13 +2271,13 @@ describe('ProjectView daemon reattach restore', () => {
 
     reattachDaemonRun.mockImplementation(async (options: any) => {
       const error = new Error(
-        'AMR Cloud reported insufficient balance for this model. Top up your AMR balance at https://saascodex.com/amr/dashboard, then retry this run.',
+        'AMR Cloud reported insufficient balance for this model. Top up your AMR balance at https://splatstudio.app/amr/dashboard, then retry this run.',
       ) as Error & { code: string; details: unknown };
       error.code = 'AMR_INSUFFICIENT_BALANCE';
       error.details = {
         kind: 'amr_account',
         action: 'recharge',
-        actionUrl: 'https://saascodex.com/amr/dashboard',
+        actionUrl: 'https://splatstudio.app/amr/dashboard',
       };
       options.handlers.onError(error);
     });

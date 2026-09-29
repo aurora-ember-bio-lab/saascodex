@@ -33,11 +33,11 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Build web
-        run: pnpm --filter @saascodex/web build
+        run: pnpm --filter @splatstudio/web build
       - name: Build daemon
-        run: pnpm --filter @saascodex/daemon build
+        run: pnpm --filter @splatstudio/daemon build
       - name: Bundle daemon prod dependencies
-        run: pnpm --filter @saascodex/daemon deploy --legacy --prod .release/daemon
+        run: pnpm --filter @splatstudio/daemon deploy --legacy --prod .release/daemon
       - name: Package release artifact
         run: pnpm exec tsx scripts/package-release.ts --daemon-dir .release/daemon --version "${{ github.ref_name }}"
       - uses: actions/upload-artifact@v4

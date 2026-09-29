@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { PersistedAgentEvent } from '@saascodex/contracts';
+import type { PersistedAgentEvent } from '@splatstudio/contracts';
 import { buildTurnBlocks } from '../../../src/runtime/chat/build-turn-blocks';
 import type { ExecutionShell } from '../../../src/runtime/chat/contract';
 import {

@@ -10,7 +10,7 @@ import type {
   DesktopExportArtifactResult,
   DesktopRenderSlidesInput,
   DesktopRenderSlidesResult,
-} from '@saascodex/sidecar-proto';
+} from '@splatstudio/sidecar-proto';
 import { createProjectFileVersion } from '../src/project-file-versions.js';
 import { startServer } from '../src/server.js';
 

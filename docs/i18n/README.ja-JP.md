@@ -1,21 +1,21 @@
-<h1 align="center">SaaSCodex: オープンソースの Claude Design 代替ツール</h1>
+<h1 align="center">SplatStudio: オープンソースの Claude Design 代替ツール</h1>
 
-> ⚡ **[SaaSCodex Cloud——公式モデルサービス。](https://saascodex.com/zh/pricing/)** 一度のチャージで、SaaSCodex 内のエージェントモデルと画像モデルを利用できます。エージェントには GPT、Claude、DeepSeek、画像には GPT Image 2.0、Seedream 5.0 Pro、Nano Banana 2.0 を提供します。
+> ⚡ **[SplatStudio Cloud——公式モデルサービス。](https://splatstudio.app/zh/pricing/)** 一度のチャージで、SplatStudio 内のエージェントモデルと画像モデルを利用できます。エージェントには GPT、Claude、DeepSeek、画像には GPT Image 2.0、Seedream 5.0 Pro、Nano Banana 2.0 を提供します。
 >
-> 🚀 **[DeepSeek V4 Flash と V4 Pro が利用可能になりました。](https://saascodex.com/zh/pricing/)** プロトタイプ、スライド、デザインシステム、日常的なエージェントタスクに最先端の知能を活用できます。SaaSCodex メンバーは、アプリ内で両モデルを 2 週間無制限に利用できます。
+> 🚀 **[DeepSeek V4 Flash と V4 Pro が利用可能になりました。](https://splatstudio.app/zh/pricing/)** プロトタイプ、スライド、デザインシステム、日常的なエージェントタスクに最先端の知能を活用できます。SplatStudio メンバーは、アプリ内で両モデルを 2 週間無制限に利用できます。
 >
-> 🧩 **[DeepSeek Harness に対応しました。](https://saascodex.com/zh/agents/deepseek-harness-design/)** DeepSeek 公式の `dsh` Agent Harness を SaaSCodex のネイティブランタイムとして接続できます。構造化思考、ツール呼び出し、モデル検出、キャンセル、セッション再開に対応し、生成ファイルはライブプレビューと納品のため SaaSCodex のワークフロー内に保持されます。
+> 🧩 **[DeepSeek Harness に対応しました。](https://splatstudio.app/zh/agents/deepseek-harness-design/)** DeepSeek 公式の `dsh` Agent Harness を SplatStudio のネイティブランタイムとして接続できます。構造化思考、ツール呼び出し、モデル検出、キャンセル、セッション再開に対応し、生成ファイルはライブプレビューと納品のため SplatStudio のワークフロー内に保持されます。
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/hero.png" alt="SaaSCodex hero banner" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/hero.png" alt="SplatStudio hero banner" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://saascodex.com/">ウェブサイト</a> ·
-  <a href="https://saascodex.com/">ダウンロード</a> ·
-  <a href="https://saascodex.com/cloud/">SaaSCodex Cloud</a> ·
+  <a href="https://splatstudio.app/">ウェブサイト</a> ·
+  <a href="https://splatstudio.app/">ダウンロード</a> ·
+  <a href="https://splatstudio.app/cloud/">SplatStudio Cloud</a> ·
   <a href="https://discord.gg/mHAjSMV6gz">Discord</a> ·
-  <a href="https://x.com/SaaSCodexHQ">@SaaSCodexHQ をフォロー</a>
+  <a href="https://x.com/SplatStudioHQ">@SplatStudioHQ をフォロー</a>
 </p>
 
 <p align="center">
@@ -29,11 +29,11 @@
 
 ---
 
-## SaaSCodex とは
+## SplatStudio とは
 
 🎨 **ローカルファーストでオープンソースの Claude Design 代替ツール。** &nbsp;🖥️ **macOS と Windows 向けのネイティブデスクトップアプリ。** &nbsp;⚡ **100 種類以上の機能スキル + 独立したレンダリングテンプレートカタログ** · ✨ **151 のデザインシステムパッケージ** · 📦 **277 のすぐ使えるプラグイン。** &nbsp;🖼️ **ウェブ · デスクトップ · モバイルのプロトタイプ**、**ライブダッシュボード／アーティファクト**、**スライド**、**画像**、**動画**、さらに **HyperFrames** のモーショングラフィックスを生成。🔒 サンドボックス化された iframe プレビュー · HTML / PDF / PPTX / MP4 エクスポート。&nbsp;🤖 **25 種類のローカル CLI 実行ファイル上で動作**、もしくは BYOK 経由で任意の OpenAI 互換エンドポイント上でも動作します。
 
-SaaSCodex は、そのループをエージェントが読み書きできる **機能スキル・レンダリングデザインテンプレート・デザインシステム・プラグインのファイルシステム** にします。
+SplatStudio は、そのループをエージェントが読み書きできる **機能スキル・レンダリングデザインテンプレート・デザインシステム・プラグインのファイルシステム** にします。
 
 これはまた、**エージェント時代の Figma 代替ツール**でもあります——キャンバス上でピクセルを動かす代わりに、本物の CSS、本物のフォント、本物のコンポーネントによる単一ページのアーティファクトを納品し、HTML / PDF / PPTX / MP4 へ直接エクスポートします。すでにあなたのデザインシステムによって形づくられ、すでに日常的に使うエージェントの中で実行可能です。
 
@@ -42,7 +42,7 @@ SaaSCodex は、そのループをエージェントが読み書きできる **�
 
 ## プロダクトツアー
 
-SaaSCodex の中核ワークフローを手早く紹介します。**Home** でブリーフを入力し、**Plugins** で再利用可能なスキルを探し、ブランドの参考資料を **Design System** に変換します。その後、プロジェクトの **Studio** でプロトタイプ、スライド、モバイルアプリ、画像、ドキュメント、HyperFrame を一か所で作成・改善できます。
+SplatStudio の中核ワークフローを手早く紹介します。**Home** でブリーフを入力し、**Plugins** で再利用可能なスキルを探し、ブランドの参考資料を **Design System** に変換します。その後、プロジェクトの **Studio** でプロトタイプ、スライド、モバイルアプリ、画像、ドキュメント、HyperFrame を一か所で作成・改善できます。
 
 ### コアページ
 
@@ -108,7 +108,7 @@ SaaSCodex の中核ワークフローを手早く紹介します。**Home** で�
 
 ## プラットフォーム互換性
 
-> SaaSCodex は、主流のコーディングエージェントがネイティブに利用する **スキル、CLI、MCP サーバー**として提供されます。OD をインストールすれば、`od mcp install <agent>` 一発で MCP サーバーがそのエージェントの設定に組み込まれ、どのエージェントの内部からでも同じツールを呼び出せます。
+> SplatStudio は、主流のコーディングエージェントがネイティブに利用する **スキル、CLI、MCP サーバー**として提供されます。OD をインストールすれば、`od mcp install <agent>` 一発で MCP サーバーがそのエージェントの設定に組み込まれ、どのエージェントの内部からでも同じツールを呼び出せます。
 
 | コーディングエージェント／プラットフォーム &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | ステータス &nbsp;&nbsp; | MCP サーバーのワンラインインストール &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 |---|:---:|---|
@@ -133,7 +133,7 @@ SaaSCodex の中核ワークフローを手早く紹介します。**Home** で�
 `od mcp install <agent> --print` でドライランのプレビュー · `--uninstall` で削除 · 完全な一覧は `od mcp install --help` で確認できます。
 
 <p align="center">
-  <img src="https://repo-assets.saascodex.com/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SaaSCodex supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
+  <img src="https://repo-assets.splatstudio.app/resources/images/coding-agents.png" alt="The 25 coding-agent CLIs SplatStudio supports — Claude Code · Codex · OpenCode · Hermes · Antigravity · Vela · Grok Build · Kimi · Cursor Agent · Qwen · Qoder · GitHub Copilot · Pi · Kiro · Kilo · Mistral Vibe · DeepSeek · Reasonix · Aider · Amp · CodeBuddy · Mimo · AtomCode · Devin · Trae" width="100%" />
 </p>
 
 **CLI を一つもインストールしていない場合は？** `POST /api/proxy/{anthropic,openai,azure,google,ollama,senseaudio}/stream` の BYOK プロキシが同じループ（プロセスのスポーンなし）を提供します——`baseUrl` + `apiKey` + `model` を貼り付けるだけで、OpenAI、Anthropic、Azure OpenAI、Google Gemini、Ollama、LM Studio、vLLM、または任意の OpenAI 互換エンドポイントに対応します。ターゲットごとの SSRF 保護が、内部 IP／リンクローカル／CGNAT をデーモンのエッジでブロックします。
@@ -223,7 +223,7 @@ Runtime 定義は [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runti
 
 ### 5 · 動画と HyperFrames — エージェントネイティブなモーショングラフィックス
 
-**[HyperFrames][hyperframes]** は HeyGen のオープンソースでエージェントネイティブな動画フレームワークであり、SaaSCodex に第一級の存在として統合されています。エージェントが HTML + CSS + GSAP を書き、HyperFrames がそれをヘッドレス Chrome + FFmpeg を通じて決定論的な MP4 にレンダリングします。シネマティックな t2v / i2v のための **Seedance 2.0**、ルーティングされたモデルバリアントのための **Veo 3 / Sora 2 / Kling 2**、そしてオーディオレイヤーのための **Suno v5 / Lyria 2** と組み合わせられます。
+**[HyperFrames][hyperframes]** は HeyGen のオープンソースでエージェントネイティブな動画フレームワークであり、SplatStudio に第一級の存在として統合されています。エージェントが HTML + CSS + GSAP を書き、HyperFrames がそれをヘッドレス Chrome + FFmpeg を通じて決定論的な MP4 にレンダリングします。シネマティックな t2v / i2v のための **Seedance 2.0**、ルーティングされたモデルバリアントのための **Veo 3 / Sora 2 / Kling 2**、そしてオーディオレイヤーのための **Suno v5 / Lyria 2** と組み合わせられます。
 
 <table>
 <tr>
@@ -246,11 +246,11 @@ Runtime 定義は [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runti
 
 ---
 
-## なぜ SaaSCodex なのか
+## なぜ SplatStudio なのか
 
 > **2026 年 4 月、Anthropic は Claude Design をリリースしました——LLM が散文を書くのをやめ、デザインアーティファクトを直接納品し始めた初めての出来事でした。** これは一気に広まりました。しかし、それはクローズドソースのまま、有料のみ、クラウドのみで、Anthropic のモデル、Anthropic のスキル、Anthropic のサーフェスに縛られていました。チェックアウトもなく、セルフホストもなく、Vercel デプロイもなく、自前のエージェントへの差し替えもできません。
 
-SaaSCodex (OD) はそのオープンソースの代替ツールです。同じループ、同じアーティファクトファーストのメンタルモデル、ロックインは一切なし:
+SplatStudio (OD) はそのオープンソースの代替ツールです。同じループ、同じアーティファクトファーストのメンタルモデル、ロックインは一切なし:
 
 - 🤖 **エージェントネイティブ、モデル非依存。** 私たちはエージェントを同梱しません。すでにあなたの `PATH` にある `claude` / `codex` / `cursor-agent` / `copilot` / `hermes` / `kimi` がデザインエンジンです。ワンクリックで差し替えられます。
 - 🧠 **デフォルトでブランドグレード。** すべてのレンダリングは、アクティブなパッケージの `DESIGN.md` を中核のブランド契約として読み取ります。151 のデザインシステムパッケージが同梱され、従来のパッケージは `DESIGN.md` だけでも、新しいパッケージは `manifest.json`、`tokens.css`、コンポーネント、アセット、出典情報を追加できます。フォルダをドロップすればピッカーが見つけます。
@@ -261,7 +261,7 @@ SaaSCodex (OD) はそのオープンソースの代替ツールです。同じ�
 
 ### 比較
 
-| | Claude Design | Figma | Lovable / v0 / Bolt | **SaaSCodex** |
+| | Claude Design | Figma | Lovable / v0 / Bolt | **SplatStudio** |
 |---|---|---|---|---|
 | オープンソース | ❌ | ❌ | ❌ | **✅ Apache-2.0** |
 | セルフホスト／デスクトップ | ❌ | ❌ | ❌ | **✅ macOS + Windows + Docker** |
@@ -278,17 +278,17 @@ SaaSCodex (OD) はそのオープンソースの代替ツールです。同じ�
 
 ### 🖥️ デスクトップアプリをダウンロード（推奨——設定ゼロ）
 
-SaaSCodex を使う最も速い方法。Node も、pnpm も、クローンも不要です。
+SplatStudio を使う最も速い方法。Node も、pnpm も、クローンも不要です。
 
-- **macOS**（Apple Silicon · Intel x64）→ [**saascodex.com**](https://saascodex.com/) または [GitHub Releases](https://github.com/nexu-io/open-design/releases)
-- **Windows**（x64）→ [**saascodex.com**](https://saascodex.com/) または [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **macOS**（Apple Silicon · Intel x64）→ [**splatstudio.app**](https://splatstudio.app/) または [GitHub Releases](https://github.com/nexu-io/open-design/releases)
+- **Windows**（x64）→ [**splatstudio.app**](https://splatstudio.app/) または [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 - **Linux**（AppImage、オプションのレーン）→ [GitHub Releases](https://github.com/nexu-io/open-design/releases)
 
 インストール後: アプリはあなたの `PATH` 上のすべてのコーディングエージェント CLI を自動検出し、100 種類以上の機能スキル、独立したレンダリングテンプレートカタログ、151 のデザインシステムパッケージを読み込み、エントリービューでブリーフを入力できるようにします。
 
 ### 🤖 コーディングエージェントにインストール（UI なし）
 
-GUI を一度も開くことなく SaaSCodex を使えます——Claude Code、Codex、Cursor、Copilot、OpenClaw、Antigravity、Hermes、Kimi などの内部で、スキル、プラグイン、または MCP サーバーとして呼び出せます。
+GUI を一度も開くことなく SplatStudio を使えます——Claude Code、Codex、Cursor、Copilot、OpenClaw、Antigravity、Hermes、Kimi などの内部で、スキル、プラグイン、または MCP サーバーとして呼び出せます。
 
 ```bash
 # One-line install into the agent you're using:
@@ -300,16 +300,16 @@ od mcp install <agent>
 そして、エージェントの内部で:
 
 ```
-> Use saascodex to generate a landing page with the Linear design system
+> Use splatstudio to generate a landing page with the Linear design system
 ```
 
-ファイルシステム対応のローカル CLI 実行では、エージェントが選択した機能スキルまたはデザインテンプレートと `DESIGN.md` を合成し、正規プロジェクトファイルを書き、SaaSCodex がそれをプレビューします。ファイルツールのない BYOK/API 実行は、完全な `<artifact>` ブロックを 1 つ返します。
+ファイルシステム対応のローカル CLI 実行では、エージェントが選択した機能スキルまたはデザインテンプレートと `DESIGN.md` を合成し、正規プロジェクトファイルを書き、SplatStudio がそれをプレビューします。ファイルツールのない BYOK/API 実行は、完全な `<artifact>` ブロックを 1 つ返します。
 
 ### 🐳 Docker で実行
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex/deploy
+cd splatstudio/deploy
 cp .env.example .env
 echo "OD_API_TOKEN=$(openssl rand -hex 32)" >> .env
 docker compose up -d
@@ -318,15 +318,15 @@ docker compose up -d
 
 ### 🚀 Sealos にデプロイ
 
-[![Deploy on Sealos](https://sealos.io/Deploy-on-Sealos.svg)](https://sealos.io/products/app-store/saascodex/)
+[![Deploy on Sealos](https://sealos.io/Deploy-on-Sealos.svg)](https://sealos.io/products/app-store/splatstudio/)
 
-Sealos App Store テンプレートは、公開済みの SaaSCodex Docker イメージを永続的なワークスペースストレージと公開プロキシの Basic Auth 付きで実行します。独自の公開または共有 Docker デプロイでは、[`deploy/README.md`](../../deploy/README.md#local-compose) のリバースプロキシと `SAASCODEX_ALLOWED_ORIGINS` の手順に従ってください。
+Sealos App Store テンプレートは、公開済みの SplatStudio Docker イメージを永続的なワークスペースストレージと公開プロキシの Basic Auth 付きで実行します。独自の公開または共有 Docker デプロイでは、[`deploy/README.md`](../../deploy/README.md#local-compose) のリバースプロキシと `SPLATSTUDIO_ALLOWED_ORIGINS` の手順に従ってください。
 
 ### 🧑‍💻 ソースから実行
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex
+cd splatstudio
 corepack enable && pnpm install
 pnpm tools-dev run web
 ```
@@ -343,13 +343,13 @@ Node `~24`、pnpm `10.33.x`。Windows ユーザーは [`docs/windows-troubleshoo
 2. **デザイナー（またはエージェント）が方向性を確定します。** ブランドがない？ 5 つの厳選された方向性から選びます。ブランドがある？ スクリーンショット／URL をドロップ → エージェントが GitHub に接続し、Figma をインポートし、再利用可能な `DESIGN.md` に体系化します。
 3. **エージェントが最初の成果物を作ります。** ファイルシステム対応 CLI は正規ファイルを書き、ファイルツールのない BYOK/API は完全な `<artifact>` ブロックを返します。
 4. **エンジニアリングへ引き渡します。** アーティファクトは本物の HTML/CSS です——Cursor、Codex、または Claude Code にドロップして、コードとして開発を続けられます。あるいは PPTX / PDF / MP4 をマーケティングへ直接エクスポートできます。
-5. **SaaSCodex は使うほど賢くなります。** あなたのスクリーンショット、フォント、パレット、確定したアーティファクトは、次回のセッションのデフォルトとして蓄積されます。やり直しは減り、ブレも減ります。
+5. **SplatStudio は使うほど賢くなります。** あなたのスクリーンショット、フォント、パレット、確定したアーティファクトは、次回のセッションのデフォルトとして蓄積されます。やり直しは減り、ブレも減ります。
 
 ---
 
-## コーディングエージェントから SaaSCodex を使う
+## コーディングエージェントから SplatStudio を使う
 
-SaaSCodex は **stdio MCP サーバー**とエージェントごとの**インストールスクリプト**を提供します。別のリポジトリにある MCP 互換のエージェントは、あなたのローカルの SaaSCodex プロジェクトからファイル——トークン CSS、JSX コンポーネント、エントリー HTML——を、名前で問い合わせ可能な構造化 API として直接読み取れます。エージェントは常に、古いエクスポートではなくライブのファイルを見ます。
+SplatStudio は **stdio MCP サーバー**とエージェントごとの**インストールスクリプト**を提供します。別のリポジトリにある MCP 互換のエージェントは、あなたのローカルの SplatStudio プロジェクトからファイル——トークン CSS、JSX コンポーネント、エントリー HTML——を、名前で問い合わせ可能な構造化 API として直接読み取れます。エージェントは常に、古いエクスポートではなくライブのファイルを見ます。
 
 ```bash
 # One-line install (16+ CLIs supported):
@@ -365,7 +365,7 @@ od skills list --json
 
 **なぜ MCP なのか？** イテレーションのたびに zip をエクスポートして再アタッチすると、フローが途切れます。MCP はデザインソースを直接公開します——エージェントは常にライブのファイルを見ます。
 
-**ゼロから始めるエージェントのために、**インストーラーは `~/.config/<agent>/saascodex.json`（またはプラットフォーム相当のもの）と、コピー＆ペースト用の MCP スニペットを配置します。Cursor にはワンクリックのディープリンク、Claude Code には `claude mcp add-json` のワンライナー、その他すべてのエージェントには、その設定が期待するスキーマの JSON が提供されます。エージェントごとの完全なフロー → デスクトップアプリの **Settings → MCP server**、または [`docs/agent-adapters.md`](../../docs/agent-adapters.md)。
+**ゼロから始めるエージェントのために、**インストーラーは `~/.config/<agent>/splatstudio.json`（またはプラットフォーム相当のもの）と、コピー＆ペースト用の MCP スニペットを配置します。Cursor にはワンクリックのディープリンク、Claude Code には `claude mcp add-json` のワンライナー、その他すべてのエージェントには、その設定が期待するスキーマの JSON が提供されます。エージェントごとの完全なフロー → デスクトップアプリの **Settings → MCP server**、または [`docs/agent-adapters.md`](../../docs/agent-adapters.md)。
 
 **セキュリティモデル。** デフォルトで読み取り専用、デーモンは `127.0.0.1` にバインドし、SSRF はプロキシのエッジでブロックされます。LAN への公開には、明示的な `OD_BIND_HOST` と `OD_ALLOWED_ORIGINS` が必要です。コネクターの認証情報とライブアーティファクトのプレビュールートは、いずれにせよループバック専用のままです。
 
@@ -439,7 +439,7 @@ od skills list --json
 
 ## プラグイン
 
-**277 の公式プラグインと 183 のリミックス可能な例**が [`plugins/_official/`](../../plugins/_official/) にあります。各エントリは `saascodex.json` と型固有 payload を持つポータブルディレクトリです。workflow は `SKILL.md`、メディアテンプレートは `template.json`、デザインシステムは `DESIGN.md` を使います。
+**277 の公式プラグインと 183 のリミックス可能な例**が [`plugins/_official/`](../../plugins/_official/) にあります。各エントリは `splatstudio.json` と型固有 payload を持つポータブルディレクトリです。workflow は `SKILL.md`、メディアテンプレートは `template.json`、デザインシステムは `DESIGN.md` を使います。
 
 | カテゴリー | 数 | 内容 |
 |---|---|---|
@@ -481,11 +481,11 @@ od plugin uninstall od-default       # uninstall
 
 ### プラグインを作る
 
-SaaSCodex プラグインには `saascodex.json` と型固有 payload が必要です。スキルとシナリオは `SKILL.md` も含み、ほかの型は独自 payload を使います:
+SplatStudio プラグインには `splatstudio.json` と型固有 payload が必要です。スキルとシナリオは `SKILL.md` も含み、ほかの型は独自 payload を使います:
 
 ```
 my-plugin/
-├── saascodex.json    ← required: marketplace metadata + inputs + pipeline + capabilities
+├── splatstudio.json    ← required: marketplace metadata + inputs + pipeline + capabilities
 ├── SKILL.md            ← required for agent-skill/scenario entries; omit for other plugin types
 ├── README.md           ← optional: usage, install, registry links
 ├── preview/            ← optional: index.html / poster.png (strongly recommended for visual plugins)
@@ -499,15 +499,15 @@ my-plugin/
 ```bash
 od plugin scaffold --id my-plugin --title "My Plugin"   # generate the skeleton
 od plugin validate ./my-plugin                          # check manifest / file layout
-pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
+pnpm guard && pnpm --filter @splatstudio/plugin-runtime typecheck
 ```
 
 完全なフィールドセットとランタイム契約 → [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md)。コーディングエージェントでプラグインを開発する → [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md)。コピー＆ペースト用の最小テンプレート → [`plugins/spec/examples/`](../../plugins/spec/examples/)。
 
 ### プラグインを貢献する
 
-1. プラグインフォルダを [`plugins/community/`](../../plugins/community/)（サードパーティプラグイン）にドロップするか、または——SaaSCodex に同梱して提供するには——[`plugins/_official/`](../../plugins/_official/) の該当するティアにドロップします。
-2. 検証を通過させます: `od plugin validate`、`pnpm guard`、`pnpm --filter @saascodex/plugin-runtime typecheck`。
+1. プラグインフォルダを [`plugins/community/`](../../plugins/community/)（サードパーティプラグイン）にドロップするか、または——SplatStudio に同梱して提供するには——[`plugins/_official/`](../../plugins/_official/) の該当するティアにドロップします。
+2. 検証を通過させます: `od plugin validate`、`pnpm guard`、`pnpm --filter @splatstudio/plugin-runtime typecheck`。
 3. [`plugins/spec/CONTRIBUTING.md`](../../plugins/spec/CONTRIBUTING.md) のテンプレートを使って PR を記入します（ID、バージョン、レーン、モード、機能、トリガー例。ビジュアルプラグインにはスクリーンショット／プレビューを添付）。
 4. 外部レジストリ（skills.sh / ClawHub / スタンドアロンの GitHub）に公開する → [`plugins/spec/PUBLISHING-REGISTRIES.md`](../../plugins/spec/PUBLISHING-REGISTRIES.md)。
 
@@ -569,7 +569,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 - [x] サイドカープロトコル + Electron デスクトップ + IPC 自動化
 - [x] アーティファクト lint API + 5 次元の自己批評による発行前ゲート
 - [x] **0.8.0** — プラグインマーケットプレイスのインフラ（261 の公式プラグイン、マニフェスト仕様、エージェントごとのインストールスクリプト）
-- [x] **0.9.0** — SaaSCodex Cloud（アプリに組み込まれた公式 Model Router: 設定ゼロ、ワンクリックのサインイン）
+- [x] **0.9.0** — SplatStudio Cloud（アプリに組み込まれた公式 Model Router: 設定ゼロ、ワンクリックのサインイン）
 - [x] パッケージ化された Electron ビルド — macOS（Apple Silicon + Intel） + Windows（x64） + Linux AppImage（オプションのレーン）
 - [ ] コメントモードの外科的な編集 — 一部提供済み。信頼性の高いターゲット指定のパッチ適用は進行中
 - [ ] AI が発行する tweaks パネルの UX — 未実装
@@ -587,7 +587,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 すべてのチャネルの裏側には、本物の人がいます。
 
 - 💬 **Discord** — 日々のチャット、プラグインの共有、質問 → [**discord.gg/mHAjSMV6gz**](https://discord.gg/mHAjSMV6gz)
-- 🐦 **X / Twitter** — リリースノート、マイルストーン、舞台裏 → [**@SaaSCodexHQ**](https://x.com/SaaSCodexHQ)
+- 🐦 **X / Twitter** — リリースノート、マイルストーン、舞台裏 → [**@SplatStudioHQ**](https://x.com/SplatStudioHQ)
 - 🗣️ **GitHub Discussions** — 深い Q&A、RFC、「成果を見せて」 → [**Discussions**](https://github.com/nexu-io/open-design/discussions)
 - 🐛 **GitHub Issues** — バグ報告、機能リクエスト → [**Issues**](https://github.com/nexu-io/open-design/issues)
 
@@ -597,7 +597,7 @@ pnpm guard && pnpm --filter @saascodex/plugin-runtime typecheck
 
 ## 貢献
 
-SaaSCodex が動き続けるのは、貢献者——デザイナー、エンジニア、プロンプトの作者——が現れ続けるからです。最もよく使われるスキル、デザインシステム、プラグインの多くは、コアチームの外の人々によって書かれました。
+SplatStudio が動き続けるのは、貢献者——デザイナー、エンジニア、プロンプトの作者——が現れ続けるからです。最もよく使われるスキル、デザインシステム、プラグインの多くは、コアチームの外の人々によって書かれました。
 
 ### 🎯 どこから始めるか（最大のレバレッジ、最小の変更）
 
@@ -605,7 +605,7 @@ SaaSCodex が動き続けるのは、貢献者——デザイナー、エンジ�
 |---|---|---|
 | 新しい**スキル** | `SKILL.md` + `assets/` + `references/` を備えたフォルダをドロップ | [`skills/`](../../skills/) · 仕様は [`docs/skills-protocol.md`](../../docs/skills-protocol.md) |
 | 新しい**デザインシステム** | `DESIGN.md` を中心とするパッケージをドロップし、必要に応じて `manifest.json`、`tokens.css`、コンポーネント、アセット、出典情報を追加 | [`design-systems/<brand>/`](../../design-systems/) |
-| 新しい**プラグイン** | カテゴリーフォルダの下に `saascodex.json` + 種類固有のペイロードをドロップ | [`plugins/community/`](../../plugins/community/) · 仕様は [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · エージェント開発ガイドは [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
+| 新しい**プラグイン** | カテゴリーフォルダの下に `splatstudio.json` + 種類固有のペイロードをドロップ | [`plugins/community/`](../../plugins/community/) · 仕様は [`plugins/spec/SPEC.md`](../../plugins/spec/SPEC.md) · エージェント開発ガイドは [`plugins/spec/AGENT-DEVELOPMENT.md`](../../plugins/spec/AGENT-DEVELOPMENT.md) |
 | 新しい**コーディングエージェント CLI** をサポート | Runtime 定義 + registry entry。新しい wire format のみ parser を追加 | [`apps/daemon/src/runtimes/defs/`](../../apps/daemon/src/runtimes/defs/) |
 | バグ修正や UI の磨き上げ | [`good-first-issue`](https://github.com/nexu-io/open-design/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) ラベルを閲覧 | [Issues →](https://github.com/nexu-io/open-design/issues) |
 | ドキュメントを翻訳 | `README.<lang>.md` ファイルを更新 | [`TRANSLATIONS.md`](../../TRANSLATIONS.md) |
@@ -617,7 +617,7 @@ SaaSCodex が動き続けるのは、貢献者——デザイナー、エンジ�
 ```bash
 # 1. Boot locally
 git clone https://github.com/nexu-io/open-design.git
-cd saascodex && corepack enable && pnpm install
+cd splatstudio && corepack enable && pnpm install
 pnpm tools-dev run web
 
 # 2. Find a good-first-issue and assign yourself
@@ -626,7 +626,7 @@ gh issue develop <number>   # create a branch and worktree
 
 # 3. Make the change, run the checks
 pnpm guard && pnpm typecheck
-pnpm --filter @saascodex/<package> test
+pnpm --filter @splatstudio/<package> test
 
 # 4. Open the PR
 gh pr create --fill
@@ -634,9 +634,9 @@ gh pr create --fill
 
 完全なエージェントフレンドリーな貢献フロー、コードスタイル、PR の基準 → [English](../../CONTRIBUTING.md)（[Deutsch](CONTRIBUTING.de.md) · [Français](CONTRIBUTING.fr.md) · [简体中文](CONTRIBUTING.zh-CN.md) · [日本語](CONTRIBUTING.ja-JP.md) · [Português](CONTRIBUTING.pt-BR.md)）。
 
-### 🏅 SaaSCodex Fellow プログラム
+### 🏅 SplatStudio Fellow プログラム
 
-私たちは世界中で **SaaSCodex Fellow** を募集しています——Fellow はコアチームとともにプロダクトを形づくり、各地域で SaaSCodex を公式に代表し、資金面のサポート（$1,000 / MR）、無料の LLM クレジット、直通のレビュートラックに支えられながら、ローカルでコミュニティを育てます。詳細 → [`MAINTAINERS.md`](../../MAINTAINERS.md) と [Discord](https://discord.gg/mHAjSMV6gz) のアナウンス。
+私たちは世界中で **SplatStudio Fellow** を募集しています——Fellow はコアチームとともにプロダクトを形づくり、各地域で SplatStudio を公式に代表し、資金面のサポート（$1,000 / MR）、無料の LLM クレジット、直通のレビュートラックに支えられながら、ローカルでコミュニティを育てます。詳細 → [`MAINTAINERS.md`](../../MAINTAINERS.md) と [Discord](https://discord.gg/mHAjSMV6gz) のアナウンス。
 
 ---
 
@@ -670,7 +670,7 @@ gh pr create --fill
 参加してくださったすべての方に感謝します——コード、ドキュメント、フィードバック、鋭い issue、新しいスキル、新しいデザインシステム。
 
 <a href="https://github.com/nexu-io/open-design/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SaaSCodex contributors" />
+  <img src="https://contrib.rocks/image?repo=nexu-io/open-design&max=500&columns=20&anon=1&cache_bust=2026-08-04" alt="SplatStudio contributors" />
 </a>
 
 ---
@@ -678,7 +678,7 @@ gh pr create --fill
 ## リポジトリのアクティビティ
 
 <picture>
-  <img alt="SaaSCodex — repository metrics" src="https://repo-assets.saascodex.com/resources/images/github-metrics.svg" />
+  <img alt="SplatStudio — repository metrics" src="https://repo-assets.splatstudio.app/resources/images/github-metrics.svg" />
 </picture>
 
 上の SVG は、[`lowlighter/metrics`](https://github.com/lowlighter/metrics) を使って [`.github/workflows/metrics.yml`](../../.github/workflows/metrics.yml) によって毎日再生成されます。
@@ -688,7 +688,7 @@ gh pr create --fill
 ## スターをお願いします
 
 <p align="center">
-  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.saascodex.com/resources/images/star-us.png" alt="Star SaaSCodex on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
+  <a href="https://github.com/nexu-io/open-design"><img src="https://repo-assets.splatstudio.app/resources/images/star-us.png" alt="Star SplatStudio on GitHub — github.com/nexu-io/open-design" width="100%" /></a>
 </p>
 
 これで 30 分を節約できたなら、★ を付けてください。スターは家賃を払ってはくれません——でも、次のデザイナー、エージェント、貢献者に、この実験が注目に値することを伝えてくれます。ワンクリック、3 秒、本物のシグナルです。
@@ -697,7 +697,7 @@ gh pr create --fill
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&theme=dark&cache_bust=2026-08-04" />
     <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
-    <img alt="SaaSCodex star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
+    <img alt="SplatStudio star history" src="https://star-history.dera.page/svg?repos=nexu-io/open-design&type=Date&cache_bust=2026-08-04" />
   </picture>
 </a>
 
@@ -715,7 +715,7 @@ gh pr create --fill
 | [`multica-ai/multica`](https://github.com/multica-ai/multica) | デーモン + アダプターのアーキテクチャ——PATH スキャンによるエージェント検出、唯一の特権プロセスとしてのローカルデーモン。 |
 | [`VoltAgent/awesome-design-md`](https://github.com/VoltAgent/awesome-design-md) | 当初の 9 セクション `DESIGN.md` スキーマと upstream 由来 70 システムの歴史的な出典。現在のパッケージはこの基盤を拡張できます。 |
 | [`bergside/awesome-design-skills`](https://github.com/bergside/awesome-design-skills) | `design-systems/` の下に追加された 57 のデザインスキルの出典。 |
-| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | HTML→MP4 のモーショングラフィックスフレームワークで、SaaSCodex に第一級の `hyperframes-html` として統合されています。 |
+| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | HTML→MP4 のモーショングラフィックスフレームワークで、SplatStudio に第一級の `hyperframes-html` として統合されています。 |
 | [Claude Code skills][skill] | 私たちがそのまま採用している `SKILL.md` 規約。 |
 
 詳細な来歴 → [`docs/references.md`](../../docs/references.md)。

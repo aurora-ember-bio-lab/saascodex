@@ -207,10 +207,10 @@ describe('buildStructuredMainRunObservationV1', () => {
   });
 
   it.each([
-    ['request', 'bundle', 'saascodex.od-next-prompt-bundle/v2'],
-    ['clarification', 'turn', 'saascodex.od-next-request-turn/v1'],
-    ['contract_repair', 'turn', 'saascodex.od-next-request-turn/v1'],
-    ['production', 'turn', 'saascodex.od-next-request-turn/v1'],
+    ['request', 'bundle', 'splatstudio.od-next-prompt-bundle/v2'],
+    ['clarification', 'turn', 'splatstudio.od-next-request-turn/v1'],
+    ['contract_repair', 'turn', 'splatstudio.od-next-request-turn/v1'],
+    ['production', 'turn', 'splatstudio.od-next-request-turn/v1'],
   ] as const)(
     'uses the verified raw inner-text identity for the %s hostComposed boundary',
     (stage, kind, promptSchema) => {
@@ -248,8 +248,8 @@ describe('buildStructuredMainRunObservationV1', () => {
         hash: sha256,
         bytes: Buffer.byteLength(finalText, 'utf8'),
         safePayload: {
-          type: 'saascodex.od-next-host-composed-prompt',
-          schema: 'saascodex.od-next-exact-send-prompt/v1',
+          type: 'splatstudio.od-next-host-composed-prompt',
+          schema: 'splatstudio.od-next-exact-send-prompt/v1',
           boundary: 'hostComposed',
           kind,
           promptSchema,
@@ -322,7 +322,7 @@ describe('buildStructuredMainRunObservationV1', () => {
       bytes: promptTelemetry.rawBytes,
     });
     expect(observation.prompt.hostComposed.safePayload).toMatchObject({
-      type: 'saascodex.prompt-stack',
+      type: 'splatstudio.prompt-stack',
       promptFingerprint: promptTelemetry.promptFingerprint,
     });
     expect(observation.prompt.childInjected.availability).toBe('unavailable');

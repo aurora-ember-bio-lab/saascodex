@@ -6,14 +6,14 @@ import { dirname, join, resolve } from "node:path";
 import { posix } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { findSidecarProcesses, getSidecarStatus, invokeSidecar, stopSidecar } from "@saascodex/sidecar";
+import { findSidecarProcesses, getSidecarStatus, invokeSidecar, stopSidecar } from "@splatstudio/sidecar";
 import {
   APP_KEYS,
-  SAASCODEX_SIDECAR_CONTRACT,
+  SPLATSTUDIO_SIDECAR_CONTRACT,
   SIDECAR_MESSAGES,
   SIDECAR_MODES,
   SIDECAR_SOURCES,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import { describe, expect, it, vi } from "vitest";
 
 const stopSidecarMock = vi.hoisted(() => vi.fn(async (_stamp?: unknown, _options?: unknown) => ({
@@ -41,8 +41,8 @@ const stopSidecarsMock = vi.hoisted(() => vi.fn(async (requests: Array<{ options
   };
 }));
 
-vi.mock("@saascodex/sidecar", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@saascodex/sidecar")>();
+vi.mock("@splatstudio/sidecar", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@splatstudio/sidecar")>();
   return {
     ...actual,
     findSidecarProcesses: vi.fn(async () => []),
@@ -172,11 +172,11 @@ describe("buildDockerArgs", () => {
     const args = buildDockerArgs(
       {
         ...makeConfig(),
-        telemetryRelayUrl: "https://telemetry.saascodex.com/api/langfuse",
+        telemetryRelayUrl: "https://telemetry.splatstudio.app/api/langfuse",
       },
       { uid: 1000, gid: 1000 },
     );
-    expect(args).toContain("SAASCODEX_TELEMETRY_RELAY_URL=https://telemetry.saascodex.com/api/langfuse");
+    expect(args).toContain("SPLATSTUDIO_TELEMETRY_RELAY_URL=https://telemetry.splatstudio.app/api/langfuse");
   });
 
   it("passes the AMR profile into containerized builds when configured", () => {
@@ -187,12 +187,12 @@ describe("buildDockerArgs", () => {
       },
       { uid: 1000, gid: 1000 },
     );
-    expect(args).toContain("SAASCODEX_AMR_PROFILE=test");
+    expect(args).toContain("SPLATSTUDIO_AMR_PROFILE=test");
   });
 
   it("bind-mounts the host Vela binary directory and rewrites the env path into the container", () => {
-    const previous = process.env.SAASCODEX_VELA_CLI_BIN;
-    process.env.SAASCODEX_VELA_CLI_BIN = "/host/bin/vela";
+    const previous = process.env.SPLATSTUDIO_VELA_CLI_BIN;
+    process.env.SPLATSTUDIO_VELA_CLI_BIN = "/host/bin/vela";
     try {
       const args = buildDockerArgs(makeConfig(), { uid: 1000, gid: 1000 });
       // The container only mounts /project, /tools-pack, and cache/home by
@@ -201,11 +201,11 @@ describe("buildDockerArgs", () => {
       // and the env rewritten to the container-side path so the resource
       // copier can actually read the binary.
       expect(args).toContain("/host/bin:/opt/vela-cli:ro");
-      expect(args).toContain("SAASCODEX_VELA_CLI_BIN=/opt/vela-cli/vela");
-      expect(args).not.toContain("SAASCODEX_VELA_CLI_BIN=/host/bin/vela");
+      expect(args).toContain("SPLATSTUDIO_VELA_CLI_BIN=/opt/vela-cli/vela");
+      expect(args).not.toContain("SPLATSTUDIO_VELA_CLI_BIN=/host/bin/vela");
     } finally {
-      if (previous === undefined) delete process.env.SAASCODEX_VELA_CLI_BIN;
-      else process.env.SAASCODEX_VELA_CLI_BIN = previous;
+      if (previous === undefined) delete process.env.SPLATSTUDIO_VELA_CLI_BIN;
+      else process.env.SPLATSTUDIO_VELA_CLI_BIN = previous;
     }
   });
 
@@ -589,20 +589,20 @@ MimeType=x-scheme-handler/od;
     const out = renderDesktopTemplate(template, {
       namespace: "default",
       execPath: "/home/u/.local/bin/Open-Design.default.AppImage",
-      iconName: "saascodex-default",
+      iconName: "splatstudio-default",
     });
     expect(out).toContain("Name=Open Design (default)");
     expect(out).toContain(
       "Exec=env -u ELECTRON_RUN_AS_NODE OD_PACKAGED_NAMESPACE=default /home/u/.local/bin/Open-Design.default.AppImage --appimage-extract-and-run %U",
     );
-    expect(out).toContain("Icon=saascodex-default");
+    expect(out).toContain("Icon=splatstudio-default");
   });
 
   it("uses OD_PACKAGED_NAMESPACE (not OD_NAMESPACE) so apps/packaged actually picks up the namespace override", () => {
     const out = renderDesktopTemplate(template, {
       namespace: "ns",
       execPath: "/x",
-      iconName: "saascodex-ns",
+      iconName: "splatstudio-ns",
     });
     expect(out).toMatch(/^Exec=env -u ELECTRON_RUN_AS_NODE OD_PACKAGED_NAMESPACE=ns /m);
     expect(out).not.toMatch(/OD_NAMESPACE=/);
@@ -612,7 +612,7 @@ MimeType=x-scheme-handler/od;
     const out = renderDesktopTemplate(template, {
       namespace: "ns",
       execPath: "/x",
-      iconName: "saascodex-ns",
+      iconName: "splatstudio-ns",
     });
     expect(out).toMatch(/^Exec=env -u ELECTRON_RUN_AS_NODE /m);
   });
@@ -621,7 +621,7 @@ MimeType=x-scheme-handler/od;
     const out = renderDesktopTemplate(template, {
       namespace: "ns",
       execPath: "/x",
-      iconName: "saascodex-ns",
+      iconName: "splatstudio-ns",
     });
     expect(out).toMatch(/^Exec=.*--appimage-extract-and-run .*%U$/m);
   });
@@ -630,7 +630,7 @@ MimeType=x-scheme-handler/od;
     const out = renderDesktopTemplate(template, {
       namespace: "ns",
       execPath: "/x",
-      iconName: "saascodex-ns",
+      iconName: "splatstudio-ns",
     });
     expect(out).not.toMatch(/@@[A-Z_]+@@/);
   });
@@ -639,7 +639,7 @@ MimeType=x-scheme-handler/od;
     const out = renderDesktopTemplate(template, {
       namespace: "ns",
       execPath: "/x",
-      iconName: "saascodex-ns",
+      iconName: "splatstudio-ns",
     });
     expect(out).toContain("MimeType=x-scheme-handler/od;");
   });
@@ -649,8 +649,8 @@ describe("renderLinuxPackagedMainEntry", () => {
   it("loads the ESM packaged entry without require or temporary keepalive handles", () => {
     const out = renderLinuxPackagedMainEntry();
 
-    expect(out).toContain('import("@saascodex/packaged")');
-    expect(out).not.toContain('require("@saascodex/packaged")');
+    expect(out).toContain('import("@splatstudio/packaged")');
+    expect(out).not.toContain('require("@splatstudio/packaged")');
     expect(out).not.toContain("setTimeout");
   });
 });
@@ -788,11 +788,11 @@ describe("shouldRejectLinuxHeadlessInspectOptions", () => {
 
   it("rejects headless eval and screenshot requests", () => {
     expect(shouldRejectLinuxHeadlessInspectOptions({ expr: "document.title" })).toBe(true);
-    expect(shouldRejectLinuxHeadlessInspectOptions({ path: "/tmp/saascodex-linux.png" })).toBe(true);
+    expect(shouldRejectLinuxHeadlessInspectOptions({ path: "/tmp/splatstudio-linux.png" })).toBe(true);
     expect(
       shouldRejectLinuxHeadlessInspectOptions({
         expr: "document.title",
-        path: "/tmp/saascodex-linux.png",
+        path: "/tmp/splatstudio-linux.png",
       }),
     ).toBe(true);
   });
@@ -819,16 +819,16 @@ describe("inspectPackedLinuxApp", () => {
     });
     vi.mocked(invokeSidecar)
       .mockResolvedValueOnce({ ok: true, value: "Open Design" })
-      .mockResolvedValueOnce({ path: "/tmp/saascodex-linux.png" });
+      .mockResolvedValueOnce({ path: "/tmp/splatstudio-linux.png" });
 
     const result = await inspectPackedLinuxApp(makeConfig(), {
       expr: "document.title",
-      path: "/tmp/saascodex-linux.png",
+      path: "/tmp/splatstudio-linux.png",
     });
 
     expect(result).toEqual({
       eval: { ok: true, value: "Open Design" },
-      screenshot: { path: "/tmp/saascodex-linux.png" },
+      screenshot: { path: "/tmp/splatstudio-linux.png" },
       status: { state: "running", url: "od://app/" },
     });
     expect(getSidecarStatus).toHaveBeenCalledTimes(2);

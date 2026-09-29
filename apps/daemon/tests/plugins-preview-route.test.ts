@@ -57,9 +57,9 @@ beforeEach(async () => {
     '<!DOCTYPE html><title>wrapped</title><img src="./hero.png"><p>wrapped body</p>',
   );
   await writeFile(
-    path.join(folder, 'saascodex.json'),
+    path.join(folder, 'splatstudio.json'),
     JSON.stringify({
-      $schema: 'https://saascodex.com/schemas/plugin.v1.json',
+      $schema: 'https://splatstudio.app/schemas/plugin.v1.json',
       name: PLUGIN_ID,
       title: 'Preview fixture',
       version: '1.0.0',

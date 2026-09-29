@@ -9,7 +9,7 @@ import {
   type TrackingRunTerminalIntegrity,
   type TrackingRunTerminalTrigger,
   type RunTaskLineageProps,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
 import { appendMessageStatusEvent } from '../db.js';
 import {

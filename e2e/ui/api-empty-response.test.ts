@@ -9,7 +9,7 @@ import { openNewProjectModal as openNewProjectModalFromProjects } from '@/playwr
 import type { Page } from '@playwright/test';
 import { T } from '@/timeouts';
 
-const STORAGE_KEY = 'saascodex:config';
+const STORAGE_KEY = 'splatstudio:config';
 
 test.describe.configure({ timeout: T.xlong });
 
@@ -116,7 +116,7 @@ async function createProject(page: Page, name: string) {
 async function gotoEntryHome(page: Page) {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await waitForLoadingToClear(page);
-  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SaaSCodex' });
+  const privacyDialog = page.getByRole('dialog').filter({ hasText: 'Help us improve SplatStudio' });
   if (await privacyDialog.isVisible()) {
     await privacyDialog.getByRole('button', { name: /I get it|not now|got it|don't share/i }).click();
     await expect(privacyDialog).toHaveCount(0);
@@ -156,5 +156,5 @@ async function sendPrompt(page: Page, prompt: string) {
 }
 
 async function waitForLoadingToClear(page: Page) {
-  await page.getByText('Loading SaaSCodex…').waitFor({ state: 'hidden', timeout: T.medium });
+  await page.getByText('Loading SplatStudio…').waitFor({ state: 'hidden', timeout: T.medium });
 }

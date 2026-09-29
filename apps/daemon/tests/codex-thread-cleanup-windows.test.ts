@@ -6,8 +6,8 @@ import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 
 const state = vi.hoisted(() => ({ metadata: '', calls: 0, failRefresh: false, failInitial: false, stopped: [] as number[][] }));
-vi.mock('@saascodex/platform', async (load) => {
-  const actual = await load<typeof import('@saascodex/platform')>();
+vi.mock('@splatstudio/platform', async (load) => {
+  const actual = await load<typeof import('@splatstudio/platform')>();
   return { ...actual,
     captureProcessSnapshot: async (options: { timeoutMs?: number }) => {
       expect(options.timeoutMs).toBe(500);
@@ -28,7 +28,7 @@ vi.mock('@saascodex/platform', async (load) => {
 });
 import { attachCodexAppServerSession } from '../src/agent-protocol/codex-app-server/session.js';
 import { cleanupClosedCodexThread } from '../src/agent-protocol/codex-app-server/thread-cleanup.js';
-import { captureProcessSnapshot, isProcessAlive, stopProcesses, waitForProcessExit } from '@saascodex/platform';
+import { captureProcessSnapshot, isProcessAlive, stopProcesses, waitForProcessExit } from '@splatstudio/platform';
 
 async function receipt() {
   let ready!: () => void;

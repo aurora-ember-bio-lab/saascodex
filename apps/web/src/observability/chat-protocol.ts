@@ -26,7 +26,7 @@ import type {
   ChatRecoveryOutcome,
   ChatRecoveryPath,
   ChatRecoveryProps,
-} from '@saascodex/contracts/analytics';
+} from '@splatstudio/contracts/analytics';
 
 import { reportSafetyEvent } from '../analytics/error-tracking';
 import { chatCorrelation, pushChatBreadcrumb } from './chat-context';

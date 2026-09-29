@@ -1,8 +1,8 @@
 import {
-  SAASCODEX_PLUGIN_SPEC_VERSION,
+  SPLATSTUDIO_PLUGIN_SPEC_VERSION,
   type InputField,
   type PluginManifest,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { parseFrontmatter, type FrontmatterObject, type FrontmatterValue } from '../parsers/frontmatter.js';
 
 // Adapter from a portable SKILL.md (with optional `od:` frontmatter, see
@@ -86,7 +86,7 @@ export function adaptAgentSkill(
     : undefined;
 
   const manifest: PluginManifest = {
-    specVersion: SAASCODEX_PLUGIN_SPEC_VERSION,
+    specVersion: SPLATSTUDIO_PLUGIN_SPEC_VERSION,
     name,
     title,
     title_i18n: titleI18n,

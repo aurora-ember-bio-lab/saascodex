@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { defaultCritiqueConfig } from '@saascodex/contracts/critique';
+import { defaultCritiqueConfig } from '@splatstudio/contracts/critique';
 import { composeSystemPrompt } from '../src/prompts/system.js';
 
 const BRAND = { name: 'acme-brand', design_md: '## Tokens\n--accent: oklch(55% 0.18 30)' };

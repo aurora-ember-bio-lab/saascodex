@@ -1,4 +1,4 @@
-import type { AmrWalletSnapshot } from '@saascodex/contracts';
+import type { AmrWalletSnapshot } from '@splatstudio/contracts';
 import { fetchVelaLoginStatus } from '../providers/daemon';
 
 function normalizeAmrPlan(plan: string | null | undefined): string | null {

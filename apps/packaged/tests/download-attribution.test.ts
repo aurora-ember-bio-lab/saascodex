@@ -19,12 +19,12 @@ describe("download attribution token extraction", () => {
   it("extracts the token from the distributor path segment", () => {
     expect(
       extractDownloadAttributionTokenFromUrl(
-        "https://download.saascodex.com/mac/arm64/oddl_Abc12345/Open-Design.dmg",
+        "https://download.splatstudio.app/mac/arm64/oddl_Abc12345/Open-Design.dmg",
       ),
     ).toBe("oddl_Abc12345");
     expect(
       extractDownloadAttributionTokenFromUrl(
-        "https://download.saascodex.com/windows/x64/token-123456/Open%20Design-setup.exe",
+        "https://download.splatstudio.app/windows/x64/token-123456/Open%20Design-setup.exe",
       ),
     ).toBe("token-123456");
   });
@@ -32,7 +32,7 @@ describe("download attribution token extraction", () => {
   it("does not treat GitHub release paths as attributed download URLs", () => {
     expect(
       extractDownloadAttributionTokenFromUrl(
-        "https://github.com/nexu-io/open-design/releases/download/saascodex-v1/Open-Design-mac-arm64.dmg",
+        "https://github.com/nexu-io/open-design/releases/download/splatstudio-v1/Open-Design-mac-arm64.dmg",
       ),
     ).toBeNull();
   });
@@ -41,7 +41,7 @@ describe("download attribution token extraction", () => {
 describe("packaged download attribution lifecycle", () => {
   it("does not re-submit a terminal installer observation on the next launch", async () => {
     const installerObservationRoot = await mkdtemp(join(tmpdir(), "od-download-attribution-"));
-    const rawUrl = "https://download.saascodex.com/windows/x64/oddl_terminal_123/Open-Design-setup.exe";
+    const rawUrl = "https://download.splatstudio.app/windows/x64/oddl_terminal_123/Open-Design-setup.exe";
     await writeFile(join(installerObservationRoot, "download-attribution.json"), JSON.stringify({
       token: "oddl_terminal_123", rawUrl,
     }));

@@ -6,7 +6,7 @@
 // description).
 
 import { describe, expect, it } from 'vitest';
-import type { InstalledPluginRecord } from '@saascodex/contracts';
+import type { InstalledPluginRecord } from '@splatstudio/contracts';
 import { examplePresetSeedPrompt } from '../../src/components/plugins-home/presetSeedPrompt';
 
 function fixture(overrides: {

@@ -1,28 +1,28 @@
 export const PRODUCT_NAME = "Open Design";
 
 export const INTERNAL_PACKAGES = [
-  { directory: "packages/release", name: "@saascodex/release" },
-  { directory: "packages/components", name: "@saascodex/components" },
-  { directory: "packages/contracts", name: "@saascodex/contracts" },
-  { directory: "packages/registry-protocol", name: "@saascodex/registry-protocol" },
-  { directory: "packages/sidecar-proto", name: "@saascodex/sidecar-proto" },
-  { directory: "packages/launcher-proto", name: "@saascodex/launcher-proto" },
-  { directory: "packages/platform", name: "@saascodex/platform" },
-  { directory: "packages/sidecar", name: "@saascodex/sidecar" },
-  { directory: "packages/download", name: "@saascodex/download" },
-  { directory: "packages/host", name: "@saascodex/host" },
-  { directory: "packages/agui-adapter", name: "@saascodex/agui-adapter" },
-  { directory: "packages/plugin-runtime", name: "@saascodex/plugin-runtime" },
-  { directory: "packages/diagnostics", name: "@saascodex/diagnostics" },
-  { directory: "apps/daemon", name: "@saascodex/daemon" },
-  { directory: "apps/web", name: "@saascodex/web" },
-  { directory: "apps/desktop", name: "@saascodex/desktop" },
-  { directory: "apps/packaged", name: "@saascodex/packaged" },
+  { directory: "packages/release", name: "@splatstudio/release" },
+  { directory: "packages/components", name: "@splatstudio/components" },
+  { directory: "packages/contracts", name: "@splatstudio/contracts" },
+  { directory: "packages/registry-protocol", name: "@splatstudio/registry-protocol" },
+  { directory: "packages/sidecar-proto", name: "@splatstudio/sidecar-proto" },
+  { directory: "packages/launcher-proto", name: "@splatstudio/launcher-proto" },
+  { directory: "packages/platform", name: "@splatstudio/platform" },
+  { directory: "packages/sidecar", name: "@splatstudio/sidecar" },
+  { directory: "packages/download", name: "@splatstudio/download" },
+  { directory: "packages/host", name: "@splatstudio/host" },
+  { directory: "packages/agui-adapter", name: "@splatstudio/agui-adapter" },
+  { directory: "packages/plugin-runtime", name: "@splatstudio/plugin-runtime" },
+  { directory: "packages/diagnostics", name: "@splatstudio/diagnostics" },
+  { directory: "apps/daemon", name: "@splatstudio/daemon" },
+  { directory: "apps/web", name: "@splatstudio/web" },
+  { directory: "apps/desktop", name: "@splatstudio/desktop" },
+  { directory: "apps/packaged", name: "@splatstudio/packaged" },
 ] as const;
 
 export const DESKTOP_LOG_ECHO_ENV = "OD_DESKTOP_LOG_ECHO";
 export const WEB_STANDALONE_HOOK_CONFIG_ENV = "OD_TOOLS_PACK_WEB_STANDALONE_HOOK_CONFIG";
-export const WEB_STANDALONE_RESOURCE_NAME = "saascodex-web-standalone";
+export const WEB_STANDALONE_RESOURCE_NAME = "splatstudio-web-standalone";
 export const ELECTRON_BUILDER_ASAR = false;
 export const ELECTRON_BUILDER_BUILD_DEPENDENCIES_FROM_SOURCE = false;
 export const ELECTRON_REBUILD_MODE = "sequential" as const;

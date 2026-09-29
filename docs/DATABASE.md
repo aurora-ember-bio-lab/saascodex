@@ -1,6 +1,6 @@
 # Database (PostgreSQL + pgvector + Atlas)
 
-SaaSCodex has two data layers:
+SplatStudio has two data layers:
 
 - **Local daemon** — SQLite, per-installation, no setup. This is the local-first
   workspace and needs nothing from this document.
@@ -36,11 +36,11 @@ docker compose -f deploy/docker-compose.yml up -d postgres
 pnpm db:migrate           # docker compose run --rm migrate
 
 # 3. (optional) open psql
-docker compose -f deploy/docker-compose.yml exec postgres psql -U postgres -d saascodex
+docker compose -f deploy/docker-compose.yml exec postgres psql -U postgres -d splatstudio
 ```
 
 Default connection string:
-`postgres://postgres:postgres@localhost:5432/saascodex?sslmode=disable`
+`postgres://postgres:postgres@localhost:5432/splatstudio?sslmode=disable`
 
 ## Migrations with Atlas
 

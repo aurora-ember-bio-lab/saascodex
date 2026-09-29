@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SaaSCodex</title>
-    <meta name="saascodex-daemon-url" content="http://127.0.0.1:7456" />
+    <title>SplatStudio</title>
+    <meta name="splatstudio-daemon-url" content="http://127.0.0.1:7456" />
     <style>
       html, body { margin: 0; height: 100%; }
       body {
@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="card">
-      <h1>SaaSCodex</h1>
+      <h1>SplatStudio</h1>
       <p>Opening your local workspace…</p>
       <p id="hint"></p>
       <button id="retry" type="button">Retry</button>
@@ -34,7 +34,7 @@
     <script>
       // The desktop shell is a window over the local daemon. If the daemon is
       // not running, show a hint instead of a blank window.
-      var url = document.querySelector('meta[name="saascodex-daemon-url"]').content;
+      var url = document.querySelector('meta[name="splatstudio-daemon-url"]').content;
       var hint = document.getElementById('hint');
       fetch(url + '/api/health')
         .then(function (r) {
@@ -42,7 +42,7 @@
           throw new Error('unhealthy');
         })
         .catch(function () {
-          hint.textContent = 'The SaaSCodex daemon is not running. Start it (od --no-open) and retry.';
+          hint.textContent = 'The SplatStudio daemon is not running. Start it (od --no-open) and retry.';
         });
       document.getElementById('retry').addEventListener('click', function () { location.reload(); });
     </script>

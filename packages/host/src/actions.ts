@@ -1,26 +1,26 @@
-import { SAASCODEX_HOST_UPDATER_ACTIONS } from "./protocol.js";
+import { SPLATSTUDIO_HOST_UPDATER_ACTIONS } from "./protocol.js";
 import type {
-  SaaSCodexHostActionResult,
-  SaaSCodexHostBrowserClearDataOptions,
-  SaaSCodexHostCaptureOptions,
-  SaaSCodexHostCaptureResult,
-  SaaSCodexHostFailure,
-  SaaSCodexHostGlobalScope,
-  SaaSCodexHostPdfPrintOptions,
-  SaaSCodexHostPreviewNavigationFailure,
-  SaaSCodexHostPreviewNavigationFailureListener,
-  SaaSCodexHostPickWorkingDirResult,
-  SaaSCodexHostProjectImportInit,
-  SaaSCodexHostProjectImportResult,
-  SaaSCodexHostProjectReplaceWorkingDirResult,
-  SaaSCodexHostUpdaterActionOptions,
-  SaaSCodexHostUpdaterMenuLabels,
-  SaaSCodexHostUpdaterOpenDialogListener,
-  SaaSCodexHostUpdaterResult,
-  SaaSCodexHostUpdaterStatusAction,
-  SaaSCodexHostUpdaterStatusListener,
+  SplatStudioHostActionResult,
+  SplatStudioHostBrowserClearDataOptions,
+  SplatStudioHostCaptureOptions,
+  SplatStudioHostCaptureResult,
+  SplatStudioHostFailure,
+  SplatStudioHostGlobalScope,
+  SplatStudioHostPdfPrintOptions,
+  SplatStudioHostPreviewNavigationFailure,
+  SplatStudioHostPreviewNavigationFailureListener,
+  SplatStudioHostPickWorkingDirResult,
+  SplatStudioHostProjectImportInit,
+  SplatStudioHostProjectImportResult,
+  SplatStudioHostProjectReplaceWorkingDirResult,
+  SplatStudioHostUpdaterActionOptions,
+  SplatStudioHostUpdaterMenuLabels,
+  SplatStudioHostUpdaterOpenDialogListener,
+  SplatStudioHostUpdaterResult,
+  SplatStudioHostUpdaterStatusAction,
+  SplatStudioHostUpdaterStatusListener,
 } from "./protocol.js";
-import { getSaaSCodexHost } from "./detection.js";
+import { getSplatStudioHost } from "./detection.js";
 
 /**
  * @module actions
@@ -32,7 +32,7 @@ import { getSaaSCodexHost } from "./detection.js";
  */
 
 /** @internal Build a normalized host failure result. */
-function failure(reason: string, details?: unknown): SaaSCodexHostFailure {
+function failure(reason: string, details?: unknown): SplatStudioHostFailure {
   return {
     ...(details === undefined ? {} : { details }),
     ok: false,
@@ -41,14 +41,14 @@ function failure(reason: string, details?: unknown): SaaSCodexHostFailure {
 }
 
 /** @internal Uniform failure for when the host bridge is absent. */
-function unavailable(reason: string): SaaSCodexHostFailure {
+function unavailable(reason: string): SplatStudioHostFailure {
   return failure(reason);
 }
 
 /** Open an external URL through the host shell. */
-export async function openHostExternalUrl(url: string, scope: SaaSCodexHostGlobalScope = globalThis): Promise<SaaSCodexHostActionResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+export async function openHostExternalUrl(url: string, scope: SplatStudioHostGlobalScope = globalThis): Promise<SplatStudioHostActionResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.shell.openExternal(url);
   } catch (error) {
@@ -57,9 +57,9 @@ export async function openHostExternalUrl(url: string, scope: SaaSCodexHostGloba
 }
 
 /** Reveal a project's path through the host shell. */
-export async function openHostProjectPath(projectId: string, scope: SaaSCodexHostGlobalScope = globalThis): Promise<SaaSCodexHostActionResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+export async function openHostProjectPath(projectId: string, scope: SplatStudioHostGlobalScope = globalThis): Promise<SplatStudioHostActionResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.shell.openPath(projectId);
   } catch (error) {
@@ -69,11 +69,11 @@ export async function openHostProjectPath(projectId: string, scope: SaaSCodexHos
 
 /** Clear host browser data (cookies and/or storage). */
 export async function clearHostBrowserData(
-  options?: SaaSCodexHostBrowserClearDataOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostActionResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  options?: SplatStudioHostBrowserClearDataOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostActionResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.browser.clearData(options);
   } catch (error) {
@@ -83,11 +83,11 @@ export async function clearHostBrowserData(
 
 /** Capture the host page (optionally clipped) as a data URL. */
 export async function captureHostPage(
-  options?: SaaSCodexHostCaptureOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostCaptureResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  options?: SplatStudioHostCaptureOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostCaptureResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.capture.page(options);
   } catch (error) {
@@ -97,11 +97,11 @@ export async function captureHostPage(
 
 /** Pick and import a project through the host's native dialog. */
 export async function pickAndImportHostProject(
-  init?: SaaSCodexHostProjectImportInit,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostProjectImportResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  init?: SplatStudioHostProjectImportInit,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostProjectImportResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.project.pickAndImport(init);
   } catch (error) {
@@ -112,10 +112,10 @@ export async function pickAndImportHostProject(
 /** Pick and replace a project's working directory through the host. */
 export async function pickAndReplaceHostProjectWorkingDir(
   projectId: string,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostProjectReplaceWorkingDirResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostProjectReplaceWorkingDirResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.project.pickAndReplaceWorkingDir(projectId);
   } catch (error) {
@@ -128,10 +128,10 @@ export async function pickAndReplaceHostProjectWorkingDir(
 // this to let the user choose a working directory before the project exists;
 // the token is later spent on POST /api/projects/:id/working-dir.
 export async function pickHostWorkingDir(
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostPickWorkingDirResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostPickWorkingDirResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   if (typeof host.project.pickWorkingDir !== "function") {
     return unavailable("host build does not support pickWorkingDir");
   }
@@ -146,11 +146,11 @@ export async function pickHostWorkingDir(
 export async function printHostPdf(
   html: string,
   nonce?: string,
-  options?: SaaSCodexHostPdfPrintOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostActionResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  options?: SplatStudioHostPdfPrintOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostActionResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.pdf.print(html, nonce, options);
   } catch (error) {
@@ -159,9 +159,9 @@ export async function printHostPdf(
 }
 
 /** Toggle host pet visibility. */
-export function setHostPetVisible(visible: boolean, scope: SaaSCodexHostGlobalScope = globalThis): SaaSCodexHostActionResult {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+export function setHostPetVisible(visible: boolean, scope: SplatStudioHostGlobalScope = globalThis): SplatStudioHostActionResult {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     host.pet.setVisible(visible);
     return { ok: true };
@@ -172,9 +172,9 @@ export function setHostPetVisible(visible: boolean, scope: SaaSCodexHostGlobalSc
 
 /** Read the latest Electron-observed preview subframe navigation failure. */
 export function getLatestHostPreviewNavigationFailure(
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): SaaSCodexHostPreviewNavigationFailure | null {
-  const host = getSaaSCodexHost(scope);
+  scope: SplatStudioHostGlobalScope = globalThis,
+): SplatStudioHostPreviewNavigationFailure | null {
+  const host = getSplatStudioHost(scope);
   if (typeof host?.preview?.getLatestNavigationFailure !== "function") return null;
   try {
     return host.preview.getLatestNavigationFailure();
@@ -185,10 +185,10 @@ export function getLatestHostPreviewNavigationFailure(
 
 /** Subscribe to Electron-observed preview subframe navigation failures. */
 export function subscribeHostPreviewNavigationFailure(
-  listener: SaaSCodexHostPreviewNavigationFailureListener,
-  scope: SaaSCodexHostGlobalScope = globalThis,
+  listener: SplatStudioHostPreviewNavigationFailureListener,
+  scope: SplatStudioHostGlobalScope = globalThis,
 ): () => void {
-  const host = getSaaSCodexHost(scope);
+  const host = getSplatStudioHost(scope);
   if (typeof host?.preview?.subscribeNavigationFailure !== "function") return () => undefined;
   try {
     return host.preview.subscribeNavigationFailure(listener);
@@ -199,12 +199,12 @@ export function subscribeHostPreviewNavigationFailure(
 
 /** @internal Run a status-returning updater action and wrap the result. */
 async function runHostUpdaterAction(
-  action: SaaSCodexHostUpdaterStatusAction,
-  options?: SaaSCodexHostUpdaterActionOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostUpdaterResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  action: SplatStudioHostUpdaterStatusAction,
+  options?: SplatStudioHostUpdaterActionOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostUpdaterResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return {
       ok: true,
@@ -217,51 +217,51 @@ async function runHostUpdaterAction(
 
 /** Get the host updater status. */
 export async function getHostUpdaterStatus(
-  options?: SaaSCodexHostUpdaterActionOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostUpdaterResult> {
-  return await runHostUpdaterAction(SAASCODEX_HOST_UPDATER_ACTIONS.STATUS, options, scope);
+  options?: SplatStudioHostUpdaterActionOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostUpdaterResult> {
+  return await runHostUpdaterAction(SPLATSTUDIO_HOST_UPDATER_ACTIONS.STATUS, options, scope);
 }
 
 /** Trigger a host updater check. */
 export async function checkHostUpdater(
-  options?: SaaSCodexHostUpdaterActionOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostUpdaterResult> {
-  return await runHostUpdaterAction(SAASCODEX_HOST_UPDATER_ACTIONS.CHECK, options, scope);
+  options?: SplatStudioHostUpdaterActionOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostUpdaterResult> {
+  return await runHostUpdaterAction(SPLATSTUDIO_HOST_UPDATER_ACTIONS.CHECK, options, scope);
 }
 
 /** Trigger a host updater download. */
 export async function downloadHostUpdater(
-  options?: SaaSCodexHostUpdaterActionOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostUpdaterResult> {
-  return await runHostUpdaterAction(SAASCODEX_HOST_UPDATER_ACTIONS.DOWNLOAD, options, scope);
+  options?: SplatStudioHostUpdaterActionOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostUpdaterResult> {
+  return await runHostUpdaterAction(SPLATSTUDIO_HOST_UPDATER_ACTIONS.DOWNLOAD, options, scope);
 }
 
 /** Clear the host updater/launcher caches and reset one-shot update state. */
 export async function clearHostUpdaterCache(
-  options?: SaaSCodexHostUpdaterActionOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostUpdaterResult> {
-  return await runHostUpdaterAction(SAASCODEX_HOST_UPDATER_ACTIONS.CLEAR_CACHE, options, scope);
+  options?: SplatStudioHostUpdaterActionOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostUpdaterResult> {
+  return await runHostUpdaterAction(SPLATSTUDIO_HOST_UPDATER_ACTIONS.CLEAR_CACHE, options, scope);
 }
 
 /** Trigger a host updater install. */
 export async function installHostUpdater(
-  options?: SaaSCodexHostUpdaterActionOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostUpdaterResult> {
-  return await runHostUpdaterAction(SAASCODEX_HOST_UPDATER_ACTIONS.INSTALL, options, scope);
+  options?: SplatStudioHostUpdaterActionOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostUpdaterResult> {
+  return await runHostUpdaterAction(SPLATSTUDIO_HOST_UPDATER_ACTIONS.INSTALL, options, scope);
 }
 
 /** Quit the host after its updater installer has opened. */
 export async function quitHostAfterUpdaterInstallerOpen(
-  options?: SaaSCodexHostUpdaterActionOptions,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostActionResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  options?: SplatStudioHostUpdaterActionOptions,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostActionResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.updater.quit(options);
   } catch (error) {
@@ -271,10 +271,10 @@ export async function quitHostAfterUpdaterInstallerOpen(
 
 /** Subscribe to host updater status changes; returns an unsubscribe fn. */
 export function subscribeHostUpdater(
-  listener: SaaSCodexHostUpdaterStatusListener,
-  scope: SaaSCodexHostGlobalScope = globalThis,
+  listener: SplatStudioHostUpdaterStatusListener,
+  scope: SplatStudioHostGlobalScope = globalThis,
 ): () => void {
-  const host = getSaaSCodexHost(scope);
+  const host = getSplatStudioHost(scope);
   if (host == null) return () => undefined;
   try {
     return host.updater.subscribe(listener);
@@ -285,10 +285,10 @@ export function subscribeHostUpdater(
 
 /** Subscribe to native host requests to open the updater dialog. */
 export function subscribeHostUpdaterOpenDialog(
-  listener: SaaSCodexHostUpdaterOpenDialogListener,
-  scope: SaaSCodexHostGlobalScope = globalThis,
+  listener: SplatStudioHostUpdaterOpenDialogListener,
+  scope: SplatStudioHostGlobalScope = globalThis,
 ): () => void {
-  const host = getSaaSCodexHost(scope);
+  const host = getSplatStudioHost(scope);
   if (host == null) return () => undefined;
   try {
     return host.updater.subscribeOpenDialog(listener);
@@ -299,11 +299,11 @@ export function subscribeHostUpdaterOpenDialog(
 
 /** Synchronize renderer-localized updater menu labels to the native host. */
 export async function setHostUpdaterMenuLabels(
-  labels: SaaSCodexHostUpdaterMenuLabels,
-  scope: SaaSCodexHostGlobalScope = globalThis,
-): Promise<SaaSCodexHostActionResult> {
-  const host = getSaaSCodexHost(scope);
-  if (host == null) return unavailable("SaaSCodex host is not available");
+  labels: SplatStudioHostUpdaterMenuLabels,
+  scope: SplatStudioHostGlobalScope = globalThis,
+): Promise<SplatStudioHostActionResult> {
+  const host = getSplatStudioHost(scope);
+  if (host == null) return unavailable("SplatStudio host is not available");
   try {
     return await host.updater.setMenuLabels(labels);
   } catch (error) {

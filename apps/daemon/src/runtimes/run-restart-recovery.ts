@@ -1,4 +1,4 @@
-import type { TrackingRunTerminalTrigger } from '@saascodex/contracts/analytics';
+import type { TrackingRunTerminalTrigger } from '@splatstudio/contracts/analytics';
 
 const TERMINAL_STATUSES = new Set(['succeeded', 'failed', 'canceled']);
 

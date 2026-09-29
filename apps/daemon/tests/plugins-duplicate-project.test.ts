@@ -8,7 +8,7 @@ import type {
   InstalledPluginRecord,
   Project,
   WorkspaceCollabContext,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import { sendApiError } from '../src/http/api-errors.js';
 import {
   closeDatabase,

@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
-import { DECK_SKELETON_HTML } from '@saascodex/contracts';
+import { DECK_SKELETON_HTML } from '@splatstudio/contracts';
 
 const PROTOCOL_DECK_CANARY_HTML = DECK_SKELETON_HTML
   .replace('<!-- SLOT: deck title -->', 'Deck protocol matrix canary')
@@ -92,7 +92,7 @@ export async function createFakeAcpHandshakeRuntime(
 ): Promise<FakeAcpHandshakeRuntime> {
   const root = options.root ?? path.join(
     tmpdir(),
-    `saascodex-fake-acp-${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    `splatstudio-fake-acp-${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
   );
   await mkdir(root, { recursive: true });
   const script = path.join(root, 'fake-acp-handshake-cli.mjs');
@@ -175,8 +175,8 @@ export async function createFakeAgentRuntimes(
     ? input
     : (input.runtimeIds ?? ['codex', ...FAKE_AGENT_RUNTIME_IDS]);
   const root = Array.isArray(input)
-    ? path.join(tmpdir(), `saascodex-fake-agents-${process.pid}`)
-    : (input.root ?? path.join(tmpdir(), `saascodex-fake-agents-${process.pid}`));
+    ? path.join(tmpdir(), `splatstudio-fake-agents-${process.pid}`)
+    : (input.root ?? path.join(tmpdir(), `splatstudio-fake-agents-${process.pid}`));
   await mkdir(root, { recursive: true });
 
   const runtimes = {} as Record<FakeAgentId, FakeAgentRuntime>;
@@ -455,7 +455,7 @@ async function emitRun(promptText) {
     return;
   }
   if (
-    promptText.includes('Create an SaaSCodex plugin for:') &&
+    promptText.includes('Create an SplatStudio plugin for:') &&
     promptText.includes('produce a folder named generated-plugin')
   ) {
     await emitPluginAuthoringRun();
@@ -615,7 +615,7 @@ function emitOdNextPlanningRun(promptText, inputStage = 'request', taskTypeOverr
   }
   const deliverableKind = identity.taskType === 'ppt' ? 'deck' : 'prototype';
   const plan = {
-    schema: 'saascodex.plan-contract/v2',
+    schema: 'splatstudio.plan-contract/v2',
     strategy: {
       id: 'od-next-strategy', version: identity.version,
       packageHash: identity.packageHash, snapshotId: identity.snapshotId,
@@ -646,14 +646,14 @@ function emitOdNextPlanningRun(promptText, inputStage = 'request', taskTypeOverr
     },
   };
   const state = {
-    schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage,
+    schema: 'splatstudio.strategy-state/v2', route: 'full_plan', inputStage,
     outcome: 'plan_ready', executionMode: 'simple', executionIntent: 'produce', reasonCodes: [],
   };
   emitSuccess(
-    'The local canary plan is ready.\\n<saascodex-plan-contract>\\n'
-      + JSON.stringify(plan) + '\\n</saascodex-plan-contract>\\n'
-      + '<saascodex-runtime-state>\\n' + JSON.stringify(state)
-      + '\\n</saascodex-runtime-state>',
+    'The local canary plan is ready.\\n<splatstudio-plan-contract>\\n'
+      + JSON.stringify(plan) + '\\n</splatstudio-plan-contract>\\n'
+      + '<splatstudio-runtime-state>\\n' + JSON.stringify(state)
+      + '\\n</splatstudio-runtime-state>',
     false,
     false,
   );
@@ -664,7 +664,7 @@ function emitOdNextPlanningRun(promptText, inputStage = 'request', taskTypeOverr
 function emitOdNextClarificationRequest(promptText) {
   odNextPromptIdentity(promptText);
   const state = {
-    schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'request',
+    schema: 'splatstudio.strategy-state/v2', route: 'full_plan', inputStage: 'request',
     outcome: 'clarification_required', executionMode: null, executionIntent: 'produce',
     reasonCodes: ['od_next_clarification_required'],
   };
@@ -674,8 +674,8 @@ function emitOdNextClarificationRequest(promptText) {
     + '</question-form>';
   emitSuccess(
     'One platform choice is required.\\n' + form
-      + '\\n<saascodex-runtime-state>\\n' + JSON.stringify(state)
-      + '\\n</saascodex-runtime-state>',
+      + '\\n<splatstudio-runtime-state>\\n' + JSON.stringify(state)
+      + '\\n</splatstudio-runtime-state>',
     false,
     false,
   );
@@ -704,24 +704,24 @@ function emitOdNextIntentResolution(promptText) {
     throw new Error('Unsupported OD Next fake intent resolution request');
   }
   const state = {
-    schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: stage,
+    schema: 'splatstudio.strategy-state/v2', route: 'full_plan', inputStage: stage,
     outcome: 'plan_ready', executionMode: JSON.parse(mode), executionIntent: 'produce', reasonCodes: [],
   };
-  emitSuccess('<saascodex-runtime-state>\\n' + JSON.stringify(state) + '\\n</saascodex-runtime-state>', false, false);
+  emitSuccess('<splatstudio-runtime-state>\\n' + JSON.stringify(state) + '\\n</splatstudio-runtime-state>', false, false);
   process.exitCode = 0;
   exitSoon(0);
 }
 
 function emitOdNextBlockedRun() {
   const state = {
-    schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'request',
+    schema: 'splatstudio.strategy-state/v2', route: 'full_plan', inputStage: 'request',
     outcome: 'blocked', executionMode: null,
     reasonCodes: ['od_next_canary_fixture_blocked'],
   };
   emitSuccess(
     'The local canary was blocked by its fixture guard.\\n'
-      + '<saascodex-runtime-state>\\n' + JSON.stringify(state)
-      + '\\n</saascodex-runtime-state>',
+      + '<splatstudio-runtime-state>\\n' + JSON.stringify(state)
+      + '\\n</splatstudio-runtime-state>',
     false,
     false,
   );
@@ -741,7 +741,7 @@ async function emitOdNextProductionRun(promptText) {
     'utf8',
   );
   const state = {
-    schema: 'saascodex.strategy-state/v2', route: 'full_plan', inputStage: 'production',
+    schema: 'splatstudio.strategy-state/v2', route: 'full_plan', inputStage: 'production',
     outcome: 'completed', executionMode: 'simple', executionIntent: 'produce', reasonCodes: [],
   };
   emitSuccess(
@@ -750,8 +750,8 @@ async function emitOdNextProductionRun(promptText) {
       : legacyDeck
       ? 'Created the selected-template legacy deck canary.\\n'
       : 'Created od-next-active-canary.html through the continued native session.\\n')
-      + '<saascodex-runtime-state>\\n' + JSON.stringify(state)
-      + '\\n</saascodex-runtime-state>',
+      + '<splatstudio-runtime-state>\\n' + JSON.stringify(state)
+      + '\\n</splatstudio-runtime-state>',
     false,
     false,
   );
@@ -770,7 +770,7 @@ async function emitPluginAuthoringRun() {
   const folder = join(projectDir(), 'generated-plugin');
   await mkdir(join(folder, 'examples'), { recursive: true });
   await writeFileFs(
-    join(folder, 'saascodex.json'),
+    join(folder, 'splatstudio.json'),
     JSON.stringify({
       specVersion: 1,
       name: 'generated-plugin',
@@ -793,7 +793,7 @@ async function emitPluginAuthoringRun() {
     'utf8',
   );
   const summary = [
-    'Created generated-plugin with saascodex.json, SKILL.md, and examples/demo.md.',
+    'Created generated-plugin with splatstudio.json, SKILL.md, and examples/demo.md.',
     'od plugin validate: passed',
     'od plugin pack: generated-plugin-0.1.0.tgz',
     'od plugin install --source: passed',
@@ -1341,8 +1341,8 @@ function emitOpenCodeRepeatedToolFailures() {
         callID: 'fake-opencode-failure-' + index,
         state: {
           status: 'completed',
-          input: { command: 'cat missing-saascodex-file.txt' },
-          output: 'cat: missing-saascodex-file.txt: No such file or directory',
+          input: { command: 'cat missing-splatstudio-file.txt' },
+          output: 'cat: missing-splatstudio-file.txt: No such file or directory',
           exitCode: 1,
         },
       },

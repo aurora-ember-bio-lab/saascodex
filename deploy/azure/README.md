@@ -1,12 +1,12 @@
 # Azure deployment (evaluation)
 
-Deploy SaaSCodex to Microsoft Azure from the published runtime image — the
+Deploy SplatStudio to Microsoft Azure from the published runtime image — the
 same single Alpine image used by [`deploy/docker-compose.yml`](../docker-compose.yml)
-and the [Helm chart](../../charts/saascodex). The daemon serves both the API
+and the [Helm chart](../../charts/splatstudio). The daemon serves both the API
 and the built web UI on one port, so there is no separate web container.
 
 > [!IMPORTANT]
-> **These lanes are for evaluation and demos, not durable data.** SaaSCodex
+> **These lanes are for evaluation and demos, not durable data.** SplatStudio
 > stores its state in a SQLite database under `/app/.od`, and SQLite needs real
 > file locking. The persistent-storage options on both App Service and ACI are
 > backed by **Azure Files (SMB)**, where SQLite WAL/locking is unsupported and
@@ -15,7 +15,7 @@ and the built web UI on one port, so there is no separate web container.
 > data is reset on restart, redeploy, or scale.
 >
 > For durable self-hosting today, use [`deploy/docker-compose.yml`](../docker-compose.yml)
-> (named volume) or the [Helm chart](../../charts/saascodex) (PVC with
+> (named volume) or the [Helm chart](../../charts/splatstudio) (PVC with
 > `ReadWriteOnce`). A durable Azure lane needs block storage (e.g. a VM with a
 > managed disk) and is out of scope here.
 
@@ -26,7 +26,7 @@ Two lanes are provided:
 | **App Service for Containers** | [`app-service.bicep`](./app-service.bicep) | Always-on eval with managed HTTPS | `https://<app>.azurewebsites.net` |
 | **Azure Container Instances (ACI)** | [`aci.bicep`](./aci.bicep) | Quick, pay-per-second eval | `http://<dns>.<region>.azurecontainer.io:7456` |
 
-Both run as a single instance (SaaSCodex uses single-writer SQLite).
+Both run as a single instance (SplatStudio uses single-writer SQLite).
 
 ## Prerequisites
 
@@ -43,13 +43,13 @@ supply one, deploys the chosen template, and prints the URL:
 # App Service (managed HTTPS, always on)
 deploy/azure/deploy-azure.sh \
   --target app-service \
-  --resource-group saascodex-rg \
+  --resource-group splatstudio-rg \
   --location eastus
 
 # Azure Container Instances (serverless, pay-per-second)
 deploy/azure/deploy-azure.sh \
   --target aci \
-  --resource-group saascodex-rg \
+  --resource-group splatstudio-rg \
   --location eastus
 ```
 
@@ -70,10 +70,10 @@ curl -fsS http://<dns>.<region>.azurecontainer.io:7456/api/health
 The templates are standard Bicep, so you can skip the wrapper and call `az`:
 
 ```bash
-az group create --name saascodex-rg --location eastus
+az group create --name splatstudio-rg --location eastus
 
 az deployment group create \
-  --resource-group saascodex-rg \
+  --resource-group splatstudio-rg \
   --template-file deploy/azure/app-service.bicep \
   --parameters apiToken="$(openssl rand -hex 32)"
 ```
@@ -86,9 +86,9 @@ Both templates share these parameters (defaults in parentheses):
 
 | Parameter | Description |
 | --- | --- |
-| `name` (`saascodex`) | Base name; a unique suffix is appended to globally-scoped resources |
+| `name` (`splatstudio`) | Base name; a unique suffix is appended to globally-scoped resources |
 | `location` (resource group location) | Azure region |
-| `image` (`docker.io/vanjayak/saascodex:latest`) | Container image; pin to a digest for production |
+| `image` (`docker.io/vanjayak/splatstudio:latest`) | Container image; pin to a digest for production |
 | `apiToken` (**required**, secure) | API token guarding the daemon |
 | `nodeOptions` (`--max-old-space-size=192`) | Node.js heap cap |
 | `extraAllowedOrigins` (empty) | Extra comma-separated browser origins allowed to call `/api` |
@@ -107,8 +107,8 @@ Use a digest instead of the mutable `latest` tag for reproducible deployments:
 ```bash
 deploy/azure/deploy-azure.sh \
   --target app-service \
-  --resource-group saascodex-rg \
-  --image docker.io/vanjayak/saascodex@sha256:<digest>
+  --resource-group splatstudio-rg \
+  --image docker.io/vanjayak/splatstudio@sha256:<digest>
 ```
 
 ## Security notes
@@ -136,5 +136,5 @@ redeploy starts from an empty data dir.
 Delete the whole resource group when you're done:
 
 ```bash
-az group delete --name saascodex-rg --yes --no-wait
+az group delete --name splatstudio-rg --yes --no-wait
 ```

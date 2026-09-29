@@ -1,4 +1,4 @@
-import { splitOnOdCards, type OdCardSegment } from '@saascodex/contracts';
+import { splitOnOdCards, type OdCardSegment } from '@splatstudio/contracts';
 import { computeSkipRanges, rangeContains, type Range } from '../../artifacts/markdown-context';
 
 function markdownCodeRanges(text: string): Range[] {

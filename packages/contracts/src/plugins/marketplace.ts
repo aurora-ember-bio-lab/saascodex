@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import {
   LocalizedTextSchema,
-  SAASCODEX_PLUGIN_SPEC_VERSION,
-  SaaSCodexSpecVersionSchema,
+  SPLATSTUDIO_PLUGIN_SPEC_VERSION,
+  SplatStudioSpecVersionSchema,
 } from './manifest.js';
 
 const MarketplaceEntryDistSchema = z.object({
@@ -27,8 +27,8 @@ const MarketplacePluginVersionSchema = z.object({
 
 export type MarketplacePluginVersion = z.infer<typeof MarketplacePluginVersionSchema>;
 
-// `saascodex-marketplace.json` schema (v1). Mirrors
-// `docs/schemas/saascodex.marketplace.v1.json`. The federated catalog
+// `splatstudio-marketplace.json` schema (v1). Mirrors
+// `docs/schemas/splatstudio.marketplace.v1.json`. The federated catalog
 // format is intentionally permissive — community catalogs can carry extra
 // fields (e.g. clawhub category tags) without breaking OD installs.
 export const MarketplacePluginEntrySchema = z.object({
@@ -65,7 +65,7 @@ export type MarketplacePluginEntry = z.infer<typeof MarketplacePluginEntrySchema
 
 export const MarketplaceManifestSchema = z.object({
   $schema:     z.string().optional(),
-  specVersion: SaaSCodexSpecVersionSchema.default(SAASCODEX_PLUGIN_SPEC_VERSION),
+  specVersion: SplatStudioSpecVersionSchema.default(SPLATSTUDIO_PLUGIN_SPEC_VERSION),
   name:        z.string().min(1),
   version:     z.string().min(1),
   owner: z.object({

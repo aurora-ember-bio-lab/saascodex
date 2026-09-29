@@ -34,9 +34,9 @@ beforeAll(async () => {
     '<!DOCTYPE html><title>fixture</title><script>console.log(1)</script>',
   );
   await writeFile(
-    path.join(pluginRoot, 'saascodex.json'),
+    path.join(pluginRoot, 'splatstudio.json'),
     JSON.stringify({
-      $schema: 'https://saascodex.com/schemas/plugin.v1.json',
+      $schema: 'https://splatstudio.app/schemas/plugin.v1.json',
       name: 'asset-plugin',
       title: 'Asset',
       version: '1.0.0',

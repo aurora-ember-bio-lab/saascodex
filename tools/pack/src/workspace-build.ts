@@ -9,42 +9,42 @@ import { readRuntimeAppVersion, versionFamilyForAppVersion } from "./versioning/
 import { processWebSourcemaps } from "./web-sourcemaps.js";
 
 export const WORKSPACE_BUILD_PACKAGES = [
-  { directory: "packages/release", name: "@saascodex/release" },
-  { directory: "packages/components", name: "@saascodex/components" },
-  { directory: "packages/contracts", name: "@saascodex/contracts" },
-  { directory: "packages/registry-protocol", name: "@saascodex/registry-protocol" },
-  { directory: "packages/sidecar-proto", name: "@saascodex/sidecar-proto" },
-  { directory: "packages/launcher-proto", name: "@saascodex/launcher-proto" },
-  { directory: "packages/platform", name: "@saascodex/platform" },
-  { directory: "packages/sidecar", name: "@saascodex/sidecar" },
-  { directory: "packages/download", name: "@saascodex/download" },
-  { directory: "packages/host", name: "@saascodex/host" },
-  { directory: "packages/agui-adapter", name: "@saascodex/agui-adapter" },
-  { directory: "packages/plugin-runtime", name: "@saascodex/plugin-runtime" },
-  { directory: "packages/diagnostics", name: "@saascodex/diagnostics" },
-  { directory: "packages/dsh-runtime", name: "@saascodex/dsh-runtime" },
-  { directory: "apps/daemon", name: "@saascodex/daemon" },
-  { directory: "apps/web", name: "@saascodex/web" },
-  { directory: "apps/desktop", name: "@saascodex/desktop" },
-  { directory: "apps/packaged", name: "@saascodex/packaged" },
+  { directory: "packages/release", name: "@splatstudio/release" },
+  { directory: "packages/components", name: "@splatstudio/components" },
+  { directory: "packages/contracts", name: "@splatstudio/contracts" },
+  { directory: "packages/registry-protocol", name: "@splatstudio/registry-protocol" },
+  { directory: "packages/sidecar-proto", name: "@splatstudio/sidecar-proto" },
+  { directory: "packages/launcher-proto", name: "@splatstudio/launcher-proto" },
+  { directory: "packages/platform", name: "@splatstudio/platform" },
+  { directory: "packages/sidecar", name: "@splatstudio/sidecar" },
+  { directory: "packages/download", name: "@splatstudio/download" },
+  { directory: "packages/host", name: "@splatstudio/host" },
+  { directory: "packages/agui-adapter", name: "@splatstudio/agui-adapter" },
+  { directory: "packages/plugin-runtime", name: "@splatstudio/plugin-runtime" },
+  { directory: "packages/diagnostics", name: "@splatstudio/diagnostics" },
+  { directory: "packages/dsh-runtime", name: "@splatstudio/dsh-runtime" },
+  { directory: "apps/daemon", name: "@splatstudio/daemon" },
+  { directory: "apps/web", name: "@splatstudio/web" },
+  { directory: "apps/desktop", name: "@splatstudio/desktop" },
+  { directory: "apps/packaged", name: "@splatstudio/packaged" },
 ] as const;
 
 export const WORKSPACE_BUILD_COMMANDS = [
   {
     args: [
-      "--filter", "@saascodex/dsh-runtime...",
+      "--filter", "@splatstudio/dsh-runtime...",
       "--workspace-concurrency=1", "--if-present", "run", "build",
     ],
   },
   {
     args: [
-      "--filter", "@saascodex/packaged^...",
+      "--filter", "@splatstudio/packaged^...",
       "--workspace-concurrency=1", "--if-present", "run", "build",
     ],
     env: ["OD_WEB_OUTPUT_MODE"],
   },
-  { args: ["--filter", "@saascodex/web", "run", "build:sidecar"] },
-  { args: ["--filter", "@saascodex/packaged", "run", "build"] },
+  { args: ["--filter", "@splatstudio/web", "run", "build:sidecar"] },
+  { args: ["--filter", "@splatstudio/packaged", "run", "build"] },
 ] as const;
 
 export const WORKSPACE_BUILD_CACHE_SCHEMA_VERSION = 11;

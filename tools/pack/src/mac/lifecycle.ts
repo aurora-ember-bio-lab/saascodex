@@ -14,15 +14,15 @@ import {
   type DesktopStatusSnapshot,
   type DesktopUpdateAction,
   type DesktopUpdateResult,
-} from "@saascodex/sidecar-proto";
+} from "@splatstudio/sidecar-proto";
 import {
   convergeSidecarLaunch,
   getSidecarStatus,
   invokeSidecar,
   stopSidecars,
   type SidecarStamp as ConvergedSidecarStamp,
-} from "@saascodex/sidecar";
-import { readLogTail } from "@saascodex/platform";
+} from "@splatstudio/sidecar";
+import { readLogTail } from "@splatstudio/platform";
 import type { ToolPackConfig } from "../config/index.js";
 import { allPackagedSidecarStopRequests, toolPackSidecarStamp } from "../config/sidecar-stamps.js";
 import { resolveToolPackLauncherLayout } from "../launcher/layout.js";

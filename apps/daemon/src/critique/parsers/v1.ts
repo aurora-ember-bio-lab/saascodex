@@ -1,4 +1,4 @@
-import type { PanelEvent, PanelistRole } from '@saascodex/contracts/critique';
+import type { PanelEvent, PanelistRole } from '@splatstudio/contracts/critique';
 import { MalformedBlockError, MissingArtifactError, OversizeBlockError } from '../errors.js';
 import type { ShipArtifactCallback } from '../parser.js';
 

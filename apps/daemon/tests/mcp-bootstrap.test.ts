@@ -1,4 +1,4 @@
-import { MCP_BOOTSTRAP_CONTRACT } from "@saascodex/sidecar-proto";
+import { MCP_BOOTSTRAP_CONTRACT } from "@splatstudio/sidecar-proto";
 import { describe, expect, it, vi } from "vitest";
 
 import {
@@ -30,7 +30,7 @@ describe("planMcpDaemonBootstrap", () => {
       env: {
         ELECTRON_RUN_AS_NODE: "1",
         OD_DAEMON_URL: "http://127.0.0.1:1",
-        OD_DATA_DIR: "/tmp/saascodex-data",
+        OD_DATA_DIR: "/tmp/splatstudio-data",
         OD_MCP_BOOTSTRAP_COMMAND: "/usr/bin/open",
         OD_MCP_BOOTSTRAP_ARGS:
           '["-g","-j","/Applications/Open Design.app","--args","--headless"]',
@@ -51,7 +51,7 @@ describe("planMcpDaemonBootstrap", () => {
     if (plan.action !== "spawn") throw new Error("expected spawn plan");
     expect(plan.env.ELECTRON_RUN_AS_NODE).toBeUndefined();
     expect(plan.env.OD_DAEMON_URL).toBeUndefined();
-    expect(plan.env.OD_DATA_DIR).toBe("/tmp/saascodex-data");
+    expect(plan.env.OD_DATA_DIR).toBe("/tmp/splatstudio-data");
   });
 
   it("refuses a relative or non-headless bootstrap command", () => {
@@ -59,7 +59,7 @@ describe("planMcpDaemonBootstrap", () => {
       daemonReachable: false,
       explicitDaemonUrl: false,
       env: {
-        OD_MCP_BOOTSTRAP_COMMAND: "saascodex",
+        OD_MCP_BOOTSTRAP_COMMAND: "splatstudio",
         OD_MCP_BOOTSTRAP_ARGS: '["--headless"]',
       },
     })).toEqual({

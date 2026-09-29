@@ -1,4 +1,4 @@
-# Railway config-as-code for the SaaSCodex daemon service.
+# Railway config-as-code for the SplatStudio daemon service.
 # Docs: docs/DEPLOYMENT.md
 #
 # This builds the single runtime image (daemon + built web export) and runs

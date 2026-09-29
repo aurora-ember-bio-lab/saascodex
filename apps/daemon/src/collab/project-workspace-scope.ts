@@ -2,7 +2,7 @@ import type {
   ProjectVisibility,
   ProjectWorkspaceScope,
   WorkspaceType,
-} from '@saascodex/contracts';
+} from '@splatstudio/contracts';
 import {
   workspaceContextFromDirectoryItem,
 } from './vela-workspace-context.js';

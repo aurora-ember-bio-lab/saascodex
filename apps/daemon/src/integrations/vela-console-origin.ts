@@ -8,7 +8,7 @@ type EnvMap = NodeJS.ProcessEnv | Record<string, string | undefined>;
 // site — every consumer concatenates, none resolves against it as a URL base.
 //
 // The test entry moved off `vela.powerformer.net` onto
-// `saascodex.powerformer.net/cloud` when vela cut the test Cloud domain over
+// `splatstudio.powerformer.net/cloud` when vela cut the test Cloud domain over
 // (vela #1922 prepare, #1929 finalize). The new host serves the test Landing
 // page at `/` and hands `/cloud*` and `/amr*` to a test-only path proxy; the
 // legacy hostname is no longer a mapped test route and is scheduled for
@@ -18,11 +18,11 @@ type EnvMap = NodeJS.ProcessEnv | Record<string, string | undefined>;
 // deployment's hostname is internal. It is supplied at packaging time through
 // OD_VELA_WEB_URLS / OD_VELA_WEB_URL, so an un-injected build resolves nothing
 // for it and the client falls back to the public console instead of guessing.
-export const DEFAULT_VELA_CONSOLE_ORIGIN = 'https://saascodex.com/cloud';
+export const DEFAULT_VELA_CONSOLE_ORIGIN = 'https://splatstudio.app/cloud';
 
 const PUBLIC_ORIGINS: Partial<Record<string, string>> = {
   prod: DEFAULT_VELA_CONSOLE_ORIGIN,
-  test: 'https://saascodex.powerformer.net/cloud',
+  test: 'https://splatstudio.powerformer.net/cloud',
   local: 'http://localhost:5173',
 };
 
@@ -71,7 +71,7 @@ export function resolveEffectiveVelaConsoleOrigin(
     if (packagedOrigin) return packagedOrigin;
   }
   const hasRuntimeSelection = Boolean(
-    configuredEnv.SAASCODEX_AMR_PROFILE?.trim() || configuredEnv.VELA_PROFILE?.trim(),
+    configuredEnv.SPLATSTUDIO_AMR_PROFILE?.trim() || configuredEnv.VELA_PROFILE?.trim(),
   );
   const publicOrigin = hasRuntimeSelection ? PUBLIC_ORIGINS[selectedProfile] : undefined;
   if (publicOrigin) return publicOrigin;
