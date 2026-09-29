@@ -6,8 +6,9 @@ Decision record for SaaSCodex hostnames.
 
 **Keep one apex: `saascodex.com`. Put everything on subdomains.**
 
-`ascodex.com` and `ide.ascodex.com` belong to a **different project** and are
-**out of scope** for this repo — SaaSCodex uses only `saascodex.com`.
+`ascodex.com` and its subdomains (`ide.ascodex.com`, `des.ascodex.com`,
+`ai.ascodex.com`) belong to a **different project** and are **out of scope**
+for this repo — SaaSCodex uses only `saascodex.com`.
 
 | Hostname | Serves | Notes |
 |---|---|---|
@@ -18,12 +19,12 @@ Decision record for SaaSCodex hostnames.
 | `status.saascodex.com` | Uptime/status | optional |
 | `cdn.saascodex.com` | Static assets | optional; only if you outgrow Vercel's CDN |
 
-### Out of scope: `ascodex.com`, `ide.ascodex.com`
+### Out of scope: the other `ascodex.com` project
 
-These belong to a **separate project**, not SaaSCodex. They are not part of this
-domain plan and must not be linked from the SaaSCodex marketing site or app.
-Inside SaaSCodex the editor is not a separate host — it lives under
-`app.saascodex.com`.
+`ascodex.com` and its subdomains — `ide.ascodex.com`, `des.ascodex.com`,
+`ai.ascodex.com` — belong to a **separate project**, not SaaSCodex. They are not
+part of this domain plan and must not be linked from the SaaSCodex marketing
+site or app. Inside SaaSCodex the editor lives under `app.saascodex.com`.
 
 ### Subdomain ideas: `app` / `ai` / `des`
 
