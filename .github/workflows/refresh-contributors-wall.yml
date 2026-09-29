@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Refresh cache bust date
         run: |
@@ -40,7 +40,7 @@ jobs:
 
       - name: Generate OpenDesign bot token
         id: open-design-bot-token
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@v3
         with:
           client-id: ${{ secrets.BOT_APP_CLIENT_ID }}
           private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}

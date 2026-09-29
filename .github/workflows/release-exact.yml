@@ -52,7 +52,7 @@ jobs:
           [[ "$CHANNEL" == "somechan" || "$CHANNEL" == "somepreview" ]]
           [[ "$RELEASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+-${CHANNEL}\.[0-9]+$ ]]
 
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.source_sha }}
           fetch-depth: 0
@@ -111,7 +111,7 @@ jobs:
             --mode enforce \
             --pending "$RUNNER_TEMP/exact-plan/pending.json"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: exact-convergence-plan-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/exact-plan/pending.json
@@ -127,7 +127,7 @@ jobs:
     runs-on: ${{ matrix.runs_on }}
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.source_sha }}
           persist-credentials: false
@@ -167,12 +167,12 @@ jobs:
               source.extractall(destination)
           PY
 
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
         if: ${{ fromJSON(needs.plan.outputs.run)[matrix.workload] }}
         with:
           version: 10.33.2
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         if: ${{ fromJSON(needs.plan.outputs.run)[matrix.workload] }}
         with:
           node-version: 24.18.0
@@ -252,14 +252,14 @@ jobs:
               (destination / "product-manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
           PY
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: exact-terminal-scene-${{ matrix.target }}-${{ inputs.source_sha }}
           path: ${{ runner.temp }}/exact-scene
           if-no-files-found: error
           retention-days: 1
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: ${{ fromJSON(needs.plan.outputs.run)[matrix.workload] }}
         with:
           name: exact-convergence-manifest-${{ matrix.workload }}-${{ github.run_id }}
@@ -274,12 +274,12 @@ jobs:
     environment: standalone-exact-release
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.source_sha }}
           persist-credentials: false
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.18.0
 
@@ -353,7 +353,7 @@ jobs:
           PY
           python3 .github/scripts/pack.py --request "$RUNNER_TEMP/exact-prepare-request.json" --receipt "$RUNNER_TEMP/exact-prepare/prepare-receipt.json"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: exact-prepared-${{ inputs.channel }}-${{ inputs.release_version }}
           path: ${{ runner.temp }}/exact-prepare
@@ -369,7 +369,7 @@ jobs:
     runs-on: ${{ matrix.runs_on }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.source_sha }}
           persist-credentials: false
@@ -417,7 +417,7 @@ jobs:
         shell: bash
         run: sh shells/terminal/sh/distribution.sh --request "$RUNNER_TEMP/distribution-request.json" --receipt "$RUNNER_TEMP/distribution/distribution-receipt.json"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: exact-distribution-${{ matrix.target }}-${{ inputs.release_version }}
           path: ${{ runner.temp }}/distribution
@@ -431,12 +431,12 @@ jobs:
     environment: standalone-exact-release
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.source_sha }}
           persist-credentials: false
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.18.0
 
@@ -515,7 +515,7 @@ jobs:
           PY
           python3 .github/scripts/release.py --request "$RUNNER_TEMP/exact-publish-request.json" --receipt "$RUNNER_TEMP/exact-final/publish-receipt.json"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: exact-published-${{ inputs.channel }}-${{ inputs.release_version }}
           path: ${{ runner.temp }}/exact-final
@@ -549,7 +549,7 @@ jobs:
       - name: Upload reusable scene handoff
         if: ${{ steps.convergence_handoff.outputs.name != '' }}
         continue-on-error: true
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.convergence_handoff.outputs.name }}
           path: ${{ steps.convergence_handoff.outputs.path }}
@@ -558,7 +558,7 @@ jobs:
 
       - name: Upload exact release evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: exact-${{ inputs.channel }}-${{ inputs.release_version }}-receipts
           path: |
@@ -578,7 +578,7 @@ jobs:
     runs-on: ${{ matrix.runs_on }}
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.source_sha }}
           persist-credentials: false
@@ -650,7 +650,7 @@ jobs:
             --shell-type "$SHELL_TYPE" \
             --target "$TARGET"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: exact-acceptance-${{ matrix.shell }}-${{ matrix.target }}-${{ inputs.release_version }}
           path: ${{ runner.temp }}/acceptance
@@ -664,7 +664,7 @@ jobs:
     environment: standalone-exact-release
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.source_sha }}
           persist-credentials: false
@@ -699,7 +699,7 @@ jobs:
           PY
           python3 .github/scripts/release.py --request "$RUNNER_TEMP/activate-request.json" --receipt "$RUNNER_TEMP/activate-receipt.json"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: exact-activation-${{ inputs.channel }}-${{ inputs.release_version }}
           path: |

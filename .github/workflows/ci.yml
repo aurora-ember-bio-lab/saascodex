@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Resolve runner profiles
         id: runners
@@ -74,7 +74,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Resolve validation scopes
         id: scopes
@@ -99,7 +99,7 @@ jobs:
       # The successful gate later turns this exact plan into a trusted handoff.
       - name: Upload pending convergence plan
         continue-on-error: true
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ci-convergence-plan-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/pending-convergence.json
@@ -143,7 +143,7 @@ jobs:
 
       - name: Upload visual report handoff
         if: ${{ steps.visual_report_handoff.outputs.name != '' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.visual_report_handoff.outputs.name }}
           path: ${{ steps.visual_report_handoff.outputs.path }}
@@ -162,7 +162,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Install actionlint and ShellCheck
         run: |
@@ -251,7 +251,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -304,7 +304,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -348,7 +348,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -372,7 +372,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Setup workspace
         uses: ./.github/actions/setup-workspace
@@ -395,7 +395,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -420,7 +420,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -463,7 +463,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -507,7 +507,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -579,7 +579,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Configure CI parallelism
         uses: ./.github/actions/configure-ci-parallelism
@@ -676,7 +676,7 @@ jobs:
       # queued PR, and that production goes through `.github/scripts/handoff.py` (the only
       # sanctioned source of handoff names and layout).
       - name: Checkout handoff helper
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           sparse-checkout: .github
           sparse-checkout-cone-mode: true
@@ -847,7 +847,7 @@ jobs:
       # and the default `success()` condition would skip this upload exactly when it matters.
       - name: Upload merge-queue ejection notice handoff
         if: ${{ failure() && steps.merge_blocking_label_gate.outputs.comment_created == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.merge_blocking_label_gate.outputs.comment_name }}
           path: ${{ steps.merge_blocking_label_gate.outputs.comment_path }}
@@ -908,7 +908,7 @@ jobs:
       - name: Checkout convergence control plane
         if: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }}
         continue-on-error: true
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
 
       - name: Download pending convergence plan
         if: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }}
@@ -933,7 +933,7 @@ jobs:
       - name: Upload convergence handoff
         if: ${{ steps.convergence_handoff.outputs.name != '' }}
         continue-on-error: true
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.convergence_handoff.outputs.name }}
           path: ${{ steps.convergence_handoff.outputs.path }}
@@ -949,7 +949,7 @@ jobs:
       # never soften, mask, or retry that result.
       - name: Checkout handoff helper
         if: ${{ failure() && github.event_name == 'merge_group' }}
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           sparse-checkout: .github
           sparse-checkout-cone-mode: true
@@ -1117,7 +1117,7 @@ jobs:
 
       - name: Upload merge-queue failure notice handoff
         if: ${{ failure() && steps.merge_queue_failure_notice.outputs.comment_created == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.merge_queue_failure_notice.outputs.comment_name }}
           path: ${{ steps.merge_queue_failure_notice.outputs.comment_path }}
