@@ -6,11 +6,8 @@ Decision record for SaaSCodex hostnames.
 
 **Keep one apex: `saascodex.com`. Put everything on subdomains.**
 
-Do **not** make `ascodex.com` a second product apex. It is shorter but drops
-"SaaS" and "Code" — the two words that say what the product is — and a second
-apex splits SEO, brand recall, cookies, email, and TLS/DNS config for zero gain.
-If you want the short form, register `ascodex.com` **only** as a 301 redirect to
-`saascodex.com` (brand defense), never as a product.
+`ascodex.com` and `ide.ascodex.com` belong to a **different project** and are
+**out of scope** for this repo — SaaSCodex uses only `saascodex.com`.
 
 | Hostname | Serves | Notes |
 |---|---|---|
@@ -21,13 +18,12 @@ If you want the short form, register `ascodex.com` **only** as a 301 redirect to
 | `status.saascodex.com` | Uptime/status | optional |
 | `cdn.saascodex.com` | Static assets | optional; only if you outgrow Vercel's CDN |
 
-### `ide.ascodex.com` → don't
+### Out of scope: `ascodex.com`, `ide.ascodex.com`
 
-Two problems: wrong apex (`ascodex.com`) and a subdomain with no product behind
-it. An empty `ide.*` reads as abandoned. If the "IDE" is the app's editor, it
-belongs at `app.saascodex.com` (same origin, shared session). If it becomes a
-separate product, host it at `ide.saascodex.com` **when it ships**, and only
-then.
+These belong to a **separate project**, not SaaSCodex. They are not part of this
+domain plan and must not be linked from the SaaSCodex marketing site or app.
+Inside SaaSCodex the editor is not a separate host — it lives under
+`app.saascodex.com`.
 
 ### Subdomain ideas: `app` / `ai` / `des`
 
@@ -61,14 +57,16 @@ the Vercel→Railway proxy hop. Split hosts (`api.saascodex.com`) only if the we
 moves fully to Vercel independently — then `app.saascodex.com` rewrites
 `/api/*` to `api.saascodex.com` (see [DEPLOYMENT.md](./DEPLOYMENT.md)).
 
-## Why not a second apex
+## Why one apex
 
 - **Brand**: `saascodex.com` matches the product name everywhere it already
   appears (`package.json`, i18n `app.brand`, docs, Stripe metadata).
 - **Cost of change**: the repo just completed a `open-design.ai → saascodex.com`
-  sweep (707 files). A second apex would re-open that surface.
+  sweep (707 files); a second apex would re-open that surface.
 - **Ops**: one apex = one set of DNS records, one certificate wildcard, one
   email domain, one cookie scope.
+- Other Aurora Ember domains (`ascodex.com`, `ide.ascodex.com`) are **different
+  projects** — keep their DNS, cookies, and email separate from SaaSCodex.
 
 ## Wiring checklist
 
@@ -79,7 +77,6 @@ moves fully to Vercel independently — then `app.saascodex.com` rewrites
       `success_url`/`cancel_url` on the same host (already built from
       `OD_PUBLIC_BASE_URL`)
 - [ ] `SAASCODEX_ALLOWED_ORIGINS=https://saascodex.com,https://app.saascodex.com`
-- [ ] `ascodex.com` (if bought) → 301 to `https://saascodex.com`
 - [ ] Cookies: set the session cookie on `.saascodex.com` so `app.` and `docs.`
       share it; keep the marketing apex cookie-free
 - [ ] Email: `hello@`, `support@`, `security@saascodex.com`
