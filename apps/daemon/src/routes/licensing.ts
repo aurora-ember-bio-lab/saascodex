@@ -81,6 +81,42 @@ export function registerLicensingRoutes(app: Express, deps: RegisterLicensingRou
     }
   });
 
+  // ── Gate: exporting premium content requires a valid license ──────────
+  // Community plugins/templates export freely; a premium snapshot (or a
+  // premium plugin applied in the project) needs an activation key.
+  app.post('/api/applied-plugins/export', (req: Request, res: Response, next) => {
+    try {
+      const body = req.body && typeof req.body === 'object' ? (req.body as Record<string, unknown>) : {};
+      const pluginIds = new Set<string>();
+      if (typeof body.snapshotId === 'string' && body.snapshotId) {
+        const row = db
+          .prepare(`SELECT plugin_id FROM applied_plugin_snapshots WHERE id = ?`)
+          .get(body.snapshotId) as { plugin_id?: string } | undefined;
+        if (row?.plugin_id) pluginIds.add(row.plugin_id);
+      } else if (typeof body.projectId === 'string' && body.projectId) {
+        const rows = db
+          .prepare(`SELECT DISTINCT plugin_id FROM applied_plugin_snapshots WHERE project_id = ?`)
+          .all(body.projectId) as Array<{ plugin_id?: string }>;
+        for (const row of rows) if (row.plugin_id) pluginIds.add(row.plugin_id);
+      }
+      const unlicensed = [...pluginIds].filter(
+        (id) => isPremiumSource(getInstalledPluginSource(db, id)) && !licenseStatus(id).licensed,
+      );
+      if (unlicensed.length > 0) {
+        return res.status(402).json({
+          error: {
+            code: 'LICENSE_REQUIRED',
+            message: 'Exporting premium content requires an activation license.',
+            pluginIds: unlicensed,
+          },
+        });
+      }
+      return next();
+    } catch (err) {
+      return res.status(500).json({ error: String(err) });
+    }
+  });
+
   // ── Activate a license key for a plugin ───────────────────────────────
   app.post('/api/plugins/:id/activate-license', express.json({ limit: '8kb' }), async (req: Request, res: Response) => {
     const pluginId = typeof req.params.id === 'string' ? req.params.id : '';

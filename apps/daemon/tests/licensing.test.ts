@@ -145,6 +145,9 @@ describe('licensing routes (HTTP + gate)', () => {
     db.exec(`CREATE TABLE installed_plugins (id TEXT PRIMARY KEY, source TEXT)`);
     db.prepare(`INSERT INTO installed_plugins (id, source) VALUES (?, ?)`).run('premium-x', 'premium-ecosystem/premium_plugins/acme/pro');
     db.prepare(`INSERT INTO installed_plugins (id, source) VALUES (?, ?)`).run('free-y', 'plugins/community/free-thing');
+    db.exec(`CREATE TABLE applied_plugin_snapshots (id TEXT PRIMARY KEY, project_id TEXT NOT NULL, plugin_id TEXT NOT NULL)`);
+    db.prepare(`INSERT INTO applied_plugin_snapshots (id, project_id, plugin_id) VALUES (?,?,?)`).run('snap-premium', 'proj-1', 'premium-x');
+    db.prepare(`INSERT INTO applied_plugin_snapshots (id, project_id, plugin_id) VALUES (?,?,?)`).run('snap-community', 'proj-1', 'free-y');
 
     const app = express();
     app.use(express.json());
@@ -156,6 +159,7 @@ describe('licensing routes (HTTP + gate)', () => {
     });
     // Placeholder handler registered AFTER the gate → the gate runs first.
     app.post(['/api/plugins/:id/apply', '/api/plugins/:id/apply-local'], (_req, res) => res.json({ applied: true }));
+    app.post('/api/applied-plugins/export', (_req, res) => res.json({ exported: true }));
 
     server = createServer(app);
     await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
@@ -186,6 +190,13 @@ describe('licensing routes (HTTP + gate)', () => {
     expect((await post('/api/plugins/free-y/apply', {})).status).toBe(200);
   });
 
+  it('gates premium export before activation but not community export', async () => {
+    const premium = await post('/api/applied-plugins/export', { snapshotId: 'snap-premium' });
+    expect(premium.status).toBe(402);
+    expect((premium.body.error as { code: string }).code).toBe('LICENSE_REQUIRED');
+    expect((await post('/api/applied-plugins/export', { snapshotId: 'snap-community' })).status).toBe(200);
+  });
+
   it('activates a license key and then unlocks the plugin', async () => {
     const activate = await post('/api/plugins/premium-x/activate-license', { key: VALID_KEY });
     expect(activate.status).toBe(200);
@@ -195,6 +206,8 @@ describe('licensing routes (HTTP + gate)', () => {
     expect(status.body).toMatchObject({ licensed: true, plan: 'pro' });
 
     expect((await post('/api/plugins/premium-x/apply', {})).status).toBe(200);
+    // Export of the premium snapshot is now unlocked too.
+    expect((await post('/api/applied-plugins/export', { snapshotId: 'snap-premium' })).status).toBe(200);
   });
 
   it('rejects an invalid key and reports entitlement', async () => {

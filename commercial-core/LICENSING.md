@@ -66,6 +66,22 @@ see the README for the snippet.
 > `LICENSE_PRIVATE_KEY`) so the signing key survives redeploys; otherwise
 > previously issued tokens stop verifying.
 
+## Gates in the daemon
+
+Premium plugins are gated by `apps/daemon/src/routes/licensing.ts`:
+
+| Surface | Premium behaviour | Community |
+|---|---|---|
+| `POST /api/plugins/:id/apply` / `apply-local` | **402 `LICENSE_REQUIRED`** until activated | free |
+| `POST /api/applied-plugins/export` (snapshot/project) | **402** when a premium plugin is involved and unlicensed | free |
+| `POST /api/plugins/:id/activate-license` | verifies the `SCX1` token offline, stores it | — |
+| `GET /api/plugins/:id/license`, `GET /api/licensing/entitlement` | current status | — |
+
+A plugin is premium when its source is under
+`premium-ecosystem/premium_plugins/…` (not merely containing the word
+"premium" — the bundled `design-systems/premium` stays free). `plugins/community`
+imports and exports are never gated.
+
 ## Verification
 
 1. Split the key; decode the payload; verify the Ed25519 signature against the
