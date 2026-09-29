@@ -67,6 +67,27 @@ moves fully to Vercel independently — then `app.splatstudio.app` rewrites
 - Other Aurora Ember domains (`ascodex.com`, `ide.ascodex.com`) are **different
   projects** — keep their DNS, cookies, and email separate from SplatStudio.
 
+## Wired (current)
+
+| | |
+|---|---|
+| Vercel team | `aurora-ember-cyber` |
+| Vercel project | `marketing` (`prj_45NHPdMaIbKL2I1YHQDrR06LACSy`) — deployed from `marketing/` |
+| Production URL | `https://marketing-six-sable-12.vercel.app` |
+| Domain | `splatstudio.app` attached to `marketing` (**pending verification**) |
+
+**DNS at the registrar (Namecheap — nameservers are `dns1/dns2.registrar-servers.com`):**
+
+| Type | Host | Value |
+|---|---|---|
+| TXT | `_vercel` | `vc-domain-verify=splatstudio.app,17f99ec8ef6ae9338902` |
+| A | `@` | `76.76.21.21` *(already present)* |
+| CNAME | `www` | `cname.vercel-dns.com` *(optional)* |
+
+Add the TXT record, then re-run `vercel domains verify splatstudio.app --scope aurora-ember-cyber` (or Vercel verifies automatically). Alternatively, switch the domain's nameservers to `ns1.vercel-dns.com` / `ns2.vercel-dns.com`.
+
+The app + API (`app.splatstudio.app`) points at the **daemon** (Railway), not Vercel — see [DEPLOYMENT.md](./DEPLOYMENT.md).
+
 ## Wiring checklist
 
 - [ ] `splatstudio.app` → marketing site (Vercel project from `marketing/`)
