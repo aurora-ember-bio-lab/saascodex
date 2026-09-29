@@ -1,0 +1,12 @@
+{
+  "name": "@aurora-ember/license-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Aurora Ember ecosystem license server: mints prefix-tag keys and Ed25519-signed activation tokens for all product domains.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.ts",
+    "selftest": "node scripts/selftest.ts"
+  }
+}

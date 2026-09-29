@@ -45,6 +45,27 @@ with `payload = { licenseId, workspace, plugin, plan, seats, issuedAt, expiresAt
 Offline verification checks the Ed25519 signature against the bundled public key
 plus `expiresAt` and the revocation list.
 
+## License server
+
+One shared server issues for every domain in the ecosystem
+([`services/license-server/`](../services/license-server/README.md)).
+
+| | |
+|---|---|
+| Deployed | `https://license-server-production-784b.up.railway.app` |
+| Health / public key | `GET /health`, `GET /pubkey` |
+| Mint (admin) | `POST /licenses` → `{ prefix, domain, tier, seats? }` |
+| Activate | `POST /activate` → `{ key, workspace? }` → `SCX1` token |
+| Revoke (admin) | `POST /revoke` → `{ licenseId }`; `GET /revocations` |
+
+Admin auth: `Authorization: Bearer <LICENSE_ADMIN_TOKEN>` (Railway service
+variable). Products verify tokens **offline** against the key from `/pubkey` —
+see the README for the snippet.
+
+> Mount a persistent Railway volume at `LICENSE_DATA_DIR` (or set
+> `LICENSE_PRIVATE_KEY`) so the signing key survives redeploys; otherwise
+> previously issued tokens stop verifying.
+
 ## Verification
 
 1. Split the key; decode the payload; verify the Ed25519 signature against the
