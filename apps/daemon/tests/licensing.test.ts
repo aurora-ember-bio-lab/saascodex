@@ -79,8 +79,10 @@ describe('licensing verifier', () => {
 
   it('detects premium sources', () => {
     expect(isPremiumSource('premium-ecosystem/premium_plugins/acme/pro')).toBe(true);
-    expect(isPremiumSource('github:aurora-ember-bio-lab/splatstudio@main/premium/x')).toBe(true);
+    expect(isPremiumSource('github:aurora-ember-bio-lab/splatstudio@main/premium-ecosystem/premium_plugins/x')).toBe(true);
     expect(isPremiumSource('plugins/community/free-thing')).toBe(false);
+    // The bundled official design system named "premium" must NOT be gated.
+    expect(isPremiumSource('/app/plugins/_official/design-systems/premium')).toBe(false);
     expect(isPremiumSource(undefined)).toBe(false);
   });
 });

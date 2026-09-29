@@ -62,10 +62,12 @@ export function getInstalledPluginSource(db: SqliteDb, pluginId: string): string
 }
 
 /**
- * A plugin is premium when its source marks the paid tier — e.g.
- * `premium-ecosystem/premium_plugins/...`, `premium/...`, or a `github:…/premium-…`
- * source. Premium plugins require an activation license to apply.
+ * A plugin is premium when its source is inside the premium ecosystem — e.g.
+ * `premium-ecosystem/premium_plugins/...` or `github:…/premium-ecosystem/…`.
+ * Matching the exact path segments avoids false positives like the bundled
+ * official design system at `…/design-systems/premium`. Premium plugins
+ * require an activation license to apply.
  */
 export function isPremiumSource(source: string | null | undefined): boolean {
-  return typeof source === 'string' && /(^|[/:_.-])premium/i.test(source);
+  return typeof source === 'string' && /(^|\/)(premium-ecosystem|premium_plugins)(\/|$)/i.test(source);
 }
