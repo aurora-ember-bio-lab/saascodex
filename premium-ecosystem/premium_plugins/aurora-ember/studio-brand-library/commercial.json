@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../commercial-core/entitlements.schema.json",
+  "plugin": "studio-brand-library",
+  "title": "Studio Brand Library",
+  "vendor": "Aurora Ember Cyber Bio Lab",
+  "priceMonthlyEur": 0,
+  "requiresPlan": ["studios"],
+  "license": {
+    "scope": "workspace",
+    "offline": true
+  }
+}

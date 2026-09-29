@@ -25,6 +25,15 @@
       "requiresPlan": ["pro", "studios"],
       "license": "Commercial",
       "trialSeconds": 604800
+    },
+    "pro-design-suite": {
+      "requiresPlan": ["pro", "studios"],
+      "license": "Commercial",
+      "trialSeconds": 604800
+    },
+    "studio-brand-library": {
+      "requiresPlan": ["studios"],
+      "license": "Commercial"
     }
   }
 }

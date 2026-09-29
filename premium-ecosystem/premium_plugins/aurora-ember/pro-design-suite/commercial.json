@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../commercial-core/entitlements.schema.json",
+  "plugin": "pro-design-suite",
+  "title": "Pro Design Suite",
+  "vendor": "Aurora Ember Cyber Bio Lab",
+  "priceMonthlyEur": 0,
+  "requiresPlan": ["pro", "studios"],
+  "trialSeconds": 604800,
+  "license": {
+    "scope": "workspace",
+    "offline": true
+  }
+}

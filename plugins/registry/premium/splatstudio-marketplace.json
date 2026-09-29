@@ -2,14 +2,57 @@
   "$schema": "https://splatstudio.app/schemas/marketplace.v1.json",
   "specVersion": "1.0.0",
   "name": "splatstudio-premium",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "owner": {
     "name": "Aurora Ember Cyber Bio Lab",
     "url": "https://splatstudio.app/premium"
   },
   "metadata": {
-    "description": "Premium (licensed) plugin registry seed. Entries are discoverable when the workspace is entitled per commercial-core/entitlements.json; unentitled workspaces see them locked.",
-    "version": "0.1.0"
+    "description": "Premium (licensed) plugin registry. Entries are discoverable when the workspace is entitled per commercial-core/entitlements.json; unentitled workspaces see them locked and must activate a key.",
+    "version": "1.0.0"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "premium/pro-design-suite",
+      "title": "Pro Design Suite",
+      "version": "1.0.0",
+      "source": "github:aurora-ember-bio-lab/splatstudio@main/premium-ecosystem/premium_plugins/aurora-ember/pro-design-suite",
+      "publisher": {
+        "id": "aurora-ember-bio-lab",
+        "github": "aurora-ember-bio-lab",
+        "url": "https://github.com/aurora-ember-bio-lab"
+      },
+      "homepage": "https://github.com/aurora-ember-bio-lab/splatstudio/tree/main/premium-ecosystem/premium_plugins/aurora-ember/pro-design-suite",
+      "license": "Commercial",
+      "capabilitiesSummary": ["prompt:inject", "artifact:write"],
+      "tags": ["premium", "design-system", "pro"],
+      "description": "Generate a full production design system (tokens + components + DESIGN.md) from a brand brief.",
+      "commercial": {
+        "requiresPlan": ["pro", "studios"],
+        "priceMonthlyEur": 0,
+        "activation": "key"
+      }
+    },
+    {
+      "name": "premium/studio-brand-library",
+      "title": "Studio Brand Library",
+      "version": "1.0.0",
+      "source": "github:aurora-ember-bio-lab/splatstudio@main/premium-ecosystem/premium_plugins/aurora-ember/studio-brand-library",
+      "publisher": {
+        "id": "aurora-ember-bio-lab",
+        "github": "aurora-ember-bio-lab",
+        "url": "https://github.com/aurora-ember-bio-lab"
+      },
+      "homepage": "https://github.com/aurora-ember-bio-lab/splatstudio/tree/main/premium-ecosystem/premium_plugins/aurora-ember/studio-brand-library",
+      "license": "Commercial",
+      "capabilitiesSummary": ["prompt:inject", "artifact:write"],
+      "tags": ["premium", "brand", "studios"],
+      "description": "Shared brand libraries across a Studios workspace, inherited by every project.",
+      "commercial": {
+        "requiresPlan": ["studios"],
+        "priceMonthlyEur": 0,
+        "activation": "key"
+      }
+    }
+  ]
 }

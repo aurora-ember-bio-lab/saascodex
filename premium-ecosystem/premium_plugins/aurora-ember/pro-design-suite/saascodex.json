@@ -1,0 +1,20 @@
+{
+  "$schema": "https://splatstudio.app/schemas/plugin.v1.json",
+  "specVersion": "1.0.0",
+  "name": "pro-design-suite",
+  "title": "Pro Design Suite",
+  "version": "1.0.0",
+  "description": "Premium: generate a full production design system (tokens + components + DESIGN.md) from a brand brief.",
+  "license": "Commercial",
+  "author": {
+    "name": "Aurora Ember Cyber Bio Lab",
+    "url": "https://splatstudio.app"
+  },
+  "homepage": "https://splatstudio.app/premium",
+  "tags": ["premium", "design-system", "tokens"],
+  "od": {
+    "kind": "scenario",
+    "mode": "prototype",
+    "capabilities": ["prompt:inject", "artifact:write"]
+  }
+}
