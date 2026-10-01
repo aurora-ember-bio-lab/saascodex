@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout trusted exact convergence code
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository }}
           ref: ${{ github.event.repository.default_branch }}

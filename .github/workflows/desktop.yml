@@ -26,8 +26,8 @@ jobs:
     runs-on: ${{ matrix.platform }}
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Rust toolchain
@@ -43,7 +43,7 @@ jobs:
         working-directory: desktop/tauri
         run: npx --yes @tauri-apps/cli@^2 icon ../../assets/brand/icon.png
       - name: Build installers
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

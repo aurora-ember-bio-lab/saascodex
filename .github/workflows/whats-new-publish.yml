@@ -73,7 +73,7 @@ jobs:
       publish: ${{ steps.mode.outputs.publish }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # Pin both jobs to one commit so the document that was validated is
           # the document that gets published, even if the ref moves in between.
@@ -108,7 +108,7 @@ jobs:
           echo "Mode: $([ "$publish" = "true" ] && echo 'publish' || echo 'dry run') from $REF @ ${{ github.sha }}"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -138,7 +138,7 @@ jobs:
     environment: whats-new-publish
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.sha }}
 
