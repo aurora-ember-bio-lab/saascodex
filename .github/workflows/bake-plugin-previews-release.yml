@@ -36,7 +36,7 @@ jobs:
     timeout-minutes: 90
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0
@@ -89,7 +89,7 @@ jobs:
         # release bake pushes the manifest directly (it then rides the non-squash
         # release back-merge to main). Minted here — after the long render, not at
         # job start — because an App token lives ~1h and the render can run long.
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@v3
         with:
           client-id: ${{ secrets.BOT_APP_CLIENT_ID }}
           private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}

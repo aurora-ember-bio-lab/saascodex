@@ -40,7 +40,7 @@ jobs:
     timeout-minutes: 90
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # Do NOT persist the default GITHUB_TOKEN as a github.com credential.
           # The rolling manifest branch is force-pushed below with the release-bot
@@ -82,7 +82,7 @@ jobs:
         # (github-actions[bot]) approve it in bake-plugin-previews-automerge.yml.
         # Minted here (not at job start) because an App token lives ~1h and the
         # bake render+upload above can run long.
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.RELEASE_BOT_APP_ID }}
           private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}

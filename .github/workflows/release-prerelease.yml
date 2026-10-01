@@ -228,7 +228,7 @@ jobs:
       state_source: ${{ steps.prerelease.outputs.state_source }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.ref != '' && inputs.ref || github.ref }}
           # Shallow. Nothing in this workflow reads git history: the built
@@ -239,12 +239,12 @@ jobs:
           fetch-depth: 1
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -321,7 +321,7 @@ jobs:
     steps:
       - name: Checkout dispatch helper
         id: checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # Deliberately the ref this workflow was loaded from, NOT the built
           # commit. The helper is infrastructure that ships with this file, so
@@ -386,7 +386,7 @@ jobs:
             always() && github.repository == 'aurora-ember-bio-lab/splatstudio' &&
             steps.checkout.outcome == 'success'
           }}
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Compose the fallback notice
@@ -458,17 +458,17 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
           # Shallow — see the metadata job's checkout for why.
           fetch-depth: 1
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Compute mac_arm64 tools-pack cache key
@@ -490,7 +490,7 @@ jobs:
 
       - name: Restore mac_arm64 tools-pack cache
         id: mac_arm64_tools_pack_cache_restore
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -774,7 +774,7 @@ jobs:
 
       - name: Save mac_arm64 tools-pack cache
         if: ${{ success() && (steps.mac_arm64_tools_pack_cache_restore.outputs.cache-hit != 'true' || steps.mac_arm64_tools_pack_build.outcome == 'failure') }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -863,17 +863,17 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
           # Shallow — see the metadata job's checkout for why.
           fetch-depth: 1
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Compute mac_x64 tools-pack cache key
@@ -895,7 +895,7 @@ jobs:
 
       - name: Restore mac_x64 tools-pack cache
         id: mac_x64_tools_pack_cache_restore
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -1080,7 +1080,7 @@ jobs:
 
       - name: Save mac_x64 tools-pack cache
         if: ${{ success() && (steps.mac_x64_tools_pack_cache_restore.outputs.cache-hit != 'true' || steps.mac_x64_tools_pack_build.outcome == 'failure') }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -1158,13 +1158,13 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
           # Shallow — see the metadata job's checkout for why.
           fetch-depth: 1
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
       # No `cache: pnpm`. It caches the pnpm STORE, and on this repository that
@@ -1177,7 +1177,7 @@ jobs:
       # This is now the only release build job without it, which is exactly the
       # shape every other build job (mac arm64, mac Intel, linux) already had.
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Compute Windows tools-pack cache key
@@ -1195,7 +1195,7 @@ jobs:
           "key=$prefix$env:WIN_TOOLS_PACK_ORIGIN_KEY" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
       - name: Restore Windows tools-pack cache
         id: win_tools_pack_cache_restore
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -1317,7 +1317,7 @@ jobs:
         run: ./.github/scripts/release/cache/win.ps1
       - name: Save Windows tools-pack cache
         if: ${{ success() && (steps.win_tools_pack_cache_restore.outputs.cache-hit != 'true' || steps.win_tools_pack_build.outputs.cache_failed == 'true') }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}/tools-pack-cache
@@ -1394,17 +1394,17 @@ jobs:
       RELEASE_COMMIT: ${{ needs.metadata.outputs.commit }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
           # Shallow — see the metadata job's checkout for why.
           fetch-depth: 1
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Install dependencies
@@ -1558,7 +1558,7 @@ jobs:
       STATE_SOURCE: ${{ needs.metadata.outputs.state_source }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit }}
           # Shallow — see the metadata job's checkout for why.
@@ -1592,12 +1592,12 @@ jobs:
           path: ${{ runner.temp }}/release-platform-manifests
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -1654,7 +1654,7 @@ jobs:
         run: pnpm exec tools-release publish-metadata
       - name: Read metadata outputs
         id: outputs
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require("fs");
@@ -1731,7 +1731,7 @@ jobs:
       FALLBACK_REF: ${{ github.event.repository.default_branch || 'main' }}
     steps:
       - name: Checkout dispatch helper
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # Deliberately the ref this workflow was loaded from, NOT the built
           # commit. The helper is infrastructure that ships with this file, so
@@ -1770,7 +1770,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.metadata.outputs.commit || inputs.ref || github.ref }}
 

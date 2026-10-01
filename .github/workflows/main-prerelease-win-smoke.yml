@@ -45,7 +45,7 @@ jobs:
       commit: ${{ steps.commit.outputs.commit }}
     steps:
       - name: Checkout canary ref
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # Manual runs test the exact dispatched revision; scheduled canaries keep following main.
           ref: ${{ github.event_name == 'workflow_dispatch' && github.sha || 'main' }}
@@ -58,12 +58,12 @@ jobs:
           "commit=$(git rev-parse HEAD)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -97,7 +97,7 @@ jobs:
 
       - name: Restore Windows tools-pack cache
         id: win_tools_pack_cache_restore
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}\tools-pack-cache
@@ -256,7 +256,7 @@ jobs:
 
       - name: Save Windows tools-pack cache
         if: ${{ success() && (steps.win_tools_pack_cache_restore.outputs.cache-hit != 'true' || steps.win_tools_pack_build.outcome == 'failure') }}
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@v6
         continue-on-error: true
         with:
           path: ${{ runner.temp }}\tools-pack-cache
@@ -269,12 +269,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout notifier
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: main
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
 

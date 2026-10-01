@@ -94,14 +94,14 @@ jobs:
       win_x64: ${{ steps.plan.outputs.win_x64 }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           # This job reads published metadata over HTTP and touches no product
           # code, so it runs the staging script that ships with this workflow
           # rather than the one at the built commit.
           fetch-depth: 1
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Read published version metadata
@@ -124,16 +124,16 @@ jobs:
       RELEASE_NAMESPACE: release-prerelease
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.commit }}
           fetch-depth: 1
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       # tools-pack resolves electron and electron-builder on every subcommand,
@@ -202,16 +202,16 @@ jobs:
       RELEASE_NAMESPACE: release-prerelease-intel
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.commit }}
           fetch-depth: 1
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Install dependencies
@@ -276,16 +276,16 @@ jobs:
       RELEASE_NAMESPACE: release-prerelease-win
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.commit }}
           fetch-depth: 1
       - name: Setup pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
         with:
           version: 10.33.2
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Install dependencies
